@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cualidades del sonido</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 880px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="840" height="350"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const W = 250;
+    const axes = (x0, y0) => {
+        add('line', { x1: x0, y1: y0, x2: x0 + W, y2: y0, stroke: '#BDC3C7', 'stroke-width': 1 });
+    };
+    const path = (x0, y0, f, col) => {
+        let d = '';
+        for (let x = 0; x <= W; x += 1.5) d += (x ? ' L' : 'M') + (x0 + x).toFixed(1) + ' ' + (y0 - f(x)).toFixed(1);
+        add('path', { d, fill: 'none', stroke: col, 'stroke-width': 2.6 });
+    };
+    const col = (x0, ttl, sub1, sub2, f1, f2, t1, t2) => {
+        label(add, x0 + W / 2, 24, ttl, { fill: '#000070', 'font-size': 17 });
+        label(add, x0 + W / 2, 44, sub1, { 'font-size': 13, fill: '#525252' });
+        axes(x0, 120); path(x0, 120, f1, '#2E86C1');
+        label(add, x0 + W / 2, 182, t1, { 'font-size': 14, fill: '#2E86C1' });
+        axes(x0, 250); path(x0, 250, f2, '#C0392B');
+        label(add, x0 + W / 2, 324, t2, { 'font-size': 14, fill: '#C0392B' });
+        label(add, x0 + W / 2, 344, sub2, { 'font-size': 13, fill: '#525252' });
+    };
+    const s = (x, lam) => Math.sin(2 * Math.PI * x / lam);
+    col(10, 'Intensidad', 'depende de la amplitud', 'misma frecuencia', x => 15 * s(x, 62), x => 50 * s(x, 62), 'sonido débil (poca amplitud)', 'sonido fuerte (mucha amplitud)');
+    col(295, 'Tono', 'depende de la frecuencia', 'misma amplitud', x => 40 * s(x, 125), x => 40 * s(x, 31), 'sonido grave (baja frecuencia)', 'sonido agudo (alta frecuencia)');
+    col(580, 'Timbre', 'depende de la forma de la onda', 'misma frecuencia y amplitud',
+        x => 40 * (0.8 * s(x, 62) + 0.35 * s(x, 31) + 0.2 * s(x, 20.7)) / 1.05,
+        x => 40 * (0.7 * s(x, 62) - 0.45 * s(x, 20.7) + 0.25 * s(x, 12.4)) / 0.95, 'un instrumento (flauta)', 'otro instrumento (violín)');
+</script>
+</body>
+</html>

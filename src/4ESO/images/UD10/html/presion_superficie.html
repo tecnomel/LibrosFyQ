@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Presión y superficie</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="816" height="336"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    // Un mismo prisma (30 × 20 × 10 cm, 200 N) apoyado sobre arcilla por sus tres caras distintas
+    const cases = [
+        { w: 150, h: 50, d: 8, z: 40, face: 'A', S: '0,06 m²', p: '3333 Pa' },
+        { w: 150, h: 100, d: 17, z: 20, face: 'B', S: '0,03 m²', p: '6667 Pa' },
+        { w: 100, h: 150, d: 26, z: 20, face: 'C', S: '0,02 m²', p: '10 000 Pa' },
+    ];
+    const clayY = 200;
+    cases.forEach((c, i) => {
+        const cx = 140 + i * 268;
+        // arcilla
+        add('rect', { x: cx - 120, y: clayY, width: 240, height: 46, rx: 8, fill: '#48C9B0', stroke: '#148F77', 'stroke-width': 2 });
+        // hueco (huella) proporcional a la presión
+        add('rect', { x: cx - c.w / 2, y: clayY, width: c.w, height: c.d, fill: '#1ABC9C' });
+        // prisma hundido en la arcilla
+        const top = clayY + c.d - c.h;
+        add('rect', { x: cx - c.w / 2, y: top, width: c.w, height: c.h, fill: '#D5D8DC', stroke: '#7F8C8D', 'stroke-width': 2 });
+        const zx = c.z * 0.7, zy = c.z * 0.6;
+        add('path', { d: `M${cx - c.w / 2} ${top} l${zx} ${-zy} l${c.w} 0 l${-zx} ${zy} Z`, fill: '#EAECEE', stroke: '#7F8C8D', 'stroke-width': 2 });
+        add('path', { d: `M${cx + c.w / 2} ${top} l${zx} ${-zy} l0 ${c.h - c.d} l${-zx} ${zy} Z`, fill: '#BFC4C9', stroke: '#7F8C8D', 'stroke-width': 2 });
+        // peso
+        arrow(add, cx, top + c.h / 2 - 20, cx, top + c.h / 2 + 20, '#C0392B', 3, 11);
+        label(add, cx + 16, top + c.h / 2 + 6, 'P', { fill: '#C0392B', 'font-style': 'italic' });
+        label(add, cx, 24, `Apoyado sobre la cara ${c.face}`, { 'font-size': 15, fill: '#000070' });
+        label(add, cx, 268, `S = ${c.S}`, { 'font-size': 15 });
+        label(add, cx, 290, `p = ${c.p}`, { 'font-size': 15, fill: '#C0392B' });
+    });
+    label(add, 408, 326, 'El mismo prisma (30 × 20 × 10 cm; 200 N) sobre arcilla: cuanto menor es la superficie, más se hunde', { 'font-size': 13, fill: '#525252', 'font-weight': 400 });
+</script>
+</body>
+</html>

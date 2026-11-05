@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El ciclo del agua</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>El ciclo del agua</h1>
+    <svg width="1090" height="600" viewBox="0 0 1090 600">
+        <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D6EAF8"/><stop offset="1" stop-color="#FDFEFE"/></linearGradient>
+            <marker id="ar" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#23373B"/></marker>
+        </defs>
+        <rect x="0" y="0" width="1090" height="600" fill="url(#sky)"/>
+        <!-- sun -->
+        <circle cx="980" cy="90" r="50" fill="#F7DC6F" stroke="#F39C12" stroke-width="5"/>
+        <!-- clouds -->
+        <g fill="#FFFFFF" stroke="#AAB7B8" stroke-width="3">
+            <ellipse cx="420" cy="110" rx="110" ry="45"/><ellipse cx="350" cy="120" rx="60" ry="38"/><ellipse cx="500" cy="125" rx="65" ry="35"/>
+        </g>
+        <!-- rain -->
+        <g stroke="#2E86C1" stroke-width="4" stroke-linecap="round">
+            <line x1="330" y1="175" x2="320" y2="205"/><line x1="370" y1="180" x2="360" y2="210"/><line x1="410" y1="175" x2="400" y2="205"/><line x1="450" y1="180" x2="440" y2="210"/>
+            <line x1="345" y1="225" x2="335" y2="255"/><line x1="390" y1="230" x2="380" y2="260"/><line x1="435" y1="225" x2="425" y2="255"/>
+        </g>
+        <!-- mountain with snow -->
+        <polygon points="80,470 300,230 520,470" fill="#7E5109"/>
+        <polygon points="250,285 300,230 350,285 320,275 300,290 280,275" fill="#FDFEFE"/>
+        <!-- ground and underground -->
+        <rect x="0" y="470" width="640" height="130" fill="#A04000"/>
+        <rect x="0" y="540" width="640" height="60" fill="#6E2C00"/>
+        <!-- river -->
+        <path d="M430 470 C480 470 520 480 640 480" stroke="#5DADE2" stroke-width="16" fill="none"/>
+        <!-- sea -->
+        <rect x="640" y="440" width="450" height="160" fill="#2E86C1"/>
+        <path d="M640 440 q20 -10 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" stroke="#AED6F1" stroke-width="4" fill="none"/>
+        <!-- arrows -->
+        <path d="M820 430 C800 300 700 200 560 140" stroke="#23373B" stroke-width="4" fill="none" stroke-dasharray="10 6" marker-end="url(#ar)"/>
+        <path d="M200 520 C350 560 500 570 650 540" stroke="#23373B" stroke-width="3" fill="none" stroke-dasharray="6 6" marker-end="url(#ar)"/>
+        <!-- labels -->
+        <g font-weight="800" font-size="22">
+            <rect x="770" y="250" width="260" height="62" rx="12" fill="#FDEDEC" stroke="#C0392B" stroke-width="2"/>
+            <text x="900" y="276" text-anchor="middle" fill="#C0392B">① EVAPORACIÓN</text>
+            <text x="900" y="300" text-anchor="middle" font-size="15" font-weight="400" fill="#23373B">el Sol calienta el mar: líquido → gas</text>
+
+            <rect x="515" y="30" width="310" height="62" rx="12" fill="#EAF2F8" stroke="#2471A3" stroke-width="2"/>
+            <text x="670" y="56" text-anchor="middle" fill="#2471A3">② CONDENSACIÓN</text>
+            <text x="670" y="80" text-anchor="middle" font-size="15" font-weight="400" fill="#23373B">el vapor se enfría: gas → líquido (nubes)</text>
+
+            <rect x="20" y="130" width="250" height="62" rx="12" fill="#E8F8F5" stroke="#117A65" stroke-width="2"/>
+            <text x="145" y="156" text-anchor="middle" fill="#117A65">③ PRECIPITACIÓN</text>
+            <text x="145" y="180" text-anchor="middle" font-size="15" font-weight="400" fill="#23373B">cae lluvia, nieve o granizo</text>
+
+            <rect x="325" y="380" width="380" height="62" rx="12" fill="#FEF9E7" stroke="#B7950B" stroke-width="2"/>
+            <text x="515" y="406" text-anchor="middle" fill="#9A7D0A">④ ESCORRENTÍA</text>
+            <text x="515" y="430" text-anchor="middle" font-size="15" font-weight="400" fill="#23373B">los ríos y las aguas subterráneas vuelven al mar</text>
+        </g>
+        <text x="320" y="530" font-size="16" font-weight="700" fill="#FDFEFE">infiltración (aguas subterráneas)</text>
+        <text x="865" y="560" font-size="22" font-weight="800" fill="#FDFEFE" text-anchor="middle">MAR</text>
+    </svg>
+</div>
+</body>
+</html>

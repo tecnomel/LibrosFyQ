@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Separación de mezclas heterogéneas</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Separación magnética</h2><svg id="a" width="280" height="250"></svg><div class="t">El imán atrae las limaduras de hierro y deja la arena (o la sal).</div></div>
+        <div class="card"><h2>Filtración</h2><svg id="b" width="280" height="250"></svg><div class="t">El papel de filtro retiene el sólido insoluble y deja pasar el líquido.</div></div>
+        <div class="card"><h2>Decantación</h2><svg id="c" width="280" height="250"></svg><div class="t">Separa líquidos inmiscibles: el más denso sale primero por la llave.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // ---------- imán ----------
+    let add = svgAdder('a');
+    add('ellipse', { cx: 140, cy: 215, rx: 110, ry: 20, fill: '#ECF0F1', stroke: '#95A5A6', 'stroke-width': 2 });
+    let r = rng(4);
+    for (let k = 0; k < 90; k++) { const a = r() * 6.28, d = Math.sqrt(r()); add('circle', { cx: 140 + 95 * d * Math.cos(a), cy: 212 + 13 * d * Math.sin(a), r: 2.6, fill: '#E5C07B' }); }
+    for (let k = 0; k < 25; k++) { const a = r() * 6.28, d = Math.sqrt(r()); add('rect', { x: 140 + 90 * d * Math.cos(a), y: 210 + 12 * d * Math.sin(a), width: 6, height: 2, fill: '#4D5656', transform: `rotate(${r() * 180} ${140 + 90 * d * Math.cos(a)} ${210 + 12 * d * Math.sin(a)})` }); }
+    // imán en U
+    add('path', { d: 'M100 40 L100 110 A40 40 0 0 0 180 110 L180 40 L155 40 L155 110 A15 15 0 0 1 125 110 L125 40 Z', fill: '#C0392B', stroke: '#922B21', 'stroke-width': 2 });
+    add('rect', { x: 100, y: 40, width: 25, height: 22, fill: '#BDC3C7', stroke: '#7F8C8D' }); add('rect', { x: 155, y: 40, width: 25, height: 22, fill: '#BDC3C7', stroke: '#7F8C8D' });
+    for (let k = 0; k < 16; k++) { const x = 98 + r() * 30 + (k % 2) * 55, y = 26 + r() * 14; add('rect', { x, y, width: 7, height: 2, fill: '#4D5656', transform: `rotate(${r() * 180} ${x} ${y})` }); }
+    label(add, 140, 182, 'arena + limaduras de hierro', { 'font-size': 13, fill: '#525252' });
+    // ---------- filtración ----------
+    add = svgAdder('b');
+    add('line', { x1: 240, y1: 20, x2: 240, y2: 240, stroke: '#7F8C8D', 'stroke-width': 4 });
+    add('rect', { x: 190, y: 235, width: 80, height: 8, fill: '#7F8C8D' });
+    add('line', { x1: 175, y1: 95, x2: 240, y2: 95, stroke: '#7F8C8D', 'stroke-width': 4 });
+    add('path', { d: 'M90 60 L190 60 L148 120 L148 160 L132 160 L132 120 Z', fill: '#FDFEFE', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+    add('path', { d: 'M98 64 L182 64 L140 118 Z', fill: '#F7F1E1', stroke: '#B7950B', 'stroke-width': 1.5 });
+    add('path', { d: 'M112 80 L168 80 L140 114 Z', fill: '#D4AC6E' });
+    beaker(add, 95, 150, 90, 85, { fill: 0.45, color: '#AED6F1' });
+    for (let k = 0; k < 4; k++) add('circle', { cx: 140, cy: 168 + k * 10, r: 2.2, fill: '#5DADE2' });
+    // vaso que vierte
+    add('path', { d: 'M40 20 L80 10 L95 48 L58 60 Z', fill: '#D6EAF8', stroke: '#5D6D7E', 'stroke-width': 2 });
+    add('path', { d: 'M92 46 Q105 55 110 72', stroke: '#5DADE2', 'stroke-width': 4, fill: 'none' });
+    label(add, 60, 115, 'arena', { 'font-size': 13, fill: '#525252' }); add('line', { x1: 80, y1: 110, x2: 125, y2: 95, stroke: '#7F8C8D' });
+    label(add, 55, 215, 'agua', { 'font-size': 13, fill: '#525252' }); add('line', { x1: 72, y1: 210, x2: 105, y2: 210, stroke: '#7F8C8D' });
+    // ---------- embudo de decantación ----------
+    add = svgAdder('c');
+    add('line', { x1: 230, y1: 15, x2: 230, y2: 240, stroke: '#7F8C8D', 'stroke-width': 4 });
+    add('rect', { x: 180, y: 235, width: 80, height: 8, fill: '#7F8C8D' });
+    add('line', { x1: 175, y1: 105, x2: 230, y2: 105, stroke: '#7F8C8D', 'stroke-width': 4 });
+    add('path', { d: 'M128 30 L152 30 L152 45 Q195 70 180 110 L146 160 L134 160 L100 110 Q85 70 128 45 Z', fill: '#FDFEFE', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+    add('path', { d: 'M93 92 Q91 70 128 52 L152 52 Q189 70 187 92 Z', fill: '#F9E79F' });
+    add('path', { d: 'M93 92 L187 92 Q186 102 180 110 L146 158 L134 158 L100 110 Q94 102 93 92 Z', fill: '#AED6F1' });
+    add('rect', { x: 134, y: 160, width: 12, height: 30, fill: '#FDFEFE', stroke: '#5D6D7E', 'stroke-width': 2 });
+    add('rect', { x: 124, y: 168, width: 32, height: 8, rx: 3, fill: '#1E8449' });
+    beaker(add, 95, 200, 90, 40, { fill: 0.5, color: '#AED6F1' });
+    label(add, 45, 75, 'aceite', { 'font-size': 13, fill: '#525252' }); label(add, 45, 90, '(menos denso)', { 'font-size': 11, fill: '#525252', 'font-weight': 600 }); add('line', { x1: 78, y1: 75, x2: 110, y2: 75, stroke: '#7F8C8D' });
+    label(add, 45, 125, 'agua', { 'font-size': 13, fill: '#525252' }); label(add, 45, 140, '(más densa)', { 'font-size': 11, fill: '#525252', 'font-weight': 600 }); add('line', { x1: 72, y1: 125, x2: 115, y2: 120, stroke: '#7F8C8D' });
+    label(add, 45, 175, 'llave', { 'font-size': 13, fill: '#525252' }); add('line', { x1: 68, y1: 172, x2: 122, y2: 172, stroke: '#7F8C8D' });
+</script>
+</body>
+</html>

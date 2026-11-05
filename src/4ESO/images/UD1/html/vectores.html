@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Vectores</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card .t { font-size: 13px; } .card h3 { font-size: 15px; color: var(--blue); margin-bottom: 4px; } .row + .row { margin-top: 12px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3>Elementos de un vector</h3><svg id="a" width="370" height="165"></svg></div>
+        <div class="card"><h3>Componentes cartesianas</h3><svg id="b" width="370" height="165"></svg></div>
+    </div>
+    <div class="row">
+        <div class="card"><h3>Misma dirección y sentido</h3><svg id="c" width="240" height="120"></svg><div class="t"><i>s</i> = <i>a</i> + <i>b</i></div></div>
+        <div class="card"><h3>Sentidos opuestos</h3><svg id="d" width="240" height="120"></svg><div class="t"><i>s</i> = <i>a</i> − <i>b</i></div></div>
+        <div class="card"><h3>Perpendiculares</h3><svg id="e" width="240" height="135"></svg><div class="t"><i>s</i> = √(<i>a</i>² + <i>b</i>²)</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const BL = '#2E86C1', GR = '#1E8449', RD = '#C0392B';
+    {
+        const add = svgAdder('a');
+        add('line', { x1: 10, y1: 90, x2: 360, y2: 90, stroke: '#AAB7B8', 'stroke-dasharray': '6 4' });
+        arrow(add, 60, 90, 290, 90, BL, 5, 18);
+        add('circle', { cx: 60, cy: 90, r: 6, fill: '#1B4F72' });
+        vlabel(add, 175, 76, 'v', BL);
+        add('line', { x1: 60, y1: 40, x2: 60, y2: 60 }); arrow(add, 175, 45, 60, 45, '#525252', 1.5, 8); arrow(add, 175, 45, 290, 45, '#525252', 1.5, 8);
+        label(add, 175, 35, 'módulo', { 'font-size': 13 });
+        label(add, 60, 122, 'punto de', { 'font-size': 12, 'font-weight': 400 }); label(add, 60, 137, 'aplicación', { 'font-size': 12, 'font-weight': 400 });
+        label(add, 290, 122, 'sentido', { 'font-size': 12, 'font-weight': 400 });
+        label(add, 340, 80, 'dirección', { 'font-size': 12, 'font-weight': 400 });
+    }
+    {
+        const add = svgAdder('b');
+        const ox = 40, oy = 130, u = 26;
+        arrow(add, ox - 10, oy, 220, oy, '#525252', 1.5, 8); arrow(add, ox, oy + 10, ox, 10, '#525252', 1.5, 8);
+        label(add, 226, oy + 5, 'X', { 'font-size': 13, 'text-anchor': 'start' }); label(add, ox - 12, 16, 'Y', { 'font-size': 13 });
+        const ax = ox + 4 * u, ay = oy - 3 * u;
+        add('line', { x1: ax, y1: oy, x2: ax, y2: ay, stroke: '#AAB7B8', 'stroke-dasharray': '4 3' });
+        add('line', { x1: ox, y1: ay, x2: ax, y2: ay, stroke: '#AAB7B8', 'stroke-dasharray': '4 3' });
+        arrow(add, ox, oy, ax, oy, GR, 3, 11); arrow(add, ox, oy, ox, ay, GR, 3, 11);
+        arrow(add, ox, oy, ax, ay, RD, 3.5, 13);
+        vlabel(add, ox + 2 * u - 12, oy - 1.5 * u - 6, 'a', RD);
+        vlabel(add, ox + 2 * u, oy + 26, 'a', GR, 'x');
+        vlabel(add, ox - 18, oy - 1.5 * u + 6, 'a', GR, 'y');
+        add('path', { d: arcD(ox, oy, 34, 0, 36.87), fill: 'none', stroke: '#B9770E', 'stroke-width': 2 });
+        label(add, ox + 44, oy - 8, 'α', { fill: '#B9770E', 'font-size': 14 });
+        ['aₓ = a · cos α = 4', 'a_y = a · sen α = 3', 'a = √(4² + 3²) = 5', 'tg α = 3/4 ⇒ α = 37°'].forEach((t, i) =>
+            label(add, 240, 30 + i * 26, t.replace('a_y', 'aᵧ'), { 'font-size': 13, 'text-anchor': 'start', 'font-weight': 400 }));
+    }
+    {
+        const add = svgAdder('c');
+        arrow(add, 20, 25, 140, 25, BL, 3, 11); vlabel(add, 80, 18, 'a', BL);
+        arrow(add, 140, 25, 210, 25, GR, 3, 11); vlabel(add, 175, 18, 'b', GR);
+        arrow(add, 20, 80, 210, 80, RD, 3.5, 12); vlabel(add, 115, 72, 's', RD);
+    }
+    {
+        const add = svgAdder('d');
+        arrow(add, 30, 25, 200, 25, BL, 3, 11); vlabel(add, 115, 18, 'a', BL);
+        arrow(add, 200, 45, 120, 45, GR, 3, 11); vlabel(add, 160, 66, 'b', GR);
+        arrow(add, 30, 95, 120, 95, RD, 3.5, 12); vlabel(add, 75, 88, 's', RD);
+    }
+    {
+        const add = svgAdder('e');
+        const ox = 40, oy = 105;
+        add('line', { x1: 200, y1: oy, x2: 200, y2: 15, stroke: '#AAB7B8', 'stroke-dasharray': '4 3' });
+        add('line', { x1: ox, y1: 15, x2: 200, y2: 15, stroke: '#AAB7B8', 'stroke-dasharray': '4 3' });
+        arrow(add, ox, oy, 200, oy, BL, 3, 11); vlabel(add, 120, oy + 26, 'a', BL);
+        arrow(add, ox, oy, ox, 15, GR, 3, 11); vlabel(add, ox - 16, 66, 'b', GR);
+        arrow(add, ox, oy, 200, 15, RD, 3.5, 12); vlabel(add, 115, 48, 's', RD);
+    }
+</script>
+</body>
+</html>

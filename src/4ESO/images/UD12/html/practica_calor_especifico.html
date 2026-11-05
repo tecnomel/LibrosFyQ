@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Medida de la capacidad calorífica específica</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } .card .t { font-size: 13.5px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><svg id="a" width="360" height="320"></svg>
+            <div class="t"><b>1.</b> El objeto metálico, colgado de un hilo, se calienta en agua hirviendo hasta <i>T</i><sub>1</sub> = 100 °C.</div></div>
+        <div class="card"><svg id="b" width="360" height="320"></svg>
+            <div class="t"><b>2.</b> Se pasa rápidamente al calorímetro, con 100 g de agua a <i>T</i><sub>2</sub>, y se mide <i>T</i><sub>eq</sub>.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    let add = svgAdder('a');
+    // soporte con varilla, nuez y brazo
+    add('rect', { x: 285, y: 292, width: 70, height: 12, rx: 3, fill: '#7F8C8D' });
+    add('line', { x1: 335, y1: 292, x2: 335, y2: 30, stroke: '#909497', 'stroke-width': 7 });
+    add('rect', { x: 327, y: 52, width: 16, height: 18, rx: 3, fill: '#424949' });
+    add('line', { x1: 335, y1: 60, x2: 140, y2: 60, stroke: '#909497', 'stroke-width': 5 });
+    // hornillo y vaso con agua hirviendo
+    hotplate(add, 60, 252, 160);
+    beaker(add, 80, 120, 120, 132, { fill: 0.72, color: '#AED6F1' });
+    const r = rng(5);
+    for (let i = 0; i < 14; i++) add('circle', { cx: 92 + r() * 96, cy: 165 + r() * 80, r: 2 + r() * 3, fill: 'none', stroke: '#fff', 'stroke-width': 1.5 });
+    // hilo y objeto metálico
+    add('line', { x1: 140, y1: 60, x2: 140, y2: 200, stroke: '#424949', 'stroke-width': 1.5 });
+    add('rect', { x: 124, y: 200, width: 32, height: 26, rx: 4, fill: '#ABB2B9', stroke: '#424949', 'stroke-width': 2 });
+    callout(add, 156, 213, 212, 100, 'objeto metálico');
+
+    add = svgAdder('b');
+    const x0 = 100, y0 = 110;
+    add('rect', { x: x0, y: y0, width: 160, height: 170, rx: 10, fill: '#F5B7B1', stroke: '#922B21', 'stroke-width': 3 });
+    add('rect', { x: x0 + 14, y: y0 + 4, width: 132, height: 152, fill: '#FDFEFE', stroke: '#7F8C8D', 'stroke-width': 2 });
+    add('rect', { x: x0 + 16, y: y0 + 60, width: 128, height: 94, fill: '#AED6F1' });
+    add('rect', { x: x0 + 52, y: y0 + 116, width: 32, height: 26, rx: 4, fill: '#ABB2B9', stroke: '#424949', 'stroke-width': 2 });
+    add('rect', { x: x0 - 8, y: y0 - 14, width: 176, height: 16, rx: 4, fill: '#922B21' });
+    thermometer(add, x0 + 115, y0 - 80, 210, 0.45);
+    add('line', { x1: x0 + 30, y1: y0 - 60, x2: x0 + 30, y2: y0 + 140, stroke: '#424949', 'stroke-width': 3 });
+    add('rect', { x: x0 + 18, y: y0 + 140, width: 24, height: 6, rx: 3, fill: '#424949' });
+    label(add, x0 + 80, y0 + 200, 'calorímetro', { 'font-size': 15 });
+    callout(add, x0 + 120, y0 - 60, 250, 25, 'termómetro');
+    callout(add, x0 + 30, y0 - 50, 70, 25, 'agitador', 'end');
+</script>
+</body>
+</html>

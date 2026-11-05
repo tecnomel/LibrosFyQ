@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tamizado</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="steps.css">
+<script src="lab_es.js"></script>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1></h1>
+    <div class="prop" id="prop"></div>
+    <div class="row" id="row"></div>
+</div>
+<script>
+const peb = [[95,150],[125,140],[150,155],[115,165],[170,148]];
+const sand = rnd(60, 70, 190, 140, 172, 3);
+buildSteps('Cómo separar por tamizado', 'el <b>tamaño</b> de las partículas', 'piedras + arena', [
+  [beaker(70,90,120,90,[],dots(sand,3,C.sand)+dots(peb,11,C.sandDark)) + T(130,70,'piedras + arena'),
+   'Pon la mezcla en un recipiente.'],
+  [`<ellipse cx="130" cy="60" rx="95" ry="18" fill="#D5D8DC" stroke="${C.line}" stroke-width="4"/>` +
+   `<path d="M45 60 L215 60 M70 50 L70 72 M100 46 L100 76 M130 44 L130 78 M160 46 L160 76 M190 50 L190 72" stroke="${C.line}" stroke-width="1.5"/>` +
+   dots([[95,50],[130,47],[165,52]],11,C.sandDark) + dots(rnd(14,95,165,85,125,7),3,C.sand) +
+   beaker(70,130,120,60,[[18,C.sand]]),
+   'Échala en el <b>tamiz</b> y agítalo: los granos pequeños caen por los agujeros.'],
+  [`<ellipse cx="130" cy="60" rx="95" ry="18" fill="#D5D8DC" stroke="${C.line}" stroke-width="4"/>` +
+   dots([[95,50],[130,47],[165,52]],11,C.sandDark) + tag(130,22,'keep','✔ piedras') +
+   beaker(70,120,120,70,[[30,C.sand]]) + tag(130,112,'keep','✔ arena'),
+   'Las piedras <b>grandes</b> se quedan en el tamiz; la <b>arena</b> se recoge debajo.'],
+]);
+</script>
+</body>
+</html>

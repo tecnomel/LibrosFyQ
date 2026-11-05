@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Isolating x and t</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="isolate.css">
+<script src="isolate.js"></script>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1></h1>
+    <div class="grid" id="grid"></div>
+    <div class="tip" id="tip"></div>
+</div>
+<script>
+buildIsolate('How to isolate x and t in v = x / t', [
+    { goal: 'x', steps: [
+        ['Write the formula.', `v = ${f(g('x'), 't')}`],
+        [`<b>t</b> is <b>dividing</b> ${g('x')}: multiply <b>both sides</b> by t.`, `v ${o('· t')} = ${f(`${g('x')} ${o('· ' + c('t'))}`, c('t'))}`]],
+      result: `${g('x')} = v · t` },
+    { goal: 't', steps: [
+        ['Start from x = v · t (left card).', `x = v · ${g('t')}`],
+        [`<b>v</b> is <b>multiplying</b> ${g('t')}: divide <b>both sides</b> by v.`, `${f('x', o('v'))} = ${f(`${c('v')} · ${g('t')}`, o(c('v')))}`]],
+      result: `${g('t')} = ${f('x', 'v')}` },
+], '<b>Shortcut:</b> what is <b>dividing</b> goes to the other side <b>multiplying</b>, and what is <b>multiplying</b> goes to the other side <b>dividing</b>.');
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ley de Dalton de las presiones parciales</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="910" height="290"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    // recipiente con manómetro; gases: lista de [molécula, n, semilla]
+    function recipiente(x, gases, p, titulo) {
+        const w = 200, h = 170, y = 60;
+        add('rect', { x, y, width: w, height: h, rx: 12, fill: '#F4F6F7', stroke: '#5D6D7E', 'stroke-width': 3 });
+        gases.forEach(([m, n, seed]) => {
+            const R = rng(seed);
+            for (let i = 0; i < n; i++) molecule(add, x + 25 + R() * (w - 50), y + 25 + R() * (h - 50), MOL[m], 8);
+        });
+        // manómetro
+        add('rect', { x: x + w / 2 - 5, y: y - 22, width: 10, height: 22, fill: '#7F8C8D' });
+        add('circle', { cx: x + w / 2, cy: y - 34, r: 20, fill: '#fff', stroke: '#34495E', 'stroke-width': 3 });
+        const a = -Math.PI / 2 - 1.2 + p * 0.55;
+        add('line', { x1: x + w / 2, y1: y - 34, x2: x + w / 2 + 15 * Math.cos(a), y2: y - 34 + 15 * Math.sin(a), stroke: '#C0392B', 'stroke-width': 2.5 });
+        label(add, x + w / 2, y + h + 26, titulo, { 'font-size': 16, fill: '#000070' });
+    }
+    recipiente(10, [['N2', 6, 21]], 1, '');
+    recipiente(320, [['O2', 3, 22]], 0.5, '');
+    recipiente(690, [['N2', 6, 21], ['O2', 3, 22]], 3, '');
+    chemText(add, 110, 256, 'solo N_2: p(N_2) = 2 atm', { 'font-size': 16, fill: '#2E86C1' });
+    chemText(add, 420, 256, 'solo O_2: p(O_2) = 1 atm', { 'font-size': 16, fill: '#C0392B' });
+    label(add, 790, 256, 'mezcla: p = 2 + 1 = 3 atm', { 'font-size': 16, fill: '#1E8449' });
+    label(add, 265, 150, '+', { 'font-size': 36 });
+    label(add, 605, 150, '=', { 'font-size': 36 });
+    label(add, 455, 284, 'Los tres recipientes tienen el mismo volumen y la misma temperatura.', { 'font-size': 14, fill: '#525252', 'font-weight': 600 });
+</script>
+</body>
+</html>

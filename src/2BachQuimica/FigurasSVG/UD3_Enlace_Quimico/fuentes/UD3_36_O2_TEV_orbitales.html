@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_36 · Formación del O2 según la TEV (orbitales)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/orbitales.js"></script>
+</head>
+<body>
+<script>
+// Cada O tiene dos orbitales 2p semiocupados (2py¹, 2pz¹). Los 2py (sobre el eje) se solapan
+// frontalmente -> enlace σ; los 2pz (paralelos) lateralmente -> enlace π. Doble enlace O=O.
+const svg = crearFigura(860, 260);
+const RO = "#E0463A", NA = "#F5A06A";
+const cam = [1, -0.3, 0.3];
+const atomO = c => union(OA.p(c, [0, 1, 0], 2, 5), OA.p(c, [0, 0, 1], 2, 5), OA.p(c, [1, 0, 0], 2, 5));
+const caja = [2.1, 1.6, 1.8];
+escenaOrbital(svg, 110, 115, atomO([0, 0, 0]), { escala: 45, caja, colorPos: RO, colorNeg: RO, camara: cam, nucleos: [[0, 0, 0]] });
+escenaOrbital(svg, 320, 115, atomO([0, 0, 0]), { escala: 45, caja, colorPos: RO, colorNeg: RO, camara: cam, nucleos: [[0, 0, 0]] });
+texto(svg, 215, 122, "+", { "text-anchor": "middle", "font-size": 24, fill: COLORES.texto });
+const conf = [{ t: "2p" }, { t: "x", sub: true }, { t: "² 2p" }, { t: "y", sub: true }, { t: "¹ 2p" }, { t: "z", sub: true }, { t: "¹" }];
+texto(svg, 110, 235, conf, { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto });
+texto(svg, 320, 235, conf, { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto });
+flecha(svg, 420, 115, 480, 115, { punta: 11, ancho: 1.8 });
+const d = 0.85, A = [0, -d, 0], B = [0, d, 0];
+const sigma = combinar([1, OA.p(A, [0, 1, 0], 2, 2)], [1, OA.p(B, [0, -1, 0], 2, 2)]);
+const pi = combinar([1, OA.p(A, [0, 0, 1], 2, 2)], [1, OA.p(B, [0, 0, 1], 2, 2)]);
+escenaOrbital(svg, 660, 115, sigma, { escala: 45, caja: [3.4, 1.6, 2], colorPos: RO, colorNeg: RO, camara: cam, nucleos: [A, B],
+    otros: [{ fn: pi, colorPos: NA, colorNeg: NA }, { fn: OA.p(A, [1, 0, 0], 2, 5), colorPos: RO, colorNeg: RO }, { fn: OA.p(B, [1, 0, 0], 2, 5), colorPos: RO, colorNeg: RO }] });
+texto(svg, 800, 60, "enlace π", { "font-size": 14, fill: COLORES.texto });
+indicador(svg, 798, 56, 705, 62);
+texto(svg, 800, 178, "enlace σ", { "font-size": 14, fill: COLORES.texto });
+indicador(svg, 798, 174, 690, 118);
+texto(svg, 660, 245, [{ t: "O" }, { t: "2", sub: true }, { t: " (O=O)" }], { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Consumo mundial de energía</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1100px; } svg text { font-family: "Segoe UI", Arial, sans-serif; } </style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>¿De dónde procede la energía del mundo? (2021)</h1>
+    <svg id="s" width="1040" height="440"></svg>
+    <div class="note" style="text-align:center">Más del <b>80 %</b> de la energía que usamos aún procede de los combustibles fósiles.</div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg', s = document.getElementById('s');
+    const add = (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; s.appendChild(e); };
+    const data = [['🛢️ Petróleo', 31, '#6E2C00'], ['🪨 Carbón', 26.9, '#424949'], ['🔥 Gas natural', 24.3, '#B9770E'], ['♻️ Renovables', 13.5, '#1E8449'], ['☢️ Nuclear', 4.3, '#7D3C98']];
+    const H = v => v * 10;
+    const fmt = v => String(v).replace('.', ',');
+    add('line', { x1: 60, y1: 370, x2: 1000, y2: 370, stroke: '#23373B', 'stroke-width': 2.5 });
+    data.forEach(([n, v, c], i) => {
+        const x = 110 + i * 180;
+        add('rect', { x, y: 370 - H(v), width: 120, height: H(v), rx: 8, fill: c });
+        add('text', { x: x + 60, y: 360 - H(v), 'text-anchor': 'middle', 'font-size': 22, 'font-weight': 800, fill: c }, fmt(v) + ' %');
+        add('text', { x: x + 60, y: 400, 'text-anchor': 'middle', 'font-size': 18, 'font-weight': 700, fill: '#23373B' }, n);
+    });
+    add('path', { d: 'M100 395 L100 415 L640 415 L640 395', fill: 'none', stroke: '#C0392B', 'stroke-width': 2 });
+    add('text', { x: 370, y: 435, 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 700, fill: '#C0392B' }, 'combustibles fósiles: 82,2 %');
+</script>
+</body>
+</html>

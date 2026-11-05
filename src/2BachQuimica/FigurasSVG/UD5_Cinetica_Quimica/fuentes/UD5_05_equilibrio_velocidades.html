@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD5_05 · Velocidades directa e inversa hasta el equilibrio</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/graficas.js"></script>
+</head>
+<body>
+<script>
+// Con el mismo modelo que la figura del HI: la velocidad directa disminuye y la inversa
+// aumenta hasta que se igualan (equilibrio dinámico).
+const k1 = 1, k2 = 1 / 4;      // Kc = 4 (ilustrativo)
+let H2 = 1, I2 = 1, HI = 0;
+const dt = 0.002, vd = [], vi = [];
+for (let t = 0; t <= 4; t += dt) {
+    const a = k1 * H2 * I2, b = k2 * HI * HI;
+    vd.push([t, a]); vi.push([t, b]);
+    H2 -= (a - b) * dt; I2 -= (a - b) * dt; HI += 2 * (a - b) * dt;
+}
+const svg = crearFigura(380, 330);
+const g = grafica(svg, { x: 40, y: 25, w: 310, h: 270, xmin: 0, xmax: 4, ymin: 0, ymax: 1.05, etqX: "t", etqY: "v" });
+g.puntos(vd, { ancho: 2.6 }); g.puntos(vi, { ancho: 2.6 });
+texto(svg, g.px(1.2), g.py(0.42), [{ t: "v" }, { t: "reacción directa", sub: true }], { "font-size": 17, "font-style": "italic", fill: COLORES.texto });
+texto(svg, g.px(1.2), g.py(0.08), [{ t: "v" }, { t: "reacción inversa", sub: true }], { "font-size": 17, "font-style": "italic", fill: COLORES.texto });
+const ve = vd[vd.length - 1][1];
+el("line", { x1: g.px(2.2), y1: g.py(ve), x2: g.px(4), y2: g.py(ve), stroke: "#555", "stroke-dasharray": "5 4" }, svg);
+texto(svg, g.px(3.1), g.py(ve) - 10, "equilibrio: v", { "text-anchor": "middle", "font-size": 13, fill: COLORES.gris });
+</script>
+</body>
+</html>

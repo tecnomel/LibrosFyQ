@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Preparación de una disolución de concentración conocida</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1100px; }
+    .card h2 { font-size: 17px; }
+    .n { display: inline-block; width: 26px; height: 26px; border-radius: 13px; background: var(--ocre); color: #fff; font-weight: 800; line-height: 26px; margin-right: 6px; }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2><span class="n">1</span>Pesar el soluto</h2><svg id="a" width="220" height="230"></svg><div class="t">Se pesa la masa calculada de soluto en un vaso de precipitados.</div></div>
+        <div class="card"><h2><span class="n">2</span>Disolver</h2><svg id="b" width="220" height="230"></svg><div class="t">Se añade un poco de agua destilada y se agita con una varilla.</div></div>
+        <div class="card"><h2><span class="n">3</span>Trasvasar</h2><svg id="c" width="220" height="230"></svg><div class="t">Se pasa la disolución al matraz aforado con un embudo.</div></div>
+        <div class="card"><h2><span class="n">4</span>Enrasar</h2><svg id="d" width="220" height="230"></svg><div class="t">Se completa con agua hasta que el menisco toque la marca del aforo.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // Matraz aforado: cx centro, by base; nivel (0-1 del cuerpo) y si está lleno hasta el cuello
+    function flask(add, cx, by, full) {
+        add('path', { d: `M${cx - 9} ${by - 200} L${cx - 9} ${by - 110} A55 55 0 1 0 ${cx + 9} ${by - 110} L${cx + 9} ${by - 200}`, fill: 'none', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+        const lvl = full ? by - 165 : by - 60;
+        add('path', { d: full ? `M${cx - 8} ${lvl} L${cx - 8} ${by - 110} A54 54 0 1 0 ${cx + 8} ${by - 110} L${cx + 8} ${lvl} Z` : `M${cx - 52} ${lvl} A54 54 0 0 0 ${cx + 52} ${lvl} Z`, fill: '#AED6F1', opacity: 0.9 });
+        add('line', { x1: cx - 13, y1: by - 165, x2: cx + 13, y2: by - 165, stroke: '#C0392B', 'stroke-width': 2 });
+        label(add, cx, by - 30, '250 mL', { 'font-size': 13 });
+    }
+    // 1 balanza
+    let add = svgAdder('a');
+    add('path', { d: 'M20 200 L40 140 L180 140 L200 200 Z', fill: '#D5DBDB', stroke: '#7F8C8D', 'stroke-width': 2 });
+    add('rect', { x: 70, y: 160, width: 80, height: 26, rx: 4, fill: '#1B4F72' });
+    label(add, 110, 179, '14,63 g', { 'font-size': 15, fill: '#58D68D' });
+    add('ellipse', { cx: 110, cy: 135, rx: 70, ry: 9, fill: '#BFC9CA', stroke: '#7F8C8D' });
+    beaker(add, 80, 70, 60, 62, { liquid: false });
+    let r = rng(3); for (let k = 0; k < 40; k++) add('circle', { cx: 88 + r() * 44, cy: 124 + r() * 5, r: 2, fill: '#FDFEFE', stroke: '#AAB7B8', 'stroke-width': 0.6 });
+    // 2 disolver
+    add = svgAdder('b');
+    beaker(add, 50, 70, 120, 140, { fill: 0.5, color: '#D6EAF8' });
+    add('line', { x1: 140, y1: 30, x2: 95, y2: 195, stroke: '#85929E', 'stroke-width': 5, 'stroke-linecap': 'round' });
+    add('path', { d: 'M70 175 a40 10 0 1 0 80 0', stroke: '#2471A3', 'stroke-width': 2, fill: 'none', 'stroke-dasharray': '4 3' });
+    // 3 trasvasar
+    add = svgAdder('c');
+    flask(add, 130, 225, false);
+    add('path', { d: 'M100 25 L160 25 L136 55 L136 75 L124 75 L124 55 Z', fill: '#FDFEFE', stroke: '#5D6D7E', 'stroke-width': 2 });
+    add('path', { d: 'M20 40 L58 18 L78 52 L44 70 Z', fill: '#D6EAF8', stroke: '#5D6D7E', 'stroke-width': 2 });
+    add('path', { d: 'M76 48 Q100 40 118 38', stroke: '#5DADE2', 'stroke-width': 4, fill: 'none' });
+    // 4 enrasar
+    add = svgAdder('d');
+    flask(add, 80, 225, true);
+    add('circle', { cx: 170, cy: 70, r: 42, fill: '#FFFFFF', stroke: '#2471A3', 'stroke-width': 2.5 });
+    add('rect', { x: 152, y: 30, width: 36, height: 80, fill: 'none', stroke: '#5D6D7E', 'stroke-width': 2 });
+    add('path', { d: 'M153 70 Q170 82 187 70 L187 108 L153 108 Z', fill: '#AED6F1' });
+    add('line', { x1: 148, y1: 82, x2: 192, y2: 82, stroke: '#C0392B', 'stroke-width': 2 });
+    add('line', { x1: 128, y1: 72, x2: 92, y2: 62, stroke: '#2471A3', 'stroke-width': 1.5 });
+    label(add, 170, 128, 'aforo', { 'font-size': 13, fill: '#C0392B' });
+    add('path', { d: 'M120 0 L150 -6', stroke: 'none' });
+</script>
+</body>
+</html>

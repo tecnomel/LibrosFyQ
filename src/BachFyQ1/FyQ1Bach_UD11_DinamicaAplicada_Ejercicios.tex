@@ -1,0 +1,644 @@
+%! Unidad 11 — Dinámica aplicada: ejercicios resueltos, ejercicios finales, olimpiadas y autoevaluación
+%! Fuente: Fuentes/Fisica/Unidad 11 («Ejercicios resueltos», «Practica y calcula», «Piensa y resuelve») y Unidad 12 (captura 439:
+%! «Olimpiadas Física» y «Autoevaluación» de este tema). Enunciados adaptados con datos cambiados (y más realistas cuando los de
+%! la fuente no lo eran: rozamiento de un tren, fuerza sobre la Luna, órbitas); soluciones rehechas con g = 9,8 m/s².
+%! Dificultad: \(\star\) baja, \(\star\star\) media, \(\star\star\star\) alta.
+
+\section{Ejercicios resueltos}\label{sec:ud11-resueltos}
+
+\begin{example}
+    \textbf{Cuerpos enlazados en dos planos.} Un cuerpo de \(m_1 = \qty{4}{\kg}\) está sobre una superficie horizontal y unido por una
+    cuerda, que pasa por una polea, a otro de \(m_2 = \qty{12}{\kg}\) situado en un plano inclinado \(30^\circ\). El coeficiente de
+    rozamiento es \num{0.2} en ambas superficies. Calcula la aceleración del sistema y la tensión de la cuerda.
+
+    \textbf{Solución.} \textbf{1. Datos}: \(m_1 = \qty{4}{\kg}\), \(m_2 = \qty{12}{\kg}\), \(\alpha = 30^\circ\), \(\mu = \num{0.2}\).
+    \textbf{Incógnitas}: \(a\) y \(T\). El cuerpo 2 baja por el plano y arrastra al 1. Para cada cuerpo, el eje \(X\) es la dirección de su
+    movimiento; la tensión es la misma en toda la cuerda y las dos aceleraciones son iguales en módulo.
+
+    \textbf{2. Cuerpo 1}: \(N_1 = m_1\,g\); \(T - \mu\,m_1\,g = m_1\,a\) (I).
+
+    \textbf{3. Cuerpo 2}: \(N_2 = m_2\,g\cos\alpha\); \(m_2\,g\sen\alpha - T - \mu\,m_2\,g\cos\alpha = m_2\,a\) (II).
+
+    \textbf{4.} Sumando (I) y (II) se elimina \(T\):
+    \[ a = \frac{m_2\,g\sen\alpha - \mu\,m_1\,g - \mu\,m_2\,g\cos\alpha}{m_1 + m_2} = \frac{\num{58.8} - \num{7.84} - \num{20.37}}{16}
+    = \qty{1.91}{\m\per\s\squared} \]
+    Con (I): \(T = m_1\,(a + \mu\,g) = 4 \cdot (\num{1.91} + \num{1.96}) = \qty{15.5}{\newton}\).
+\end{example}
+
+\begin{example}
+    \textbf{Subir una cuesta.} Una calle tiene una pendiente de \(25^\circ\) (una de las más empinadas de España tiene \(27^\circ\)). Un
+    coche de \qty{900}{\kg} la sube con una aceleración de \qty{0.3}{\m\per\s\squared}. Si las fuerzas de resistencia (rodadura de los
+    neumáticos) equivalen a un coeficiente de \num{0.04}, ¿qué fuerza de tracción debe hacer el coche?
+
+    \textbf{Solución.} \textbf{1.} Sobre el coche actúan el peso, la normal, la fuerza de tracción \(F\) (hacia arriba) y la
+    resistencia \(F_r\) (hacia abajo). Eje \(X\) paralelo al plano, hacia arriba.
+
+    \textbf{2.} \(P = 900 \cdot \num{9.8} = \qty{8820}{\newton}\); \(P_x = 8820\sen 25^\circ = \qty{3727}{\newton}\);
+    \(N = P_y = 8820\cos 25^\circ = \qty{7994}{\newton}\); \(F_r = \num{0.04} \cdot 7994 = \qty{320}{\newton}\).
+
+    \textbf{3.} \(F - P_x - F_r = m\,a \Rightarrow F = 900 \cdot \num{0.3} + 3727 + 320 = \qty{4317}{\newton}\). Casi toda la fuerza
+    se emplea en vencer la componente del peso paralela a la cuesta.
+\end{example}
+
+\begin{example}
+    \textbf{Una curva peraltada.} Una curva de autovía tiene \qty{150}{\m} de radio. a) ¿Qué peralte necesita para que un coche pueda
+    tomarla a \qty{17.7}{\m\per\s} (unos \qty{64}{\km\per\hour}) aunque haya hielo? b) Si fuera plana, ¿a qué velocidad máxima se
+    podría tomar con un coeficiente de rozamiento de \num{0.5}?
+
+    \textbf{Solución.} \textbf{a)} Sin rozamiento, la componente horizontal de la normal es la fuerza centrípeta:
+    \(N\sen\alpha = m\,v^2/r\) y \(N\cos\alpha = m\,g\). Dividiendo:
+    \[ \tg\alpha = \frac{v^2}{g\,r} = \frac{\num{17.7}^2}{\num{9.8} \cdot 150} = \num{0.213} \Rightarrow \alpha = 12^\circ \]
+    \textbf{b)} \(v_{\text{máx}} = \sqrt{\mu\,g\,r} = \sqrt{\num{0.5} \cdot \num{9.8} \cdot 150} = \qty{27.1}{\m\per\s}\)
+    (\qty{98}{\km\per\hour}).
+\end{example}
+
+\begin{example}
+    \textbf{Los satélites Galileo.} Los satélites del sistema europeo de navegación Galileo orbitan a \qty{23222}{\km} de altura.
+    Calcula su velocidad, su periodo y la aceleración de la gravedad a esa altura.
+
+    \textbf{Solución.} \textbf{1.} \(r = R_T + h = 6370 + 23222 = \qty{29592}{\km}\).
+
+    \textbf{2.} La gravedad es la fuerza centrípeta: \(v = \sqrt{\dfrac{G\,M_T}{r}} = \sqrt{\dfrac{\num{6.67e-11} \cdot \num{5.97e24}}{\num{2.959e7}}}
+    = \qty{3.67e3}{\m\per\s}\).
+
+    \textbf{3.} \(T = \dfrac{2\pi r}{v} = \qty{5.07e4}{\s} = \qty{14.1}{\hour}\); \(g = \dfrac{G\,M_T}{r^2} = \qty{0.455}{\m\per\s\squared}\).
+\end{example}
+
+\begin{example}
+    \textbf{Péndulo cónico.} Una bola de \qty{200}{\g} atada a un hilo de \qty{1}{\m} gira en una circunferencia horizontal de modo
+    que el hilo forma \(30^\circ\) con la vertical. Calcula la tensión del hilo, la velocidad de la bola y el periodo.
+
+    \textbf{Solución.} \textbf{1.} Sobre la bola actúan el peso y la tensión. El radio de la circunferencia es \(r = 1 \cdot \sen 30^\circ
+    = \qty{0.5}{\m}\).
+
+    \textbf{2.} Eje vertical (equilibrio): \(T\cos 30^\circ = m\,g \Rightarrow T = \dfrac{\num{0.2} \cdot \num{9.8}}{\cos 30^\circ} = \qty{2.26}{\newton}\).
+
+    \textbf{3.} Eje radial: la componente horizontal de la tensión es la fuerza centrípeta, \(T\sen 30^\circ = m\,v^2/r\). Dividiendo
+    entre la ecuación anterior: \(v = \sqrt{g\,r\tg 30^\circ} = \qty{1.68}{\m\per\s}\); \(T_{\text{periodo}} = \dfrac{2\pi r}{v} = \qty{1.87}{\s}\).
+\end{example}
+
+%========================================================================================
+\section{Ejercicios de aplicación}\label{sec:ud11-aplicacion}
+%========================================================================================
+
+Datos: \(G = \qty{6.67e-11}{\newton\m\squared\per\kg\squared}\); \(M_T = \qty{5.97e24}{\kg}\); \(R_T = \qty{6370}{\km}\);
+\(k = \qty{9e9}{\newton\m\squared\per\coulomb\squared}\).
+
+\subsection{Fuerzas a distancia}
+
+\begin{exercise}
+    \(\star\star\) ¿Cuál es el peso de una persona de \qty{70}{\kg} en la superficie de la Tierra (calculado con la ley de gravitación)?
+    ¿Y en la cima del Everest, a \qty{8849}{\m}? ¿Y en un satélite a \qty{36000}{\km} de la superficie?
+    \begin{solu}
+        \textcolor{red}{\qty{687}{\newton}}; \textcolor{red}{\qty{685}{\newton}} (apenas cambia); \textcolor{red}{\qty{15.5}{\newton}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Un ferry de \qty{30000}{t} navega a \qty{1.5}{\km} de un petrolero de \qty{200000}{t}. ¿Con qué fuerza gravitatoria se
+    atraen?
+    \begin{solu}
+        \(F = \num{6.67e-11} \cdot \dfrac{\num{3e7} \cdot \num{2e8}}{1500^2} = \textcolor{red}{\qty{0.18}{\newton}}\): insignificante.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Un astronauta de \qty{90}{\kg} (con su traje) está en la Luna, donde \(g = \qty{1.62}{\m\per\s\squared}\). a) ¿Cuánto pesa?
+    b) ¿Qué masa debería tener un objeto para pesar lo mismo en la Tierra?
+    \begin{solu}
+        a) \(P = \textcolor{red}{\qty{146}{\newton}}\). b) \(m = \dfrac{146}{\num{9.8}} = \textcolor{red}{\qty{14.9}{\kg}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Cómo cambia la fuerza de atracción gravitatoria entre dos cuerpos si: a) la distancia se triplica; b) la masa de uno de
+    ellos se triplica; c) las dos masas y la distancia se multiplican por 4?
+    \begin{solu}
+        a) \textcolor{red}{Se divide entre 9}. b) \textcolor{red}{Se triplica}. c) \(\dfrac{4 \cdot 4}{4^2} = 1\): \textcolor{red}{no cambia}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Con qué fuerza se atraen dos hermanos de \qty{55}{\kg} y \qty{70}{\kg} situados a \qty{1.5}{\m}?
+    \begin{solu}
+        \(F = \textcolor{red}{\qty{1.14e-7}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Qué semejanzas y diferencias hay entre la interacción gravitatoria y la electrostática?
+    \begin{solu}
+        \textcolor{red}{Semejanzas}: actúan a distancia, en la recta que une los cuerpos, y disminuyen con el cuadrado de la distancia.
+        \textcolor{red}{Diferencias}: la gravitatoria depende de las masas y siempre atrae; la eléctrica depende de las cargas, puede
+        atraer o repeler, es muchísimo más intensa y su constante depende del medio.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Dos cargas puntuales iguales y de signo contrario, separadas \qty{50}{\cm}, se atraen con una fuerza de \qty{10}{\newton}.
+    ¿Cuánto vale cada carga?
+    \begin{solu}
+        \(q = \sqrt{\dfrac{10 \cdot \num{0.25}}{\num{9e9}}} = \textcolor{red}{\qty{1.67e-5}{\coulomb}}\): \textcolor{red}{\(+\num{16.7}\)
+        y \(-\qty{16.7}{\micro\coulomb}\)}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿A qué distancia en el vacío están dos cargas de \qty{-4}{\micro\coulomb} y \qty{+3}{\micro\coulomb} que se atraen con
+    una fuerza de \qty{3}{\newton}?
+    \begin{solu}
+        \(r = \sqrt{\dfrac{\num{9e9} \cdot \num{12e-12}}{3}} = \textcolor{red}{\qty{0.19}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Con qué fuerza se atraen dos cargas de \qty{-2}{\micro\coulomb} y \qty{+5}{\micro\coulomb} situadas a \qty{30}{\cm}?
+    \begin{solu}
+        \(F = \num{9e9} \cdot \dfrac{\num{1e-11}}{\num{0.09}} = \textcolor{red}{\qty{1}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Dos cargas de \qty{-5}{\micro\coulomb} y \qty{+8}{\micro\coulomb} están separadas \qty{1}{\m}. Entre ellas, a
+    \qty{40}{\cm} de la primera, hay una carga de \qty{+2}{\micro\coulomb}. ¿Qué fuerza total actúa sobre ella?
+    \begin{solu}
+        \textcolor{blue}{La primera la atrae (hacia ella): \qty{0.5625}{\newton}; la segunda la repele (también hacia la primera):
+        \qty{0.40}{\newton}.} \(F = \textcolor{red}{\qty{0.96}{\newton}}\), \textcolor{red}{hacia la carga de \qty{-5}{\micro\coulomb}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Tres cargas iguales de \qty{+2}{\micro\coulomb} están en los vértices de un triángulo rectángulo isósceles. Sobre
+    la carga del ángulo recto actúa una fuerza de \qty{1.5}{\newton}. ¿Cuánto miden los catetos?
+    \begin{solu}
+        \textcolor{blue}{Las dos fuerzas son iguales y perpendiculares:} \(F = \sqrt{2}\,F_0\), así que \(F_0 = \qty{1.06}{\newton}\).
+        \(L = \sqrt{\dfrac{\num{9e9} \cdot (\num{2e-6})^2}{\num{1.06}}} = \textcolor{red}{\qty{0.18}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Fuerzas de contacto}
+
+\begin{exercise}
+    \(\star\star\) Explica con tus palabras qué son la fuerza normal, la fuerza de rozamiento y la tensión, y pon un ejemplo de cada una.
+    \begin{solu}
+        \textcolor{red}{Normal}: la que hace una superficie sobre un cuerpo apoyado (el suelo sobre nuestros pies). \textcolor{red}{Rozamiento}:
+        se opone al deslizamiento (frena un trineo). \textcolor{red}{Tensión}: la que transmite una cuerda tensa (la cadena de un columpio).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Calcula la fuerza de rozamiento sobre un cuerpo de \qty{4}{\kg} cuando: a) se arrastra por un plano horizontal;
+    b) desciende por un plano inclinado \(30^\circ\); c) asciende por un plano inclinado \(40^\circ\). En todos los casos, \(\mu = \num{0.3}\).
+    \begin{solu}
+        a) \textcolor{red}{\qty{11.8}{\newton}}. b) \(\num{0.3} \cdot \num{39.2}\cos 30^\circ = \textcolor{red}{\qty{10.2}{\newton}}\).
+        c) \(\num{0.3} \cdot \num{39.2}\cos 40^\circ = \textcolor{red}{\qty{9.0}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Un ordenador de \qty{2}{\kg} está sobre una mesa. a) ¿Qué fuerzas actúan sobre él? b) Si tiramos de él verticalmente
+    hacia arriba con una cuerda con una fuerza de \qty{6}{\newton}, ¿cuánto vale la normal?
+    \begin{solu}
+        a) \textcolor{red}{El peso y la normal}, iguales: \qty{19.6}{\newton}. b) \(N = \num{19.6} - 6 = \textcolor{red}{\qty{13.6}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una mesa de \qty{20}{\kg} está en reposo sobre el suelo; \(\mu_e = \num{0.45}\) y \(\mu_c = \num{0.30}\). Calcula:
+    a) la fuerza horizontal mínima para moverla; b) la fuerza de rozamiento si se empuja con \qty{120}{\newton}; c) la aceleración.
+    \begin{solu}
+        a) \textcolor{red}{\qty{88.2}{\newton}}. b) Se mueve: \(F_r = \textcolor{red}{\qty{58.8}{\newton}}\). c) \(a = \textcolor{red}{\qty{3.06}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Para colgar un cuadro de \qty{3}{\kg}, lo apretamos contra la pared con una fuerza de \qty{40}{\newton}. Si
+    \(\mu_e = \num{0.4}\): a) ¿se caerá? b) ¿Qué fuerza normal hace la pared?
+    \begin{solu}
+        a) \(F_{re,\,\text{máx}} = \num{0.4} \cdot 40 = \qty{16}{\newton}\), menor que el peso (\qty{29.4}{\newton}): \textcolor{red}{se cae}.
+        b) \textcolor{red}{\qty{40}{\newton}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un ascensor de \qty{700}{\kg} sube a una pareja que suma \qty{200}{\kg} con una aceleración de \qty{1.5}{\m\per\s\squared}.
+    Calcula la tensión del cable y la fuerza que hace el suelo sobre la pareja.
+    \begin{solu}
+        \(T = 900 \cdot \num{11.3} = \textcolor{red}{\qty{10170}{\newton}}\); \(N = 200 \cdot \num{11.3} = \textcolor{red}{\qty{2260}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una niña arrastra con una cuerda horizontal una carretilla de \qty{5}{\kg} con una aceleración de \qty{2}{\m\per\s\squared}.
+    Si \(\mu = \num{0.2}\): a) ¿cuánto valen la tensión de la cuerda y el rozamiento? b) Si la cuerda forma \(30^\circ\) con la horizontal
+    y la tensión es la misma, ¿cuánto vale ahora el rozamiento?
+    \begin{solu}
+        a) \(F_r = \textcolor{red}{\qty{9.8}{\newton}}\); \(T = 5 \cdot 2 + \num{9.8} = \textcolor{red}{\qty{19.8}{\newton}}\).
+        b) \(N = 49 - \num{19.8}\sen 30^\circ = \qty{39.1}{\newton}\): \(F_r = \textcolor{red}{\qty{7.8}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Enuncia la ley de Hooke y pon ejemplos de la vida cotidiana en que se aplique. ¿Qué es un dinamómetro?
+    \begin{solu}
+        \textcolor{red}{La fuerza elástica es proporcional a la deformación: \(F = -k\,\Delta L\).} Ejemplos: la suspensión de un coche,
+        un colchón de muelles, una báscula de baño. El \textcolor{red}{dinamómetro} es un muelle con una escala que mide fuerzas.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una persona de \qty{75}{\kg} hace \textit{puenting} con una cuerda elástica de \qty{12}{\m}. Cuando, al final, queda
+    colgada en reposo, la cuerda mide \qty{20}{\m}. ¿Cuál es su constante elástica?
+    \begin{solu}
+        \(k = \dfrac{75 \cdot \num{9.8}}{8} = \textcolor{red}{\qty{91.9}{\newton\per\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Al colgar \qty{600}{\g} de un muelle M, este se estira \qty{6}{\cm}; al colgarlos de otro muelle N, \qty{15}{\cm}.
+    Calcula sus constantes. ¿Cuál es más rígido?
+    \begin{solu}
+        \(k_M = \textcolor{red}{\qty{98}{\newton\per\m}}\); \(k_N = \textcolor{red}{\qty{39.2}{\newton\per\m}}\). \textcolor{red}{El M}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un muelle se alarga \qty{5}{\cm} cuando le colgamos \qty{4}{\kg}. a) Calcula su constante. b) ¿Qué masa lo alargaría
+    \qty{12}{\cm}?
+    \begin{solu}
+        a) \(k = \textcolor{red}{\qty{784}{\newton\per\m}}\). b) \(m = \dfrac{784 \cdot \num{0.12}}{\num{9.8}} = \textcolor{red}{\qty{9.6}{\kg}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Dinámica del movimiento rectilíneo}
+
+\begin{exercise}
+    \(\star\star\) Queremos mover un mueble de \qty{30}{\kg} con una fuerza de \qty{200}{\newton}. Sin rozamiento, calcula la aceleración si
+    la fuerza: a) es horizontal; b) forma \(30^\circ\) sobre la horizontal; c) forma \(20^\circ\) bajo la horizontal.
+    \begin{solu}
+        a) \textcolor{red}{\qty{6.67}{\m\per\s\squared}}. b) \textcolor{red}{\qty{5.77}{\m\per\s\squared}}. c) \textcolor{red}{\qty{6.26}{\m\per\s\squared}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) A un cuerpo de \qty{50}{\kg}, en reposo sobre una superficie horizontal, se le aplica durante \qty{6}{\s} una fuerza
+    de \qty{250}{\newton} que forma \(30^\circ\) sobre la horizontal. Si \(\mu = \num{0.25}\), calcula la aceleración y la velocidad final.
+    \begin{solu}
+        \(N = 490 - 125 = \qty{365}{\newton}\); \(F_r = \qty{91.3}{\newton}\); \(a = \dfrac{\num{216.5} - \num{91.3}}{50} =
+        \textcolor{red}{\qty{2.51}{\m\per\s\squared}}\); \(v = \textcolor{red}{\qty{15.0}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un esquiador de \qty{80}{\kg} baja por una pista inclinada \(30^\circ\) con una aceleración de \qty{4.0}{\m\per\s\squared}.
+    Calcula: a) el coeficiente de rozamiento; b) la distancia que recorre y la altura que desciende en \qty{5}{\s}, partiendo del reposo;
+    c) la variación de su momento lineal en ese tiempo.
+    \begin{solu}
+        a) \(\mu = \dfrac{g\sen 30^\circ - a}{g\cos 30^\circ} = \textcolor{red}{\num{0.11}}\). b) \(d = \textcolor{red}{\qty{50}{\m}}\);
+        \(h = 50\sen 30^\circ = \textcolor{red}{\qty{25}{\m}}\). c) \(\Delta p = 80 \cdot 20 = \textcolor{red}{\qty{1600}{\kg\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un cuerpo de \qty{3}{\kg} desciende por un plano inclinado \(25^\circ\) con \(\mu = \num{0.2}\). a) Dibuja las fuerzas.
+    b) Calcula su aceleración.
+    \begin{solu}
+        b) \(a = g\,(\sen 25^\circ - \num{0.2}\cos 25^\circ) = \textcolor{red}{\qty{2.37}{\m\per\s\squared}}\) (no depende de la masa).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) a) Calcula la aceleración de un cuerpo de \qty{25}{\kg} que desciende por un plano inclinado \(35^\circ\) con
+    \(\mu = \num{0.3}\). b) Si, ya en la base, lo subimos aplicándole una fuerza de \qty{260}{\newton} paralela al plano, ¿con qué
+    aceleración sube?
+    \begin{solu}
+        a) \(a = \textcolor{red}{\qty{3.21}{\m\per\s\squared}}\). b) \(a = \dfrac{260 - \num{140.5} - \num{60.2}}{25} = \textcolor{red}{\qty{2.37}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Cuerpos enlazados}
+
+\begin{exercise}
+    \(\star\star\) Un tren de mercancías está formado por una locomotora de \qty{20}{t} y tres vagones de \qty{10}{t} cada uno, y
+    arranca con una aceleración de \qty{0.5}{\m\per\s\squared}. Si el coeficiente de rozamiento por rodadura es \num{0.005}, calcula la
+    fuerza de tracción de la locomotora y la tensión del enganche entre la locomotora y el primer vagón.
+    \begin{solu}
+        \(F = \num{50000} \cdot (\num{0.5} + \num{0.005} \cdot \num{9.8}) = \textcolor{red}{\qty{2.75e4}{\newton}}\);
+        \(T = \num{30000} \cdot \num{0.549} = \textcolor{red}{\qty{1.65e4}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Dos bloques de madera, A de \qty{3}{\kg} y B de \qty{5}{\kg}, están unidos por una cuerda sobre una superficie sin
+    rozamiento. Tiramos de A y el conjunto adquiere una aceleración de \qty{1.5}{\m\per\s\squared}. ¿Con qué fuerza tiramos? ¿Cuál es la
+    tensión de la cuerda?
+    \begin{solu}
+        \(F = 8 \cdot \num{1.5} = \textcolor{red}{\qty{12}{\newton}}\); \(T = 5 \cdot \num{1.5} = \textcolor{red}{\qty{7.5}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Se saca agua de un pozo con un cubo de \qty{6}{\kg} que sube con una aceleración de \qty{0.5}{\m\per\s\squared}.
+    ¿Cuánto vale la tensión de la cuerda?
+    \begin{solu}
+        \(T = 6 \cdot (\num{9.8} + \num{0.5}) = \textcolor{red}{\qty{61.8}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) En una máquina de Atwood cuelgan dos cuerpos de \qty{10}{\kg}. ¿Qué masa hay que añadir a uno de ellos para que el
+    conjunto alcance una velocidad de \qty{2}{\m\per\s} en \qty{1.5}{\s}, partiendo del reposo?
+    \begin{solu}
+        \(a = \qty{1.33}{\m\per\s\squared}\); \(\Delta m\,g = (20 + \Delta m)\,a \Rightarrow \Delta m = \dfrac{20 \cdot \num{1.33}}{\num{9.8} - \num{1.33}}
+        = \textcolor{red}{\qty{3.15}{\kg}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) De los extremos de una cuerda que pasa por una polea cuelgan dos cuerpos de \qty{600}{\g} y \qty{1.5}{\kg}. Calcula
+    la aceleración del sistema y la tensión de la cuerda.
+    \begin{solu}
+        \(a = \dfrac{\num{0.9}}{\num{2.1}} \cdot \num{9.8} = \textcolor{red}{\qty{4.2}{\m\per\s\squared}}\); \(T = \num{0.6} \cdot (\num{9.8} + \num{4.2})
+        = \textcolor{red}{\qty{8.4}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Dos cuerpos de \(m_1 = \qty{10}{\kg}\) y \(m_2 = \qty{20}{\kg}\) están en las dos caras de un tejado de dos aguas,
+    inclinadas \(30^\circ\) y \(45^\circ\) respectivamente, unidos por una cuerda que pasa por una polea en el vértice. Con \(\mu = \num{0.2}\)
+    en ambas caras, calcula la aceleración.
+    \begin{solu}
+        \textcolor{blue}{Baja \(m_2\).} \(P_{2x} = \qty{138.6}{\newton}\) y \(P_{1x} = \qty{49.0}{\newton}\); los rozamientos suman
+        \qty{44.7}{\newton}.
+        \[ a = \frac{\num{138.6} - 49 - \num{44.7}}{30} = \textcolor{red}{\qty{1.50}{\m\per\s\squared}} \]
+    \end{solu}
+\end{exercise}
+
+\subsection{Dinámica del movimiento circular}
+
+\begin{exercise}
+    \(\star\) ¿Qué fuerza hace de fuerza centrípeta en cada caso? a) La Luna alrededor de la Tierra. b) Un coche en una curva plana.
+    c) Una piedra atada a una cuerda. d) Un electrón alrededor del núcleo (en el modelo de Bohr).
+    \begin{solu}
+        a) \textcolor{red}{La gravitatoria}. b) \textcolor{red}{El rozamiento}. c) \textcolor{red}{La tensión}. d) \textcolor{red}{La
+        electrostática}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Con una honda hacemos girar una piedra de \qty{200}{\g} a 2 vueltas por segundo en una circunferencia de \qty{80}{\cm}
+    de radio. ¿Cuál es la fuerza centrípeta?
+    \begin{solu}
+        \(\omega = 4\pi~\unit{\radian\per\s}\); \(F_c = \num{0.2} \cdot (4\pi)^2 \cdot \num{0.8} = \textcolor{red}{\qty{25.3}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un patinador de \qty{70}{\kg} hace un \textit{looping} de \qty{4}{\m} de radio. En el punto más alto su velocidad es de
+    \qty{25}{\km\per\hour}. Calcula: a) su aceleración en ese punto; b) la fuerza normal; c) la velocidad mínima para no caer.
+    \begin{solu}
+        a) \(a_t = 0\) y \(a_n = \dfrac{\num{6.94}^2}{4} = \textcolor{red}{\qty{12.1}{\m\per\s\squared}}\). b) Arriba, el peso y la normal
+        apuntan al centro: \(N = m\,a_n - m\,g = \textcolor{red}{\qty{158}{\newton}}\). c) Con \(N = 0\): \(v = \sqrt{g\,r} = \textcolor{red}{\qty{6.26}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un tren de juguete de \qty{600}{\g} recorre una pista circular de \qty{1.5}{\m} de radio a \qty{0.8}{\m\per\s}. Calcula
+    su aceleración y la fuerza centrípeta.
+    \begin{solu}
+        \(a_c = \textcolor{red}{\qty{0.43}{\m\per\s\squared}}\); \(F_c = \textcolor{red}{\qty{0.26}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un satélite de comunicaciones de \qty{4500}{\kg} está sometido a una fuerza gravitatoria de \qty{1000}{\newton}. ¿A
+    qué distancia del centro de la Tierra está? ¿Con qué velocidad orbita?
+    \begin{solu}
+        \(r = \sqrt{\dfrac{G\,M_T\,m}{F}} = \textcolor{red}{\qty{4.23e7}{\m}}\) (casi la órbita geoestacionaria); \(v = \textcolor{red}{\qty{3.07e3}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿A qué velocidad máxima puede tomarse una curva plana de \qty{50}{\m} de radio si el coeficiente de rozamiento es \num{0.7}?
+    \begin{solu}
+        \(v = \sqrt{\num{0.7} \cdot \num{9.8} \cdot 50} = \textcolor{red}{\qty{18.5}{\m\per\s}}\) (\qty{67}{\km\per\hour}).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una curva de \qty{120}{\m} de radio tiene un peralte de \(15^\circ\). ¿A qué velocidad se puede tomar sin necesidad de
+    rozamiento?
+    \begin{solu}
+        \(v = \sqrt{\num{9.8} \cdot 120 \cdot \tg 15^\circ} = \textcolor{red}{\qty{17.8}{\m\per\s}}\) (\qty{64}{\km\per\hour}).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) La Luna está a \qty{3.84e8}{\m} del centro de la Tierra. Calcula su periodo orbital a partir de la ley de gravitación.
+    \begin{solu}
+        \(T = 2\pi\sqrt{\dfrac{r^3}{G\,M_T}} = \qty{2.37e6}{\s} = \textcolor{red}{\num{27.4}~\text{días}}\).
+    \end{solu}
+\end{exercise}
+
+%========================================================================================
+\section{Ejercicios de ampliación}\label{sec:ud11-ampliacion}
+%========================================================================================
+
+\begin{exercise}
+    \(\star\star\) En un eclipse total de Luna, el Sol, la Tierra y la Luna están alineados en ese orden. Calcula la fuerza gravitatoria
+    total sobre la Luna. (Distancia Tierra-Sol: \qty{1.5e8}{\km}; Tierra-Luna: \qty{3.84e5}{\km}; \(M_L = \qty{7.35e22}{\kg}\);
+    \(M_S = \qty{1.99e30}{\kg}\).)
+    \begin{solu}
+        \textcolor{blue}{Las dos fuerzas apuntan hacia el Sol: \(F_{TL} = \qty{1.98e20}{\newton}\) y \(F_{SL} = \qty{4.31e20}{\newton}\).}
+        \(F = \textcolor{red}{\qty{6.3e20}{\newton}}\), \textcolor{red}{dirigida hacia el Sol (y la Tierra)}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) En los vértices de un triángulo equilátero de \qty{40}{\cm} de lado hay tres cargas de \qty{+2}{\micro\coulomb}.
+    ¿Qué fuerza actúa sobre una carga de \qty{+1}{\micro\coulomb} situada en el centro del triángulo? ¿Y si está en el punto medio de
+    un lado?
+    \begin{solu}
+        \textcolor{red}{En el centro, cero} (por simetría). En el punto medio de un lado se anulan las de los extremos de ese lado y queda
+        la del vértice opuesto, a \(\num{0.4}\sen 60^\circ = \qty{0.346}{\m}\): \(F = \textcolor{red}{\qty{0.15}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Un mago quiere quitar el mantel de una mesa sin mover la vajilla, que tiene una masa total de \qty{1.6}{\kg}. El
+    mantel tiene \qty{300}{\g} y el coeficiente de rozamiento (vajilla-mantel y mantel-mesa) es \num{0.15}. ¿Qué fuerza mínima debe hacer
+    para que la vajilla resbale sobre el mantel?
+    \begin{solu}
+        \textcolor{blue}{La vajilla puede acelerar como mucho \(\mu\,g\); el mantel debe acelerar más. Sobre el mantel:
+        \(F - \mu\,m_v\,g - \mu\,(m_v + m_m)\,g = m_m\,a\), con \(a = \mu\,g\).}
+        \(F = \mu\,g\,(2m_v + 2m_m) = \textcolor{red}{\qty{5.6}{\newton}}\) (y cuanto más rápido el tirón, mejor).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) En la base de un plano inclinado \(30^\circ\) sin rozamiento hay un muelle de constante \qty{5000}{\newton\per\m}
+    comprimido por un cuerpo de \qty{20}{\kg} en equilibrio. a) ¿Cuánto está comprimido? b) Si lo comprimimos \qty{3}{\cm} más y lo
+    soltamos, ¿qué aceleración tiene el cuerpo en ese instante?
+    \begin{solu}
+        a) \(\Delta L = \dfrac{20 \cdot \num{9.8}\sen 30^\circ}{5000} = \textcolor{red}{\qty{1.96}{\cm}}\).
+        b) \(F = 5000 \cdot \num{0.0496} = \qty{248}{\newton}\): \(a = \dfrac{248 - 98}{20} = \textcolor{red}{\qty{7.5}{\m\per\s\squared}}\), hacia arriba.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Dos cuerpos de \(m_1 = \qty{6}{\kg}\) y \(m_2 = \qty{4}{\kg}\) bajan por un plano inclinado \(35^\circ\) unidos por
+    una cuerda tensa; \(m_1\) va delante (más abajo). Los coeficientes de rozamiento son \num{0.3} para \(m_1\) y \num{0.5} para \(m_2\).
+    Calcula la aceleración y la tensión.
+    \begin{solu}
+        \[ a = g\left[\sen 35^\circ - \frac{\num{0.3} \cdot 6 + \num{0.5} \cdot 4}{10}\cos 35^\circ\right] = \textcolor{red}{\qty{2.57}{\m\per\s\squared}} \]
+        \[ T = m_1\,(g\sen 35^\circ - \num{0.3}\,g\cos 35^\circ - a) = \textcolor{red}{\qty{3.9}{\newton}} \]
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Una maleta de \qty{8}{\kg} cae sin rozamiento por la rampa de descarga de un avión, de \qty{3}{\m} de altura e
+    inclinada \(35^\circ\), y sigue por una pista horizontal con \(\mu = \num{0.4}\). Calcula: a) la velocidad al final de la rampa; b) la
+    distancia que recorre en la pista hasta pararse.
+    \begin{solu}
+        a) Rampa de \(3/\sen 35^\circ = \qty{5.23}{\m}\) con \(a = g\sen 35^\circ = \qty{5.62}{\m\per\s\squared}\): \(v = \textcolor{red}{\qty{7.67}{\m\per\s}}\).
+        b) \(a = -\mu\,g = \qty{-3.92}{\m\per\s\squared}\): \(d = \dfrac{\num{7.67}^2}{2 \cdot \num{3.92}} = \textcolor{red}{\qty{7.5}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Un coche de carreras toma una curva de \qty{200}{\m} de radio; \(\mu = \num{0.8}\). Calcula la velocidad máxima:
+    a) si la curva es plana; b) si tiene un peralte de \(10^\circ\). (En b, con rozamiento: \(v = \sqrt{g\,r\,\dfrac{\sen\alpha + \mu\cos\alpha}{\cos\alpha - \mu\sen\alpha}}\).)
+    \begin{solu}
+        a) \(v = \textcolor{red}{\qty{39.6}{\m\per\s}}\) (\qty{143}{\km\per\hour}). b) \(v = \textcolor{red}{\qty{47.2}{\m\per\s}}\) (\qty{170}{\km\per\hour}).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) De un dinamómetro sujeto al techo de un ascensor cuelga una masa de \qty{2}{\kg}, y el dinamómetro marca
+    \qty{23}{\newton}. ¿Cuál es la aceleración del ascensor? ¿Puede saberse si sube o baja?
+    \begin{solu}
+        \(T - m\,g = m\,a \Rightarrow a = \textcolor{red}{\qty{1.7}{\m\per\s\squared}}\) hacia arriba. \textcolor{red}{No}: puede subir
+        acelerando o bajar frenando.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Hacemos girar en un plano vertical un cubo con agua atado a una cuerda; la distancia del agua al hombro es de
+    \qty{90}{\cm}. ¿Con qué velocidad mínima debe pasar por el punto más alto para que el agua no caiga?
+    \begin{solu}
+        \textcolor{blue}{En el límite, el peso es toda la fuerza centrípeta: \(m\,g = m\,v^2/r\).} \(v = \sqrt{g\,r} = \textcolor{red}{\qty{2.97}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Una caja va suelta en la plataforma de un camión. Si el coeficiente de rozamiento estático entre la caja y la
+    plataforma es \num{0.4}, ¿con qué aceleración máxima puede frenar el camión sin que la caja deslice?
+    \begin{solu}
+        \textcolor{blue}{El rozamiento estático es la única fuerza horizontal sobre la caja: \(\mu_e\,m\,g = m\,a_{\text{máx}}\).}
+        \(a_{\text{máx}} = \textcolor{red}{\qty{3.92}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+%========================================================================================
+\section{Olimpiadas de Física}\label{sec:ud11-olimpiadas}
+%========================================================================================
+
+\begin{exercise}
+    (Córdoba 2020) Un cuerpo de masa \(m\) desliza por un plano inclinado un ángulo \(\alpha\). Parte con una velocidad \(v_0\) hacia abajo
+    desde una altura \(h\) sobre la base del plano. Determina el coeficiente de rozamiento mínimo para que el cuerpo no llegue a la base.
+    Expresa el resultado en función de \(g\), \(\alpha\), \(h\) y \(v_0\).
+    \begin{solu}
+        \textcolor{blue}{Para frenar, el rozamiento debe superar a \(P_x\): \(a = -g\,(\mu\cos\alpha - \sen\alpha)\). Debe pararse antes de
+        recorrer \(L = h/\sen\alpha\): \(v_0^2 = 2\,g\,(\mu\cos\alpha - \sen\alpha)\,L\).}
+        \(\textcolor{red}{\mu_{\text{mín}} = \tg\alpha + \dfrac{v_0^2\sen\alpha}{2\,g\,h\cos\alpha}}\) (no depende de \(m\)).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    (Valencia 2022, adaptado) Un cuerpo de \(m_1 = \qty{5}{\kg}\) está en un plano inclinado \(30^\circ\) y está unido por una cuerda que
+    pasa por una polea a otro de \(m_2 = \qty{2}{\kg}\) apoyado en una superficie horizontal. Entre \(m_1\) y el plano el coeficiente de
+    rozamiento es \num{0.15}; entre \(m_2\) y la superficie no hay rozamiento. El sistema se suelta desde el reposo. a) Dibuja las
+    fuerzas y escribe las ecuaciones de cada cuerpo. b) Calcula la aceleración y la tensión. c) Si hubiera rozamiento entre \(m_2\) y la
+    superficie, ¿a partir de qué coeficiente no se movería el sistema?
+    \begin{solu}
+        a) \(m_1\): \(m_1\,g\sen\alpha - \mu_1\,m_1\,g\cos\alpha - T = m_1\,a\); \(m_2\): \(T = m_2\,a\).
+        b) \[ a = \frac{m_1\,g\,(\sen\alpha - \mu_1\cos\alpha)}{m_1 + m_2} = \textcolor{red}{\qty{2.59}{\m\per\s\squared}} \qquad
+        T = m_2\,a = \textcolor{red}{\qty{5.18}{\newton}} \] c) No se mueve si \(\mu_2\,m_2\,g \geq m_1\,g\,(\sen\alpha - \mu_1\cos\alpha)\), es
+        decir, si \(\textcolor{red}{\mu_2 \geq \num{0.93}}\).
+    \end{solu}
+\end{exercise}
+
+%========================================================================================
+\section{Autoevaluación}\label{sec:ud11-autoevaluacion}
+%========================================================================================
+
+\begin{exercise}
+    ¿Cuál es la fuerza gravitatoria entre dos cuerpos de \qty{150}{\kg} y \qty{220}{\kg} separados \qty{60}{\cm}? ¿Y si la distancia se
+    reduce a la mitad?
+    \begin{solu}
+        \(F = \textcolor{red}{\qty{6.11e-6}{\newton}}\); a la mitad de distancia, cuatro veces más: \textcolor{red}{\qty{2.45e-5}{\newton}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Dos cargas iguales de \qty{3}{\micro\coulomb} se repelen con una fuerza de \qty{0.4}{\newton}. ¿A qué distancia están?
+    \begin{solu}
+        \(r = \sqrt{\dfrac{\num{9e9} \cdot \num{9e-12}}{\num{0.4}}} = \textcolor{red}{\qty{0.45}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    El rozamiento es muy importante en nuestra vida. Pon tres ejemplos y justifica su importancia.
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta}: caminar (los pies empujan el suelo sin resbalar), frenar un coche, sujetar objetos con la
+        mano, que los clavos y tornillos no se suelten\dots
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un cuerpo de \qty{10}{\kg} se mueve por un plano horizontal empujado por una fuerza horizontal de \qty{70}{\newton}. Si
+    \(\mu = \num{0.3}\), ¿con qué aceleración se mueve? Dibuja las fuerzas.
+    \begin{solu}
+        \(a = \dfrac{70 - \num{29.4}}{10} = \textcolor{red}{\qty{4.06}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    En una máquina de Atwood colgamos dos cuerpos de \qty{2.5}{\kg} y \qty{4}{\kg}. Calcula la aceleración y la tensión de la cuerda.
+    \begin{solu}
+        \(a = \textcolor{red}{\qty{2.26}{\m\per\s\squared}}\); \(T = \textcolor{red}{\qty{30.2}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un cuerpo de \qty{18}{\kg} desliza por un plano inclinado \(25^\circ\) con \(\mu = \num{0.3}\). Dibuja las fuerzas y calcula su
+    aceleración.
+    \begin{solu}
+        \(a = g\,(\sen 25^\circ - \num{0.3}\cos 25^\circ) = \textcolor{red}{\qty{1.48}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Al colgar un cuerpo de \qty{6}{\kg} de un muelle, este se estira \qty{4}{\cm}. ¿Cuál es su constante? Si añadimos \qty{10}{\kg} más,
+    ¿cuánto se estirará?
+    \begin{solu}
+        \(k = \textcolor{red}{\qty{1470}{\newton\per\m}}\); con \qty{16}{\kg}, \(\Delta L = \textcolor{red}{\qty{10.7}{\cm}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un bloque de \qty{6}{\kg} está en un plano inclinado \(30^\circ\) y unido por una cuerda, que pasa por una polea en lo alto del plano,
+    a otro bloque de \qty{6}{\kg} que cuelga. Si \(\mu = \num{0.2}\), calcula la aceleración y la tensión.
+    \begin{solu}
+        \(a = \dfrac{g\,(1 - \sen 30^\circ - \num{0.2}\cos 30^\circ)}{2} = \textcolor{red}{\qty{1.60}{\m\per\s\squared}}\);
+        \(T = 6 \cdot (\num{9.8} - \num{1.60}) = \textcolor{red}{\qty{49.2}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un ciclista de \qty{70}{\kg} (con su bicicleta) recorre un circuito circular de \qty{30}{\m} de radio sometido a una fuerza centrípeta
+    de \qty{420}{\newton}. ¿Qué velocidad lleva?
+    \begin{solu}
+        \(v = \sqrt{\dfrac{420 \cdot 30}{70}} = \textcolor{red}{\qty{13.4}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}

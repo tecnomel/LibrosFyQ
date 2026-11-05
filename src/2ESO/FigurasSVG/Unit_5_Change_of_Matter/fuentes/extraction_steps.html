@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Solvent extraction</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="steps.css">
+<script src="lab.js"></script>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1></h1>
+    <div class="prop" id="prop"></div>
+    <div class="row" id="row"></div>
+</div>
+<script>
+const sandP = rnd(40,75,185,160,182,9), saltP = rnd(25,75,185,150,182,4);
+buildSteps('How to separate by dissolving (solvent extraction)', 'the <b>solubility</b>: the solvent dissolves only one of the components', 'sand + salt', [
+  [beaker(70,90,120,100,[[30,C.sand]]) + dots(saltP,3,C.salt,'#7F8C8D') + T(130,70,'sand + salt'),
+   'Put the mixture in a beaker.'],
+  [beaker(70,60,120,130,[[30,C.sand],[60,C.water]]) + dots(rnd(12,80,180,110,150,2),2.5,'#fff','#2471A3') +
+   `<line x1="150" y1="30" x2="120" y2="170" stroke="#7F8C8D" stroke-width="6" stroke-linecap="round"/>` + T(215,110,'stir',{fs:13,fw:400}),
+   'Add <b>water</b> and stir: the salt <b>dissolves</b>, the sand does <b>not</b>.'],
+  [funnel(130,15,dots([[120,45],[132,52],[140,44],[128,40]],6,C.sandDark)) + `<ellipse cx="130" cy="132" rx="4" ry="7" fill="#5DADE2"/>` +
+   beaker(85,145,90,60,[[30,C.water]]) + tag(215,52,'keep','✔ sand') + T(215,175,'salt water',{c:C.blue,fs:13}) + T(215,192,'→ evaporate',{c:C.blue,fs:13}),
+   '<b>Filter</b>: the sand stays on the paper. The salt is in the water that passes through.'],
+]);
+</script>
+</body>
+</html>

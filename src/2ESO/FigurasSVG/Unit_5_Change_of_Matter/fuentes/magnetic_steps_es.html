@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Separación magnética</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="steps.css">
+<script src="lab_es.js"></script>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1></h1>
+    <div class="prop" id="prop"></div>
+    <div class="row" id="row"></div>
+</div>
+<script>
+const fil = rnd(16,60,200,150,180,5), saw = rnd(16,60,200,150,182,11);
+buildSteps('Cómo separar con un imán', 'el <b>magnetismo</b>: solo algunos metales (hierro, níquel, cobalto) son atraídos', 'limaduras de hierro + serrín', [
+  [`<rect x="40" y="185" width="180" height="8" fill="#ECF0F1" stroke="#BDC3C7"/>` + chips(saw) + filings(fil) + T(130,120,'limaduras de hierro + serrín'),
+   'Extiende la mezcla sobre una hoja de papel.'],
+  [`<rect x="40" y="185" width="180" height="8" fill="#ECF0F1" stroke="#BDC3C7"/>` + chips(saw) + filings(fil.slice(8)) +
+   magnet(100,40) + `<rect x="95" y="35" width="70" height="95" rx="10" fill="none" stroke="#85929E" stroke-width="2" stroke-dasharray="5 3"/>` +
+   filings([[103,108],[112,114],[150,108],[158,114]]) + arrowD(205,90,175,90) + T(178,70,'muévelo',{fs:13,fw:400,a:'start'}),
+   'Pasa un imán (envuelto en una bolsa de plástico) <b>por encima</b> de la mezcla, sin tocarla.'],
+  [magnet(40,30,0.8) + filings([[42,92],[50,98],[78,92],[86,98],[60,100]]) + tag(70,130,'keep','✔ hierro') +
+   `<rect x="120" y="185" width="120" height="8" fill="#ECF0F1" stroke="#BDC3C7"/>` + chips(rnd(12,130,230,155,182,11)) + tag(185,140,'keep','✔ serrín'),
+   'El <b>hierro</b> se pega al imán; el serrín se queda en el papel. Quita la bolsa para soltar el hierro.'],
+]);
+</script>
+</body>
+</html>

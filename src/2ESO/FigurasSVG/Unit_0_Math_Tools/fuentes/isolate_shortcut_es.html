@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Dos métodos para despejar</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 20px; }
+    .col { flex: 1; border-radius: 16px; padding: 12px 16px; border: 3px solid; }
+    .m1 { border-color: var(--blue); background: var(--blue-soft); } .m1 h2 { color: var(--blue); }
+    .m2 { border-color: var(--ocre); background: var(--ocre-soft); } .m2 h2 { color: #A3400B; }
+    .col h2 { font-size: 22px; margin-bottom: 4px; }
+    .sub { font-size: 16px; color: var(--teal); margin-bottom: 10px; }
+    .op { display: flex; align-items: center; background: #fff; border-radius: 10px; padding: 6px 12px; margin-bottom: 8px; font-size: 18px; }
+    .op .a { width: 200px; font-weight: 700; }
+    .op .arr { width: 36px; text-align: center; font-size: 24px; color: var(--ocre); font-weight: 800; }
+    .op .b { font-weight: 700; }
+    .eq { font-size: 21px; font-weight: 700; text-align: center; background: #fff; border-radius: 10px; padding: 8px; line-height: 1.6; margin-top: 4px; }
+    .r { color: var(--red); }
+    .bl { color: var(--blue); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Dos formas de despejar: las dos dan el mismo resultado</h1>
+    <div class="row">
+        <div class="col m1"><h2>Método 1: lo mismo en los DOS miembros</h2>
+            <div class="sub">Hacemos la <b>operación contraria</b> en los dos miembros de la ecuación.</div>
+            <div class="op"><span class="a">está sumando (+ 3)</span><span class="arr">→</span><span class="b">restamos 3 en los dos miembros</span></div>
+            <div class="op"><span class="a">está restando (− 3)</span><span class="arr">→</span><span class="b">sumamos 3 en los dos miembros</span></div>
+            <div class="op"><span class="a">está multiplicando (· 3)</span><span class="arr">→</span><span class="b">dividimos los dos miembros entre 3</span></div>
+            <div class="op"><span class="a">está dividiendo (/ 3)</span><span class="arr">→</span><span class="b">multiplicamos los dos miembros por 3</span></div>
+            <div class="eq">x + 3 = 7<br>x + 3 <span class="bl">− 3</span> = 7 <span class="bl">− 3</span><br><span class="r">x = 4</span></div></div>
+        <div class="col m2"><h2>Método 2: «pasa al otro lado»</h2>
+            <div class="sub">Cambia de lado y hace la <b>operación contraria</b>.</div>
+            <div class="op"><span class="a">sumando</span><span class="arr">⇄</span><span class="b">pasa restando</span></div>
+            <div class="op"><span class="a">restando</span><span class="arr">⇄</span><span class="b">pasa sumando</span></div>
+            <div class="op"><span class="a">multiplicando</span><span class="arr">⇄</span><span class="b">pasa dividiendo</span></div>
+            <div class="op"><span class="a">dividiendo</span><span class="arr">⇄</span><span class="b">pasa multiplicando</span></div>
+            <div class="eq">x + 3 = 7<br>x = 7 <span class="bl">− 3</span><br><span class="r">x = 4</span></div></div>
+    </div>
+</div>
+</body>
+</html>

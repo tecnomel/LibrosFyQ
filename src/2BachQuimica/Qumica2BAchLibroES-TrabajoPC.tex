@@ -1,0 +1,368 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+\documentclass[
+    11pt, % Default font size, select one of 10pt, 11pt or 12pt
+    %fleqn, % Left align equations
+    a4paper, % Paper size, use either 'a4paper' for A4 size or 'letterpaper' for US letter size
+%oneside, % Uncomment for oneside mode, this doesn't start new chapters and parts on odd pages (adding an empty page if required), this mode is more suitable if the book is to be read on a screen instead of printed
+]{
+
+}
+
+\usepackage[spanish,es-noquoting,es-noshorthands,es-tabla]{babel}
+
+\usepackage{estilocrispropioLibro}
+\usepackage{longtable} % tablas largas con formato booktabs
+\usepackage{tikz}
+\usetikzlibrary{positioning,trees,arrows.meta,shadows.blur}
+
+\hypersetup{
+    pdftitle={Title}, % Title field
+    pdfauthor={Author}, % Author field
+    pdfsubject={Subject}, % Subject field
+    pdfkeywords={Keyword1, Keyword2, ...}, % Keywords
+    pdfcreator={LaTeX}, % Content creator field
+}
+%\addbibresource{sample.bib} % Bibliography file
+
+\definecolor{ocre}{RGB}{243, 102, 25} % Define the color used for highlighting throughout the book
+
+\chapterimage{orange1.jpg} % Chapter heading image
+\chapterspaceabove{6.5cm} % Default whitespace from the top of the page to the chapter title on chapter pages
+\chapterspacebelow{6.75cm} % Default amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+    \Opensolutionfile{ans}[soluciones]
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+    \titlepage % Output the title page
+    {\includegraphics[width=\paperwidth]{Portada.png}} % Code to output the background image, which should be the same dimensions as the paper to fill the page entirely; leave empty for no background image
+%    { % Title(s) and author(s)
+%        \centering\sffamily % Font styling
+%        {\Huge\bfseries Química \par} % Book title
+%        \vspace{16pt} % Vertical whitespace
+%        {\LARGE 2º Bachillerato\par} % Subtitle
+%        \vspace{24pt} % Vertical whitespace
+%        {\huge\bfseries IES José Conde García\par} % Author name
+%    }
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+    %\thispagestyle{empty} % Suppress headers and footers on this page
+
+    %~\vfill % Push the text down to the bottom of the page
+
+    %\noindent Copyright \copyright\ 2026 Cristóbal Melero\\ % Copyright notice
+
+    %\noindent \textsc{Publicado por CM}\\ % Publisher
+
+    %\noindent \textsc{\href{https://www.latextemplates.com/template/legrand-orange-book}{book-website.com}}\\ % URL
+
+    %\noindent Licensed under the Creative Commons Attribution-NonCommercial 4.0 License (the ``License''). You may not use this file except in compliance with the License. You may obtain a copy of the License at \url{https://creativecommons.org/licenses/by-nc-sa/4.0}. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \textsc{``as is'' basis, without warranties or conditions of any kind}, either express or implied. See the License for the specific language governing permissions and limitations under the License.\\ % License information, replace this with your own license (if any)
+
+    %\noindent \textit{First printing, March 2022} % Printing/edition date
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+    \pagestyle{empty} % Disable headers and footers for the following pages
+
+    \tableofcontents % Output the table of contents
+
+    %\listoffigures % Output the list of figures, comment or remove this command if not required
+
+    %\listoftables % Output the list of tables, comment or remove this command if not required
+
+    \pagestyle{fancy} % Enable default headers and footers again
+
+    \cleardoublepage % Start the following content on a new page
+
+    %----------------------------------------------------------------------------------------
+%	PART
+%----------------------------------------------------------------------------------------
+
+
+    \part{Conocimientos Previos}
+
+%----------------------------------------------------------------------------------------
+%	SECTIONING EXAMPLES CHAPTER
+%----------------------------------------------------------------------------------------
+
+    \chapterimage{orange2b.png} % Chapter heading image
+    \chapterspaceabove{6.75cm} % Whitespace from the top of the page to the chapter title on chapter pages
+    \chapterspacebelow{7.25cm} % Amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+%------------------------------------------------
+
+%------------------------------------------------
+
+
+    \chapter{Conocimientos básicos}
+
+    \input{Quimica2Bach_Conocimientos_Basicos_claude}
+
+    \newpage
+
+    \input{Quimica2Bach_Conociientos_Basicos_Ejercicios}
+
+%----------------------------------------------------------------------------------------
+%	PART
+%----------------------------------------------------------------------------------------
+
+
+    \part{Química Descriptiva}
+
+%----------------------------------------------------------------------------------------
+%	SECTIONING EXAMPLES CHAPTER
+%----------------------------------------------------------------------------------------
+
+    \chapterimage{orange3b.png} % Chapter heading image
+    \chapterspaceabove{6.75cm} % Whitespace from the top of the page to the chapter title on chapter pages
+    \chapterspacebelow{7.25cm} % Amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+%------------------------------------------------
+
+
+    \chapter{Estructura Atómica}
+
+    \input{Quimica2Bach_UD1_Estructura_Atomica_Libro_claude}
+
+    \newpage
+
+    \input{Quimica2Bach_UD1_Estructura_Atomica_Ejercicios}
+
+
+    \chapter{Tabla Periódica}
+
+    \input{Quimica2Bach_UD2_Tabla_Periodica_Libro_claude}
+
+    \newpage
+
+    \input{Quimica2BAch_UD2_Tabla_Periodica_Ejercicios}
+
+
+    \chapter{Enlace Químico}
+
+    \input{Quimica2Bach_UD3_Enlace_Quimico_Libro_claude}
+%
+    \newpage
+
+    \input{Quimica2Bach_UD3_Enlace_Quimica_Ejercicios}
+
+
+%----------------------------------------------------------------------------------------
+%	PART
+%----------------------------------------------------------------------------------------
+
+
+    \part{Termodinámica}
+
+%----------------------------------------------------------------------------------------
+%	SECTIONING EXAMPLES CHAPTER
+%----------------------------------------------------------------------------------------
+
+    \chapterimage{orange4b.png} % Chapter heading image
+    \chapterspaceabove{6.75cm} % Whitespace from the top of the page to the chapter title on chapter pages
+    \chapterspacebelow{7.25cm} % Amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+%------------------------------------------------
+
+
+    \chapter{Termodinámica}
+
+    \input{Quimica2Bach_UD4_Termodinamica_Libro}
+
+    \newpage
+
+    \input{Quimica2Bach_UD4_Termoquimica_Ejercicios}
+
+%----------------------------------------------------------------------------------------
+%	PART
+%----------------------------------------------------------------------------------------
+
+
+    \part{Cinética Química}
+
+%----------------------------------------------------------------------------------------
+%	SECTIONING EXAMPLES CHAPTER
+%----------------------------------------------------------------------------------------
+
+    \chapterimage{orange5b.png} % Chapter heading image
+    \chapterspaceabove{6.75cm} % Whitespace from the top of the page to the chapter title on chapter pages
+    \chapterspacebelow{7.25cm} % Amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+%------------------------------------------------
+
+    \chapter{Cinética Química}
+
+    \input{Quimica2Bach_UD5_Cinetica_Quimica_Libro_claude}
+
+    \newpage
+
+    \input{Quimica2Bach_UD5_Cinetica_Quimica_Ejercicios}
+
+%----------------------------------------------------------------------------------------
+%	PART
+%----------------------------------------------------------------------------------------
+
+
+    \part{Equilibrio}
+
+%----------------------------------------------------------------------------------------
+%	SECTIONING EXAMPLES CHAPTER
+%----------------------------------------------------------------------------------------
+
+    \chapterimage{orange5b.png} % Chapter heading image
+    \chapterspaceabove{6.75cm} % Whitespace from the top of the page to the chapter title on chapter pages
+    \chapterspacebelow{7.25cm} % Amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+%------------------------------------------------
+
+
+
+
+
+    \chapter{Equilibrio Químico}
+
+    \input{Quimica2Bach_UD6_Equilibrio_Quimico_Libro_claude}
+
+    \newpage
+
+    \input{Quimica2Bach_UD6_Equilibrio_Quimico_Ejercicios}
+
+
+    \input{Quimica2Bach_UD6_Equilibrio_Quimico_Ejercicios_V3_Por_Claude}
+
+
+    \chapter{Equilibrio Ácido-Base}
+
+    \input{Quimica2Bach_UD7_Equilibrio_Acido_Base_Libro_claude}
+
+    \newpage
+
+    \input{Quimica2Bach_UD7_Equilibrio_Acido_Base_Ejercicios}
+
+
+%----------------------------------------------------------------------------------------
+%	PART
+%----------------------------------------------------------------------------------------
+
+
+    \part{Reacciones Redox y Pilas}
+
+%----------------------------------------------------------------------------------------
+%	SECTIONING EXAMPLES CHAPTER
+%----------------------------------------------------------------------------------------
+
+    \chapterimage{orange6b.png} % Chapter heading image
+    \chapterspaceabove{6.75cm} % Whitespace from the top of the page to the chapter title on chapter pages
+    \chapterspacebelow{7.25cm} % Amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+
+%------------------------------------------------
+%
+
+    \chapter{Reacciones Redox}
+
+    \input{Quimica2Bach_UD8_Reacciones_Redox_Libro_claude}
+
+    \newpage
+
+    \input{Quimica2Bach_UD8_Reacciones_Redox_Ejercicios}
+
+%----------------------------------------------------------------------------------------
+%	PART
+%----------------------------------------------------------------------------------------
+
+
+    \part{Química del carbono}
+
+%----------------------------------------------------------------------------------------
+%	SECTIONING EXAMPLES CHAPTER
+%----------------------------------------------------------------------------------------
+
+    \chapterimage{orange7b.png} % Chapter heading image
+    \chapterspaceabove{6.75cm} % Whitespace from the top of the page to the chapter title on chapter pages
+    \chapterspacebelow{7.25cm} % Amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+%------------------------------------------------
+
+
+    \chapter{Química Orgánica}
+
+    \input{Quimica2Bach_UD9_Quimica_Organica_Libro_claude}
+
+    \newpage
+
+    \input{Quimica2Bach_UD9_Quimica_Organica_Ejercicios}
+
+
+    \chapter{Polímeros}
+
+    \input{Quimica2Bach_UD_10_Polimeros_Libro_nuevo}
+
+    \input{Quimica2Bach_UD_10_Polimeros_Libro}
+
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+
+%----------------------------------------------------------------------------------------
+
+    \pagestyle{empty} % Disable headers and footers for the following pages
+
+    %\tableofcontents % Output the table of contents
+
+    %\listoffigures % Output the list of figures, comment or remove this command if not required
+
+    %\listoftables % Output the list of tables, comment or remove this command if not required
+
+    %\pagestyle{fancy} % Enable default headers and footers again
+
+    %\cleardoublepage % Start the following content on a new page
+
+
+%----------------------------------------------------------------------------------------
+%	SOLUTIONS
+%----------------------------------------------------------------------------------------
+
+
+    \part{Soluciones a los ejercicios}
+
+
+
+%----------------------------------------------------------------------------------------
+%	SECTIONING EXAMPLES CHAPTER
+%----------------------------------------------------------------------------------------
+
+    \chapterimage{orange3.jpg} % Chapter heading image
+    \chapterspaceabove{6.75cm} % Whitespace from the top of the page to the chapter title on chapter pages
+    \chapterspacebelow{7.25cm} % Amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+%-----------------------------------------------
+
+    \chapter{Soluciones}
+
+    \pagestyle{fancy}
+
+    \Closesolutionfile{ans}
+
+
+    \input{soluciones}
+
+
+%----------------------------------------------------------------------------------------
+%	PART
+%----------------------------------------------------------------------------------------
+
+
+
+\end{document}

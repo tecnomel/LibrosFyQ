@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tipos de movimiento según la trayectoria</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } .card h2 { font-size: 16px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Rectilíneo</h2><svg id="a" width="190" height="150"></svg><div class="t">Coche en una recta</div></div>
+        <div class="card"><h2>Circular</h2><svg id="b" width="190" height="150"></svg><div class="t">Noria, aguja del reloj</div></div>
+        <div class="card"><h2>Elíptico</h2><svg id="c" width="190" height="150"></svg><div class="t">Planetas alrededor del Sol</div></div>
+        <div class="card"><h2>Parabólico</h2><svg id="d" width="190" height="150"></svg><div class="t">Balón lanzado a canasta</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const st = { fill: 'none', stroke: '#C0392B', 'stroke-width': 3 };
+    let add = svgAdder('a'); add('line', Object.assign({ x1: 25, y1: 130, x2: 165, y2: 25 }, st)); arrow(add, 140, 44, 165, 25, '#C0392B', 3, 12);
+    add = svgAdder('b'); add('circle', Object.assign({ cx: 95, cy: 75, r: 55 }, st)); arrow(add, 150, 72, 150, 82, '#C0392B', 3, 12);
+    add = svgAdder('c'); add('ellipse', Object.assign({ cx: 95, cy: 75, rx: 80, ry: 45 }, st)); add('circle', { cx: 130, cy: 75, r: 10, fill: '#F4D03F' }); arrow(add, 175, 72, 175, 82, '#C0392B', 3, 12);
+    add = svgAdder('d'); add('path', Object.assign({ d: 'M15 140 Q95 -60 175 140' }, st)); arrow(add, 165, 116, 175, 140, '#C0392B', 3, 12);
+</script>
+</body>
+</html>

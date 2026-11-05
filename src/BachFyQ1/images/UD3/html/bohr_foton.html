@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Absorción y emisión de un fotón</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Absorción</h2><svg id="a" width="360" height="250"></svg><div class="t">El electrón absorbe un fotón de energía E₂ − E₁ y salta al nivel superior (estado excitado).</div></div>
+        <div class="card"><h2>Emisión</h2><svg id="b" width="360" height="250"></svg><div class="t">El electrón cae al nivel inferior y emite un fotón de energía E₂ − E₁.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    function atom(id, abs) {
+        const A = svgAdder(id), cx = 130, cy = 130;
+        A('circle', { cx, cy, r: 50, fill: 'none', stroke: '#2E86C1', 'stroke-width': 2 });
+        A('circle', { cx, cy, r: 100, fill: 'none', stroke: '#2E86C1', 'stroke-width': 2 });
+        bead(A, cx, cy, 14, '#C0392B');
+        label(A, cx - 45, cy - 40, 'E₁', { 'font-size': 14, fill: '#1F618D' }); label(A, cx - 82, cy - 76, 'E₂', { 'font-size': 14, fill: '#1F618D' });
+        const a = -0.95, p1 = [cx + 50 * Math.cos(a), cy + 50 * Math.sin(a)], p2 = [cx + 100 * Math.cos(a), cy + 100 * Math.sin(a)];
+        // fotón ondulado
+        let d = '';
+        const fx0 = abs ? 345 : p2[0] + 18, fx1 = abs ? p2[0] + 20 : 345, fy = abs ? p2[1] - 10 : p2[1] - 10;
+        for (let x = 0; x <= 90; x += 2) d += (x ? 'L' : 'M') + (Math.min(fx0, fx1) + x * (Math.abs(fx1 - fx0) / 90)).toFixed(1) + ' ' + (fy - 7 * Math.sin(x / 5)).toFixed(1);
+        A('path', { d, fill: 'none', stroke: '#E67E22', 'stroke-width': 2.5 });
+        if (abs) arrow(A, fx1 + 14, fy, fx1, fy, '#E67E22', 2.5, 10); else arrow(A, fx1 - 14, fy, fx1 + 4, fy, '#E67E22', 2.5, 10);
+        label(A, 300, fy - 18, 'fotón', { 'font-size': 13, fill: '#AF601A' });
+        label(A, 300, fy + 30, 'E = h·ν', { 'font-size': 13, fill: '#AF601A' });
+        // salto
+        const [s, e] = abs ? [p1, p2] : [p2, p1];
+        bead(A, s[0], s[1], 7, '#AED6F1');
+        arrow(A, s[0], s[1], e[0] + (abs ? -3 : 3), e[1] + (abs ? 4 : -4), '#1F618D', 2.5, 10);
+        bead(A, e[0], e[1], 8, '#2E86C1');
+    }
+    atom('a', true); atom('b', false);
+</script>
+</body>
+</html>

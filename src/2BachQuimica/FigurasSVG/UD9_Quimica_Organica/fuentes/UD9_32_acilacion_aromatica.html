@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_32 · Acilación de Friedel-Crafts</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+const svg = crearFigura(640, 120);
+molecula(svg, "C1=CC=CC=C1", 60, 65);
+mas(svg, 125, 65); molecula(svg, "CC(Cl)=O", 180, 60);
+flechaR(svg, 235, 65, 325, "AlCl3");
+molecula(svg, "CC(=O)C1=CC=CC=C1", 420, 60);
+mas(svg, 510, 65); fq(svg, 555, 71, ["HCl"]);
+</script>
+</body>
+</html>

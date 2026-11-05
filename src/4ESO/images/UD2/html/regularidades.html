@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Regularidades en la tabla periódica</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1100px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="ptrow">
+        <svg id="s" width="860" height="520"></svg>
+        <div class="legend" id="lg"></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script src="pt.js"></script>
+<script>
+    const add = svgAdder('s');
+    const C = { metal: '#76D7C4', semimetal: '#F8C471', nonmetal: '#EC7063', noble: '#BB8FCE' };
+    drawPT(add, { x0: 110, y0: 70, c: 40, fill: Z => C[kind(Z)], extraBottom: 50 });
+    const arrow = (x1, y1, x2, y2, color) => {
+        add('line', { x1, y1, x2, y2, stroke: color, 'stroke-width': 4 });
+        const a = Math.atan2(y2 - y1, x2 - x1), L = 14;
+        const p = [[x2, y2], [x2 - L * Math.cos(a - 0.4), y2 - L * Math.sin(a - 0.4)], [x2 - L * Math.cos(a + 0.4), y2 - L * Math.sin(a + 0.4)]];
+        add('path', { d: 'M' + p.map(q => q.join(' ')).join(' L') + ' Z', fill: color });
+    };
+    // masa atómica: aumenta → y ↓
+    arrow(110, 22, 860, 22, '#000070');
+    add('text', { x: 485, y: 14, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 800, fill: '#000070' }, 'la masa atómica aumenta');
+    arrow(42, 70, 42, 360, '#000070');
+    add('text', { x: 30, y: 215, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 800, fill: '#000070', transform: 'rotate(-90 30 215)' }, 'la masa atómica aumenta');
+    // carácter metálico: aumenta ← y ↓
+    arrow(860, 498, 110, 498, '#1E8449');
+    add('text', { x: 485, y: 490, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 800, fill: '#1E8449' }, 'el carácter metálico aumenta');
+    arrow(80, 70, 80, 360, '#1E8449');
+    add('text', { x: 68, y: 215, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 800, fill: '#1E8449', transform: 'rotate(-90 68 215)' }, 'el carácter metálico aumenta');
+    legend('lg', [[C.metal, 'Metales'], [C.semimetal, 'Semimetales'], [C.nonmetal, 'No metales'], [C.noble, 'Gases nobles']]);
+</script>
+</body>
+</html>

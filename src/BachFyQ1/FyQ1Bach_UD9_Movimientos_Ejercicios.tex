@@ -1,0 +1,822 @@
+%! Unidad 9 — Cinemática aplicada: ejercicios resueltos, ejercicios finales, olimpiadas y autoevaluación
+%! Fuente: Fuentes/Fisica/Unidad 9 («Ejercicios resueltos», «Practica y calcula», «Piensa y resuelve») y Unidad 10
+%! (captura 217: «Olimpiadas Física» y «Autoevaluación» de este tema). Enunciados adaptados con datos cambiados (y más realistas
+%! cuando los de la fuente no lo eran); soluciones rehechas con g = 9,8 m/s². Dificultad: \(\star\) baja, \(\star\star\) media,
+%! \(\star\star\star\) alta.
+
+\section{Ejercicios resueltos}\label{sec:ud9-resueltos}
+
+\begin{example}
+    \textbf{MRU y MRUA: una persecución.} Mientras estás en una tienda, una persona coge tu bicicleta y empieza a pedalear desde el
+    reposo con una aceleración de \qty{1.5}{\m\per\s\squared}. Un coche de policía pasa por delante de la tienda \qty{4}{\s} después,
+    a \qty{54}{\km\per\hour} constantes, en la misma dirección. Calcula: a) cuánto tarda la policía en alcanzar a la persona;
+    b) a qué distancia de la tienda la alcanza.
+
+    \textbf{Solución.} \textbf{1. Datos}: fugitivo, MRUA con \(v_0 = 0\) y \(a = \qty{1.5}{\m\per\s\squared}\); policía, MRU con
+    \(v = \qty{15}{\m\per\s}\) que empieza en la tienda en \(t_0 = \qty{4}{\s}\). Origen en la tienda y \(t = 0\) cuando arranca la bici.
+
+    \textbf{2. Ecuaciones}: \(x_F = \num{0.75}\,t^2\) y \(x_P = 15\,(t - 4)\).
+
+    \textbf{3. a)} La alcanza cuando \(x_F = x_P\): \(\num{0.75}\,t^2 = 15t - 60 \Rightarrow t^2 - 20t + 80 = 0\), con soluciones
+    \(t = \qty{5.53}{\s}\) y \(t = \qty{14.5}{\s}\). La primera es el instante en que la policía la alcanza (la segunda sería
+    cuando la bicicleta, cada vez más rápida, volvería a adelantar al coche si este no se detuviera).
+    \textbf{b)} \(x = \num{0.75} \cdot \num{5.53}^2 = \qty{22.9}{\m}\). Comprobación: \(x_P = 15 \cdot \num{1.53} = \qty{22.9}{\m}\).
+\end{example}
+
+\begin{example}
+    \textbf{Tiro parabólico: un balón.} Una futbolista golpea un balón desde el suelo a \qty{72}{\km\per\hour} con un ángulo de
+    \(35^\circ\) con la horizontal. Determina: a) la altura máxima; b) el tiempo que el balón está en el aire; c) su alcance.
+
+    \textbf{Solución.} \textbf{1. Datos}: \(v_0 = \qty{20}{\m\per\s}\), \(\alpha = 35^\circ\): \(v_{0x} = 20\cos 35^\circ =
+    \qty{16.4}{\m\per\s}\); \(v_{0y} = 20\,\sen 35^\circ = \qty{11.5}{\m\per\s}\). \textbf{Incógnitas}: \(y_{\text{máx}}\),
+    \(t_{\text{vuelo}}\) y \(x_{\text{máx}}\).
+
+    \textbf{2. a)} En el punto más alto, \(v_y = 0\): \(t = \dfrac{\num{11.47}}{\num{9.8}} = \qty{1.17}{\s}\);
+    \(y_{\text{máx}} = \num{11.47} \cdot \num{1.17} - \num{4.9} \cdot \num{1.17}^2 = \qty{6.71}{\m}\).
+
+    \textbf{3. b)} Como sale y llega al mismo nivel, tarda lo mismo en bajar que en subir: \(t_{\text{vuelo}} = \qty{2.34}{\s}\).
+    (Comprobación: la caída libre desde \qty{6.71}{\m} dura \(\sqrt{\num{6.71}/\num{4.9}} = \qty{1.17}{\s}\).)
+
+    \textbf{4. c)} \(x_{\text{máx}} = \num{16.38} \cdot \num{2.34} = \qty{38.4}{\m}\).
+\end{example}
+
+\begin{example}
+    \textbf{MCUA: una rueda.} Una rueda empieza a girar con una aceleración angular de \qty{4}{\radian\per\s\squared} desde una
+    posición angular inicial de \(45^\circ\). Calcula: a) las ecuaciones de la posición angular y de la velocidad angular; b) el
+    desplazamiento angular y la velocidad angular \qty{6}{\s} después de empezar a girar.
+
+    \textbf{Solución.} \textbf{1. Datos}: \(\alpha = \qty{4}{\radian\per\s\squared}\), \(\omega_0 = 0\), \(\varphi_0 = 45^\circ =
+    \pi/4~\unit{\radian}\).
+
+    \textbf{2. a)} \(\varphi = \dfrac{\pi}{4} + \dfrac{1}{2} \cdot 4\,t^2 = \dfrac{\pi}{4} + 2t^2\) (rad); \(\omega = 4t\) (rad/s).
+
+    \textbf{3. b)} \(\Delta\varphi = \varphi - \varphi_0 = 2 \cdot 6^2 = \qty{72}{\radian} = \dfrac{72}{2\pi} = \num{11.5}\) vueltas;
+    \(\omega(6) = \qty{24}{\radian\per\s}\).
+\end{example}
+
+\begin{example}
+    \textbf{Tiro parabólico: una bomba volcánica.} Los volcanes en erupción lanzan fragmentos de lava incandescente, las bombas
+    volcánicas. En la erupción de 2021 en La Palma, imagina que una bomba sale de la boca de un cono a \qty{1100}{\m} sobre el nivel
+    del mar con un ángulo de \(50^\circ\) y destruye un muro situado a \qty{700}{\m} de distancia horizontal y a \qty{600}{\m} de
+    altitud. Calcula: a) la velocidad de lanzamiento; b) el tiempo de vuelo hasta el muro.
+
+    \textbf{Solución.} \textbf{1. Datos}: origen al nivel del mar, en la vertical de la boca: \(y_0 = \qty{1100}{\m}\); \(\alpha =
+    50^\circ\); punto final \((700, 600)\). \textbf{Incógnitas}: \(v_0\) y \(t\).
+
+    \textbf{2. Ecuaciones}: \(x = v_0\cos 50^\circ\,t\) e \(y = 1100 + v_0\,\sen 50^\circ\,t - \num{4.9}\,t^2\).
+
+    \textbf{3.} Al llegar al muro: \(700 = v_0\cos 50^\circ\,t\) y \(600 = 1100 + v_0\,\sen 50^\circ\,t - \num{4.9}\,t^2\). De la
+    primera, \(v_0\,t = \dfrac{700}{\cos 50^\circ}\), y entonces \(v_0\,\sen 50^\circ\,t = 700\,\tg 50^\circ = \qty{834}{\m}\).
+    Sustituyendo en la segunda: \(600 = 1100 + 834 - \num{4.9}\,t^2\), de donde \(t = \sqrt{\dfrac{1334}{\num{4.9}}} = \qty{16.5}{\s}\).
+
+    \textbf{4.} \(v_0 = \dfrac{700}{\cos 50^\circ \cdot \num{16.5}} = \qty{66.0}{\m\per\s}\), unos \qty{238}{\km\per\hour}.
+\end{example}
+
+\begin{example}
+    \textbf{Tiro horizontal: ayuda humanitaria.} Un helicóptero que vuela horizontalmente a \qty{180}{\km\per\hour} y a
+    \qty{2000}{\m} de altura suelta un paquete. Calcula: a) el tiempo que tarda el paquete en llegar al suelo; b) a qué distancia
+    horizontal del objetivo debe soltarlo; c) dónde está el helicóptero cuando el paquete llega al suelo.
+
+    \textbf{Solución.} El paquete sale con la velocidad del helicóptero, \(v_0 = \qty{50}{\m\per\s}\) horizontal:
+    \(x = 50t\), \(y = 2000 - \num{4.9}\,t^2\).
+    a) \(y = 0\): \(t = \sqrt{\dfrac{2000}{\num{4.9}}} = \qty{20.2}{\s}\). b) \(x = 50 \cdot \num{20.2} = \qty{1010}{\m}\) antes del
+    objetivo. c) Como el paquete avanza en horizontal igual que el helicóptero, este está \textbf{justo en su vertical}, a
+    \qty{2000}{\m} de altura (si no se tiene en cuenta el rozamiento con el aire).
+\end{example}
+
+%========================================================================================
+\section{Ejercicios de aplicación}\label{sec:ud9-aplicacion}
+%========================================================================================
+
+\subsection{Movimiento rectilíneo uniforme}
+
+\begin{exercise}
+    \(\star\) La luz del Sol tarda 8 minutos y 20 segundos en llegar a la Tierra. ¿A qué distancia está el Sol? (Velocidad de la luz:
+    \qty{3e8}{\m\per\s}.)
+    \begin{solu}
+        \(d = \num{3e8} \cdot 500 = \textcolor{red}{\qty{1.5e11}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una partícula se mueve en línea recta con velocidad constante. Pasa por la posición \qty{40}{\m} en
+    \(t = \qty{2}{\s}\) y por la posición \qty{16}{\m} en \(t = \qty{5}{\s}\). a) Representa la gráfica \(x\)-\(t\). b) Calcula su
+    velocidad y su posición inicial. c) ¿Qué espacio recorre en \qty{6}{\s}?
+    \begin{solu}
+        a) Una recta descendente. b) \(v = \dfrac{16 - 40}{5 - 2} = \textcolor{red}{\qty{-8}{\m\per\s}}\);
+        \(x_0 = 40 + 8 \cdot 2 = \textcolor{red}{\qty{56}{\m}}\). c) \(\textcolor{red}{\qty{48}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Un móvil parte de la posición \qty{6}{\m} y se desplaza con MRU en sentido positivo a \qty{12}{\m\per\s}. Escribe su
+    ecuación de movimiento y dibuja su gráfica \(x\)-\(t\).
+    \begin{solu}
+        \(\textcolor{red}{x = 6 + 12t}\) (SI): una recta de pendiente 12 que corta al eje vertical en 6.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Dos amigos viven en dos pueblos separados \qty{18}{\km} y salen a la vez, uno hacia el otro, por una carretera
+    recta. Se encuentran a \qty{7.5}{\km} del primer pueblo al cabo de \qty{25}{\minute}. ¿Qué velocidad lleva cada uno?
+    \begin{solu}
+        \(v_1 = \dfrac{\num{7.5}}{25/60} = \textcolor{red}{\qty{18}{\km\per\hour}}\) (\qty{5}{\m\per\s}); \(v_2 = \dfrac{\num{10.5}}{25/60} =
+        \textcolor{red}{\qty{25.2}{\km\per\hour}}\) (\qty{7}{\m\per\s}).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un tren con MRU tarda \qty{15}{\s} en pasar por delante de Luis y \qty{40}{\s} desde que su cabeza entra en un
+    túnel de \qty{1000}{\m} hasta que su cola sale de él. ¿Qué longitud tiene el tren? ¿A qué velocidad va?
+    \begin{solu}
+        \textcolor{blue}{\(L = 15\,v\) y \(L + 1000 = 40\,v\).} \(\textcolor{red}{v = \qty{40}{\m\per\s}}\) (\qty{144}{\km\per\hour});
+        \(\textcolor{red}{L = \qty{600}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) En un videojuego, el coche de Carla pasa por un cruce a \qty{20}{\m\per\s} y, \qty{8}{\s} después, pasa por el
+    mismo cruce otro coche a \qty{30}{\m\per\s}, en el mismo sentido. Los dos llevan MRU. a) Representa sus posiciones frente al
+    tiempo. b) ¿Cuándo y a qué distancia del cruce la adelanta? c) ¿Qué distancia los separa \qty{10}{\s} después del adelantamiento?
+    \begin{solu}
+        \textcolor{blue}{\(x_C = 20t\); \(x_2 = 30(t - 8)\).} b) \(\textcolor{red}{t = \qty{24}{\s}}\) desde que Carla pasó el cruce, a
+        \(\textcolor{red}{\qty{480}{\m}}\). c) \(10 \cdot (30 - 20) = \textcolor{red}{\qty{100}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Movimiento rectilíneo uniformemente acelerado}
+
+\begin{exercise}
+    \(\star\) Un vehículo arranca con una aceleración de \qty{1.2}{\m\per\s\squared}. Calcula su velocidad \qty{8}{\s} después y la
+    distancia que ha recorrido.
+    \begin{solu}
+        \(v = \textcolor{red}{\qty{9.6}{\m\per\s}}\); \(\Delta x = \num{0.6} \cdot 64 = \textcolor{red}{\qty{38.4}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Un coche que circula a \qty{54}{\km\per\hour} acelera a razón de \qty{2}{\m\per\s\squared} durante \qty{10}{\s}.
+    ¿Qué velocidad alcanza y qué espacio recorre?
+    \begin{solu}
+        \(v = 15 + 20 = \textcolor{red}{\qty{35}{\m\per\s}}\); \(\Delta x = 150 + 100 = \textcolor{red}{\qty{250}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Un coche pasa de 0 a \qty{100}{\km\per\hour} en \qty{8}{\s}. Calcula su aceleración media y la distancia que recorre.
+    \begin{solu}
+        \(a = \dfrac{\num{27.8}}{8} = \textcolor{red}{\qty{3.47}{\m\per\s\squared}}\); \(\Delta x = \dfrac{\num{27.8}}{2} \cdot 8 =
+        \textcolor{red}{\qty{111}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un patinete eléctrico circula durante \qty{6}{\minute} a \qty{18}{\km\per\hour} por un carril bici recto y
+    después acelera a \qty{0.5}{\m\per\s\squared} durante \qty{10}{\s}. Halla: a) la distancia total recorrida; b) la rapidez media
+    en todo el recorrido.
+    \begin{solu}
+        a) \(1800 + (50 + 25) = \textcolor{red}{\qty{1875}{\m}}\). b) \(\dfrac{1875}{370} = \textcolor{red}{\qty{5.07}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un coche circula a \qty{108}{\km\per\hour} y frena con una aceleración de \qty{-6}{\m\per\s\squared}. ¿Qué
+    distancia necesita para detenerse? ¿Cuánto tarda?
+    \begin{solu}
+        \(\Delta x = \dfrac{30^2}{2 \cdot 6} = \textcolor{red}{\qty{75}{\m}}\); \(t = \dfrac{30}{6} = \textcolor{red}{\qty{5}{\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Una conductora que va a \qty{25}{\m\per\s} quiere detenerse en \qty{4}{\s} y tiene \qty{45}{\m} hasta el coche de
+    delante. ¿Le basta esa distancia?
+    \begin{solu}
+        \(\Delta x = \dfrac{25 + 0}{2} \cdot 4 = \qty{50}{\m}\): \textcolor{red}{no le basta}; necesita al menos \qty{50}{\m}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un motorista que viaja con velocidad constante frena durante \qty{8}{\s} y recorre \qty{120}{\m} hasta pararse.
+    Determina: a) su velocidad inicial; b) la aceleración de frenado; c) la aceleración que necesitaría para pararse en la mitad de
+    distancia.
+    \begin{solu}
+        a) \(v_0 = \dfrac{2 \cdot 120}{8} = \textcolor{red}{\qty{30}{\m\per\s}}\); b) \(\textcolor{red}{\qty{-3.75}{\m\per\s\squared}}\);
+        c) \(a = -\dfrac{900}{2 \cdot 60} = \textcolor{red}{\qty{-7.5}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Javier y Elena montan en bicicleta en la misma dirección y sentido con MRUA. Al empezar, Javier va a
+    \qty{6}{\m\per\s} con una aceleración de \qty{1}{\m\per\s\squared}, y Elena, a \qty{3}{\m\per\s} con \qty{2}{\m\per\s\squared}.
+    a) ¿A qué distancia del inicio está cada uno a los \qty{4}{\s}? b) ¿Qué distancia los separa a los \qty{10}{\s}? c) ¿Cuándo y
+    dónde adelanta Elena a Javier?
+    \begin{solu}
+        a) \(\textcolor{red}{x_J = \qty{32}{\m}}\); \(\textcolor{red}{x_E = \qty{28}{\m}}\). b) \(130 - 110 = \textcolor{red}{\qty{20}{\m}}\)
+        (va delante Elena). c) \(6t + \num{0.5}\,t^2 = 3t + t^2\): \(\textcolor{red}{t = \qty{6}{\s}}\), a \(\textcolor{red}{\qty{54}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Un meteorito cae hacia la Tierra a \qty{12}{\km\per\s} constantes. Cuando está a \qty{90}{\km} de altura,
+    alguien lo detecta y, \qty{4}{\s} después, despega del suelo, en vertical y desde el reposo, un dron interceptor con una
+    aceleración de \qty{40}{\m\per\s\squared}. a) ¿Cuánto tarda en interceptarlo? b) ¿A qué altura? c) ¿Qué aceleración necesitaría
+    para interceptarlo a \qty{300}{\m} de altura?
+    \begin{solu}
+        \textcolor{blue}{\(y_M = 90000 - 12000t\); \(y_D = 20(t - 4)^2\); \(t^2 + 592t - 4484 = 0\).} a) \(\textcolor{red}{t = \qty{7.48}{\s}}\)
+        (\qty{3.48}{\s} después de despegar). b) \(\textcolor{red}{y = \qty{242}{\m}}\). c) El meteorito llega a \qty{300}{\m} en
+        \(t = \qty{7.475}{\s}\): \(a = \dfrac{2 \cdot 300}{\num{3.475}^2} = \textcolor{red}{\qty{49.7}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Caída libre y lanzamiento vertical}
+
+\begin{exercise}
+    \(\star\) ¿Cuánto tarda en llegar al suelo una maceta que cae desde \qty{20}{\m} de altura? ¿Con qué velocidad llega? Desprecia el
+    rozamiento con el aire.
+    \begin{solu}
+        \(t = \sqrt{20/\num{4.9}} = \textcolor{red}{\qty{2.02}{\s}}\); \(v = \textcolor{red}{\qty{19.8}{\m\per\s}}\) hacia abajo.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Se lanza un cuerpo verticalmente hacia arriba a \qty{72}{\km\per\hour}. a) ¿Qué altura alcanza? b) ¿Cuánto tarda en
+    volver al punto de lanzamiento?
+    \begin{solu}
+        a) \(\dfrac{20^2}{\num{19.6}} = \textcolor{red}{\qty{20.4}{\m}}\); b) \(2 \cdot \dfrac{20}{\num{9.8}} = \textcolor{red}{\qty{4.08}{\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Una saltadora se deja caer desde una plataforma de \qty{10}{\m} a la piscina. ¿Con qué velocidad llega al agua? ¿Cuánto
+    tiempo está en el aire?
+    \begin{solu}
+        \(v = \sqrt{2 \cdot \num{9.8} \cdot 10} = \textcolor{red}{\qty{14}{\m\per\s}}\); \(t = \textcolor{red}{\qty{1.43}{\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) La aceleración de la gravedad en la superficie de cierto planeta es la tercera parte de la terrestre. Si un robot
+    se deja caer desde \qty{150}{\m}, ¿con qué velocidad llega a la superficie? ¿Cuánto tarda?
+    \begin{solu}
+        \(g' = \qty{3.27}{\m\per\s\squared}\); \(v = \sqrt{2 \cdot \num{3.27} \cdot 150} = \textcolor{red}{\qty{31.3}{\m\per\s}}\);
+        \(t = \sqrt{300/\num{3.27}} = \textcolor{red}{\qty{9.58}{\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Durante el asedio a un castillo medieval, los defensores lanzan piedras hacia abajo a \qty{10}{\m\per\s} desde
+    \qty{30}{\m} de altura. Calcula: a) el tiempo que tarda una piedra en llegar al suelo; b) su velocidad después de recorrer
+    \qty{15}{\m}; c) el tiempo que tarda en recorrer el último metro y la velocidad que gana en él.
+    \begin{solu}
+        a) \(\num{4.9}\,t^2 + 10t - 30 = 0\): \(\textcolor{red}{t = \qty{1.66}{\s}}\). b) \(v = -\sqrt{100 + 2 \cdot \num{9.8} \cdot 15} =
+        \textcolor{red}{\qty{-19.8}{\m\per\s}}\). c) \textcolor{blue}{Llega a \qty{1}{\m} del suelo en \(t = \qty{1.618}{\s}\).}
+        \(\textcolor{red}{\Delta t = \qty{0.038}{\s}}\); \(\Delta v = \num{9.8} \cdot \num{0.038} = \textcolor{red}{\qty{0.38}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un tornillo se desprende de un helicóptero que desciende a \qty{8}{\m\per\s} constantes. a) Calcula la velocidad y
+    el desplazamiento del tornillo \qty{4}{\s} después. b) Repite el cálculo si el helicóptero asciende a la misma velocidad.
+    \begin{solu}
+        a) \(v = -8 - \num{39.2} = \textcolor{red}{\qty{-47.2}{\m\per\s}}\); \(\Delta y = -32 - \num{78.4} = \textcolor{red}{\qty{-110.4}{\m}}\).
+        b) \(v = 8 - \num{39.2} = \textcolor{red}{\qty{-31.2}{\m\per\s}}\); \(\Delta y = 32 - \num{78.4} = \textcolor{red}{\qty{-46.4}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Desde el balcón más alto de la Giralda de Sevilla, a unos \qty{97}{\m} del suelo, se lanza verticalmente hacia
+    arriba una rosa a \qty{10}{\m\per\s}. Halla: a) el tiempo hasta la altura máxima y su valor; b) el tiempo que está la rosa en el
+    aire y la velocidad con que llega al suelo; c) dibuja las gráficas \(y\)-\(t\), \(v\)-\(t\) y \(a\)-\(t\).
+    \begin{solu}
+        a) \(\textcolor{red}{t = \qty{1.02}{\s}}\); \(y_{\text{máx}} = 97 + \dfrac{100}{\num{19.6}} = \textcolor{red}{\qty{102.1}{\m}}\).
+        b) \(\num{4.9}\,t^2 - 10t - 97 = 0\): \(\textcolor{red}{t = \qty{5.59}{\s}}\); \(v = 10 - \num{9.8} \cdot \num{5.59} =
+        \textcolor{red}{\qty{-44.7}{\m\per\s}}\). c) \textcolor{red}{Una parábola cóncava hacia abajo, una recta decreciente y una
+        recta horizontal en \(-g\)}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Se lanzan verticalmente hacia arriba, desde el mismo punto y con \qty{0.5}{\s} de diferencia, dos pelotas: la
+    primera a \qty{5}{\m\per\s} y la segunda a \qty{7}{\m\per\s}. Determina: a) cuándo se cruzan; b) la altura del cruce; c) la
+    velocidad de cada pelota en ese instante.
+    \begin{solu}
+        \textcolor{blue}{\(5t - \num{4.9}\,t^2 = 7(t - \num{0.5}) - \num{4.9}(t - \num{0.5})^2\).} a) \(\textcolor{red}{t = \qty{0.685}{\s}}\)
+        tras lanzar la primera. b) \(\textcolor{red}{y = \qty{1.13}{\m}}\). c) \(\textcolor{red}{v_1 = \qty{-1.71}{\m\per\s}}\) (baja) y
+        \(\textcolor{red}{v_2 = \qty{5.19}{\m\per\s}}\) (sube).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Desde \qty{150}{\m} de altura se lanza una moneda hacia arriba a \qty{15}{\m\per\s}. \qty{2}{\s} después se deja
+    caer otra desde el mismo punto. a) ¿Cuánto tardan en encontrarse? b) ¿Qué velocidad tiene cada una en el cruce? c) ¿A qué altura
+    se cruzan?
+    \begin{solu}
+        \textcolor{blue}{\(150 + 15t - \num{4.9}\,t^2 = 150 - \num{4.9}(t - 2)^2 \Rightarrow \num{4.6}\,t = \num{19.6}\).}
+        a) \(\textcolor{red}{t = \qty{4.26}{\s}}\) tras lanzar la primera. b) \(\textcolor{red}{v_1 = \qty{-26.8}{\m\per\s}}\);
+        \(\textcolor{red}{v_2 = \qty{-22.2}{\m\per\s}}\). c) \(\textcolor{red}{y = \qty{125}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Composición de movimientos}
+
+\begin{exercise}
+    \(\star\) Un barco cruza un río de \qty{90}{\m} de ancho a \qty{6}{\m\per\s}, perpendicularmente a una corriente de
+    \qty{2.5}{\m\per\s}. ¿Cuánto tarda y a qué distancia río abajo llega a la otra orilla?
+    \begin{solu}
+        \(t = \dfrac{90}{6} = \textcolor{red}{\qty{15}{\s}}\); \(x = \num{2.5} \cdot 15 = \textcolor{red}{\qty{37.5}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Pedro quiere cruzar un río de \qty{2}{\km} de ancho en una barca que avanza a \qty{30}{\km\per\hour} respecto al
+    agua, perpendicularmente a la orilla. La corriente es de \qty{6}{\km\per\hour}. Calcula: a) la velocidad de la barca respecto a la
+    orilla; b) el tiempo que tarda en cruzar; c) la distancia que recorre río abajo.
+    \begin{solu}
+        a) \(\sqrt{900 + 36} = \textcolor{red}{\qty{30.6}{\km\per\hour}}\); b) \(\dfrac{2}{30}~\unit{\hour} = \textcolor{red}{\qty{4}{\minute}}\);
+        c) \(6 \cdot \dfrac{2}{30} = \textcolor{red}{\qty{0.4}{\km}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una persona rema en una canoa a \qty{2.5}{\m\per\s} respecto al agua, formando un ángulo de \(60^\circ\) con la
+    dirección de la corriente (río abajo), para cruzar un río de \qty{50}{\m} de ancho cuya corriente es de \qty{1.5}{\m\per\s}.
+    a) Escribe el vector velocidad de la canoa respecto a la orilla y su vector posición en función del tiempo. b) ¿Cuánto tarda en
+    cruzar y qué distancia recorre río abajo?
+    \begin{solu}
+        a) \(\vec v = (\num{2.5}\cos 60^\circ + \num{1.5})\,\ivec + \num{2.5}\,\sen 60^\circ\,\jvec =
+        \textcolor{red}{(\num{2.75}\,\ivec + \num{2.17}\,\jvec)~\unit{\m\per\s}}\); \(\textcolor{red}{\vec r = \num{2.75}\,t\,\ivec +
+        \num{2.17}\,t\,\jvec}\). b) \(t = \dfrac{50}{\num{2.165}} = \textcolor{red}{\qty{23.1}{\s}}\); \(x = \textcolor{red}{\qty{63.5}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) En un aeropuerto, una cinta transportadora de \qty{50}{\m} avanza a \qty{0.8}{\m\per\s}. Calcula cuánto tarda en
+    recorrerla una persona: a) quieta sobre la cinta; b) andando a \qty{1.2}{\m\per\s} en el sentido de la cinta; c) andando en sentido
+    contrario.
+    \begin{solu}
+        a) \(\dfrac{50}{\num{0.8}} = \textcolor{red}{\qty{62.5}{\s}}\); b) \(\dfrac{50}{2} = \textcolor{red}{\qty{25}{\s}}\);
+        c) \(\dfrac{50}{\num{0.4}} = \textcolor{red}{\qty{125}{\s}}\) (avanza al revés que la cinta).
+    \end{solu}
+\end{exercise}
+
+\subsection{Tiro horizontal}
+
+\begin{exercise}
+    \(\star\) Desde una ventana a \qty{8}{\m} de altura sale horizontalmente el agua de una manguera a \qty{10}{\m\per\s}. ¿A qué
+    distancia de la pared cae el agua?
+    \begin{solu}
+        \(t = \sqrt{8/\num{4.9}} = \qty{1.28}{\s}\); \(x = \textcolor{red}{\qty{12.8}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Una pelota sale rodando por el borde de una mesa de \qty{80}{\cm} de altura a \qty{1.5}{\m\per\s}. ¿Cuánto tarda en
+    llegar al suelo? ¿Con qué velocidad lo hace? ¿A qué distancia de la mesa cae?
+    \begin{solu}
+        \(\textcolor{red}{t = \qty{0.404}{\s}}\); \(\textcolor{red}{\vec v = (\num{1.5}\,\ivec - \num{3.96}\,\jvec)~\unit{\m\per\s}}\);
+        \(x = \textcolor{red}{\qty{0.61}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Javier sube a la azotea de un edificio de \qty{15}{\m} y lanza un balón horizontalmente a \qty{18}{\m\per\s}.
+    Despreciando el rozamiento, calcula: a) la distancia al edificio a la que cae; b) el tiempo que tarda; c) su velocidad al llegar
+    al suelo.
+    \begin{solu}
+        a) \(\textcolor{red}{\qty{31.5}{\m}}\); b) \(\textcolor{red}{\qty{1.75}{\s}}\); c) \(\textcolor{red}{\vec v = (18\,\ivec -
+        \num{17.1}\,\jvec)~\unit{\m\per\s}}\), de módulo \qty{24.8}{\m\per\s}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Desde la cumbre del Mulhacén, Nieves lanza un plato volador horizontalmente a \qty{50}{\m\per\s} hacia un valle
+    situado \qty{1000}{\m} más abajo. Suponiendo que nada lo frena, determina: a) cuánto tarda en llegar al valle; b) a qué
+    distancia horizontal cae; c) su velocidad y su posición, respecto al punto de lanzamiento, a los \qty{10}{\s}.
+    \begin{solu}
+        a) \(t = \sqrt{1000/\num{4.9}} = \textcolor{red}{\qty{14.3}{\s}}\); b) \(\textcolor{red}{\qty{714}{\m}}\);
+        c) \(\textcolor{red}{\vec v = (50\,\ivec - 98\,\jvec)~\unit{\m\per\s}}\); \(\textcolor{red}{\vec r = (500\,\ivec - 490\,\jvec)~\unit{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Desde un helicóptero parado a \qty{45}{\m} sobre el mar, un socorrista se lanza horizontalmente a
+    \qty{8}{\m\per\s} para rescatar a una persona. Calcula: a) a qué distancia del helicóptero (en horizontal) cae al agua; b) el
+    tiempo que está en el aire; c) su velocidad al llegar al agua.
+    \begin{solu}
+        a) \(\textcolor{red}{\qty{24.2}{\m}}\); b) \(\textcolor{red}{\qty{3.03}{\s}}\); c) \(\textcolor{red}{\vec v = (8\,\ivec -
+        \num{29.7}\,\jvec)~\unit{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un avión vuela horizontalmente a \qty{800}{\m} de altura y a \qty{360}{\km\per\hour} y suelta un paquete.
+    Determina: a) el tiempo que tarda en llegar al suelo; b) la distancia horizontal que recorre; c) a qué distancia del avión está el
+    paquete cuando toca el suelo, si el avión sigue igual.
+    \begin{solu}
+        a) \(\textcolor{red}{\qty{12.8}{\s}}\); b) \(\textcolor{red}{\qty{1278}{\m}}\); c) \textcolor{red}{A \qty{800}{\m}, justo
+        debajo}: los dos avanzan lo mismo en horizontal.
+    \end{solu}
+\end{exercise}
+
+\subsection{Tiro parabólico}
+
+\begin{exercise}
+    \(\star\star\) Jorge salta con una moto de agua que va a \qty{54}{\km\per\hour} por una ola que le hace despegar con un ángulo de
+    \(15^\circ\). Calcula: a) la distancia que recorre en el aire; b) el tiempo que está en el aire; c) la posición del punto más alto.
+    \begin{solu}
+        a) \(\dfrac{225\,\sen 30^\circ}{\num{9.8}} = \textcolor{red}{\qty{11.5}{\m}}\); b) \(\textcolor{red}{\qty{0.79}{\s}}\);
+        c) \(\textcolor{red}{(\num{5.74}; \num{0.77})~\unit{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Desde la azotea de un chalet, a \qty{15}{\m} de altura, se lanza un globo de agua a \qty{25}{\m\per\s} con un
+    ángulo de \(30^\circ\) sobre la horizontal. Determina: a) a qué distancia de la base de la casa cae; b) el tiempo que está en el
+    aire; c) su velocidad al llegar al suelo; d) su vector posición en \(t = \qty{1}{\s}\).
+    \begin{solu}
+        \textcolor{blue}{\(x = \num{21.65}\,t\); \(y = 15 + \num{12.5}\,t - \num{4.9}\,t^2\).} b) \(\textcolor{red}{t = \qty{3.44}{\s}}\);
+        a) \(\textcolor{red}{x = \qty{74.5}{\m}}\); c) \(\textcolor{red}{\vec v = (\num{21.7}\,\ivec - \num{21.2}\,\jvec)~\unit{\m\per\s}}\),
+        de módulo \qty{30.3}{\m\per\s}; d) \(\textcolor{red}{\vec r = (\num{21.7}\,\ivec + \num{22.6}\,\jvec)~\unit{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una atleta de triple salto se pregunta qué velocidad necesita en un salto con un ángulo de \(30^\circ\) para
+    recorrer \qty{14}{\m} (considera el salto como un tiro parabólico de su centro de masas).
+    \begin{solu}
+        \(14 = \dfrac{v_0^2\,\sen 60^\circ}{\num{9.8}}\): \(\textcolor{red}{v_0 = \qty{12.6}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un jugador de baloncesto lanza a canasta desde \qty{7}{\m} de distancia horizontal, a \qty{8.8}{\m\per\s} y con un
+    ángulo de \(45^\circ\). El balón sale a \qty{2.1}{\m} del suelo y el aro está a \qty{3.05}{\m}. ¿A qué altura pasa el balón por la
+    vertical del aro? ¿Encestará?
+    \begin{solu}
+        \textcolor{blue}{\(v_{0x} = \qty{6.22}{\m\per\s}\); llega a \(x = 7\) en \(t = \qty{1.12}{\s}\).} \(y = \num{2.1} + \num{6.22} \cdot
+        \num{1.12} - \num{4.9} \cdot \num{1.12}^2 = \textcolor{red}{\qty{2.90}{\m}}\): \textcolor{red}{se queda corto}, pasa
+        \qty{15}{\cm} por debajo del aro.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Un atleta lanza la jabalina desde \qty{2}{\m} de altura a \qty{28}{\m\per\s}. ¿Con qué ángulo debe lanzarla
+    para que caiga a \qty{60}{\m}? (Usa \(\dfrac{1}{\cos^2\alpha} = 1 + \tg^2\alpha\).)
+    \begin{solu}
+        \textcolor{blue}{Ecuación de la trayectoria con \(y = 0\), \(x = 60\): \(0 = 2 + 60\,\tg\alpha - \num{22.5}(1 + \tg^2\alpha)\),
+        es decir, \(\num{22.5}\,\tg^2\alpha - 60\,\tg\alpha + \num{20.5} = 0\).} \(\tg\alpha = \num{2.26}\) o \num{0.402}:
+        \(\textcolor{red}{\alpha = 66.2^\circ}\) o \(\textcolor{red}{\alpha = 21.9^\circ}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) María vive en un cuarto piso (cada piso mide \qty{2.8}{\m}) y lanza con un tirachinas una caja pequeña a
+    \qty{20}{\m\per\s} con un ángulo de \(45^\circ\) \textbf{por debajo} de la horizontal hacia Pilar, que está en la calle.
+    Determina: a) a qué distancia del edificio debe colocarse Pilar; b) el tiempo que la caja está en el aire y su velocidad al
+    llegar al suelo.
+    \begin{solu}
+        \textcolor{blue}{\(y_0 = \qty{11.2}{\m}\); \(v_{0x} = \qty{14.1}{\m\per\s}\); \(v_{0y} = \qty{-14.1}{\m\per\s}\);
+        \(\num{4.9}\,t^2 + \num{14.14}\,t - \num{11.2} = 0\).} b) \(\textcolor{red}{t = \qty{0.65}{\s}}\);
+        \(\textcolor{red}{\vec v = (\num{14.1}\,\ivec - \num{20.5}\,\jvec)~\unit{\m\per\s}}\). a) \(x = \textcolor{red}{\qty{9.1}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Movimiento circular uniforme}
+
+\begin{exercise}
+    \(\star\) Una partícula describe una circunferencia de \qty{40}{\cm} de radio a \qty{30}{rpm}. Expresa su periodo, su frecuencia,
+    su velocidad angular y su velocidad lineal en el SI.
+    \begin{solu}
+        \(\textcolor{red}{T = \qty{2}{\s}}\); \(\textcolor{red}{f = \qty{0.5}{\hertz}}\); \(\textcolor{red}{\omega = \pi = \qty{3.14}{\radian\per\s}}\);
+        \(\textcolor{red}{v = \qty{1.26}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Una lavadora centrifuga a \qty{1000}{rpm} y su tambor tiene \qty{50}{\cm} de diámetro. Calcula la velocidad angular, la
+    velocidad lineal de la ropa pegada al tambor, el periodo y la frecuencia.
+    \begin{solu}
+        \(\textcolor{red}{\omega = \qty{105}{\radian\per\s}}\); \(\textcolor{red}{v = \qty{26.2}{\m\per\s}}\); \(\textcolor{red}{T = \qty{0.06}{\s}}\);
+        \(\textcolor{red}{f = \qty{16.7}{\hertz}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) El volante de un triciclo, de \qty{40}{\cm} de diámetro, da 6 vueltas por minuto. Calcula su velocidad angular, la
+    velocidad lineal de un punto del borde y su aceleración normal.
+    \begin{solu}
+        \(\textcolor{red}{\omega = \qty{0.628}{\radian\per\s}}\); \(\textcolor{red}{v = \qty{0.126}{\m\per\s}}\);
+        \(\textcolor{red}{a_n = \qty{0.079}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una mosca se posa en el extremo del aspa de un ventilador de \qty{60}{\cm} de diámetro que gira a \qty{90}{rpm}.
+    Determina: a) su velocidad angular y lineal; b) su periodo y su frecuencia; c) su aceleración normal; d) el ángulo y el arco que
+    recorre en \qty{2}{\s}.
+    \begin{solu}
+        a) \(\textcolor{red}{\qty{9.42}{\radian\per\s}}\) y \(\textcolor{red}{\qty{2.83}{\m\per\s}}\); b) \(\textcolor{red}{\qty{0.667}{\s}}\) y
+        \(\textcolor{red}{\qty{1.5}{\hertz}}\); c) \(\textcolor{red}{\qty{26.6}{\m\per\s\squared}}\); d) \(\textcolor{red}{\qty{18.8}{\radian}}\)
+        y \(\textcolor{red}{\qty{5.65}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Cuál es la velocidad angular de cada una de las agujas de un reloj analógico?
+    \begin{solu}
+        Horaria (una vuelta en \qty{12}{\hour}): \(\textcolor{red}{\qty{1.45e-4}{\radian\per\s}}\); minutero (\qty{1}{\hour}):
+        \(\textcolor{red}{\qty{1.75e-3}{\radian\per\s}}\); segundero (\qty{1}{\minute}): \(\textcolor{red}{\qty{0.105}{\radian\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) La Estación Espacial Internacional (ISS) da una vuelta a la Tierra cada \qty{92}{\minute} en una órbita
+    prácticamente circular a unos \qty{410}{\km} de altura. Si el radio de la Tierra es de \qty{6370}{\km}, calcula: a) su velocidad
+    angular, su periodo y su frecuencia; b) su velocidad lineal; c) su aceleración normal.
+    \begin{solu}
+        \textcolor{blue}{\(R = \qty{6.78e6}{\m}\); \(T = \qty{5520}{\s}\).} a) \(\textcolor{red}{\omega = \qty{1.14e-3}{\radian\per\s}}\);
+        \(\textcolor{red}{f = \qty{1.81e-4}{\hertz}}\). b) \(\textcolor{red}{v = \qty{7.72e3}{\m\per\s}}\) (casi \qty{28000}{\km\per\hour}).
+        c) \(\textcolor{red}{a_n = \qty{8.78}{\m\per\s\squared}}\): casi la misma \(g\) que en la superficie.
+    \end{solu}
+\end{exercise}
+
+\subsection{Movimiento circular uniformemente acelerado}
+
+\begin{exercise}
+    \(\star\) Una rueda de un tractor alcanza las 60 vueltas por minuto \qty{15}{\s} después de arrancar desde el reposo. Calcula su
+    aceleración angular, el ángulo que describe en esos \qty{15}{\s} y las vueltas que da.
+    \begin{solu}
+        \(\textcolor{red}{\alpha = \qty{0.419}{\radian\per\s\squared}}\); \(\textcolor{red}{\Delta\varphi = \qty{47.1}{\radian}}\);
+        \(\textcolor{red}{\num{7.5}~\text{vueltas}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Al levantar la aguja de un tocadiscos, el disco, de \qty{30}{\cm} de diámetro, que giraba a \qty{45}{rpm}, se
+    detiene en \qty{12}{\s}. Determina: a) la aceleración angular y la velocidad lineal de un punto del borde a los \qty{4}{\s};
+    b) las vueltas que da hasta pararse.
+    \begin{solu}
+        a) \(\textcolor{red}{\alpha = \qty{-0.393}{\radian\per\s\squared}}\); \(\omega(4) = \qty{3.14}{\radian\per\s}\) y
+        \(\textcolor{red}{v = \qty{0.47}{\m\per\s}}\). b) \(\Delta\varphi = \qty{28.3}{\radian}\): \(\textcolor{red}{\num{4.5}~\text{vueltas}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El volante de un coche de carreras gira desde el reposo con una aceleración angular de \qty{2}{\radian\per\s\squared}.
+    a) ¿Cuánto tarda en girar \(90^\circ\)? b) ¿Qué velocidad angular tiene entonces?
+    \begin{solu}
+        a) \(\dfrac{\pi}{2} = t^2\): \(\textcolor{red}{t = \qty{1.25}{\s}}\). b) \(\textcolor{red}{\omega = \qty{2.51}{\radian\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una motocicleta da vueltas a un circuito circular de \qty{150}{\m} de diámetro. Parte del reposo con MCUA y,
+    \qty{25}{\s} después, circula a \qty{54}{\km\per\hour}; a partir de ahí sigue con MCU. a) Calcula sus aceleraciones tangencial,
+    normal, total y angular justo antes de llegar a los \qty{25}{\s}. b) ¿Qué velocidad angular alcanza? ¿Cuál es entonces su
+    periodo?
+    \begin{solu}
+        a) \(\textcolor{red}{a_t = \qty{0.6}{\m\per\s\squared}}\); \(\textcolor{red}{a_n = \dfrac{225}{75} = \qty{3}{\m\per\s\squared}}\);
+        \(\textcolor{red}{a = \qty{3.06}{\m\per\s\squared}}\); \(\textcolor{red}{\alpha = \qty{0.008}{\radian\per\s\squared}}\).
+        b) \(\textcolor{red}{\omega = \qty{0.2}{\radian\per\s}}\); \(\textcolor{red}{T = \qty{31.4}{\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un engranaje gira a \qty{20}{\radian\per\s} y frena con una aceleración angular de \qty{-4}{\radian\per\s\squared}.
+    Calcula el tiempo que tarda en detenerse y el ángulo que recorre.
+    \begin{solu}
+        \(\textcolor{red}{t = \qty{5}{\s}}\); \(\Delta\varphi = \dfrac{20}{2} \cdot 5 = \textcolor{red}{\qty{50}{\radian}}\).
+    \end{solu}
+\end{exercise}
+
+%========================================================================================
+\section{Ejercicios de ampliación}\label{sec:ud9-ampliacion}
+%========================================================================================
+
+\begin{exercise}
+    \(\star\star\) Esta tabla recoge la velocidad de un coche durante una carrera:
+    \begin{center}
+        \begin{tabular}{@{}lcccccccc@{}}
+            \toprule
+            \(\boldsymbol{t}\) \textbf{(s)} & 0 & 5 & 10 & 15 & 20 & 25 & 30 & 35 \\
+            \midrule
+            \(\boldsymbol{v}\) \textbf{(m/s)} & 4 & 4 & 4 & 12 & 20 & 20 & 20 & 8 \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+    a) Representa la gráfica \(v\)-\(t\). b) Identifica el tipo de movimiento de cada tramo y su aceleración. c) Calcula el espacio
+    recorrido en los \qty{35}{\s}.
+    \begin{solu}
+        b) \textcolor{red}{0-10 s: MRU (\(a = 0\)); 10-20 s: MRUA (\(a = \qty{1.6}{\m\per\s\squared}\)); 20-30 s: MRU; 30-35 s: MRUA de
+        frenado (\(a = \qty{-2.4}{\m\per\s\squared}\))}. c) Área bajo la gráfica: \(40 + 120 + 200 + 70 = \textcolor{red}{\qty{430}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Arantxa entra corriendo en el andén a \qty{4}{\m\per\s} justo cuando su tren arranca con una aceleración de
+    \qty{0.5}{\m\per\s\squared}. Entre ella y la puerta del último vagón hay \qty{15}{\m}. ¿Conseguirá subir al tren?
+    \begin{solu}
+        \textcolor{blue}{\(4t = 15 + \num{0.25}\,t^2 \Rightarrow t^2 - 16t + 60 = 0\).} \textcolor{red}{Sí}: alcanza la puerta a los
+        \(\textcolor{red}{\qty{6}{\s}}\), cuando el tren ha avanzado \qty{9}{\m}. (A los 6 s el tren va a \qty{3}{\m\per\s}, más
+        despacio que ella.)
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) La protagonista de una serie huye por un camino que cruza perpendicularmente una vía de tren. Un tren se
+    acerca al cruce a \qty{72}{\km\per\hour} y está a \qty{400}{\m} cuando ella, que está parada a \qty{60}{\m} del cruce, empieza a
+    correr hacia él con aceleración constante. a) ¿Qué aceleración necesita para llegar al cruce justo cuando llega el tren? b) ¿Con qué
+    velocidad llega?
+    \begin{solu}
+        \textcolor{blue}{El tren llega en \(t = 400/20 = \qty{20}{\s}\).} a) \(60 = \frac{1}{2}\,a \cdot 400\): \(\textcolor{red}{a =
+        \qty{0.3}{\m\per\s\squared}}\). b) \(v = \num{0.3} \cdot 20 = \textcolor{red}{\qty{6}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una maceta cae desde el poyete de una ventana. Manuel ve que pasa por delante de la suya, que está a \qty{8}{\m} del
+    suelo, \qty{1.5}{\s} después de caer. ¿A qué altura estaba el poyete?
+    \begin{solu}
+        \(h = 8 + \num{4.9} \cdot \num{1.5}^2 = \textcolor{red}{\qty{19.0}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Desde lo alto de un acantilado se deja caer una piedra, que recorre la última cuarta parte de la altura en
+    \qty{1}{\s}. ¿Qué altura tiene el acantilado?
+    \begin{solu}
+        \textcolor{blue}{Si la caída dura \(T\): \(h = \num{4.9}\,T^2\) y \(\frac{3}{4}h = \num{4.9}(T - 1)^2\), así que \(T - 1 =
+        \sqrt{3/4}\,T\) y \(T = \qty{7.46}{\s}\).} \(h = \textcolor{red}{\qty{273}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Un cohete parte del reposo y sube verticalmente con una aceleración de \qty{2}{\m\per\s\squared}. A los
+    \qty{15}{\s} se le acaba el combustible y sigue en caída libre. a) ¿Llegará a \qty{300}{\m} de altura? b) ¿Con qué velocidad
+    llega al suelo? c) ¿Cuánto tiempo está en el aire? d) ¿Qué aceleración necesitaría para llegar a \qty{300}{\m}?
+    \begin{solu}
+        \textcolor{blue}{A los 15 s: \(v = \qty{30}{\m\per\s}\), \(y = \qty{225}{\m}\); después sube \(30^2/\num{19.6} = \qty{45.9}{\m}\) más.}
+        a) \textcolor{red}{No: llega a \qty{271}{\m}}. b) \(\sqrt{2 \cdot \num{9.8} \cdot 271} = \textcolor{red}{\qty{72.9}{\m\per\s}}\).
+        c) \(15 + \num{3.06} + \num{7.44} = \textcolor{red}{\qty{25.5}{\s}}\). d) \(\num{112.5}\,a + \num{11.48}\,a^2 = 300\):
+        \(\textcolor{red}{a = \qty{2.18}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Carmen viaja en un tren que va a \qty{15}{\m\per\s} y lanza su móvil verticalmente hacia arriba a
+    \qty{4}{\m\per\s}. a) Para Carmen, ¿cuánto tarda el móvil en volver a sus manos y con qué velocidad lo hace? b) Repite los
+    cálculos para una persona que lo observa desde el andén.
+    \begin{solu}
+        a) \(\textcolor{red}{t = \qty{0.82}{\s}}\); \(\textcolor{red}{\vec v = -4\,\jvec~\unit{\m\per\s}}\). b) \textcolor{red}{El mismo
+        tiempo}, pero el móvil describe una parábola: vuelve con \(\textcolor{red}{\vec v = (15\,\ivec - 4\,\jvec)~\unit{\m\per\s}}\) tras
+        avanzar \qty{12.2}{\m} con el tren.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Un avión vuela hacia el oeste a \qty{600}{\km\per\hour} respecto al aire, y el viento sopla de norte a sur a
+    \qty{100}{\km\per\hour}. Calcula: a) la velocidad del avión respecto al suelo (vector y módulo); b) el ángulo que forma con la
+    dirección oeste.
+    \begin{solu}
+        a) Con \(\ivec\) hacia el este y \(\jvec\) hacia el norte: \(\textcolor{red}{\vec v = (-600\,\ivec - 100\,\jvec)~\unit{\km\per\hour}}\),
+        de módulo \(\textcolor{red}{\qty{608}{\km\per\hour}}\). b) \(\textcolor{red}{\num{9.5}^\circ}\) hacia el sur.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Patricia lanza desde su ventana, a \qty{4}{\m} del suelo, el agua de un cubo horizontalmente a \qty{6}{\m\per\s}.
+    a) ¿A qué distancia de la pared cae el agua? b) ¿A qué velocidad habría que lanzarla para que cayera a \qty{2}{\m}?
+    \begin{solu}
+        a) \(t = \qty{0.904}{\s}\); \(\textcolor{red}{x = \qty{5.4}{\m}}\). b) \(v = \dfrac{2}{\num{0.904}} = \textcolor{red}{\qty{2.2}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) En un entrenamiento, Carlos lanza un balón desde el suelo a \qty{25}{\m\per\s} con un ángulo de \(45^\circ\).
+    En cada bote, el balón sale de nuevo a \(45^\circ\), pero solo alcanza la mitad de la altura máxima anterior. a) ¿Cuál es la
+    altura máxima antes y después del primer bote? b) ¿A qué distancia del lanzamiento bota la primera y la segunda vez?
+    \begin{solu}
+        a) \(\textcolor{red}{\qty{15.9}{\m}}\) y \(\textcolor{red}{\qty{8.0}{\m}}\). b) \textcolor{blue}{La altura máxima es
+        proporcional a \(v_0^2\) y el alcance también: si la altura se reduce a la mitad, el alcance también.} Primer bote a
+        \(\textcolor{red}{\qty{63.8}{\m}}\); segundo a \(63{,}8 + 31{,}9 = \textcolor{red}{\qty{95.7}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Desde lo alto de una torre de altura \(h\) se lanzan dos pelotas con la misma rapidez \(v_0\): una hacia
+    arriba con un ángulo \(\alpha\) sobre la horizontal y otra hacia abajo con el mismo ángulo. a) Demuestra que las dos llegan al
+    suelo con la misma rapidez. b) Calcula esa rapidez en función de \(v_0\), \(g\) y \(h\).
+    \begin{solu}
+        \textcolor{blue}{Las dos tienen la misma \(v_x = v_0\cos\alpha\), y \(v_y^2 = v_{0y}^2 + 2gh\) con \(v_{0y}^2 = v_0^2\,\sen^2\alpha\)
+        en los dos casos (el signo de \(v_{0y}\) desaparece al elevarlo al cuadrado).} a) \textcolor{red}{Llegan con la misma
+        rapidez}, aunque en instantes distintos. b) \(\textcolor{red}{v = \sqrt{v_0^2 + 2gh}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Una manzana cuelga a \qty{5}{\m} de altura de un árbol que está a \qty{18}{\m} de Patricia, que dispara una
+    flecha desde \qty{1.5}{\m} de altura a \qty{22}{\m\per\s} y con un ángulo de \(12^\circ\). En el instante del disparo, la manzana
+    se suelta. a) ¿Alcanza la flecha a la manzana? b) Demuestra que si Patricia apuntara directamente a la manzana
+    (\(\alpha = 11{,}0^\circ\)), le daría, cualquiera que fuese la velocidad de la flecha (si llega al árbol antes de que la manzana
+    toque el suelo).
+    \begin{solu}
+        a) \textcolor{blue}{Llega al árbol en \(t = \dfrac{18}{22\cos 12^\circ} = \qty{0.836}{\s}\); \(y_F = \qty{1.90}{\m}\) e
+        \(y_M = 5 - \num{4.9} \cdot \num{0.836}^2 = \qty{1.57}{\m}\).} \textcolor{red}{No}: pasa \qty{33}{\cm} por encima.
+        b) \textcolor{red}{Las dos caen lo mismo, \(\frac{1}{2}gt^2\), respecto a la recta de puntería}: sin gravedad, la flecha iría en
+        línea recta hasta la manzana quieta; con gravedad, las dos «bajan» lo mismo en el mismo tiempo.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Chloe va en un caballo de un tiovivo, a \qty{2.5}{\m} del eje, con una aceleración normal de \qty{0.5}{\m\per\s\squared}.
+    Se le cae un zapato desde \qty{1.2}{\m} de altura. Determina: a) la velocidad lineal, el periodo y la frecuencia del tiovivo;
+    b) a qué distancia horizontal del punto en que se soltó cae el zapato.
+    \begin{solu}
+        a) \(v = \sqrt{a_n R} = \textcolor{red}{\qty{1.12}{\m\per\s}}\); \(\textcolor{red}{T = \qty{14.0}{\s}}\);
+        \(\textcolor{red}{f = \qty{0.071}{\hertz}}\). b) El zapato sale con la velocidad tangente: tiro horizontal durante
+        \(\sqrt{\num{1.2}/\num{4.9}} = \qty{0.49}{\s}\): \(x = \textcolor{red}{\qty{0.55}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+%========================================================================================
+\section{Olimpiadas de Física}\label{sec:ud9-olimpiadas}
+%========================================================================================
+
+\begin{exercise}
+    \(\star\star\star\) \textit{(Adaptado de la fase local de Valencia, 2020.)} Un jugador de rugby lanza el balón desde \qty{2}{\m}
+    de altura a \qty{12}{\m\per\s} y con un ángulo de \(30^\circ\) sobre la horizontal. Considera el balón como una partícula y
+    desprecia el rozamiento. a) ¿A qué distancia llega el balón si el lanzador está quieto? b) Ahora el lanzador corre hacia atrás a
+    \qty{0.4}{\m\per\s} mientras lanza (en sentido contrario al del lanzamiento). Otro jugador, en reposo junto a él, empieza a correr
+    en ese instante con aceleración constante para coger el balón a \qty{1.5}{\m} de altura. ¿Qué aceleración necesita? ¿Es posible
+    en una situación real?
+    \begin{solu}
+        a) \textcolor{blue}{\(\num{4.9}\,t^2 - 6t - 2 = 0\): \(t = \qty{1.50}{\s}\).} \(x = \num{10.39} \cdot \num{1.50} =
+        \textcolor{red}{\qty{15.6}{\m}}\). b) \textcolor{blue}{Respecto al suelo, \(v_{0x} = \num{10.39} - \num{0.4} = \qty{9.99}{\m\per\s}\);
+        llega a \qty{1.5}{\m} de altura en \(t = \qty{1.30}{\s}\), a \(x = \qty{13.0}{\m}\).} \(a = \dfrac{2x}{t^2} =
+        \textcolor{red}{\qty{15.3}{\m\per\s\squared}}\): \textcolor{red}{imposible para una persona} (un velocista apenas supera
+        \qty{5}{\m\per\s\squared} en la salida).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) \textit{(Adaptado de la fase local de Navarra, 2021.)} Un dron de mensajería vuela horizontalmente a
+    \qty{4}{\m\per\s} y a \qty{40}{\m} de altura hacia la azotea de un edificio de \qty{30}{\m}, donde debe soltar un paquete que caerá
+    libremente. a) ¿A qué distancia horizontal de la entrega debe soltarlo? b) Una ráfaga de viento da al paquete una aceleración
+    adicional \(\vec a = (-2\,\ivec + \jvec)~\unit{\m\per\s\squared}\) (el dron vuela en el sentido de \(\ivec\)). ¿A qué distancia
+    debe soltarlo ahora?
+    \begin{solu}
+        a) \textcolor{blue}{Cae \qty{10}{\m}: \(t = \sqrt{10/\num{4.9}} = \qty{1.43}{\s}\).} \(x = 4 \cdot \num{1.43} = \textcolor{red}{\qty{5.7}{\m}}\)
+        antes del punto de entrega. b) \textcolor{blue}{\(a_y = -\num{9.8} + 1 = \qty{-8.8}{\m\per\s\squared}\): \(t = \sqrt{20/\num{8.8}} =
+        \qty{1.51}{\s}\); \(x = 4t - t^2\).} \(x = \textcolor{red}{\qty{3.8}{\m}}\) antes.
+    \end{solu}
+\end{exercise}
+
+%========================================================================================
+\section{Autoevaluación}\label{sec:ud9-autoevaluacion}
+%========================================================================================
+
+\begin{exercise}
+    Dos móviles están separados \qty{60}{\m} y empiezan a moverse a la vez, uno hacia el otro. El de la izquierda va a
+    \qty{5}{\m\per\s} constantes y el de la derecha parte a \qty{1}{\m\per\s} con una aceleración de \qty{2}{\m\per\s\squared}.
+    ¿Dónde y cuándo se encuentran?
+    \begin{solu}
+        \textcolor{blue}{\(5t + t + t^2 = 60\).} \(\textcolor{red}{t = \qty{5.31}{\s}}\), a \(\textcolor{red}{\qty{26.5}{\m}}\) de la posición
+        inicial del primero.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Desde \qty{30}{\m} de altura se lanza hacia arriba un objeto a \qty{4}{\m\per\s} y, en el mismo instante, desde el suelo se lanza
+    otro hacia arriba a \qty{30}{\m\per\s}. Calcula: a) cuándo se encuentran; b) a qué altura; c) si suben o bajan en ese momento.
+    \begin{solu}
+        a) \(30 + 4t = 30t\): \(\textcolor{red}{t = \qty{1.15}{\s}}\). b) \(\textcolor{red}{y = \qty{28.1}{\m}}\).
+        c) \(v_1 = \qty{-7.3}{\m\per\s}\): \textcolor{red}{el primero baja}; \(v_2 = \qty{18.7}{\m\per\s}\): \textcolor{red}{el segundo sube}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un proyectil se lanza desde el suelo con un ángulo de \(30^\circ\) y una velocidad de \qty{80}{\m\per\s}. Determina: a) el alcance
+    y la altura máxima; b) la velocidad del proyectil al llegar al suelo.
+    \begin{solu}
+        a) \(\textcolor{red}{\qty{566}{\m}}\) y \(\textcolor{red}{\qty{81.6}{\m}}\). b) \textcolor{red}{\qty{80}{\m\per\s}, formando \(30^\circ\)
+        por debajo de la horizontal}: \(\vec v = (\num{69.3}\,\ivec - 40\,\jvec)~\unit{\m\per\s}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un avión vuela horizontalmente a \qty{1500}{\m} de altura y a \qty{720}{\km\per\hour} y deja caer un objeto. Despreciando el
+    rozamiento, calcula: a) dónde toca el suelo; b) la velocidad del objeto a los \qty{2}{\s}.
+    \begin{solu}
+        a) \(t = \qty{17.5}{\s}\): a \(\textcolor{red}{\qty{3.50}{\km}}\) del punto en que se soltó (en horizontal).
+        b) \(\textcolor{red}{\vec v = (200\,\ivec - \num{19.6}\,\jvec)~\unit{\m\per\s}}\), de módulo \qty{201}{\m\per\s}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una bicicleta recorre \qty{12}{\km} en \qty{30}{\minute} con MRU. Si el radio de sus ruedas es de \qty{35}{\cm}, calcula: a) el
+    número de vueltas que dan las ruedas; b) su velocidad angular y la velocidad lineal de un punto de la cubierta.
+    \begin{solu}
+        a) \(\dfrac{12000}{2\pi \cdot \num{0.35}} = \textcolor{red}{\num{5457}~\text{vueltas}}\). b) \(v = \textcolor{red}{\qty{6.67}{\m\per\s}}\)
+        (respecto al eje de la rueda); \(\omega = \dfrac{\num{6.67}}{\num{0.35}} = \textcolor{red}{\qty{19.0}{\radian\per\s}}\).
+    \end{solu}
+\end{exercise}

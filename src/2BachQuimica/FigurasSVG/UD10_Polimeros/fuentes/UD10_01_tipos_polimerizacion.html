@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD10_01 · Tipos de polimerización: adición y condensación</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/organica.js"></script>
+</head>
+<body>
+<script>
+// Adición: los monómeros se unen sin perder átomos. Condensación: al unirse se pierde una
+// molécula pequeña (normalmente H2O).
+const svg = crearFigura(720, 250);
+const caja = (x, y, w, h, color, fondo) => el("rect", { x, y, width: w, height: h, rx: 10, fill: fondo, stroke: color, "stroke-width": 1.8 }, svg);
+const T = (x, y, t, a = {}) => texto(svg, x, y, t, { "text-anchor": "middle", "font-size": 17, fill: COLORES.texto, "font-family": TNR, ...a });
+caja(260, 10, 200, 44, COLORES.ocre, "#FFF3EA");
+T(360, 39, "Polimerización", { "font-size": 20, "font-weight": "bold" });
+flecha(svg, 320, 56, 185, 95, { ancho: 1.6, punta: 10 });
+flecha(svg, 400, 56, 535, 95, { ancho: 1.6, punta: 10 });
+// Adición
+caja(20, 100, 330, 140, AZUL, "#EEF3FC");
+T(185, 128, "Adición", { "font-weight": "bold", fill: AZUL, "font-size": 19 });
+T(185, 162, [{ t: "n", attrs: { "font-style": "italic" } }, { t: " A   →   " }, { t: "−[A]" }, { t: "n", sub: true, attrs: { "font-style": "italic" } }, { t: "−" }]);
+T(185, 192, "sin pérdida de átomos", { "font-size": 14, fill: COLORES.gris });
+T(185, 214, "monómeros con dobles o triples enlaces", { "font-size": 14, fill: COLORES.gris });
+T(185, 234, "homopolímeros", { "font-size": 14, fill: COLORES.gris });
+// Condensación
+caja(370, 100, 330, 140, ROJO, "#FCEEEE");
+T(535, 128, "Condensación", { "font-weight": "bold", fill: ROJO, "font-size": 19 });
+T(535, 162, [{ t: "n", attrs: { "font-style": "italic" } }, { t: " A + " }, { t: "n", attrs: { "font-style": "italic" } }, { t: " B  →  −[A−B]" },
+    { t: "n", sub: true, attrs: { "font-style": "italic" } }, { t: "− + H" }, { t: "2", sub: true }, { t: "O" }]);
+T(535, 192, "se pierde una molécula pequeña (H₂O)", { "font-size": 14, fill: COLORES.gris });
+T(535, 214, "monómeros con dos grupos funcionales", { "font-size": 14, fill: COLORES.gris });
+T(535, 234, "copolímeros (poliésteres, poliamidas)", { "font-size": 14, fill: COLORES.gris });
+</script>
+</body>
+</html>

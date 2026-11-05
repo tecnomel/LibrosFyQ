@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Esquema de un calorímetro</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 700px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="660" height="310"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const x0 = 230, y0 = 90, W = 220, H = 210, g = 18;
+    // pared exterior y cámara aislante (con aire o vacío)
+    add('rect', { x: x0, y: y0, width: W, height: H, rx: 10, fill: '#D5D8DC', stroke: '#5D6D7E', 'stroke-width': 3 });
+    add('rect', { x: x0 + 6, y: y0, width: W - 12, height: H - 6, rx: 8, fill: '#F8F9F9' });
+    // patrón de la cámara aislante
+    const d = add('defs', {});
+    d.innerHTML = '<pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#F5CBA7" stroke-width="3"/></pattern>';
+    add('rect', { x: x0 + 6, y: y0, width: W - 12, height: H - 6, rx: 8, fill: 'url(#hatch)' });
+    // vaso interior con agua
+    const xi = x0 + g + 6, wi = W - 2 * g - 12, hi = H - g - 12;
+    add('rect', { x: xi, y: y0 + 4, width: wi, height: hi, fill: '#FDFEFE', stroke: '#7F8C8D', 'stroke-width': 2.5 });
+    add('rect', { x: xi + 2, y: y0 + 60, width: wi - 4, height: hi - 58, fill: '#AED6F1' });
+    add('line', { x1: xi + 2, y1: y0 + 60, x2: xi + wi - 2, y2: y0 + 60, stroke: '#2E86C1', 'stroke-width': 1.5 });
+    // tapa
+    add('rect', { x: x0 - 8, y: y0 - 16, width: W + 16, height: 18, rx: 4, fill: '#7F8C8D', stroke: '#424949', 'stroke-width': 2 });
+    // termómetro
+    thermometer(add, x0 + 80, y0 - 70, 210, 0.45);
+    // agitador (varilla con aro)
+    add('line', { x1: x0 + 150, y1: y0 - 60, x2: x0 + 150, y2: y0 + 160, stroke: '#424949', 'stroke-width': 3 });
+    add('rect', { x: x0 + 130, y: y0 + 156, width: 40, height: 7, rx: 3, fill: '#424949' });
+    add('rect', { x: x0 + 140, y: y0 - 70, width: 20, height: 10, rx: 3, fill: '#424949' });
+
+    callout(add, x0 + 85, y0 - 50, 140, 28, 'Termómetro', 'end');
+    callout(add, x0 + 156, y0 - 60, 510, 28, 'Agitador');
+    callout(add, x0 + W, y0 - 8, 510, 72, 'Tapa aislante');
+    callout(add, x0 + W - 12, y0 + 100, 510, 140, 'Cámara aislante');
+    callout(add, x0 + W - 2, y0 + 190, 510, 250, 'Pared exterior');
+    callout(add, xi + 40, y0 + 140, 140, 200, 'Agua', 'end');
+    callout(add, xi + 2, y0 + 30, 140, 112, 'Vaso interior', 'end');
+</script>
+</body>
+</html>

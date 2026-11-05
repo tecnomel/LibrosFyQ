@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Explicación de los factores de velocidad con la teoría de colisiones</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1100px; } .card h2 { font-size: 17px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Más superficie</h2><svg id="a" width="320" height="200"></svg><div class="t">Al dividir el sólido, más partículas quedan expuestas a los choques.</div></div>
+        <div class="card"><h2>Más concentración</h2><svg id="b" width="320" height="200"></svg><div class="t">Hay más partículas en el mismo volumen: chocan más a menudo.</div></div>
+        <div class="card"><h2>Más temperatura</h2><svg id="c" width="320" height="200"></svg><div class="t">Las partículas van más rápido: más choques y con más energía.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const A = '#AF7AC5', B = '#58D68D';
+    // ---------- superficie ----------
+    let add = svgAdder('a');
+    for (let i = 0; i < 6; i++) for (let j = 0; j < 6; j++) bead(add, 35 + j * 13, 55 + i * 13, 6.5, A);
+    let r = rng(2);
+    for (let k = 0; k < 18; k++) { const a = r() * 6.28, d = 60 + r() * 22; bead(add, 68 + d * Math.cos(a) * 0.8, 88 + d * Math.sin(a) * 0.9, 5, B); }
+    arrow(add, 140, 100, 170, 100, '#23373B', 3, 11);
+    [[200, 50], [265, 60], [215, 125], [280, 140]].forEach(([x, y]) => { for (let i = 0; i < 2; i++) for (let j = 0; j < 2; j++) bead(add, x + j * 13, y + i * 13, 6.5, A); });
+    r = rng(5);
+    for (let k = 0; k < 20; k++) bead(add, 185 + r() * 125, 25 + r() * 165, 5, B);
+    // ---------- concentración ----------
+    add = svgAdder('b');
+    function box(x, n, seed) {
+        add('rect', { x, y: 15, width: 135, height: 170, rx: 10, fill: '#FBFCFC', stroke: '#5D6D7E', 'stroke-width': 2 });
+        const rr = rng(seed), P = [];
+        for (let k = 0; k < 4000 && P.length < n; k++) { const px = x + 14 + rr() * 107, py = 30 + rr() * 140; if (P.every(([a, b]) => Math.hypot(a - px, b - py) > 17)) P.push([px, py]); }
+        P.forEach(([px, py], i) => bead(add, px, py, 6.5, i % 2 ? A : B));
+    }
+    box(10, 10, 3); box(175, 30, 4);
+    label(add, 77, 198, 'diluido', { 'font-size': 13, fill: '#525252' }); label(add, 242, 198, 'concentrado', { 'font-size': 13, fill: '#525252' });
+    // ---------- temperatura ----------
+    add = svgAdder('c');
+    function hot(x, len, seed, warm) {
+        add('rect', { x, y: 15, width: 135, height: 170, rx: 10, fill: warm ? '#FEF5E7' : '#EBF5FB', stroke: '#5D6D7E', 'stroke-width': 2 });
+        const rr = rng(seed);
+        for (let k = 0; k < 9; k++) {
+            const px = x + 25 + rr() * 85, py = 35 + rr() * 130, a = rr() * 6.28;
+            arrow(add, px, py, px + len * Math.cos(a), py + len * Math.sin(a), '#7F8C8D', 1.6, 7);
+            bead(add, px, py, 6.5, k % 2 ? A : B);
+        }
+    }
+    hot(10, 14, 6, false); hot(175, 32, 6, true);
+    label(add, 77, 198, 'temperatura baja', { 'font-size': 13, fill: '#525252' }); label(add, 242, 198, 'temperatura alta', { 'font-size': 13, fill: '#525252' });
+</script>
+</body>
+</html>

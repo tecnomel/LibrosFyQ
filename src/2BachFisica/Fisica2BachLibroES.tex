@@ -1,0 +1,218 @@
+%----------------------------------------------------------------------------------------
+%	LIBRO DE FÍSICA DE 2.º BACHILLERATO (español)
+%   Compilar desde src/2BachFisica:
+%   pdflatex -interaction=nonstopmode -synctex=1 -output-directory=../../out Fisica2BachLibroES.tex
+%----------------------------------------------------------------------------------------
+\documentclass[
+    11pt, % Default font size, select one of 10pt, 11pt or 12pt
+    %fleqn, % Left align equations
+    a4paper, % Paper size, use either 'a4paper' for A4 size or 'letterpaper' for US letter size
+%oneside, % Uncomment for oneside mode, this doesn't start new chapters and parts on odd pages (adding an empty page if required), this mode is more suitable if the book is to be read on a screen instead of printed
+]{LegrandOrangeBookES}
+
+\usepackage[spanish,es-noquoting,es-noshorthands,es-tabla]{babel}
+
+\usepackage{estilocrispropioLibro}
+\usepackage{longtable} % tablas largas con formato booktabs
+
+% Color principal del libro: morado (Física 2.º Bachillerato). La clase y estilocrispropioLibro lo usan con el nombre «ocre».
+\definecolor{ocre}{RGB}{94, 53, 177}
+
+% Seno en español (por si babel no lo define)
+\providecommand{\sen}{\operatorname{sen}}
+\providecommand{\tg}{\operatorname{tg}}
+
+\usepgfplotslibrary{fillbetween} % zonas sombreadas entre curvas (banda de estabilidad, UD8)
+
+% Estilo de las gráficas de pgfplots del libro
+\pgfplotsset{
+    fisica/.style={
+        width=0.32\linewidth, height=4.2cm,
+        axis lines=middle, axis line style={-latex, thick},
+        tick label style={font=\scriptsize}, label style={font=\small},
+        every axis x label/.style={at={(ticklabel* cs:1)}, anchor=west},
+        every axis y label/.style={at={(ticklabel* cs:1)}, anchor=south},
+        samples=200, enlargelimits=false, clip=false,
+    },
+}
+
+\hypersetup{
+    pdftitle={Física 2.º Bachillerato}, % Title field
+    pdfauthor={Cristóbal Melero}, % Author field
+    pdfsubject={Física}, % Subject field
+    pdfkeywords={Física, Bachillerato, movimiento armónico simple, ondas, óptica, gravitación, campo eléctrico, magnetismo, inducción, física cuántica, física nuclear}, % Keywords
+    pdfcreator={LaTeX}, % Content creator field
+}
+
+\chapterimage{images/portada_cabeceras/cabecera_general} % Chapter heading image
+\chapterspaceabove{6.5cm} % Default whitespace from the top of the page to the chapter title on chapter pages
+\chapterspacebelow{6.75cm} % Default amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+    % Fichero de soluciones propio, para no mezclarse en out/ con el soluciones.tex de los otros libros
+    \Opensolutionfile{ans}[soluciones2BachFis]
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+    \titlepage % Output the title page
+    {\includegraphics[width=\paperwidth]{images/portada_cabeceras/portada_2BachFisica}} % Portada (PDF vectorial, fuente en images/portada_cabeceras/html/portada.html)
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+    \thispagestyle{empty} % Suppress headers and footers on this page
+
+    ~\vfill % Push the text down to the bottom of the page
+
+    \noindent Copyright \copyright\ 2026 Cristóbal Melero\\ % Copyright notice
+
+    \noindent \textsc{Published by CM Editorial}\\ % Publisher
+
+    \noindent \textsc{\url{https://webfyq.com}}\\ % URL
+
+    \noindent Licenciado bajo la licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional (la ``Licencia''). No puede utilizar este archivo salvo en cumplimiento de la Licencia. Puede obtener una copia de la Licencia en \url{https://creativecommons.org/licenses/by-nc-sa/4.0}. Salvo que la legislación aplicable lo exija o se acuerde por escrito, el contenido distribuido bajo esta Licencia se proporciona \textsc{``tal cual'', sin garantías ni condiciones de ningún tipo}, ya sean expresas o implícitas. Consulte la Licencia para conocer el idioma específico que rige los permisos y las limitaciones establecidas en ella.\\
+
+    \noindent \textit{Primera edición, 2026}
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+    \pagestyle{empty} % Disable headers and footers for the following pages
+
+    \tableofcontents % Output the table of contents
+
+    \pagestyle{fancy} % Enable default headers and footers again
+
+    \cleardoublepage % Start the following content on a new page
+
+%----------------------------------------------------------------------------------------
+%	PARTE: VIBRACIONES Y ONDAS
+%----------------------------------------------------------------------------------------
+
+    \part{Vibraciones y ondas}
+
+    \chapterspaceabove{6.75cm} % Whitespace from the top of the page to the chapter title on chapter pages
+    \chapterspacebelow{7.25cm} % Amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+%------------------------------------------------
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD1}
+    \chapter{Movimiento armónico simple}
+
+    \input{Fisica2Bach_UD1_MAS_Libro}
+
+    \newpage
+
+    \input{Fisica2Bach_UD1_MAS_Ejercicios}
+
+%------------------------------------------------
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD2}
+    \chapter{Movimiento ondulatorio}
+
+    \input{Fisica2Bach_UD2_Ondas_Libro}
+
+    \newpage
+
+    \input{Fisica2Bach_UD2_Ondas_Ejercicios}
+
+%------------------------------------------------
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD3}
+    \chapter{Óptica geométrica}
+
+    \input{Fisica2Bach_UD3_Optica_Libro}
+
+    \newpage
+
+    \input{Fisica2Bach_UD3_Optica_Ejercicios}
+
+%----------------------------------------------------------------------------------------
+%	PARTE: INTERACCIÓN GRAVITATORIA
+%----------------------------------------------------------------------------------------
+
+    \part{Interacción gravitatoria}
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD4}
+    \chapter{Interacción gravitatoria}
+
+    \input{Fisica2Bach_UD4_Gravitacion_Libro}
+
+    \newpage
+
+    \input{Fisica2Bach_UD4_Gravitacion_Ejercicios}
+
+%----------------------------------------------------------------------------------------
+%	PARTE: INTERACCIÓN ELECTROMAGNÉTICA
+%----------------------------------------------------------------------------------------
+
+    \part{Interacción electromagnética}
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD5}
+    \chapter{Campo eléctrico}
+
+    \input{Fisica2Bach_UD5_Electrico_Libro}
+
+    \newpage
+
+    \input{Fisica2Bach_UD5_Electrico_Ejercicios}
+
+%------------------------------------------------
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD6}
+    \chapter{Campo magnético e inducción electromagnética}
+
+    \input{Fisica2Bach_UD6_Magnetismo_Libro}
+
+    \newpage
+
+    \input{Fisica2Bach_UD6_Magnetismo_Ejercicios}
+
+%----------------------------------------------------------------------------------------
+%	PARTE: FÍSICA MODERNA
+%----------------------------------------------------------------------------------------
+
+    \part{Física moderna}
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD7}
+    \chapter{Física cuántica}
+
+    \input{Fisica2Bach_UD7_Cuantica_Libro}
+
+    \newpage
+
+    \input{Fisica2Bach_UD7_Cuantica_Ejercicios}
+
+%------------------------------------------------
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD8}
+    \chapter{Física nuclear}
+
+    \input{Fisica2Bach_UD8_Nuclear_Libro}
+
+    \newpage
+
+    \input{Fisica2Bach_UD8_Nuclear_Ejercicios}
+
+%----------------------------------------------------------------------------------------
+%	SOLUCIONES
+%----------------------------------------------------------------------------------------
+
+    \part{Soluciones a los ejercicios}
+
+    \chapterimage{images/portada_cabeceras/cabecera_general}
+    \chapter{Soluciones}
+
+    \pagestyle{fancy}
+
+    \Closesolutionfile{ans}
+
+    \IfFileExists{soluciones2BachFis.tex}{\input{soluciones2BachFis}}{}
+
+\end{document}

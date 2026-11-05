@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_32 · Formación del H2 según la TEV (orbitales)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/orbitales.js"></script>
+</head>
+<body>
+<script>
+// Dos orbitales 1s semiocupados se solapan frontalmente: enlace σ en la molécula de H2.
+const svg = crearFigura(640, 120);
+const AZ = "#2E8FD8";
+const cam = [1, 0, 0.12];
+const H = (cx, etq) => {
+    escenaOrbital(svg, cx, 55, OA.s([0, 0, 0], 2.2), { escala: 40, caja: [1.2, 1.2, 1.2], colorPos: AZ, camara: cam });
+    texto(svg, cx, 62, "H", { "text-anchor": "middle", "font-size": 18, "font-weight": "bold", fill: "#fff" });
+    el("circle", { cx, cy: 43, r: 2.4, fill: "#fff" }, svg);
+    texto(svg, cx, 108, etq, { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto });
+};
+H(170, "1s¹"); H(290, "1s¹");
+texto(svg, 230, 62, "+", { "text-anchor": "middle", "font-size": 22, fill: COLORES.texto });
+flecha(svg, 350, 55, 420, 55, { punta: 11, ancho: 1.8 });
+const d = 0.55;
+escenaOrbital(svg, 520, 55, combinar([1, OA.s([0, -d, 0], 2.2)], [1, OA.s([0, d, 0], 2.2)]), { escala: 40, caja: [2, 1.2, 1.2], colorPos: AZ, camara: cam });
+texto(svg, 500, 62, "H", { "text-anchor": "middle", "font-size": 18, "font-weight": "bold", fill: "#fff" });
+texto(svg, 540, 62, "H", { "text-anchor": "middle", "font-size": 18, "font-weight": "bold", fill: "#fff" });
+el("circle", { cx: 520, cy: 49, r: 2.4, fill: "#fff" }, svg);
+el("circle", { cx: 520, cy: 60, r: 2.4, fill: "#fff" }, svg);
+texto(svg, 520, 108, "enlace σ", { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto });
+texto(svg, 40, 62, [{ t: "H" }, { t: "2", sub: true }], { "font-size": 20, fill: COLORES.texto });
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Vector de posición, trayectoria y desplazamiento</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1100px; } .card h2 { font-size: 17px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Vector de posición</h2><svg id="a" width="320" height="260"></svg><div class="t">Une el origen O con la posición P del móvil.</div></div>
+        <div class="card"><h2>Trayectoria</h2><svg id="b" width="320" height="260"></svg><div class="t">Línea que forman los extremos de los vectores de posición.</div></div>
+        <div class="card"><h2>Desplazamiento y espacio recorrido</h2><svg id="c" width="320" height="260"></svg><div class="t">El espacio recorrido, s, se mide sobre la trayectoria; el desplazamiento, Δr, en línea recta.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    function axes(add) {
+        for (let i = 0; i <= 10; i++) { add('line', { x1: 40 + i * 26, y1: 20, x2: 40 + i * 26, y2: 230, stroke: '#EBF5FB' }); add('line', { x1: 40, y1: 230 - i * 21, x2: 300, y2: 230 - i * 21, stroke: '#EBF5FB' }); }
+        arrow(add, 40, 230, 310, 230, '#23373B', 2, 10); arrow(add, 40, 230, 40, 12, '#23373B', 2, 10);
+        label(add, 304, 250, 'X', { 'font-size': 14 }); label(add, 28, 18, 'Y', { 'font-size': 14 }); label(add, 30, 246, 'O', { 'font-size': 14 });
+    }
+    const vec = (add, x1, y1, x2, y2, c, w = 2.5) => arrow(add, x1, y1, x2, y2, c, w, 11);
+    // a) vector de posición
+    let add = svgAdder('a'); axes(add);
+    add('line', { x1: 200, y1: 230, x2: 200, y2: 90, stroke: '#7F8C8D', 'stroke-dasharray': '5 4' });
+    add('line', { x1: 40, y1: 90, x2: 200, y2: 90, stroke: '#7F8C8D', 'stroke-dasharray': '5 4' });
+    vec(add, 40, 230, 200, 90, '#C0392B', 3);
+    add('circle', { cx: 200, cy: 90, r: 5, fill: '#C0392B' });
+    label(add, 222, 82, 'P (x, y)', { 'font-size': 15, fill: '#C0392B', 'text-anchor': 'start' });
+    add('text', { x: 108, y: 150, 'font-size': 17, 'font-weight': 800, fill: '#C0392B', 'font-style': 'italic' }, 'r');
+    add('line', { x1: 108, y1: 134, x2: 118, y2: 134, stroke: '#C0392B', 'stroke-width': 1.5 });
+    label(add, 200, 248, 'x', { 'font-size': 14, 'font-style': 'italic' }); label(add, 28, 95, 'y', { 'font-size': 14, 'font-style': 'italic' });
+    label(add, 120, 40, 'r = √(x² + y²)', { 'font-size': 15, fill: '#000070', 'text-anchor': 'start' });
+    // b) trayectoria
+    add = svgAdder('b'); axes(add);
+    const T = t => [60 + t * 230, 200 - 150 * Math.sin(t * 2.4) * 0.8 - t * 30];
+    const pts = []; for (let k = 0; k <= 40; k++) pts.push(T(k / 40));
+    add('polyline', { points: pts.map(p => p.join(',')).join(' '), fill: 'none', stroke: '#1E8449', 'stroke-width': 3 });
+    [0.05, 0.25, 0.45, 0.65, 0.85, 1].forEach((t, i) => { const [x, y] = T(t); vec(add, 40, 230, x, y, '#7F8C8D', 1.6); add('circle', { cx: x, cy: y, r: 4, fill: '#C0392B' }); label(add, x + 4, y - 9, 't' + '₁₂₃₄₅₆'[i], { 'font-size': 13, fill: '#C0392B', 'text-anchor': 'start' }); });
+    label(add, 150, 40, 'trayectoria', { 'font-size': 14, fill: '#1E8449' });
+    // c) desplazamiento y espacio recorrido
+    add = svgAdder('c'); axes(add);
+    const p1 = [80, 130], p2 = [270, 120];
+    add('path', { d: `M${p1[0]} ${p1[1]} C 130 30, 200 220, ${p2[0]} ${p2[1]}`, fill: 'none', stroke: '#1E8449', 'stroke-width': 3 });
+    vec(add, 40, 230, p1[0], p1[1], '#7F8C8D', 2); vec(add, 40, 230, p2[0], p2[1], '#7F8C8D', 2);
+    vec(add, p1[0], p1[1], p2[0], p2[1], '#C0392B', 3);
+    add('circle', { cx: p1[0], cy: p1[1], r: 5, fill: '#2471A3' }); add('circle', { cx: p2[0], cy: p2[1], r: 5, fill: '#2471A3' });
+    label(add, p1[0] - 8, p1[1] - 10, 't₁', { 'font-size': 14, fill: '#2471A3' }); label(add, p2[0] + 4, p2[1] - 12, 't₂', { 'font-size': 14, fill: '#2471A3' });
+    label(add, 175, 112, 'Δr', { 'font-size': 16, fill: '#C0392B' });
+    label(add, 130, 60, 's', { 'font-size': 16, fill: '#1E8449', 'font-style': 'italic' });
+    label(add, 70, 185, 'r₁', { 'font-size': 14, fill: '#7F8C8D' }); label(add, 190, 190, 'r₂', { 'font-size': 14, fill: '#7F8C8D' });
+</script>
+</body>
+</html>

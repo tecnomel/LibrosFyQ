@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Práctica: coeficiente de rozamiento estático con un libro</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="720" height="300"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const O = [60, 250], L = 380, al = 20 * Math.PI / 180;
+    const E = [O[0] + L * Math.cos(al), O[1] - L * Math.sin(al)];
+    add('line', { x1: 20, y1: O[1] + 6, x2: 520, y2: O[1] + 6, stroke: '#7F8C8D', 'stroke-width': 3 });
+    // tapa inferior (sobre la mesa) y tapa que se levanta
+    add('rect', { x: O[0], y: O[1] - 4, width: L, height: 10, fill: '#1E8449' });
+    add('path', { d: `M${O[0]} ${O[1] - 4} L${E[0]} ${E[1] - 4} L${E[0]} ${E[1] + 6} L${O[0]} ${O[1] + 6} Z`, fill: '#27AE60', stroke: '#1E8449', 'stroke-width': 2 });
+    // moneda
+    const t = 0.72, C = [O[0] + L * t * Math.cos(al), O[1] - L * t * Math.sin(al) - 10];
+    add('ellipse', { cx: C[0], cy: C[1], rx: 16, ry: 6, fill: '#F4D03F', stroke: '#B7950B', 'stroke-width': 1.5, transform: `rotate(${-20} ${C[0]} ${C[1]})` });
+    // fuerzas sobre la moneda
+    const Cn = '#1E8449', Cp = '#2471A3', Cr = '#7D3C98';
+    arrow(add, C[0], C[1], C[0] - 60 * Math.sin(al), C[1] - 60 * Math.cos(al), Cn, 2.5, 10); vlab(add, C[0] - 30, C[1] - 64, 'N', '', Cn, 15);
+    arrow(add, C[0], C[1], C[0], C[1] + 70, Cp, 2.5, 10); vlab(add, C[0] + 16, C[1] + 66, 'P', '', Cp, 15);
+    arrow(add, C[0], C[1], C[0] + 55 * Math.cos(al), C[1] - 55 * Math.sin(al), Cr, 2.5, 10); vlab(add, C[0] + 58, C[1] - 28, 'F', 're', Cr, 15);
+    // cotas A (altura) y B (base)
+    dashed(add, E[0], E[1], E[0], O[1], '#C0392B', 1.3);
+    arrow(add, E[0] + 22, O[1], E[0] + 22, E[1], '#C0392B', 1.5, 8); arrow(add, E[0] + 22, E[1], E[0] + 22, O[1], '#C0392B', 1.5, 8);
+    label(add, E[0] + 38, (O[1] + E[1]) / 2 + 6, 'A', { 'font-size': 17, fill: '#C0392B' });
+    arrow(add, O[0], O[1] + 26, E[0], O[1] + 26, '#C0392B', 1.5, 8); arrow(add, E[0], O[1] + 26, O[0], O[1] + 26, '#C0392B', 1.5, 8);
+    label(add, (O[0] + E[0]) / 2, O[1] + 44, 'B', { 'font-size': 17, fill: '#C0392B' });
+    add('path', { d: `M${O[0] + 60} ${O[1]} A60 60 0 0 0 ${O[0] + 60 * Math.cos(al)} ${O[1] - 60 * Math.sin(al)}`, fill: 'none', stroke: '#525252', 'stroke-width': 1.5 });
+    label(add, O[0] + 76, O[1] - 8, 'α', { 'font-size': 16, fill: '#525252' });
+    rich(add, 540, 70, 'Justo antes de deslizar:', { 'font-size': 15, fill: '#23373B', 'text-anchor': 'start' });
+    rich(add, 540, 100, '*P* sen α = μ_e · *P* cos α', { 'font-size': 15, fill: '#23373B', 'text-anchor': 'start' });
+    rich(add, 540, 134, 'μ_e = tg α = *A* / *B*', { 'font-size': 18, fill: '#C0392B', 'text-anchor': 'start' });
+</script>
+</body>
+</html>

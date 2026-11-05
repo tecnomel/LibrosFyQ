@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Enlace covalente apolar y polar</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1000px; }
+    .row { display: flex; gap: 12px; }
+    .card { flex: 1; text-align: center; }
+    .t { font-size: 15px; color: var(--grey); }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Enlace apolar: Cl₂</h2><svg id="a" width="300" height="190"></svg><div class="t">Los dos átomos atraen por igual a los electrones compartidos.</div></div>
+        <div class="card"><h2>Enlace polar: HCl</h2><svg id="b" width="300" height="190"></svg><div class="t">El Cl atrae más a los electrones: aparecen cargas parciales δ⁺ y δ⁻.</div></div>
+        <div class="card"><h2>Moléculas polares (dipolos)</h2><svg id="c" width="300" height="190"></svg><div class="t">HF y NH₃ tienen un polo positivo y otro negativo.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    let add = svgAdder('a');
+    add('defs', {}).innerHTML = '<radialGradient id="ga" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#A9DFBF"/><stop offset="1" stop-color="#27AE60"/></radialGradient>' +
+        '<linearGradient id="gb" x1="0" x2="1"><stop offset="0" stop-color="#F2F3F4"/><stop offset=".45" stop-color="#D5F5E3"/><stop offset="1" stop-color="#1E8449"/></linearGradient>';
+    add('ellipse', { cx: 150, cy: 95, rx: 130, ry: 72, fill: 'url(#ga)' });
+    label(add, 90, 103, 'Cl', { 'font-size': 24, 'font-weight': 800 }); label(add, 210, 103, 'Cl', { 'font-size': 24, 'font-weight': 800 });
+    arrow(add, 150, 95, 112, 95, '#C0392B', 2.5, 10); arrow(add, 150, 95, 188, 95, '#C0392B', 2.5, 10);
+    add('circle', { cx: 150, cy: 95, r: 6, fill: '#F4D03F', stroke: '#B7950B' });
+    add = svgAdder('b');
+    add('defs', {}).innerHTML = '<linearGradient id="gb2" x1="0" x2="1"><stop offset="0" stop-color="#F8F9F9"/><stop offset=".5" stop-color="#ABEBC6"/><stop offset="1" stop-color="#1E8449"/></linearGradient>';
+    add('path', { d: 'M40 95 C40 55 110 45 160 40 C240 30 285 60 285 95 C285 130 240 160 160 150 C110 145 40 135 40 95 Z', fill: 'url(#gb2)' });
+    label(add, 75, 103, 'H', { 'font-size': 24, 'font-weight': 800 }); label(add, 225, 103, 'Cl', { 'font-size': 24, 'font-weight': 800 });
+    arrow(add, 165, 95, 100, 95, '#C0392B', 1.5, 8); arrow(add, 165, 95, 200, 95, '#C0392B', 4, 13);
+    add('circle', { cx: 165, cy: 95, r: 6, fill: '#F4D03F', stroke: '#B7950B' });
+    label(add, 45, 50, 'δ⁺', { 'font-size': 22, fill: '#C0392B' }); label(add, 270, 50, 'δ⁻', { 'font-size': 22, fill: '#2471A3' });
+    add = svgAdder('c');
+    // HF
+    add('ellipse', { cx: 80, cy: 60, rx: 60, ry: 30, fill: '#FDEBD0', stroke: '#E59866', 'stroke-width': 2 });
+    label(add, 50, 68, 'H', { 'font-size': 22, 'font-weight': 800 }); label(add, 110, 68, 'F', { 'font-size': 22, 'font-weight': 800 });
+    add('line', { x1: 64, y1: 60, x2: 96, y2: 60, stroke: '#23373B', 'stroke-width': 2.5 });
+    label(add, 34, 38, 'δ⁺', { 'font-size': 17, fill: '#C0392B' }); label(add, 128, 38, 'δ⁻', { 'font-size': 17, fill: '#2471A3' });
+    // NH3
+    const N = [210, 70];
+    [[160, 140], [215, 155], [262, 135]].forEach(([x, y]) => { add('line', { x1: N[0], y1: N[1], x2: x, y2: y, stroke: '#23373B', 'stroke-width': 2.5 }); label(add, x, y + 8, 'H', { 'font-size': 20, 'font-weight': 800 }); label(add, x + 14, y + 22, 'δ⁺', { 'font-size': 14, fill: '#C0392B' }); });
+    add('circle', { cx: N[0], cy: N[1], r: 15, fill: '#fff' });
+    label(add, N[0], N[1] + 8, 'N', { 'font-size': 22, 'font-weight': 800 });
+    label(add, N[0] + 25, N[1] - 12, 'δ⁻', { 'font-size': 17, fill: '#2471A3' });
+    [[N[0] - 5, N[1] - 22], [N[0] + 5, N[1] - 22]].forEach(([x, y]) => add('circle', { cx: x, cy: y, r: 3, fill: '#C0392B' }));
+    label(add, 80, 120, 'HF', { 'font-size': 16, fill: '#000070' }); label(add, 280, 80, 'NH₃', { 'font-size': 16, fill: '#000070' });
+</script>
+</body>
+</html>

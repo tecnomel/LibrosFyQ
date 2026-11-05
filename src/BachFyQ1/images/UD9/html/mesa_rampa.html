@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Práctica: velocidad de una canica a partir de su alcance</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 700px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="660" height="320"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const yM = 110, xE = 300, yS = 290;
+    // mesa
+    add('rect', { x: 30, y: yM, width: xE - 30, height: 12, fill: '#B9770E' });
+    add('rect', { x: 50, y: yM + 12, width: 12, height: yS - yM - 12, fill: '#B9770E' });
+    add('rect', { x: xE - 30, y: yM + 12, width: 12, height: yS - yM - 12, fill: '#B9770E' });
+    add('line', { x1: 10, y1: yS, x2: 650, y2: yS, stroke: '#23373B', 'stroke-width': 2 });
+    // rampa (carril)
+    add('path', { d: `M60 ${yM - 70} Q 150 ${yM} 250 ${yM}`, fill: 'none', stroke: '#566573', 'stroke-width': 5 });
+    add('circle', { cx: 75, cy: yM - 66, r: 9, fill: '#5DADE2', stroke: '#2471A3', 'stroke-width': 1.5 });
+    // trayectoria
+    const v = 215, g = 2 * (yS - yM - 9) / (1.0 * 1.0);
+    curve(add, t => [xE + v * t, yM - 9 + g * t * t / 2], 0, 1, '#1E8449', 2.5, { 'stroke-dasharray': '7 5' });
+    add('circle', { cx: xE, cy: yM - 9, r: 9, fill: '#5DADE2', stroke: '#2471A3', 'stroke-width': 1.5 });
+    arrow(add, xE, yM - 9, xE + 70, yM - 9, '#C0392B', 3, 11); vlab(add, xE + 50, yM - 20, 'v', '0', '#C0392B');
+    // papel de calco
+    add('rect', { x: xE + v - 40, y: yS - 4, width: 80, height: 4, fill: '#7F8C8D' });
+    dot(add, xE + v, yS - 4, '#C0392B', 4);
+    // cotas
+    arrow(add, xE - 50, yM + 6, xE - 50, yS, '#525252', 1.3, 8); arrow(add, xE - 50, yS - 6, xE - 50, yM, '#525252', 1.3, 8);
+    label(add, xE - 64, (yM + yS) / 2, 'h', { 'font-size': 16, fill: '#525252', 'font-style': 'italic' });
+    dashed(add, xE, yM, xE, yS, '#AEB6BF', 1);
+    arrow(add, xE + 6, yS + 16, xE + v, yS + 16, '#525252', 1.3, 8); arrow(add, xE + v - 6, yS + 16, xE, yS + 16, '#525252', 1.3, 8);
+    label(add, xE + v / 2, yS + 14, 'x', { 'font-size': 16, fill: '#525252', 'font-style': 'italic' });
+    label(add, xE + v + 30, yS - 14, 'papel de calco', { 'font-size': 13, fill: '#525252', 'text-anchor': 'start' });
+    label(add, 150, yM - 80, 'carril inclinado', { 'font-size': 13, fill: '#525252' });
+    label(add, 470, 60, 'v₀ = x · √( g / 2h )', { 'font-size': 17, fill: '#C0392B' });
+</script>
+</body>
+</html>

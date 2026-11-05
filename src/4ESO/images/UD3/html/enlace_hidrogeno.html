@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Enlaces de hidrógeno en HF y en agua</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1000px; }
+    .row { display: flex; gap: 12px; }
+    .card { flex: 1; text-align: center; }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Fluoruro de hidrógeno, HF</h2><svg id="a" width="440" height="260"></svg></div>
+        <div class="card"><h2>Agua, H₂O</h2><svg id="b" width="440" height="260"></svg></div>
+    </div>
+    <svg width="940" height="34" id="lg"></svg>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    let add = svgAdder('a');
+    // cadena en zigzag F–H···F–H···
+    const F = [[40, 150], [150, 80], [260, 150], [370, 80]];
+    F.forEach(([x, y], i) => {
+        const nx = F[i + 1];
+        const hx = nx ? x + (nx[0] - x) * 0.32 : x + 35, hy = nx ? y + (nx[1] - y) * 0.32 : y + 22;
+        bond(add, x, y, hx, hy, 1, '#5D6D7E');
+        if (nx) add('line', { x1: hx, y1: hy, x2: nx[0], y2: nx[1], stroke: '#C0392B', 'stroke-width': 3, 'stroke-dasharray': '4 5' });
+        ball(add, x, y, 'F', 22); ball(add, hx, hy, 'H', 13);
+        label(add, x, y + (y > 100 ? 45 : -30), 'δ⁻', { 'font-size': 16, fill: '#2471A3' });
+        label(add, hx + (i % 2 ? 0 : 0), hy + (y > 100 ? -20 : 32), 'δ⁺', { 'font-size': 15, fill: '#C0392B' });
+    });
+    // agua: molécula central y cuatro vecinas
+    add = svgAdder('b');
+    const water = (x, y, ang, sc = 1) => {
+        const h1 = [x + 32 * Math.cos(ang - 0.91), y + 32 * Math.sin(ang - 0.91)], h2 = [x + 32 * Math.cos(ang + 0.91), y + 32 * Math.sin(ang + 0.91)];
+        bond(add, x, y, ...h1, 1, '#5D6D7E'); bond(add, x, y, ...h2, 1, '#5D6D7E');
+        ball(add, x, y, 'O', 18); ball(add, ...h1, 'H', 11); ball(add, ...h2, 'H', 11);
+        return { O: [x, y], H: [h1, h2] };
+    };
+    const c = water(220, 125, Math.PI / 2);
+    const ns = [water(110, 215, -0.5), water(330, 215, Math.PI + 0.5), water(110, 35, 0.4), water(330, 35, Math.PI - 0.4)];
+    const hb = (a, b) => add('line', { x1: a[0], y1: a[1], x2: b[0], y2: b[1], stroke: '#C0392B', 'stroke-width': 3, 'stroke-dasharray': '4 5' });
+    hb(c.H[0], ns[1].O); hb(c.H[1], ns[0].O);
+    hb(ns[2].H[0], c.O); hb(ns[3].H[1], c.O);
+    add = svgAdder('lg');
+    add('line', { x1: 230, y1: 17, x2: 280, y2: 17, stroke: '#5D6D7E', 'stroke-width': 5 });
+    label(add, 290, 23, 'enlace covalente (dentro de la molécula)', { 'font-size': 15, 'text-anchor': 'start' });
+    add('line', { x1: 600, y1: 17, x2: 650, y2: 17, stroke: '#C0392B', 'stroke-width': 3, 'stroke-dasharray': '4 5' });
+    label(add, 660, 23, 'enlace de hidrógeno', { 'font-size': 15, 'text-anchor': 'start', fill: '#C0392B' });
+</script>
+</body>
+</html>

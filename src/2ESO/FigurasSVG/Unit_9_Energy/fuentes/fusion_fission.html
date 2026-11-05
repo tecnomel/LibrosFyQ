@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fusion and fission</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 20px; }
+    .c { flex: 1; border-radius: 16px; padding: 12px; text-align: center; border: 3px solid; }
+    .fu { border-color: #D68910; background: #FEF5E7; } .fu h2 { color: #B9770E; }
+    .fi { border-color: #7D3C98; background: #F5EEF8; } .fi h2 { color: #6C3483; }
+    h2 { font-size: 23px; }
+    .t { font-size: 16px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Nuclear energy: fusion and fission</h1>
+    <div class="row">
+        <div class="c fu"><h2>Fusion ☀️</h2><svg id="a" width="480" height="200"></svg><div class="t">Two <b>light</b> nuclei <b>join</b> to form a heavier one. It happens in the Sun and the stars.</div></div>
+        <div class="c fi"><h2>Fission 🏭</h2><svg id="b" width="480" height="200"></svg><div class="t">A <b>heavy</b> nucleus (uranium) <b>breaks</b> into smaller ones. It happens in nuclear power stations.</div></div>
+    </div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg';
+    const mk = id => { const s = document.getElementById(id); return (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; s.appendChild(e); }; };
+    function nucleus(add, cx, cy, n, R) {
+        let seed = n * 7 + cx; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+        for (let i = 0; i < n; i++) { const a = rnd() * 6.283, r = Math.sqrt(rnd()) * R; add('circle', { cx: cx + r * Math.cos(a), cy: cy + r * Math.sin(a), r: 9, fill: i % 2 ? '#E74C3C' : '#95A5A6', stroke: '#fff', 'stroke-width': 1.5 }); }
+    }
+    let add = mk('a');
+    nucleus(add, 50, 60, 2, 8); nucleus(add, 50, 140, 3, 10);
+    add('text', { x: 110, y: 110, 'font-size': 40, fill: '#23373B' }, '➜');
+    nucleus(add, 210, 100, 5, 16);
+    add('text', { x: 250, y: 110, 'font-size': 40, fill: '#23373B' }, '+');
+    add('text', { x: 300, y: 125, 'font-size': 60 }, '💥');
+    add('text', { x: 390, y: 115, 'font-size': 20, 'font-weight': 800, fill: '#B9770E' }, 'ENERGY');
+    add = mk('b');
+    add('circle', { cx: 25, cy: 100, r: 8, fill: '#95A5A6' }); add('line', { x1: 35, y1: 100, x2: 70, y2: 100, stroke: '#23373B', 'stroke-width': 2 });
+    nucleus(add, 120, 100, 36, 34);
+    add('text', { x: 170, y: 112, 'font-size': 40, fill: '#23373B' }, '➜');
+    nucleus(add, 260, 60, 16, 22); nucleus(add, 260, 150, 16, 22);
+    add('text', { x: 310, y: 125, 'font-size': 60 }, '💥');
+    add('text', { x: 390, y: 115, 'font-size': 20, 'font-weight': 800, fill: '#6C3483' }, 'ENERGY');
+</script>
+</body>
+</html>

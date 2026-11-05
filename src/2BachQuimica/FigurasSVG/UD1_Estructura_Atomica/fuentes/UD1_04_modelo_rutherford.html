@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD1_04 · Modelo atómico de Rutherford</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Rutherford: núcleo pequeño y positivo donde se concentra la masa; los
+// electrones giran a su alrededor en órbitas, con mucho espacio vacío.
+const svg = crearFigura(420, 400);
+const C = { x: 205, y: 195 };
+const VERDE = "#3FB950";
+const orbitas = [0, 60, 120];            // inclinación de cada órbita (grados)
+const RX = 185, RY = 62;
+for (const a of orbitas) {
+    el("ellipse", { cx: C.x, cy: C.y, rx: RX, ry: RY, fill: "none", stroke: VERDE, "stroke-width": 1.8,
+        "stroke-dasharray": "4 3", transform: `rotate(${a} ${C.x} ${C.y})` }, svg);
+}
+// Núcleo
+el("circle", { cx: C.x, cy: C.y, r: 22, fill: degradadoEsfera(svg, "nucleo", "#F0562A") }, svg);
+texto(svg, C.x, C.y + 9, "+", { "text-anchor": "middle", "font-size": 28, "font-weight": "bold", fill: "#7A1A05" });
+// Electrones sobre cada órbita
+const ge = degradadoEsfera(svg, "electron", "#52D16A");
+[[0, 20], [60, 200], [120, 290]].forEach(([a, t]) => {
+    const tr = t * Math.PI / 180, ar = a * Math.PI / 180;
+    const x0 = RX * Math.cos(tr), y0 = RY * Math.sin(tr);
+    const x = C.x + x0 * Math.cos(ar) - y0 * Math.sin(ar);
+    const y = C.y + x0 * Math.sin(ar) + y0 * Math.cos(ar);
+    el("circle", { cx: x, cy: y, r: 13, fill: ge, stroke: "#1F7A31", "stroke-width": 0.8 }, svg);
+    el("line", { x1: x - 5.5, y1: y, x2: x + 5.5, y2: y, stroke: "#0E3D18", "stroke-width": 2.4, "stroke-linecap": "round" }, svg);
+});
+texto(svg, 10, 390, "Núcleo: carga + y casi toda la masa", { "font-size": 14, fill: COLORES.texto });
+indicador(svg, 90, 376, C.x - 12, C.y + 16);
+texto(svg, 410, 22, "Electrones (−) en órbitas", { "text-anchor": "end", "font-size": 14, fill: COLORES.texto });
+</script>
+</body>
+</html>

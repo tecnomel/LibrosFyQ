@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_59 · Teoría de bandas: conductor, semiconductor y aislante</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Teoría de bandas: en un conductor la banda de valencia y la de conducción se solapan;
+// en un semiconductor la banda prohibida es estrecha; en un aislante es ancha.
+const svg = crearFigura(760, 300);
+const AM = "#F7C948", MO = "#D9C4E6";
+function banda(x, y, h, color, texto1, texto2) {
+    const g = el("linearGradient", { id: "g" + x + y, x1: 0, y1: 0, x2: 0, y2: 1 }, defs(svg));
+    el("stop", { offset: "0%", "stop-color": color }, g); el("stop", { offset: "100%", "stop-color": mezclar(color, "#ffffff", 0.6) }, g);
+    el("rect", { x, y, width: 170, height: h, fill: `url(#g${x}${y})` }, svg);
+    texto(svg, x + 85, y + h / 2 - 2, texto1, { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto });
+    if (texto2) texto(svg, x + 85, y + h / 2 + 16, texto2, { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto });
+}
+const col = [
+    { x: 40, t: "Conductor", yc: 40, yv: 175, solape: true },
+    { x: 295, t: "Semiconductor", yc: 30, yv: 180 },
+    { x: 550, t: "Aislante", yc: 20, yv: 190 },
+];
+col.forEach(c => {
+    banda(c.x, c.yc, 90, AM, "Banda de", "conducción");
+    banda(c.x, c.yv, 60, MO, "", "Banda de valencia");
+    if (c.solape) el("rect", { x: c.x, y: 150, width: 170, height: 25, fill: "#4FA3E0", opacity: 0.85 }, svg);
+    const n = c.solape ? 5 : c.t === "Semiconductor" ? 3 : 1;
+    for (let k = 0; k < n; k++) {
+        const x = c.x + 170 * (k + 1) / (n + 1);
+        if (c.t === "Aislante") {
+            flecha(svg, x, c.yv + 8, x, c.yv - 25, { color: "#C0392B", ancho: 4, punta: 13 });
+            texto(svg, x, c.yv - 34, "×", { "text-anchor": "middle", "font-size": 20, "font-weight": "bold", fill: "#C0392B" });
+        } else flecha(svg, x, c.yv + 8, x, c.yc + 92, { color: "#C0392B", ancho: 4, punta: 13 });
+    }
+    texto(svg, c.x + 85, 280, c.t, { "text-anchor": "middle", "font-size": 17, "font-weight": "bold", fill: COLORES.texto });
+});
+texto(svg, 755, 150, "Banda", { "text-anchor": "end", "font-size": 13, fill: COLORES.texto });
+texto(svg, 755, 166, "prohibida", { "text-anchor": "end", "font-size": 13, fill: COLORES.texto });
+texto(svg, 40 + 85, 167, "(bandas solapadas)", { "text-anchor": "middle", "font-size": 11, fill: "#fff" });
+</script>
+</body>
+</html>

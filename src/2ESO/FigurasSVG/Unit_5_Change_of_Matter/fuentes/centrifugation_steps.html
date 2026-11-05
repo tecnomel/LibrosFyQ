@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Centrifugation</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="steps.css">
+<script src="lab.js"></script>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1></h1>
+    <div class="prop" id="prop"></div>
+    <div class="row" id="row"></div>
+</div>
+<script>
+const mixed = [[90,'#B03A2E']];
+buildSteps('How to separate by centrifugation', 'the <b>density</b>: the heavier particles are pushed to the bottom', 'blood (cells + plasma) or muddy water', [
+  [tube(70,40,0,[[90,'#C0392B']]) + tube(160,40,0,[[90,'#C0392B']]) + T(130,190,'two tubes, same amount',{fs:14}),
+   'Fill the tubes and put them <b>opposite each other</b>, so the centrifuge is balanced.'],
+  [`<circle cx="130" cy="110" r="85" fill="#F4F6F7" stroke="${C.line}" stroke-width="4"/><circle cx="130" cy="110" r="8" fill="${C.line}"/>` +
+   `<g transform="rotate(-30 130 110)"><rect x="150" y="100" width="60" height="20" rx="8" fill="#F5B7B1" stroke="${C.line}"/><rect x="50" y="100" width="60" height="20" rx="8" fill="#F5B7B1" stroke="${C.line}"/></g>` +
+   `<path d="M60 35 A95 95 0 0 1 180 25" stroke="${C.red}" stroke-width="4" fill="none"/><polygon points="180,15 192,27 176,33" fill="${C.red}"/>`,
+   'The centrifuge <b>spins very fast</b> for a few minutes.'],
+  [tube(110,40,0,[[38,'#922B21'],[52,'#F7DC6F']]) + T(185,120,'plasma',{c:'#B7950B'}) + T(185,138,'(liquid)',{fs:12,fw:400}) +
+   T(185,168,'cells',{c:'#922B21'}) + T(185,186,'(denser)',{fs:12,fw:400}),
+   'The <b>denser</b> part is now at the bottom and the liquid on top. Pour off the liquid carefully.'],
+]);
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_27 · Adición de halógenos</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Adición de X2: se obtiene un dihaluro vecinal.
+const svg = crearFigura(560, 220);
+alquenoGen(svg, 40, 50);
+mas(svg, 125, 50); fq(svg, 175, 56, [["X−X", AZUL]]);
+flechaR(svg, 215, 50, 295);
+alcanoGen(svg, 350, 50, { i1: ["X", AZUL], d2: ["X", AZUL] });
+molecula(svg, "C=CC", 70, 160);
+mas(svg, 125, 160); fq(svg, 175, 166, [["Cl−Cl", AZUL]]);
+flechaR(svg, 215, 160, 295);
+molecula(svg, "ClCC(Cl)C", 390, 160, { colores: { Cl: AZUL }, etiqueta: "1,2-dicloropropano", yEtq: 210 });
+</script>
+</body>
+</html>

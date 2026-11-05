@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Energía potencial elástica</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } .note { font-size: 13.5px; text-align: center; margin-top: 4px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="700" height="230"></svg>
+    <div class="note">Al estirar el muelle una distancia <i>x</i> hay que aplicar una fuerza <i>F</i> = <i>k</i> · <i>x</i> (ley de Hooke). El trabajo realizado queda almacenado como energía potencial elástica.</div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    // muelle en zigzag entre x1 y x2 a la altura y
+    function spring(x1, x2, y, n = 14) {
+        let d = `M${x1} ${y} L${x1 + 10} ${y}`;
+        const L = x2 - x1 - 20;
+        for (let i = 0; i < n; i++) d += ` L${x1 + 10 + (i + 0.5) * L / n} ${y + (i % 2 ? 12 : -12)}`;
+        d += ` L${x2 - 10} ${y} L${x2} ${y}`;
+        add('path', { d, fill: 'none', stroke: '#2C3E50', 'stroke-width': 2.2, 'stroke-linejoin': 'round' });
+    }
+    function scene(y0, ext, label0) {
+        const wallX = 60, x0 = 340, bw = 50;
+        add('rect', { x: wallX - 14, y: y0 - 44, width: 14, height: 70, fill: '#909497' });
+        add('rect', { x: wallX - 14, y: y0 + 26, width: 600, height: 6, fill: '#D7BDA0' });
+        const xb = x0 + ext;
+        spring(wallX, xb, y0);
+        add('rect', { x: xb, y: y0 - 25, width: bw, height: 50, rx: 4, fill: '#5DADE2', stroke: '#1B4F72', 'stroke-width': 2 });
+        label(add, xb + bw / 2, y0 + 6, 'm', { 'font-style': 'italic', fill: '#fff' });
+        add('line', { x1: x0, y1: y0 - 40, x2: x0, y2: y0 + 40, stroke: '#525252', 'stroke-dasharray': '4 3' });
+        label(add, x0, y0 + 56, 'x = 0', { 'font-size': 13, 'font-style': 'italic' });
+        if (ext > 0) {
+            arrow(add, x0, y0 - 36, xb, y0 - 36, '#1E8449', 2, 8);
+            label(add, (x0 + xb) / 2, y0 - 42, 'x', { 'font-style': 'italic', fill: '#1E8449' });
+            arrow(add, xb + bw, y0, xb + bw + 70, y0, '#C0392B', 3, 12);
+            vlabel(add, xb + bw + 50, y0 - 8, 'F', '#C0392B');
+        }
+        label(add, 640, y0 + 6, label0, { 'font-size': 13, fill: '#525252', 'text-anchor': 'end' });
+    }
+    scene(55, 0, 'longitud natural');
+    scene(170, 120, '');
+    label(add, 690, 176, 'estirado', { 'font-size': 13, fill: '#525252', 'text-anchor': 'end' });
+</script>
+</body>
+</html>

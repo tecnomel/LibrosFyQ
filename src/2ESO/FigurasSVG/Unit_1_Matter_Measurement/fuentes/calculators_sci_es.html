@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>La notación científica en la calculadora</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1200px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .era { border: 2px solid var(--line); border-radius: 16px; padding: 10px 12px 12px; display: flex; flex-direction: column; align-items: center; }
+    .era h2 { font-size: 19px; color: var(--blue); }
+    .models { font-size: 13px; color: var(--grey); text-align: center; min-height: 34px; margin-bottom: 8px; line-height: 1.3; }
+    .calc { width: 210px; border-radius: 16px; padding: 12px 12px 14px; box-shadow: 0 4px 0 rgba(0,0,0,.25); }
+    .brand { font-size: 11px; font-weight: 800; letter-spacing: 1px; margin-bottom: 6px; }
+    .screen { border-radius: 6px; height: 62px; padding: 4px 8px; display: flex; flex-direction: column; justify-content: center;
+        font-family: "Consolas", "Courier New", monospace; color: #1F2A1F; border: 3px solid rgba(0,0,0,.35); }
+    .screen .l1 { font-size: 15px; text-align: left; }
+    .screen .l2 { font-size: 22px; text-align: right; font-weight: 700; }
+    .screen .one { font-size: 26px; text-align: right; font-weight: 700; letter-spacing: 1px; }
+    .screen sup { font-size: 0.6em; }
+    .keys { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 10px; }
+    .k { height: 24px; border-radius: 5px; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .k.hl { outline: 3px solid #F36619; outline-offset: 1px; background: #F36619 !important; color: #fff !important; }
+    .seq { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; align-items: center; }
+    .cap { min-width: 28px; height: 28px; padding: 0 6px; border-radius: 6px; background: #EEF0F5; border: 2px solid var(--teal);
+        font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+    .cap.o { background: var(--ocre); color: #fff; border-color: #A3400B; }
+    .cap.b { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .feat { margin-top: 8px; font-size: 13px; text-align: center; color: var(--teal); }
+    /* period styles */
+    .c1 { background: #3B2F2A; } .c1 .brand { color: #D8C9A8; } .c1 .screen { background: #9FB59A; }
+    .c1 .k { background: #1E1A18; color: #EEE; } .c1 .k.f { background: #8C6D46; }
+    .c2 { background: #1C1C1C; } .c2 .brand { color: #C9C9C9; } .c2 .screen { background: #B7C2A5; }
+    .c2 .k { background: #3A3A3A; color: #EEE; } .c2 .k.f { background: #6E6E6E; }
+    .c3 { background: #9AA0A8; } .c3 .brand { color: #23373B; } .c3 .screen { background: #C9D2B8; }
+    .c3 .k { background: #5B626B; color: #FFF; } .c3 .k.f { background: #2D3F73; }
+    .c4 { background: #1F2B4A; } .c4 .brand { color: #DDE3F2; } .c4 .screen { background: #D3DBC6; }
+    .c4 .k { background: #3B4A70; color: #FFF; } .c4 .k.f { background: #6B7BA6; }
+    .c5 { background: #222; } .c5 .brand { color: #FFF; } .c5 .screen { background: #E3E8DA; }
+    .c5 .k { background: #F2F2F2; color: #222; } .c5 .k.f { background: #4A90C8; color: #fff; }
+    .c6 { background: #F4F5F7; border: 2px solid #C9CCD6; } .c6 .brand { color: #23373B; } .c6 .screen { background: #E8EEE4; }
+    .c6 .k { background: #FFFFFF; color: #23373B; border: 1px solid #C9CCD6; } .c6 .k.f { background: #23373B; color: #fff; }
+    .legend { margin-top: 16px; display: flex; gap: 16px; }
+    .legend > div { flex: 1; border-radius: 12px; padding: 8px 12px; font-size: 16px; }
+    .lg1 { background: var(--ocre-soft); border: 2px solid var(--ocre); }
+    .lg2 { background: var(--blue-soft); border: 2px solid var(--blue); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Cómo se escribe 3,2 · 10<sup>-3</sup> en cada calculadora científica</h1>
+    <div class="grid" id="grid"></div>
+    <div class="legend">
+        <div class="lg1"><b>EXP</b> y <b>×10<sup>x</sup></b> son la misma tecla: significa <b>«× 10 elevado a»</b>. ¡No escribas nunca «× 1 0» antes!</div>
+        <div class="lg2">El signo menos del exponente: <b>+/−</b> va <b>detrás</b> del número (modelos antiguos); <b>(−)</b> va <b>delante</b> (desde 1997).</div>
+    </div>
+    <div class="note" style="margin-top:8px; text-align:center">Dibujos simplificados: la posición de las teclas puede cambiar de un modelo a otro.</div>
+</div>
+<script>
+    const eras = [
+        { c: 'c1', t: 'Años 70 – principios de los 80', m: 'fx-80, fx-100, fx-115, fx-3600P', key: 'EXP', sign: '+/−', post: true,
+          scr: '<div class="one">3.2<span style="margin-left:22px">-03</span></div>', f: 'Pantalla de una línea: el exponente aparece a la derecha.' },
+        { c: 'c2', t: '1982 – 1996', m: 'fx-82, fx-82A, fx-82B, fx-82L, fx-82SOLAR, fx-82SUPER, fx-82SX', key: 'EXP', sign: '+/−', post: true,
+          scr: '<div class="one">3.2<span style="margin-left:22px">-03</span></div>', f: 'El mismo método: la familia clásica del instituto.' },
+        { c: 'c3', t: '1997 – 2003', m: 'fx-82W, fx-82TL, fx-82MS, fx-85MS, fx-350MS, fx-570MS, fx-991MS', key: 'EXP', sign: '(−)', post: false,
+          scr: '<div class="l1">3.2E-3</div><div class="l2">3.2<sup>-03</sup></div>', f: 'Dos líneas: la «E» de la línea de arriba significa × 10<sup>…</sup>' },
+        { c: 'c4', t: '2004 – 2014', m: 'fx-82ES, fx-85ES, fx-350ES, fx-570ES, fx-991ES (PLUS)', key: '×10ˣ', sign: '(−)', post: false,
+          scr: '<div class="l1">3.2×10<sup>-3</sup></div><div class="l2">&nbsp;</div>', f: 'Natural Display: se escribe como en tu libro.' },
+        { c: 'c5', t: '2015 – 2022', m: 'fx-82EX, fx-85EX, fx-350EX, fx-570EX, fx-991EX', key: '×10ˣ', sign: '(−)', post: false,
+          scr: '<div class="l1">3.2×10<sup>-3</sup></div><div class="l2">&nbsp;</div>', f: 'ClassWiz: pantalla de alta resolución, las mismas teclas.' },
+        { c: 'c6', t: '2023 – hoy', m: 'fx-82CW, fx-85CW, fx-350CW, fx-570CW, fx-991CW', key: '×10ˣ', sign: '(−)', post: false,
+          scr: '<div class="l1">3.2×10<sup>-3</sup></div><div class="l2">&nbsp;</div>', f: 'ClassWiz CW: menús más claros, la misma idea.' },
+    ];
+    const g = document.getElementById('grid');
+    eras.forEach(e => {
+        const keyLabel = e.key === '×10ˣ' ? '×10<sup>x</sup>' : 'EXP';
+        const rows = [
+            ['7', '8', '9', 'DEL', 'AC'],
+            ['4', '5', '6', '×', '÷'],
+            ['1', '2', '3', '+', '−'],
+            ['0', '.', keyLabel, e.sign, '='],
+        ];
+        const keys = rows.flat().map(k => {
+            const hl = (k === keyLabel || k === e.sign) ? ' hl' : '';
+            const f = (['DEL', 'AC'].includes(k)) ? ' f' : '';
+            return `<div class="k${hl}${f}">${k}</div>`;
+        }).join('');
+        const caps = ['3', '.', '2', `<b class="o">${keyLabel}</b>`]
+            .concat(e.post ? ['3', '<b class="b">+/−</b>'] : ['<b class="b">(−)</b>', '3'])
+            .map(c => c.startsWith('<b') ? c.replace('<b class="', '<div class="cap ').replace('</b>', '</div>') : `<div class="cap">${c}</div>`).join('');
+        g.insertAdjacentHTML('beforeend', `
+            <div class="era">
+                <h2>${e.t}</h2>
+                <div class="models">${e.m}</div>
+                <div class="calc ${e.c}">
+                    <div class="brand">CALCULADORA CIENTÍFICA</div>
+                    <div class="screen">${e.scr}</div>
+                    <div class="keys">${keys}</div>
+                </div>
+                <div class="seq">${caps}</div>
+                <div class="feat">${e.f}</div>
+            </div>`);
+    });
+</script>
+</body>
+</html>

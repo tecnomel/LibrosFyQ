@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Aminas</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card h3 { font-size: 14px; color: var(--blue); } .card .t { font-size: 12.5px; } .f { font-size: 14px; font-weight: 700; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3>Amoníaco</h3><svg id="z" width="150" height="140"></svg>
+            <div class="f">NH₃</div><div class="t">molécula de partida</div></div>
+        <div class="card"><h3>Amina primaria: R–NH₂</h3><svg id="a" width="190" height="140"></svg>
+            <div class="f">etilamina: CH₃–CH₂–NH₂</div><div class="t">se sustituye un H</div></div>
+        <div class="card"><h3>Amina secundaria: R–NH–R′</h3><svg id="b" width="190" height="140"></svg>
+            <div class="f">N-metiletilamina</div><div class="t">se sustituyen dos H</div></div>
+        <div class="card"><h3>Amina terciaria: RR′R″N</h3><svg id="c" width="170" height="140"></svg>
+            <div class="f">trimetilamina: N(CH₃)₃</div><div class="t">se sustituyen los tres H</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script src="mol.js"></script>
+<script>
+    const k = 1 / Math.sqrt(3), T = [[k, -k, -k], [-k, -k, k], [-k, k, -k], [k, k, k]].map(v => [v[0], v[1], v[2]]);
+    // en el amoníaco y la trimetilamina, el par solitario del N apunta hacia arriba
+    const up = [[0.94, -0.33, 0], [-0.47, -0.33, 0.82], [-0.47, -0.33, -0.82]];
+    const nh3 = molecule([{ el: 'N', p: [0, 0, 0] }, ...up.map(v => ({ el: 'H', p: v }))], [[0, 1, 1], [0, 2, 1], [0, 3, 1]]);
+    const z = zigzag(4, 1.47);
+    const etilamina = molecule([{ el: 'C', p: z[0], h: 3, phi: 180 }, { el: 'C', p: z[1], h: 2 }, { el: 'N', p: z[2], h: 2, phi: 180 }], [[0, 1, 1], [1, 2, 1]]);
+    const nmetil = molecule([{ el: 'C', p: z[0], h: 3, phi: 180 }, { el: 'C', p: z[1], h: 2 }, { el: 'N', p: z[2], h: 1 }, { el: 'C', p: z[3], h: 3, phi: 180 }], [[0, 1, 1], [1, 2, 1], [2, 3, 1]]);
+    const tma = molecule([{ el: 'N', p: [0, 0, 0] }, ...up.map(v => ({ el: 'C', p: v.map(x => x * 1.47), h: 3, phi: 60 }))], [[0, 1, 1], [0, 2, 1], [0, 3, 1]]);
+    drawMolecule(svgAdder('z'), nh3, 75, 66, { scale: 50, yaw: 15, pitch: 30 });
+    drawMolecule(svgAdder('a'), etilamina, 95, 72, { scale: 36, yaw: 25, pitch: 15 });
+    drawMolecule(svgAdder('b'), nmetil, 95, 72, { scale: 30, yaw: 25, pitch: 15 });
+    drawMolecule(svgAdder('c'), tma, 85, 62, { scale: 32, yaw: 15, pitch: 40 });
+</script>
+</body>
+</html>

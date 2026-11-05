@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>U4 - Representation of work</title>
+<!-- Unit 4 · fig:trabajo · sustituye a Images/energia/trabajo_imagen.png -->
+<script src="../lib/comun.js"></script>
+</head>
+<body>
+<script>
+const { svg, defs } = crearLienzo(560, 250);
+
+const AZUL = '#1f3fbf', ROJO = '#d0191b';
+const SUELO = 110, xi = 160, xf = 470, LADO = 76;
+
+// Suelo con rayado
+el('line', { x1: 10, y1: SUELO, x2: 550, y2: SUELO, stroke: '#222', 'stroke-width': 2 }, svg);
+for (let x = 18; x < 550; x += 14)
+  el('line', { x1: x, y1: SUELO + 1, x2: x - 9, y2: SUELO + 10, stroke: '#888', 'stroke-width': 1 }, svg);
+
+// Cuerpo en la posición inicial (su cara derecha marca x_i)
+const gris = degradadoLineal(defs, 'bloque', [['0%', '#a3a8ae'], ['100%', '#6c7178']]);
+el('rect', { x: xi - LADO * 1.5, y: SUELO - LADO, width: LADO * 1.5, height: LADO,
+  fill: gris, stroke: '#333', 'stroke-width': 1.5, rx: 3 }, svg);
+texto(svg, xi - LADO * 0.75, SUELO - LADO / 2 + 8, 'm', { size: 26, fill: '#fff', family: FUENTE_MATE, italic: true });
+
+// Cuerpo en la posición final (discontinuo)
+el('rect', { x: xf - LADO * 1.5, y: SUELO - LADO, width: LADO * 1.5, height: LADO,
+  fill: 'none', stroke: '#333', 'stroke-width': 1.5, 'stroke-dasharray': '7 5', rx: 3 }, svg);
+
+// Fuerza aplicada
+flecha(svg, defs, xi, SUELO - LADO / 2, xi + 125, SUELO - LADO / 2, { color: ROJO, ancho: 4, tam: 18 });
+texto(svg, xi + 145, SUELO - LADO / 2 + 10, 'F', { size: 30, fill: ROJO, family: FUENTE_MATE, italic: true });
+// vector: flechita sobre la F
+flecha(svg, defs, xi + 137, SUELO - LADO / 2 - 16, xi + 157, SUELO - LADO / 2 - 16, { color: ROJO, ancho: 1.5, tam: 7 });
+
+// Marcas de posición
+for (const [x, et] of [[xi, 'x_{i}'], [xf, 'x_{f}']]) {
+  el('line', { x1: x, y1: SUELO, x2: x, y2: SUELO + 32, stroke: AZUL, 'stroke-width': 1.5 }, svg);
+  texto(svg, x, SUELO + 62, et, { size: 28, fill: AZUL, family: FUENTE_MATE, italic: true });
+}
+
+// Desplazamiento
+flecha(svg, defs, xi + 2, SUELO + 90, xf - 2, SUELO + 90, { color: AZUL, ancho: 1.5, tam: 10, dash: '6 5', doble: true });
+texto(svg, (xi + xf) / 2, SUELO + 126, 'd = x_{f} − x_{i}', { size: 28, fill: AZUL, family: FUENTE_MATE, italic: true });
+
+finalizar();
+</script>
+</body>
+</html>

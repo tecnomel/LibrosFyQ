@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cambios de estado</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="a" width="780" height="450"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const A = svgAdder('a');
+    const R = '#C0392B', Bl = '#2471A3';
+    // cajas de los tres estados
+    function estado(cx, cy, nombre, tipo) {
+        A('rect', { x: cx - 70, y: cy - 55, width: 140, height: 110, rx: 12, fill: '#FBFCFC', stroke: '#566573', 'stroke-width': 2 });
+        const r = rng(tipo.length * 11 + 3);
+        if (tipo === 's') for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) bead(A, cx - 33 + i * 22, cy - 43 + j * 18, 8, '#5DADE2');
+        if (tipo === 'll') for (let k = 0; k < 13; k++) bead(A, cx - 52 + r() * 104, cy - 8 + r() * 50, 8, '#5DADE2');
+        if (tipo === 'gas') for (let k = 0; k < 7; k++) bead(A, cx - 55 + r() * 110, cy - 40 + r() * 70, 7, '#5DADE2');
+        label(A, cx, cy + 78, nombre, { 'font-size': 18 });
+    }
+    const S = [150, 330], L = [630, 330], G = [390, 90];
+    estado(...S, 'Sólido', 's'); estado(...L, 'Líquido', 'll'); estado(...G, 'Gas', 'gas');
+    // pares de flechas
+    function par(p1, p2, off, t1, t2, rot) {
+        const dx = p2[0] - p1[0], dy = p2[1] - p1[1], L0 = Math.hypot(dx, dy), ux = dx / L0, uy = dy / L0, nx = -uy, ny = ux;
+        const a = 100, b = L0 - 100;
+        const P = (s, o) => [p1[0] + ux * s + nx * o, p1[1] + uy * s + ny * o];
+        let [x1, y1] = P(a, -off), [x2, y2] = P(b, -off); arrow(A, x1, y1, x2, y2, R, 3.5, 13);
+        [x1, y1] = P(b, off); [x2, y2] = P(a, off); arrow(A, x1, y1, x2, y2, Bl, 3.5, 13);
+        const o1 = -off + Math.sign(-off) * 20, o2 = off + Math.sign(off) * 20;
+        const [mx1, my1] = P(L0 / 2, o1), [mx2, my2] = P(L0 / 2, o2);
+        label(A, mx1, my1 + 5, t1, { 'font-size': 15, fill: R, transform: `rotate(${rot} ${mx1} ${my1})` });
+        label(A, mx2, my2 + 5, t2, { 'font-size': 15, fill: Bl, transform: `rotate(${rot} ${mx2} ${my2})` });
+    }
+    par(S, L, -14, 'fusión', 'solidificación', 0);
+    par(L, G, -14, 'vaporización', 'condensación', 45);
+    par(S, G, 14, 'sublimación', 'sublimación inversa', -45);
+    // leyenda
+    A('rect', { x: 560, y: 10, width: 210, height: 80, rx: 8, fill: '#FBFCFC', stroke: '#C9CCD6' });
+    arrow(A, 572, 36, 612, 36, R, 3, 11); label(A, 622, 41, 'absorbe calor (Q > 0)', { 'font-size': 13, fill: R, 'text-anchor': 'start' });
+    arrow(A, 572, 70, 612, 70, Bl, 3, 11); label(A, 622, 75, 'cede calor (Q < 0)', { 'font-size': 13, fill: Bl, 'text-anchor': 'start' });
+    label(A, 20, 30, 'Progresivos (rojo)', { 'font-size': 14, fill: R, 'text-anchor': 'start' });
+    label(A, 20, 52, 'Regresivos (azul)', { 'font-size': 14, fill: Bl, 'text-anchor': 'start' });
+</script>
+</body>
+</html>

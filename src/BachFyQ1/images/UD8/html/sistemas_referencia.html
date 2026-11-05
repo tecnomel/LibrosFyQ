@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Sistemas de referencia en una, dos y tres dimensiones</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Una dimensión (1D)</h2><svg id="a" width="250" height="200"></svg><div class="t">Una coordenada: <i>x</i><br>(movimiento sobre una recta)</div></div>
+        <div class="card"><h2>Dos dimensiones (2D)</h2><svg id="b" width="250" height="200"></svg><div class="t">Dos coordenadas: (<i>x</i>, <i>y</i>)<br>(movimiento en un plano)</div></div>
+        <div class="card"><h2>Tres dimensiones (3D)</h2><svg id="c" width="250" height="200"></svg><div class="t">Tres coordenadas: (<i>x</i>, <i>y</i>, <i>z</i>)<br>(movimiento en el espacio)</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // 1D
+    const A = svgAdder('a');
+    arrow(A, 15, 110, 240, 110, '#23373B', 2, 10);
+    label(A, 230, 132, 'X', { 'font-size': 14 });
+    A('line', { x1: 40, y1: 102, x2: 40, y2: 118, stroke: '#23373B', 'stroke-width': 2 }); label(A, 40, 136, 'O', { 'font-size': 14 });
+    A('line', { x1: 40, y1: 110, x2: 175, y2: 110, stroke: '#1E8449', 'stroke-width': 4 });
+    dot(A, 175, 110, '#C0392B', 6); label(A, 175, 92, 'P(x)', { 'font-size': 15, fill: '#C0392B' });
+    label(A, 108, 98, 'x', { 'font-size': 15, fill: '#1E8449', 'font-style': 'italic' });
+    // 2D
+    const B = svgAdder('b');
+    axes(B, 40, 175, 200, 165);
+    dashed(B, 40, 65, 180, 65); dashed(B, 180, 65, 180, 175);
+    B('line', { x1: 40, y1: 175, x2: 180, y2: 175, stroke: '#1E8449', 'stroke-width': 4 });
+    B('line', { x1: 40, y1: 175, x2: 40, y2: 65, stroke: '#2471A3', 'stroke-width': 4 });
+    dot(B, 180, 65, '#C0392B', 6); label(B, 195, 50, 'P(x, y)', { 'font-size': 15, fill: '#C0392B' });
+    label(B, 110, 194, 'x', { 'font-size': 15, fill: '#1E8449', 'font-style': 'italic' });
+    label(B, 26, 124, 'y', { 'font-size': 15, fill: '#2471A3', 'font-style': 'italic' });
+    // 3D (perspectiva caballera)
+    const C = svgAdder('c');
+    const O = [100, 128], ex = [-0.55, 0.45], s3 = (x, y, z) => [O[0] + y + ex[0] * x, O[1] - z + ex[1] * x];
+    const ax = (p, n, dx, dy) => { arrow(C, O[0], O[1], p[0], p[1], '#23373B', 2, 10); label(C, p[0] + dx, p[1] + dy, n, { 'font-size': 14 }); };
+    ax(s3(100, 0, 0), 'X', -10, 6); ax(s3(0, 140, 0), 'Y', 4, 18); ax(s3(0, 0, 125), 'Z', -12, 6);
+    const [px, py, pz] = [70, 95, 75];
+    const P = s3(px, py, pz), Q = s3(px, py, 0);
+    [[s3(px, 0, 0), Q], [s3(0, py, 0), Q], [Q, P], [s3(0, 0, pz), s3(0, py, pz)], [s3(0, py, pz), P], [s3(0, py, 0), s3(0, py, pz)],
+     [s3(px, 0, 0), s3(px, 0, pz)], [s3(px, 0, pz), P], [s3(0, 0, pz), s3(px, 0, pz)]].forEach(([u, v]) => dashed(C, u[0], u[1], v[0], v[1]));
+    const X = s3(px, 0, 0), Y = s3(0, py, 0), Z = s3(0, 0, pz);
+    C('line', { x1: O[0], y1: O[1], x2: X[0], y2: X[1], stroke: '#1E8449', 'stroke-width': 4 });
+    C('line', { x1: O[0], y1: O[1], x2: Y[0], y2: Y[1], stroke: '#2471A3', 'stroke-width': 4 });
+    C('line', { x1: O[0], y1: O[1], x2: Z[0], y2: Z[1], stroke: '#8E44AD', 'stroke-width': 4 });
+    label(C, O[0] + 12, O[1] + 16, 'O', { 'font-size': 14 });
+    dot(C, P[0], P[1], '#C0392B', 6); label(C, P[0] + 14, P[1] - 14, 'P(x, y, z)', { 'font-size': 15, fill: '#C0392B' });
+</script>
+</body>
+</html>

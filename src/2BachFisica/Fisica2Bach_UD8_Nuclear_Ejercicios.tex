@@ -1,0 +1,207 @@
+%! Unidad 8 — Física nuclear: ejercicios finales (adaptados de la fuente, con datos cambiados y resueltos)
+
+\section{Ejercicios}\label{sec:nuc-ejercicios}
+
+Salvo que se indique otra cosa, usa \(c = \qty{3e8}{\m\per\second}\), \(\qty{1}{u} = \qty{1.66e-27}{\kg} \equiv \qty{931.5}{\mega\electronvolt}\),
+\(m_{\text{H}} = \qty{1.0078}{u}\), \(m_n = \qty{1.0087}{u}\), \(N_A = \qty{6.022e23}{\per\mol}\), \(\qty{1}{\mega\electronvolt} = \qty{1.6e-13}{\joule}\)
+y \(r_0 = \qty{1.2e-15}{\m}\).
+
+\subsection{El núcleo y la energía de enlace}
+
+\begin{exercise}
+    Calcula el radio y el volumen de un núcleo de \ch{^7Li}.
+    \begin{solu}
+        \(R = r_0 A^{1/3} = 1{,}2\cdot 10^{-15}\cdot 7^{1/3} = \textcolor{red}{\qty{2.30e-15}{\m}}\); \(V = \tfrac{4}{3}\pi R^3 = \textcolor{red}{\qty{5.07e-44}{\m\cubed}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un núcleo tiene tantos protones como neutrones y su radio es la mitad del radio del \ch{^{64}Cu}. ¿De qué núcleo se trata?
+    \begin{solu}
+        \textcolor{blue}{\(R \propto A^{1/3}\): si el radio es la mitad, \(A = 64/2^3 = 8\), con \(Z = N = 4\).} \textcolor{red}{Es el \ch{^8_4Be}}
+        \textcolor{blue}{(muy inestable: se rompe en dos partículas alfa).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Calcula el radio del \ch{^{30}P} y del \ch{^{235}U} y estima la densidad de la materia nuclear.
+    \begin{solu}
+        \(R_P = 1{,}2\cdot 10^{-15}\cdot 30^{1/3} = \textcolor{red}{\qty{3.73e-15}{\m}}\); \(R_U = \textcolor{red}{\qty{7.41e-15}{\m}}\).
+
+        \(\rho = \dfrac{A\,u}{\tfrac{4}{3}\pi r_0^3 A} = \dfrac{1{,}66\cdot 10^{-27}}{\tfrac{4}{3}\pi(1{,}2\cdot 10^{-15})^3} = \textcolor{red}{\qty{2.3e17}{\kg\per\m\cubed}}\) \textcolor{blue}{(la misma para todos).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Calcula la energía de enlace y la energía de enlace por nucleón del \ch{^4_2He} y del \ch{^{16}_8O}, cuyas masas atómicas son
+    \qty{4.0026}{u} y \qty{15.9949}{u}. ¿Cuál es más estable?
+    \begin{solu}
+        \ch{^4He}: \(\Delta m = 2\cdot 1{,}0078 + 2\cdot 1{,}0087 - 4{,}0026 = \qty{0.0304}{u}\); \(E_e = \textcolor{red}{\qty{28.3}{\mega\electronvolt}}\), \(E_e/A = \textcolor{red}{\qty{7.08}{\mega\electronvolt}}\).
+
+        \ch{^{16}O}: \(\Delta m = 8\cdot 1{,}0078 + 8\cdot 1{,}0087 - 15{,}9949 = \qty{0.1371}{u}\); \(E_e = \textcolor{red}{\qty{127.7}{\mega\electronvolt}}\), \(E_e/A = \textcolor{red}{\qty{7.98}{\mega\electronvolt}}\).
+
+        \textcolor{red}{El oxígeno-16 es más estable} \textcolor{blue}{(mayor energía de enlace por nucleón).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿Qué energía se libera, por núcleo, en una reacción nuclear con un defecto de masa de \qty{0.2}{u}?
+    \begin{solu}
+        \(E = \Delta m\,c^2 = 0{,}2\cdot 1{,}66\cdot 10^{-27}\cdot 9\cdot 10^{16} = \textcolor{red}{\qty{2.99e-11}{\joule}} \approx \textcolor{red}{\qty{186}{\mega\electronvolt}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Radiactividad y reacciones nucleares}
+
+\begin{exercise}
+    ¿Cuántas partículas \(\alpha\) y \(\beta^-\) emite un núcleo de \ch{^{238}_{92}U} hasta convertirse en \ch{^{206}_{82}Pb}?
+    \begin{solu}
+        \textcolor{blue}{Solo las \(\alpha\) cambian \(A\): \((238 - 206)/4 = 8\) partículas \(\alpha\), que reducen \(Z\) en 16. Como \(Z\) solo baja de 92 a 82 (10
+        unidades), las \(\beta^-\) lo aumentan en \(16 - 10 = 6\).} \textcolor{red}{8 partículas \(\alpha\) y 6 partículas \(\beta^-\).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un núcleo de \ch{^{181}_{73}Ta} se bombardea con un protón y emite 4 neutrones. ¿Qué número atómico y másico tiene el núcleo resultante?
+    \begin{solu}
+        \textcolor{blue}{\(A = 181 + 1 - 4 = 178\); \(Z = 73 + 1 = 74\).} \textcolor{red}{Es el \ch{^{178}_{74}W}} \textcolor{blue}{(wolframio).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un núcleo \ch{X} con \(Z = 90\) y \(A = 232\) emite una partícula \(\alpha\) y se transforma en \ch{Y}, que a su vez emite una partícula
+    \(\beta^-\) y se transforma en \ch{Z}. ¿Qué números atómico y másico tiene \ch{Z}?
+    \begin{solu}
+        \textcolor{blue}{Tras la \(\alpha\): \(Z = 88\), \(A = 228\). Tras la \(\beta^-\): \(Z = 89\), \(A = 228\).} \textcolor{red}{\(Z = 89\), \(A = 228\)} \textcolor{blue}{(actinio).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Completa las reacciones nucleares:
+    \begin{enumerate}[label=\letraminuscula]
+        \item \(\ch{^1_0n + ^{59}_{27}Co -> ^{60}_{27}Co} + \mathrm{X}\)
+        \item \(\ch{^{234}_{90}Th -> ^{234}_{91}Pa} + \mathrm{X}\)
+        \item \(\ch{^1_0n + ^{115}_{49}In} \rightarrow \mathrm{X} + \gamma\)
+        \item \(\ch{^{12}_6C} + \mathrm{X} \rightarrow \ch{^9_4Be + ^4_2He}\)
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \textcolor{red}{\(\gamma\)} \textcolor{blue}{(no cambian ni \(A\) ni \(Z\))}.
+            \item \textcolor{red}{\(\ch{^0_{-1}e}\)} \textcolor{blue}{(emisión \(\beta^-\))}.
+            \item \textcolor{red}{\(\ch{^{116}_{49}In}\)}.
+            \item \textcolor{red}{\(\ch{^1_0n}\)} \textcolor{blue}{(\(A\): \(13 - 12 = 1\); \(Z\): \(6 - 6 = 0\))}.
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Calcula la energía liberada en la desintegración \(\ch{^{226}Ra -> ^{222}Rn + ^4He}\). Masas: \qty{225.9771}{u}, \qty{221.9703}{u} y \qty{4.0026}{u}.
+    \begin{solu}
+        \(\Delta m = 225{,}9771 - 221{,}9703 - 4{,}0026 = \qty{0.0042}{u}\); \(Q = 0{,}0042\cdot 931{,}5 = \textcolor{red}{\qty{3.9}{\mega\electronvolt}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    En la reacción \(\ch{^{A}_{Z}Li + ^1_1H -> 2 ^4_2He}\) se liberan \qty{17.35}{\mega\electronvolt}. Calcula \(Z\) y \(A\) del litio y su masa atómica.
+    \begin{solu}
+        \textcolor{blue}{\(A + 1 = 8\), \(Z + 1 = 4\):} \(\textcolor{red}{\ch{^7_3Li}}\).
+        \(m_{\text{Li}} = 2\cdot 4{,}0026 + \dfrac{17{,}35}{931{,}5} - 1{,}0078 = \textcolor{red}{\qty{7.016}{u}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Ley de la desintegración}
+
+\begin{exercise}
+    El \ch{^{210}_{84}Po} tiene un período de semidesintegración de 138 días. ¿Qué masa de este isótopo tiene una actividad de \qty{2e7}{\becquerel}?
+    \begin{solu}
+        \(\lambda = \dfrac{\ln 2}{138\cdot 86400} = \qty{5.81e-8}{\per\second}\); \(N = \dfrac{A}{\lambda} = \num{3.44e14}\);
+        \(m = \dfrac{N}{N_A}\cdot 210 = \textcolor{red}{\qty{1.2e-7}{\g}}\) \textcolor{blue}{(0,12 microgramos).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La actividad de una muestra pasa de \qty{1500}{\becquerel} a \qty{1470}{\becquerel} en un día. Calcula el período de semidesintegración
+    y el número de núcleos en cada momento.
+    \begin{solu}
+        \(\lambda = \dfrac{\ln(1500/1470)}{86400} = \qty{2.34e-7}{\per\second}\); \(T_{1/2} = \dfrac{\ln 2}{\lambda} = \textcolor{red}{\qty{34.3}{días}}\).
+        \(N_0 = \dfrac{A_0}{\lambda} = \textcolor{red}{\num{6.42e9}}\); \(N = \textcolor{red}{\num{6.29e9}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    En 4 meses se ha desintegrado el \qty{5}{\percent} de una muestra radiactiva. Calcula su período de semidesintegración y su vida media.
+    \begin{solu}
+        \(\lambda = \dfrac{-\ln 0{,}95}{4} = 0{,}01282\ \text{mes}^{-1}\); \(T_{1/2} = \dfrac{\ln 2}{\lambda} = \textcolor{red}{\num{54.1}\ \text{meses}}\);
+        \(\tau = \dfrac{1}{\lambda} = \textcolor{red}{\num{78.0}\ \text{meses}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    El yodo-131 tiene un período de semidesintegración de 8 días. Hoy tenemos \qty{40}{\mg}. ¿Qué cantidad había hace 24 días? ¿Cuánto quedará
+    dentro de 24 días?
+    \begin{solu}
+        \textcolor{blue}{24 días son 3 períodos.} Hace 24 días: \(40\cdot 2^3 = \textcolor{red}{\qty{320}{\mg}}\); dentro de 24 días: \(40/2^3 = \textcolor{red}{\qty{5}{\mg}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un isótopo tiene un período de semidesintegración de \qty{15}{\hour}. ¿Cuánto tarda en desintegrarse el \qty{93.75}{\percent} de una muestra?
+    ¿Cuál es su vida media?
+    \begin{solu}
+        \textcolor{blue}{Queda \(0{,}0625 = 1/16 = 1/2^4\): han pasado 4 períodos.} \(t = \textcolor{red}{\qty{60}{\hour}}\); \(\tau = \dfrac{T_{1/2}}{\ln 2} = \textcolor{red}{\qty{21.6}{\hour}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La actividad del \ch{^{14}C} de un trozo de madera antigua es la octava parte de la de una muestra de madera actual de la misma masa. ¿Qué
+    antigüedad tiene? (\(T_{1/2} = 5730\) años).
+    \begin{solu}
+        \textcolor{blue}{\(1/8 = 1/2^3\): han pasado 3 períodos.} \(t = 3\cdot 5730 = \textcolor{red}{17\,190\ \text{años}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    El \ch{^{212}_{83}Bi} tiene un período de semidesintegración de \qty{60.5}{\minute}. ¿Cuántos átomos se desintegran por segundo en \qty{40}{\g} de este isótopo?
+    \begin{solu}
+        \(\lambda = \dfrac{\ln 2}{60{,}5\cdot 60} = \qty{1.91e-4}{\per\second}\); \(N = \dfrac{40}{212}\cdot 6{,}022\cdot 10^{23} = \num{1.14e23}\);
+        \(A = \lambda N = \textcolor{red}{\qty{2.17e19}{\becquerel}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    El período de semidesintegración del polonio-210 es de 138 días. Si tenemos \qty{1}{\mg}, ¿al cabo de cuánto tiempo quedarán \qty{0.25}{\mg}?
+    \begin{solu}
+        \textcolor{blue}{Queda la cuarta parte: 2 períodos.} \(t = \textcolor{red}{276\ \text{días}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Fisión y fusión}
+
+\begin{exercise}
+    La fisión de un núcleo de uranio-235 libera unos \qty{200}{\mega\electronvolt}. ¿Cuánto tiempo tarda en consumir \qty{20}{\kg} de uranio-235 un
+    reactor de \qty{1000}{\mega\watt}?
+    \begin{solu}
+        \(N = \dfrac{20\,000}{235}\cdot 6{,}022\cdot 10^{23} = \num{5.13e25}\) núcleos; \(E = N\cdot 200\cdot 1{,}6\cdot 10^{-13} = \qty{1.64e15}{\joule}\).
+        \(t = \dfrac{E}{P} = \qty{1.64e6}{\second} = \textcolor{red}{\num{19.0}\ \text{días}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La combustión de \qty{1}{\kg} de carbón proporciona \qty{3.3e7}{\joule}. ¿Qué masa de carbón da la misma energía que la fisión de
+    \qty{235}{\g} de uranio-235 (\qty{200}{\mega\electronvolt} por núcleo)?
+    \begin{solu}
+        \textcolor{blue}{235 g son un mol: \(E = 6{,}022\cdot 10^{23}\cdot 200\cdot 1{,}6\cdot 10^{-13} = \qty{1.93e13}{\joule}\).}
+        \(m = \dfrac{1{,}93\cdot 10^{13}}{3{,}3\cdot 10^7} = \textcolor{red}{\qty{5.8e5}{\kg}}\) \textcolor{blue}{(casi 600 toneladas).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una central de fusión funcionaría con la reacción \(\ch{^2H + ^2H -> ^4He}\), con un rendimiento del \qty{35}{\percent}. ¿Qué masa de deuterio
+    necesitaría para producir \qty{2e6}{\kilo\watt\hour} de energía eléctrica? Masas: \ch{^2H}, \qty{2.0141}{u}; \ch{^4He}, \qty{4.0026}{u}.
+    \begin{solu}
+        \(\Delta m = 2\cdot 2{,}0141 - 4{,}0026 = \qty{0.0256}{u}\); \(Q = \qty{23.8}{\mega\electronvolt} = \qty{3.82e-12}{\joule}\) por reacción.
+
+        \textcolor{blue}{Energía térmica necesaria: \(\dfrac{2\cdot 10^6\cdot 3{,}6\cdot 10^6}{0{,}35} = \qty{2.06e13}{\joule}\); reacciones: \num{5.39e24}, cada una con dos deuterones.}
+        \(m = 2\cdot 5{,}39\cdot 10^{24}\cdot 2{,}0141\cdot 1{,}66\cdot 10^{-27} = \textcolor{red}{\qty{36}{\g}}\).
+    \end{solu}
+\end{exercise}

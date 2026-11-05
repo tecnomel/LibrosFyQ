@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>U3 - Dynamometer</title>
+<!-- Unit 3 · fig:dinamometro · sustituye a Images/dinamica/dinanometro.jpg -->
+<script src="../lib/comun.js"></script>
+</head>
+<body>
+<script>
+const { svg, defs } = crearLienzo(300, 700);
+
+const CX = 90;                       // eje del dinamómetro
+const NARANJA = degradadoLineal(defs, 'naranja',
+  [['0%', '#e89a10'], ['45%', '#ffd166'], ['100%', '#d9820a']], 0, 0, 1, 0);
+const METAL = '#8d9399';
+const VIDRIO = degradadoLineal(defs, 'vidrio',
+  [['0%', '#cfe3f2', 0.9], ['35%', '#ffffff', 0.35], ['100%', '#b7cfe0', 0.8]], 0, 0, 1, 0);
+
+// Anilla superior de alambre
+el('path', { d: `M${CX - 28},96 L${CX - 30},30 Q${CX - 30},10 ${CX},10 Q${CX + 30},10 ${CX + 30},30 L${CX + 28},96`,
+  fill: 'none', stroke: METAL, 'stroke-width': 4, 'stroke-linecap': 'round' }, svg);
+
+// Tapón superior
+el('rect', { x: CX - 8, y: 66, width: 16, height: 16, rx: 3, fill: NARANJA, stroke: '#b36b00' }, svg);
+el('rect', { x: CX - 36, y: 80, width: 72, height: 44, rx: 8, fill: NARANJA, stroke: '#b36b00', 'stroke-width': 1.5 }, svg);
+
+// Tubo transparente
+el('rect', { x: CX - 32, y: 122, width: 64, height: 460, fill: VIDRIO, stroke: '#7d97ab', 'stroke-width': 1.5 }, svg);
+
+// Muelle (hélice vista de perfil)
+const Y0 = 132, Y1 = 262, VUELTAS = 12, R = 16;
+let d = `M${CX},${Y0 - 6} L${CX},${Y0}`;
+for (let i = 0; i < VUELTAS; i++) {
+  const y = Y0 + (i * (Y1 - Y0)) / VUELTAS, p = (Y1 - Y0) / VUELTAS;
+  d += ` Q${CX + R * 1.3},${y + p * 0.25} ${CX},${y + p * 0.5} Q${CX - R * 1.3},${y + p * 0.75} ${CX},${y + p}`;
+}
+el('path', { d, fill: 'none', stroke: '#6b7178', 'stroke-width': 2.4 }, svg);
+
+// Varilla graduada (se desplaza al estirarse el muelle)
+el('rect', { x: CX - 14, y: Y1, width: 28, height: 296, rx: 3, fill: NARANJA, stroke: '#b36b00' }, svg);
+const Y_CERO = Y1 + 18, PASO = 52;
+for (let i = 0; i <= 50; i++) {
+  const y = Y_CERO + (i * PASO) / 10;
+  const largo = i % 10 === 0 ? 20 : i % 5 === 0 ? 13 : 7;
+  el('line', { x1: CX + 14 - largo, y1: y, x2: CX + 14, y2: y, stroke: '#5a2d00', 'stroke-width': i % 10 ? 0.8 : 1.6 }, svg);
+  if (i % 10 === 0)
+    texto(svg, CX + 44, y + 5, String(i / 10), { size: 15, fill: '#5a2d00', weight: 700 });
+}
+texto(svg, CX + 44, Y_CERO - 16, 'N', { size: 15, fill: '#5a2d00', weight: 700 });
+
+// Tapón inferior y gancho
+el('rect', { x: CX - 36, y: 574, width: 72, height: 26, rx: 8, fill: NARANJA, stroke: '#b36b00', 'stroke-width': 1.5 }, svg);
+el('rect', { x: CX - 9, y: 598, width: 18, height: 14, rx: 3, fill: NARANJA, stroke: '#b36b00' }, svg);
+el('path', { d: `M${CX},606 Q${CX - 20},620 ${CX - 8},638 L${CX + 6},676 Q${CX + 14},692 ${CX + 30},684 Q${CX + 44},676 ${CX + 40},660`,
+  fill: 'none', stroke: METAL, 'stroke-width': 4, 'stroke-linecap': 'round' }, svg);
+
+// Rótulos
+const rotulo = (y, xObj, txt) => {
+  el('line', { x1: xObj, y1: y, x2: 200, y2: y, stroke: '#333', 'stroke-width': 1 }, svg);
+  el('circle', { cx: xObj, cy: y, r: 2.5, fill: '#333' }, svg);
+  texto(svg, 206, y + 5, txt, { size: 16, anchor: 'start' });
+};
+rotulo(40, CX + 30, 'ring');
+rotulo(200, CX + 12, 'spring');
+rotulo(410, CX + 12, 'scale');
+rotulo(562, CX + 32, 'tube');
+rotulo(672, CX + 12, 'hook');
+
+finalizar();
+</script>
+</body>
+</html>

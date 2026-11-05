@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_25 · Geometría angular del H2S</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/moleculas.js"></script>
+</head>
+<body>
+<script>
+// AB2X2: angular. Dos pares no enlazantes sobre el S. En el H2S el ángulo real es ≈92°
+// (en el H2O, 104,5°): ambos menores de 109,5°.
+const svg = crearFigura(560, 320);
+const cam = [1, -0.3, 0.2];
+const d = angular(92);
+const X = [[0.75, 0, 0.66], [-0.75, 0, 0.66]];
+esquemaGeometria(svg, 10, 10, 170, 150, [{ p: d[0], t: "B" }, { p: d[1], t: "B" }, ...X.map(p => ({ p, t: "X" }))], { camara: cam, escala: 55, angulo: "< 109,5°", poliedro: false });
+const m = molAB("S", "H", d, 1.2, { angEtq: [200, 340] });
+m.atomos[0].r = 0.42;
+m.pares = X.map(dir => ({ en: 0, dir }));
+m.angulos = [{ a: 1, c: 0, b: 2, texto: "≈92°", radio: 0.62, dy: 20 }];
+dibujarMolecula(svg, m, { cx: 380, cy: 120, escala: 115, camara: cam });
+</script>
+</body>
+</html>

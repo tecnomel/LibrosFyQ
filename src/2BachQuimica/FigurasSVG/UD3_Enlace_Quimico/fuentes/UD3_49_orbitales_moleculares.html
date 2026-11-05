@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_49 · Orbitales moleculares enlazantes y antienlazantes</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/orbitales.js"></script>
+</head>
+<body>
+<script>
+// Teoría de orbitales moleculares (CLOA): al combinar dos orbitales atómicos se obtienen
+// un orbital ENLAZANTE (suma, densidad entre los núcleos) y uno ANTIENLAZANTE (resta, con
+// un plano nodal entre los núcleos). Colores: fase + y fase − de la función de onda.
+const svg = crearFigura(900, 620);
+const cam = [1, -0.2, 0.25];
+const d = 0.95, A = [0, -d, 0], B = [0, d, 0];
+const filas = [
+    { t: "s + s", a: OA.s(A), b: OA.s(B), en: "σ", an: "σ*" },
+    { t: "p + p (frontal)", a: OA.p(A, [0, 1, 0]), b: OA.p(B, [0, -1, 0]), en: "σ", an: "σ*" },
+    { t: "p + p (lateral)", a: OA.p(A, [0, 0, 1]), b: OA.p(B, [0, 0, 1]), en: "π", an: "π*" },
+];
+const cab = { "text-anchor": "middle", "font-size": 16, "font-weight": "bold", fill: COLORES.texto };
+texto(svg, 150, 24, "Orbitales atómicos", cab);
+texto(svg, 450, 24, "OM enlazante", cab);
+texto(svg, 750, 24, "OM antienlazante", cab);
+filas.forEach((f, i) => {
+    const y = 115 + i * 190;
+    const c = [3.4, 1.8, 2.2];
+    escenaOrbital(svg, 150, y, f.a, { escala: 45, caja: c, colorPos: FASE_POS, colorNeg: FASE_NEG, camara: cam, nucleos: [A, B],
+        otros: [{ fn: f.b, colorPos: FASE_POS, colorNeg: FASE_NEG }] });
+    escenaOrbital(svg, 450, y, combinar([1, f.a], [1, f.b]), { escala: 45, caja: c, colorPos: FASE_POS, colorNeg: FASE_NEG, camara: cam, nucleos: [A, B] });
+    escenaOrbital(svg, 750, y, combinar([1, f.a], [-1, f.b]), { escala: 45, caja: c, colorPos: FASE_POS, colorNeg: FASE_NEG, camara: cam, nucleos: [A, B] });
+    texto(svg, 150, y + 90, f.t, { "text-anchor": "middle", "font-size": 14, "font-style": "italic", fill: COLORES.gris });
+    texto(svg, 450, y + 90, f.en, { "text-anchor": "middle", "font-size": 18, fill: COLORES.texto });
+    texto(svg, 750, y + 90, f.an, { "text-anchor": "middle", "font-size": 18, fill: COLORES.texto });
+    [300, 600].forEach(x => el("line", { x1: x, y1: y - 70, x2: x, y2: y + 70, stroke: "#DDD" }, svg));
+});
+leyendaFases(svg, 20, 612);
+</script>
+</body>
+</html>

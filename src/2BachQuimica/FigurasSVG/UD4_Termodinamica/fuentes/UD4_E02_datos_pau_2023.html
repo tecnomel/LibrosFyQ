@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD4_E02 · Datos PAU 2023</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+const svg = crearFigura(860, 100);
+const f = { "font-size": 18, fill: COLORES.texto, "font-family": "Arial, sans-serif" };
+const DH = [{ t: "ΔH" }, { t: "f", sub: true }, { t: "°" }];
+const kJ = [{ t: " kJ·mol" }, { t: "−1", sup: true }];
+const U = [{ t: " J·mol" }, { t: "−1", sup: true }, { t: "·K" }, { t: "−1", sup: true }];
+texto(svg, 5, 25, [{ t: "Datos: " }, ...DH, { t: " " }, ...quim("C2H6O (l)"), { t: " = −277,7" }, ...kJ, { t: ";  " }, ...DH, { t: " " }, ...quim("CO2 (g)"), { t: " = −393,5" }, ...kJ, { t: ";  " }, ...DH, { t: " " }, ...quim("H2O (l)"), { t: " = −285,8" }, ...kJ], f);
+texto(svg, 5, 57, [{ t: "S° " }, ...quim("C2H6O (l)"), { t: " = 160,7" }, ...U, { t: ";  S° " }, ...quim("O2 (g)"), { t: " = 204,8" }, ...U], f);
+texto(svg, 5, 89, [{ t: "S° " }, ...quim("CO2 (g)"), { t: " = 213,6" }, ...U, { t: ";  S° " }, ...quim("H2O (l)"), { t: " = 69,9" }, ...U], f);
+</script>
+</body>
+</html>

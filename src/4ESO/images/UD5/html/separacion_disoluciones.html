@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Separación de los componentes de una disolución</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1100px; } .card h2 { font-size: 18px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card" style="flex:0.9"><h2>Cristalización</h2><svg id="a" width="280" height="250"></svg><div class="t">Se evapora parte del disolvente y, al enfriar, el soluto forma cristales.</div></div>
+        <div class="card" style="flex:0.9"><h2>Extracción con disolventes</h2><svg id="b" width="280" height="250"></svg><div class="t">El bromo pasa del agua al CCl₄, en el que es más soluble; luego se decanta.</div></div>
+        <div class="card" style="flex:1.3"><h2>Destilación simple</h2><svg id="c" width="420" height="250"></svg><div class="t">El líquido más volátil se evapora, se condensa en el refrigerante y se recoge.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // Placa calefactora
+    function hotplate(add, x, y, w) {
+        add('rect', { x, y, width: w, height: 22, rx: 4, fill: '#E59866', stroke: '#A04000', 'stroke-width': 1.5 });
+        add('circle', { cx: x + 14, cy: y + 11, r: 5, fill: '#FDFEFE' });
+    }
+    // ---------- cristalización ----------
+    let add = svgAdder('a');
+    hotplate(add, 15, 210, 110);
+    beaker(add, 30, 120, 80, 88, { fill: 0.5, color: '#A9CCE3' });
+    for (let k = 0; k < 3; k++) add('path', { d: `M${50 + k * 20} 112 q-5 -8 0 -16 q5 -8 0 -16`, stroke: '#AAB7B8', 'stroke-width': 2.5, fill: 'none' });
+    label(add, 70, 70, 'evaporación', { 'font-size': 13, fill: '#525252' });
+    arrow(add, 130, 170, 160, 170, '#2471A3', 3, 11);
+    // cristalizador
+    add('path', { d: 'M170 175 L172 215 Q172 220 178 220 L262 220 Q268 220 268 215 L270 175', fill: 'none', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+    add('rect', { x: 174, y: 198, width: 92, height: 20, fill: '#D6EAF8' });
+    let r = rng(9); for (let k = 0; k < 9; k++) { const x = 182 + k * 9.5, y = 205 + r() * 6; add('rect', { x, y, width: 7, height: 7, fill: '#5DADE2', stroke: '#1B4F72', 'stroke-width': 0.8, transform: `rotate(${r() * 40} ${x} ${y})` }); }
+    label(add, 220, 165, 'cristalizador', { 'font-size': 13, fill: '#525252' });
+    // ---------- extracción ----------
+    add = svgAdder('b');
+    beaker(add, 15, 40, 70, 90, { fill: 0.65, color: '#F5B041' });
+    label(add, 50, 150, 'bromo', { 'font-size': 12, fill: '#525252' }); label(add, 50, 164, 'en agua', { 'font-size': 12, fill: '#525252' });
+    arrow(add, 95, 85, 125, 85, '#23373B', 3, 11);
+    add('line', { x1: 260, y1: 15, x2: 260, y2: 240, stroke: '#7F8C8D', 'stroke-width': 4 });
+    add('rect', { x: 215, y: 236, width: 65, height: 8, fill: '#7F8C8D' });
+    add('line', { x1: 230, y1: 100, x2: 260, y2: 100, stroke: '#7F8C8D', 'stroke-width': 4 });
+    add('path', { d: 'M182 20 L202 20 L202 35 Q240 60 228 100 L198 150 L186 150 L156 100 Q144 60 182 35 Z', fill: '#FDFEFE', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+    add('path', { d: 'M150 82 Q148 62 182 44 L202 44 Q236 62 234 82 Z', fill: '#D6EAF8' });
+    add('path', { d: 'M150 82 L234 82 Q233 92 228 100 L198 148 L186 148 L156 100 Q151 92 150 82 Z', fill: '#E67E22' });
+    add('rect', { x: 186, y: 150, width: 12, height: 30, fill: '#FDFEFE', stroke: '#5D6D7E', 'stroke-width': 2 });
+    add('rect', { x: 178, y: 158, width: 28, height: 7, rx: 3, fill: '#1E8449' });
+    beaker(add, 155, 195, 74, 45, { fill: 0.55, color: '#E67E22' });
+    label(add, 120, 30, 'agua', { 'font-size': 12, fill: '#525252' }); add('line', { x1: 136, y1: 33, x2: 170, y2: 60, stroke: '#7F8C8D' });
+    label(add, 112, 118, 'bromo', { 'font-size': 12, fill: '#525252' }); label(add, 112, 132, 'en CCl₄', { 'font-size': 12, fill: '#525252' }); add('line', { x1: 130, y1: 120, x2: 165, y2: 100, stroke: '#7F8C8D' });
+    // ---------- destilación ----------
+    add = svgAdder('c');
+    hotplate(add, 20, 215, 120);
+    // soporte
+    add('line', { x1: 15, y1: 20, x2: 15, y2: 240, stroke: '#7F8C8D', 'stroke-width': 4 });
+    add('line', { x1: 15, y1: 120, x2: 70, y2: 120, stroke: '#7F8C8D', 'stroke-width': 3 });
+    // matraz
+    add('circle', { cx: 80, cy: 170, r: 42, fill: '#FDFEFE', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+    add('path', { d: 'M42 185 A42 42 0 0 0 118 185 Z', fill: '#AED6F1' });
+    add('rect', { x: 72, y: 70, width: 16, height: 62, fill: '#FDFEFE', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+    add('rect', { x: 73, y: 128, width: 14, height: 8, fill: '#FDFEFE' });
+    // termómetro
+    add('line', { x1: 80, y1: 40, x2: 80, y2: 100, stroke: '#5D6D7E', 'stroke-width': 4 });
+    add('circle', { cx: 80, cy: 102, r: 4, fill: '#C0392B' });
+    label(add, 80, 32, 'termómetro', { 'font-size': 12, fill: '#525252' });
+    // brazo y refrigerante
+    add('line', { x1: 88, y1: 85, x2: 150, y2: 105, stroke: '#5D6D7E', 'stroke-width': 7 });
+    add('line', { x1: 88, y1: 85, x2: 150, y2: 105, stroke: '#FDFEFE', 'stroke-width': 3 });
+    const ang = Math.atan2(80, 180) * 180 / Math.PI;
+    add('g', {}).outerHTML;
+    const g = add('g', { transform: `translate(150 105) rotate(${ang})` });
+    const gadd = svgAdder(g);
+    gadd('rect', { x: 0, y: -14, width: 190, height: 28, rx: 10, fill: '#D6EAF8', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+    gadd('line', { x1: -10, y1: 0, x2: 205, y2: 0, stroke: '#5D6D7E', 'stroke-width': 7 });
+    gadd('line', { x1: -10, y1: 0, x2: 205, y2: 0, stroke: '#FDFEFE', 'stroke-width': 3 });
+    gadd('line', { x1: 165, y1: 14, x2: 165, y2: 34, stroke: '#2471A3', 'stroke-width': 4 });
+    gadd('line', { x1: 25, y1: -14, x2: 25, y2: -34, stroke: '#2471A3', 'stroke-width': 4 });
+    // matraz Erlenmeyer colector
+    add('path', { d: 'M335 200 L335 182 L349 182 L349 200 L375 240 L309 240 Z', fill: '#FDFEFE', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+    add('path', { d: 'M319 225 L365 225 L375 240 L309 240 Z', fill: '#F9E79F' });
+    for (let k = 0; k < 3; k++) add('circle', { cx: 343, cy: 196 + k * 9, r: 2.3, fill: '#D4AC0D' });
+    label(add, 250, 92, 'refrigerante', { 'font-size': 12, fill: '#525252' });
+    label(add, 352, 135, 'entrada', { 'font-size': 11, fill: '#2471A3' }); label(add, 352, 148, 'de agua', { 'font-size': 11, fill: '#2471A3' });
+    label(add, 180, 60, 'salida de agua', { 'font-size': 11, fill: '#2471A3' });
+    label(add, 300, 238, 'destilado', { 'font-size': 12, fill: '#525252', 'text-anchor': 'end' });
+</script>
+</body>
+</html>

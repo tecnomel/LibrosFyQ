@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Diagramas de Lewis de los elementos representativos</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 980px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="920" height="410"></svg>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    const add = svgAdder('s');
+    const groups = [1, 2, 13, 14, 15, 16, 17, 18];
+    const rows = [['H', '', '', '', '', '', '', 'He'], ['Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne'], ['Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar']];
+    const val = [1, 2, 3, 4, 5, 6, 7, 8];
+    const X0 = 110, DX = 100, Y0 = 115, DY = 95;
+    groups.forEach((g, j) => {
+        label(add, X0 + j * DX, 30, 'Grupo ' + g, { fill: '#000070', 'font-size': 15 });
+        label(add, X0 + j * DX, 52, (j === 7 ? '8 (He: 2)' : val[j]) + ' e⁻', { fill: '#C0392B', 'font-size': 14 });
+    });
+    rows.forEach((r, i) => {
+        label(add, 30, Y0 + i * DY + 6, 'P' + (i + 1), { fill: '#000070' });
+        r.forEach((sym, j) => {
+            if (!sym) return;
+            const x = X0 + j * DX, y = Y0 + i * DY;
+            add('rect', { x: x - 44, y: y - 40, width: 88, height: 80, rx: 10, fill: j === 7 ? '#E8DAEF' : '#FEF5E7', stroke: '#D5D8DC', 'stroke-width': 1.5 });
+            lewis(add, x, y, sym, sym === 'He' ? 2 : val[j], { he: sym === 'He' });
+        });
+    });
+    label(add, 460, 400, 'Los puntos representan los electrones de valencia (los del último nivel).', { 'font-size': 15, fill: '#525252', 'font-weight': 600 });
+</script>
+</body>
+</html>

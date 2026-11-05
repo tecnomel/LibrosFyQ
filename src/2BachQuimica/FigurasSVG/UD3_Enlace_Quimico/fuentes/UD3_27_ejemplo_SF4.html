@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_27 · Estructura de Lewis del SF4</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+</head>
+<body>
+<script>
+// SF4: 5 pares alrededor del S (4 enlazantes y 1 no enlazante).
+const svg = crearFigura(230, 200);
+dibujarLewis(svg, 110, 100, { atomos: [
+    { s: "S", x: 0, y: 0, pares: [225] },
+    { s: "F", id: "a", x: 0, y: 1, libres: 3 }, { s: "F", id: "b", x: -1, y: 0, libres: 3 },
+    { s: "F", id: "c", x: 1, y: 0, libres: 3 }, { s: "F", id: "d", x: 0.35, y: -1, libres: 3 }],
+    enlaces: [{ a: "S", b: "a" }, { a: "S", b: "b" }, { a: "S", b: "c" }, { a: "S", b: "d" }] }, { L: 60 });
+</script>
+</body>
+</html>

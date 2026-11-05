@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>¿De qué depende la variación de temperatura?</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } .card .t { font-size: 13.5px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><svg id="a" width="230" height="250"></svg>
+            <div class="t"><b>1a.</b> 400 g de agua: sube de 20&nbsp;°C a 30&nbsp;°C.</div></div>
+        <div class="card"><svg id="b" width="230" height="250"></svg>
+            <div class="t"><b>1b.</b> 200 g de agua: sube de 20&nbsp;°C a 40&nbsp;°C.</div></div>
+        <div class="card"><svg id="c" width="230" height="250"></svg>
+            <div class="t"><b>2.</b> 400 g de glicerina: sube de 20&nbsp;°C a 37&nbsp;°C.</div></div>
+    </div>
+    <div class="note" style="text-align:center; margin-top:6px">Los tres recipientes reciben la misma energía (mismo hornillo, mismo tiempo).</div>
+</div>
+<script src="fig.js"></script>
+<script>
+    function scene(id, fill, liq, lvl, txt) {
+        const add = svgAdder(id);
+        hotplate(add, 45, 190, 140);
+        beaker(add, 65, 80, 100, 110, { fill, color: liq });
+        thermometer(add, 135, 22, 140, lvl);
+        label(add, 115, 18, txt, { 'font-size': 14, 'text-anchor': 'end' });
+    }
+    scene('a', 0.7, '#AED6F1', 0.35, '400 g');
+    scene('b', 0.38, '#AED6F1', 0.6, '200 g');
+    scene('c', 0.7, '#F9E79F', 0.5, '400 g');
+</script>
+</body>
+</html>

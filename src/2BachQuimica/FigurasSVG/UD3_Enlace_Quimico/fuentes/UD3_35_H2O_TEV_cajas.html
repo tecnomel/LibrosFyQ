@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_35 · Formación del H2O según la TEV (cajas)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/cajas.js"></script>
+</head>
+<body>
+<script>
+// Los dos orbitales 2p semiocupados del O se solapan con los 1s de dos H.
+const svg = crearFigura(760, 260);
+const O = { caja: 26 };
+const H = "#B5651D";
+simboloZ(svg, 50, 62, 8, "O");
+dibujarCajas(svg, 58, 44, [{ etq: "1s", e: [2] }, { salto: 16 }, { etq: "2s", e: [2] }, { salto: 6 },
+    { etq: "2px", e: [2] }, { etq: "2py", e: [1] }, { etq: "2pz", e: [1] }], O);
+simboloZ(svg, 50, 142, 1, "H");
+dibujarCajas(svg, 58, 124, [{ etq: "1s", e: [{ n: 1, colores: [H] }], color: CAJA_OTRO }], O);
+simboloZ(svg, 50, 222, 1, "H");
+dibujarCajas(svg, 58, 204, [{ etq: "1s", e: [{ n: 1, colores: [H] }], color: CAJA_OTRO }], O);
+llave(svg, 340, 22, 240, { ancho: 12 });
+texto(svg, 378, 142, [{ t: "H" }, { t: "2", sub: true }, { t: "O" }], { "font-size": 20, fill: COLORES.texto });
+dibujarCajas(svg, 430, 124, [{ etq: "1s", e: [2] }, { salto: 16 }, { etq: "2s", e: [2] }, { salto: 6 },
+    { etq: "2px", e: [2] },
+    { etq: "2py", e: [{ n: 2, colores: ["#1A1A2A", H] }], solapada: true, abajo: "+1s" },
+    { etq: "2pz", e: [{ n: 2, colores: ["#1A1A2A", H] }], solapada: true, abajo: "+1s" }], O);
+</script>
+</body>
+</html>

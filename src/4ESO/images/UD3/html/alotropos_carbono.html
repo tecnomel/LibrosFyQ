@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Nuevas formas alotrópicas del carbono</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1000px; }
+    .row { display: flex; gap: 12px; }
+    .card { flex: 1; text-align: center; }
+    .t { font-size: 14px; color: var(--grey); }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Fullereno C₆₀</h2><svg id="a" width="280" height="240"></svg><div class="t">60 átomos de C en forma de balón («bucky bola»).</div></div>
+        <div class="card"><h2>Nanotubo</h2><svg id="b" width="280" height="240"></svg><div class="t">Una lámina de grafeno enrollada en forma de tubo.</div></div>
+        <div class="card"><h2>Grafeno</h2><svg id="c" width="280" height="240"></svg><div class="t">Lámina de un solo átomo de espesor con forma de panal.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    // ---------- C60: vértices del icosaedro truncado ----------
+    let add = svgAdder('a');
+    const phi = (1 + Math.sqrt(5)) / 2;
+    const base = [[0, 1, 3 * phi], [1, 2 + phi, 2 * phi], [phi, 2, 2 * phi + 1]];
+    let V = [];
+    base.forEach(b => {
+        for (let s1 of [-1, 1]) for (let s2 of [-1, 1]) for (let s3 of [-1, 1]) {
+            const p = [b[0] * s1, b[1] * s2, b[2] * s3];
+            for (let k = 0; k < 3; k++) V.push([p[k % 3], p[(k + 1) % 3], p[(k + 2) % 3]]);
+        }
+    });
+    V = V.filter((p, i) => V.findIndex(q => q.every((v, k) => Math.abs(v - p[k]) < 1e-6)) === i);
+    const rot = ([x, y, z]) => { const a = 0.5, b = 0.35; const x1 = x * Math.cos(a) + z * Math.sin(a), z1 = -x * Math.sin(a) + z * Math.cos(a); return [x1, y * Math.cos(b) - z1 * Math.sin(b), y * Math.sin(b) + z1 * Math.cos(b)]; };
+    const R3 = V.map(rot), S = 21, cx = 140, cy = 118;
+    const E = [];
+    for (let i = 0; i < V.length; i++) for (let j = i + 1; j < V.length; j++) if (Math.abs(Math.hypot(...V[i].map((v, k) => v - V[j][k])) - 2) < 1e-3) E.push([i, j]);
+    E.sort((e, f) => (R3[e[0]][2] + R3[e[1]][2]) - (R3[f[0]][2] + R3[f[1]][2])).forEach(([i, j]) => {
+        const z = (R3[i][2] + R3[j][2]) / 2, front = z > 0;
+        add('line', { x1: cx + S * R3[i][0], y1: cy - S * R3[i][1], x2: cx + S * R3[j][0], y2: cy - S * R3[j][1], stroke: front ? '#34495E' : '#BDC3C7', 'stroke-width': front ? 2.5 : 1.5 });
+    });
+    R3.map((p, i) => i).sort((i, j) => R3[i][2] - R3[j][2]).forEach(i => { if (R3[i][2] > 0) ball(add, cx + S * R3[i][0], cy - S * R3[i][1], 'C', 5, false); });
+    // ---------- nanotubo: red hexagonal enrollada ----------
+    add = svgAdder('b');
+    const Rt = 55, x0 = 140, a = 13;
+    const atoms = [];
+    for (let row = 0; row < 16; row++) for (let k = 0; k < 18; k++) {
+        const th = (k + (row % 2) * 0.5) * 2 * Math.PI / 18;
+        atoms.push({ th, y: 20 + row * a * 1.3, row, k });
+    }
+    const pos = at => [x0 + Rt * Math.sin(at.th), at.y + 6 * Math.cos(at.th)];
+    add('ellipse', { cx: x0, cy: 20, rx: Rt, ry: 8, fill: 'none', stroke: '#AAB7B8', 'stroke-width': 1.5 });
+    atoms.forEach(at => {
+        const nb = atoms.filter(b => b.row === at.row + 1 && (b.k === at.k || b.k === (at.k + (at.row % 2 ? 1 : 17)) % 18));
+        nb.forEach(b => {
+            const front = Math.cos(at.th) > 0 && Math.cos(b.th) > 0, [x1, y1] = pos(at), [x2, y2] = pos(b);
+            add('line', { x1, y1, x2, y2, stroke: front ? '#34495E' : '#D5D8DC', 'stroke-width': front ? 2 : 1.2 });
+        });
+    });
+    atoms.filter(at => Math.cos(at.th) > 0).forEach(at => { const [x, y] = pos(at); ball(add, x, y, 'C', 3.6, false); });
+    // ---------- grafeno ----------
+    add = svgAdder('c');
+    const r = 17, pts = [];
+    for (let i = 0; i < 6; i++) for (let j = 0; j < 7; j++) {
+        const cx2 = 30 + j * r * Math.sqrt(3) + (i % 2) * r * Math.sqrt(3) / 2, cy2 = 30 + i * r * 1.5;
+        for (let k = 0; k < 6; k++) pts.push([cx2 + r * Math.cos(Math.PI / 6 + k * Math.PI / 3), cy2 + r * Math.sin(Math.PI / 6 + k * Math.PI / 3)]);
+    }
+    const U = pts.filter((p, i) => pts.findIndex(q => Math.hypot(q[0] - p[0], q[1] - p[1]) < 1) === i).filter(([x, y]) => x < 270 && y < 225);
+    for (let i = 0; i < U.length; i++) for (let j = i + 1; j < U.length; j++) if (Math.abs(Math.hypot(U[i][0] - U[j][0], U[i][1] - U[j][1]) - r) < 1)
+        add('line', { x1: U[i][0], y1: U[i][1], x2: U[j][0], y2: U[j][1], stroke: '#34495E', 'stroke-width': 2.5 });
+    U.forEach(([x, y]) => ball(add, x, y, 'C', 4.5, false));
+</script>
+</body>
+</html>

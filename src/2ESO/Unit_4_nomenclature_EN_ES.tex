@@ -1,0 +1,779 @@
+% Unidad 4. Nomenclature (versión bilingüe: explicación en español; reglas en dos columnas,
+% español a la izquierda e inglés a la derecha; ejemplos y ejercicios en los dos idiomas).
+% Procede de src/Formulacion/inorganica/inorganica_nuevo_2_ESO.tex (sin preámbulo, portada ni soluciones propias:
+% las soluciones van al fichero común del libro).
+% Figuras: FigurasSVG/Unit_4_Nomenclature/pdf (generadas desde html/figuras_inorganica.html con
+% html/exportar_figuras.py; las inglesas llevan el sufijo -en).
+%
+% Saberes básicos (LOMLOE) asociados a esta unidad
+%
+% Bloque B. La materia
+%   - Nomenclatura: participación de un lenguaje científico común y universal formulando y nombrando
+%     sustancias simples, iones monoatómicos y compuestos binarios mediante las reglas de nomenclatura de la IUPAC.
+%     Justificación: toda la unidad trabaja la nomenclatura con prefijos multiplicadores (IUPAC 2005)
+%     de óxidos, hidruros, compuestos de hidrógeno con no metales, sales binarias e hidróxidos,
+%     en español y en inglés.
+
+% --- Comandos propios de esta unidad ---
+% Esquema de una regla de nomenclatura (figura vectorial generada desde HTML)
+\newcommand{\esquemafig}[2][0.85]{\begin{center}\includegraphics[width=#1\textwidth]{FigurasSVG/Unit_4_Nomenclature/pdf/#2.pdf}\end{center}}
+% Cabecera de los apartados "¿Cómo se formulan / nombran?"
+\newcommand{\formulan}{\vspace*{2mm}\noindent\xmybox{\bfseries ¿Cómo se formulan? / \textit{From name to formula}}\par\smallskip}
+\newcommand{\nombran}{\vspace*{2mm}\noindent\xmybox{\bfseries ¿Cómo se nombran? / \textit{How are they named?}}\par\smallskip}
+\newcommand{\ejemplos}{\par\noindent\textbf{\uline{Ejemplos / \textit{Examples}}}:\par}
+% Nombre incorrecto (tachado en rojo)
+\newcommand{\mal}[1]{\textcolor{red}{\sout{#1}}}
+% Texto en inglés dentro de una frase en español
+\newcommand{\en}[1]{\textit{#1}}
+% Figura generada desde HTML (sin figure[H]: tras las columnas de paracol, [H] puede salirse por el pie de la página)
+\newcommand{\figura}[2][0.95]{\par\begin{center}\includegraphics[width=#1\textwidth]{FigurasSVG/Unit_4_Nomenclature/pdf/#2.pdf}\end{center}}
+% Reglas en dos columnas: español a la izquierda, inglés a la derecha (\ingles cambia de columna)
+\newcommand{\cabcol}[1]{\raggedright\noindent{\sffamily\bfseries\color{ocre}#1}\par\smallskip}
+\newenvironment{reglas}{%
+    \par\medskip\setlength{\columnseprule}{0.4pt}%
+    \begin{paracol}{2}\cabcol{Español}%
+}{%
+    \end{paracol}\medskip%
+}
+\newcommand{\ingles}{\switchcolumn\cabcol{English}}
+
+\spacing{1.3}
+\raggedbottom % pages with large figures end where the text ends (no stretched gaps between boxes)
+
+%=====================================================================
+\section{¿Qué vamos a aprender?}
+%=====================================================================
+
+Cada sustancia química tiene un \negrita{nombre} y una \negrita{fórmula}. En este tema aprenderás a pasar de uno a otro, en español y en inglés:
+
+\begin{itemize}
+    \item \negrita{Formular} (\en{write the formula}): del nombre a la fórmula. \quad trióxido de dihierro / \en{diiron trioxide} \(\to\) \ch{Fe2O3}
+    \item \negrita{Nombrar} (\en{name}): de la fórmula al nombre. \quad \ch{CO2} \(\to\) dióxido de carbono / \en{carbon dioxide}
+\end{itemize}
+
+Seguiremos las normas internacionales de la \negrita{IUPAC}. En este curso solo usaremos una forma de nombrar: la de los \negrita{prefijos}.
+
+\begin{marker}
+    \negrita{La fórmula es la misma en todos los idiomas}: \ch{CO2} es \ch{CO2} en español, en inglés o en chino. Lo que cambia es el \negrita{nombre}, y en inglés las palabras van en \negrita{otro orden}: dióxido de carbono \(\leftrightarrow\) \en{carbon dioxide}.
+\end{marker}
+
+\figura{fig2-formula}
+
+\begin{exercise}
+    ¿Cuántos átomos de cada elemento hay? / \en{How many atoms of each element are there?} \textbf{a)} \ch{H2O}; \textbf{b)} \ch{CO2}; \textbf{c)} \ch{NH3}; \textbf{d)} \ch{Fe2O3}; \textbf{e)} \ch{CH4}; \textbf{f)} \ch{Al2S3}.
+    \begin{solu}
+        \textcolor{blue}{El subíndice indica el número de átomos; si no hay número, hay 1.}\\
+        \textbf{a)} \textcolor{red}{2 H y 1 O}; \textbf{b)} \textcolor{red}{1 C y 2 O}; \textbf{c)} \textcolor{red}{1 N y 3 H}; \textbf{d)} \textcolor{red}{2 Fe y 3 O}; \textbf{e)} \textcolor{red}{1 C y 4 H}; \textbf{f)} \textcolor{red}{2 Al y 3 S}
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{Lo que necesitas antes de empezar}
+%=====================================================================
+
+\subsection{Los prefijos / \en{Prefixes}}
+
+Los prefijos son \negrita{los mismos en español y en inglés}: mono, di, tri, tetra, penta, hexa, hepta…
+
+\figura[0.85]{fig2-prefijos}
+
+\subsubsection*{El prefijo mono- casi nunca se escribe / \en{The prefix mono- is hardly ever written}}
+
+\begin{reglas}
+    El prefijo \negrita{mono-} (1) \negrita{normalmente se omite}: si no hay prefijo, hay un solo átomo.
+    \begin{enumerate}[label=\numberballgreen]
+        \item El elemento que se nombra \negrita{al final} nunca lleva mono: \ch{NaCl} cloruro de sodio, no \mal{cloruro de monosodio}.
+        \item El otro, normalmente tampoco: \ch{CaO} óxido de calcio.
+        \item Se mantiene si los mismos dos elementos forman \negrita{varios compuestos}: \ch{CO} \negrita{monóxido} de carbono (existe el \ch{CO2}).
+    \end{enumerate}
+    \ingles
+    The prefix \negrita{mono-} (1) is \negrita{usually left out}: if there is no prefix, there is only one atom.
+    \begin{enumerate}[label=\numberballgreen]
+        \item The element named \negrita{first} never takes mono: \ch{NaCl} sodium chloride, not \mal{monosodium chloride}.
+        \item The other one usually does not either: \ch{CaO} calcium oxide.
+        \item It is kept when the same two elements form \negrita{several compounds}: \ch{CO} carbon \negrita{monoxide} (\ch{CO2} also exists).
+    \end{enumerate}
+\end{reglas}
+
+\begin{table}[H]
+    \centering
+    \caption{Casos más representativos en los que sí se escribe mono}
+    \vspace{-5pt}
+    \begin{tabular}{@{}clll@{}}
+        \toprule
+        \textbf{Fórmula} & \textbf{Nombre} & \textbf{\en{Name}} & \textbf{¿Por qué? / \en{Why?}} \\
+        \midrule
+        \ch{CO} & \negrita{monóxido} de carbono & \en{carbon \negrita{monoxide}} & existe / \en{there is} \ch{CO2} \\[3pt]
+        \ch{NO} & \negrita{monóxido} de nitrógeno & \en{nitrogen \negrita{monoxide}} & existe / \en{there is} \ch{NO2} \\[3pt]
+        \ch{N2O} & \negrita{monóxido} de dinitrógeno & \en{dinitrogen \negrita{monoxide}} & \ch{NO}, \ch{N2O3}, \ch{N2O5}… \\[3pt]
+        \ch{FeO} & \negrita{monóxido} de hierro & \en{iron \negrita{monoxide}} & existe / \en{there is} \ch{Fe2O3} \\[3pt]
+        \ch{FeS} & \negrita{mono}sulfuro de hierro & \en{iron \negrita{mono}sulfide} & existe / \en{there is} \ch{FeS2} \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:u4_mono}
+\end{table}
+
+\begin{marker}
+    \negrita{mono + óxido = monóxido} y \en{\negrita{mono + oxide = monoxide}}: se pierde una o. Con los demás prefijos la IUPAC no quita ninguna vocal: di\negrita{ó}xido, penta\negrita{ó}xido / \en{penta\negrita{o}xide, tetra\negrita{o}xide}. En muchos libros en inglés verás también \en{pentoxide} o \en{tetroxide}: significan lo mismo.
+\end{marker}
+
+\begin{exercise}
+    \textbf{1.} Escribe el prefijo / \en{Write the prefix}: \textbf{a)} 2; \textbf{b)} 3; \textbf{c)} 4; \textbf{d)} 5; \textbf{e)} 6; \textbf{f)} 7.\\
+    \textbf{2.} ¿Qué número indica? / \en{Which number does it mean?} \textbf{a)} penta; \textbf{b)} hexa; \textbf{c)} di; \textbf{d)} tri.
+    \begin{solu}
+        \textcolor{blue}{Los prefijos son iguales en los dos idiomas.}\\
+        \textbf{1. a)} \textcolor{red}{di}; \textbf{b)} \textcolor{red}{tri}; \textbf{c)} \textcolor{red}{tetra}; \textbf{d)} \textcolor{red}{penta}; \textbf{e)} \textcolor{red}{hexa}; \textbf{f)} \textcolor{red}{hepta}\\
+        \textbf{2. a)} \textcolor{red}{5}; \textbf{b)} \textcolor{red}{6}; \textbf{c)} \textcolor{red}{2}; \textbf{d)} \textcolor{red}{3}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿Lleva mono o no? Nombra en español y en inglés / \en{Mono or not? Name in Spanish and in English}: \textbf{a)} \ch{CO}; \textbf{b)} \ch{KCl}; \textbf{c)} \ch{NO}; \textbf{d)} \ch{MgO}; \textbf{e)} \ch{N2O}; \textbf{f)} \ch{LiH}.
+    \begin{solu}
+        \textcolor{blue}{Mono solo se mantiene en los casos de la tabla.}\\
+        \textbf{a)} \textcolor{red}{monóxido de carbono} · \textcolor{red}{\en{carbon monoxide}}; \textbf{b)} \textcolor{red}{cloruro de potasio} · \textcolor{red}{\en{potassium chloride}}; \textbf{c)} \textcolor{red}{monóxido de nitrógeno} · \textcolor{red}{\en{nitrogen monoxide}}; \textbf{d)} \textcolor{red}{óxido de magnesio} · \textcolor{red}{\en{magnesium oxide}}; \textbf{e)} \textcolor{red}{monóxido de dinitrógeno} · \textcolor{red}{\en{dinitrogen monoxide}}; \textbf{f)} \textcolor{red}{hidruro de litio} · \textcolor{red}{\en{lithium hydride}}
+    \end{solu}
+\end{exercise}
+
+\subsection{¿Qué elemento se escribe a la derecha? / \en{Which element is written on the right?}}
+
+La fórmula se escribe igual en los dos idiomas, así que esta regla también es la misma:
+
+\begin{reglas}
+    \begin{itemize}
+        \item Los \negrita{metales} se escriben siempre a la \negrita{izquierda}.
+        \item Entre dos no metales, el que está \negrita{más a la derecha} en la fila de abajo se escribe a la \negrita{derecha}.
+    \end{itemize}
+    \ingles
+    \begin{itemize}
+        \item \negrita{Metals} are always written on the \negrita{left}.
+        \item Between two non-metals, the one \negrita{further to the right} in the row below is written on the \negrita{right}.
+    \end{itemize}
+\end{reglas}
+
+\figura{fig-secuencia}
+
+\ejemplos
+\ballnumber{1} : Na y Cl \(\to\) \ch{NaCl} \quad \ballnumber{2} : C y O \(\to\) \ch{CO2} \quad \ballnumber{3} : N y H \(\to\) \ch{NH3} \quad \ballnumber{4} : H y Cl \(\to\) \ch{HCl}
+
+\begin{exercise}
+    ¿Qué elemento se escribe a la derecha? / \en{Which element is written on the right?} \textbf{a)} Na y Br; \textbf{b)} S y O; \textbf{c)} H y S; \textbf{d)} N y H; \textbf{e)} Cl y O; \textbf{f)} O y F.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{Br} (el Na es un metal); \textbf{b)} \textcolor{red}{O}; \textbf{c)} \textcolor{red}{S}; \textbf{d)} \textcolor{red}{H}; \textbf{e)} \textcolor{red}{Cl} (los halógenos van a la derecha del oxígeno); \textbf{f)} \textcolor{red}{F}
+    \end{solu}
+\end{exercise}
+
+\subsection{Los nombres de los elementos en inglés / \en{Element names in English}}
+
+Para nombrar en inglés necesitas saber cómo se llama cada elemento. Muchos se parecen al español (\en{sodium}, \en{calcium}, \en{carbon}), pero otros son muy distintos: \negrita{hierro} es \en{iron}, \negrita{plomo} es \en{lead}, \negrita{estaño} es \en{tin} y \negrita{azufre} es \en{sulfur}.
+
+\begin{table}[H]
+    \centering
+    \caption{Nombres de los metales en español y en inglés}
+    \vspace{-5pt}
+    \begin{tabular}{@{}cll@{\hspace{1cm}}cll@{}}
+        \toprule
+        \textbf{Símbolo} & \textbf{Español} & \textbf{\en{English}} & \textbf{Símbolo} & \textbf{Español} & \textbf{\en{English}} \\
+        \midrule
+        Li & litio & \en{lithium} & Mn & manganeso & \en{manganese} \\[3pt]
+        Na & sodio & \en{sodium} & Fe & hierro & \en{iron} \\[3pt]
+        K & potasio & \en{potassium} & Co & cobalto & \en{cobalt} \\[3pt]
+        Cs & cesio & \en{caesium} (EE.\,UU.: \en{cesium}) & Ni & níquel & \en{nickel} \\[3pt]
+        Be & berilio & \en{beryllium} & Cu & cobre & \en{copper} \\[3pt]
+        Mg & magnesio & \en{magnesium} & Ag & plata & \en{silver} \\[3pt]
+        Ca & calcio & \en{calcium} & Au & oro & \en{gold} \\[3pt]
+        Sr & estroncio & \en{strontium} & Zn & cinc & \en{zinc} \\[3pt]
+        Ba & bario & \en{barium} & Cd & cadmio & \en{cadmium} \\[3pt]
+        Al & aluminio & \en{aluminium} (EE.\,UU.: \en{aluminum}) & Hg & mercurio & \en{mercury} \\[3pt]
+        Cr & cromo & \en{chromium} & Sn & estaño & \en{tin} \\[3pt]
+        Pt & platino & \en{platinum} & Pb & plomo & \en{lead} \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:u4_metales_en}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Nombres de los no metales y su forma terminada en -uro / \en{-ide}}
+    \vspace{-5pt}
+    \begin{tabular}{@{}cllll@{}}
+        \toprule
+        \textbf{Símbolo} & \textbf{Español} & \textbf{\en{English}} & \textbf{-uro} & \textbf{\en{-ide}} \\
+        \midrule
+        H & hidrógeno & \en{hydrogen} & hidruro & \en{hydride} \\[3pt]
+        O & oxígeno & \en{oxygen} & óxido & \en{oxide} \\[3pt]
+        F & flúor & \en{fluorine} & fluoruro & \en{fluoride} \\[3pt]
+        Cl & cloro & \en{chlorine} & cloruro & \en{chloride} \\[3pt]
+        Br & bromo & \en{bromine} & bromuro & \en{bromide} \\[3pt]
+        I & yodo & \en{iodine} & yoduro & \en{iodide} \\[3pt]
+        S & azufre & \en{sulfur} (R.\,Unido: \en{sulphur}) & sulfuro & \en{sulfide} \\[3pt]
+        Se & selenio & \en{selenium} & seleniuro & \en{selenide} \\[3pt]
+        Te & teluro & \en{tellurium} & telururo & \en{telluride} \\[3pt]
+        N & nitrógeno & \en{nitrogen} & nitruro & \en{nitride} \\[3pt]
+        P & fósforo & \en{phosphorus} & fosfuro & \en{phosphide} \\[3pt]
+        C & carbono & \en{carbon} & carburo & \en{carbide} \\[3pt]
+        Si & silicio & \en{silicon} & siliciuro & \en{silicide} \\[3pt]
+        B & boro & \en{boron} & boruro & \en{boride} \\[3pt]
+        As & arsénico & \en{arsenic} & --- & --- \\[3pt]
+        Sb & antimonio & \en{antimony} & --- & --- \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:u4_nometales_en}
+\end{table}
+
+\subsection{La raíz del nombre: -uro en español, \en{-ide} en inglés}
+
+El elemento de la derecha se nombra con la \negrita{raíz} de su nombre seguida de una terminación: \negrita{-uro} en español y \negrita{\en{-ide}} en inglés. La forma de obtener la raíz es parecida, pero \negrita{en inglés se parte del nombre inglés del elemento}:
+
+\begin{reglas}
+    \begin{enumerate}[label=\numberballgreen]
+        \item Escribe el nombre del elemento y \negrita{tacha la terminación}: clor\mal{o}, nitr\mal{ógeno}, carb\mal{ono}, fósf\mal{oro}.
+        \item Lo que queda es la \negrita{raíz} (sin tilde): clor, nitr, carb, fosf.
+        \item Añade \negrita{-uro}: cloruro, nitruro, carburo, fosfuro.
+    \end{enumerate}
+    Casos especiales: el \negrita{azufre} usa una raíz latina (\negrita{sulf}uro) y el \negrita{oxígeno} no lleva -uro: se dice \negrita{óxido}.
+    \ingles
+    \begin{enumerate}[label=\numberballgreen]
+        \item Write the English name and \negrita{cross out the ending}: chlor\mal{ine}, nitr\mal{ogen}, carb\mal{on}, phosph\mal{orus}.
+        \item What is left is the \negrita{root}: chlor, nitr, carb, phosph.
+        \item Add \negrita{-ide}: chloride, nitride, carbide, phosphide.
+    \end{enumerate}
+    No exceptions here: sulf\mal{ur} \(\to\) \negrita{sulfide} and ox\mal{ygen} \(\to\) \negrita{oxide} follow the same rule.
+\end{reglas}
+
+Las terminaciones que se quitan en inglés son casi siempre \negrita{-ine} (halógenos), \negrita{-ogen}/\negrita{-ygen}, \negrita{-on}, \negrita{-orus}, \negrita{-ur} e \negrita{-ium}. Fíjate en que el oxígeno, que en español es una excepción (óxido), en inglés sigue la regla: \en{ox + ide = oxide}.
+
+\figura{fig-raiz}
+
+\figura{fig-raiz-en}
+
+\figura[0.85]{fig2-uro}
+
+\figura[0.85]{fig2-uro-en}
+
+\begin{exercise}
+    Escribe la raíz y el nombre terminado en -uro y en \en{-ide} / \en{Write the root and the name ending in -uro and in -ide}: \textbf{a)} cloro / \en{chlorine}; \textbf{b)} azufre / \en{sulfur}; \textbf{c)} nitrógeno / \en{nitrogen}; \textbf{d)} fósforo / \en{phosphorus}; \textbf{e)} bromo / \en{bromine}; \textbf{f)} carbono / \en{carbon}; \textbf{g)} oxígeno / \en{oxygen}; \textbf{h)} yodo / \en{iodine}.
+    \begin{solu}
+        \textbf{a)} clor \(\to\) \textcolor{red}{cloruro} · \en{chlor} \(\to\) \textcolor{red}{\en{chloride}}; \textbf{b)} sulf \(\to\) \textcolor{red}{sulfuro} · \en{sulf} \(\to\) \textcolor{red}{\en{sulfide}}; \textbf{c)} nitr \(\to\) \textcolor{red}{nitruro} · \en{nitr} \(\to\) \textcolor{red}{\en{nitride}}; \textbf{d)} fosf \(\to\) \textcolor{red}{fosfuro} · \en{phosph} \(\to\) \textcolor{red}{\en{phosphide}}; \textbf{e)} brom \(\to\) \textcolor{red}{bromuro} · \en{brom} \(\to\) \textcolor{red}{\en{bromide}}; \textbf{f)} carb \(\to\) \textcolor{red}{carburo} · \en{carb} \(\to\) \textcolor{red}{\en{carbide}}; \textbf{g)} \textcolor{red}{óxido} (excepción) · \en{ox} \(\to\) \textcolor{red}{\en{oxide}} (en inglés sigue la regla); \textbf{h)} yod \(\to\) \textcolor{red}{yoduro} · \en{iod} \(\to\) \textcolor{red}{\en{iodide}}
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{La receta para nombrar y formular}
+%=====================================================================
+
+Todos los compuestos de este tema tienen \negrita{dos partes} y se nombran con la misma receta. Pero \negrita{el orden de las palabras cambia} de un idioma a otro.
+
+\subsection{Nombrar: de la fórmula al nombre / \en{From formula to name}}
+
+\begin{reglas}
+    Se lee la fórmula de \negrita{derecha a izquierda}:
+    \begin{enumerate}[label=\numberballgreen]
+        \item Raíz del elemento de la \negrita{derecha} + \negrita{-uro} (si es el oxígeno, \negrita{óxido}), con el prefijo de su número de átomos delante.
+        \item Escribe \negrita{de}.
+        \item Prefijo del elemento de la \negrita{izquierda} (si solo hay 1, nada) y su nombre.
+    \end{enumerate}
+    \ch{Al2S3}: \negrita{tri}sulfuro \negrita{de} \negrita{di}aluminio
+    \ingles
+    Read the formula from \negrita{left to right}:
+    \begin{enumerate}[label=\numberballgreen]
+        \item Prefix for the element on the \negrita{left} (nothing if there is only 1) and its name.
+        \item Prefix for the element on the \negrita{right} + its root + \negrita{-ide}.
+        \item There is \negrita{no} word in between: never write \mal{of}.
+    \end{enumerate}
+    \ch{Al2S3}: \negrita{di}aluminium \negrita{tri}sulfide
+\end{reglas}
+
+\esquemafig{esq-binario}
+
+\esquemafig{esq-binario-en}
+
+\figura{fig-receta}
+
+\figura{fig-receta-en}
+
+\begin{marker}
+    \negrita{La gran diferencia es el orden}. En español se nombra primero lo de la derecha y se une con \negrita{de}; en inglés se nombra en el mismo orden que la fórmula y no hay ninguna palabra en medio:
+    \begin{center}
+        \ch{NaCl}: cloruro \negrita{de} sodio \(\leftrightarrow\) \en{sodium chloride} \qquad \ch{CO2}: dióxido \negrita{de} carbono \(\leftrightarrow\) \en{carbon dioxide}
+    \end{center}
+\end{marker}
+
+\subsection{Formular: del nombre a la fórmula / \en{From name to formula}}
+
+\begin{reglas}
+    \begin{enumerate}[label=\numberballgreen]
+        \item Corta el nombre por \negrita{de}.
+        \item Traduce los prefijos a números.
+        \item Escribe \negrita{al revés}: primero lo que va después de «de».
+    \end{enumerate}
+    trióxido de dihierro \(\to\) \ch{Fe2O3}
+    \ingles
+    \begin{enumerate}[label=\numberballgreen]
+        \item Split the name into its \negrita{two words}.
+        \item Turn the prefixes into numbers.
+        \item Write them \negrita{in the same order}: the first word goes on the left.
+    \end{enumerate}
+    diiron trioxide \(\to\) \ch{Fe2O3}
+\end{reglas}
+
+\figura{fig2-formular}
+
+\figura{fig2-formular-en}
+
+\begin{marker}
+    \negrita{No simplifiques nunca / \en{Never simplify}.} La fórmula se escribe tal y como dice el nombre: tetraóxido de dinitrógeno / \en{dinitrogen tetraoxide} es \ch{N2O4} (no \mal{\ch{NO2}}, que es otra sustancia).
+\end{marker}
+
+\subsection{¿Qué tipo de compuesto es? / \en{What type of compound is it?}}
+
+\figura{fig2-identificar}
+
+\figura{fig2-identificar-en}
+
+\begin{exercise}
+    Indica de qué tipo es cada compuesto, en español y en inglés / \en{Say what type of compound it is, in Spanish and in English}: \textbf{a)} \ch{SO2}; \textbf{b)} \ch{KH}; \textbf{c)} \ch{KOH}; \textbf{d)} \ch{HBr}; \textbf{e)} \ch{KBr}; \textbf{f)} \ch{NH3}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{óxido} · \textcolor{red}{\en{oxide}}; \textbf{b)} \textcolor{red}{hidruro} · \textcolor{red}{\en{hydride}}; \textbf{c)} \textcolor{red}{hidróxido} · \textcolor{red}{\en{hydroxide}}; \textbf{d)} \textcolor{red}{hidrógeno + no metal} · \textcolor{red}{\en{hydrogen + non-metal}} (bromuro de hidrógeno · \en{hydrogen bromide}); \textbf{e)} \textcolor{red}{sal binaria} · \textcolor{red}{\en{binary salt}} (bromuro de potasio · \en{potassium bromide}); \textbf{f)} \textcolor{red}{nombre especial}: amoniaco · \en{ammonia}
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{Óxidos / \en{Oxides}}
+%=====================================================================
+
+\begin{reglas}
+    \negrita{Óxido}: compuesto de \negrita{oxígeno} y otro elemento. El oxígeno se escribe a la \negrita{derecha}.
+    \begin{enumerate}[label=\numberballgreen]
+        \item Prefijo del nº de oxígenos + \negrita{óxido}.
+        \item \negrita{de}.
+        \item Prefijo del nº de átomos del otro elemento + su nombre.
+    \end{enumerate}
+    \ch{Fe2O3}: \negrita{tri}óxido de \negrita{di}hierro
+    \ingles
+    \negrita{Oxide}: a compound of \negrita{oxygen} and another element. Oxygen is written on the \negrita{right}.
+    \begin{enumerate}[label=\numberballgreen]
+        \item Prefix for the number of atoms of the element + its name.
+        \item Prefix for the number of oxygens + \negrita{oxide}.
+    \end{enumerate}
+    \ch{Fe2O3}: \negrita{di}iron \negrita{tri}oxide
+\end{reglas}
+
+\nombran
+\esquemafig{esq-oxido-pref}
+
+\esquemafig{esq-oxido-pref-en}
+
+\ejemplos
+\begin{center}
+    \begin{tabular}{@{}cll@{}}
+        \toprule
+        \textbf{Fórmula} & \textbf{Nombre} & \textbf{\en{Name}} \\
+        \midrule
+        \ch{CO} & monóxido de carbono & \en{carbon monoxide} \\[3pt]
+        \ch{CO2} & dióxido de carbono & \en{carbon dioxide} \\[3pt]
+        \ch{SO3} & trióxido de azufre & \en{sulfur trioxide} \\[3pt]
+        \ch{Na2O} & óxido de disodio & \en{disodium oxide} \\[3pt]
+        \ch{Fe2O3} & trióxido de dihierro & \en{diiron trioxide} \\[3pt]
+        \ch{N2O5} & pentaóxido de dinitrógeno & \en{dinitrogen pentaoxide} \\[3pt]
+        \ch{CaO} & óxido de calcio & \en{calcium oxide} \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\formulan
+\ballnumber{1} : dióxido de azufre / \en{sulfur dioxide} \(\to\) 2 O y 1 S \(\to\) \ch{SO2}
+
+\ballnumber{2} : óxido de disodio / \en{disodium oxide} \(\to\) 1 O y 2 Na \(\to\) \ch{Na2O}
+
+\ballnumber{3} : pentaóxido de difósforo / \en{diphosphorus pentaoxide} \(\to\) 5 O y 2 P \(\to\) \ch{P2O5}
+
+\begin{marker}
+    \negrita{¡Cuidado con los halógenos! / \en{Watch out for the halogens!}} Con F, Cl, Br e I el oxígeno va a la \negrita{izquierda} y el halógeno se nombra con raíz + uro / \en{root + ide}: \ch{OF2} \negrita{difluoruro de oxígeno} / \en{\negrita{oxygen difluoride}}, \ch{OCl2} \negrita{dicloruro de oxígeno} / \en{\negrita{oxygen dichloride}}. No son óxidos: no escribas \mal{\ch{Cl2O}} ni digas \mal{óxido de dicloro} / \mal{\en{dichlorine oxide}}.
+\end{marker}
+\esquemafig{esq-halogenuro-oxigeno}
+
+\esquemafig{esq-halogenuro-oxigeno-en}
+
+\begin{exercise}
+    Nombra en español y en inglés / \en{Name in Spanish and in English}: \textbf{a)} \ch{CO2}; \textbf{b)} \ch{SO2}; \textbf{c)} \ch{CaO}; \textbf{d)} \ch{K2O}; \textbf{e)} \ch{Al2O3}; \textbf{f)} \ch{N2O3}; \textbf{g)} \ch{PbO2}; \textbf{h)} \ch{SiO2}; \textbf{i)} \ch{OCl2}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{dióxido de carbono} · \textcolor{red}{\en{carbon dioxide}}; \textbf{b)} \textcolor{red}{dióxido de azufre} · \textcolor{red}{\en{sulfur dioxide}}; \textbf{c)} \textcolor{red}{óxido de calcio} · \textcolor{red}{\en{calcium oxide}}; \textbf{d)} \textcolor{red}{óxido de dipotasio} · \textcolor{red}{\en{dipotassium oxide}}; \textbf{e)} \textcolor{red}{trióxido de dialuminio} · \textcolor{red}{\en{dialuminium trioxide}}; \textbf{f)} \textcolor{red}{trióxido de dinitrógeno} · \textcolor{red}{\en{dinitrogen trioxide}}; \textbf{g)} \textcolor{red}{dióxido de plomo} · \textcolor{red}{\en{lead dioxide}}; \textbf{h)} \textcolor{red}{dióxido de silicio} · \textcolor{red}{\en{silicon dioxide}}; \textbf{i)} \textcolor{red}{dicloruro de oxígeno} · \textcolor{red}{\en{oxygen dichloride}} (no es un óxido)
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Formula / \en{Write the formula}: \textbf{a)} monóxido de carbono; \textbf{b)} \en{sulfur trioxide}; \textbf{c)} óxido de dilitio; \textbf{d)} \en{iron monoxide}; \textbf{e)} pentaóxido de dinitrógeno; \textbf{f)} \en{magnesium oxide}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{\ch{CO}}; \textbf{b)} \textcolor{red}{\ch{SO3}}; \textbf{c)} \textcolor{red}{\ch{Li2O}}; \textbf{d)} \textcolor{red}{\ch{FeO}}; \textbf{e)} \textcolor{red}{\ch{N2O5}}; \textbf{f)} \textcolor{red}{\ch{MgO}}
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{Hidruros: metal + hidrógeno / \en{Hydrides: metal + hydrogen}}
+%=====================================================================
+
+\begin{reglas}
+    \negrita{Hidruro}: compuesto de un \negrita{metal} y \negrita{hidrógeno}. El hidrógeno se escribe a la \negrita{derecha}.
+    \begin{enumerate}[label=\numberballgreen]
+        \item Prefijo del nº de hidrógenos + \negrita{hidruro}.
+        \item \negrita{de} + nombre del metal (sin prefijo: siempre hay un solo átomo).
+    \end{enumerate}
+    \ch{CoH3}: \negrita{tri}hidruro de cobalto
+    \ingles
+    \negrita{Hydride}: a compound of a \negrita{metal} and \negrita{hydrogen}. Hydrogen is written on the \negrita{right}.
+    \begin{enumerate}[label=\numberballgreen]
+        \item Name of the metal (no prefix: there is always one atom).
+        \item Prefix for the number of hydrogens + \negrita{hydride}.
+    \end{enumerate}
+    \ch{CoH3}: cobalt \negrita{tri}hydride
+\end{reglas}
+
+\nombran
+\esquemafig{esq-hidruro-pref}
+
+\esquemafig{esq-hidruro-pref-en}
+
+\ejemplos
+\begin{center}
+    \begin{tabular}{@{}cll@{}}
+        \toprule
+        \textbf{Fórmula} & \textbf{Nombre} & \textbf{\en{Name}} \\
+        \midrule
+        \ch{NaH} & hidruro de sodio & \en{sodium hydride} \\[3pt]
+        \ch{CaH2} & dihidruro de calcio & \en{calcium dihydride} \\[3pt]
+        \ch{AlH3} & trihidruro de aluminio & \en{aluminium trihydride} \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\formulan
+\ballnumber{1} : dihidruro de hierro / \en{iron dihydride} \(\to\) 1 Fe y 2 H \(\to\) \ch{FeH2} \quad \ballnumber{2} : hidruro de litio / \en{lithium hydride} \(\to\) \ch{LiH}
+
+\begin{exercise}
+    \textbf{1.} Nombra en español y en inglés / \en{Name in Spanish and in English}: \textbf{a)} \ch{KH}; \textbf{b)} \ch{MgH2}; \textbf{c)} \ch{FeH3}; \textbf{d)} \ch{PbH4}; \textbf{e)} \ch{CuH}.\\
+    \textbf{2.} Formula / \en{Write the formula}: \textbf{a)} hidruro de sodio; \textbf{b)} \en{barium dihydride}; \textbf{c)} trihidruro de cobalto; \textbf{d)} \en{tin tetrahydride}.
+    \begin{solu}
+        \textbf{1. a)} \textcolor{red}{hidruro de potasio} · \textcolor{red}{\en{potassium hydride}}; \textbf{b)} \textcolor{red}{dihidruro de magnesio} · \textcolor{red}{\en{magnesium dihydride}}; \textbf{c)} \textcolor{red}{trihidruro de hierro} · \textcolor{red}{\en{iron trihydride}}; \textbf{d)} \textcolor{red}{tetrahidruro de plomo} · \textcolor{red}{\en{lead tetrahydride}}; \textbf{e)} \textcolor{red}{hidruro de cobre} · \textcolor{red}{\en{copper hydride}}\\
+        \textbf{2. a)} \textcolor{red}{\ch{NaH}}; \textbf{b)} \textcolor{red}{\ch{BaH2}}; \textbf{c)} \textcolor{red}{\ch{CoH3}}; \textbf{d)} \textcolor{red}{\ch{SnH4}}
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{Hidrógeno + no metal / \en{Hydrogen + non-metal}}
+%=====================================================================
+
+\subsection{Con los grupos 16 (S, Se, Te) y 17 (F, Cl, Br, I): el hidrógeno va a la izquierda}
+
+\begin{reglas}
+    Con estos no metales el hidrógeno se escribe a la \negrita{izquierda}.
+    \begin{enumerate}[label=\numberballgreen]
+        \item Raíz del no metal + \negrita{-uro}.
+        \item \negrita{de} + prefijo del nº de hidrógenos + \negrita{hidrógeno}.
+    \end{enumerate}
+    \ch{H2S}: sulfuro de \negrita{di}hidrógeno
+    \ingles
+    With these non-metals hydrogen is written on the \negrita{left}.
+    \begin{enumerate}[label=\numberballgreen]
+        \item Prefix for the number of hydrogens + \negrita{hydrogen}.
+        \item Root of the non-metal + \negrita{-ide}.
+    \end{enumerate}
+    \ch{H2S}: \negrita{di}hydrogen sulfide
+\end{reglas}
+
+\esquemafig{esq-hidrogeno-nm}
+
+\esquemafig{esq-hidrogeno-nm-en}
+
+\ejemplos
+\ballnumber{1} : \ch{HF}: fluoruro de hidrógeno / \en{hydrogen fluoride} \quad \ballnumber{2} : \ch{HCl}: cloruro de hidrógeno / \en{hydrogen chloride} \quad \ballnumber{3} : \ch{H2S}: sulfuro de dihidrógeno / \en{dihydrogen sulfide}
+
+\begin{marker}
+    \negrita{¿Y el «ácido clorhídrico» / \en{hydrochloric acid}?} Es el nombre tradicional de la mezcla de cloruro de hidrógeno (\ch{HCl}) con agua. No es un nombre de la IUPAC: el compuesto \ch{HCl} se llama siempre \negrita{cloruro de hidrógeno} / \en{\negrita{hydrogen chloride}}.
+\end{marker}
+
+\subsection{Tres nombres especiales: agua, amoniaco y metano / \en{water, ammonia and methane}}
+
+Algunas sustancias muy conocidas tienen un \negrita{nombre propio} que la IUPAC acepta. Hay que aprenderlos de memoria, en los dos idiomas:
+
+\begin{center}
+    \begin{tabular}{@{}cccl@{}}
+        \toprule
+        \textbf{Fórmula} & \textbf{Nombre especial} & \textbf{\en{Special name}} & \textbf{Con prefijos / \en{With prefixes}} \\
+        \midrule
+        \ch{H2O} & \negrita{agua} & \en{\negrita{water}} & --- \\[3pt]
+        \ch{NH3} & \negrita{amoniaco} & \en{\negrita{ammonia}} & trihidruro de nitrógeno / \en{nitrogen trihydride} \\[3pt]
+        \ch{CH4} & \negrita{metano} & \en{\negrita{methane}} & tetrahidruro de carbono / \en{carbon tetrahydride} \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+Fíjate: con el N y el C el hidrógeno va a la \negrita{derecha} (\ch{NH3}, \ch{CH4}).
+
+\begin{exercise}
+    \textbf{1.} Nombra en español y en inglés / \en{Name in Spanish and in English}: \textbf{a)} \ch{HBr}; \textbf{b)} \ch{HI}; \textbf{c)} \ch{H2S}; \textbf{d)} \ch{H2O}; \textbf{e)} \ch{NH3}; \textbf{f)} \ch{CH4}.\\
+    \textbf{2.} Formula / \en{Write the formula}: \textbf{a)} cloruro de hidrógeno; \textbf{b)} \en{hydrogen fluoride}; \textbf{c)} sulfuro de dihidrógeno; \textbf{d)} \en{ammonia}; \textbf{e)} metano; \textbf{f)} \en{water}.
+    \begin{solu}
+        \textbf{1. a)} \textcolor{red}{bromuro de hidrógeno} · \textcolor{red}{\en{hydrogen bromide}}; \textbf{b)} \textcolor{red}{yoduro de hidrógeno} · \textcolor{red}{\en{hydrogen iodide}}; \textbf{c)} \textcolor{red}{sulfuro de dihidrógeno} · \textcolor{red}{\en{dihydrogen sulfide}}; \textbf{d)} \textcolor{red}{agua} · \textcolor{red}{\en{water}}; \textbf{e)} \textcolor{red}{amoniaco} · \textcolor{red}{\en{ammonia}}; \textbf{f)} \textcolor{red}{metano} · \textcolor{red}{\en{methane}}\\
+        \textbf{2. a)} \textcolor{red}{\ch{HCl}}; \textbf{b)} \textcolor{red}{\ch{HF}}; \textbf{c)} \textcolor{red}{\ch{H2S}}; \textbf{d)} \textcolor{red}{\ch{NH3}}; \textbf{e)} \textcolor{red}{\ch{CH4}}; \textbf{f)} \textcolor{red}{\ch{H2O}}
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{Sales binarias / \en{Binary salts}}
+%=====================================================================
+
+\begin{reglas}
+    \negrita{Sal binaria}: dos elementos; el de la \negrita{derecha} es un no metal (pero no el O ni el H). El de la izquierda puede ser un metal o un no metal.
+    \begin{enumerate}[label=\numberballgreen]
+        \item Prefijo + raíz del no metal de la derecha + \negrita{-uro}.
+        \item \negrita{de}.
+        \item Prefijo + nombre del elemento de la izquierda.
+    \end{enumerate}
+    \ch{Ca3P2}: \negrita{di}fosfuro de \negrita{tri}calcio
+    \ingles
+    \negrita{Binary salt}: two elements; the one on the \negrita{right} is a non-metal (but not O or H). The one on the left can be a metal or a non-metal.
+    \begin{enumerate}[label=\numberballgreen]
+        \item Prefix + name of the element on the left.
+        \item Prefix + root of the non-metal on the right + \negrita{-ide}.
+    \end{enumerate}
+    \ch{Ca3P2}: \negrita{tri}calcium \negrita{di}phosphide
+\end{reglas}
+
+\nombran
+\esquemafig{esq-sal-pref}
+
+\esquemafig{esq-sal-pref-en}
+
+\ejemplos
+\begin{center}
+    \begin{tabular}{@{}cll@{}}
+        \toprule
+        \textbf{Fórmula} & \textbf{Nombre} & \textbf{\en{Name}} \\
+        \midrule
+        \multicolumn{3}{@{}l}{\textit{Metal + no metal / Metal + non-metal}} \\[3pt]
+        \ch{NaCl} & cloruro de sodio & \en{sodium chloride} \\[3pt]
+        \ch{CaF2} & difluoruro de calcio & \en{calcium difluoride} \\[3pt]
+        \ch{FeS} & monosulfuro de hierro & \en{iron monosulfide} \\[3pt]
+        \ch{Al2S3} & trisulfuro de dialuminio & \en{dialuminium trisulfide} \\[3pt]
+        \multicolumn{3}{@{}l}{\textit{No metal + no metal / Non-metal + non-metal}} \\[3pt]
+        \ch{PCl3} & tricloruro de fósforo & \en{phosphorus trichloride} \\[3pt]
+        \ch{CCl4} & tetracloruro de carbono & \en{carbon tetrachloride} \\[3pt]
+        \ch{SF6} & hexafluoruro de azufre & \en{sulfur hexafluoride} \\[3pt]
+        \ch{CS2} & disulfuro de carbono & \en{carbon disulfide} \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\formulan
+\ballnumber{1} : difosfuro de tricalcio / \en{tricalcium diphosphide} \(\to\) 3 Ca y 2 P \(\to\) \ch{Ca3P2} \quad \ballnumber{2} : pentacloruro de fósforo / \en{phosphorus pentachloride} \(\to\) \ch{PCl5}
+
+\begin{exercise}
+    \textbf{1.} Nombra en español y en inglés / \en{Name in Spanish and in English}: \textbf{a)} \ch{KCl}; \textbf{b)} \ch{MgBr2}; \textbf{c)} \ch{Na2S}; \textbf{d)} \ch{AgI}; \textbf{e)} \ch{FeCl3}; \textbf{f)} \ch{NCl3}; \textbf{g)} \ch{PBr5}.\\
+    \textbf{2.} Formula / \en{Write the formula}: \textbf{a)} bromuro de sodio; \textbf{b)} \en{zinc dichloride}; \textbf{c)} sulfuro de dipotasio; \textbf{d)} \en{trilithium nitride}; \textbf{e)} tetrafluoruro de silicio; \textbf{f)} \en{boron trifluoride}.
+    \begin{solu}
+        \textbf{1. a)} \textcolor{red}{cloruro de potasio} · \textcolor{red}{\en{potassium chloride}}; \textbf{b)} \textcolor{red}{dibromuro de magnesio} · \textcolor{red}{\en{magnesium dibromide}}; \textbf{c)} \textcolor{red}{sulfuro de disodio} · \textcolor{red}{\en{disodium sulfide}}; \textbf{d)} \textcolor{red}{yoduro de plata} · \textcolor{red}{\en{silver iodide}}; \textbf{e)} \textcolor{red}{tricloruro de hierro} · \textcolor{red}{\en{iron trichloride}}; \textbf{f)} \textcolor{red}{tricloruro de nitrógeno} · \textcolor{red}{\en{nitrogen trichloride}}; \textbf{g)} \textcolor{red}{pentabromuro de fósforo} · \textcolor{red}{\en{phosphorus pentabromide}}\\
+        \textbf{2. a)} \textcolor{red}{\ch{NaBr}}; \textbf{b)} \textcolor{red}{\ch{ZnCl2}}; \textbf{c)} \textcolor{red}{\ch{K2S}}; \textbf{d)} \textcolor{red}{\ch{Li3N}}; \textbf{e)} \textcolor{red}{\ch{SiF4}}; \textbf{f)} \textcolor{red}{\ch{BF3}}
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{Hidróxidos / \en{Hydroxides}}
+%=====================================================================
+
+\begin{reglas}
+    \negrita{Hidróxido}: un \negrita{metal} y uno o varios grupos \negrita{OH}. El grupo \ch{OH} es un bloque que no se separa.
+    \begin{enumerate}[label=\numberballgreen]
+        \item Prefijo del nº de grupos OH + \negrita{hidróxido}.
+        \item \negrita{de} + nombre del metal.
+    \end{enumerate}
+    Si hay más de un OH, va entre \negrita{paréntesis}: \ch{Ca(OH)2} \negrita{di}hidróxido de calcio
+    \ingles
+    \negrita{Hydroxide}: a \negrita{metal} and one or more \negrita{OH} groups. The \ch{OH} group is a block that is never split.
+    \begin{enumerate}[label=\numberballgreen]
+        \item Name of the metal.
+        \item Prefix for the number of OH groups + \negrita{hydroxide}.
+    \end{enumerate}
+    If there is more than one OH, use \negrita{brackets}: \ch{Ca(OH)2} calcium \negrita{di}hydroxide
+\end{reglas}
+
+\nombran
+\esquemafig{esq-hidroxido-pref}
+
+\esquemafig{esq-hidroxido-pref-en}
+
+\ejemplos
+\begin{center}
+    \begin{tabular}{@{}cll@{}}
+        \toprule
+        \textbf{Fórmula} & \textbf{Nombre} & \textbf{\en{Name}} \\
+        \midrule
+        \ch{NaOH} & hidróxido de sodio & \en{sodium hydroxide} \\[3pt]
+        \ch{Ca(OH)2} & dihidróxido de calcio & \en{calcium dihydroxide} \\[3pt]
+        \ch{Al(OH)3} & trihidróxido de aluminio & \en{aluminium trihydroxide} \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\formulan
+dihidróxido de hierro / \en{iron dihydroxide} \(\to\) 1 Fe y 2 OH \(\to\) \ch{Fe(OH)2}
+
+\begin{marker}
+    El paréntesis es obligatorio / \en{Brackets are compulsory}: \ch{Ca(OH)2} y no \mal{\ch{CaOH2}} ni \mal{\ch{CaO2H2}}.
+\end{marker}
+
+\begin{exercise}
+    \textbf{1.} Nombra en español y en inglés / \en{Name in Spanish and in English}: \textbf{a)} \ch{KOH}; \textbf{b)} \ch{LiOH}; \textbf{c)} \ch{Mg(OH)2}; \textbf{d)} \ch{Fe(OH)3}; \textbf{e)} \ch{Pb(OH)4}.\\
+    \textbf{2.} Formula / \en{Write the formula}: \textbf{a)} hidróxido de sodio; \textbf{b)} \en{barium dihydroxide}; \textbf{c)} dihidróxido de cinc; \textbf{d)} \en{aluminium trihydroxide}.
+    \begin{solu}
+        \textbf{1. a)} \textcolor{red}{hidróxido de potasio} · \textcolor{red}{\en{potassium hydroxide}}; \textbf{b)} \textcolor{red}{hidróxido de litio} · \textcolor{red}{\en{lithium hydroxide}}; \textbf{c)} \textcolor{red}{dihidróxido de magnesio} · \textcolor{red}{\en{magnesium dihydroxide}}; \textbf{d)} \textcolor{red}{trihidróxido de hierro} · \textcolor{red}{\en{iron trihydroxide}}; \textbf{e)} \textcolor{red}{tetrahidróxido de plomo} · \textcolor{red}{\en{lead tetrahydroxide}}\\
+        \textbf{2. a)} \textcolor{red}{\ch{NaOH}}; \textbf{b)} \textcolor{red}{\ch{Ba(OH)2}}; \textbf{c)} \textcolor{red}{\ch{Zn(OH)2}}; \textbf{d)} \textcolor{red}{\ch{Al(OH)3}}
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{Errores frecuentes / \en{Common mistakes}}
+%=====================================================================
+
+\begin{table}[H]
+    \centering
+    \caption{Errores frecuentes en español}
+    \vspace{-5pt}
+    \begin{tabular}{@{}l L{0.32\linewidth} L{0.32\linewidth}@{}}
+        \toprule
+        \textbf{Error} & \textbf{Incorrecto} & \textbf{Correcto} \\
+        \midrule
+        Poner mono sin necesidad & \mal{monocloruro de monosodio} & cloruro de sodio \\[3pt]
+        Olvidar el -uro & \mal{cloro de sodio} & cloruro de sodio \\[3pt]
+        Simplificar la fórmula & \mal{\ch{NO2}} para el tetraóxido de dinitrógeno & \ch{N2O4} \\[3pt]
+        Cambiar el orden & \mal{\ch{Cl2O}} (\mal{óxido de dicloro}) & \ch{OCl2} (dicloruro de oxígeno) \\[3pt]
+        Quitar el paréntesis & \mal{\ch{CaOH2}} & \ch{Ca(OH)2} \\[3pt]
+        Confundir compuesto y mezcla & \ch{HCl}: \mal{ácido clorhídrico} & \ch{HCl}: cloruro de hidrógeno \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:u4_errores_es}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Errores frecuentes al pasar al inglés / \en{Common mistakes in English}}
+    \vspace{-5pt}
+    \begin{tabular}{@{}L{0.3\linewidth} L{0.3\linewidth} L{0.3\linewidth}@{}}
+        \toprule
+        \textbf{Error} & \textbf{\en{Wrong}} & \textbf{\en{Right}} \\
+        \midrule
+        Usar el orden del español & \mal{\en{chloride sodium}} & \en{sodium chloride} \\[3pt]
+        Traducir el «de» & \mal{\en{chloride of sodium}} & \en{sodium chloride} \\[3pt]
+        Usar la raíz española & \mal{\en{sodium clorure}}, \mal{\en{iron sulfure}} & \en{sodium chloride}, \en{iron sulfide} \\[3pt]
+        Traducir mal el elemento & \ch{PbO2}: \mal{\en{plomb dioxide}} & \en{lead dioxide} \\[3pt]
+        Poner mono al primer elemento & \mal{\en{monocarbon monoxide}} & \en{carbon monoxide} \\[3pt]
+        Escribir el óxido con «y» & \mal{\en{oxyde}} & \en{oxide} \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:u4_errores_en}
+\end{table}
+
+\newpage
+%=====================================================================
+\section{Repaso final / \en{Final review}}
+%=====================================================================
+
+Los ejercicios de nombrar piden el nombre en los dos idiomas; en los de formular, los nombres se alternan entre español e inglés (los ingleses van en cursiva).
+
+\subsection{Óxidos / \en{Oxides}}
+
+\begin{exercise}
+    Nombra en español y en inglés / \en{Name in Spanish and in English} (¡cuidado: dos no son óxidos! / \en{careful: two are not oxides!}): \textbf{a)} \ch{Na2O}; \textbf{b)} \ch{Co2O3}; \textbf{c)} \ch{CuO}; \textbf{d)} \ch{Ag2O}; \textbf{e)} \ch{CdO}; \textbf{f)} \ch{NO}; \textbf{g)} \ch{CO2}; \textbf{h)} \ch{As2O5}; \textbf{i)} \ch{SO3}; \textbf{j)} \ch{O5I2}; \textbf{k)} \ch{O7Br2}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{óxido de disodio} · \textcolor{red}{\en{disodium oxide}}; \textbf{b)} \textcolor{red}{trióxido de dicobalto} · \textcolor{red}{\en{dicobalt trioxide}}; \textbf{c)} \textcolor{red}{óxido de cobre} · \textcolor{red}{\en{copper oxide}} (o monóxido de cobre); \textbf{d)} \textcolor{red}{óxido de diplata} · \textcolor{red}{\en{disilver oxide}}; \textbf{e)} \textcolor{red}{óxido de cadmio} · \textcolor{red}{\en{cadmium oxide}}; \textbf{f)} \textcolor{red}{monóxido de nitrógeno} · \textcolor{red}{\en{nitrogen monoxide}}; \textbf{g)} \textcolor{red}{dióxido de carbono} · \textcolor{red}{\en{carbon dioxide}}; \textbf{h)} \textcolor{red}{pentaóxido de diarsénico} · \textcolor{red}{\en{diarsenic pentaoxide}}; \textbf{i)} \textcolor{red}{trióxido de azufre} · \textcolor{red}{\en{sulfur trioxide}}; \textbf{j)} \textcolor{red}{diyoduro de pentaoxígeno} · \textcolor{red}{\en{pentaoxygen diiodide}} (no es un óxido); \textbf{k)} \textcolor{red}{dibromuro de heptaoxígeno} · \textcolor{red}{\en{heptaoxygen dibromide}} (no es un óxido)
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Formula / \en{Write the formula}: \textbf{a)} óxido de dilitio; \textbf{b)} \en{magnesium oxide}; \textbf{c)} óxido de dipotasio; \textbf{d)} \en{strontium oxide}; \textbf{e)} óxido de hierro; \textbf{f)} \en{lead dioxide}; \textbf{g)} trióxido de dioro; \textbf{h)} \en{dialuminium trioxide}; \textbf{i)} óxido de estaño; \textbf{j)} \en{zinc oxide}; \textbf{k)} óxido de mercurio; \textbf{l)} \en{dinitrogen monoxide}; \textbf{m)} trióxido de dicobalto; \textbf{n)} \en{dinitrogen pentaoxide}; \textbf{ñ)} óxido de bario; \textbf{o)} \en{sulfur trioxide}; \textbf{p)} trióxido de dicromo; \textbf{q)} \en{manganese dioxide}; \textbf{r)} trióxido de dimanganeso; \textbf{s)} \en{platinum dioxide}; \textbf{t)} dibromuro de trioxígeno.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{\ch{Li2O}}; \textbf{b)} \textcolor{red}{\ch{MgO}}; \textbf{c)} \textcolor{red}{\ch{K2O}}; \textbf{d)} \textcolor{red}{\ch{SrO}}; \textbf{e)} \textcolor{red}{\ch{FeO}}; \textbf{f)} \textcolor{red}{\ch{PbO2}}; \textbf{g)} \textcolor{red}{\ch{Au2O3}}; \textbf{h)} \textcolor{red}{\ch{Al2O3}}; \textbf{i)} \textcolor{red}{\ch{SnO}}; \textbf{j)} \textcolor{red}{\ch{ZnO}}; \textbf{k)} \textcolor{red}{\ch{HgO}}; \textbf{l)} \textcolor{red}{\ch{N2O}}; \textbf{m)} \textcolor{red}{\ch{Co2O3}}; \textbf{n)} \textcolor{red}{\ch{N2O5}}; \textbf{ñ)} \textcolor{red}{\ch{BaO}}; \textbf{o)} \textcolor{red}{\ch{SO3}}; \textbf{p)} \textcolor{red}{\ch{Cr2O3}}; \textbf{q)} \textcolor{red}{\ch{MnO2}}; \textbf{r)} \textcolor{red}{\ch{Mn2O3}}; \textbf{s)} \textcolor{red}{\ch{PtO2}}; \textbf{t)} \textcolor{red}{\ch{O3Br2}} (no es un óxido: el O va a la izquierda)
+    \end{solu}
+\end{exercise}
+
+\subsection{Hidruros: metal + hidrógeno / \en{Hydrides: metal + hydrogen}}
+
+\begin{exercise}
+    Nombra en español y en inglés / \en{Name in Spanish and in English}: \textbf{a)} \ch{NaH}; \textbf{b)} \ch{CaH2}; \textbf{c)} \ch{CoH2}; \textbf{d)} \ch{CuH2}; \textbf{e)} \ch{AgH}; \textbf{f)} \ch{CdH2}; \textbf{g)} \ch{BeH2}; \textbf{h)} \ch{CsH}; \textbf{i)} \ch{SnH4}; \textbf{j)} \ch{NiH2}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{hidruro de sodio} · \textcolor{red}{\en{sodium hydride}}; \textbf{b)} \textcolor{red}{dihidruro de calcio} · \textcolor{red}{\en{calcium dihydride}}; \textbf{c)} \textcolor{red}{dihidruro de cobalto} · \textcolor{red}{\en{cobalt dihydride}}; \textbf{d)} \textcolor{red}{dihidruro de cobre} · \textcolor{red}{\en{copper dihydride}}; \textbf{e)} \textcolor{red}{hidruro de plata} · \textcolor{red}{\en{silver hydride}}; \textbf{f)} \textcolor{red}{dihidruro de cadmio} · \textcolor{red}{\en{cadmium dihydride}}; \textbf{g)} \textcolor{red}{dihidruro de berilio} · \textcolor{red}{\en{beryllium dihydride}}; \textbf{h)} \textcolor{red}{hidruro de cesio} · \textcolor{red}{\en{caesium hydride}}; \textbf{i)} \textcolor{red}{tetrahidruro de estaño} · \textcolor{red}{\en{tin tetrahydride}}; \textbf{j)} \textcolor{red}{dihidruro de níquel} · \textcolor{red}{\en{nickel dihydride}}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Formula / \en{Write the formula}: \textbf{a)} dihidruro de magnesio; \textbf{b)} \en{strontium dihydride}; \textbf{c)} hidruro de potasio; \textbf{d)} \en{iron dihydride}; \textbf{e)} dihidruro de plomo; \textbf{f)} \en{gold trihydride}; \textbf{g)} hexahidruro de cromo; \textbf{h)} \en{tin dihydride}; \textbf{i)} dihidruro de cinc; \textbf{j)} \en{mercury dihydride}; \textbf{k)} tetrahidruro de platino; \textbf{l)} \en{cobalt trihydride}; \textbf{m)} hidruro de cobre; \textbf{n)} \en{copper dihydride}; \textbf{ñ)} dihidruro de bario; \textbf{o)} \en{aluminium trihydride}; \textbf{p)} trihidruro de cromo; \textbf{q)} \en{manganese dihydride}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{\ch{MgH2}}; \textbf{b)} \textcolor{red}{\ch{SrH2}}; \textbf{c)} \textcolor{red}{\ch{KH}}; \textbf{d)} \textcolor{red}{\ch{FeH2}}; \textbf{e)} \textcolor{red}{\ch{PbH2}}; \textbf{f)} \textcolor{red}{\ch{AuH3}}; \textbf{g)} \textcolor{red}{\ch{CrH6}}; \textbf{h)} \textcolor{red}{\ch{SnH2}}; \textbf{i)} \textcolor{red}{\ch{ZnH2}}; \textbf{j)} \textcolor{red}{\ch{HgH2}}; \textbf{k)} \textcolor{red}{\ch{PtH4}}; \textbf{l)} \textcolor{red}{\ch{CoH3}}; \textbf{m)} \textcolor{red}{\ch{CuH}}; \textbf{n)} \textcolor{red}{\ch{CuH2}}; \textbf{ñ)} \textcolor{red}{\ch{BaH2}}; \textbf{o)} \textcolor{red}{\ch{AlH3}}; \textbf{p)} \textcolor{red}{\ch{CrH3}}; \textbf{q)} \textcolor{red}{\ch{MnH2}}
+    \end{solu}
+\end{exercise}
+
+\subsection{Hidrógeno + no metal / \en{Hydrogen + non-metal}}
+
+Recuerda: con S, Se, Te, F, Cl, Br e I el hidrógeno va a la \negrita{izquierda} (\ch{HCl}, \ch{H2S}). Con B, C, Si, N, P, As y Sb va a la \negrita{derecha} y se nombran como los hidruros: \ch{PH3} trihidruro de fósforo / \en{phosphorus trihydride}, salvo los nombres especiales (agua, amoniaco, metano / \en{water, ammonia, methane}).
+
+\begin{exercise}
+    Nombra en español y en inglés / \en{Name in Spanish and in English}: \textbf{a)} \ch{NH3}; \textbf{b)} \ch{SiH4}; \textbf{c)} \ch{SbH3}; \textbf{d)} \ch{H2S}; \textbf{e)} \ch{HCl}; \textbf{f)} \ch{HBr}; \textbf{g)} \ch{PH3}; \textbf{h)} \ch{CH4}; \textbf{i)} \ch{AsH3}; \textbf{j)} \ch{HI}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{amoniaco} · \textcolor{red}{\en{ammonia}}; \textbf{b)} \textcolor{red}{tetrahidruro de silicio} · \textcolor{red}{\en{silicon tetrahydride}}; \textbf{c)} \textcolor{red}{trihidruro de antimonio} · \textcolor{red}{\en{antimony trihydride}}; \textbf{d)} \textcolor{red}{sulfuro de dihidrógeno} · \textcolor{red}{\en{dihydrogen sulfide}}; \textbf{e)} \textcolor{red}{cloruro de hidrógeno} · \textcolor{red}{\en{hydrogen chloride}}; \textbf{f)} \textcolor{red}{bromuro de hidrógeno} · \textcolor{red}{\en{hydrogen bromide}}; \textbf{g)} \textcolor{red}{trihidruro de fósforo} · \textcolor{red}{\en{phosphorus trihydride}}; \textbf{h)} \textcolor{red}{metano} · \textcolor{red}{\en{methane}}; \textbf{i)} \textcolor{red}{trihidruro de arsénico} · \textcolor{red}{\en{arsenic trihydride}}; \textbf{j)} \textcolor{red}{yoduro de hidrógeno} · \textcolor{red}{\en{hydrogen iodide}}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Formula / \en{Write the formula}: \textbf{a)} trihidruro de boro; \textbf{b)} \en{dihydrogen sulfide}; \textbf{c)} cloruro de hidrógeno; \textbf{d)} \en{hydrogen iodide}; \textbf{e)} seleniuro de dihidrógeno; \textbf{f)} \en{hydrogen bromide}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{\ch{BH3}}; \textbf{b)} \textcolor{red}{\ch{H2S}}; \textbf{c)} \textcolor{red}{\ch{HCl}}; \textbf{d)} \textcolor{red}{\ch{HI}}; \textbf{e)} \textcolor{red}{\ch{H2Se}}; \textbf{f)} \textcolor{red}{\ch{HBr}}
+    \end{solu}
+\end{exercise}
+
+\subsection{Sales binarias: metal + no metal / \en{Binary salts: metal + non-metal}}
+
+\begin{exercise}
+    Nombra en español y en inglés / \en{Name in Spanish and in English}: \textbf{a)} \ch{NaF}; \textbf{b)} \ch{CoCl3}; \textbf{c)} \ch{CuSe}; \textbf{d)} \ch{AgCl}; \textbf{e)} \ch{CdF2}; \textbf{f)} \ch{MnF2}; \textbf{g)} \ch{CsCl}; \textbf{h)} \ch{Ni2S3}; \textbf{i)} \ch{PbCl2}; \textbf{j)} \ch{FeI3}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{fluoruro de sodio} · \textcolor{red}{\en{sodium fluoride}}; \textbf{b)} \textcolor{red}{tricloruro de cobalto} · \textcolor{red}{\en{cobalt trichloride}}; \textbf{c)} \textcolor{red}{seleniuro de cobre} · \textcolor{red}{\en{copper selenide}}; \textbf{d)} \textcolor{red}{cloruro de plata} · \textcolor{red}{\en{silver chloride}}; \textbf{e)} \textcolor{red}{difluoruro de cadmio} · \textcolor{red}{\en{cadmium difluoride}}; \textbf{f)} \textcolor{red}{difluoruro de manganeso} · \textcolor{red}{\en{manganese difluoride}}; \textbf{g)} \textcolor{red}{cloruro de cesio} · \textcolor{red}{\en{caesium chloride}}; \textbf{h)} \textcolor{red}{trisulfuro de diníquel} · \textcolor{red}{\en{dinickel trisulfide}}; \textbf{i)} \textcolor{red}{dicloruro de plomo} · \textcolor{red}{\en{lead dichloride}}; \textbf{j)} \textcolor{red}{triyoduro de hierro} · \textcolor{red}{\en{iron triiodide}}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Formula / \en{Write the formula}: \textbf{a)} cloruro de litio; \textbf{b)} \en{magnesium diiodide}; \textbf{c)} dibromuro de berilio; \textbf{d)} \en{dipotassium sulfide}; \textbf{e)} difluoruro de hierro; \textbf{f)} \en{lead tetrachloride}; \textbf{g)} trisulfuro de dioro; \textbf{h)} \en{tin sulfide}; \textbf{i)} dibromuro de cinc; \textbf{j)} \en{mercury telluride}; \textbf{k)} diyoduro de cobalto; \textbf{l)} \en{calcium dichloride}; \textbf{m)} trisulfuro de dialuminio; \textbf{n)} \en{dichromium trisulfide}; \textbf{ñ)} dibromuro de manganeso; \textbf{o)} \en{disodium telluride}; \textbf{p)} dicloruro de cinc; \textbf{q)} \en{disilver sulfide}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{\ch{LiCl}}; \textbf{b)} \textcolor{red}{\ch{MgI2}}; \textbf{c)} \textcolor{red}{\ch{BeBr2}}; \textbf{d)} \textcolor{red}{\ch{K2S}}; \textbf{e)} \textcolor{red}{\ch{FeF2}}; \textbf{f)} \textcolor{red}{\ch{PbCl4}}; \textbf{g)} \textcolor{red}{\ch{Au2S3}}; \textbf{h)} \textcolor{red}{\ch{SnS}}; \textbf{i)} \textcolor{red}{\ch{ZnBr2}}; \textbf{j)} \textcolor{red}{\ch{HgTe}}; \textbf{k)} \textcolor{red}{\ch{CoI2}}; \textbf{l)} \textcolor{red}{\ch{CaCl2}}; \textbf{m)} \textcolor{red}{\ch{Al2S3}}; \textbf{n)} \textcolor{red}{\ch{Cr2S3}}; \textbf{ñ)} \textcolor{red}{\ch{MnBr2}}; \textbf{o)} \textcolor{red}{\ch{Na2Te}}; \textbf{p)} \textcolor{red}{\ch{ZnCl2}}; \textbf{q)} \textcolor{red}{\ch{Ag2S}}
+    \end{solu}
+\end{exercise}
+
+\subsection{Sales binarias: no metal + no metal / \en{Binary salts: non-metal + non-metal}}
+
+\begin{exercise}
+    Nombra en español y en inglés / \en{Name in Spanish and in English}: \textbf{a)} \ch{PCl5}; \textbf{b)} \ch{IF7}; \textbf{c)} \ch{SI2}; \textbf{d)} \ch{NCl3}; \textbf{e)} \ch{N2S5}; \textbf{f)} \ch{SiS2}; \textbf{g)} \ch{TeI4}; \textbf{h)} \ch{As2S3}; \textbf{i)} \ch{CI4}; \textbf{j)} \ch{NF3}; \textbf{k)} \ch{IBr}; \textbf{l)} \ch{SeBr4}; \textbf{m)} \ch{SeCl6}; \textbf{n)} \ch{AsF5}; \textbf{ñ)} \ch{CCl4}; \textbf{o)} \ch{SiF4}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{pentacloruro de fósforo} · \textcolor{red}{\en{phosphorus pentachloride}}; \textbf{b)} \textcolor{red}{heptafluoruro de yodo} · \textcolor{red}{\en{iodine heptafluoride}}; \textbf{c)} \textcolor{red}{diyoduro de azufre} · \textcolor{red}{\en{sulfur diiodide}}; \textbf{d)} \textcolor{red}{tricloruro de nitrógeno} · \textcolor{red}{\en{nitrogen trichloride}}; \textbf{e)} \textcolor{red}{pentasulfuro de dinitrógeno} · \textcolor{red}{\en{dinitrogen pentasulfide}}; \textbf{f)} \textcolor{red}{disulfuro de silicio} · \textcolor{red}{\en{silicon disulfide}}; \textbf{g)} \textcolor{red}{tetrayoduro de teluro} · \textcolor{red}{\en{tellurium tetraiodide}}; \textbf{h)} \textcolor{red}{trisulfuro de diarsénico} · \textcolor{red}{\en{diarsenic trisulfide}}; \textbf{i)} \textcolor{red}{tetrayoduro de carbono} · \textcolor{red}{\en{carbon tetraiodide}}; \textbf{j)} \textcolor{red}{trifluoruro de nitrógeno} · \textcolor{red}{\en{nitrogen trifluoride}}; \textbf{k)} \textcolor{red}{bromuro de yodo} · \textcolor{red}{\en{iodine bromide}}; \textbf{l)} \textcolor{red}{tetrabromuro de selenio} · \textcolor{red}{\en{selenium tetrabromide}}; \textbf{m)} \textcolor{red}{hexacloruro de selenio} · \textcolor{red}{\en{selenium hexachloride}}; \textbf{n)} \textcolor{red}{pentafluoruro de arsénico} · \textcolor{red}{\en{arsenic pentafluoride}}; \textbf{ñ)} \textcolor{red}{tetracloruro de carbono} · \textcolor{red}{\en{carbon tetrachloride}}; \textbf{o)} \textcolor{red}{tetrafluoruro de silicio} · \textcolor{red}{\en{silicon tetrafluoride}}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Formula / \en{Write the formula}: \textbf{a)} trifluoruro de bromo; \textbf{b)} \en{sulfur hexafluoride}; \textbf{c)} disulfuro de carbono.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{\ch{BrF3}}; \textbf{b)} \textcolor{red}{\ch{SF6}}; \textbf{c)} \textcolor{red}{\ch{CS2}}
+    \end{solu}
+\end{exercise}
+
+\subsection{Todo mezclado / \en{Everything mixed}}
+
+\begin{exercise}
+    Nombra en español y en inglés / \en{Name in Spanish and in English}: \textbf{a)} \ch{CO}; \textbf{b)} \ch{Fe2O3}; \textbf{c)} \ch{NaH}; \textbf{d)} \ch{HCl}; \textbf{e)} \ch{NH3}; \textbf{f)} \ch{CaCl2}; \textbf{g)} \ch{SF6}; \textbf{h)} \ch{Cu(OH)2}; \textbf{i)} \ch{H2O}; \textbf{j)} \ch{P2O5}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{monóxido de carbono} · \textcolor{red}{\en{carbon monoxide}}; \textbf{b)} \textcolor{red}{trióxido de dihierro} · \textcolor{red}{\en{diiron trioxide}}; \textbf{c)} \textcolor{red}{hidruro de sodio} · \textcolor{red}{\en{sodium hydride}}; \textbf{d)} \textcolor{red}{cloruro de hidrógeno} · \textcolor{red}{\en{hydrogen chloride}}; \textbf{e)} \textcolor{red}{amoniaco} · \textcolor{red}{\en{ammonia}}; \textbf{f)} \textcolor{red}{dicloruro de calcio} · \textcolor{red}{\en{calcium dichloride}}; \textbf{g)} \textcolor{red}{hexafluoruro de azufre} · \textcolor{red}{\en{sulfur hexafluoride}}; \textbf{h)} \textcolor{red}{dihidróxido de cobre} · \textcolor{red}{\en{copper dihydroxide}}; \textbf{i)} \textcolor{red}{agua} · \textcolor{red}{\en{water}}; \textbf{j)} \textcolor{red}{pentaóxido de difósforo} · \textcolor{red}{\en{diphosphorus pentaoxide}}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Formula / \en{Write the formula}: \textbf{a)} dióxido de carbono; \textbf{b)} \en{disodium oxide}; \textbf{c)} dihidruro de calcio; \textbf{d)} \en{dihydrogen sulfide}; \textbf{e)} metano; \textbf{f)} \en{potassium bromide}; \textbf{g)} tricloruro de fósforo; \textbf{h)} \en{iron trihydroxide}; \textbf{i)} tetraóxido de dinitrógeno; \textbf{j)} \en{silver iodide}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{\ch{CO2}}; \textbf{b)} \textcolor{red}{\ch{Na2O}}; \textbf{c)} \textcolor{red}{\ch{CaH2}}; \textbf{d)} \textcolor{red}{\ch{H2S}}; \textbf{e)} \textcolor{red}{\ch{CH4}}; \textbf{f)} \textcolor{red}{\ch{KBr}}; \textbf{g)} \textcolor{red}{\ch{PCl3}}; \textbf{h)} \textcolor{red}{\ch{Fe(OH)3}}; \textbf{i)} \textcolor{red}{\ch{N2O4}}; \textbf{j)} \textcolor{red}{\ch{AgI}}
+    \end{solu}
+\end{exercise}

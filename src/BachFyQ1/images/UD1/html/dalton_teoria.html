@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Teoría atómica de Dalton: elementos y compuestos</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="910" height="300"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const R = rng(5);
+    // posiciones en rejilla con algo de desorden, dentro de un recuadro
+    function caja(x, titulo, sub, dibuja) {
+        add('rect', { x, y: 10, width: 280, height: 230, rx: 14, fill: '#F8F9F9', stroke: '#C9CCD6', 'stroke-width': 2 });
+        for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++)
+            dibuja(x + 55 + j * 85 + (R() - 0.5) * 18, 55 + i * 70 + (R() - 0.5) * 14);
+        label(add, x + 140, 268, titulo, { 'font-size': 18, fill: '#000070' });
+        label(add, x + 140, 290, sub, { 'font-size': 14, fill: '#525252', 'font-weight': 600 });
+    }
+    caja(5, 'Elemento A', 'todos los átomos iguales', (x, y) => molecule(add, x, y, [['A', 0, 0]], 17));
+    caja(315, 'Elemento B', 'átomos iguales entre sí, distintos de los de A', (x, y) => molecule(add, x, y, [['B', 0, 0]], 17));
+    caja(625, 'Compuesto AB', 'cada «átomo compuesto» lleva 1 A y 1 B', (x, y) => molecule(add, x, y, [['A', -0.55, 0.15], ['B', 0.75, -0.25]], 15));
+</script>
+</body>
+</html>

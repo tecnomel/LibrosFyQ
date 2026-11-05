@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD4_05 · Contribuciones a la energía interna</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// La energía interna U es la suma de las energías de las partículas: traslación,
+// rotación, vibración y las debidas a las fuerzas intra- e intermoleculares.
+const svg = crearFigura(780, 360);
+const R = degradadoEsfera(svg, "at", "#E0352B");
+function molec(x1, y1, x2, y2, r1 = 20, r2 = 13) {
+    el("line", { x1, y1, x2, y2, stroke: "#8A8A8A", "stroke-width": 7 }, svg);
+    el("line", { x1, y1, x2, y2, stroke: "#DADADA", "stroke-width": 2 }, svg);
+    el("circle", { cx: x1, cy: y1, r: r1, fill: R }, svg);
+    el("circle", { cx: x2, cy: y2, r: r2, fill: R }, svg);
+}
+const T = (x, y, l1, l2) => { texto(svg, x, y, l1, { "text-anchor": "middle", "font-size": 19, fill: COLORES.texto }); texto(svg, x, y + 23, l2, { "text-anchor": "middle", "font-size": 19, fill: COLORES.texto }); };
+// Traslación: moléculas desplazándose con estela
+molec(40, 50, 40, 110); molec(90, 140, 130, 90);
+[[40, 80, 95, 60], [110, 115, 170, 60]].forEach(([a, b, c, d]) => flecha(svg, a + 20, b, c, d, { color: "#E57373", ancho: 3, punta: 11 }));
+T(95, 205, "movimiento", "de traslación");
+// Rotación
+molec(235, 80, 300, 80);
+el("path", { d: "M268,40 A40,24 0 1,1 310,58", fill: "none", stroke: "#333", "stroke-width": 1.8, "marker-end": puntaFlecha(svg, "pn", "#333", 10) }, svg);
+T(265, 150, "movimiento", "de rotación");
+// Vibración
+molec(410, 55, 480, 55); molec(400, 110, 470, 110, 20, 13);
+[[410, 30, 390, 30], [480, 30, 500, 30]].forEach(([a, b, c, d]) => flecha(svg, a, b, c, d, { color: "#333", ancho: 1.6, punta: 9 }));
+[[390, 138, 410, 138], [500, 138, 480, 138]].forEach(([a, b, c, d]) => flecha(svg, a, b, c, d, { color: "#333", ancho: 1.6, punta: 9 }));
+T(450, 185, "movimiento", "de vibración");
+// Fuerzas intramoleculares (el enlace)
+molec(80, 260, 150, 260);
+el("text", {}, svg);
+flecha(svg, 100, 285, 130, 285, { color: "#333", ancho: 1.4, punta: 8, doble: true });
+T(115, 320, "fuerzas", "intramoleculares");
+// Fuerzas intermoleculares (entre moléculas)
+molec(300, 260, 360, 260); molec(430, 260, 490, 260);
+flecha(svg, 372, 260, 418, 260, { color: "#333", ancho: 1.6, punta: 9, doble: true, trazo: "4 3" });
+T(395, 320, "fuerzas", "intermoleculares");
+texto(svg, 650, 175, [{ t: "U", attrs: { "font-style": "italic" } }, { t: " = Σ energías" }], { "text-anchor": "middle", "font-size": 20, fill: COLORES.ocre, "font-family": "Times New Roman, serif" });
+texto(svg, 650, 200, "de las partículas", { "text-anchor": "middle", "font-size": 15, fill: COLORES.ocre });
+</script>
+</body>
+</html>

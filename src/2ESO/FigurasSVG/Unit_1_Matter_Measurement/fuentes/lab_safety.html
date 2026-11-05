@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Laboratory safety</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    h2 { font-size: 21px; margin: 4px 0 10px; }
+    .ppe { display: flex; gap: 14px; }
+    .item { flex: 1; text-align: center; border: 2px solid var(--blue); background: var(--blue-soft); border-radius: 14px; padding: 10px 6px; }
+    .item .ic { font-size: 52px; line-height: 1.15; height: 62px; }
+    .item .t { font-size: 17px; font-weight: 800; color: var(--blue); }
+    .item .d { font-size: 14px; color: var(--grey); }
+    .rules { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 4px; }
+    .r { border-radius: 14px; padding: 10px; text-align: center; font-size: 15px; }
+    .r .ic { font-size: 40px; position: relative; display: inline-block; line-height: 1.2; }
+    .do { background: var(--green-soft); border: 2px solid var(--green); }
+    .dont { background: var(--red-soft); border: 2px solid var(--red); }
+    .dont .ic::after { content: ""; position: absolute; left: -6px; right: -6px; top: 50%; border-top: 5px solid var(--red); transform: rotate(-35deg); }
+    .r b { display: block; font-size: 16px; }
+    .do b { color: var(--green); } .dont b { color: var(--red); }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Safe in the laboratory</h1>
+    <h2 style="color:var(--blue)">Personal protective equipment</h2>
+    <div class="ppe">
+        <div class="item"><div class="ic">🥽</div><div class="t">Safety goggles</div><div class="d">protect the eyes from splashes</div></div>
+        <div class="item"><div class="ic">🥼</div><div class="t">Lab coat</div><div class="d">keeps chemicals off skin and clothes</div></div>
+        <div class="item"><div class="ic">🧤</div><div class="t">Gloves</div><div class="d">for corrosive or dangerous products</div></div>
+        <div class="item"><div class="ic">
+            <svg width="60" height="60" viewBox="0 0 60 60"><path d="M30 6 L12 54 M30 6 L48 54" stroke="#5D6D7E" stroke-width="5" stroke-linecap="round" fill="none"/><circle cx="30" cy="8" r="5" fill="#5D6D7E"/><path d="M8 50 L16 56 M52 50 L44 56" stroke="#5D6D7E" stroke-width="5" stroke-linecap="round"/></svg>
+        </div><div class="t">Tongs</div><div class="d">hold hot objects safely</div></div>
+        <div class="item"><div class="ic">
+            <svg width="64" height="60" viewBox="0 0 64 60"><rect x="6" y="4" width="52" height="12" fill="#5D6D7E"/><path d="M10 16 L6 56 L58 56 L54 16 Z" fill="#D6EAF8" stroke="#5D6D7E" stroke-width="3"/><path d="M32 16 L32 2" stroke="#C0392B" stroke-width="3"/><path d="M26 6 L32 0 L38 6" fill="none" stroke="#C0392B" stroke-width="3"/><path d="M20 40 q4 -8 8 0 t8 0 t8 0" fill="none" stroke="#7F8C8D" stroke-width="2"/></svg>
+        </div><div class="t">Fume hood</div><div class="d">extracts toxic gases</div></div>
+    </div>
+    <h2 style="color:var(--teal); margin-top:16px">Golden rules</h2>
+    <div class="rules">
+        <div class="r do"><div class="ic">🧑‍🔬</div><b>Always protected</b>goggles, coat, hair tied back</div>
+        <div class="r do"><div class="ic">🏷️</div><b>Read the label</b>and its pictograms first</div>
+        <div class="r do"><div class="ic">🚿</div><b>Know where</b>the eyewash, shower and extinguisher are</div>
+        <div class="r do"><div class="ic">🧼</div><b>Wash your hands</b>at the end of the class</div>
+        <div class="r dont"><div class="ic">🍔</div><b>Never eat or drink</b>in the laboratory</div>
+        <div class="r dont"><div class="ic">👅</div><b>Never taste or smell</b>a product directly</div>
+        <div class="r dont"><div class="ic">🚰</div><b>Never pour waste</b>down the sink</div>
+        <div class="r dont"><div class="ic">🧍</div><b>Never work alone</b>always with a teacher</div>
+    </div>
+</div>
+</body>
+</html>

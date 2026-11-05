@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD4_E04 · Entalpías de formación estándar</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Entalpías estándar de formación (kJ/mol) a 298 K.
+const D = [
+    ["CH4 (g)", "−74,9", "I2 (s)", "0"], ["C2H6 (g)", "−84,7", "HBr (g)", "−36,4"], ["C2H4 (g)", "52,3", "HCl (g)", "−92,3"],
+    ["C3H8 (g)", "−103,8", "H2O (g)", "−241,8"], ["C4H10 (g)", "−124,7", "H2O (l)", "−285,8"], ["C6H6 (g)", "49,0", "H2O2 (l)", "−187,8"],
+    ["CH3OH (g)", "−201,2", "NH3 (g)", "−46,2"], ["CH3CH2OH (g)", "−235,1", "NH3 (aq)", "−80,3"], ["CH3OH (l)", "−238,6", "NH4Cl (s)", "−314,4"],
+    ["CH3CH2OH (l)", "−277,6", "NO (g)", "90,4"], ["CCl4 (l)", "−139,2", "Br2 (l)", "0"], ["C6H12O6 (s)", "−1273", "N2O4 (g)", "9,7"],
+    ["C (s, grafito)", "0", "SO2 (g)", "−296,4"], ["C (s, diamante)", "2,88", "SO3 (g)", "−394,8"], ["CO (g)", "−110,1", "H2SO4 (l)", "−814,0"],
+    ["CO2 (g)", "−393,1", "NaCl (s)", "−411,0"], ["H2 (g)", "0", "KCl (s)", "−435,9"], ["N2 (g)", "0", "O2 (g)", "0"], ["N (g)", "472,7", "O (g)", "247,5"],
+];
+const svg = crearFigura(640, 20 * 32 + 12);
+const h = [{ t: "ΔH" }, { t: "f", sub: true }, { t: "° (kJ·mol" }, { t: "−1", sup: true }, { t: ")" }];
+const fmt = s => s.startsWith("C (s") ? [{ t: "C (" }, { t: "s", attrs: { "font-style": "italic" } }, { t: s.slice(4) }] : quim(s);
+tabla(svg, 5, 5, [["Sustancia", h, "Sustancia", h], ...D.map(([a, b, c, d]) => [fmt(a), b, fmt(c), d])],
+    { anchos: [165, 150, 165, 150], alto: 32, tam: 15 });
+</script>
+</body>
+</html>

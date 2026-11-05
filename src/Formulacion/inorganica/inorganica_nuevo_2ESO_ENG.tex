@@ -1,0 +1,664 @@
+%! Author = crist
+%! Date = 28/10/2026
+%
+% Nomenclatura de Química Inorgánica — 2.º ESO, VERSIÓN EN INGLÉS.
+% Adaptación de inorganica_nuevo_2ESO.tex con las reglas propias del inglés:
+%   · el nombre se lee en el orden de la fórmula (sodium chloride) y no hay "de";
+%   · la raíz sale del nombre inglés del elemento + -ide (el oxígeno no es excepción: oxide);
+%   · nombres ingleses de los elementos (iron, lead, tin, sulfur…).
+% Fuente: IUPAC 2005 (Red Book). Figuras en inglés: sufijo -en en images/html/figuras_inorganica.html.
+% El repaso final se generó con un script a partir de binarios_ejercicios_2_ESO.tex.
+
+% Preamble
+\documentclass[12pt]{article}
+% Packages
+\usepackage[spanish,english]{babel}
+\usepackage[top=0.5cm, left=1.5cm, right=1.5cm, bottom=1.5cm]{geometry}
+\usepackage{estilocrispropio}
+% Tipos de columna de párrafo (los mismos que LegrandOrangeBookES) para las tablas booktabs
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+
+% CARGA DE NEWPX CON SUS OPCIONES PRINCIPALES
+\usepackage[
+    scale=.98,        % Escala de la fuente (por defecto 1) [2, 5]
+    osf,              % Cifras de estilo antiguo (Old-style figures) en texto [2, 6]
+    p,                % Cifras proporcionales en texto [2, 6]
+    theoremfont,      % Fuente especial para teoremas (itálicas con puntuación recta) [3, 7]
+    trueslanted,      % \textsl produce texto inclinado real en lugar de itálicas [3, 7]
+    largesc,          % Aumenta el tamaño de las versalitas un 5.33% [3, 8]
+    tighter,          % Ajusta el espaciado entre palabras para que sea más compacto [3, 9]
+    vvarbb,           % Usa el estilo STIX para la negrita de pizarra (\mathbb) [10-12]
+    varg,             % Usa una 'g' itálica matemática de un solo lazo [13, 14]
+    boldermath,       % Hace que las itálicas romanas en matemáticas sean más gruesas [15]
+    amsthm            % Carga soporte para amsthm automáticamente [10]
+]{newpx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ejercicios y soluciones (paquete answers, cargado en estilocrispropio)
+%   \begin{exercise} ... \begin{solu} ... \end{solu} \end{exercise}
+%   Las soluciones se escriben en ans2esoeng.tex y se imprimen al final.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{mygreennumbox}
+\newtheorem{ejercicioT}{Exercise}[section]
+\newenvironment{exercise}{\begin{eBoxmygreen}\begin{ejercicioT}}{\hfill{\color{mygreen}\tiny\ensuremath{\blacksquare}}\end{ejercicioT}\end{eBoxmygreen}}
+\renewenvironment{Solution}[1]{%
+    \begin{eBoxmyBlue}%
+    \noindent{\small\sffamily\bfseries\color{myBlue}Exercise~#1}\par\smallskip%
+}{%
+    \end{eBoxmyBlue}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Numeraciones dentro de las cajas de color: las bolas numeradas toman el
+% color del borde de la caja.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\numeracioncolor}[1]{%
+    \colorlet{colornumeracion}{#1}%
+    \renewcommand*{\numberballgreen}{\protect\cnumero{\arabic*}{colornumeracion}}%
+    \renewcommand*{\numberballblue}{\protect\cnumero{\arabic*}{colornumeracion}}%
+    \renewcommand*{\numberballred}{\protect\cnumero{\arabic*}{colornumeracion}}%
+    \renewcommand*{\itembolascolor}[2]{\protect\cnumero{##1}{colornumeracion}}%
+}
+\AtBeginEnvironment{consejos}{\numeracioncolor{yellow!75!black}}
+\AtBeginEnvironment{ejemplo}{\numeracioncolor{green!65!black}}
+\AtBeginEnvironment{ejercicios}{\numeracioncolor{green!65!black}}
+\AtBeginEnvironment{definition}{\numeracioncolor{red!75!black}}
+\AtBeginEnvironment{solucion}{\numeracioncolor{blue!90}}
+\AtBeginEnvironment{marker}{\numeracioncolor{yellow!50!black}}
+\AtBeginEnvironment{exercise}{\numeracioncolor{mygreen}}
+\AtBeginEnvironment{Solution}{\numeracioncolor{myBlue}}
+
+\sisetup{%
+    detect-family,%
+    per-mode = fraction,
+    display-per-mode = fraction,
+    inter-unit-product = \cdot,
+    exponent-product = \cdot,
+    retain-explicit-plus
+}
+
+% --- Comandos propios de este documento ---
+% Esquema de una regla de nomenclatura (figura vectorial generada desde HTML)
+\newcommand{\esquemafig}[2][0.85]{\begin{center}\includegraphics[width=#1\textwidth]{images/pdf/#2.pdf}\end{center}}
+% Cabecera de los apartados "How are they named / formulated?"
+\newcommand{\formulan}{\vspace*{2mm}\noindent\xmybox{\bfseries From name to formula}\par\smallskip}
+\newcommand{\nombran}{\vspace*{2mm}\noindent\xmybox{\bfseries How are they named?}\par\smallskip}
+\newcommand{\ejemplos}{\par\noindent\textbf{\uline{Examples}}:\par}
+% Nombre incorrecto (tachado en rojo)
+\newcommand{\mal}[1]{\textcolor{red}{\sout{#1}}}
+% Figura generada desde HTML (PDF vectorial; la versión SVG está en images/svg)
+\newcommand{\figura}[2][0.95]{\begin{figure}[H]\centering\includegraphics[width=#1\textwidth]{images/pdf/#2.pdf}\end{figure}}
+
+% Document
+\begin{document}
+\begin{titlepage}
+    \vspace*{5cm}
+    \begin{center}
+        {\Huge{ \bfseries Inorganic Nomenclature}}
+    \end{center}
+    \vspace*{2cm}
+    \begin{center}
+        {\huge  2.º ESO}\par\bigskip
+        {\huge  IUPAC 2005}\par\medskip
+        {\Large First steps: binary compounds and hydroxides}
+    \end{center}
+    \vspace*{5cm}
+    \begin{center}
+        {\Large IES José Conde García (Almansa)}
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\setstretch{1.3}
+\newpage
+
+% Abrimos el fichero en el que se guardan las soluciones de los ejercicios
+\Opensolutionfile{ans}[ans2esoeng]
+
+%=====================================================================
+\section{What are we going to learn?}
+%=====================================================================
+
+Every chemical substance has a \negrita{name} and a \negrita{formula}. In this unit you will learn to go from one to the other:
+
+\begin{itemize}
+    \item \negrita{Writing the formula}: from the name to the formula. \quad diiron trioxide \(\to\) \ch{Fe2O3}
+    \item \negrita{Naming}: from the formula to the name. \quad \ch{CO2} \(\to\) carbon dioxide
+\end{itemize}
+
+We will follow the international rules of \negrita{IUPAC}. In this course we will use only one way of naming compounds: \negrita{multiplying prefixes}.
+
+\figura{fig2-formula-en}
+
+\begin{exercise}
+    How many atoms of each element are there? \textbf{a)} \ch{H2O}; \textbf{b)} \ch{CO2}; \textbf{c)} \ch{NH3}; \textbf{d)} \ch{Fe2O3}; \textbf{e)} \ch{CH4}; \textbf{f)} \ch{Al2S3}.
+    \begin{solu}
+        \textcolor{blue}{The subscript gives the number of atoms; if there is no number, there is 1.}\\
+        \textbf{a)} \textcolor{red}{2 H and 1 O}; \textbf{b)} \textcolor{red}{1 C and 2 O}; \textbf{c)} \textcolor{red}{1 N and 3 H}; \textbf{d)} \textcolor{red}{2 Fe and 3 O}; \textbf{e)} \textcolor{red}{1 C and 4 H}; \textbf{f)} \textcolor{red}{2 Al and 3 S}
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{What you need before you start}
+%=====================================================================
+
+\subsection{Prefixes}
+
+\figura[0.85]{fig2-prefijos-en}
+
+\subsubsection*{The prefix mono- is hardly ever written}
+
+The prefix \negrita{mono-} (1) is special: it is \negrita{usually left out}. If an element has no prefix, there is \negrita{only one atom} of it.
+
+\begin{enumerate}[label=\numberballgreen]
+    \item \negrita{The element named first never takes mono}: \ch{NaCl} is sodium chloride, not \mal{monosodium chloride}; \ch{CO} is carbon monoxide, not \mal{monocarbon monoxide}.
+    \item \negrita{The element named last usually does not either}: \ch{NaCl} sodium chloride, \ch{CaO} calcium oxide, \ch{KH} potassium hydride, \ch{NaOH} sodium hydroxide. There is no need to say \mal{sodium monochloride}.
+    \item \negrita{It is kept when the same two elements form several compounds} and we want to make it clear that there is only one atom. These are the cases in the table below: learn them like this.
+\end{enumerate}
+
+\begin{table}[H]
+    \centering
+    \caption{The most common cases in which mono is written}
+    \vspace{-5pt}
+    \begin{tabular}{@{}clL{6.5cm}@{}}
+        \toprule
+        \textbf{Formula} & \textbf{Name} & \textbf{Why is mono used?} \\
+        \midrule
+        \ch{CO} & carbon \negrita{monoxide} & To tell it apart from \ch{CO2}, carbon dioxide \\[3pt]
+        \ch{NO} & nitrogen \negrita{monoxide} & To tell it apart from \ch{NO2}, nitrogen dioxide \\[3pt]
+        \ch{N2O} & dinitrogen \negrita{monoxide} & Nitrogen forms many oxides (\ch{NO}, \ch{N2O3}, \ch{N2O5}…) \\[3pt]
+        \ch{FeO} & iron \negrita{monoxide} & To tell it apart from \ch{Fe2O3}, diiron trioxide \\[3pt]
+        \ch{FeS} & iron \negrita{mono}sulfide & To tell it apart from \ch{FeS2}, iron disulfide \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:mono}
+\end{table}
+
+\begin{marker}
+    \negrita{Look carefully:}
+    \begin{itemize}
+        \item \negrita{mono + oxide = monoxide}: one o is lost. IUPAC keeps the vowel with the other prefixes: di\negrita{o}xide, tetra\negrita{o}xide, penta\negrita{o}xide. Many English books write \negrita{tetroxide} or \negrita{pentoxide}: they mean the same.
+        \item In cases like \ch{FeO} or \ch{CuO} it is also correct to say just \negrita{iron oxide} or \negrita{copper oxide}. What is never correct is to put mono on the element named first.
+    \end{itemize}
+\end{marker}
+
+\begin{exercise}
+    \textbf{1.} Write the prefix: \textbf{a)} 2; \textbf{b)} 3; \textbf{c)} 4; \textbf{d)} 5; \textbf{e)} 6; \textbf{f)} 7.\\
+    \textbf{2.} Which number does it mean? \textbf{a)} penta; \textbf{b)} hexa; \textbf{c)} di; \textbf{d)} tri.
+    \begin{solu}
+        \textbf{1. a)} \textcolor{red}{di}; \textbf{b)} \textcolor{red}{tri}; \textbf{c)} \textcolor{red}{tetra}; \textbf{d)} \textcolor{red}{penta}; \textbf{e)} \textcolor{red}{hexa}; \textbf{f)} \textcolor{red}{hepta}\\
+        \textbf{2. a)} \textcolor{red}{5}; \textbf{b)} \textcolor{red}{6}; \textbf{c)} \textcolor{red}{2}; \textbf{d)} \textcolor{red}{3}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Mono or not? Name: \textbf{a)} \ch{CO}; \textbf{b)} \ch{KCl}; \textbf{c)} \ch{NO}; \textbf{d)} \ch{MgO}; \textbf{e)} \ch{N2O}; \textbf{f)} \ch{LiH}.
+    \begin{solu}
+        \textcolor{blue}{Mono is only kept in the cases of the table, never on the element named first.}\\
+        \textbf{a)} \textcolor{red}{carbon monoxide}; \textbf{b)} \textcolor{red}{potassium chloride}; \textbf{c)} \textcolor{red}{nitrogen monoxide}; \textbf{d)} \textcolor{red}{magnesium oxide}; \textbf{e)} \textcolor{red}{dinitrogen monoxide}; \textbf{f)} \textcolor{red}{lithium hydride}
+    \end{solu}
+\end{exercise}
+
+\subsection{Which element is written on the right?}
+
+\begin{itemize}
+    \item \negrita{Metals} are always written on the \negrita{left}.
+    \item Between two non-metals, look at this row: the one \negrita{further to the right} is written on the \negrita{right}.
+\end{itemize}
+
+\figura{fig-secuencia-en}
+
+\ejemplos
+\ballnumber{1} : Na and Cl \(\to\) \ch{NaCl} \quad \ballnumber{2} : C and O \(\to\) \ch{CO2} \quad \ballnumber{3} : N and H \(\to\) \ch{NH3} \quad \ballnumber{4} : H and Cl \(\to\) \ch{HCl}
+
+\begin{exercise}
+    Which element is written on the right? \textbf{a)} Na and Br; \textbf{b)} S and O; \textbf{c)} H and S; \textbf{d)} N and H; \textbf{e)} Cl and O; \textbf{f)} O and F.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{Br} (Na is a metal); \textbf{b)} \textcolor{red}{O}; \textbf{c)} \textcolor{red}{S}; \textbf{d)} \textcolor{red}{H}; \textbf{e)} \textcolor{red}{Cl} (halogens go to the right of oxygen); \textbf{f)} \textcolor{red}{F}
+    \end{solu}
+\end{exercise}
+
+\subsection{Element names}
+
+To name compounds you need the English names of the elements. Some of them are very different from Spanish: \negrita{Fe} is \negrita{iron}, \negrita{Pb} is \negrita{lead}, \negrita{Sn} is \negrita{tin}, \negrita{Cu} is \negrita{copper}, \negrita{Ag} is \negrita{silver} and \negrita{Au} is \negrita{gold}.
+
+\begin{table}[H]
+    \centering
+    \caption{Names of the metals}
+    \vspace{-5pt}
+    \begin{tabular}{@{}cl@{\hspace{1cm}}cl@{\hspace{1cm}}cl@{}}
+        \toprule
+        \textbf{Symbol} & \textbf{Name} & \textbf{Symbol} & \textbf{Name} & \textbf{Symbol} & \textbf{Name} \\
+        \midrule
+        Li & lithium & Ba & barium & Cu & copper \\[3pt]
+        Na & sodium & Al & aluminium (US: aluminum) & Ag & silver \\[3pt]
+        K & potassium & Cr & chromium & Au & gold \\[3pt]
+        Cs & caesium (US: cesium) & Mn & manganese & Zn & zinc \\[3pt]
+        Be & beryllium & Fe & iron & Cd & cadmium \\[3pt]
+        Mg & magnesium & Co & cobalt & Hg & mercury \\[3pt]
+        Ca & calcium & Ni & nickel & Sn & tin \\[3pt]
+        Sr & strontium & Pt & platinum & Pb & lead \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:metals}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Names of the non-metals and their -ide form}
+    \vspace{-5pt}
+    \begin{tabular}{@{}cll@{\hspace{1cm}}cll@{}}
+        \toprule
+        \textbf{Symbol} & \textbf{Name} & \textbf{-ide} & \textbf{Symbol} & \textbf{Name} & \textbf{-ide} \\
+        \midrule
+        H & hydrogen & hydride & Te & tellurium & telluride \\[3pt]
+        O & oxygen & oxide & N & nitrogen & nitride \\[3pt]
+        F & fluorine & fluoride & P & phosphorus & phosphide \\[3pt]
+        Cl & chlorine & chloride & C & carbon & carbide \\[3pt]
+        Br & bromine & bromide & Si & silicon & silicide \\[3pt]
+        I & iodine & iodide & B & boron & boride \\[3pt]
+        S & sulfur (UK: sulphur) & sulfide & As & arsenic & arsenide \\[3pt]
+        Se & selenium & selenide & Sb & antimony & antimonide \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:nonmetals}
+\end{table}
+
+\subsection{The root of the name and the ending -ide}
+
+The element on the right is named with the \negrita{root} of its name followed by \negrita{-ide}. To get the root:
+\begin{enumerate}[label=\numberballgreen]
+    \item Write the name of the element and \negrita{cross out the ending}: chlor\mal{ine}, nitr\mal{ogen}, carb\mal{on}, phosph\mal{orus}, ox\mal{ygen}, sulf\mal{ur}.
+    \item What is left is the \negrita{root}: chlor, nitr, carb, phosph, ox, sulf.
+    \item Add \negrita{-ide}: chloride, nitride, carbide, phosphide, oxide, sulfide.
+\end{enumerate}
+The endings removed are nearly always \negrita{-ine} (halogens), \negrita{-ogen}/\negrita{-ygen}, \negrita{-on}, \negrita{-orus}, \negrita{-ur} and \negrita{-ium}. In English there are no exceptions among the common elements: oxygen also follows the rule (\negrita{ox + ide = oxide}).
+
+\figura{fig-raiz-en}
+
+\figura[0.85]{fig2-uro-en}
+
+\begin{exercise}
+    Write the root and the name ending in -ide: \textbf{a)} chlorine; \textbf{b)} sulfur; \textbf{c)} nitrogen; \textbf{d)} phosphorus; \textbf{e)} bromine; \textbf{f)} carbon; \textbf{g)} oxygen; \textbf{h)} iodine.
+    \begin{solu}
+        \textbf{a)} chlor \(\to\) \textcolor{red}{chloride}; \textbf{b)} sulf \(\to\) \textcolor{red}{sulfide}; \textbf{c)} nitr \(\to\) \textcolor{red}{nitride}; \textbf{d)} phosph \(\to\) \textcolor{red}{phosphide}; \textbf{e)} brom \(\to\) \textcolor{red}{bromide}; \textbf{f)} carb \(\to\) \textcolor{red}{carbide}; \textbf{g)} ox \(\to\) \textcolor{red}{oxide}; \textbf{h)} iod \(\to\) \textcolor{red}{iodide}
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{The recipe for naming and writing formulas}
+%=====================================================================
+
+All the compounds in this unit have \negrita{two parts} and are named with the same recipe.
+
+\subsection{Naming: from the formula to the name}
+
+\esquemafig{esq-binario-en}
+
+In English the name is read in the \negrita{same order as the formula}, from left to right:
+\begin{enumerate}[label=\numberballgreen]
+    \item Write the \negrita{prefix} for the number of atoms of the element on the \negrita{left} (if there is only 1, write nothing) and its name.
+    \item Write the \negrita{prefix} for the number of atoms of the element on the \negrita{right}, its \negrita{root} and \negrita{-ide}.
+    \item There is \negrita{no word} between the two parts: never write \mal{of}.
+\end{enumerate}
+
+\figura{fig-receta-en}
+
+\subsection{Writing the formula: from the name to the formula}
+
+\figura{fig2-formular-en}
+
+\begin{marker}
+    \negrita{Never simplify.} The formula is written exactly as the name says: dinitrogen tetraoxide is \ch{N2O4} (not \mal{\ch{NO2}}, which is a different substance).
+\end{marker}
+
+\subsection{What type of compound is it?}
+
+\figura{fig2-identificar-en}
+
+\begin{exercise}
+    Say what type of compound each one is: \textbf{a)} \ch{SO2}; \textbf{b)} \ch{KH}; \textbf{c)} \ch{KOH}; \textbf{d)} \ch{HBr}; \textbf{e)} \ch{KBr}; \textbf{f)} \ch{NH3}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{oxide}; \textbf{b)} \textcolor{red}{hydride}; \textbf{c)} \textcolor{red}{hydroxide}; \textbf{d)} \textcolor{red}{hydrogen + non-metal} (hydrogen bromide); \textbf{e)} \textcolor{red}{binary salt} (potassium bromide); \textbf{f)} \textcolor{red}{special name}: ammonia
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{Oxides}
+%=====================================================================
+
+\begin{definition}{oxide}
+    A compound of \negrita{oxygen} and another element (metal or non-metal). Oxygen is written on the \negrita{right}. With the halogens (F, Cl, Br, I) it is the other way round: they are not oxides (see the box below).
+\end{definition}
+
+\nombran
+\esquemafig{esq-oxido-pref-en}
+
+\ejemplos
+\begin{center}
+    \begin{tabular}{@{}cl@{}}
+        \toprule
+        \textbf{Formula} & \textbf{Name} \\
+        \midrule
+        \ch{CO} & carbon monoxide \\[3pt]
+        \ch{CO2} & carbon dioxide \\[3pt]
+        \ch{SO3} & sulfur trioxide \\[3pt]
+        \ch{Na2O} & disodium oxide \\[3pt]
+        \ch{Fe2O3} & diiron trioxide \\[3pt]
+        \ch{N2O5} & dinitrogen pentaoxide \\[3pt]
+        \ch{CaO} & calcium oxide \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\formulan
+\ballnumber{1} : sulfur dioxide \(\to\) 1 S and 2 O \(\to\) \ch{SO2}
+
+\ballnumber{2} : disodium oxide \(\to\) 2 Na and 1 O \(\to\) \ch{Na2O}
+
+\ballnumber{3} : diphosphorus pentaoxide \(\to\) 2 P and 5 O \(\to\) \ch{P2O5}
+
+\begin{marker}
+    \negrita{Watch out for the halogens!} With F, Cl, Br and I, oxygen goes on the \negrita{left} and the halogen is named with root + ide: \ch{OF2} \negrita{oxygen difluoride}, \ch{OCl2} \negrita{oxygen dichloride}. They are not oxides: do not write \mal{\ch{Cl2O}} or say \mal{dichlorine oxide}.
+\end{marker}
+\esquemafig{esq-halogenuro-oxigeno-en}
+
+\begin{exercise}
+    Name: \textbf{a)} \ch{CO2}; \textbf{b)} \ch{SO2}; \textbf{c)} \ch{CaO}; \textbf{d)} \ch{K2O}; \textbf{e)} \ch{Al2O3}; \textbf{f)} \ch{N2O3}; \textbf{g)} \ch{PbO2}; \textbf{h)} \ch{SiO2}; \textbf{i)} \ch{OCl2}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{carbon dioxide}; \textbf{b)} \textcolor{red}{sulfur dioxide}; \textbf{c)} \textcolor{red}{calcium oxide}; \textbf{d)} \textcolor{red}{dipotassium oxide}; \textbf{e)} \textcolor{red}{dialuminium trioxide}; \textbf{f)} \textcolor{red}{dinitrogen trioxide}; \textbf{g)} \textcolor{red}{lead dioxide}; \textbf{h)} \textcolor{red}{silicon dioxide}; \textbf{i)} \textcolor{red}{oxygen dichloride} (not an oxide)
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Write the formula: \textbf{a)} carbon monoxide; \textbf{b)} sulfur trioxide; \textbf{c)} dilithium oxide; \textbf{d)} iron monoxide; \textbf{e)} dinitrogen pentaoxide; \textbf{f)} magnesium oxide.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{\ch{CO}}; \textbf{b)} \textcolor{red}{\ch{SO3}}; \textbf{c)} \textcolor{red}{\ch{Li2O}}; \textbf{d)} \textcolor{red}{\ch{FeO}}; \textbf{e)} \textcolor{red}{\ch{N2O5}}; \textbf{f)} \textcolor{red}{\ch{MgO}}
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{Hydrides: metal + hydrogen}
+%=====================================================================
+
+\begin{definition}{hydride}
+    A compound of a \negrita{metal} and \negrita{hydrogen}. Hydrogen is written on the \negrita{right}.
+\end{definition}
+
+\nombran
+\esquemafig{esq-hidruro-pref-en}
+
+There is always only one metal atom, so the metal \negrita{has no prefix}.
+
+\ejemplos
+\ballnumber{1} : \ch{NaH}: sodium hydride \quad \ballnumber{2} : \ch{CaH2}: calcium dihydride \quad \ballnumber{3} : \ch{AlH3}: aluminium trihydride
+
+\formulan
+\ballnumber{1} : iron dihydride \(\to\) 1 Fe and 2 H \(\to\) \ch{FeH2} \quad \ballnumber{2} : lithium hydride \(\to\) \ch{LiH}
+
+\begin{exercise}
+    \textbf{1.} Name: \textbf{a)} \ch{KH}; \textbf{b)} \ch{MgH2}; \textbf{c)} \ch{FeH3}; \textbf{d)} \ch{PbH4}; \textbf{e)} \ch{CuH}.\\
+    \textbf{2.} Write the formula: \textbf{a)} sodium hydride; \textbf{b)} barium dihydride; \textbf{c)} cobalt trihydride; \textbf{d)} tin tetrahydride.
+    \begin{solu}
+        \textbf{1. a)} \textcolor{red}{potassium hydride}; \textbf{b)} \textcolor{red}{magnesium dihydride}; \textbf{c)} \textcolor{red}{iron trihydride}; \textbf{d)} \textcolor{red}{lead tetrahydride}; \textbf{e)} \textcolor{red}{copper hydride}\\
+        \textbf{2. a)} \textcolor{red}{\ch{NaH}}; \textbf{b)} \textcolor{red}{\ch{BaH2}}; \textbf{c)} \textcolor{red}{\ch{CoH3}}; \textbf{d)} \textcolor{red}{\ch{SnH4}}
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{Hydrogen + non-metal}
+%=====================================================================
+
+\subsection{With group 16 (S, Se, Te) and group 17 (F, Cl, Br, I): hydrogen goes on the left}
+
+With these non-metals hydrogen is written on the \negrita{left}. They are named with the same recipe: \negrita{hydrogen} first, then the root of the non-metal + \negrita{-ide}.
+
+\esquemafig{esq-hidrogeno-nm-en}
+
+\ejemplos
+\ballnumber{1} : \ch{HF}: hydrogen fluoride \quad \ballnumber{2} : \ch{HCl}: hydrogen chloride \quad \ballnumber{3} : \ch{H2S}: dihydrogen sulfide
+
+\begin{marker}
+    \negrita{What about «hydrochloric acid»?} It is the traditional name of the mixture of hydrogen chloride (\ch{HCl}) and water. It is not an IUPAC name for the compound: \ch{HCl} is always called \negrita{hydrogen chloride}.
+\end{marker}
+
+\subsection{Three special names: water, ammonia and methane}
+
+Some very well-known substances have \negrita{their own name}, accepted by IUPAC. You have to learn them by heart:
+
+\begin{center}
+    \begin{tabular}{@{}ccl@{}}
+        \toprule
+        \textbf{Formula} & \textbf{Special name} & \textbf{With prefixes} \\
+        \midrule
+        \ch{H2O} & \negrita{water} & --- \\[3pt]
+        \ch{NH3} & \negrita{ammonia} & nitrogen trihydride \\[3pt]
+        \ch{CH4} & \negrita{methane} & carbon tetrahydride \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+Note that with N and C, hydrogen goes on the \negrita{right} (\ch{NH3}, \ch{CH4}).
+
+\begin{exercise}
+    \textbf{1.} Name: \textbf{a)} \ch{HBr}; \textbf{b)} \ch{HI}; \textbf{c)} \ch{H2S}; \textbf{d)} \ch{H2O}; \textbf{e)} \ch{NH3}; \textbf{f)} \ch{CH4}.\\
+    \textbf{2.} Write the formula: \textbf{a)} hydrogen chloride; \textbf{b)} hydrogen fluoride; \textbf{c)} dihydrogen sulfide; \textbf{d)} ammonia; \textbf{e)} methane; \textbf{f)} water.
+    \begin{solu}
+        \textbf{1. a)} \textcolor{red}{hydrogen bromide}; \textbf{b)} \textcolor{red}{hydrogen iodide}; \textbf{c)} \textcolor{red}{dihydrogen sulfide}; \textbf{d)} \textcolor{red}{water}; \textbf{e)} \textcolor{red}{ammonia}; \textbf{f)} \textcolor{red}{methane}\\
+        \textbf{2. a)} \textcolor{red}{\ch{HCl}}; \textbf{b)} \textcolor{red}{\ch{HF}}; \textbf{c)} \textcolor{red}{\ch{H2S}}; \textbf{d)} \textcolor{red}{\ch{NH3}}; \textbf{e)} \textcolor{red}{\ch{CH4}}; \textbf{f)} \textcolor{red}{\ch{H2O}}
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{Binary salts}
+%=====================================================================
+
+\begin{definition}{binary salt}
+    A compound of two elements in which the one on the \negrita{right} is a non-metal (but \negrita{not} oxygen or hydrogen). The one on the left can be a metal or a non-metal.
+\end{definition}
+
+\nombran
+\esquemafig{esq-sal-pref-en}
+
+\ejemplos
+\begin{center}
+    \begin{tabular}{@{}clcl@{}}
+        \toprule
+        \multicolumn{2}{c}{\textbf{Metal + non-metal}} & \multicolumn{2}{c}{\textbf{Non-metal + non-metal}} \\
+        \midrule
+        \ch{NaCl} & sodium chloride & \ch{PCl3} & phosphorus trichloride \\[3pt]
+        \ch{CaF2} & calcium difluoride & \ch{CCl4} & carbon tetrachloride \\[3pt]
+        \ch{FeS} & iron monosulfide & \ch{SF6} & sulfur hexafluoride \\[3pt]
+        \ch{Al2S3} & dialuminium trisulfide & \ch{CS2} & carbon disulfide \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\formulan
+\ballnumber{1} : tricalcium diphosphide \(\to\) 3 Ca and 2 P \(\to\) \ch{Ca3P2} \quad \ballnumber{2} : phosphorus pentachloride \(\to\) \ch{PCl5}
+
+\begin{marker}
+    In many English books you will see names without prefixes for compounds of metals, such as \negrita{calcium chloride} for \ch{CaCl2}, or with Roman numerals, such as \negrita{iron(III) chloride} for \ch{FeCl3}. Those names are also correct, but they need oxidation numbers, which you will learn in 3.º ESO. In this course we always use prefixes: \negrita{calcium dichloride}, \negrita{iron trichloride}.
+\end{marker}
+
+\begin{exercise}
+    \textbf{1.} Name: \textbf{a)} \ch{KCl}; \textbf{b)} \ch{MgBr2}; \textbf{c)} \ch{Na2S}; \textbf{d)} \ch{AgI}; \textbf{e)} \ch{FeCl3}; \textbf{f)} \ch{NCl3}; \textbf{g)} \ch{PBr5}.\\
+    \textbf{2.} Write the formula: \textbf{a)} sodium bromide; \textbf{b)} zinc dichloride; \textbf{c)} dipotassium sulfide; \textbf{d)} trilithium nitride; \textbf{e)} silicon tetrafluoride; \textbf{f)} boron trifluoride.
+    \begin{solu}
+        \textbf{1. a)} \textcolor{red}{potassium chloride}; \textbf{b)} \textcolor{red}{magnesium dibromide}; \textbf{c)} \textcolor{red}{disodium sulfide}; \textbf{d)} \textcolor{red}{silver iodide}; \textbf{e)} \textcolor{red}{iron trichloride}; \textbf{f)} \textcolor{red}{nitrogen trichloride}; \textbf{g)} \textcolor{red}{phosphorus pentabromide}\\
+        \textbf{2. a)} \textcolor{red}{\ch{NaBr}}; \textbf{b)} \textcolor{red}{\ch{ZnCl2}}; \textbf{c)} \textcolor{red}{\ch{K2S}}; \textbf{d)} \textcolor{red}{\ch{Li3N}}; \textbf{e)} \textcolor{red}{\ch{SiF4}}; \textbf{f)} \textcolor{red}{\ch{BF3}}
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{Hydroxides}
+%=====================================================================
+
+\begin{definition}{hydroxide}
+    A compound of a \negrita{metal} and one or more \negrita{OH} groups (hydroxide). The \ch{OH} group always stays together: it is a block that is never split.
+\end{definition}
+
+\nombran
+\esquemafig{esq-hidroxido-pref-en}
+
+\ejemplos
+\ballnumber{1} : \ch{NaOH}: sodium hydroxide \quad \ballnumber{2} : \ch{Ca(OH)2}: calcium dihydroxide \quad \ballnumber{3} : \ch{Al(OH)3}: aluminium trihydroxide
+
+\formulan
+\begin{enumerate}[label=\numberballgreen]
+    \item Write the metal and, on its right, the \ch{OH} group.
+    \item The prefix tells how many \ch{OH} groups there are.
+    \item If there is \negrita{more than one}, put \ch{OH} in \negrita{brackets} and the number after them: iron dihydroxide \(\to\) \ch{Fe(OH)2}.
+\end{enumerate}
+
+\begin{marker}
+    Brackets are compulsory: \ch{Ca(OH)2}, not \mal{\ch{CaOH2}} or \mal{\ch{CaO2H2}}.
+\end{marker}
+
+\begin{exercise}
+    \textbf{1.} Name: \textbf{a)} \ch{KOH}; \textbf{b)} \ch{LiOH}; \textbf{c)} \ch{Mg(OH)2}; \textbf{d)} \ch{Fe(OH)3}; \textbf{e)} \ch{Pb(OH)4}.\\
+    \textbf{2.} Write the formula: \textbf{a)} sodium hydroxide; \textbf{b)} barium dihydroxide; \textbf{c)} zinc dihydroxide; \textbf{d)} aluminium trihydroxide.
+    \begin{solu}
+        \textbf{1. a)} \textcolor{red}{potassium hydroxide}; \textbf{b)} \textcolor{red}{lithium hydroxide}; \textbf{c)} \textcolor{red}{magnesium dihydroxide}; \textbf{d)} \textcolor{red}{iron trihydroxide}; \textbf{e)} \textcolor{red}{lead tetrahydroxide}\\
+        \textbf{2. a)} \textcolor{red}{\ch{NaOH}}; \textbf{b)} \textcolor{red}{\ch{Ba(OH)2}}; \textbf{c)} \textcolor{red}{\ch{Zn(OH)2}}; \textbf{d)} \textcolor{red}{\ch{Al(OH)3}}
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{Common mistakes}
+%=====================================================================
+
+\begin{center}
+    \begin{tabular}{@{}L{0.3\linewidth} L{0.32\linewidth} L{0.32\linewidth}@{}}
+        \toprule
+        \textbf{Mistake} & \textbf{Wrong} & \textbf{Right} \\
+        \midrule
+        Using mono when it is not needed & \mal{monosodium monochloride} & sodium chloride \\[3pt]
+        Forgetting the -ide & \mal{sodium chlorine} & sodium chloride \\[3pt]
+        Using the Spanish order & \mal{chloride sodium}, \mal{chloride of sodium} & sodium chloride \\[3pt]
+        Simplifying the formula & \mal{\ch{NO2}} for dinitrogen tetraoxide & \ch{N2O4} \\[3pt]
+        Changing the order & \mal{\ch{Cl2O}} (\mal{dichlorine oxide}) & \ch{OCl2} (oxygen dichloride) \\[3pt]
+        Leaving out the brackets & \mal{\ch{CaOH2}} & \ch{Ca(OH)2} \\[3pt]
+        Mixing up compound and mixture & \ch{HCl}: \mal{hydrochloric acid} & \ch{HCl}: hydrogen chloride \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\newpage
+%=====================================================================
+\section{Final review}
+%=====================================================================
+
+\subsection{Oxides}
+
+\begin{exercise}
+    Name (careful: two of them are not oxides!): \textbf{a)} \ch{Na2O}; \textbf{b)} \ch{Co2O3}; \textbf{c)} \ch{CuO}; \textbf{d)} \ch{Ag2O}; \textbf{e)} \ch{CdO}; \textbf{f)} \ch{NO}; \textbf{g)} \ch{CO2}; \textbf{h)} \ch{As2O5}; \textbf{i)} \ch{SO3}; \textbf{j)} \ch{O5I2}; \textbf{k)} \ch{O7Br2}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{disodium oxide}; \textbf{b)} \textcolor{red}{dicobalt trioxide}; \textbf{c)} \textcolor{red}{copper oxide} (or copper monoxide); \textbf{d)} \textcolor{red}{disilver oxide}; \textbf{e)} \textcolor{red}{cadmium oxide}; \textbf{f)} \textcolor{red}{nitrogen monoxide}; \textbf{g)} \textcolor{red}{carbon dioxide}; \textbf{h)} \textcolor{red}{diarsenic pentaoxide}; \textbf{i)} \textcolor{red}{sulfur trioxide}; \textbf{j)} \textcolor{red}{pentaoxygen diiodide} (not an oxide); \textbf{k)} \textcolor{red}{heptaoxygen dibromide} (not an oxide)
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Write the formula: \textbf{a)} dilithium oxide; \textbf{b)} magnesium oxide; \textbf{c)} dipotassium oxide; \textbf{d)} strontium oxide; \textbf{e)} iron oxide; \textbf{f)} lead dioxide; \textbf{g)} digold trioxide; \textbf{h)} dialuminium trioxide; \textbf{i)} tin oxide; \textbf{j)} zinc oxide; \textbf{k)} mercury oxide; \textbf{l)} dinitrogen monoxide; \textbf{m)} dicobalt trioxide; \textbf{n)} dinitrogen pentaoxide; \textbf{o)} barium oxide; \textbf{p)} sulfur trioxide; \textbf{q)} dichromium trioxide; \textbf{r)} manganese dioxide; \textbf{s)} dimanganese trioxide; \textbf{t)} platinum dioxide; \textbf{u)} trioxygen dibromide.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{\ch{Li2O}}; \textbf{b)} \textcolor{red}{\ch{MgO}}; \textbf{c)} \textcolor{red}{\ch{K2O}}; \textbf{d)} \textcolor{red}{\ch{SrO}}; \textbf{e)} \textcolor{red}{\ch{FeO}}; \textbf{f)} \textcolor{red}{\ch{PbO2}}; \textbf{g)} \textcolor{red}{\ch{Au2O3}}; \textbf{h)} \textcolor{red}{\ch{Al2O3}}; \textbf{i)} \textcolor{red}{\ch{SnO}}; \textbf{j)} \textcolor{red}{\ch{ZnO}}; \textbf{k)} \textcolor{red}{\ch{HgO}}; \textbf{l)} \textcolor{red}{\ch{N2O}}; \textbf{m)} \textcolor{red}{\ch{Co2O3}}; \textbf{n)} \textcolor{red}{\ch{N2O5}}; \textbf{o)} \textcolor{red}{\ch{BaO}}; \textbf{p)} \textcolor{red}{\ch{SO3}}; \textbf{q)} \textcolor{red}{\ch{Cr2O3}}; \textbf{r)} \textcolor{red}{\ch{MnO2}}; \textbf{s)} \textcolor{red}{\ch{Mn2O3}}; \textbf{t)} \textcolor{red}{\ch{PtO2}}; \textbf{u)} \textcolor{red}{\ch{O3Br2}} (not an oxide: O goes on the left)
+    \end{solu}
+\end{exercise}
+
+\subsection{Hydrides: metal + hydrogen}
+
+\begin{exercise}
+    Name: \textbf{a)} \ch{NaH}; \textbf{b)} \ch{CaH2}; \textbf{c)} \ch{CoH2}; \textbf{d)} \ch{CuH2}; \textbf{e)} \ch{AgH}; \textbf{f)} \ch{CdH2}; \textbf{g)} \ch{BeH2}; \textbf{h)} \ch{CsH}; \textbf{i)} \ch{SnH4}; \textbf{j)} \ch{NiH2}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{sodium hydride}; \textbf{b)} \textcolor{red}{calcium dihydride}; \textbf{c)} \textcolor{red}{cobalt dihydride}; \textbf{d)} \textcolor{red}{copper dihydride}; \textbf{e)} \textcolor{red}{silver hydride}; \textbf{f)} \textcolor{red}{cadmium dihydride}; \textbf{g)} \textcolor{red}{beryllium dihydride}; \textbf{h)} \textcolor{red}{caesium hydride}; \textbf{i)} \textcolor{red}{tin tetrahydride}; \textbf{j)} \textcolor{red}{nickel dihydride}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Write the formula: \textbf{a)} magnesium dihydride; \textbf{b)} strontium dihydride; \textbf{c)} potassium hydride; \textbf{d)} iron dihydride; \textbf{e)} lead dihydride; \textbf{f)} gold trihydride; \textbf{g)} chromium hexahydride; \textbf{h)} tin dihydride; \textbf{i)} zinc dihydride; \textbf{j)} mercury dihydride; \textbf{k)} platinum tetrahydride; \textbf{l)} cobalt trihydride; \textbf{m)} copper hydride; \textbf{n)} copper dihydride; \textbf{o)} barium dihydride; \textbf{p)} aluminium trihydride; \textbf{q)} chromium trihydride; \textbf{r)} manganese dihydride.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{\ch{MgH2}}; \textbf{b)} \textcolor{red}{\ch{SrH2}}; \textbf{c)} \textcolor{red}{\ch{KH}}; \textbf{d)} \textcolor{red}{\ch{FeH2}}; \textbf{e)} \textcolor{red}{\ch{PbH2}}; \textbf{f)} \textcolor{red}{\ch{AuH3}}; \textbf{g)} \textcolor{red}{\ch{CrH6}}; \textbf{h)} \textcolor{red}{\ch{SnH2}}; \textbf{i)} \textcolor{red}{\ch{ZnH2}}; \textbf{j)} \textcolor{red}{\ch{HgH2}}; \textbf{k)} \textcolor{red}{\ch{PtH4}}; \textbf{l)} \textcolor{red}{\ch{CoH3}}; \textbf{m)} \textcolor{red}{\ch{CuH}}; \textbf{n)} \textcolor{red}{\ch{CuH2}}; \textbf{o)} \textcolor{red}{\ch{BaH2}}; \textbf{p)} \textcolor{red}{\ch{AlH3}}; \textbf{q)} \textcolor{red}{\ch{CrH3}}; \textbf{r)} \textcolor{red}{\ch{MnH2}}
+    \end{solu}
+\end{exercise}
+
+\subsection{Hydrogen + non-metal}
+
+Remember: with S, Se, Te, F, Cl, Br and I, hydrogen goes on the \negrita{left} (\ch{HCl}, \ch{H2S}). With B, C, Si, N, P, As and Sb it goes on the \negrita{right} and they are named like hydrides (\ch{PH3}, phosphorus trihydride), except for the special names (water, ammonia, methane).
+
+\begin{exercise}
+    Name: \textbf{a)} \ch{NH3}; \textbf{b)} \ch{SiH4}; \textbf{c)} \ch{SbH3}; \textbf{d)} \ch{H2S}; \textbf{e)} \ch{HCl}; \textbf{f)} \ch{HBr}; \textbf{g)} \ch{PH3}; \textbf{h)} \ch{CH4}; \textbf{i)} \ch{AsH3}; \textbf{j)} \ch{HI}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{ammonia}; \textbf{b)} \textcolor{red}{silicon tetrahydride}; \textbf{c)} \textcolor{red}{antimony trihydride}; \textbf{d)} \textcolor{red}{dihydrogen sulfide}; \textbf{e)} \textcolor{red}{hydrogen chloride}; \textbf{f)} \textcolor{red}{hydrogen bromide}; \textbf{g)} \textcolor{red}{phosphorus trihydride}; \textbf{h)} \textcolor{red}{methane}; \textbf{i)} \textcolor{red}{arsenic trihydride}; \textbf{j)} \textcolor{red}{hydrogen iodide}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Write the formula: \textbf{a)} boron trihydride; \textbf{b)} dihydrogen sulfide; \textbf{c)} hydrogen chloride; \textbf{d)} hydrogen iodide; \textbf{e)} dihydrogen selenide; \textbf{f)} hydrogen bromide.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{\ch{BH3}}; \textbf{b)} \textcolor{red}{\ch{H2S}}; \textbf{c)} \textcolor{red}{\ch{HCl}}; \textbf{d)} \textcolor{red}{\ch{HI}}; \textbf{e)} \textcolor{red}{\ch{H2Se}}; \textbf{f)} \textcolor{red}{\ch{HBr}}
+    \end{solu}
+\end{exercise}
+
+\subsection{Binary salts: metal + non-metal}
+
+\begin{exercise}
+    Name: \textbf{a)} \ch{NaF}; \textbf{b)} \ch{CoCl3}; \textbf{c)} \ch{CuSe}; \textbf{d)} \ch{AgCl}; \textbf{e)} \ch{CdF2}; \textbf{f)} \ch{MnF2}; \textbf{g)} \ch{CsCl}; \textbf{h)} \ch{Ni2S3}; \textbf{i)} \ch{PbCl2}; \textbf{j)} \ch{FeI3}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{sodium fluoride}; \textbf{b)} \textcolor{red}{cobalt trichloride}; \textbf{c)} \textcolor{red}{copper selenide}; \textbf{d)} \textcolor{red}{silver chloride}; \textbf{e)} \textcolor{red}{cadmium difluoride}; \textbf{f)} \textcolor{red}{manganese difluoride}; \textbf{g)} \textcolor{red}{caesium chloride}; \textbf{h)} \textcolor{red}{dinickel trisulfide}; \textbf{i)} \textcolor{red}{lead dichloride}; \textbf{j)} \textcolor{red}{iron triiodide}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Write the formula: \textbf{a)} lithium chloride; \textbf{b)} magnesium diiodide; \textbf{c)} beryllium dibromide; \textbf{d)} dipotassium sulfide; \textbf{e)} iron difluoride; \textbf{f)} lead tetrachloride; \textbf{g)} digold trisulfide; \textbf{h)} tin sulfide; \textbf{i)} zinc dibromide; \textbf{j)} mercury telluride; \textbf{k)} cobalt diiodide; \textbf{l)} calcium dichloride; \textbf{m)} dialuminium trisulfide; \textbf{n)} dichromium trisulfide; \textbf{o)} manganese dibromide; \textbf{p)} disodium telluride; \textbf{q)} zinc dichloride; \textbf{r)} disilver sulfide.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{\ch{LiCl}}; \textbf{b)} \textcolor{red}{\ch{MgI2}}; \textbf{c)} \textcolor{red}{\ch{BeBr2}}; \textbf{d)} \textcolor{red}{\ch{K2S}}; \textbf{e)} \textcolor{red}{\ch{FeF2}}; \textbf{f)} \textcolor{red}{\ch{PbCl4}}; \textbf{g)} \textcolor{red}{\ch{Au2S3}}; \textbf{h)} \textcolor{red}{\ch{SnS}}; \textbf{i)} \textcolor{red}{\ch{ZnBr2}}; \textbf{j)} \textcolor{red}{\ch{HgTe}}; \textbf{k)} \textcolor{red}{\ch{CoI2}}; \textbf{l)} \textcolor{red}{\ch{CaCl2}}; \textbf{m)} \textcolor{red}{\ch{Al2S3}}; \textbf{n)} \textcolor{red}{\ch{Cr2S3}}; \textbf{o)} \textcolor{red}{\ch{MnBr2}}; \textbf{p)} \textcolor{red}{\ch{Na2Te}}; \textbf{q)} \textcolor{red}{\ch{ZnCl2}}; \textbf{r)} \textcolor{red}{\ch{Ag2S}}
+    \end{solu}
+\end{exercise}
+
+\subsection{Binary salts: non-metal + non-metal}
+
+\begin{exercise}
+    Name: \textbf{a)} \ch{PCl5}; \textbf{b)} \ch{IF7}; \textbf{c)} \ch{SI2}; \textbf{d)} \ch{NCl3}; \textbf{e)} \ch{N2S5}; \textbf{f)} \ch{SiS2}; \textbf{g)} \ch{TeI4}; \textbf{h)} \ch{As2S3}; \textbf{i)} \ch{CI4}; \textbf{j)} \ch{NF3}; \textbf{k)} \ch{IBr}; \textbf{l)} \ch{SeBr4}; \textbf{m)} \ch{SeCl6}; \textbf{n)} \ch{AsF5}; \textbf{o)} \ch{CCl4}; \textbf{p)} \ch{SiF4}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{phosphorus pentachloride}; \textbf{b)} \textcolor{red}{iodine heptafluoride}; \textbf{c)} \textcolor{red}{sulfur diiodide}; \textbf{d)} \textcolor{red}{nitrogen trichloride}; \textbf{e)} \textcolor{red}{dinitrogen pentasulfide}; \textbf{f)} \textcolor{red}{silicon disulfide}; \textbf{g)} \textcolor{red}{tellurium tetraiodide}; \textbf{h)} \textcolor{red}{diarsenic trisulfide}; \textbf{i)} \textcolor{red}{carbon tetraiodide}; \textbf{j)} \textcolor{red}{nitrogen trifluoride}; \textbf{k)} \textcolor{red}{iodine bromide}; \textbf{l)} \textcolor{red}{selenium tetrabromide}; \textbf{m)} \textcolor{red}{selenium hexachloride}; \textbf{n)} \textcolor{red}{arsenic pentafluoride}; \textbf{o)} \textcolor{red}{carbon tetrachloride}; \textbf{p)} \textcolor{red}{silicon tetrafluoride}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Write the formula: \textbf{a)} bromine trifluoride; \textbf{b)} sulfur hexafluoride; \textbf{c)} carbon disulfide.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{\ch{BrF3}}; \textbf{b)} \textcolor{red}{\ch{SF6}}; \textbf{c)} \textcolor{red}{\ch{CS2}}
+    \end{solu}
+\end{exercise}
+
+\subsection{Everything mixed}
+
+\begin{exercise}
+    Name: \textbf{a)} \ch{CO}; \textbf{b)} \ch{Fe2O3}; \textbf{c)} \ch{NaH}; \textbf{d)} \ch{HCl}; \textbf{e)} \ch{NH3}; \textbf{f)} \ch{CaCl2}; \textbf{g)} \ch{SF6}; \textbf{h)} \ch{Cu(OH)2}; \textbf{i)} \ch{H2O}; \textbf{j)} \ch{P2O5}.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{carbon monoxide}; \textbf{b)} \textcolor{red}{diiron trioxide}; \textbf{c)} \textcolor{red}{sodium hydride}; \textbf{d)} \textcolor{red}{hydrogen chloride}; \textbf{e)} \textcolor{red}{ammonia}; \textbf{f)} \textcolor{red}{calcium dichloride}; \textbf{g)} \textcolor{red}{sulfur hexafluoride}; \textbf{h)} \textcolor{red}{copper dihydroxide}; \textbf{i)} \textcolor{red}{water}; \textbf{j)} \textcolor{red}{diphosphorus pentaoxide}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Write the formula: \textbf{a)} carbon dioxide; \textbf{b)} disodium oxide; \textbf{c)} calcium dihydride; \textbf{d)} dihydrogen sulfide; \textbf{e)} methane; \textbf{f)} potassium bromide; \textbf{g)} phosphorus trichloride; \textbf{h)} iron trihydroxide; \textbf{i)} dinitrogen tetraoxide; \textbf{j)} silver iodide.
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{\ch{CO2}}; \textbf{b)} \textcolor{red}{\ch{Na2O}}; \textbf{c)} \textcolor{red}{\ch{CaH2}}; \textbf{d)} \textcolor{red}{\ch{H2S}}; \textbf{e)} \textcolor{red}{\ch{CH4}}; \textbf{f)} \textcolor{red}{\ch{KBr}}; \textbf{g)} \textcolor{red}{\ch{PCl3}}; \textbf{h)} \textcolor{red}{\ch{Fe(OH)3}}; \textbf{i)} \textcolor{red}{\ch{N2O4}}; \textbf{j)} \textcolor{red}{\ch{AgI}}
+    \end{solu}
+\end{exercise}
+
+
+% ---------------------------------------------------------------------
+% Soluciones de todos los ejercicios
+% ---------------------------------------------------------------------
+\Closesolutionfile{ans}
+\newpage
+\section*{Solutions to the exercises}
+\addcontentsline{toc}{section}{Solutions to the exercises}
+\input{ans2esoeng}
+
+\end{document}

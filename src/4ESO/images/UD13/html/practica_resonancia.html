@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Práctica de resonancia acústica</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 920px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="880" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    // ---------- 1) dos diapasones enfrentados ----------
+    label(add, 220, 22, '1. Dos diapasones iguales', { fill: '#000070', 'font-size': 16 });
+    add('line', { x1: 10, y1: 260, x2: 430, y2: 260, stroke: '#7F8C8D', 'stroke-width': 2 });
+    tuningFork(add, 90, 260, 0.9, 'right');
+    tuningFork(add, 350, 260, 0.9, 'left');
+    label(add, 90, 285, 'A (golpeado)', { 'font-size': 13, fill: '#23373B' });
+    label(add, 350, 285, 'B (empieza a sonar)', { 'font-size': 13, fill: '#23373B' });
+    for (let k = 0; k < 4; k++) add('path', { d: arcD(150, 230, 16 + 16 * k, -30, 30), fill: 'none', stroke: '#C0392B', 'stroke-width': 2.2 });
+    for (let k = 0; k < 2; k++) add('path', { d: arcD(350, 90, 22 + 10 * k, 25, 155), fill: 'none', stroke: '#2E86C1', 'stroke-width': 2 });
+    // martillo de goma
+    add('line', { x1: 20, y1: 70, x2: 66, y2: 102, stroke: '#A04000', 'stroke-width': 5, 'stroke-linecap': 'round' });
+    add('circle', { cx: 70, cy: 104, r: 9, fill: '#6E2C00' });
+    arrow(add, 120, 312, 85, 312, '#23373B', 1.5, 8); arrow(add, 240, 312, 330, 312, '#23373B', 1.5, 8);
+    label(add, 180, 317, '≈ 1 m', { 'font-size': 14 });
+
+    // ---------- 2) tubo de resonancia ----------
+    label(add, 670, 22, '2. Tubo de resonancia', { fill: '#000070', 'font-size': 16 });
+    // tubo ancho (fijo) y tubo estrecho que se desliza
+    add('rect', { x: 560, y: 150, width: 200, height: 56, fill: '#D6EAF8', 'fill-opacity': 0.7, stroke: '#5D6D7E', 'stroke-width': 2.5 });
+    add('rect', { x: 700, y: 158, width: 150, height: 40, fill: '#EBF5FB', 'fill-opacity': 0.8, stroke: '#5D6D7E', 'stroke-width': 2.5 });
+    add('rect', { x: 846, y: 154, width: 8, height: 48, fill: '#AF7AC5' });
+    label(add, 850, 230, 'lámina de plástico', { 'font-size': 12, fill: '#6C3483', 'text-anchor': 'end' });
+    arrow(add, 780, 135, 840, 135, '#1E8449', 2.2, 9);
+    label(add, 780, 125, 'se alarga la columna de aire', { 'font-size': 12, fill: '#1E8449' });
+    // diapasón (sin caja) delante de la boca del tubo
+    add('path', { d: 'M512 260 L512 230 Q512 216 500 216 L500 120 M520 230 Q520 216 532 216 L532 120 M512 230 L520 230', fill: 'none', stroke: '#85929E', 'stroke-width': 6, 'stroke-linecap': 'round' });
+    add('line', { x1: 516, y1: 230, x2: 516, y2: 290, stroke: '#85929E', 'stroke-width': 6 });
+    for (let k = 0; k < 3; k++) add('path', { d: arcD(536, 178, 10 + 7 * k, -40, 40), fill: 'none', stroke: '#C0392B', 'stroke-width': 2 });
+    label(add, 516, 312, 'diapasón', { 'font-size': 13, fill: '#23373B' });
+    label(add, 630, 230, 'tubo ancho', { 'font-size': 12, fill: '#23373B' });
+    label(add, 760, 250, 'tubo estrecho', { 'font-size': 12, fill: '#23373B' });
+</script>
+</body>
+</html>

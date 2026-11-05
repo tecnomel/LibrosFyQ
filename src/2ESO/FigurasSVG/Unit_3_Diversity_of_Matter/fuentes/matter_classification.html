@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Classification of matter</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .tree { position: relative; height: 600px; }
+    .n { position: absolute; transform: translateX(-50%); text-align: center; border-radius: 14px; padding: 8px 12px; border: 3px solid; }
+    .n b { display: block; font-size: 22px; }
+    .n .q { font-size: 14px; color: var(--grey); }
+    .n .ex { font-size: 34px; margin-top: 2px; }
+    .n .exl { font-size: 13px; color: var(--grey); }
+    .root { background: var(--blue); color: #fff; border-color: var(--blue); width: 240px; }
+    .root b { font-size: 26px; }
+    .pure { background: #EAF2F8; border-color: #2471A3; width: 300px; } .pure b { color: #2471A3; }
+    .mix { background: var(--ocre-soft); border-color: var(--ocre); width: 300px; } .mix b { color: #A3400B; }
+    .leaf { width: 230px; background: #fff; }
+    .lp { border-color: #2471A3; } .lp b { color: #2471A3; }
+    .lm { border-color: var(--ocre); } .lm b { color: #A3400B; }
+    svg { position: absolute; left: 0; top: 0; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>How do we classify matter?</h1>
+    <div class="tree">
+        <svg width="1090" height="600"><g stroke="#7F8C8D" stroke-width="4" fill="none">
+            <path d="M545 62 L545 90 L285 90 L285 120"/><path d="M545 90 L805 90 L805 120"/>
+            <path d="M285 225 L285 255 L150 255 L150 290"/><path d="M285 255 L420 255 L420 290"/>
+            <path d="M805 225 L805 255 L670 255 L670 290"/><path d="M805 255 L940 255 L940 290"/>
+        </g></svg>
+        <div class="n root" style="left:545px; top:0"><b>MATTER</b></div>
+        <div class="n pure" style="left:285px; top:120px"><b>Pure substance</b><span class="q">only ONE substance · fixed properties</span></div>
+        <div class="n mix" style="left:805px; top:120px"><b>Mixture</b><span class="q">TWO or more substances · they can be separated</span></div>
+        <div class="n leaf lp" style="left:150px; top:290px"><b>Simple substance</b><span class="q">one type of atom</span><div class="ex">🥇 🎈</div><div class="exl">gold (Au) · oxygen (O<sub>2</sub>)</div></div>
+        <div class="n leaf lp" style="left:420px; top:290px"><b>Compound</b><span class="q">two or more types of atom</span><div class="ex">💧 🧂</div><div class="exl">water (H<sub>2</sub>O) · salt (NaCl)</div></div>
+        <div class="n leaf lm" style="left:670px; top:290px"><b>Homogeneous</b><span class="q">looks the same everywhere</span><div class="ex">🥤 🌬️</div><div class="exl">salt water · air · steel</div></div>
+        <div class="n leaf lm" style="left:940px; top:290px"><b>Heterogeneous</b><span class="q">we can see different parts</span><div class="ex">🪨 🥗</div><div class="exl">granite · salad · sand + water</div></div>
+    </div>
+</div>
+</body>
+</html>

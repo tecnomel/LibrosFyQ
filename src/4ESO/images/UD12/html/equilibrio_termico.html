@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Equilibrio térmico</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } .card .t { font-size: 13.5px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><svg id="a" width="230" height="200"></svg>
+            <div class="t">Dos cuerpos a distinta temperatura, separados.</div></div>
+        <div class="card"><svg id="b" width="230" height="200"></svg>
+            <div class="t">En contacto: el caliente cede energía (calor) al frío.</div></div>
+        <div class="card"><svg id="c" width="230" height="200"></svg>
+            <div class="t">Equilibrio térmico: los dos tienen la misma temperatura.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // Bloque de partículas: x, y = esquina superior izquierda (4 columnas x 5 filas)
+    function blockOf(add, x, y, col, rr = 9) {
+        add('rect', { x: x - 4, y: y - 4, width: 4 * 2 * rr + 3 * 4 + 8, height: 5 * 2 * rr + 4 * 4 + 8, rx: 6, fill: 'none', stroke: '#AAB7B8', 'stroke-width': 1.5 });
+        for (let i = 0; i < 4; i++) for (let j = 0; j < 5; j++)
+            bead(add, x + rr + i * (2 * rr + 4), y + rr + j * (2 * rr + 4), rr, col);
+    }
+    const hot = '#E74C3C', cold = '#5DADE2', mid = '#AF7AC5';
+    let add = svgAdder('a');
+    blockOf(add, 12, 40, hot); blockOf(add, 132, 40, cold);
+    sub(add, 55, 25, 'T_1 = 80 °C', { 'font-size': 15, fill: '#C0392B' });
+    sub(add, 175, 25, 'T_2 = 20 °C', { 'font-size': 15, fill: '#2471A3' });
+
+    add = svgAdder('b');
+    blockOf(add, 22, 40, hot); blockOf(add, 118, 40, cold);
+    sub(add, 65, 25, 'T_1', { 'font-size': 15, fill: '#C0392B' }); sub(add, 165, 25, 'T_2', { 'font-size': 15, fill: '#2471A3' });
+    fatArrow(add, 70, 182, 165, 182, 14, '#E67E22');
+    label(add, 117, 166, 'calor, Q', { 'font-size': 15, fill: '#CA6F1E', 'font-style': 'italic' });
+
+    add = svgAdder('c');
+    blockOf(add, 22, 40, mid); blockOf(add, 118, 40, mid);
+    sub(add, 116, 25, 'T_eq = 50 °C', { 'font-size': 15, fill: '#7D3C98' });
+    label(add, 116, 190, 'misma temperatura', { 'font-size': 13, fill: '#7D3C98' });
+</script>
+</body>
+</html>

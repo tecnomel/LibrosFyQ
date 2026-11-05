@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Square units</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1100px; height: 560px; }
+    .row { display: flex; gap: 50px; align-items: center; }
+    .grid {
+        width: 400px; height: 400px; border: 4px solid var(--blue);
+        display: grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(10, 1fr);
+        position: relative; margin: 20px 0 0 40px;
+    }
+    .grid div { border: 1px solid #9AA3D6; }
+    .grid div.one { background: var(--ocre); }
+    .lab-top, .lab-left { position: absolute; font-size: 20px; font-weight: 700; color: var(--blue); }
+    .lab-top { top: -32px; left: 0; right: 0; text-align: center; }
+    .lab-left { left: -46px; top: 50%; transform: rotate(-90deg) translateX(-50%); transform-origin: left top; white-space: nowrap; }
+    .steps { font-size: 22px; line-height: 1.6; }
+    .box { border: 2px solid var(--ocre); background: var(--ocre-soft); border-radius: 12px; padding: 12px 16px; margin-bottom: 14px; }
+    .key { color: var(--red); font-weight: 800; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Square units: why the factor is squared</h1>
+    <div class="row">
+        <div class="grid" id="g">
+            <div class="lab-top">1 m = 10 dm</div>
+            <div class="lab-left">1 m = 10 dm</div>
+        </div>
+        <div class="steps">
+            <div class="box">The whole square is <b>1 m<sup>2</sup></b>.<br>Each little orange square is <b>1 dm<sup>2</sup></b>.</div>
+            <div class="box">There are 10 rows of 10 squares:<br>10 × 10 = <b>100 dm<sup>2</sup></b></div>
+            <div class="box">Length: 1 m = 10 dm<br>Area: 1 m<sup>2</sup> = (10 dm)<sup>2</sup> = <span class="key">10<sup>2</sup> dm<sup>2</sup></span></div>
+        </div>
+    </div>
+</div>
+<script>
+    const g = document.getElementById('g');
+    for (let i = 0; i < 100; i++) {
+        const c = document.createElement('div');
+        if (i === 0) c.className = 'one';
+        g.appendChild(c);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Leyes de los gases</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1100px; } .card h2 { font-size: 18px; } .f { font-size: 16px; font-weight: 700; color: var(--ocre); } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Ley de Boyle (T constante)</h2><svg id="a" width="320" height="250"></svg><div class="f">p · V = constante</div><div class="t">Si la presión aumenta, el volumen disminuye en la misma proporción.</div></div>
+        <div class="card"><h2>Ley de Charles (p constante)</h2><svg id="b" width="320" height="250"></svg><div class="f">V / T = constante</div><div class="t">El volumen es proporcional a la temperatura absoluta.</div></div>
+        <div class="card"><h2>Ley de Gay-Lussac (V constante)</h2><svg id="c" width="320" height="250"></svg><div class="f">p / T = constante</div><div class="t">La presión es proporcional a la temperatura absoluta.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // Ejes con rejilla. o = {x0,y0,w,h,xl,yl,xt:[[valor,pos]...],yt}
+    function axes(add, o) {
+        for (let i = 0; i <= 10; i++) {
+            add('line', { x1: o.x0 + i * o.w / 10, y1: o.y0 - o.h, x2: o.x0 + i * o.w / 10, y2: o.y0, stroke: '#EBF5FB' });
+            add('line', { x1: o.x0, y1: o.y0 - i * o.h / 10, x2: o.x0 + o.w, y2: o.y0 - i * o.h / 10, stroke: '#EBF5FB' });
+        }
+        arrow(add, o.x0, o.y0, o.x0 + o.w + 14, o.y0, '#23373B', 2, 10);
+        arrow(add, o.x0, o.y0, o.x0, o.y0 - o.h - 14, '#23373B', 2, 10);
+        label(add, o.x0 + o.w + 12, o.y0 + 34, o.xl, { 'font-size': 14, 'text-anchor': 'end' });
+        label(add, o.x0 + 6, o.y0 - o.h - 16, o.yl, { 'font-size': 14, 'text-anchor': 'start' });
+        (o.xt || []).forEach(([t, px]) => label(add, px, o.y0 + 17, t, { 'font-size': 12, 'font-weight': 600 }));
+        (o.yt || []).forEach(([t, py]) => label(add, o.x0 - 6, py + 4, t, { 'font-size': 12, 'font-weight': 600, 'text-anchor': 'end' }));
+    }
+    // ---------- Boyle: hipérbola p·V = 0,75 (datos del experimento) ----------
+    let add = svgAdder('a');
+    const X = v => 50 + v * 40, Y = p => 210 - p * 160;
+    axes(add, { x0: 50, y0: 210, w: 250, h: 180, xl: 'V (L)', yl: 'p (atm)',
+        xt: [[0, 50], [1, X(1)], [2, X(2)], [3, X(3)], [4, X(4)], [5, X(5)], [6, X(6)]], yt: [[0.25, Y(0.25)], [0.5, Y(0.5)], [0.75, Y(0.75)], [1, Y(1)]] });
+    let pts = []; for (let v = 0.72; v <= 6.1; v += 0.05) pts.push(`${X(v)},${Y(0.75 / v)}`);
+    add('polyline', { points: pts.join(' '), fill: 'none', stroke: '#C0392B', 'stroke-width': 3 });
+    [[0.75, 1], [1, 0.75], [1.5, 0.5], [6, 0.125]].forEach(([v, p]) => add('circle', { cx: X(v), cy: Y(p), r: 5, fill: '#fff', stroke: '#C0392B', 'stroke-width': 2.5 }));
+    // ---------- Charles: recta V-T que extrapola a -273 °C ----------
+    add = svgAdder('b');
+    const Xc = t => 50 + (t + 300) * 0.42, Yc = v => 210 - v * 2;
+    axes(add, { x0: 50, y0: 210, w: 250, h: 180, xl: 't (°C)', yl: 'V (mL)', xt: [[-273, Xc(-273)], [-150, Xc(-150)], [0, Xc(0)], [150, Xc(150)], [250, Xc(250)]], yt: [[20, Yc(20)], [40, Yc(40)], [60, Yc(60)], [80, Yc(80)]] });
+    const Vc = t => 40 * (t + 273) / 273;
+    add('line', { x1: Xc(-273), y1: Yc(0), x2: Xc(-50), y2: Yc(Vc(-50)), stroke: '#C0392B', 'stroke-width': 2, 'stroke-dasharray': '6 5' });
+    add('line', { x1: Xc(-50), y1: Yc(Vc(-50)), x2: Xc(260), y2: Yc(Vc(260)), stroke: '#C0392B', 'stroke-width': 3 });
+    add('circle', { cx: Xc(-273), cy: Yc(0), r: 5, fill: '#2471A3' });
+    label(add, Xc(-273) + 10, Yc(0) - 18, '0 K', { 'font-size': 13, fill: '#2471A3', 'text-anchor': 'start' });
+    // ---------- Gay-Lussac: datos de la experiencia (T en K) ----------
+    add = svgAdder('c');
+    const Xg = T => 50 + T * 0.4, Yg = p => 210 - p * 160;
+    axes(add, { x0: 50, y0: 210, w: 250, h: 180, xl: 'T (K)', yl: 'p (atm)', xt: [[0, 50], [100, Xg(100)], [200, Xg(200)], [300, Xg(300)], [400, Xg(400)], [500, Xg(500)], [600, Xg(600)]], yt: [[0.25, Yg(0.25)], [0.5, Yg(0.5)], [0.75, Yg(0.75)], [1, Yg(1)]] });
+    add('line', { x1: Xg(0), y1: Yg(0), x2: Xg(273), y2: Yg(0.5), stroke: '#C0392B', 'stroke-width': 2, 'stroke-dasharray': '6 5' });
+    add('line', { x1: Xg(273), y1: Yg(0.5), x2: Xg(546), y2: Yg(1), stroke: '#C0392B', 'stroke-width': 3 });
+    [[273, 0.5], [328, 0.6], [437, 0.8], [546, 1]].forEach(([T, p]) => add('circle', { cx: Xg(T), cy: Yg(p), r: 5, fill: '#fff', stroke: '#C0392B', 'stroke-width': 2.5 }));
+</script>
+</body>
+</html>

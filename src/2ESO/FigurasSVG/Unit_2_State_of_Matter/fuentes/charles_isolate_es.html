@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Despejar en la ley de Charles</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="isolate.css">
+<script src="isolate_es.js"></script>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1></h1>
+    <div class="grid" id="grid"></div>
+    <div class="tip" id="tip"></div>
+</div>
+<script>
+const a1 = q('V', 1), T1 = q('T', 1), a2 = q('V', 2), T2 = q('T', 2);
+const F = f(a1, T1) + ' = ' + f(a2, T2);
+const X = `${a1} · ${T2} = ${a2} · ${T1}`;
+const cross = ['Las <b>T</b> están <b>dividiendo</b>: cada una pasa al otro lado <b>multiplicando</b> (multiplicar en cruz).', X];
+buildIsolate('Ley de Charles: cómo despejar cada magnitud', [
+    { goal: a2, steps: [
+        ['Escribe la ley.', F], cross,
+        [`${T1} está <b>multiplicando</b> a ${g(a2)}: divide <b>los dos lados</b> entre ${T1}.`, `${f(`${a1} · ${T2}`, o(T1))} = ${f(`${g(a2)} · ${c(T1)}`, o(c(T1)))}`]],
+      result: `${g(a2)} = ${f(`${a1} · ${T2}`, T1)}` },
+    { goal: T2, steps: [
+        ['Escribe la ley.', F], cross,
+        [`${a1} está <b>multiplicando</b> a ${g(T2)}: divide <b>los dos lados</b> entre ${a1}.`, `${f(`${c(a1)} · ${g(T2)}`, o(c(a1)))} = ${f(`${a2} · ${T1}`, o(a1))}`]],
+      result: `${g(T2)} = ${f(`${a2} · ${T1}`, a1)}` },
+    { goal: a1, steps: [
+        ['Escribe la ley.', F], cross,
+        [`${T2} está <b>multiplicando</b> a ${g(a1)}: divide <b>los dos lados</b> entre ${T2}.`, `${f(`${g(a1)} · ${c(T2)}`, o(c(T2)))} = ${f(`${a2} · ${T1}`, o(T2))}`]],
+      result: `${g(a1)} = ${f(`${a2} · ${T1}`, T2)}` },
+    { goal: T1, steps: [
+        ['Escribe la ley.', F], cross,
+        [`${a2} está <b>multiplicando</b> a ${g(T1)}: divide <b>los dos lados</b> entre ${a2}.`, `${f(`${a1} · ${T2}`, o(a2))} = ${f(`${c(a2)} · ${g(T1)}`, o(c(a2)))}`]],
+      result: `${g(T1)} = ${f(`${a1} · ${T2}`, a2)}` },
+], '<b>Truco:</b> lo que está <b>dividiendo</b> en un lado pasa al otro lado <b>multiplicando</b>, y lo que está <b>multiplicando</b> pasa al otro lado <b>dividiendo</b>.');
+</script>
+</body>
+</html>

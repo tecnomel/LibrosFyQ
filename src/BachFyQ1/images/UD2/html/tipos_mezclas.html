@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Suspensión, coloide y disolución</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Suspensión</h2><svg id="a" width="280" height="230"></svg><div class="t">Partículas &gt; 1000 nm: se ven y acaban sedimentando. Aspecto turbio.</div></div>
+        <div class="card"><h2>Coloide</h2><svg id="b" width="280" height="230"></svg><div class="t">Partículas de 1 a 1000 nm: no sedimentan, pero dispersan la luz (efecto Tyndall).</div></div>
+        <div class="card"><h2>Disolución</h2><svg id="c" width="280" height="230"></svg><div class="t">Partículas &lt; 1 nm: transparente; el haz de luz no se ve al atravesarla.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // Linterna a la izquierda y haz de luz que atraviesa el vaso
+    function escena(id, tipo) {
+        const add = svgAdder(id);
+        const lvl = beaker(add, 70, 40, 160, 170, { fill: 0.78, color: tipo === 'c' ? '#D6EAF8' : (tipo === 'b' ? '#F4ECF7' : '#E5D3B3') });
+        // linterna
+        add('rect', { x: 4, y: 112, width: 34, height: 26, rx: 4, fill: '#566573' });
+        add('path', { d: 'M38 108 L50 102 L50 148 L38 142 Z', fill: '#85929E' });
+        const yb = 125;
+        if (tipo === 'b') {
+            // haz visible dentro del coloide
+            add('path', { d: `M50 ${yb - 18} L240 ${yb - 26} L240 ${yb + 26} L50 ${yb + 18} Z`, fill: '#F9E79F', opacity: 0.85 });
+        } else {
+            add('path', { d: `M50 ${yb - 18} L72 ${yb - 18} L72 ${yb + 18} L50 ${yb + 18} Z`, fill: '#F9E79F', opacity: 0.85 });
+            if (tipo === 'c') add('path', { d: `M228 ${yb - 22} L272 ${yb - 26} L272 ${yb + 26} L228 ${yb + 22} Z`, fill: '#F9E79F', opacity: 0.85 });
+        }
+        const r = rng(tipo === 'a' ? 3 : tipo === 'b' ? 8 : 13);
+        if (tipo === 'a') {
+            // partículas grandes, muchas en el fondo
+            for (let k = 0; k < 9; k++) bead(add, 90 + r() * 120, lvl + 20 + r() * 90, 6 + r() * 4, '#A04000');
+            for (let k = 0; k < 22; k++) bead(add, 82 + r() * 136, 190 + r() * 12, 6 + r() * 3, '#A04000');
+        } else if (tipo === 'b') {
+            for (let k = 0; k < 90; k++) add('circle', { cx: 78 + r() * 144, cy: lvl + 6 + r() * (200 - lvl), r: 2.2, fill: '#7D3C98', opacity: 0.8 });
+        } else {
+            for (let k = 0; k < 120; k++) add('circle', { cx: 78 + r() * 144, cy: lvl + 6 + r() * (200 - lvl), r: 0.9, fill: '#2471A3', opacity: 0.6 });
+        }
+    }
+    escena('a', 'a'); escena('b', 'b'); escena('c', 'c');
+</script>
+</body>
+</html>

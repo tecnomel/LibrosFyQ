@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_42 · Hidrólisis de ésteres</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+const svg = crearFigura(640, 110);
+const R = { Xe: { t: "R", color: "#222" }, Kr: { t: "R'", color: "#222" } };
+molecula(svg, "[Xe]C(=O)O[Kr]", 80, 55, { grupos: R });
+mas(svg, 170, 55); fq(svg, 215, 61, ["H2O"]);
+flechaR(svg, 255, 55, 365, "hidrólisis");
+molecula(svg, "[Xe]C(=O)O", 440, 55, { grupos: R });
+mas(svg, 505, 55); molecula(svg, "[Kr]O", 565, 55, { grupos: R });
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Detección del carbono en un compuesto</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="710" height="300"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    // placa calefactora
+    add('rect', { x: 40, y: 240, width: 190, height: 40, rx: 6, fill: '#AAB7B8', stroke: '#5D6D7E', 'stroke-width': 2 });
+    add('rect', { x: 55, y: 232, width: 160, height: 10, rx: 3, fill: '#E74C3C' });
+    [90, 135].forEach(x => add('circle', { cx: x, cy: 262, r: 8, fill: '#566573' }));
+    // Erlenmeyer con la mezcla
+    add('path', { d: 'M115 110 L115 150 L70 228 L200 228 L155 150 L155 110', fill: '#FDFEFE', stroke: '#5D6D7E', 'stroke-width': 2.5, 'stroke-linejoin': 'round' });
+    add('path', { d: 'M88 198 L182 198 L200 228 L70 228 Z', fill: '#7B7D7D' });
+    add('path', { d: 'M88 198 L182 198 L188 208 L82 208 Z', fill: '#212F3D' });
+    add('rect', { x: 110, y: 96, width: 50, height: 18, rx: 3, fill: '#AF601A' });
+    label(add, 18, 196, 'sustancia', { 'font-size': 12, 'text-anchor': 'start', 'font-weight': 400 });
+    label(add, 18, 212, '+ CuO', { 'font-size': 12, 'text-anchor': 'start', 'font-weight': 400 });
+    // tubo de desprendimiento en doble L
+    add('path', { d: 'M135 100 L135 50 L470 50 L470 215', fill: 'none', stroke: '#85929E', 'stroke-width': 6, 'stroke-linejoin': 'round' });
+    add('path', { d: 'M135 100 L135 50 L470 50 L470 215', fill: 'none', stroke: '#EBF5FB', 'stroke-width': 2.5, 'stroke-linejoin': 'round' });
+    arrow(add, 230, 38, 330, 38, '#C0392B', 2, 9);
+    label(add, 280, 28, 'CO₂', { 'font-size': 14, fill: '#C0392B' });
+    // matraz con disolución de Ca(OH)2
+    add('path', { d: 'M455 110 L455 160 Q 395 180 395 225 Q 395 280 470 280 Q 545 280 545 225 Q 545 180 485 160 L485 110', fill: '#EBF5FB', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+    add('path', { d: 'M401 205 Q 395 280 470 280 Q 545 280 539 205 Z', fill: '#D6EAF8' });
+    add('rect', { x: 448, y: 96, width: 44, height: 18, rx: 3, fill: '#AF601A' });
+    // burbujas y precipitado
+    [[470, 240], [462, 225], [476, 212], [468, 198]].forEach(([x, y]) => add('circle', { cx: x, cy: y, r: 3.5, fill: 'none', stroke: '#2E86C1' }));
+    const r = rng(7); for (let i = 0; i < 70; i++) add('circle', { cx: 425 + r() * 90, cy: 262 + r() * 14, r: 1.6, fill: '#FDFEFE', stroke: '#AAB7B8', 'stroke-width': 0.6 });
+    label(add, 560, 228, 'Ca(OH)₂ (disolución)', { 'font-size': 12, 'text-anchor': 'start', 'font-weight': 400 });
+    label(add, 560, 270, 'CaCO₃ (precipitado blanco)', { 'font-size': 12, 'text-anchor': 'start', 'font-weight': 400 });
+    add('line', { x1: 520, y1: 268, x2: 556, y2: 268, stroke: '#7F8C8D' });
+    label(add, 470, 22, 'Ca(OH)₂ + CO₂ → CaCO₃ + H₂O', { 'font-size': 14, fill: '#000070', 'text-anchor': 'start' });
+</script>
+</body>
+</html>

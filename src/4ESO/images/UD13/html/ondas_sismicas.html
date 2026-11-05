@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ondas sísmicas P y S</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="720" height="370"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const x0 = 110, x1 = 620, n = 34;
+    const box = (yTop, ttl) => {
+        label(add, 50, yTop + 55, ttl, { 'font-size': 16, fill: '#000070' });
+        arrow(add, x1 - 220, yTop - 28, x1, yTop - 28, '#23373B', 2, 10);
+        label(add, x1 - 230, yTop - 23, 'propagación', { 'font-size': 13, 'text-anchor': 'end', fill: '#23373B' });
+    };
+    // ---------- ondas P: compresiones (líneas verticales más o menos juntas) ----------
+    let yT = 50, H = 100;
+    box(yT, 'ondas P');
+    add('rect', { x: x0, y: yT, width: x1 - x0, height: H, fill: '#F5CBA7', stroke: '#A04000', 'stroke-width': 1.5 });
+    for (let k = 0; k <= n; k++) {
+        const u = k / n, x = x0 + (x1 - x0) * (u + 0.045 * Math.sin(2 * Math.PI * u * 3));
+        add('line', { x1: x, y1: yT, x2: x, y2: yT + H, stroke: '#A04000', 'stroke-width': 1.3 });
+    }
+    for (let y = yT + 25; y < yT + H; y += 25) add('line', { x1: x0, y1: y, x2: x1, y2: y, stroke: '#A04000', 'stroke-width': 1 });
+    arrow(add, 230, yT + H + 20, 180, yT + H + 20, '#C0392B', 2.5, 9); arrow(add, 230, yT + H + 20, 280, yT + H + 20, '#C0392B', 2.5, 9);
+    label(add, 300, yT + H + 25, 'movimiento de las partículas', { 'font-size': 13, fill: '#C0392B', 'text-anchor': 'start' });
+
+    // ---------- ondas S: el terreno se ondula ----------
+    yT = 230;
+    box(yT, 'ondas S');
+    const dy = x => 16 * Math.sin(2 * Math.PI * (x - x0) / 170);
+    const hline = y => { let d = ''; for (let x = x0; x <= x1; x += 3) d += (x === x0 ? 'M' : ' L') + x + ' ' + (y + dy(x)).toFixed(1); return d; };
+    const pts = [];
+    for (let x = x0; x <= x1; x += 3) pts.push([x, yT + dy(x)]);
+    for (let x = x1; x >= x0; x -= 3) pts.push([x, yT + H + dy(x)]);
+    add('path', { d: 'M' + pts.map(p => p[0] + ' ' + p[1].toFixed(1)).join(' L') + ' Z', fill: '#F5CBA7' });
+    for (let y = yT; y <= yT + H; y += 25) add('path', { d: hline(y), fill: 'none', stroke: '#A04000', 'stroke-width': y === yT || y === yT + H ? 1.6 : 1 });
+    for (let k = 0; k <= n; k++) { const x = x0 + (x1 - x0) * k / n; add('line', { x1: x, y1: yT + dy(x), x2: x, y2: yT + H + dy(x), stroke: '#A04000', 'stroke-width': 1.3 }); }
+    arrow(add, 660, yT + 50, 660, yT + 15, '#C0392B', 2.5, 9); arrow(add, 660, yT + 50, 660, yT + 85, '#C0392B', 2.5, 9);
+    label(add, 645, yT + H + 40, 'movimiento de las partículas', { 'font-size': 13, fill: '#C0392B', 'text-anchor': 'end' });
+</script>
+</body>
+</html>

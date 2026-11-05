@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Balance de energía en un calorímetro</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } .card .t { font-size: 13.5px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card" style="flex:1.25"><svg id="a" width="330" height="240"></svg>
+            <div class="t">Antes: el cuerpo 1 está caliente (<i>T</i><sub>1</sub>) y el agua, fría (<i>T</i><sub>2</sub> &lt; <i>T</i><sub>1</sub>).</div></div>
+        <div class="card"><svg id="b" width="250" height="240"></svg>
+            <div class="t">Dentro del calorímetro, el cuerpo 1 cede calor al agua.</div></div>
+        <div class="card"><svg id="c" width="200" height="240"></svg>
+            <div class="t">Equilibrio: todo queda a <i>T</i><sub>eq</sub>.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    function cal(add, x, y, hot, therm) {
+        add('rect', { x, y, width: 150, height: 150, rx: 10, fill: '#D5D8DC', stroke: '#5D6D7E', 'stroke-width': 3 });
+        add('rect', { x: x + 14, y: y + 4, width: 122, height: 132, fill: '#FDFEFE', stroke: '#7F8C8D', 'stroke-width': 2 });
+        add('rect', { x: x + 16, y: y + 40, width: 118, height: 94, fill: '#AED6F1' });
+        add('rect', { x: x - 6, y: y - 12, width: 162, height: 14, rx: 4, fill: '#7F8C8D' });
+        thermometer(add, x + 112, y - 60, 160, therm);
+    }
+    function stone(add, x, y, col) {
+        add('path', { d: `M${x - 30} ${y} C${x - 34} ${y - 22} ${x - 6} ${y - 30} ${x + 14} ${y - 22} C${x + 36} ${y - 14} ${x + 34} ${y + 14} ${x + 12} ${y + 20} C${x - 10} ${y + 26} ${x - 28} ${y + 16} ${x - 30} ${y} Z`, fill: col, stroke: '#6E2C00', 'stroke-width': 2 });
+    }
+    let add = svgAdder('a');
+    stone(add, 55, 120, '#E74C3C');
+    sub(add, 55, 82, 'm_1, T_1', { 'font-size': 15, fill: '#C0392B' });
+    label(add, 55, 165, 'cuerpo 1', { 'font-size': 13, fill: '#525252' });
+    cal(add, 150, 75, false, 0.25);
+    sub(add, 210, 195, 'm_2, T_2', { 'font-size': 15, fill: '#2471A3' });
+
+    add = svgAdder('b');
+    cal(add, 50, 75, true, 0.45);
+    stone(add, 100, 180, '#EB984E');
+    [[70, 160, 40, 145], [130, 165, 160, 150], [100, 150, 100, 125]].forEach(([a, b, c, d]) => arrow(add, a, b, c, d, '#E67E22', 2.5, 10));
+    label(add, 70, 120, 'Q', { 'font-size': 16, fill: '#CA6F1E', 'font-style': 'italic' });
+
+    add = svgAdder('c');
+    cal(add, 25, 75, true, 0.4);
+    stone(add, 75, 180, '#AF7AC5');
+    sub(add, 75, 50, 'T_eq', { 'font-size': 16, fill: '#7D3C98' });
+</script>
+</body>
+</html>

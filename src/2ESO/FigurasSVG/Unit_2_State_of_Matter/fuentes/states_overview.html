@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The three states of matter</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 22px; }
+    .col { flex: 1; border-radius: 18px; padding: 14px 16px; text-align: center; }
+    .s { background: #EAF2F8; border: 3px solid #2471A3; }
+    .l { background: var(--green-soft); border: 3px solid var(--green); }
+    .g { background: var(--ocre-soft); border: 3px solid var(--ocre); }
+    .col h2 { font-size: 28px; }
+    .s h2 { color: #2471A3; } .l h2 { color: var(--green); } .g h2 { color: #A3400B; }
+    .ex { font-size: 50px; letter-spacing: 6px; margin: 4px 0; }
+    .exl { font-size: 15px; color: var(--grey); margin-bottom: 10px; }
+    table { width: 100%; border-collapse: collapse; font-size: 18px; }
+    td { padding: 7px 4px; border-top: 1px solid rgba(0,0,0,.12); text-align: left; }
+    td.v { text-align: right; font-weight: 800; }
+    .y { color: var(--green); } .n { color: var(--red); } .m { color: #B9770E; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Solid, liquid or gas?</h1>
+    <div class="row">
+        <div class="col s"><h2>Solid</h2><div class="ex">🧊🪨🔩</div><div class="exl">ice · rock · metals</div>
+            <table>
+                <tr><td>Fixed shape</td><td class="v y">✔ yes</td></tr>
+                <tr><td>Fixed volume</td><td class="v y">✔ yes</td></tr>
+                <tr><td>Can be compressed</td><td class="v n">✘ no</td></tr>
+                <tr><td>Flows</td><td class="v n">✘ no</td></tr>
+            </table></div>
+        <div class="col l"><h2>Liquid</h2><div class="ex">💧🫗🍯</div><div class="exl">water · oil · honey</div>
+            <table>
+                <tr><td>Fixed shape</td><td class="v n">✘ takes the container's</td></tr>
+                <tr><td>Fixed volume</td><td class="v y">✔ yes</td></tr>
+                <tr><td>Can be compressed</td><td class="v m">≈ very little</td></tr>
+                <tr><td>Flows</td><td class="v y">✔ yes</td></tr>
+            </table></div>
+        <div class="col g"><h2>Gas</h2><div class="ex">🎈♨️🌬️</div><div class="exl">helium · steam · air</div>
+            <table>
+                <tr><td>Fixed shape</td><td class="v n">✘ no</td></tr>
+                <tr><td>Fixed volume</td><td class="v n">✘ fills the container</td></tr>
+                <tr><td>Can be compressed</td><td class="v y">✔ easily</td></tr>
+                <tr><td>Flows</td><td class="v y">✔ yes</td></tr>
+            </table></div>
+    </div>
+</div>
+</body>
+</html>

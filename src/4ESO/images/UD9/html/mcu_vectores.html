@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Magnitudes vectoriales del MCU y velocidad lineal</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Tres magnitudes vectoriales</h2><svg id="a" width="420" height="270"></svg>
+            <div class="t"><i>r</i> va del centro a P; <i>v</i> es tangente a la trayectoria; ω es perpendicular al plano del giro<br>(su sentido lo da la regla de la mano derecha).</div></div>
+        <div class="card"><h2>Mismo ω, distinta velocidad lineal</h2><svg id="b" width="420" height="270"></svg>
+            <div class="t">En un tiovivo todos los caballos barren el mismo ángulo, pero el de fuera recorre más arco: v = ω · R.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // a) perspectiva: circunferencia vista inclinada (elipse)
+    {
+        const add = svgAdder('a'), cx = 200, cy = 175, A = 165, B = 58;
+        add('ellipse', { cx, cy, rx: A, ry: B, fill: '#EBF5FB', stroke: '#23373B', 'stroke-width': 2.5 });
+        // punto P en la elipse (ángulo paramétrico -35°, delante a la derecha)
+        const t = -35 * Math.PI / 180, px = cx + A * Math.cos(t), py = cy - B * Math.sin(t);
+        // radio vector
+        arrow(add, cx, cy, px, py, '#2471A3', 3, 12);
+        vlabel(add, (cx + px) / 2 - 6, (cy + py) / 2 + 26, 'r', '#2471A3');
+        // velocidad tangente: derivada (-A sin t, -B cos t) en sentido antihorario visto desde arriba
+        let tx = -A * Math.sin(t), ty = -B * Math.cos(t); const n = Math.hypot(tx, ty); tx /= n; ty /= n;
+        arrow(add, px, py, px + 80 * tx, py + 80 * ty, '#C0392B', 3.5, 13);
+        vlabel(add, px + 80 * tx - 8, py + 80 * ty - 14, 'v', '#C0392B');
+        // ángulo recto entre r y v
+        const ux = (cx - px), uy = (cy - py), un = Math.hypot(ux, uy), s = 14;
+        const a1 = [px + s * ux / un, py + s * uy / un], a2 = [px + s * tx, py + s * ty];
+        add('path', { d: `M${a1[0]} ${a1[1]} L${a1[0] + s * tx} ${a1[1] + s * ty} L${a2[0]} ${a2[1]}`, fill: 'none', stroke: '#525252', 'stroke-width': 1.3 });
+        add('circle', { cx: px, cy: py, r: 6, fill: '#23373B' });
+        label(add, px + 4, py + 26, 'P', { 'font-size': 16 });
+        // omega
+        arrow(add, cx, cy, cx, cy - 130, '#1E8449', 3.5, 13);
+        add('text', { x: cx + 14, y: cy - 108, 'font-size': 18, 'font-weight': 700, fill: '#1E8449' }, 'ω');
+        add('line', { x1: cx + 11, y1: cy - 128, x2: cx + 27, y2: cy - 128, stroke: '#1E8449', 'stroke-width': 1.3 });
+        add('path', { d: `M${cx + 24} ${cy - 130.5} L${cx + 28} ${cy - 128} L${cx + 24} ${cy - 125.5}`, fill: 'none', stroke: '#1E8449', 'stroke-width': 1.3 });
+        add('circle', { cx, cy, r: 4, fill: '#23373B' });
+        label(add, cx - 14, cy + 16, 'O', { 'font-size': 14 });
+        // sentido de giro
+        const g = [];
+        for (let k = 0; k <= 30; k++) { const u = (110 + k * 3) * Math.PI / 180; g.push([cx + (A + 18) * Math.cos(u), cy - (B + 14) * Math.sin(u)]); }
+        add('path', { d: 'M' + g.map(p => p.join(' ')).join(' L'), fill: 'none', stroke: '#7F8C8D', 'stroke-width': 2 });
+        const [ex, ey] = g[g.length - 1], [fx, fy] = g[g.length - 3];
+        arrow(add, fx, fy, ex + (ex - fx) * 0.6, ey + (ey - fy) * 0.6, '#7F8C8D', 0.1, 10);
+        label(add, cx - 120, cy - 82, 'sentido de giro', { 'font-size': 12, fill: '#7F8C8D', 'font-weight': 600 });
+        // ángulo recto entre omega y el plano
+        add('path', { d: `M${cx} ${cy - 16} L${cx + 14} ${cy - 11} L${cx + 14} ${cy + 5}`, fill: 'none', stroke: '#525252', 'stroke-width': 1.3 });
+    }
+    // b) tiovivo visto desde arriba
+    {
+        const add = svgAdder('b'), cx = 128, cy = 140, R1 = 50, R2 = 102, a1 = 20, a2 = 75;
+        add('circle', { cx, cy, r: R2 + 12, fill: '#FEF5E7', stroke: '#B9770E', 'stroke-width': 2 });
+        add('circle', { cx, cy, r: R1, fill: 'none', stroke: '#AAB7B8', 'stroke-dasharray': '5 4' });
+        add('circle', { cx, cy, r: R2, fill: 'none', stroke: '#AAB7B8', 'stroke-dasharray': '5 4' });
+        add('path', { d: `M${cx} ${cy} ` + arcD(cx, cy, R2, a1, a2).replace('M', 'L') + ' Z', fill: '#FADBD8', opacity: 0.8 });
+        add('path', { d: arcD(cx, cy, R1, a1, a2), fill: 'none', stroke: '#2471A3', 'stroke-width': 5 });
+        add('path', { d: arcD(cx, cy, R2, a1, a2), fill: 'none', stroke: '#C0392B', 'stroke-width': 5 });
+        arcArrow(add, cx, cy, 26, a1, a2, '#525252', 1.8, 8);
+        label(add, cx + 12, cy - 30, 'Δθ', { 'font-size': 14, fill: '#525252' });
+        [[R1, '#2471A3'], [R2, '#C0392B']].forEach(([R, c]) => {
+            [a1, a2].forEach(a => { const [x, y] = pol(cx, cy, R, a); bead(add, x, y, 9, c); });
+        });
+        add('circle', { cx, cy, r: 6, fill: '#23373B' });
+        // radios
+        const [xa, ya] = pol(cx, cy, R1, -40), [xb, yb] = pol(cx, cy, R2, -60);
+        add('line', { x1: cx, y1: cy, x2: xa, y2: ya, stroke: '#2471A3', 'stroke-width': 1.5 });
+        add('line', { x1: cx, y1: cy, x2: xb, y2: yb, stroke: '#C0392B', 'stroke-width': 1.5 });
+        label(add, (cx + xa) / 2 - 12, (cy + ya) / 2 + 12, 'R₁', { 'font-size': 14, fill: '#2471A3' });
+        label(add, (cx + xb) / 2 + 22, (cy + yb) / 2 + 26, 'R₂', { 'font-size': 14, fill: '#C0392B' });
+        const tx = 255;
+        [['#000070', 'Mismo Δθ y mismo ω'], ['', ''], ['#2471A3', 'Caballo interior:'], ['#2471A3', 'arco corto, v₁ = ω · R₁'], ['', ''],
+         ['#C0392B', 'Caballo exterior:'], ['#C0392B', 'arco largo, v₂ = ω · R₂'], ['', ''], ['#525252', 'R₂ > R₁ ⇒ v₂ > v₁']]
+            .forEach(([c, s], i) => label(add, tx, 52 + i * 22, s, { 'font-size': 14, fill: c || '#000', 'text-anchor': 'start' }));
+    }
+</script>
+</body>
+</html>

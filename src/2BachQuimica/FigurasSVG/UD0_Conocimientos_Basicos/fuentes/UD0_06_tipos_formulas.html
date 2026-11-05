@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD0_06 · Fórmula empírica, molecular y estructural</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Los tres ejemplos del texto: agua, peróxido de hidrógeno y etano. La fórmula empírica
+// solo da la proporción mínima; en H2O2 y C2H6 no coincide con la molecular (se resalta).
+const svg = crearFigura(760, 330);
+const T = (x, y, t, a = {}) => texto(svg, x, y, t, { "text-anchor": "middle", "font-size": 16, fill: COLORES.texto, ...a });
+const anchos = [170, 150, 150, 290], X0 = 0, Y0 = 6, HC = 40, HF = 92;
+const CAB = "#394773";
+const xs = anchos.reduce((a, w) => [...a, a[a.length - 1] + w], [X0]);
+
+// Cabecera
+["Sustancia", "F. empírica", "F. molecular", "F. estructural (desarrollada)"].forEach((t, j) => {
+    el("rect", { x: xs[j], y: Y0, width: anchos[j], height: HC, fill: CAB, stroke: "#fff" }, svg);
+    T(xs[j] + anchos[j] / 2, Y0 + 26, t, { fill: "#fff", "font-weight": "bold", "font-size": 15 });
+});
+
+/** Fórmula desarrollada: átomos [símbolo, dx, dy] y enlaces [i, j] alrededor de (x, y). */
+function desarrollada(x, y, atomos, enlaces) {
+    for (const [i, j] of enlaces) {
+        const [, x1, y1] = atomos[i], [, x2, y2] = atomos[j];
+        const d = Math.hypot(x2 - x1, y2 - y1), ux = (x2 - x1) / d, uy = (y2 - y1) / d, m = 10;
+        el("line", { x1: x + x1 + ux * m, y1: y + y1 + uy * m, x2: x + x2 - ux * m, y2: y + y2 - uy * m,
+            stroke: COLORES.texto, "stroke-width": 1.8 }, svg);
+    }
+    for (const [s, dx, dy] of atomos)
+        T(x + dx, y + dy + 6, s, { "font-size": 17, "font-weight": "bold", fill: s === "H" ? COLORES.texto : (s === "O" ? "#C62828" : "#222") });
+}
+
+const filas = [
+    { nombre: "agua", emp: "H2O", mol: "H2O", igual: true,
+      at: [["O", 0, -10], ["H", -36, 14], ["H", 36, 14]], en: [[0, 1], [0, 2]] },
+    { nombre: "peróxido de\nhidrógeno", emp: "HO", mol: "H2O2", igual: false,
+      at: [["H", -75, 0], ["O", -25, 0], ["O", 25, 0], ["H", 75, 0]], en: [[0, 1], [1, 2], [2, 3]] },
+    { nombre: "etano", emp: "CH3", mol: "C2H6", igual: false,
+      at: [["C", -25, 0], ["C", 25, 0], ["H", -70, 0], ["H", -25, -30], ["H", -25, 30], ["H", 70, 0], ["H", 25, -30], ["H", 25, 30]],
+      en: [[0, 1], [0, 2], [0, 3], [0, 4], [1, 5], [1, 6], [1, 7]] },
+];
+filas.forEach((f, i) => {
+    const y = Y0 + HC + i * HF, yc = y + HF / 2;
+    anchos.forEach((w, j) => el("rect", { x: xs[j], y, width: w, height: HF, fill: i % 2 ? "#F4F6FB" : "#fff", stroke: "#B8C0D8" }, svg));
+    const lineas = f.nombre.split("\n");
+    lineas.forEach((l, k) => T(xs[0] + anchos[0] / 2, yc + 6 + (k - (lineas.length - 1) / 2) * 20, l, { "font-size": 15 }));
+    T(xs[1] + anchos[1] / 2, yc + 7, quim(f.emp), { "font-size": 20, "font-weight": "bold", fill: f.igual ? COLORES.texto : COLORES.ocre });
+    T(xs[2] + anchos[2] / 2, yc + 7, quim(f.mol), { "font-size": 20, "font-weight": "bold" });
+    desarrollada(xs[3] + anchos[3] / 2, yc, f.at, f.en);
+});
+</script>
+</body>
+</html>

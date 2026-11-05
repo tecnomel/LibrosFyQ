@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Concentración</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1250px; }
+    .row { display: flex; gap: 18px; }
+    .card { flex: 1; border-radius: 16px; padding: 14px 10px; text-align: center; border: 3px solid; }
+    .a { border-color: #2471A3; background: #EAF2F8; } .a h2 { color: #2471A3; }
+    .b { border-color: #8E44AD; background: #F5EEF8; } .b h2 { color: #6C3483; }
+    .c { border-color: #1E8449; background: #E9F7EF; } .c h2 { color: #1E8449; }
+    h2 { font-size: 22px; }
+    .f { font-size: 16px; font-weight: 800; margin: 12px 0; color: var(--teal); white-space: nowrap; }
+    .f .frac > span { padding: 2px 4px; }
+    .mean { font-size: 16px; color: var(--grey); }
+    .ex { margin-top: 10px; background: #fff; border-radius: 12px; padding: 8px; font-size: 16px; line-height: 1.5; }
+    .ex .ic { font-size: 34px; }
+    .r { color: var(--red); font-weight: 800; }
+    .u { text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 3px; }
+    .warn { margin-top: 14px; text-align: center; font-size: 19px; background: var(--red-soft); border: 2px solid var(--red); border-radius: 12px; padding: 8px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>¿Cuánto soluto hay? La concentración</h1>
+    <div class="row">
+        <div class="card a"><h2>Concentración en g/L</h2>
+            <div class="f">C = <span class="frac"><span>masa de soluto (g)</span><span class="u">volumen de disolución (L)</span></span></div>
+            <div class="mean">gramos de soluto en cada litro de disolución</div>
+            <div class="ex"><span class="ic">🧂💧</span><br>15 g de sal → 0,5 L de disolución<br>C = <span class="frac"><span>15 g</span><span>0,5 L</span></span> = <span class="r">30 g/L</span></div></div>
+        <div class="card b"><h2>Porcentaje en masa</h2>
+            <div class="f">% masa = <span class="frac"><span>masa de soluto (g)</span><span class="u">masa de disolución (g)</span></span> · 100</div>
+            <div class="mean">gramos de soluto en cada 100 g de disolución</div>
+            <div class="ex"><span class="ic">🍬🫖</span><br>10 g de azúcar + 90 g de agua = 100 g<br>% = <span class="frac"><span>10 g</span><span>100 g</span></span> · 100 = <span class="r">10 %</span></div></div>
+        <div class="card c"><h2>Porcentaje en volumen</h2>
+            <div class="f">% vol = <span class="frac"><span>volumen de soluto</span><span class="u">volumen de disolución</span></span> · 100</div>
+            <div class="mean">mL de soluto en cada 100 mL de disolución</div>
+            <div class="ex"><span class="ic">🧪💧</span><br>12 mL de alcohol + 88 mL de agua = 100 mL<br>% = <span class="frac"><span>12 mL</span><span>100 mL</span></span> · 100 = <span class="r">12 %</span></div></div>
+    </div>
+    <div class="warn">⚠ Debajo de la raya va siempre la <b>DISOLUCIÓN</b>, no el disolvente: <b>disolución = soluto(s) + disolvente</b></div>
+</div>
+</body>
+</html>

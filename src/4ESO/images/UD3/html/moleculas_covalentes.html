@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Compuestos covalentes moleculares</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1060px; }
+    .row { display: flex; gap: 10px; }
+    .card { flex: 1; text-align: center; padding: 6px; }
+    .card h2 { font-size: 18px; }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>HCl</h2><svg id="a" width="190" height="275"></svg></div>
+        <div class="card"><h2>H₂O</h2><svg id="b" width="190" height="275"></svg></div>
+        <div class="card"><h2>NH₃</h2><svg id="c" width="190" height="275"></svg></div>
+        <div class="card"><h2>CH₄</h2><svg id="d" width="190" height="275"></svg></div>
+        <div class="card"><h2>CO₂</h2><svg id="e" width="190" height="275"></svg></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    // Lewis con pares enlazantes como guion: dibujamos fórmula de Lewis simplificada
+    function lewisMol(id, draw, model, note) {
+        const add = svgAdder(id);
+        draw(add);
+        model(add);
+        label(add, 95, 268, note, { 'font-size': 13, fill: '#525252', 'font-weight': 600 });
+    }
+    const dots = (add, x, y, dir) => {   // par solitario
+        const g = 5.5;
+        const p = { t: [[x - g, y], [x + g, y]], b: [[x - g, y], [x + g, y]], l: [[x, y - g], [x, y + g]], r: [[x, y - g], [x, y + g]] }[dir];
+        p.forEach(([a, b]) => add('circle', { cx: a, cy: b, r: 3.2, fill: '#C0392B' }));
+    };
+    const sym = (add, x, y, s) => label(add, x, y + 9, s, { 'font-size': 26, 'font-weight': 800 });
+    const ln = (add, x1, y1, x2, y2, n = 1) => {
+        const dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy), nx = -dy / L * 4, ny = dx / L * 4;
+        const offs = n === 1 ? [0] : [-1, 1];
+        offs.forEach(k => add('line', { x1: x1 + nx * k, y1: y1 + ny * k, x2: x2 + nx * k, y2: y2 + ny * k, stroke: '#23373B', 'stroke-width': 2.5 }));
+    };
+    lewisMol('a', add => { sym(add, 55, 50, 'H'); ln(add, 70, 50, 108, 50); sym(add, 125, 50, 'Cl'); dots(add, 125, 26, 't'); dots(add, 125, 76, 'b'); dots(add, 152, 50, 'r'); },
+        add => { bond(add, 70, 160, 130, 160); ball(add, 70, 160, 'H', 18); ball(add, 130, 160, 'Cl', 30); }, 'molécula lineal');
+    lewisMol('b', add => { sym(add, 95, 45, 'O'); dots(add, 95, 21, 't'); dots(add, 120, 45, 'r'); ln(add, 85, 58, 60, 85); ln(add, 105, 58, 130, 85); sym(add, 52, 95, 'H'); sym(add, 140, 95, 'H'); },
+        add => { bond(add, 95, 150, 55, 195); bond(add, 95, 150, 135, 195); ball(add, 55, 195, 'H', 17); ball(add, 135, 195, 'H', 17); ball(add, 95, 150, 'O', 26); }, 'molécula angular');
+    lewisMol('c', add => { sym(add, 95, 45, 'N'); dots(add, 95, 21, 't'); ln(add, 80, 50, 50, 50); ln(add, 110, 50, 140, 50); ln(add, 95, 60, 95, 85); sym(add, 38, 50, 'H'); sym(add, 152, 50, 'H'); sym(add, 95, 102, 'H'); },
+        add => { bond(add, 95, 150, 50, 200); bond(add, 95, 150, 140, 200); bond(add, 95, 150, 95, 212); ball(add, 50, 200, 'H', 16); ball(add, 140, 200, 'H', 16); ball(add, 95, 212, 'H', 16); ball(add, 95, 150, 'N', 25); }, 'molécula piramidal');
+    lewisMol('d', add => { sym(add, 95, 62, 'C'); ln(add, 80, 62, 52, 62); ln(add, 110, 62, 138, 62); ln(add, 95, 47, 95, 32); ln(add, 95, 77, 95, 92); sym(add, 40, 62, 'H'); sym(add, 150, 62, 'H'); sym(add, 95, 20, 'H'); sym(add, 95, 106, 'H'); },
+        add => { [[95, 145], [45, 215], [145, 215], [100, 240]].forEach(([x, y]) => bond(add, 95, 190, x, y)); [[95, 145], [45, 215], [145, 215]].forEach(([x, y]) => ball(add, x, y, 'H', 15)); ball(add, 95, 190, 'C', 24); ball(add, 100, 240, 'H', 15); }, 'molécula tetraédrica');
+    lewisMol('e', add => { sym(add, 30, 55, 'O'); ln(add, 45, 55, 82, 55, 2); sym(add, 95, 55, 'C'); ln(add, 108, 55, 145, 55, 2); sym(add, 160, 55, 'O'); [[30, 31, 't'], [30, 79, 'b'], [160, 31, 't'], [160, 79, 'b']].forEach(([x, y, d]) => dots(add, x, y, d)); },
+        add => { bond(add, 40, 165, 150, 165, 2); ball(add, 40, 165, 'O', 24); ball(add, 150, 165, 'O', 24); ball(add, 95, 165, 'C', 22); }, 'molécula lineal');
+</script>
+</body>
+</html>

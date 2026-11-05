@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Medida de la densidad de un sólido</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 14px; align-items: stretch; }
+    .st { flex: 1; border: 2px solid var(--line); border-radius: 14px; padding: 12px; text-align: center; }
+    .st .n { display: inline-block; width: 32px; height: 32px; border-radius: 50%; background: var(--ocre); color: #fff; font-weight: 800; line-height: 32px; font-size: 18px; }
+    .st .cap { font-size: 17px; margin-top: 6px; }
+    .st .v { font-size: 20px; font-weight: 800; color: var(--blue); }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .res { flex: 1.3; background: var(--blue-soft); border-color: var(--blue); font-size: 18px; }
+    .res .l { margin: 14px 0; }
+    .res .r { font-size: 24px; font-weight: 800; color: var(--red); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Medida de la densidad de un sólido (desplazamiento de agua)</h1>
+    <div class="row">
+        <div class="st"><span class="n">1</span>
+            <svg width="200" height="260" viewBox="0 0 200 260">
+                <ellipse cx="100" cy="132" rx="38" ry="24" fill="#AAB7B8" stroke="#566573" stroke-width="3"/>
+                <rect x="20" y="158" width="160" height="10" rx="4" fill="#95A5A6"/>
+                <rect x="10" y="168" width="180" height="62" rx="10" fill="#D5D8DC" stroke="#7F8C8D" stroke-width="3"/>
+                <rect x="40" y="180" width="120" height="34" rx="6" fill="#1B2631"/>
+                <text x="100" y="204" text-anchor="middle" font-size="20" font-family="Consolas" font-weight="700" fill="#58D68D">27,6 g</text>
+            </svg>
+            <div class="cap">Pesa el sólido</div><div class="v">m = 27,6 g</div></div>
+        <div class="st"><span class="n">2</span>
+            <svg width="200" height="260" viewBox="0 0 200 260" id="c1"></svg>
+            <div class="cap">Agua en una probeta</div><div class="v">V<sub>1</sub> = 120 mL</div></div>
+        <div class="st"><span class="n">3</span>
+            <svg width="200" height="260" viewBox="0 0 200 260" id="c2"></svg>
+            <div class="cap">Echa el sólido: el agua sube</div><div class="v">V<sub>2</sub> = 140 mL</div></div>
+        <div class="st res"><span class="n">4</span>
+            <div class="l">V = V<sub>2</sub> − V<sub>1</sub> = 140 − 120 = <b>20 mL</b></div>
+            <div class="l">d = <span class="frac"><span>m</span><span>V</span></span> = <span class="frac"><span>27,6 g</span><span>20 mL</span></span></div>
+            <div class="r">d = 1,38 g/mL</div>
+        </div>
+    </div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg';
+    function cyl(id, level, stone) {
+        const svg = document.getElementById(id);
+        const add = (tag, a) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); svg.appendChild(e); return e; };
+        // 0 mL at y=240, 160 mL at y=20 -> 1.375 px per mL
+        const y = v => 240 - v * 1.375;
+        add('rect', { x: 70, y: y(level), width: 60, height: 240 - y(level), fill: '#AED6F1' });
+        if (stone) add('ellipse', { cx: 100, cy: 222, rx: 22, ry: 14, fill: '#AAB7B8', stroke: '#566573', 'stroke-width': 3 });
+        add('rect', { x: 70, y: 15, width: 60, height: 228, fill: 'none', stroke: '#5D6D7E', 'stroke-width': 4 });
+        add('rect', { x: 50, y: 243, width: 100, height: 10, rx: 3, fill: '#5D6D7E' });
+        for (let v = 0; v <= 160; v += 20) {
+            add('line', { x1: 130, x2: 115, y1: y(v), y2: y(v), stroke: '#23373B', 'stroke-width': 2 });
+            const t = add('text', { x: 138, y: y(v) + 5, 'font-size': 13, fill: '#23373B' }); t.textContent = v;
+        }
+        add('line', { x1: 30, x2: 130, y1: y(level), y2: y(level), stroke: '#C0392B', 'stroke-width': 2, 'stroke-dasharray': '5 4' });
+        const t = add('text', { x: 28, y: y(level) - 6, 'font-size': 15, 'font-weight': 700, fill: '#C0392B' }); t.textContent = level + ' mL';
+    }
+    cyl('c1', 120, false);
+    cyl('c2', 140, true);
+</script>
+</body>
+</html>

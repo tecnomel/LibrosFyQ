@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD7_03 · Colores de indicadores ácido-base según el pH</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Zona de viraje (intervalo de pH) y colores de varios indicadores.
+const C = { am: "#F7E958", vi: "#A89BD8", ro: "#EF6A4E", az: "#1FB8EE", in: "#FFFFFF", ros: "#E8488A" };
+const IND = [
+    ["Violeta de metilo", "0,5-1,6", [[0.5, 1.6, "am", "vi"]]],
+    ["Amarillo de metilo", "2,9-4,0", [[2.9, 4.0, "ro", "am"]]],
+    ["Naranja de metilo", "3,1-4,4", [[3.1, 4.4, "ro", "am"]]],
+    ["Rojo congo", "3,0-5,0", [[3.0, 5.0, "az", "ro"]]],
+    ["Verde de bromocresol", "3,8-5,4", [[3.8, 5.4, "am", "az"]]],
+    ["Rojo de metilo", "4,4-6,2", [[4.4, 6.2, "ro", "am"]]],
+    ["Azul de bromotimol", "6,0-7,6", [[6.0, 7.6, "am", "az"]]],
+    ["Tornasol", "5,0-8,0", [[5.0, 8.0, "ro", "az"]]],
+    ["Rojo de fenol", "6,8-8,4", [[6.8, 8.4, "am", "ro"]]],
+    ["Rojo de cresol", "7,2-8,8", [[7.2, 8.8, "am", "ro"]]],
+    ["Azul de timol", "1,2-2,8 y 8,0-9,6", [[1.2, 2.8, "ro", "am"], [8.0, 9.6, "am", "az"]]],
+    ["Fenolftaleína", "8,2-10,0", [[8.2, 10.0, "in", "ros"]]],
+    ["Amarillo de alizarina", "10,1-12,0", [[10.1, 12.0, "am", "vi"]]],
+];
+const X0 = 270, W = 560, F = 30, svg = crearFigura(X0 + W + 20, 30 + IND.length * F + 40);
+const px = p => X0 + W * p / 14;
+IND.forEach(([nom, rango, tr], i) => {
+    const y = 20 + i * F;
+    el("path", { d: "M8," + (y + 3) + " h235 l14," + (F / 2 - 3) + " l-14," + (F / 2 - 3) + " h-235 Z", fill: "#E6E6E6", stroke: "#888" }, svg);
+    texto(svg, 16, y + F / 2 + 5, nom + " (" + rango + ")", { "font-size": 13, fill: COLORES.texto });
+    const g = el("linearGradient", { id: "i" + i, x1: 0, y1: 0, x2: 1, y2: 0 }, defs(svg));
+    let col = C[tr[0][2]];
+    el("stop", { offset: "0%", "stop-color": col }, g);
+    tr.forEach(([a, b, c1, c2]) => {
+        el("stop", { offset: (a / 14 * 100) + "%", "stop-color": C[c1] }, g);
+        el("stop", { offset: (b / 14 * 100) + "%", "stop-color": C[c2] }, g);
+        col = C[c2];
+    });
+    el("stop", { offset: "100%", "stop-color": col }, g);
+    el("rect", { x: X0, y: y + 4, width: W, height: F - 8, fill: "url(#i" + i + ")", stroke: "#999", "stroke-width": 0.6 }, svg);
+});
+for (let p = 0; p <= 14; p++) {
+    el("line", { x1: px(p), y1: 16, x2: px(p), y2: 24 + IND.length * F, stroke: "#333", "stroke-width": p % 7 === 0 ? 1.4 : 0.6, opacity: 0.6 }, svg);
+    texto(svg, px(p), 42 + IND.length * F, String(p), { "text-anchor": "middle", "font-size": 13, fill: COLORES.texto });
+}
+texto(svg, X0 - 12, 42 + IND.length * F, "pH", { "text-anchor": "end", "font-size": 14, "font-weight": "bold", fill: COLORES.texto });
+</script>
+</body>
+</html>

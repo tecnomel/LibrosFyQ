@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cómo resolver un ejercicio de gases</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    sub { font-size: 0.6em; }
+    .flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 30px; }
+    .st { position: relative; border-radius: 14px; padding: 10px 12px 10px 58px; min-height: 120px; font-size: 16px; line-height: 1.35; }
+    .st .n { position: absolute; left: 10px; top: 10px; width: 38px; height: 38px; border-radius: 50%; color: #fff; font-weight: 800; font-size: 20px; display: flex; align-items: center; justify-content: center; }
+    .st .ic { position: absolute; left: 12px; top: 56px; font-size: 28px; }
+    .st b.t { display: block; font-size: 18px; margin-bottom: 3px; }
+    .r { background: var(--blue-soft); border: 2px solid var(--blue); } .r .n { background: var(--blue); } .r b.t { color: var(--blue); }
+    .d { background: var(--green-soft); border: 2px solid var(--green); } .d .n { background: var(--green); } .d b.t { color: var(--green); }
+    .l { background: var(--ocre-soft); border: 2px solid var(--ocre); } .l .n { background: var(--ocre); } .l b.t { color: #A3400B; }
+    .s { background: var(--red-soft); border: 2px solid var(--red); } .s .n { background: var(--red); } .s b.t { color: var(--red); }
+    .st:not(.end)::after { content: "➜"; position: absolute; right: -26px; top: 42%; font-size: 22px; color: var(--grey); }
+    .st.rowend::after { content: ""; }
+    table { border-collapse: collapse; font-size: 15px; margin-top: 4px; background: #fff; }
+    td, th { border: 1.5px solid var(--green); padding: 2px 8px; }
+    th { background: var(--green); color: #fff; }
+    .mini { font-size: 18px; font-weight: 700; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Cómo resolver un ejercicio de gases, paso a paso</h1>
+    <div class="flow">
+        <div class="st r"><div class="n">1</div><div class="ic">📖</div><b class="t">Léelo una vez</b>Lee todo el ejercicio para entender la situación.</div>
+        <div class="st r"><div class="n">2</div><div class="ic">🔍</div><b class="t">Léelo una segunda vez</b>Ahora busca los números y las unidades, y subráyalos.</div>
+        <div class="st d rowend"><div class="n">3</div><div class="ic">📝</div><b class="t">Dibuja la tabla</b>
+            <table><tr><th>Datos</th><th>Incógnita</th></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr></table></div>
+        <div class="st d"><div class="n">4</div><div class="ic">1️⃣</div><b class="t">Escribe los datos</b>Marca cada uno como <b>inicial (1)</b> o <b>final (2)</b>: p<sub>1</sub>, V<sub>1</sub>, T<sub>1</sub>&hellip; ¡T en <b>kelvin</b>!</div>
+        <div class="st d"><div class="n">5</div><div class="ic">❓</div><b class="t">Escribe la incógnita</b>¿Qué pide el ejercicio? Por ejemplo, V<sub>2</sub>.</div>
+        <div class="st l rowend"><div class="n">6</div><div class="ic">🔒</div><b class="t">¿Qué se mantiene constante?</b>T → <b>Boyle-Mariotte</b><br>V → <b>Gay-Lussac</b><br>p → <b>Charles</b></div>
+        <div class="st l"><div class="n">7</div><div class="ic">✍️</div><b class="t">Escribe la ley</b>Su nombre y su fórmula, p. ej. <span class="mini">p<sub>1</sub>·V<sub>1</sub> = p<sub>2</sub>·V<sub>2</sub></span></div>
+        <div class="st s"><div class="n">8</div><div class="ic">⚖️</div><b class="t">Despeja la incógnita</b>Déjala sola en un lado: <span class="mini">V<sub>2</sub> = p<sub>1</sub>·V<sub>1</sub> / p<sub>2</sub></span></div>
+        <div class="st s end"><div class="n">9</div><div class="ic">🧮</div><b class="t">Sustituye y calcula</b>Pon los números <b>con sus unidades</b>, opera y comprueba que el resultado tiene sentido.</div>
+    </div>
+</div>
+</body>
+</html>

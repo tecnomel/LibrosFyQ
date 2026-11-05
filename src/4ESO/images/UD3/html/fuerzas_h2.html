@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Fuerzas en la molécula de hidrógeno</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 640px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="580" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    const add = svgAdder('s');
+    add('defs', {}).innerHTML = '<radialGradient id="nube" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#F5B7B1"/><stop offset="1" stop-color="#FDEDEC" stop-opacity=".4"/></radialGradient>';
+    const A = [200, 150], B = [370, 150];
+    add('circle', { cx: A[0], cy: A[1], r: 120, fill: 'url(#nube)', stroke: '#E6B0AA', 'stroke-width': 2 });
+    add('circle', { cx: B[0], cy: B[1], r: 120, fill: 'url(#nube)', stroke: '#E6B0AA', 'stroke-width': 2, opacity: .9 });
+    const e1 = [285, 75], e2 = [285, 225];
+    // atracción núcleo–electrón (azul)
+    [[A, e1], [A, e2], [B, e1], [B, e2]].forEach(([n, e]) => arrow(add, n[0], n[1], e[0] + (n[0] < e[0] ? -12 : 12), e[1] + (n[1] > e[1] ? 10 : -10), '#2471A3', 2.5, 11));
+    // repulsiones (naranja discontinua)
+    add('line', { x1: A[0] + 22, y1: A[1], x2: B[0] - 22, y2: B[1], stroke: '#E67E22', 'stroke-width': 3, 'stroke-dasharray': '7 5' });
+    add('line', { x1: e1[0], y1: e1[1] + 14, x2: e2[0], y2: e2[1] - 14, stroke: '#E67E22', 'stroke-width': 3, 'stroke-dasharray': '7 5' });
+    [A, B].forEach(([x, y]) => { add('circle', { cx: x, cy: y, r: 18, fill: '#E67E22', stroke: '#A04000', 'stroke-width': 2 }); label(add, x, y + 7, '+', { fill: '#fff', 'font-size': 24, 'font-weight': 800 }); });
+    particle(add, e1[0], e1[1], 'e', 11); particle(add, e2[0], e2[1], 'e', 11);
+    label(add, A[0], A[1] + 46, 'núcleo', { 'font-size': 15 }); label(add, B[0], B[1] + 46, 'núcleo', { 'font-size': 15 });
+    add('line', { x1: 60, y1: 300, x2: 110, y2: 300, stroke: '#2471A3', 'stroke-width': 3 });
+    label(add, 190, 305, 'fuerzas de atracción', { 'font-size': 15, fill: '#2471A3' });
+    add('line', { x1: 320, y1: 300, x2: 370, y2: 300, stroke: '#E67E22', 'stroke-width': 3, 'stroke-dasharray': '7 5' });
+    label(add, 455, 305, 'fuerzas de repulsión', { 'font-size': 15, fill: '#E67E22' });
+</script>
+</body>
+</html>

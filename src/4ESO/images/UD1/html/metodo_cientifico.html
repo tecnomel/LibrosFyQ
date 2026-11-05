@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Etapas del método científico</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="810" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    // Cada etapa: [x, y, título, texto (líneas), color]
+    const W = 220, H = 92;
+    const st = [
+        [20, 20, '1. Observación', ['Se observa un fenómeno y', 'se plantea un problema.'], '#2E86C1'],
+        [295, 20, '2. Hipótesis', ['Suposición que explica el', 'fenómeno y se puede comprobar.'], '#8E44AD'],
+        [570, 20, '3. Experimentación', ['Se varía una variable y se', 'mantienen fijas las demás.'], '#D35400'],
+        [570, 200, '4. Análisis de resultados', ['Tablas, gráficas y ecuaciones', 'para relacionar las variables.'], '#16A085'],
+        [295, 200, '5. Leyes, teorías y modelos', ['Una hipótesis confirmada', 'se convierte en una ley.'], '#C0392B'],
+        [20, 200, '6. Comunicación', ['Se publican los resultados', 'para que otros los comprueben.'], '#7F8C8D'],
+    ];
+    st.forEach(([x, y, t, lines, c]) => {
+        add('rect', { x, y, width: W, height: H, rx: 12, fill: '#fff', stroke: c, 'stroke-width': 2.5 });
+        add('rect', { x, y, width: W, height: 30, rx: 12, fill: c });
+        add('rect', { x, y: y + 18, width: W, height: 12, fill: c });
+        label(add, x + W / 2, y + 21, t, { fill: '#fff', 'font-size': 15 });
+        lines.forEach((l, i) => label(add, x + W / 2, y + 54 + i * 19, l, { 'font-size': 13, 'font-weight': 400 }));
+    });
+    const A = '#525252';
+    arrow(add, 244, 66, 290, 66, A, 3, 12);
+    arrow(add, 519, 66, 565, 66, A, 3, 12);
+    arrow(add, 680, 116, 680, 195, A, 3, 12);
+    arrow(add, 565, 246, 519, 246, A, 3, 12);
+    arrow(add, 290, 246, 244, 246, A, 3, 12);
+    // si la hipótesis no se confirma, se vuelve a plantear
+    add('path', { d: 'M620 196 Q 560 150 440 118', fill: 'none', stroke: '#C0392B', 'stroke-width': 2, 'stroke-dasharray': '6 4' });
+    arrow(add, 452, 122, 430, 116, '#C0392B', 2, 10);
+    label(add, 470, 170, 'si no se confirma, nueva hipótesis', { 'font-size': 12, fill: '#C0392B' });
+    label(add, 405, 318, 'Ejemplo: ¿qué relación hay entre el peso que colgamos de un muelle y su alargamiento?', { 'font-size': 13, fill: '#000070', 'font-style': 'italic', 'font-weight': 400 });
+</script>
+</body>
+</html>

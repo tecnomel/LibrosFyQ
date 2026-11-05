@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Measuring an irregular surface</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 18px; align-items: stretch; }
+    .st { flex: 1; border: 2px solid var(--line); border-radius: 14px; padding: 12px; text-align: center; }
+    .st .n { display: inline-block; width: 32px; height: 32px; border-radius: 50%; background: var(--ocre); color: #fff; font-weight: 800; line-height: 32px; font-size: 18px; }
+    .st .cap { font-size: 17px; margin-top: 8px; }
+    .arrow { align-self: center; font-size: 34px; color: var(--grey); }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .eq { flex: 1.3; background: var(--blue-soft); border-color: var(--blue); }
+    .eq .f { font-size: 26px; font-weight: 700; color: var(--blue); margin: 22px 0 10px; }
+    .eq .r { font-size: 22px; font-weight: 800; color: var(--red); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Measuring an irregular surface by weighing</h1>
+    <div class="row">
+        <div class="st"><span class="n">1</span>
+            <svg width="230" height="200" viewBox="0 0 230 200">
+                <rect x="65" y="10" width="100" height="100" fill="#FDEBD0" stroke="#A04000" stroke-width="3"/>
+                <text x="115" y="66" text-anchor="middle" font-size="18" font-weight="700" fill="#A04000">1 dm²</text>
+                <rect x="20" y="118" width="190" height="10" rx="4" fill="#95A5A6"/>
+                <rect x="10" y="128" width="210" height="62" rx="10" fill="#D5D8DC" stroke="#7F8C8D" stroke-width="3"/>
+                <rect x="55" y="140" width="120" height="34" rx="6" fill="#1B2631"/>
+                <text x="115" y="164" text-anchor="middle" font-size="20" font-family="Consolas" font-weight="700" fill="#58D68D">20.8 g</text>
+            </svg>
+            <div class="cap">Weigh a <b>known</b> square: S<sub>M</sub> = 1 dm², M<sub>M</sub> = 20.8 g</div></div>
+        <div class="arrow">➜</div>
+        <div class="st"><span class="n">2</span>
+            <svg width="230" height="200" viewBox="0 0 230 200">
+                <path d="M115 10 C160 20 170 60 150 85 C140 100 120 108 115 112 C110 108 90 100 80 85 C60 60 70 20 115 10 Z" fill="#ABEBC6" stroke="#1E8449" stroke-width="3"/>
+                <line x1="115" y1="20" x2="115" y2="108" stroke="#1E8449" stroke-width="2"/>
+                <rect x="20" y="118" width="190" height="10" rx="4" fill="#95A5A6"/>
+                <rect x="10" y="128" width="210" height="62" rx="10" fill="#D5D8DC" stroke="#7F8C8D" stroke-width="3"/>
+                <rect x="55" y="140" width="120" height="34" rx="6" fill="#1B2631"/>
+                <text x="115" y="164" text-anchor="middle" font-size="20" font-family="Consolas" font-weight="700" fill="#58D68D">8.3 g</text>
+            </svg>
+            <div class="cap">Cut out the irregular shape from the <b>same paper</b> and weigh it: M<sub>F</sub> = 8.3 g</div></div>
+        <div class="arrow">➜</div>
+        <div class="st eq"><span class="n">3</span>
+            <div class="f">S<sub>F</sub> = S<sub>M</sub> · <span class="frac"><span>M<sub>F</sub></span><span>M<sub>M</sub></span></span></div>
+            <div class="f" style="font-size:22px">S<sub>F</sub> = 1 dm² · <span class="frac"><span>8.3 g</span><span>20.8 g</span></span></div>
+            <div class="r">S<sub>F</sub> = 0.40 dm²</div>
+            <div class="cap" style="margin-top:10px">Twice the mass ⇒ twice the surface (rule of three).</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

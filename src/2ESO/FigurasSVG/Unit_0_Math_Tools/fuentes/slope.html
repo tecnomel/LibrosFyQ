@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Analysing a straight-line graph</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .row { display: flex; gap: 22px; align-items: center; }
+    .info { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+    .info > div { border-radius: 12px; padding: 8px 12px; font-size: 17px; line-height: 1.4; }
+    .a { background: var(--blue-soft); border: 2px solid var(--blue); }
+    .b { background: var(--ocre-soft); border: 2px solid var(--ocre); }
+    .c { background: var(--green-soft); border: 2px solid var(--green); }
+    sub { font-size: 0.65em; }
+    .shapes { display: flex; gap: 16px; margin-top: 14px; }
+    .shapes > div { flex: 1; border: 2px solid var(--line); border-radius: 12px; text-align: center; padding: 6px; font-size: 16px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Analysing a straight-line graph</h1>
+    <div class="row">
+        <svg width="520" height="380" viewBox="0 0 520 380">
+            <defs><marker id="ar" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#23373B"/></marker></defs>
+            <g stroke="#E5E8E8" stroke-width="1"><path d="M60 280 H500 M60 230 H500 M60 180 H500 M60 130 H500 M60 80 H500 M60 30 H500"/><path d="M110 330 V20 M160 330 V20 M210 330 V20 M260 330 V20 M310 330 V20 M360 330 V20 M410 330 V20 M460 330 V20"/></g>
+            <line x1="60" y1="330" x2="505" y2="330" stroke="#23373B" stroke-width="3" marker-end="url(#ar)"/>
+            <line x1="60" y1="330" x2="60" y2="15" stroke="#23373B" stroke-width="3" marker-end="url(#ar)"/>
+            <text x="505" y="360" text-anchor="end" font-size="18" font-weight="800">x</text><text x="22" y="20" font-size="18" font-weight="800">y</text>
+            <g font-size="14" fill="#525252" text-anchor="middle"><text x="60" y="350">0</text><text x="160" y="350">2</text><text x="260" y="350">4</text><text x="360" y="350">6</text><text x="460" y="350">8</text></g>
+            <g font-size="14" fill="#525252" text-anchor="end"><text x="52" y="285">5</text><text x="52" y="235">10</text><text x="52" y="185">15</text><text x="52" y="135">20</text><text x="52" y="85">25</text><text x="52" y="35">30</text></g>
+            <line x1="60" y1="280" x2="480" y2="70" stroke="#F36619" stroke-width="5"/>
+            <circle cx="60" cy="280" r="7" fill="#1E8449"/><text x="72" y="276" font-size="15" font-weight="800" fill="#1E8449">starts at y = 5</text>
+            <circle cx="160" cy="230" r="7" fill="#000070"/><circle cx="360" cy="130" r="7" fill="#000070"/>
+            <text x="150" y="222" text-anchor="end" font-size="15" font-weight="800" fill="#000070">A (2, 10)</text>
+            <text x="350" y="122" text-anchor="end" font-size="15" font-weight="800" fill="#000070">B (6, 20)</text>
+            <path d="M160 230 H360 V130" fill="none" stroke="#C0392B" stroke-width="3" stroke-dasharray="7 5"/>
+            <text x="260" y="252" text-anchor="middle" font-size="16" font-weight="800" fill="#C0392B">Δx = 6 − 2 = 4</text>
+            <text x="370" y="185" font-size="16" font-weight="800" fill="#C0392B">Δy = 20 − 10 = 10</text>
+        </svg>
+        <div class="info">
+            <div class="b"><b>1. Where does it start?</b> At x = 0 the line is at y = <b>5</b> (if it starts at 0, it passes through the origin).</div>
+            <div class="a"><b>2. Does it go up or down?</b> It goes <b>up</b>: when x increases, y increases.</div>
+            <div class="c"><b>3. How steep is it? The slope</b><br>slope = <span class="frac"><span>Δy</span><span>Δx</span></span> = <span class="frac"><span>y<sub>B</sub> − y<sub>A</sub></span><span>x<sub>B</sub> − x<sub>A</sub></span></span> = <span class="frac"><span>10</span><span>4</span></span> = <b>2,5</b><br>For each unit of x, y increases 2,5.</div>
+        </div>
+    </div>
+    <div class="shapes">
+        <div><svg width="120" height="70"><line x1="10" y1="60" x2="110" y2="10" stroke="#F36619" stroke-width="5"/></svg><br><b>goes up</b>: positive slope</div>
+        <div><svg width="120" height="70"><line x1="10" y1="10" x2="110" y2="60" stroke="#F36619" stroke-width="5"/></svg><br><b>goes down</b>: negative slope</div>
+        <div><svg width="120" height="70"><line x1="10" y1="35" x2="110" y2="35" stroke="#F36619" stroke-width="5"/></svg><br><b>horizontal</b>: slope 0 (y does not change)</div>
+        <div><svg width="120" height="70"><line x1="10" y1="60" x2="110" y2="5" stroke="#F36619" stroke-width="5"/><line x1="10" y1="60" x2="110" y2="40" stroke="#2471A3" stroke-width="5"/></svg><br><b>steeper</b> = bigger slope</div>
+    </div>
+</div>
+</body>
+</html>

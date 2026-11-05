@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_23 · Geometría angular del O3</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/moleculas.js"></script>
+</head>
+<body>
+<script>
+// AB2X: angular, ángulo algo menor de 120° (≈117°) por el par no enlazante (X).
+const svg = crearFigura(560, 300);
+const cam = [1, 0, 0.12];
+const d = angular(117);
+esquemaGeometria(svg, 10, 10, 170, 150, [{ p: d[0], t: "B" }, { p: d[1], t: "B" }, { p: [0, 0, 1], t: "X" }], { camara: cam, escala: 55, angulo: "< 120°", poliedro: false });
+const m = molAB("O", "O", d, 1.15, { letraCentral: false, angEtq: [150, 30] });
+m.pares = [{ en: 0, dir: [0, 0, 1] }];
+m.angulos = [{ a: 1, c: 0, b: 2, texto: "≈117°", radio: 0.5, dy: 20 }];
+dibujarMolecula(svg, m, { cx: 380, cy: 110, escala: 110, camara: cam });
+</script>
+</body>
+</html>

@@ -1,0 +1,757 @@
+%! Author = Profesor
+%! Date = 31/05/2024
+
+
+\section{Ejercicios, Cuestiones y Ejercicios PAU}
+
+\subsection{Ejercicios}
+
+\begin{exercise}
+    Calcula la frecuencia umbral y el trabajo de extracción del metal sodio, expresado en electronvoltios (\unit{\electronvolt}), sabiendo qu al incidir sobre una superficie de dicho metal una radiación electromagnética cuya frecuencia es de \SI{1.18e15}{\hertz}, los electrones son arrancados con una energía cinética máxima de \energia[j]{4.18e-19}.
+    Determina la velocidad máxima a la que salen los electrones.
+
+    \begin{solu}
+        Partimos de la ecuación del efecto fotoeléctrico donde \(h\ \nu = h\ \nu_0 + E_{c}\).
+        Sustituyendo los valores y despejando, tenemos que:
+        \begin{gather*}
+            \num{6.63e-34}\cdot \num{1.18e15} = \num{6.63e-34}\cdot v_0 + \num{4.18e-19}\\
+            v_0 = \dfrac{\num{6.63e-34}\cdot \num{1.18e15} - \num{4.18e-19}}{\num{6.63e-34}} = \SI{5.50e14}{\hertz}
+        \end{gather*}
+        El trabajo de extracción es:
+        \begin{equation*}
+            W_{umbral} = h\ \nu_0 =  \num{6.63e-34}\cdot \num{5.50e14} = \energia[j]{3.64e-19}
+        \end{equation*}
+        Ahora hacemos el cambio de julios a electronvoltios
+        \begin{equation*}
+            \SI{3.64e-19}{\joule}\cdot \dfrac{\SI{1}{\electronvolt}}{\SI{1.6e-19}{\joule}} = \energia[ev]{2.275}
+        \end{equation*}
+        Ahora el dato de la energía cinética, nos permite calcular la velocidad máxima de ese electrón según:
+        \begin{gather*}
+            E_c = \dfrac{1}{2}\ m_e \ v_e^2\separ
+            v= \sqrt{\dfrac{2\ E_c}{m_e}} = \sqrt{\dfrac{2\cdot \num{4.18e-19}}{\num{9.1e-31}}} = \velocidad[ms]{9.6e5}
+        \end{gather*}
+        Para calcular el potencial de frenado (\(\Delta V_{frenado}\)), tenemos que saber que \(W = q_e \ \Delta V_{frenado}\) siendo en este caso \(E_c = W\) quedando la expresión de \(\Delta V_{frenado}\) como:
+        \begin{equation*}
+            \Delta V_{frenado} = \dfrac{\num{4.18e-19}}{\num{1.6e-19}} = \SI{2.6}{\volt}
+        \end{equation*}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Sabiendo que el trabajo de extracción del cesio vale \energia[ev]{4.3}, ¿cuál es la frecuencia mínima que debe tener una radiación electromagnética para producir efecto fotoeléctrico sobre una lámina de dicho metal?
+    ¿Cuál será la máxima longitud de onda?.
+    \begin{solu}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[scale=0.4]{images/imagesUD1EstructuraAtomica/UD1_Problemas/ejerciciogeneral_02}
+%            %\caption{}
+%            %\label{fig:}
+%        \end{figure}
+        La frecuencia mínima (frecuencia umbral) es aquella para la que toda la energía del fotón se invierte en el trabajo de extracción, es decir, \(h\ \nu_0 = W_0\). Pasando el trabajo de extracción a julios:
+        \begin{equation*}
+            W_0 = \SI{4.3}{\electronvolt}\cdot \dfrac{\SI{1.6e-19}{\joule}}{\SI{1}{\electronvolt}} = \energia[j]{6.88e-19}
+        \end{equation*}
+        Despejando la frecuencia umbral:
+        \begin{equation*}
+            \nu_0 = \dfrac{W_0}{h} = \dfrac{\num{6.88e-19}}{\num{6.63e-34}} = \SI{1.038e15}{\hertz}
+        \end{equation*}
+        La longitud de onda máxima capaz de producir efecto fotoeléctrico es la asociada a esa frecuencia umbral:
+        \begin{equation*}
+            \lambda_{max} = \dfrac{c}{\nu_0} = \dfrac{\num{3e8}}{\num{1.038e15}} = \distancia[nm]{289.1}
+        \end{equation*}
+    \end{solu}
+\end{exercise}
+%
+
+\begin{exercise}
+    Utilizando la ecuación espectral, comprueba los valores de la longitud de onda, la frecuencia y la energía de los fotones emitidos correspondientes a la serie de Balmer.
+    \begin{solu}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[scale=0.4]{images/imagesUD1EstructuraAtomica/UD1_Problemas/ejerciciogeneral_03_a.png}
+%            \includegraphics[scale=0.4]{images/imagesUD1EstructuraAtomica/UD1_Problemas/ejerciciogeneral_03_b.png}
+%            %\caption{}
+%            %\label{fig:}
+%        \end{figure}
+        La serie de Balmer corresponde a las transiciones electrónicas hacia el nivel \(n=2\). La ecuación espectral (Rydberg) permite calcular la longitud de onda emitida:
+        \begin{equation*}
+            \dfrac{1}{\lambda} = R_H \left(\dfrac{1}{2^2} - \dfrac{1}{n^2}\right) \qquad \text{con } R_H = \SI{1.097e7}{\per\meter},\ n = 3, 4, 5, \ldots
+        \end{equation*}
+        Para las tres primeras líneas de la serie:
+        \begin{gather*}
+            n=3:\quad \dfrac{1}{\lambda} = \num{1.097e7}\left(\dfrac{1}{4}-\dfrac{1}{9}\right) = \SI{1.524e6}{\per\meter} \Rightarrow \lambda = \distancia[nm]{656.3}\separ
+            n=4:\quad \dfrac{1}{\lambda} = \num{1.097e7}\left(\dfrac{1}{4}-\dfrac{1}{16}\right) = \SI{2.057e6}{\per\meter} \Rightarrow \lambda = \distancia[nm]{486.2}\separ
+            n=5:\quad \dfrac{1}{\lambda} = \num{1.097e7}\left(\dfrac{1}{4}-\dfrac{1}{25}\right) = \SI{2.304e6}{\per\meter} \Rightarrow \lambda = \distancia[nm]{434.1}
+        \end{gather*}
+        A partir de estas longitudes de onda se obtienen la frecuencia (\(\nu = c/\lambda\)) y la energía del fotón (\(E = h\ \nu\)):
+        \begin{gather*}
+            n=3:\ \nu = \SI{4.571e14}{\hertz},\ E = \energia[j]{3.031e-19}\separ
+            n=4:\ \nu = \SI{6.169e14}{\hertz},\ E = \energia[j]{4.090e-19}\separ
+            n=5:\ \nu = \SI{6.911e14}{\hertz},\ E = \energia[j]{4.582e-19}
+        \end{gather*}
+        Estos valores coinciden con los proporcionados por la teoría, confirmando la validez de la ecuación espectral.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Calcula la longitud de la onda asociada a un electrón que se mueve con una velocidad igual a un 1\% de la velocidad de la luz.
+    \begin{solu}
+        La velocidad del electrón es \(v = 0.01\ c = 0.01\cdot \SI{3e8}{\meter\per\second} = \velocidad[ms]{3e6}\).
+        Aplicando la ecuación de de Broglie:
+        \begin{equation*}
+            \lambda = \dfrac{h}{m_e\ v} = \dfrac{\num{6.63e-34}}{\num{9.1e-31}\cdot \num{3e6}} = \distancia[nm]{0.243}
+        \end{equation*}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Calcula la longitud de la onda asociada a una pelota de tenis de aproximadamente de \masa[g]{50} y que se mueve a una velocidad de \velocidad[kmh]{200}.
+    \begin{solu}
+        Pasamos la velocidad a unidades del S.I.: \(v = \SI{200}{\kilo\meter\per\hour} = \velocidad[ms]{55.56}\), y la masa a kilogramos: \(m = \masa[kg]{0.05}\).
+        Aplicando la ecuación de de Broglie:
+        \begin{equation*}
+            \lambda = \dfrac{h}{m\ v} = \dfrac{\num{6.63e-34}}{\num{0.05}\cdot \num{55.56}} = \distancia[m]{2.39e-34}
+        \end{equation*}
+        Esta longitud de onda es tan extremadamente pequeña, comparada con las dimensiones del propio cuerpo, que resulta indetectable; por ello no se observan fenómenos ondulatorios en los objetos macroscópicos.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Si un electrón tiene una onda asociada de \distancia[nm]{500}, ¿con qué velocidad se mueve?
+    \begin{solu}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[scale=0.4]{images/imagesUD1EstructuraAtomica/UD1_Problemas/ejerciciogeneral_06.png}
+%            %\caption{}
+%            %\label{fig:}
+%        \end{figure}
+        De la ecuación de de Broglie \(\lambda = \dfrac{h}{m_e\ v}\) despejamos la velocidad:
+        \begin{equation*}
+            v = \dfrac{h}{m_e\ \lambda} = \dfrac{\num{6.63e-34}}{\num{9.1e-31}\cdot \num{500e-9}} = \velocidad[ms]{1.46e3}
+        \end{equation*}
+    \end{solu}
+\end{exercise}
+
+%! De oxford libro nuevo lo de arriba.
+
+\begin{exercise}
+    Una radiación de \distancia[nm]{300} que incide sobre una lámina de cinc es capaz de provocar la emisión de electrones con una energía cinética de \energia[j]{9.9e-20}. Determina la frecuencia y energía umbral.
+    \datos{} \(h = \SI{6.62e-34}{\joule\s}\)
+
+    \begin{solu}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[scale=0.75]{images/imagesUD1EstructuraAtomica/UD1_Problemas/Estrucura_de_la_materia_01.PNG}
+%            %\caption{}
+%            %\label{fig:}
+%        \end{figure}
+        La energía del fotón incidente es:
+        \begin{equation*}
+            E = \dfrac{h\ c}{\lambda} = \dfrac{\num{6.62e-34}\cdot \num{3e8}}{\num{300e-9}} = \energia[j]{6.62e-19}
+        \end{equation*}
+        Su frecuencia asociada es \(\nu = c/\lambda = \num{3e8}/\num{300e-9} = \SI{1e15}{\hertz}\).
+        Aplicando la ecuación del efecto fotoeléctrico \(E = W_0 + E_c\), obtenemos el trabajo (energía) de extracción:
+        \begin{equation*}
+            W_0 = E - E_c = \num{6.62e-19} - \num{9.9e-20} = \energia[j]{5.63e-19}
+        \end{equation*}
+        Y la frecuencia umbral:
+        \begin{equation*}
+            \nu_0 = \dfrac{W_0}{h} = \dfrac{\num{5.63e-19}}{\num{6.62e-34}} = \SI{8.505e14}{\hertz}
+        \end{equation*}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una radiación verde monocromática de longitud de onda de \distancia[nm]{570} incide sobre un átomo de hidrógeno. Calcula la energía de un fotón y de un mol de fotones. Compárala con la de las transiciones electrónicas responsables de la primera y segunda línea del Balmer. \datos{} \(h = \SI{6.62e-34}{\joule\s}\); \(R_H = \SI{2.18e-18}{\joule}\).
+    \begin{solu}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[scale=0.75]{images/imagesUD1EstructuraAtomica/UD1_Problemas/Estrucura_de_la_materia_02.PNG}
+%        \end{figure}
+        La energía de un fotón de dicha radiación es:
+        \begin{equation*}
+            E = \dfrac{h\ c}{\lambda} = \dfrac{\num{6.62e-34}\cdot \num{3e8}}{\num{570e-9}} = \energia[j]{3.484e-19}
+        \end{equation*}
+        Para un mol de fotones, multiplicamos por el número de Avogadro:
+        \begin{equation*}
+            E_{mol} = E\cdot N_A = \num{3.484e-19}\cdot \num{6.022e23} = \SI{2.098e5}{\joule\per\mole} \approx \SI{209.8}{\kilo\joule\per\mole}
+        \end{equation*}
+        Las energías de las transiciones electrónicas de la serie de Balmer (hacia \(n=2\)) se calculan con \(\Delta E = R_H\left(\dfrac{1}{2^2}-\dfrac{1}{n^2}\right)\):
+        \begin{gather*}
+            n=3\rightarrow 2:\quad \Delta E = \num{2.18e-18}\left(\dfrac{1}{4}-\dfrac{1}{9}\right) = \energia[j]{3.03e-19}\separ
+            n=4\rightarrow 2:\quad \Delta E = \num{2.18e-18}\left(\dfrac{1}{4}-\dfrac{1}{16}\right) = \energia[j]{4.09e-19}
+        \end{gather*}
+        La energía del fotón verde (\(\SI{3.48e-19}{\joule}\)) se encuentra entre la de la primera y la segunda línea de Balmer, por lo que no coincide exactamente con ninguna de las dos transiciones y, por tanto, no sería absorbida por el átomo de hidrógeno en su estado fundamental para producir esas transiciones concretas.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Al someter electrones a una diferencia de potencial de \SI{4e4}{\volt} se consigue acelerarlos hasta alcanzar una velocidad de \velocidad[kmh]{4.32e6}.
+
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item Calcula la longitud de onda de los electrones.
+        \item La imagen obtenida, ¿se verá en color? ¿Por qué?
+    \end{enumerate}
+    \datos{} \(h = \SI{6.62e-34}{\joule\s}\); \(m_e = \masa[kg]{9.1e-34}\).
+
+    \begin{solu}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[scale=0.75]{images/imagesUD1EstructuraAtomica/UD1_Problemas/Estrucura_de_la_materia_03.PNG}
+%        \end{figure}
+        Pasamos la velocidad a unidades del S.I.: \(v = \SI{4.32e6}{\kilo\meter\per\hour} = \velocidad[ms]{1.2e6}\).
+        \begin{enumerate}[label=\letraminuscula]
+            \item Aplicando la ecuación de de Broglie:
+            \begin{equation*}
+                \lambda = \dfrac{h}{m_e\ v} = \dfrac{\num{6.62e-34}}{\num{9.1e-31}\cdot \num{1.2e6}} = \distancia[nm]{0.606}
+            \end{equation*}
+            \item Esta longitud de onda (\(\approx \SI{0.6}{\nano\meter}\)) corresponde a la región de los rayos X, muy alejada del espectro visible (\SIrange{400}{700}{\nano\meter}). Por tanto, la imagen obtenida (propia de un microscopio electrónico) no se verá en color, ya que los electrones no producen radiación visible: la imagen se recoge en blanco y negro (escala de grises) mediante una pantalla fluorescente o un detector electrónico.
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Dados los valores de números cuánticos (4,2,3,-1/2); (3,2,1,1/2); (2,0,-1,1/2) y (1,0,0,1/2).
+    \begin{enumerate}[label=\letraminuscula]
+        \item Indique cuáles de ellos no están permitidos.
+        \item Indique el orbital en el que se encontrarían los electrones definidos por los valores de los números cuánticos permitidos.
+    \end{enumerate}
+    \begin{solu}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[scale=0.75]{images/imagesUD1EstructuraAtomica/UD1_Problemas/Estrucura_de_la_materia_04.PNG}
+%        \end{figure}
+        Recordemos las restricciones de los números cuánticos \((n,l,m,s)\): \(l = 0, 1, \ldots, n-1\); \(m = -l, \ldots, 0, \ldots, +l\); \(s = \pm 1/2\).
+        \begin{itemize}
+            \item \((4,2,3,-1/2)\): con \(l=2\), \(m\) debe estar entre \(-2\) y \(2\); como \(m=3\), \textbf{no está permitido}.
+            \item \((3,2,1,1/2)\): \(l=2 \leq n-1=2\) y \(m=1\) está entre \(-2\) y \(2\); \textbf{permitido}. Corresponde a un electrón del orbital \(3d\).
+            \item \((2,0,-1,1/2)\): con \(l=0\) el único valor posible de \(m\) es \(0\); como \(m=-1\), \textbf{no está permitido}.
+            \item \((1,0,0,1/2)\): \(l=0\leq n-1=0\) y \(m=0\); \textbf{permitido}. Corresponde a un electrón del orbital \(1s\).
+        \end{itemize}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Dados los siguientes conjuntos de números cuánticos: (2,1,2,+1/2); (3,1,-1,+1/2); (2,2,1,-1/2) y (3,2,- 2,+1/2): a) Expresar el significado de los cuatro números cuánticos; b) Razonar cuáles son permitidos y cuales no.
+    c) Explicar cuál de los permitidos se corresponde con un electrón en un orbital d.
+
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item Significado de los números cuánticos:
+            \begin{itemize}
+                \item \(n\) (principal): indica el nivel de energía y el tamaño del orbital.
+                \item \(l\) (secundario o azimutal): indica la forma del orbital (subnivel \(s,p,d,f\)) y toma valores de \(0\) a \(n-1\).
+                \item \(m\) (magnético): indica la orientación espacial del orbital y toma valores enteros entre \(-l\) y \(+l\).
+                \item \(s\) (de espín): indica el sentido de giro del electrón sobre sí mismo, \(+1/2\) o \(-1/2\).
+            \end{itemize}
+            \item Análisis de cada conjunto:
+            \begin{itemize}
+                \item \((2,1,2,+1/2)\): con \(l=1\), \(m\) debe estar entre \(-1\) y \(1\); como \(m=2\), \textbf{no permitido}.
+                \item \((3,1,-1,+1/2)\): \(l=1\leq n-1=2\) y \(m=-1\) está en el rango correcto; \textbf{permitido} (orbital \(3p\)).
+                \item \((2,2,1,-1/2)\): con \(n=2\), \(l\) solo puede valer \(0\) o \(1\); como \(l=2\), \textbf{no permitido}.
+                \item \((3,2,-2,+1/2)\): \(l=2\leq n-1=2\) y \(m=-2\) está entre \(-2\) y \(2\); \textbf{permitido} (orbital \(3d\)).
+            \end{itemize}
+            \item El conjunto permitido que corresponde a un electrón en un orbital \(d\) es \((3,2,-2,+1/2)\), ya que \(l=2\) define el subnivel \(d\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Escribe la configuración electrónica para los siguientes elementos con los siguientes números atómicos: Z = 26, Z = 50, Z = 19.
+    \begin{solu}
+        Siguiendo el orden de llenado de orbitales (principio de Aufbau):
+        \begin{itemize}
+            \item \(Z=26\) (Fe): \(1s^2\ 2s^2\ 2p^6\ 3s^2\ 3p^6\ 4s^2\ 3d^6\)
+            \item \(Z=50\) (Sn): \(1s^2\ 2s^2\ 2p^6\ 3s^2\ 3p^6\ 4s^2\ 3d^{10}\ 4p^6\ 5s^2\ 4d^{10}\ 5p^2\)
+            \item \(Z=19\) (K): \(1s^2\ 2s^2\ 2p^6\ 3s^2\ 3p^6\ 4s^1\)
+        \end{itemize}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Escribe la configuración electrónica para \ch{Cr}, \ch{Cu} y \ch{Ag}.
+    Compara los resultados con las configuraciones electrónicas de los apuntes.
+    \begin{solu}
+        Estos tres elementos son excepciones al principio de Aufbau, ya que adquieren una mayor estabilidad con subniveles \(d\) semillenos o completamente llenos:
+        \begin{itemize}
+            \item \(\ch{Cr}\) (\(Z=24\)): configuración esperada \(4s^2\ 3d^4\); configuración real \([\ch{Ar}]\ 4s^1\ 3d^5\), más estable por tener el subnivel \(3d\) semilleno.
+            \item \(\ch{Cu}\) (\(Z=29\)): configuración esperada \(4s^2\ 3d^9\); configuración real \([\ch{Ar}]\ 4s^1\ 3d^{10}\), más estable por tener el subnivel \(3d\) completamente lleno.
+            \item \(\ch{Ag}\) (\(Z=47\)): configuración esperada \(5s^2\ 4d^9\); configuración real \([\ch{Kr}]\ 5s^1\ 4d^{10}\), más estable por tener el subnivel \(4d\) completamente lleno.
+        \end{itemize}
+        En los tres casos, la promoción de un electrón \(s\) al subnivel \(d\) inmediatamente inferior proporciona una configuración de menor energía (mayor estabilidad) que la predicha por el orden estricto de llenado.
+    \end{solu}
+\end{exercise}
+
+\subsection{Cuestiones}
+
+\begin{question}
+    Indica qué diferencia existe entre energía e intensidad de la radiación.
+    \begin{solu}
+        La energía de una radiación es la energía de cada uno de sus
+        fotones y se relaciona con la frecuencia de la radiación; tiene
+        que ver con el efecto cualitativo que puede tener la radiación.
+        La intensidad de una radiación depende del número de fotones
+        y tiene que ver con el efecto cuantitativo de la radiación.
+    \end{solu}
+
+\end{question}
+
+\begin{question}
+    ¿Por qué la radiación ilumina una placa metálica (y no provoca en ella efecto fotoeléctrico) seguirá sin provocarlo aunque aumentemos mucho su intensidad?
+    \begin{solu}
+        Si la radiación no provoca el efecto fotoeléctrico es porque
+        sus fotones no tienen energía suficiente para arrancar los
+        electrones de la placa.
+        Al aumentar la intensidad de la radiación
+        solo crece el número de fotones, pero no cambia su
+        energía.
+    \end{solu}
+\end{question}
+
+\begin{question}
+    Indica la diferencia entre órbita y orbital.
+    \begin{solu}
+        De acuerdo con la teoría de Bohr, órbita es la curva que describe
+        el electrón cuando gira alrededor de su núcleo.
+        Por
+        su parte, el orbital es un concepto mecanocuántico que se
+        refiere a la región del espacio donde existe una probabilidad
+        de encontrar un electrón superior al 90 \%.
+    \end{solu}
+\end{question}
+
+\begin{question}
+    Teniendo en cuenta el modelo atómico de Bohr, indica si un electrón que se encuentra en la órbita de \(n = 4\) se mueve más rápido o más lento que uno que se halle en la órbita de \(n = 2\).
+
+    \begin{solu}
+        La velocidad del electrón es directamente
+        proporcional al número cuántico principal e inversamente
+        proporcional al radio de la órbita.
+        Combinando ambos factores
+        resulta que la velocidad es inversamente proporcional al
+        número cuántico n, esto es, cuanto mayor es dicho número,
+        menor es la velocidad del electrón.
+    \end{solu}
+\end{question}
+
+\begin{question}
+    Razona sobre la veracidad de la siguiente afirmación:
+
+    «Un electrón que se encuentra en el nivel 4 de energía está a doble distancia del núcleo que uno que se halla en el nivel 2 de energía».
+    \begin{solu}
+        La distancia al núcleo viene determinada por el radio de la órbita, y esta depende de \(n^2\)  (\(r = a\ n^2\) ). El electrón que está en la órbita de \(n = 4\)  está a una distancia del núcleo \(r = 16a\) ,      mucho mayor que el doble de aquella a la que está en \(n = 2\) ,
+        es decir, \(r = 4a\) .
+    \end{solu}
+\end{question}
+
+\begin{question}
+    Explica si la diferencia de energía entre los niveles 7 y 8 de un átomo es igual, mayor o menor que la diferencia de energía entre los niveles 2 y 3.
+    \begin{solu}
+        Cuanto más alejados estén los electrones del núcleo, menor será la diferencia de energía entre niveles consecutivos.
+        Aplicando la fórmula:
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[scale=1]{images/imagesUD1EstructuraAtomica/UD1_Problemas/cuestion7}
+%            %\caption{}
+%            %\label{fig:}
+%        \end{figure}
+
+        \begin{align*}
+            \Delta E_{7-8} &= -b\,\frac{1}{8^2} - \left(-b\,\frac{1}{7^2}\right) = b\left(\frac{1}{7^2} - \frac{1}{8^2}\right) = \num{4.78e-3}\,b \\
+            \Delta E_{2-3} &= -b\,\frac{1}{3^2} - \left(-b\,\frac{1}{2^2}\right) = b\left(\frac{1}{2^2} - \frac{1}{3^2}\right) = \num{0.14}\,b
+        \end{align*}
+    \end{solu}
+\end{question}
+
+\begin{question}
+    ¿Qué significa que un electrón se encuentra en su estado fundamental, en un estado excitado o en un estado prohibido?
+    \begin{solu}
+        Estado fundamental es el estado de menor energía para el electrón.
+        Estado excitado es cualquier estado posible para el electrón con una energía mayor que la del estado fundamental. El electrón llega a ese estado cuando se le comunica energía y,
+        en cuanto cesa la excitación, vuelve al estado fundamental.
+        Estado prohibido es un estado cuánticamente imposible para
+        el electrón, por ejemplo un estado en el que se incumple el
+        principio de exclusión de Pauli.
+    \end{solu}
+\end{question}
+
+\begin{question}
+    Explica la siguiente frase: «El espectro de absorción de una sustancia es el complementario del de emisión».
+    \begin{solu}
+        El espectro de absorción es el análisis de las radiaciones que
+        absorben los electrones de un átomo y que le permiten pasar
+        de un nivel de energía a otro más exterior (estados excitados
+        del electrón). Cuando el electrón deja de estar excitado, hace
+        el tránsito inverso, lo que se recoge en el espectro de emisión.
+        Por eso ambos espectros son complementarios.
+    \end{solu}
+\end{question}
+
+\begin{question}
+    ¿Por qué el espectro de un elemento químico es distinto del de cualquier otro y sirve para identificarlo?
+
+    \begin{solu}
+        El espectro mide diferencias de energía entre niveles de un electrón.
+        La energía del electrón en un
+        nivel depende de la carga del núcleo del átomo al que pertenezca,
+        y esta es distinta para cada elemento químico, ya que depende de su número atómico.
+    \end{solu}
+\end{question}
+
+\begin{question}
+    Utilizando la fórmula de Rydberg, idea un método para medir la energía de ionización de un átomo.
+
+    \begin{solu}
+        Se tendrá que medir la energía correspondiente al tránsito entre el nivel en que se encuentra el electrón en la capa de valencia de un átomo y el nivel de \(n = \infty\).
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[scale=1]{images/imagesUD1EstructuraAtomica/UD1_Problemas/cuestion11}
+%            %\caption{}
+%            %\label{fig:}
+%        \end{figure}
+
+        \[
+            \frac{1}{\lambda} = R\left(\frac{1}{n_1^2} - \frac{1}{\infty}\right); \qquad c = \lambda\,\nu; \qquad E = h\,\frac{c}{\lambda}
+        \]
+    \end{solu}
+\end{question}
+
+\begin{question}
+    Explica por qué no se observan los fenómenos ondulatorios en el mundo macroscópico.
+    ¿Sería posible observar la onda asociada a una pelota de tenis que va de un
+    lado a otro de la cancha?
+
+    \begin{solu}
+        La longitud de onda asociada a un cuerpo que se mueve se calcula por la fórmula de Louis de Broglie:
+
+        \begin{equation*}
+            \lambda = \dfrac{h}{m\ v}
+        \end{equation*}
+
+        Como el valor de h es del orden de \num{e-34} , los cuerpos macroscópicos,
+        cuya masa es del orden de 1 kg y cuya velocidad
+        es del orden de 1 m/s, tendrán una longitud de onda asociada
+        tan pequeña que no se podrán observar fenómenos
+        ondulatorios. Para que se observara difracción, la radiación
+        tendría que atravesar rendijas de un tamaño comparable a
+        su longitud de onda. Las rendijas más pequeñas son las
+        que corresponden a la distancia interatómica, que se puede
+        obtener cuando una radiación atraviesa una red metálica.
+        Solo partículas comparables a las partículas atómicas - como
+        el electrón - presentan fenómenos ondulatorios observables.
+    \end{solu}
+
+\end{question}
+
+\begin{question}
+    Razona si se pueden determinar, con total precisión y a la vez, la posición y la cantidad de movimiento de una pelota de tenis. Extiende tu razonamiento para ver si es posible determinar, con la misma precisión, esos valores
+    en el caso de un electrón. ¿Cabe esperar que el avance tecnológico permita en el futuro determinar dichas magnitudes sin ningún tipo de error?
+
+    \begin{solu}
+        El principio de incertidumbre permite determinar el grado de error con que se pueden conocer, a la vez, la posición y el estado de movimiento de los cuerpos. El límite inferior de esta incertidumbre es \(h/2\pi\).
+
+        En los cuerpos macroscópicos, cuya masa es del orden de 1 kg y cuya velocidad es del orden de 1 m/s, la incertidumbre es inapreciable, por lo que podríamos establecer con total precisión y simultáneamente la posición y la cantidad de movimiento de la pelota de tenis.
+        En el caso de un electrón, por su parte, tanto su masa como las dimensiones de sus
+        órbitas entran en los órdenes de magnitud de h y, por tanto, habrá un error inevitable en la determinación de su posición y su estado de movimiento, que no se podrá superar con
+        ningún avance tecnológico.
+    \end{solu}
+\end{question}
+
+\begin{question}
+    Utiliza el principio de dualidad onda-corpúsculo y el concepto de órbita estacionaria para justificar el segundo
+    postulado de Bohr.
+    \begin{solu}
+        Según la dualidad onda-corpúsculo, a todo electrón en movimiento se le puede asociar una onda cuya longitud viene dada por la ecuación de de Broglie: \(\lambda = h/(m\ v)\).
+        Para que una órbita sea estacionaria (que el electrón no pierda energía al girar), la onda asociada al electrón debe ser una onda estacionaria, es decir, debe encajar un número entero de veces en el perímetro de la órbita:
+        \begin{equation*}
+            2\pi\ r = n\ \lambda \qquad (n = 1, 2, 3, \ldots)
+        \end{equation*}
+        Sustituyendo \(\lambda\) por la expresión de de Broglie:
+        \begin{gather*}
+            2\pi\ r = n\ \dfrac{h}{m\ v}\separ
+            m\ v\ r = n\ \dfrac{h}{2\pi}
+        \end{gather*}
+        Esta última expresión es precisamente el segundo postulado de Bohr: el momento angular del electrón (\(m\ v\ r\)) solo puede tomar valores múltiplos enteros de \(h/2\pi\), es decir, está cuantizado.
+    \end{solu}
+\end{question}
+
+\begin{question}
+    ¿Cuántos electrones caben en los orbitales del nivel \(n = 3\) ? ¿Y en los del nivel \(n = 4\)?
+    \begin{solu}
+        En los orbitales de \( n = 3\) caben 18 electrones y en los de \(n = 4\), 32 electrones.
+    \end{solu}
+\end{question}
+
+\subsection{Ejercicios PAU}\label{subsec:ejercicios-evau-clm}
+
+\begin{exerciseEVAU}
+    Responda a las siguientes cuestiones:
+    \begin{enumerate}[label=\letraminuscula]
+        \item Explique cuáles de los siguientes grupos de números cuánticos son imposibles para un
+electrón en un átomo: (4, 2, 0, +1/2) (3, 3, 2,-1/2) (2,0,1,+1/2) (3,1,1,-1/2).
+        \item Explique los orbitales donde se sitúan los electrones que corresponden con los grupos de números cuánticos anteriores que están permitidos.
+        \item Justifique cuál de dichos orbitales tiene mayor energía.
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item Recordando que \(l\) va de \(0\) a \(n-1\) y \(m\) de \(-l\) a \(+l\):
+            \begin{itemize}
+                \item \((4,2,0,+1/2)\): \(l=2\leq 3\) y \(m=0\in[-2,2]\); \textbf{permitido}.
+                \item \((3,3,2,-1/2)\): con \(n=3\), \(l\) solo puede ser \(0,1,2\); como \(l=3\), \textbf{no permitido}.
+                \item \((2,0,1,+1/2)\): con \(l=0\), \(m\) solo puede ser \(0\); como \(m=1\), \textbf{no permitido}.
+                \item \((3,1,1,-1/2)\): \(l=1\leq 2\) y \(m=1\in[-1,1]\); \textbf{permitido}.
+            \end{itemize}
+            \item El conjunto \((4,2,0,+1/2)\) corresponde a un electrón del orbital \(4d\). El conjunto \((3,1,1,-1/2)\) corresponde a un electrón del orbital \(3p\).
+            \item El orbital \(4d\) tiene mayor energía que el \(3p\), ya que al aumentar el número cuántico principal \(n\) aumenta la energía del electrón (el orbital está más alejado del núcleo y menos ligado a él).
+        \end{enumerate}
+    \end{solu}
+\end{exerciseEVAU}
+
+
+\begin{exerciseEVAU}
+    \textbf{Año 2022}.
+    Señale cuáles de las siguientes combinaciones de números cuánticos de un electrón en un átomo no son correctas e indique en su caso la razón.
+    \begin{center}
+        (2,1,-1,1/2) (3,2,-2,0) (2,2,1,1/2) (3,0,0,-1/2)
+    \end{center}
+    \begin{solu}
+        \begin{itemize}
+            \item \((2,1,-1,1/2)\): \(l=1\leq n-1=1\), \(m=-1\in[-1,1]\), \(s=1/2\); \textbf{correcta}.
+            \item \((3,2,-2,0)\): el número de espín solo puede valer \(+1/2\) o \(-1/2\); como \(s=0\), \textbf{incorrecta}.
+            \item \((2,2,1,1/2)\): con \(n=2\), \(l\) solo puede ser \(0\) o \(1\); como \(l=2\), \textbf{incorrecta}.
+            \item \((3,0,0,-1/2)\): \(l=0\leq n-1=2\) y \(m=0\); \textbf{correcta}.
+        \end{itemize}
+    \end{solu}
+\end{exerciseEVAU}
+
+\begin{exerciseEVAU}
+    \textbf{Año 2022}.
+    Señale cuáles de las siguientes combinaciones de números cuánticos no son correctas e indique la razón: a) (4, 3, 2, 1); b) (1, 0, -1, -1/2); c) (4, 0, 1,1/2); d) (3, 2, -2, 1/2)
+    \begin{solu}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[scale=.6]{images/imagesUD1EstructuraAtomica/UD1_Problemas/evauclm12.png}
+%        \end{figure}
+        \begin{itemize}
+            \item a) \((4,3,2,1)\): el número de espín solo puede ser \(\pm 1/2\); como \(s=1\), \textbf{incorrecta}.
+            \item b) \((1,0,-1,-1/2)\): con \(l=0\), \(m\) solo puede ser \(0\); como \(m=-1\), \textbf{incorrecta}.
+            \item c) \((4,0,1,1/2)\): con \(l=0\), \(m\) solo puede ser \(0\); como \(m=1\), \textbf{incorrecta}.
+            \item d) \((3,2,-2,1/2)\): \(l=2\leq n-1=2\), \(m=-2\in[-2,2]\), \(s=1/2\); \textbf{correcta}.
+        \end{itemize}
+    \end{solu}
+\end{exerciseEVAU}
+
+\begin{exerciseEVAU}
+    \textbf{Año 2022}.
+    Copie y complete en el cuadernillo (no en este enunciado) los huecos de la siguiente tabla correspondientes a átomos
+    neutros.
+    \begin{table}[H]
+        \centering
+        \vspace{-5pt}
+        % aumenta la altura de las filas
+        \renewcommand{\arraystretch}{2}
+        % --- tabla antigua ---
+        % \begin{tabular}{|c|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+            % \cline{2-5}
+            % \multicolumn{1}{c|}{\textbf{}} & \centering \textbf{\isotope{89,Sr}} & \centering  \textbf{\isotope{127,Sn}} & \textbf{} &   \\
+            % \hline
+            % Electrones                     &                                     &                                     &              & 6 \\
+            % \hline
+            % Neutrones                      &                                     &                                     &              & 6 \\
+            % \hline
+            % A                              &                                     &                                     & \centering 5 &   \\
+            % \hline
+            % Z                              &                                     &                                     & \centering 2 &   \\
+            % \hline
+        % \end{tabular}
+        % --- tabla nueva ---
+        \begin{tabular}{@{}cp{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}@{}}
+            \toprule
+            \multicolumn{1}{c|}{\textbf{}} & \centering \textbf{\isotope{89,Sr}} & \centering  \textbf{\isotope{127,Sn}} & \textbf{} &  \\
+            \midrule
+            Electrones &  &  &  & 6 \\[3pt]
+            Neutrones &  &  &  & 6 \\[3pt]
+            A &  &  & \centering 5 &  \\[3pt]
+            Z &  &  & \centering 2 &  \\
+            \bottomrule
+        \end{tabular}
+        \label{tab:}
+    \end{table}
+
+    \begin{solu}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[scale=.6]{images/imagesUD1EstructuraAtomica/UD1_Problemas/evauclm12nuevo.png}
+%        \end{figure}
+        Para átomos neutros el número de electrones coincide con el número atómico \(Z\), y el número de neutrones es \(A - Z\).
+        \begin{itemize}
+            \item \(\isotope{89,Sr}\): \(Z=38\), \(A=89 \Rightarrow\) neutrones \(=89-38=51\); electrones \(=38\).
+            \item \(\isotope{127,Sn}\): \(Z=50\), \(A=127 \Rightarrow\) neutrones \(=127-50=77\); electrones \(=50\).
+            \item Tercera columna (\(A=5\), \(Z=2\), es decir \(\isotope{5,He}\)): neutrones \(=5-2=3\); electrones \(=Z=2\).
+            \item Cuarta columna (electrones \(=6\), neutrones \(=6\)): al ser neutro, \(Z=6\) (carbono) y \(A=Z+\text{neutrones}=6+6=12\), es decir \(\isotope{12,C}\).
+        \end{itemize}
+    \end{solu}
+\end{exerciseEVAU}
+
+\begin{exerciseEVAU}
+    \textbf{Año 2023}.
+    Para un átomo en su estado fundamental, razone la veracidad o falsedad de las siguientes
+    afirmaciones:
+    \begin{enumerate}[label=\letraminuscula]
+\item El número máximo de electrones con número cuántico n = 3 es 6.
+\item En un orbital 2p solo puede haber 2 electrones.
+\item Si en los orbitales 3d se sitúan 6 electrones, no habrá ninguno desapareado.
+\item Para un orbital 4d, n = 4 y l = 2.
+    \end{enumerate}
+    \begin{solu}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[scale=.7]{images/imagesUD1EstructuraAtomica/UD1_Problemas/evauclm13.png}
+%        \end{figure}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \textbf{Falsa}. El número máximo de electrones con \(n=3\) es \(2n^2 = 2\cdot 3^2 = 18\), no 6.
+            \item \textbf{Verdadera}. Cada orbital, por el principio de exclusión de Pauli, puede alojar como máximo 2 electrones con espines opuestos.
+            \item \textbf{Falsa}. El subnivel \(3d\) tiene 5 orbitales. Según la regla de Hund, los 6 electrones se distribuyen ocupando primero cada orbital de forma individual (5 electrones desapareados) y el sexto electrón se aparea en uno de ellos, quedando 4 electrones desapareados (no ninguno).
+            \item \textbf{Verdadera}. En un orbital \(4d\), el número cuántico principal es \(n=4\) y, al tratarse de un orbital \(d\), el número cuántico secundario es \(l=2\).
+        \end{enumerate}
+    \end{solu}
+\end{exerciseEVAU}
+
+\begin{exerciseEVAU}
+    \textbf{Año 2021}.
+    Señale cuáles de las siguientes combinaciones de números cuánticos no son correctas e indique la razón: a) (3, 2, 0, +1/2); b) (1, 1, 0, -1/2); c) (2, 0, 1, + 1/2); d) (2, 1, -1, 0); e) (4, 2, -1, -1/2)
+    \begin{solu}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[scale=.5]{images/imagesUD1EstructuraAtomica/UD1_Problemas/evauclm17.png}
+%        \end{figure}
+        \begin{itemize}
+            \item a) \((3,2,0,+1/2)\): \(l=2\leq n-1=2\), \(m=0\in[-2,2]\); \textbf{correcta}.
+            \item b) \((1,1,0,-1/2)\): con \(n=1\), \(l\) solo puede ser \(0\); como \(l=1\), \textbf{incorrecta}.
+            \item c) \((2,0,1,+1/2)\): con \(l=0\), \(m\) solo puede ser \(0\); como \(m=1\), \textbf{incorrecta}.
+            \item d) \((2,1,-1,0)\): el espín solo puede valer \(\pm 1/2\); como \(s=0\), \textbf{incorrecta}.
+            \item e) \((4,2,-1,-1/2)\): \(l=2\leq n-1=3\), \(m=-1\in[-2,2]\); \textbf{correcta}.
+        \end{itemize}
+    \end{solu}
+\end{exerciseEVAU}
+
+\begin{exerciseEVAU}
+    \textbf{Año 2021}.
+    Justifique, razonadamente, si es verdadera o falsa la siguiente propuesta:
+    \begin{enumerate}[label=\letraminuscula]
+        \item Todos los isótopos de un mismo elemento químico tienen el mismo número de neutrones y de protones.
+        \item Complete los huecos de la siguiente tabla correspondientes a átomos neutros.
+    \end{enumerate}
+    \begin{table}[H]
+        \centering
+        \vspace{-5pt}
+        % aumenta la altura de las filas
+        \renewcommand{\arraystretch}{2}
+        % --- tabla antigua ---
+        % \begin{tabular}{|c|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+            % \cline{2-5}
+            % \multicolumn{1}{c|}{\textbf{}} & \centering \textbf{\isotope{39,K}} & \centering  \textbf{\isotope{14,N}} & \textbf{} &   \\
+            % \hline
+            % Protones                     &                                     &                                     &  \centering   15         &  \\
+            % \hline
+            % Neutrones                      &                                     &                                     &              & 8 \\
+            % \hline
+            % Electrones                              &                                     &                                     & \centering  &  6 \\
+            % \hline
+            % A                              &                                     &                                     & \centering 31 &   \\
+            % \hline
+        % \end{tabular}
+        % --- tabla nueva ---
+        \begin{tabular}{@{}cp{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}@{}}
+            \toprule
+            \multicolumn{1}{c|}{\textbf{}} & \centering \textbf{\isotope{39,K}} & \centering  \textbf{\isotope{14,N}} & \textbf{} &  \\
+            \midrule
+            Protones &  &  & \centering   15 &  \\[3pt]
+            Neutrones &  &  &  & 8 \\[3pt]
+            Electrones &  &  & \centering & 6 \\[3pt]
+            A &  &  & \centering 31 &  \\
+            \bottomrule
+        \end{tabular}
+        \label{tab:}
+    \end{table}
+%    \begin{table}[H]
+%        \centering
+%        \vspace{-5pt}
+%        % aumenta la altura de las filas
+%        \renewcommand{\arraystretch}{2}
+%        \begin{tabular}{|c|p{1.5cm}|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+%            \cline{2-5}
+%            \multicolumn{1}{c|}{\textbf{}} & \centering \textbf{\isotope{39,K}} & \centering  \textbf{\isotope{14,N}} & \textbf{} &   \\
+%            \hline
+%            Electrones                     &                                    &                                   & \centering 15 &              \\
+%            \hline
+%            Neutrones                      &                                    &                                   &               & \centering 8 \\
+%            \hline
+%            A                              &                                    &                                   &               & \centering 6 \\
+%            \hline
+%            Z                              &                                    &                                   & \centering 31 &              \\
+%            \hline
+%        \end{tabular}
+%        \label{tab:}
+%    \end{table}
+%    \begin{table}[H]
+%        \centering
+%        \begin{tblr}{
+%            colspec = {Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]|Q[c,m]},
+%            row{1} = {bg=mybluecolour, fg = white, font=\sffamily},
+%            vlines = {1}{white},
+%        }
+%            Símbolo    & \isotope{39,K} & \isotope{14,N} &    &   \\
+%            \hline
+%            Protones   &                &                & 15 &   \\
+%            \hline
+%            Neutrones  &                &                &    & 8 \\
+%            \hline
+%            Electrones &                &                &    & 6 \\
+%            \hline
+%            \(A\)      &                &                & 31 &   \\
+%            \hline
+%        \end{tblr}
+%    \end{table}
+    \begin{solu}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[scale=.5]{images/imagesUD1EstructuraAtomica/UD1_Problemas/evauclm18.png}
+%        \end{figure}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \textbf{Falsa}. Los isótopos de un mismo elemento tienen el mismo número de protones (mismo \(Z\)), pero distinto número de neutrones (y por tanto distinta masa atómica \(A\)).
+            \item Para átomos neutros, protones = electrones = \(Z\), y neutrones \(= A - Z\):
+            \begin{itemize}
+                \item \(\isotope{39,K}\): \(Z=19\), \(A=39 \Rightarrow\) protones \(=19\), electrones \(=19\), neutrones \(=39-19=20\).
+                \item \(\isotope{14,N}\): \(Z=7\), \(A=14 \Rightarrow\) protones \(=7\), electrones \(=7\), neutrones \(=14-7=7\).
+                \item Tercera columna (protones \(=15\), \(A=31\), fósforo): neutrones \(=31-15=16\); electrones \(=15\).
+                \item Cuarta columna (neutrones \(=8\), electrones \(=6\)): al ser neutro, \(Z=6\) (carbono) y \(A=Z+\text{neutrones}=6+8=14\); protones \(=6\).
+            \end{itemize}
+        \end{enumerate}
+    \end{solu}
+\end{exerciseEVAU}
+
+\begin{exerciseEVAU}
+    \textbf{2021}.
+    Explique el significado físico de cada uno de los números cuánticos. b) Escriba dos combinaciones posibles de números cuánticos para los electrones de valencia del átomo con Z = 20.
+    \begin{solu}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[scale=0.5]{images/imagesUD1EstructuraAtomica/UD1_Problemas/evauclm19.png}
+%        \end{figure}
+        Significado físico de los números cuánticos:
+        \begin{itemize}
+            \item \(n\) (principal): determina el nivel de energía del electrón y el tamaño del orbital.
+            \item \(l\) (secundario o azimutal): determina la forma del orbital (subnivel \(s, p, d, f\)), con valores de \(0\) a \(n-1\).
+            \item \(m\) (magnético): determina la orientación espacial del orbital, con valores enteros entre \(-l\) y \(+l\).
+            \item \(s\) (de espín): indica el sentido del giro del electrón sobre sí mismo, \(+1/2\) o \(-1/2\).
+        \end{itemize}
+        El átomo con \(Z=20\) es el calcio, cuya configuración electrónica termina en \(4s^2\); sus electrones de valencia se encuentran, por tanto, en el orbital \(4s\) (\(n=4\), \(l=0\), \(m=0\)). Dos combinaciones posibles de números cuánticos para estos electrones son:
+        \begin{center}
+            \((4,0,0,+1/2)\) \qquad y \qquad \((4,0,0,-1/2)\)
+        \end{center}
+    \end{solu}
+\end{exerciseEVAU}
+
+\

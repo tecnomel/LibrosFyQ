@@ -1,0 +1,159 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Para las listas
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\cnumero}[2]{\tikz[baseline=(myanchor.base)]
+\node[minimum size=0.2cm,circle,
+inner sep=1pt,draw, #2,thick,fill=#2] (myanchor)
+{\color{white}\bfseries\fontsize{8}{8}#1};}
+
+\newcommand*{\itembolasazules}[1]{\protect\cnumero{#1}{azulF}}
+\newcommand*{\itembolascolor}[2]{\protect\cnumero{#1}{#2}}
+\newcommand*{\numberballgreen}{\protect\cnumero{\arabic*}{mygreen}}
+\newcommand*{\numberballblue}{\protect\cnumero{\arabic*}{blue}}
+\newcommand*{\numberballred}{\protect\cnumero{\arabic*}{red}}
+
+\newcommand*{\numberballmDarkTeal}{\protect\cnumero{\arabic*}{mDarkTeal}}
+\newcommand*{\numberballmDarkBrown}{\protect\cnumero{\arabic*}{mDarkBrown}}
+\newcommand*{\numberballmLightBrown}{\protect\cnumero{\arabic*}{mLightBrown}}
+\newcommand*{\numberballmLightGreen}{\protect\cnumero{\arabic*}{mLightGreen}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MIS Comandos Generales
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\blueremark}[1]{%
+    \textcolor{blue}{\texttt{\textbf{#1}}}
+    }
+    
+\newcommand{\rojo}[1]{\textcolor{red}{#1}}
+
+\newcommand{\rojon}[1]{\textbf{\textcolor{red}{#1}}}
+
+\newcommand{\azul}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\azuln}[1]{\textbf{\textcolor{blue}{#1}}}
+
+\newcommand{\verde}[1]{\textcolor{green!50!black}{#1}}
+
+\newcommand{\verden}[1]{\textbf{\textcolor{green!50!black}{#1}}}
+
+\newcommand{\caja}[1]{\begin{center}%
+    \begin{impt}%
+        #1
+    \end{impt}
+    \end{center}}
+    
+\newcommand{\separ}{\\[2mm]}
+
+\newcounter{ejercicio}
+\setcounter{ejercicio}{0}
+
+\newcounter{ejemplo}
+\setcounter{ejemplo}{0}
+
+\newcounter{ejerciciogeneral}
+\setcounter{ejerciciogeneral}{0}
+
+\newcommand{\ejerciciogeneral}[1]{\noindent\xmybox{\phantom{l}\textbf{Ejercicio \addtocounter{ejerciciogeneral}{1}\arabic{ejerciciogeneral} #1}\phantom{j}}}
+
+\newcommand{\mybox}[1]{\noindent\xmybox{\phantom{l}\textbf{\addtocounter{ejercicio}{1}\arabic{ejercicio} #1}\phantom{j}}}
+
+\newcommand{\marcador}[1]{\colorbox{yellow}{#1}}
+
+\newcommand{\negrita}[1]{\textbf{#1}}
+\newcommand{\subin}[1]{\textsubscript{#1}} 
+\newcommand{\supin}[1]{\textsuperscript{#1}}
+\newcommand{\negsubro}[1]{\negrita{\coloruline{red}{#1}}}
+
+\newcommand{\letramayuscula}{\Alph*)}
+\newcommand{\letraminuscula}{\textit{\textbf{\alph*})}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PARA SUBRAYAR REquiere paquete ulem
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\makeatletter
+    \newcommand{\coloruline}[2]{%
+        \newcommand\temp@reduline{\bgroup\markoverwith
+            {\textcolor{#1}{\rule[-0.5ex]{2pt}{0.4pt}}}\ULon}%
+        \temp@reduline{#2}%
+    }
+
+    \newcommand{\coloruuline}[2]{%
+        \UL@protected\def\temp@uuline{\leavevmode \bgroup
+            \UL@setULdepth
+            \ifx\UL@on\UL@onin \advance\ULdepth2.8\p@\fi
+            \markoverwith{\textcolor{#1}{\lower\ULdepth\hbox
+                {\kern-.03em\vbox{\hrule width.2em\kern1\p@\hrule}\kern-.03em}}}%
+        \ULon}%
+        \temp@uuline{#2}%
+    }
+
+    \newcommand{\coloruwave}[2]{%
+        \UL@protected\def\temp@uwave{\leavevmode \bgroup
+        \ifdim \ULdepth=\maxdimen \ULdepth 3.5\p@
+        \else \advance\ULdepth2\p@
+        \fi \markoverwith{\textcolor{#1}{\lower\ULdepth\hbox{\sixly \char58}}}\ULon}
+        \font\sixly=lasy6 % does not re-load if already loaded, so no memory drain.
+        \temp@uwave{#2}%
+    }
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% para hacer cancelto en rojo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\let\cancelorigcolor\CancelColor% Just for conveniency...
+
+\newcommand{\CancelTo}[3][]{%
+  \ifblank{#1}{}{%
+    \renewcommand{\CancelColor}{#1}%
+  }
+  \cancelto{#2}{#3}% 
+}
+
+
+\newcommand{\canceltored}[2]{\CancelTo[\color{red}]{#1}{#2}}
+
+\newcommand\cancelred[1]{\renewcommand\CancelColor{\color{red}}\cancel{#1}}
+
+
+\newcounter{problema}
+\setcounter{problema}{0}
+\newcommand{\problema}[1]{\noindent\xmyboxorange{\phantom{l}\textbf{\addtocounter{problema}{1}\arabic{problema} #1}\phantom{j}}}
+
+\newcommand{\ejercicio}[2]{\noindent\xmybox{\bfseries #1 Página #2}} %xmybox está en tcolorbox definida. Es para los ejercicos, indicando el ejercicio y la página.
+
+%\newcommand{\mybox}[1]{\noindent\xmybox{\phantom{l}\textbf{#1}\phantom{j}}}
+
+%\newcommand{\solution}[1]{\textcolor{red}{\textbf{\ul{Solución:} #1}}}
+
+\newcommand{\solution}[1]{{\color{red}{\negrita{\ul{Solución:}} #1}}}
+
+\newcommand{\datos}{\textbf{\ul{Datos:}}}
+
+
+\newcommand{\ayuda}{\textbf{\ul{Ayuda:}}}
+
+
+
+
+\newcounter{cuestion}
+\setcounter{cuestion}{0}
+
+\newcommand{\cuestion}[1]{\noindent\xmybox{\phantom{l}\textbf{Cuestión \addtocounter{cuestion}{1}\arabic{cuestion} #1}\phantom{j}}}
+
+
+\newcommand{\cmmnt}[1]{\ignorespaces} % para comentar palabras en un texto.
+
+\newcommand\myemptypage{
+    \null
+    \thispagestyle{empty}
+    \addtocounter{page}{-1}
+    \newpage
+}
+
+

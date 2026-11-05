@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_16 · Enlace covalente dativo: ion oxonio</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+</head>
+<body>
+<script>
+// El O del agua cede un par de electrones al H+ para formar el ion oxonio H3O+.
+const svg = crearFigura(620, 190);
+const ROJO = "#D32F2F";
+dibujarLewis(svg, 80, 95, { atomos: [
+    { s: "O", x: 0, y: 0, pares: [{ a: 90, color: ROJO }, { a: 0, color: ROJO }] }, { s: "H", id: "a", x: -1, y: 0 }, { s: "H", id: "c", x: 0, y: -1 }],
+    enlaces: [{ a: "O", b: "a" }, { a: "O", b: "c" }] }, { L: 55 });
+texto(svg, 165, 104, "+", { "text-anchor": "middle", "font-size": 24, fill: COLORES.texto });
+texto(svg, 205, 104, [{ t: "H" }, { t: "+", sup: true }], { "text-anchor": "middle", "font-size": 24, fill: COLORES.texto, "font-family": LEWIS.fuente });
+flecha(svg, 240, 95, 320, 95, { punta: 11 });
+dibujarLewis(svg, 460, 95, { atomos: [
+    { s: "O", x: 0, y: 0, pares: [{ a: 0, color: ROJO }] }, { s: "H", id: "a", x: -1, y: 0 }, { s: "H", id: "b", x: 0, y: 1 }, { s: "H", id: "c", x: 0, y: -1 }],
+    enlaces: [{ a: "O", b: "a" }, { a: "O", b: "b", color: ROJO, ancho: 2.4 }, { a: "O", b: "c" }] }, { L: 55 });
+corchetes(svg, 380, 20, 540, 170, "+");
+</script>
+</body>
+</html>

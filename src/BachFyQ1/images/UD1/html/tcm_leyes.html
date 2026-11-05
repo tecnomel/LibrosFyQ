@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Interpretación cinético-molecular de las leyes de los gases</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="955" height="370"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    // cilindro con émbolo: x,y esquina sup. izq. de la zona de gas (alto h), velocidad media v
+    function cilindro(x, y, h, v, seed, caliente, rotulo) {
+        const w = 120, R = rng(seed), top = 70;
+        add('path', { d: `M${x} ${top} L${x} ${y + h} L${x + w} ${y + h} L${x + w} ${top}`, fill: 'none', stroke: '#5D6D7E', 'stroke-width': 3 });
+        add('rect', { x: x + 2, y, width: w - 4, height: h, fill: caliente ? '#FDEBD0' : '#EBF5FB' });
+        add('rect', { x: x + 2, y: y - 12, width: w - 4, height: 12, fill: '#95A5A6' });          // émbolo
+        add('rect', { x: x + w / 2 - 6, y: top - 10, width: 12, height: y - top - 2, fill: '#95A5A6' });
+        for (let i = 0; i < 10; i++) {
+            const px = x + 14 + R() * (w - 28), py = y + 12 + R() * (h - 24), a = R() * 2 * Math.PI;
+            arrow(add, px, py, px + v * Math.cos(a), py + v * Math.sin(a), '#C0392B', 1.6, 7);
+            bead(add, px, py, 5.5, '#E74C3C');
+        }
+        if (caliente) for (let i = 0; i < 3; i++)
+            add('path', { d: `M${x + 25 + i * 35} ${y + h + 28} q-6 -8 0 -16 q6 -8 0 -16`, fill: 'none', stroke: '#E67E22', 'stroke-width': 2.5 });
+        rotulo.forEach((t, i) => label(add, x + w / 2, y + h + 50 + i * 19, t, { 'font-size': 14, 'font-weight': 600, fill: '#23373B' }));
+    }
+    function titulo(cx, t, s) {
+        label(add, cx, 22, t, { 'font-size': 18, fill: '#000070' });
+        label(add, cx, 44, s, { 'font-size': 14, fill: '#525252', 'font-weight': 600 });
+    }
+    // Boyle: T constante, se reduce V
+    titulo(150, 'Ley de Boyle-Mariotte', 'T constante');
+    cilindro(20, 110, 160, 16, 3, false, ['V = 10 L', 'p = 1 atm']);
+    cilindro(160, 190, 80, 16, 4, false, ['V = 5 L', 'p = 2 atm']);
+    // Gay-Lussac: V constante, se calienta
+    titulo(475, 'Ley de Gay-Lussac', 'V constante');
+    cilindro(345, 150, 120, 14, 5, false, ['T = 300 K', 'p = 1 atm']);
+    cilindro(485, 150, 120, 26, 6, true, ['T = 600 K', 'p = 2 atm']);
+    // Charles: p constante, se calienta y sube el émbolo
+    titulo(800, 'Ley de Charles', 'p constante');
+    cilindro(670, 190, 80, 14, 7, false, ['T = 300 K', 'V = 5 L']);
+    cilindro(810, 110, 160, 26, 8, true, ['T = 600 K', 'V = 10 L']);
+    [[305, 345], [630, 670]].forEach(([a, b]) => add('line', { x1: (a + b) / 2, y1: 60, x2: (a + b) / 2, y2: 360, stroke: '#C9CCD6', 'stroke-width': 1.5, 'stroke-dasharray': '6 5' }));
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Órbitas de los satélites artificiales</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="860" height="420"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s'), cx = 215, cy = 210;
+    const d = add('defs', {});
+    d.innerHTML = '<radialGradient id="tierra" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#AED6F1"/><stop offset=".6" stop-color="#2E86C1"/><stop offset="1" stop-color="#1B4F72"/></radialGradient>';
+    const orbs = [['LEO', 66, '#C0392B', 300], ['MEO', 128, '#B9770E', 130], ['GEO', 192, '#1E8449', 25]];
+    orbs.forEach(([n, r, c]) => add('circle', { cx, cy, r, fill: 'none', stroke: c, 'stroke-width': 2.2, 'stroke-dasharray': n === 'GEO' ? '' : '7 5' }));
+    add('circle', { cx, cy, r: 46, fill: 'url(#tierra)' });
+    label(add, cx, cy + 5, 'Tierra', { fill: '#fff', 'font-size': 13 });
+    // satélites
+    orbs.forEach(([n, r, c, a]) => {
+        const [x, y] = pol(cx, cy, r, a);
+        add('rect', { x: x - 5, y: y - 5, width: 10, height: 10, fill: '#5D6D7E', transform: `rotate(${-a} ${x} ${y})` });
+        const [p1x, p1y] = pol(x, y, 13, a + 90), [p2x, p2y] = pol(x, y, 13, a - 90);
+        add('line', { x1: p1x, y1: p1y, x2: p2x, y2: p2y, stroke: '#2874A6', 'stroke-width': 4 });
+        const [lx, ly] = pol(cx, cy, r + 16, a + (n === 'LEO' ? -12 : n === 'GEO' ? -14 : 10));
+        label(add, lx, ly + 5, n, { 'font-size': 13, fill: c });
+    });
+    // fuerza y velocidad sobre el satélite GEO
+    const a = 25, [x, y] = pol(cx, cy, 192, a), [tx, ty] = pol(0, 0, 1, a + 90), [fx, fy] = pol(cx, cy, 128 + 14, a);
+    arrow(add, x, y, x + 70 * tx, y + 70 * ty, '#2471A3', 3, 12); vlabel(add, x + 70 * tx - 16, y + 70 * ty - 4, 'v', '#2471A3');
+    arrow(add, x, y, fx, fy, '#C0392B', 3, 12); vlabel(add, fx + 6, fy + 26, 'F', '#C0392B', 'grav');
+    label(add, 450, 400, '(Las distancias del dibujo no están a escala.)', { 'font-size': 12, fill: '#7F8C8D', 'font-weight': 600, 'text-anchor': 'start' });
+    // texto
+    const tx0 = 450;
+    [['#000070', 'Tipos de órbita según su altura', 17], ['', '', 14],
+     ['#C0392B', 'LEO, órbita baja: 700 – 1400 km', 15], ['#525252', 'observación de la Tierra, Estación Espacial', 13], ['', '', 8],
+     ['#B9770E', 'MEO, órbita media: 9000 – 20 000 km', 15], ['#525252', 'navegación (GPS, Galileo)', 13], ['', '', 8],
+     ['#1E8449', 'GEO, geoestacionaria: unos 36 000 km', 15], ['#525252', 'período de 24 h: siempre sobre el mismo punto', 13], ['#525252', 'del ecuador (Meteosat, comunicaciones)', 13], ['', '', 14],
+     ['#000070', 'La gravedad es la fuerza centrípeta:', 15], ['#000070', 'm · v² / r = G · M_T · m / r²  ⇒  v = √(G · M_T / r)', 15]]
+        .reduce((yy, [c, s, f]) => { const t = label(add, tx0, yy, '', { 'font-size': f, fill: c || '#000', 'text-anchor': 'start' }); t.innerHTML = s.replace(/_T/g, '<tspan baseline-shift="sub" font-size="70%">T</tspan>'); return yy + f + 9; }, 60);
+</script>
+</body>
+</html>

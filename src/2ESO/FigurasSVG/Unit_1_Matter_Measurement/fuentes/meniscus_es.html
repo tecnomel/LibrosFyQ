@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Lectura de una probeta</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1100px; }
+    .row { display: flex; gap: 30px; align-items: center; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .tips { flex: 1; font-size: 19px; }
+    .tip { border-radius: 12px; padding: 10px 14px; margin-bottom: 12px; }
+    .ok { background: var(--green-soft); border: 2px solid var(--green); }
+    .ko { background: var(--red-soft); border: 2px solid var(--red); }
+    .inst { display: flex; gap: 14px; margin-top: 6px; text-align: center; font-size: 15px; }
+    .inst div { flex: 1; border: 2px solid var(--line); border-radius: 10px; padding: 6px; }
+    .inst b { display: block; font-size: 16px; color: var(--blue); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Medida del volumen: cómo se lee una probeta</h1>
+    <div class="row">
+        <svg width="560" height="500" viewBox="0 0 560 500">
+            <!-- zoomed cylinder -->
+            <rect x="200" y="20" width="160" height="460" fill="#F4F6F7" stroke="#5D6D7E" stroke-width="4"/>
+            <!-- liquid with concave meniscus: lowest point at y=250 -->
+            <path d="M202 225 Q280 280 358 225 L358 478 L202 478 Z" fill="#AED6F1"/>
+            <path d="M202 225 Q280 280 358 225" fill="none" stroke="#2471A3" stroke-width="3"/>
+            <!-- scale: 50 mL at y=100, 40 mL at y=400; each mL = 30 px -->
+            <g id="ticks"></g>
+            <!-- reading line at the bottom of the meniscus (y=252 -> 45 mL) -->
+            <line x1="40" y1="252" x2="520" y2="252" stroke="#1E8449" stroke-width="3" stroke-dasharray="8 5"/>
+            <text x="520" y="244" text-anchor="end" font-size="20" font-weight="800" fill="#1E8449">45 mL ✔</text>
+            <!-- eyes -->
+            <text x="40" y="262" font-size="40">👁️</text>
+            <text x="92" y="246" font-size="14" font-weight="700" fill="#1E8449">a su altura</text>
+            <text x="40" y="110" font-size="34" opacity=".75">👁️</text>
+            <line x1="80" y1="100" x2="230" y2="240" stroke="#C0392B" stroke-width="2" stroke-dasharray="5 4"/>
+            <text x="40" y="80" font-size="15" font-weight="700" fill="#C0392B">✘ desde arriba</text>
+            <text x="40" y="420" font-size="34" opacity=".75">👁️</text>
+            <line x1="80" y1="410" x2="230" y2="262" stroke="#C0392B" stroke-width="2" stroke-dasharray="5 4"/>
+            <text x="40" y="455" font-size="15" font-weight="700" fill="#C0392B">✘ desde abajo</text>
+            <text x="245" y="300" font-size="16" fill="#1B4F72" font-weight="700">menisco ↑</text>
+        </svg>
+        <div class="tips">
+            <div class="tip ok">✔ Pon los ojos a la <b>misma altura</b> que el líquido.</div>
+            <div class="tip ok">✔ Lee la <b>parte de abajo</b> de la curva (el <b>menisco</b>).</div>
+            <div class="tip ko">✘ Mirar desde arriba o desde abajo da una lectura errónea (<b>error de paralaje</b>).</div>
+            <div class="inst">
+                <div><b>Probeta</b>precisa</div>
+                <div><b>Bureta · pipeta</b>muy precisas</div>
+                <div><b>Vaso · matraz</b>solo aproximados</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg', g = document.getElementById('ticks');
+    for (let v = 40; v <= 50; v += 0.5) {
+        const y = 400 - (v - 40) * 30, whole = Number.isInteger(v);
+        const l = document.createElementNS(NS, 'line');
+        l.setAttribute('x1', 360); l.setAttribute('x2', 360 - (whole ? 40 : 22));
+        l.setAttribute('y1', y); l.setAttribute('y2', y);
+        l.setAttribute('stroke', '#23373B'); l.setAttribute('stroke-width', whole ? 2.5 : 1.5);
+        g.appendChild(l);
+        if (whole && v % 1 === 0 && (v % 2 === 0)) {
+            const t = document.createElementNS(NS, 'text');
+            t.setAttribute('x', 372); t.setAttribute('y', y + 6); t.setAttribute('font-size', 18);
+            t.setAttribute('font-weight', 700); t.setAttribute('fill', '#23373B'); t.textContent = v;
+            g.appendChild(t);
+        }
+    }
+</script>
+</body>
+</html>

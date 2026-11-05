@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_04 · Isomería de función: ácido carboxílico/éster</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+const svg = crearFigura(460, 140);
+molecula(svg, "CCC(=O)O", 90, 55, { etiqueta: "ác. carboxílico", yEtq: 125 });
+flechaIso(svg, 180, 55, 260);
+molecula(svg, "CC(=O)OC", 360, 55, { etiqueta: "éster", yEtq: 125 });
+texto(svg, 220, 30, [{ t: "C" }, { t: "3", sub: true }, { t: "H" }, { t: "6", sub: true }, { t: "O" }, { t: "2", sub: true }], { "text-anchor": "middle", "font-size": 13, fill: COLORES.gris, "font-family": TNR });
+</script>
+</body>
+</html>

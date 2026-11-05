@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Enlaces carbono-carbono</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card h3 { font-size: 15px; color: var(--blue); } .card .t { font-size: 13px; } .f { font-size: 15px; font-weight: 700; margin-top: 2px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3>Enlace simple C–C</h3><svg id="a" width="240" height="160"></svg>
+            <div class="f">etano: CH₃–CH₃</div>
+            <div class="t">Comparten <b>un par</b> de electrones. Estructura <b>tridimensional</b>.</div></div>
+        <div class="card"><h3>Enlace doble C=C</h3><svg id="b" width="240" height="160"></svg>
+            <div class="f">eteno: CH₂=CH₂</div>
+            <div class="t">Comparten <b>dos pares</b> de electrones. Los dos carbonos y sus átomos están en un <b>plano</b>.</div></div>
+        <div class="card"><h3>Enlace triple C≡C</h3><svg id="c" width="240" height="160"></svg>
+            <div class="f">etino: CH≡CH</div>
+            <div class="t">Comparten <b>tres pares</b> de electrones. Estructura <b>lineal</b>.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script src="mol.js"></script>
+<script>
+    drawMolecule(svgAdder('a'), MOL.alcano(2), 120, 76, { scale: 42, yaw: 30, pitch: 20 });
+    drawMolecule(svgAdder('b'), MOL.eteno(), 120, 80, { scale: 52, yaw: 0, pitch: 55 });
+    drawMolecule(svgAdder('c'), MOL.etino(), 120, 80, { scale: 52, yaw: 15, pitch: 10 });
+</script>
+</body>
+</html>

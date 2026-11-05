@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Isolating in Gay-Lussac’s law</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="isolate.css">
+<script src="isolate.js"></script>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1></h1>
+    <div class="grid" id="grid"></div>
+    <div class="tip" id="tip"></div>
+</div>
+<script>
+const a1 = q('p', 1), T1 = q('T', 1), a2 = q('p', 2), T2 = q('T', 2);
+const F = f(a1, T1) + ' = ' + f(a2, T2);
+const X = `${a1} · ${T2} = ${a2} · ${T1}`;
+const cross = ['The <b>T</b>s are <b>dividing</b>: each one goes to the other side <b>multiplying</b> (cross-multiply).', X];
+buildIsolate('Gay-Lussac’s law: how to isolate each quantity', [
+    { goal: a2, steps: [
+        ['Write the law.', F], cross,
+        [`${T1} is <b>multiplying</b> ${g(a2)}: divide <b>both sides</b> by ${T1}.`, `${f(`${a1} · ${T2}`, o(T1))} = ${f(`${g(a2)} · ${c(T1)}`, o(c(T1)))}`]],
+      result: `${g(a2)} = ${f(`${a1} · ${T2}`, T1)}` },
+    { goal: T2, steps: [
+        ['Write the law.', F], cross,
+        [`${a1} is <b>multiplying</b> ${g(T2)}: divide <b>both sides</b> by ${a1}.`, `${f(`${c(a1)} · ${g(T2)}`, o(c(a1)))} = ${f(`${a2} · ${T1}`, o(a1))}`]],
+      result: `${g(T2)} = ${f(`${a2} · ${T1}`, a1)}` },
+    { goal: a1, steps: [
+        ['Write the law.', F], cross,
+        [`${T2} is <b>multiplying</b> ${g(a1)}: divide <b>both sides</b> by ${T2}.`, `${f(`${g(a1)} · ${c(T2)}`, o(c(T2)))} = ${f(`${a2} · ${T1}`, o(T2))}`]],
+      result: `${g(a1)} = ${f(`${a2} · ${T1}`, T2)}` },
+    { goal: T1, steps: [
+        ['Write the law.', F], cross,
+        [`${a2} is <b>multiplying</b> ${g(T1)}: divide <b>both sides</b> by ${a2}.`, `${f(`${a1} · ${T2}`, o(a2))} = ${f(`${c(a2)} · ${g(T1)}`, o(c(a2)))}`]],
+      result: `${g(T1)} = ${f(`${a1} · ${T2}`, a2)}` },
+], '<b>Shortcut:</b> what is <b>dividing</b> on one side goes to the other side <b>multiplying</b>, and what is <b>multiplying</b> goes to the other side <b>dividing</b>.');
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD7_02 · Escala de pH y pOH</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// pH = −log[H3O+], pOH = −log[OH−], pH + pOH = 14 (a 25 °C).
+const svg = crearFigura(420, 560);
+const X0 = 80, Y0 = 60, F = 32;
+el("rect", { x: X0, y: 10, width: 260, height: Y0 + 15 * F - 10 + 10, fill: "#FCE9A6", stroke: "#333", "stroke-width": 1.5 }, svg);
+el("rect", { x: X0, y: Y0 + 7 * F - F / 2 + 4, width: 260, height: F - 4, fill: "#B8E2C8", stroke: "#3A9D5D" }, svg);
+const cols = [[X0 + 30, "pH"], [X0 + 100, [{ t: "[H" }, { t: "3", sub: true }, { t: "O" }, { t: "+", sup: true }, { t: "]" }]], [X0 + 180, [{ t: "[OH" }, { t: "−", sup: true }, { t: "]" }]], [X0 + 235, "pOH"]];
+cols.forEach(([x, t]) => texto(svg, x, 40, t, { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto }));
+const pot = e => e === 0 ? [{ t: "1" }] : [{ t: "10" }, { t: "−" + e, sup: true }];
+for (let p = 0; p <= 14; p++) {
+    const y = Y0 + p * F + 6;
+    texto(svg, cols[0][0], y, String(p), { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+    texto(svg, cols[1][0], y, pot(p), { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+    texto(svg, cols[2][0], y, pot(14 - p), { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+    texto(svg, cols[3][0], y, String(14 - p), { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+}
+const ga = el("linearGradient", { id: "ac", x1: 0, y1: 1, x2: 0, y2: 0 }, defs(svg));
+[["0%", "#FDECE8"], ["100%", "#F0624D"]].forEach(([o, c]) => el("stop", { offset: o, "stop-color": c }, ga));
+const gb = el("linearGradient", { id: "ba", x1: 0, y1: 0, x2: 0, y2: 1 }, defs(svg));
+[["0%", "#E3EEFA"], ["100%", "#3F7FD0"]].forEach(([o, c]) => el("stop", { offset: o, "stop-color": c }, gb));
+el("path", { d: "M40,520 L40,70 L28,70 L50,40 L72,70 L60,70 L60,520 Z", fill: "url(#ac)", stroke: "#D9534F" }, svg);
+texto(svg, 50, 300, "Acidez", { "text-anchor": "middle", "font-size": 16, fill: COLORES.texto, transform: "rotate(-90 50 300)" });
+el("path", { d: "M360,40 L360,490 L348,490 L370,520 L392,490 L380,490 L380,40 Z", fill: "url(#ba)", stroke: "#3F7FD0" }, svg);
+texto(svg, 370, 300, "Basicidad", { "text-anchor": "middle", "font-size": 16, fill: COLORES.texto, transform: "rotate(-90 370 300)" });
+texto(svg, 210, 553, "neutro: pH = 7 (25 °C)", { "text-anchor": "middle", "font-size": 13, fill: "#3A9D5D" });
+</script>
+</body>
+</html>

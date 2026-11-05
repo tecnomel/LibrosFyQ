@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Choques y explosiones: se conserva el momento lineal</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } .lbl { font-size: 13px; color: #525252; text-align: left; margin: 2px 6px; font-weight: 600; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Choque elástico</h2><svg id="a" width="290" height="230"></svg>
+            <div class="t">Rebotan sin deformarse: se conservan el momento lineal y la energía cinética.</div></div>
+        <div class="card"><h2>Choque totalmente inelástico</h2><svg id="b" width="290" height="230"></svg>
+            <div class="t">Quedan unidos: se conserva el momento lineal, pero no la energía cinética.</div></div>
+        <div class="card"><h2>Explosión</h2><svg id="c" width="290" height="230"></svg>
+            <div class="t">Las fuerzas son internas: el momento lineal total no cambia.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    function rot(add, y, t) { label(add, 10, y, t, { 'font-size': 13, fill: '#525252', 'text-anchor': 'start', 'font-weight': 600 }); }
+    function ground(add, y) { add('line', { x1: 10, y1: y, x2: 280, y2: y, stroke: '#7F8C8D', 'stroke-width': 2 }); }
+    // a) elástico: dos bolas
+    const A = svgAdder('a');
+    rot(A, 20, 'antes'); ground(A, 90);
+    bead(A, 70, 68, 22, '#E74C3C'); bead(A, 210, 68, 22, '#3498DB');
+    arrow(A, 95, 68, 145, 68, '#C0392B', 3, 11); vlab(A, 120, 56, 'v', '1', '#C0392B', 15);
+    arrow(A, 185, 68, 160, 68, '#2471A3', 3, 11); vlab(A, 172, 56, 'v', '2', '#2471A3', 15);
+    rot(A, 130, 'después'); ground(A, 200);
+    bead(A, 110, 178, 22, '#E74C3C'); bead(A, 170, 178, 22, '#3498DB');
+    arrow(A, 85, 178, 40, 178, '#C0392B', 3, 11); vlab(A, 62, 166, "v'", '1', '#C0392B', 15);
+    arrow(A, 195, 178, 255, 178, '#2471A3', 3, 11); vlab(A, 225, 166, "v'", '2', '#2471A3', 15);
+    // b) inelástico: dos vagones que se enganchan
+    const B = svgAdder('b');
+    rot(B, 20, 'antes'); ground(B, 90);
+    box(B, 30, 50, 70, 38, '#F5B041', '#B9770E'); box(B, 180, 50, 70, 38, '#82E0AA', '#1E8449');
+    label(B, 65, 75, 'm₁', { 'font-size': 14 }); label(B, 215, 75, 'm₂', { 'font-size': 14 });
+    arrow(B, 102, 69, 150, 69, '#C0392B', 3, 11); vlab(B, 126, 58, 'v', '1', '#C0392B', 15);
+    label(B, 215, 42, 'en reposo', { 'font-size': 12, fill: '#525252' });
+    rot(B, 130, 'después'); ground(B, 200);
+    box(B, 70, 160, 70, 38, '#F5B041', '#B9770E'); box(B, 140, 160, 70, 38, '#82E0AA', '#1E8449');
+    label(B, 105, 185, 'm₁', { 'font-size': 14 }); label(B, 175, 185, 'm₂', { 'font-size': 14 });
+    arrow(B, 212, 179, 250, 179, '#7D3C98', 3, 11); vlab(B, 232, 166, "v'", '', '#7D3C98', 15);
+    // c) explosión: petardo que se rompe en tres trozos
+    const C = svgAdder('c');
+    const c0 = [145, 120];
+    [[0, '#E74C3C'], [2.2, '#3498DB'], [4.1, '#27AE60']].forEach(([a, col], i) => {
+        const L = i === 0 ? 90 : 70, x = c0[0] + L * Math.cos(a), y = c0[1] - L * Math.sin(a);
+        arrow(C, c0[0] + 20 * Math.cos(a), c0[1] - 20 * Math.sin(a), x, y, col, 3, 11);
+        bead(C, c0[0] + 14 * Math.cos(a), c0[1] - 14 * Math.sin(a), 9, col);
+    });
+    [...Array(12)].forEach((_, i) => { const a = i * Math.PI / 6; C('line', { x1: c0[0] + 24 * Math.cos(a), y1: c0[1] + 24 * Math.sin(a), x2: c0[0] + 34 * Math.cos(a), y2: c0[1] + 34 * Math.sin(a), stroke: '#F39C12', 'stroke-width': 2 }); });
+    rich(C, 145, 24, '*m* · *v* = *m*_1*v*_1 + *m*_2*v*_2 + *m*_3*v*_3', { 'font-size': 13, fill: '#23373B' });
+    label(C, 145, 220, '(vectores)', { 'font-size': 12, fill: '#525252' });
+</script>
+</body>
+</html>

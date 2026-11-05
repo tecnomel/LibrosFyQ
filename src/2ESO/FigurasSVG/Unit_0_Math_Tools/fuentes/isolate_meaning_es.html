@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>¿Qué significa despejar?</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .row { display: flex; gap: 20px; align-items: center; }
+    .txt { flex: 1; font-size: 19px; line-height: 1.5; }
+    .txt b.r { color: var(--red); }
+    .cmp { display: flex; gap: 16px; margin-top: 12px; }
+    .cmp > div { flex: 1; border-radius: 12px; padding: 8px 12px; font-size: 22px; text-align: center; font-weight: 700; }
+    .ok { background: var(--green-soft); border: 2px solid var(--green); }
+    .no { background: var(--red-soft); border: 2px solid var(--red); }
+    .cmp small { display: block; font-size: 15px; font-weight: 400; color: var(--teal); margin-top: 2px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>¿Qué significa «despejar» una magnitud?</h1>
+    <div class="row">
+        <svg width="460" height="230" viewBox="0 0 460 230">
+            <polygon points="230,190 205,225 255,225" fill="#23373B"/>
+            <line x1="230" y1="190" x2="230" y2="70" stroke="#23373B" stroke-width="7"/>
+            <line x1="40" y1="70" x2="420" y2="70" stroke="#23373B" stroke-width="7" stroke-linecap="round"/>
+            <path d="M30 70 L15 130 L135 130 L120 70" fill="#E3E6F7" stroke="#000070" stroke-width="4"/>
+            <path d="M340 70 L325 130 L445 130 L430 70" fill="#DFF3E6" stroke="#1E8449" stroke-width="4"/>
+            <rect x="48" y="25" width="54" height="42" rx="6" fill="#C0392B"/><text x="75" y="55" text-anchor="middle" font-size="24" font-weight="800" fill="#fff">x</text>
+            <rect x="335" y="25" width="100" height="42" rx="6" fill="#1E8449"/><text x="385" y="55" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">números</text>
+            <text x="230" y="50" text-anchor="middle" font-size="36" font-weight="800" fill="#F36619">=</text>
+            <text x="75" y="160" text-anchor="middle" font-size="16" font-weight="700" fill="#000070">solo la incógnita</text>
+            <text x="385" y="160" text-anchor="middle" font-size="16" font-weight="700" fill="#1E8449">todo lo demás</text>
+        </svg>
+        <div class="txt"><b>Despejar</b> una magnitud significa dejarla <b class="r">completamente sola</b> en un lado del signo igual:<br>
+            ✔ sin <b>nada</b> que la sume, la reste, la multiplique o la divida,<br>
+            ✔ en el <b>numerador</b> (arriba), nunca debajo de la raya de fracción,<br>
+            ✔ y con todo lo demás en el <b>otro lado</b>.</div>
+    </div>
+    <div class="cmp">
+        <div class="ok">x = 4<small>✔ despejada</small></div>
+        <div class="no">2x = 8<small>✘ está multiplicada por 2</small></div>
+        <div class="no">x + 3 = 7<small>✘ tiene un 3 sumando</small></div>
+        <div class="no"><span class="frac"><span>1</span><span>x</span></span> = 5<small>✘ está debajo de la raya</small></div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tipos de reacción según su mecanismo</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } .card h2 { font-size: 17px; } .card .f { font-size: 17px; font-weight: 700; color: #C0392B; margin-top: 2px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Síntesis</h2><svg id="a" width="210" height="110"></svg><div class="f">A + B → AB</div><div class="t">Dos sustancias sencillas se unen en una más compleja</div></div>
+        <div class="card"><h2>Descomposición</h2><svg id="b" width="210" height="110"></svg><div class="f">AB → A + B</div><div class="t">Una sustancia se rompe en otras más sencillas</div></div>
+        <div class="card"><h2>Sustitución simple</h2><svg id="c" width="210" height="110"></svg><div class="f">A + BC → AC + B</div><div class="t">Un elemento desplaza a otro de un compuesto</div></div>
+        <div class="card"><h2>Doble sustitución</h2><svg id="d" width="210" height="110"></svg><div class="f">AB + CD → AD + CB</div><div class="t">Dos compuestos intercambian sus partes</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const COL = { A: '#2E86C1', B: '#E74C3C', C: '#F4D03F', D: '#58D68D' };
+    const r = 12;
+    function b(S, x, y, el) { bead(S, x, y, r, COL[el]); label(S, x, y + 5, el, { 'font-size': 13, fill: '#1B2631' }); }
+    function pair(S, x, y, e1, e2) { b(S, x - 11, y, e1); b(S, x + 11, y, e2); }
+    function plus(S, x, y) { label(S, x, y + 6, '+', { 'font-size': 20 }); }
+    function arr(S, y = 55) { arrow(S, 92, y, 122, y, '#23373B', 2.5, 10); }
+    // Síntesis
+    let S = svgAdder('a');
+    b(S, 20, 55, 'A'); plus(S, 45, 55); b(S, 70, 55, 'B'); arr(S); pair(S, 165, 55, 'A', 'B');
+    // Descomposición
+    S = svgAdder('b');
+    pair(S, 45, 55, 'A', 'B'); arr(S); b(S, 140, 55, 'A'); plus(S, 165, 55); b(S, 190, 55, 'B');
+    // Sustitución simple
+    S = svgAdder('c');
+    b(S, 15, 30, 'A'); plus(S, 15, 62); pair(S, 50, 85, 'B', 'C');
+    arrow(S, 85, 55, 112, 55, '#23373B', 2.5, 10);
+    pair(S, 160, 30, 'A', 'C'); plus(S, 160, 62); b(S, 160, 88, 'B');
+    // Doble sustitución
+    S = svgAdder('d');
+    pair(S, 40, 30, 'A', 'B'); plus(S, 40, 62); pair(S, 40, 88, 'C', 'D');
+    arrow(S, 85, 55, 112, 55, '#23373B', 2.5, 10);
+    pair(S, 165, 30, 'A', 'D'); plus(S, 165, 62); pair(S, 165, 88, 'C', 'B');
+</script>
+</body>
+</html>

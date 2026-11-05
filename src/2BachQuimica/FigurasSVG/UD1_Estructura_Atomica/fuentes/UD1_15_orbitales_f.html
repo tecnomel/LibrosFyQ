@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD1_15 · Orbitales f</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/orbitales.js"></script>
+</head>
+<body>
+<script>
+// Orbitales f (l = 3): siete orientaciones (m = -3 ... +3), conjunto "general".
+const svg = crearFigura(1000, 560);
+const orb = [
+    ["fz3", "z³"], ["fxz2", "xz²"], ["fyz2", "yz²"], ["fxyz", "xyz"],
+    ["fz(x2-y2)", "z(x²−y²)"], ["fx(x2-3y2)", "x(x²−3y²)"], ["fy(3x2-y2)", "y(3x²−y²)"],
+];
+orb.forEach(([nombre, sub], k) => {
+    const fila = k < 4 ? 0 : 1;
+    const col = fila === 0 ? k : k - 4 + 0.5;
+    dibujarOrbital(svg, 125 + col * 250, 125 + fila * 270, { nombre, escala: 78,
+        etiqueta: etiquetaOrbital("f", sub, ""), dyEtiqueta: 132, tam: 1.18 });
+});
+leyendaFases(svg, 20, 545);
+</script>
+</body>
+</html>

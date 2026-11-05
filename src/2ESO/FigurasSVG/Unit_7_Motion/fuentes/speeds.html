@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>How fast?</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1200px; }
+    .bar { display: flex; align-items: center; gap: 12px; margin-bottom: 9px; }
+    .bar .ic { font-size: 34px; width: 50px; text-align: center; }
+    .bar .n { width: 170px; font-size: 17px; font-weight: 700; }
+    .bar .track { flex: 1; height: 30px; background: #F4F6F7; border-radius: 15px; position: relative; overflow: hidden; }
+    .bar .fill { height: 100%; border-radius: 15px; background: linear-gradient(90deg, #58D68D, #F5B041, #E74C3C); }
+    .bar .v { width: 250px; font-size: 17px; text-align: right; }
+    .bar .v b { color: var(--blue); }
+    .formula { margin-top: 12px; text-align: center; font-size: 22px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>How fast do things move?</h1>
+    <div id="bars"></div>
+    <div class="formula">speed = <span class="frac"><span>distance travelled</span><span>time taken</span></span> &nbsp; · &nbsp; SI unit: <b>m/s</b> &nbsp; · &nbsp; 1 m/s = 3.6 km/h</div>
+</div>
+<script>
+    const items = [['🐌','Snail',0.01],['🚶','Walking person',1.4],['🚴','Cyclist',6],['🐆','Cheetah',30],['🚗','Car on a motorway',33],['🏎️','Formula 1 car',88],['✈️','Plane',250],['🔊','Sound in air',340]];
+    const box = document.getElementById('bars');
+    const max = Math.log10(340 * 1.2), min = Math.log10(0.005);
+    items.forEach(([ic, n, v]) => {
+        const w = 100 * (Math.log10(v) - min) / (max - min);
+        box.insertAdjacentHTML('beforeend', `<div class="bar"><div class="ic">${ic}</div><div class="n">${n}</div><div class="track"><div class="fill" style="width:${w}%"></div></div><div class="v"><b>${v} m/s</b> = ${+(v * 3.6).toFixed(v < 1 ? 2 : 0)} km/h</div></div>`);
+    });
+</script>
+</body>
+</html>

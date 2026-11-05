@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Primera y segunda leyes de Kepler</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } .card { background: #0B2545; border-color: #0B2545; } .card h2 { color: #FFFFFF; } .card .t { color: #D6EAF8; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>1.ª ley: órbitas elípticas</h2><svg id="a" width="420" height="270"></svg>
+            <div class="t">Los planetas describen elipses y el Sol está en uno de sus focos.</div></div>
+        <div class="card"><h2>2.ª ley: áreas iguales en tiempos iguales</h2><svg id="b" width="420" height="270"></svg>
+            <div class="t">Las dos zonas sombreadas tienen la misma área y se recorren en el mismo tiempo:<br>el planeta va más rápido en el perihelio (v₁ > v₂).</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // Elipse muy exagerada: semiejes a, b; el Sol en el foco izquierdo; perihelio a la izquierda.
+    const a = 170, b = 100, c = Math.sqrt(a * a - b * b), e = c / a;
+    const cx = 210, cy = 138;
+    const pos = E => [cx - a * Math.cos(E), cy - b * Math.sin(E)];   // E = anomalía excéntrica
+    function solveE(M) { let E = M; for (let i = 0; i < 30; i++) E -= (E - e * Math.sin(E) - M) / (1 - e * Math.cos(E)); return E; }
+    function sun(add, x, y) {
+        const d = add('defs', {});
+        d.innerHTML = '<radialGradient id="sol"><stop offset="0" stop-color="#FFFDE7"/><stop offset=".5" stop-color="#F9E79F"/><stop offset="1" stop-color="#F39C12"/></radialGradient>';
+        add('circle', { cx: x, cy: y, r: 22, fill: '#F39C12', opacity: 0.25 });
+        add('circle', { cx: x, cy: y, r: 15, fill: 'url(#sol)' });
+        label(add, x, y + 38, 'Sol', { fill: '#F9E79F', 'font-size': 14 });
+    }
+    function orbit(add) {
+        add('ellipse', { cx, cy, rx: a, ry: b, fill: 'none', stroke: '#F4D03F', 'stroke-width': 2 });
+        add('line', { x1: cx - a - 10, y1: cy, x2: cx + a + 10, y2: cy, stroke: '#85929E', 'stroke-dasharray': '5 5' });
+    }
+    // a) primera ley
+    {
+        const add = svgAdder('a');
+        orbit(add);
+        add('circle', { cx: cx + c, cy, r: 3, fill: '#85929E' });
+        label(add, cx + c, cy + 20, 'foco', { 'font-size': 12, fill: '#85929E' });
+        sun(add, cx - c, cy);
+        label(add, cx - a + 4, cy - 26, 'perihelio', { 'font-size': 13, fill: '#FFFFFF' });
+        label(add, cx + a - 4, cy - 14, 'afelio', { 'font-size': 13, fill: '#FFFFFF' });
+        add('circle', { cx: cx - a, cy, r: 4, fill: '#E74C3C' }); add('circle', { cx: cx + a, cy, r: 4, fill: '#E74C3C' });
+        const [px, py] = pos(1.9);
+        bead(add, px, py, 10, '#3498DB');
+        label(add, px, py - 16, 'planeta', { 'font-size': 13, fill: '#FFFFFF' });
+        add('line', { x1: cx - c, y1: cy, x2: px, y2: py, stroke: '#AED6F1', 'stroke-width': 1.5 });
+    }
+    // b) segunda ley
+    {
+        const add = svgAdder('b');
+        orbit(add);
+        const dM = 0.42;
+        [[-dM / 2, dM / 2, '#E74C3C'], [Math.PI - dM / 2, Math.PI + dM / 2, '#5DADE2']].forEach(([m1, m2, col]) => {
+            const pts = [];
+            for (let k = 0; k <= 40; k++) pts.push(pos(solveE(m1 + (m2 - m1) * k / 40)));
+            add('path', { d: `M${cx - c} ${cy} L` + pts.map(p => p.join(' ')).join(' L') + ' Z', fill: col, opacity: 0.55, stroke: col });
+        });
+        sun(add, cx - c, cy);
+        // velocidades
+        const [x1, y1] = pos(0), [x2, y2] = pos(Math.PI);
+        bead(add, x1, y1, 8, '#3498DB'); bead(add, x2, y2, 8, '#3498DB');
+        const v1 = 70, v2 = 30;   // no a escala
+        arrow(add, x1, y1, x1, y1 + v1, '#F9E79F', 3, 11); vlabel(add, x1 - 16, y1 + v1 - 6, 'v', '#F9E79F', '1');
+        arrow(add, x2, y2, x2, y2 - v2 - 4, '#F9E79F', 3, 11); vlabel(add, x2 + 18, y2 - 14, 'v', '#F9E79F', '2');
+        label(add, cx - a + 4, cy - 26, 'perihelio', { 'font-size': 13, fill: '#FFFFFF' });
+        label(add, cx + a - 20, cy + 50, 'afelio', { 'font-size': 13, fill: '#FFFFFF' });
+    }
+</script>
+</body>
+</html>

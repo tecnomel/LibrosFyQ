@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Red cristalina del cloruro de sodio</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } .row { display: flex; gap: 14px; align-items: center; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <svg id="a" width="330" height="320"></svg>
+        <svg id="b" width="360" height="320"></svg>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    const proj = ([x, y, z], s, ox, oy) => [ox + s * (x + 0.45 * z), oy - s * (y + 0.32 * z)];
+    // a) modelo de bolas compacto (iones en contacto)
+    let add = svgAdder('a');
+    let P = [];
+    for (let x = 0; x < 3; x++) for (let y = 0; y < 3; y++) for (let z = 0; z < 3; z++) P.push([x, y, z]);
+    P.sort((p, q) => (q[2] - p[2]) || (p[1] - q[1]) || (p[0] - q[0]));
+    P.forEach(p => { const na = (p[0] + p[1] + p[2]) % 2 === 0; const [x, y] = proj(p, 72, 50, 260); ball(add, x, y, na ? 'Na' : 'Cl', na ? 22 : 34, false); });
+    label(add, 165, 312, 'modelo de bolas compacto', { 'font-size': 14, fill: '#525252' });
+    // b) bolas y varillas
+    add = svgAdder('b');
+    P = [];
+    for (let x = 0; x < 3; x++) for (let y = 0; y < 3; y++) for (let z = 0; z < 3; z++) P.push([x, y, z]);
+    const Q = P.map(p => proj(p, 85, 60, 270));
+    for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) {
+        const d = P[i].reduce((s, v, k) => s + Math.abs(v - P[j][k]), 0);
+        if (d === 1) add('line', { x1: Q[i][0], y1: Q[i][1], x2: Q[j][0], y2: Q[j][1], stroke: '#AAB7B8', 'stroke-width': 2.5 });
+    }
+    P.map((p, i) => i).sort((i, j) => P[j][2] - P[i][2]).forEach(i => { const na = (P[i][0] + P[i][1] + P[i][2]) % 2 === 0; ball(add, Q[i][0], Q[i][1], na ? 'Na' : 'Cl', na ? 11 : 16, false); });
+    label(add, 180, 312, 'cada ion está rodeado de 6 de signo contrario', { 'font-size': 14, fill: '#525252' });
+    ball(add, 250, 20, 'Na', 9, false); label(add, 264, 25, 'Na⁺', { 'font-size': 15, 'text-anchor': 'start' });
+    ball(add, 310, 20, 'Cl', 12, false); label(add, 326, 25, 'Cl⁻', { 'font-size': 15, 'text-anchor': 'start' });
+</script>
+</body>
+</html>

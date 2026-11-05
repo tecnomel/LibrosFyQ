@@ -1,0 +1,105 @@
+\begin{figure}[H]
+\centering
+
+\begin{tikzpicture}[
+>=Latex,
+font=\small,
+node distance=8mm,
+monomer/.style={
+draw,
+rounded corners,
+fill=cyan!20,
+minimum width=2.2cm,
+minimum height=0.9cm,
+align=center
+},
+polymer/.style={
+draw,
+rounded corners,
+fill=orange!20,
+minimum width=10cm,
+minimum height=1cm,
+align=center
+}
+]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Monómeros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[monomer] (m1) {Monómero};
+
+\node[right=of m1] (plus1) {$+$};
+
+\node[monomer,right=of plus1] (m2) {Monómero};
+
+\node[right=of m2] (plus2) {$+$};
+
+\node[monomer,right=of plus2] (m3) {Monómero};
+
+\node[right=of m3] (dots) {$\cdots$};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Flecha
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\draw[->,very thick]
+($(m2.south)+(0,-0.2)$)
+--
+node[right]{\textbf{Polimerización}}
+++(0,-1.6);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Polímero
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[
+polymer,
+below=2.3cm of m2
+] (poly)
+{
+Monómero -- Monómero -- Monómero -- Monómero -- Monómero -- Monómero
+};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Texto inferior
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[
+below=5mm of poly
+]
+{\textbf{Macromolécula (Polímero)}};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Flechas laterales
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\draw[->]
+(m1.south)
+to[out=-90,in=160]
+(poly.west);
+
+\draw[->]
+(m3.south)
+to[out=-90,in=20]
+(poly.east);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[
+left=2.2cm of poly,
+align=center
+]
+{Muchos\\monómeros};
+
+\node[
+right=2.2cm of poly,
+align=center
+]
+{Cadena\\polimérica};
+
+\end{tikzpicture}
+
+\caption{Formación de un polímero por unión repetitiva de monómeros.}
+
+\end{figure}

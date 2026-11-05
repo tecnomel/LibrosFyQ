@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El eco y el sónar</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="820" height="320"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    // ---------- eco ----------
+    label(add, 200, 22, 'El eco', { fill: '#000070', 'font-size': 18 });
+    add('line', { x1: 10, y1: 250, x2: 400, y2: 250, stroke: '#7F8C8D', 'stroke-width': 2 });
+    person(add, 60, 250, { s: 0.9, armR: 60 });
+    // pared o acantilado
+    add('path', { d: 'M340 250 L340 70 L360 60 L395 60 L395 250 Z', fill: '#CA6F1E', stroke: '#784212', 'stroke-width': 2 });
+    for (let k = 0; k < 3; k++) add('path', { d: arcD(85, 140, 30 + 18 * k, -30, 30), fill: 'none', stroke: '#C0392B', 'stroke-width': 2.5 });
+    arrow(add, 120, 130, 330, 130, '#C0392B', 2.5); label(add, 225, 120, 'sonido emitido', { 'font-size': 13, fill: '#C0392B' });
+    arrow(add, 330, 165, 120, 165, '#2E86C1', 2.5); label(add, 225, 185, 'sonido reflejado (eco)', { 'font-size': 13, fill: '#2E86C1' });
+    arrow(add, 200, 225, 85, 225, '#23373B', 1.5, 8); arrow(add, 225, 225, 340, 225, '#23373B', 1.5, 8);
+    label(add, 212, 230, 'd', { 'font-style': 'italic' });
+    label(add, 200, 290, 'ida y vuelta: 2d = v · t', { 'font-size': 15, fill: '#23373B' });
+    label(add, 200, 312, 'para oír eco: d ≥ 17 m (t ≥ 0,1 s)', { 'font-size': 14, fill: '#525252' });
+
+    // ---------- sónar ----------
+    const sx = 450;
+    label(add, sx + 180, 22, 'El sónar', { fill: '#000070', 'font-size': 18 });
+    add('rect', { x: sx, y: 70, width: 360, height: 180, fill: '#AED6F1' });
+    add('path', { d: `M${sx} 250 Q${sx + 90} 235 ${sx + 180} 250 T${sx + 360} 245 L${sx + 360} 285 L${sx} 285 Z`, fill: '#F0B27A' });
+    // barco
+    add('path', { d: `M${sx + 120} 62 L${sx + 250} 62 L${sx + 232} 82 L${sx + 135} 82 Z`, fill: '#FDFEFE', stroke: '#2C3E50', 'stroke-width': 2 });
+    add('rect', { x: sx + 160, y: 44, width: 50, height: 18, fill: '#D5D8DC', stroke: '#2C3E50', 'stroke-width': 1.5 });
+    arrow(add, sx + 170, 90, sx + 170, 238, '#C0392B', 2.5);
+    arrow(add, sx + 205, 238, sx + 205, 90, '#1E8449', 2.5);
+    label(add, sx + 165, 170, 'emisión', { 'font-size': 13, fill: '#C0392B', 'text-anchor': 'end' });
+    label(add, sx + 212, 170, 'eco', { 'font-size': 13, fill: '#1E8449', 'text-anchor': 'start' });
+    arrow(add, sx + 300, 160, sx + 300, 84, '#23373B', 1.5, 8); arrow(add, sx + 300, 160, sx + 300, 244, '#23373B', 1.5, 8);
+    label(add, sx + 310, 168, 'd', { 'font-size': 16, 'text-anchor': 'start', 'font-style': 'italic' });
+    label(add, sx + 180, 312, 'd = v · t / 2   (en el agua de mar, v ≈ 1531 m/s)', { 'font-size': 14, fill: '#23373B' });
+</script>
+</body>
+</html>

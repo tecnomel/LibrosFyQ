@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_22 · Geometría octaédrica del SF6</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/moleculas.js"></script>
+</head>
+<body>
+<script>
+// AB6: octaédrica, 90°.
+const svg = crearFigura(580, 400);
+const cam = [1, -0.35, 0.35];
+const d = rotarZ(GEOM.octaedrica, 25);
+esquemaGeometria(svg, 10, 10, 170, 160, d.map(p => ({ p, t: "B" })), { camara: cam, escala: 55, angulo: "90°" });
+const m = molAB("S", "F", d, 1.35, { angEtq: [30, 30, 30, 30, 30, 30] });
+m.atomos.forEach((a, i) => { if (i) a.color = "#3E8E3E"; });
+m.angulos = [{ a: 1, c: 0, b: 3, texto: "90°", radio: 0.6, dx: 10 }, { a: 3, c: 0, b: 5, texto: "90°", radio: 0.6, dy: 16 }];
+dibujarMolecula(svg, m, { cx: 380, cy: 205, escala: 115, camara: cam });
+</script>
+</body>
+</html>

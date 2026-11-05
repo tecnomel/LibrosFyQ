@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_01 · Isomería de cadena</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Isómeros de cadena: misma fórmula molecular, distinta cadena carbonada.
+const svg = crearFigura(560, 250);
+molecula(svg, "CC(C)C", 90, 45, { etiqueta: "metilpropano", yEtq: 100 });
+flechaIso(svg, 200, 50, 290);
+molecula(svg, "CCCC", 410, 45, { etiqueta: "butano", yEtq: 100 });
+texto(svg, 250, 30, [{ t: "C" }, { t: "4", sub: true }, { t: "H" }, { t: "10", sub: true }], { "text-anchor": "middle", "font-size": 13, fill: COLORES.gris, "font-family": TNR });
+molecula(svg, "C/C=C/CC", 90, 170, { etiqueta: "pent-2-eno", yEtq: 235 });
+flechaIso(svg, 200, 175, 290);
+molecula(svg, "C1CCCC1", 410, 170, { etiqueta: "ciclopentano", yEtq: 235 });
+texto(svg, 250, 155, [{ t: "C" }, { t: "5", sub: true }, { t: "H" }, { t: "10", sub: true }], { "text-anchor": "middle", "font-size": 13, fill: COLORES.gris, "font-family": TNR });
+</script>
+</body>
+</html>

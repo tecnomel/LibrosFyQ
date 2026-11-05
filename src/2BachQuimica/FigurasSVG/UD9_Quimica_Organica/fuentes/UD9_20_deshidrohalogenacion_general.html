@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_20 · Eliminación de haluros de hidrógeno (esquema general)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+</head>
+<body>
+<script>
+// Eliminación de HX en un haluro de alquilo; se realiza con una base fuerte (KOH en etanol).
+const svg = crearFigura(480, 110);
+alcanoGen(svg, 60, 50, { b1: ["H", AZUL], b2: ["X", ROJO] });
+flechaR(svg, 150, 50, 250, "KOH", "(etanol)");
+alquenoGen(svg, 290, 50);
+mas(svg, 380, 50); fq(svg, 430, 56, [["H", AZUL], "−", ["X", ROJO]]);
+</script>
+</body>
+</html>

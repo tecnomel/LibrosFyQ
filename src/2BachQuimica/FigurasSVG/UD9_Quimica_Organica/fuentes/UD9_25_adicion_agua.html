@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_25 · Adición de agua (hidratación)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Hidratación de alquenos (medio ácido): se obtiene un alcohol. En alquenos asimétricos
+// el H va al carbono con más H y el OH al más sustituido (Markovnikov): producto mayoritario.
+const svg = crearFigura(620, 330);
+const H = [{ t: "H" }, { t: "+", sup: true }];
+alquenoGen(svg, 40, 50);
+mas(svg, 125, 50); fq(svg, 180, 56, [["H", ROJO], "−", ["OH", AZUL]]);
+flechaR(svg, 225, 50, 305, H, null, { colorTexto: MAGENTA });
+alcanoGen(svg, 360, 50, { i1: ["H", ROJO], d2: ["OH", AZUL] });
+const G = { He: { t: "H", color: ROJO }, Xe: { t: "OH", color: AZUL } };
+molecula(svg, "C=CC", 70, 170);
+mas(svg, 125, 170); fq(svg, 180, 176, [["H", ROJO], "−", ["OH", AZUL]]);
+flechaR(svg, 225, 170, 305, H, null, { colorTexto: MAGENTA });
+molecula(svg, "[He]CC([Xe])C", 390, 165, { grupos: G, etiqueta: "propan-2-ol (mayoritario)", yEtq: 215 });
+flechaCurva(svg, 40, 195, 50, 275, { color: "#222" });
+molecula(svg, "C=CC", 70, 280);
+mas(svg, 125, 280); fq(svg, 180, 286, [["H", ROJO], "−", ["OH", AZUL]]);
+flechaR(svg, 225, 280, 305, H, null, { colorTexto: MAGENTA });
+molecula(svg, "[Xe]CC([He])C", 390, 275, { grupos: G, etiqueta: "propan-1-ol (minoritario)", yEtq: 322 });
+</script>
+</body>
+</html>

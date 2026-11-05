@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Principio cero de la termodinámica</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 880px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="a" width="840" height="290"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const A = svgAdder('a');
+    const x0 = 30, y0 = 30, W = 360;
+    // sistema C (arriba)
+    A('rect', { x: x0, y: y0, width: W, height: 90, fill: '#F5B7B1', stroke: '#922B21', 'stroke-width': 2.5 });
+    label(A, x0 + W / 2, y0 + 55, 'C', { 'font-size': 30, fill: '#922B21' });
+    // sistemas A y B (abajo)
+    A('rect', { x: x0, y: y0 + 90, width: 165, height: 110, fill: '#ABEBC6', stroke: '#1E8449', 'stroke-width': 2.5 });
+    A('rect', { x: x0 + 195, y: y0 + 90, width: 165, height: 110, fill: '#AED6F1', stroke: '#1F618D', 'stroke-width': 2.5 });
+    label(A, x0 + 82, y0 + 160, 'A', { 'font-size': 30, fill: '#1E8449' });
+    label(A, x0 + 277, y0 + 160, 'B', { 'font-size': 30, fill: '#1F618D' });
+    // pared adiabática entre A y B (rayada)
+    const d = A('defs', {});
+    d.innerHTML = '<pattern id="ray" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#D5D8DC"/><line x1="0" y1="0" x2="0" y2="8" stroke="#566573" stroke-width="3"/></pattern>';
+    A('rect', { x: x0 + 165, y: y0 + 90, width: 30, height: 110, fill: 'url(#ray)', stroke: '#566573', 'stroke-width': 2 });
+    // pared diatérmana (línea fina entre C y A, B)
+    A('line', { x1: x0, y1: y0 + 90, x2: x0 + W, y2: y0 + 90, stroke: '#B9770E', 'stroke-width': 5 });
+    // flechas de calor (doble sentido) a través de la pared diatérmana
+    for (const xc of [x0 + 82, x0 + 277]) {
+        arrow(A, xc - 12, y0 + 112, xc - 12, y0 + 70, '#B9770E', 2.5, 10);
+        arrow(A, xc + 12, y0 + 70, xc + 12, y0 + 112, '#B9770E', 2.5, 10);
+        rich(A, xc + 36, y0 + 82, '*Q*', { 'font-size': 16, fill: '#B9770E' });
+    }
+    // rótulos de las paredes
+    label(A, x0 + 180, y0 + 230, 'pared adiabática', { 'font-size': 14, fill: '#566573' });
+    A('line', { x1: x0 + 180, y1: y0 + 215, x2: x0 + 180, y2: y0 + 202, stroke: '#566573', 'stroke-width': 1.5 });
+    label(A, x0 + W + 10, y0 + 95, 'pared diatérmana', { 'font-size': 14, fill: '#B9770E', 'text-anchor': 'start' });
+    // texto de la derecha
+    const tx = 545;
+    label(A, tx, 60, 'Si A está en equilibrio con C', { 'font-size': 17, 'text-anchor': 'start', fill: '#1E8449' });
+    rich(A, tx + 20, 88, '(*T*_A = *T*_C)', { 'font-size': 16, 'text-anchor': 'start', fill: '#1E8449', 'font-weight': 400 });
+    label(A, tx, 128, 'y B está en equilibrio con C', { 'font-size': 17, 'text-anchor': 'start', fill: '#1F618D' });
+    rich(A, tx + 20, 156, '(*T*_B = *T*_C),', { 'font-size': 16, 'text-anchor': 'start', fill: '#1F618D', 'font-weight': 400 });
+    label(A, tx, 198, 'entonces A y B están en', { 'font-size': 17, 'text-anchor': 'start' });
+    label(A, tx, 222, 'equilibrio entre sí:', { 'font-size': 17, 'text-anchor': 'start' });
+    A('rect', { x: tx + 30, y: 236, width: 150, height: 38, rx: 8, fill: '#FEF5E7', stroke: '#B9770E', 'stroke-width': 2 });
+    rich(A, tx + 105, 262, '*T*_A = *T*_B', { 'font-size': 20, fill: '#23373B' });
+</script>
+</body>
+</html>

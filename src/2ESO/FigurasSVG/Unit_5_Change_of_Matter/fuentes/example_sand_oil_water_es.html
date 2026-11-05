@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ejemplo resuelto 2</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="steps.css">
+<script src="lab_es.js"></script>
+<style> .legend { margin-top: 12px; display: flex; justify-content: center; gap: 22px; font-size: 16px; } .legend span { display: inline-block; color: #fff; font-weight: 800; border-radius: 6px; padding: 1px 8px; margin-right: 6px; } </style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1></h1>
+    <div class="prop" id="prop"></div>
+    <div class="row" id="row"></div>
+    <div class="legend">
+        <div><span style="background:#1E8449">✔ GUARDAR</span>lo que queremos obtener</div>
+        <div><span style="background:#2471A3">→ SIGUIENTE</span>pasa al siguiente paso</div>
+        <div><span style="background:#C0392B">✘ DESECHAR</span>no lo necesitamos</div>
+    </div>
+</div>
+<script>
+const sand = rnd(30,75,185,165,186,9);
+buildSteps('Ejemplo resuelto 2: agua con barro y aceite (arena + aceite + agua)', 'obtener <b>agua limpia</b>', 'arena, aceite y agua', [
+  [beaker(70,60,120,130,[[22,C.sand],[60,C.water],[18,C.oil]]) + T(220,72,'aceite',{c:'#B7950B',fs:13}) + T(220,125,'agua',{c:C.blue,fs:13}) + T(220,178,'arena',{c:C.sandDark,fs:13}),
+   'La mezcla tiene <b>tres</b> componentes: un sólido y dos líquidos que no se mezclan.'],
+  [funnel(100,15,dots([[90,45],[102,52],[110,44],[98,40]],6,C.sandDark)) + `<ellipse cx="100" cy="132" rx="4" ry="7" fill="#5DADE2"/>` +
+   beaker(55,145,90,60,[[22,C.water],[12,C.oil]]) + tag(200,45,'out','✘ arena') + T(200,64,'residuo',{fs:12,fw:400}) +
+   tag(200,170,'next','→ aceite + agua') + T(200,189,'filtrado',{fs:12,fw:400}),
+   'Primero, <b>filtración</b>: la arena se queda en el papel. No la necesitamos.'],
+  [sepFunnel(110,20,C.oil,C.water,40,62,false) + T(205,70,'aceite',{c:'#B7950B'}) + T(205,120,'agua',{c:C.blue}),
+   'Vierte el filtrado en un <b>embudo de decantación</b> y espera: se forman dos capas.'],
+  [sepFunnel(100,10,C.oil,C.water,40,24,true) + `<ellipse cx="100" cy="164" rx="4" ry="7" fill="#5DADE2"/>` + beaker(60,160,80,45,[[25,C.water]]) +
+   tag(200,185,'keep','✔ agua') + tag(200,40,'out','✘ aceite') + T(200,60,'(punto limpio)',{fs:12,fw:400}),
+   '<b>Decantación</b>: el agua sale por la llave. El aceite se lleva a un punto limpio.'],
+], 'Objetivo');
+</script>
+</body>
+</html>

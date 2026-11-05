@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Presión atmosférica</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card .t { font-size: 13.5px; } .card h3 { font-size: 16px; color: var(--blue); margin-bottom: 4px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3>Beber con pajita</h3><svg id="a" width="230" height="250"></svg>
+            <div class="t">Al sorber, baja la presión dentro de la pajita y la presión atmosférica empuja el líquido hacia arriba.</div></div>
+        <div class="card"><h3>Vaso y cartulina</h3><svg id="b" width="230" height="250"></svg>
+            <div class="t">La presión atmosférica empuja la cartulina desde abajo y sostiene el agua.</div></div>
+        <div class="card"><h3>Experimento de Torricelli</h3><svg id="c" width="250" height="250"></svg>
+            <div class="t">La presión atmosférica sostiene una columna de 760 mm de mercurio.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const ATM = '#000070';
+    {
+        const add = svgAdder('a');
+        const ys = tank(add, 50, 90, 130, 140, 100, '#F5CBA7');
+        // pajita
+        add('rect', { x: 120, y: 30, width: 16, height: 190, fill: '#FDFEFE', stroke: '#C0392B', 'stroke-width': 2 });
+        add('rect', { x: 122, y: 70, width: 12, height: 150, fill: '#F5CBA7' });
+        arrow(add, 128, 112, 128, 76, '#C0392B', 2.5, 9);
+        // presión atmosférica sobre la superficie libre
+        [72, 96, 160].forEach(x => arrow(add, x, ys - 46, x, ys - 4, ATM, 2.2, 9));
+        label(add, 72, 30, 'presión', { 'font-size': 13, fill: ATM });
+        label(add, 72, 46, 'atmosférica', { 'font-size': 13, fill: ATM });
+        label(add, 186, 20, 'se sorbe el aire', { 'font-size': 12, fill: '#525252', 'font-weight': 400 });
+    }
+    {
+        const add = svgAdder('b');
+        // vaso boca abajo lleno de agua con cartulina
+        const x = 60, w = 110, top = 40, bot = 170;
+        add('rect', { x, y: top, width: w, height: bot - top, fill: '#AED6F1' });
+        add('path', { d: `M${x} ${bot} L${x} ${top} L${x + w} ${top} L${x + w} ${bot}`, fill: 'none', stroke: '#5D6D7E', 'stroke-width': 3, 'stroke-linejoin': 'round' });
+        add('rect', { x: x - 20, y: bot, width: w + 40, height: 6, fill: '#F1948A', stroke: '#B03A2E', 'stroke-width': 1 });
+        for (let k = 0; k < 7; k++) arrow(add, x - 10 + k * 22, bot + 50, x - 10 + k * 22, bot + 9, ATM, 2.2, 9);
+        label(add, x + w / 2, bot + 70, 'presión atmosférica', { 'font-size': 13, fill: ATM });
+        arrow(add, x + w / 2, top + 30, x + w / 2, top + 95, '#C0392B', 2.5, 10);
+        label(add, x + w / 2 + 14, top + 75, 'P', { fill: '#C0392B', 'font-style': 'italic', 'text-anchor': 'start' });
+        label(add, x + w / 2, 26, 'agua', { 'font-size': 13, fill: '#1B4F72' });
+    }
+    {
+        const add = svgAdder('c');
+        // cubeta con mercurio
+        const ys = tank(add, 30, 170, 180, 60, 38, '#AAB7B8');
+        // tubo de 1 m (abierto abajo), con mercurio hasta 760 mm
+        const tx = 110, tw = 18, ttop = 12, hg = 132;
+        add('rect', { x: tx, y: ys - hg, width: tw, height: hg + 26, fill: '#AAB7B8' });
+        add('path', { d: `M${tx} ${ys + 26} L${tx} ${ttop + 8} Q${tx} ${ttop} ${tx + tw / 2} ${ttop} Q${tx + tw} ${ttop} ${tx + tw} ${ttop + 8} L${tx + tw} ${ys + 26}`, fill: 'none', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+        label(add, tx + tw + 8, ttop + 26, 'vacío', { 'font-size': 13, fill: '#525252', 'font-weight': 400, 'text-anchor': 'start' });
+        add('line', { x1: tx - 40, y1: ys - hg, x2: tx, y2: ys - hg, stroke: '#525252', 'stroke-dasharray': '3 3' });
+        add('line', { x1: tx - 40, y1: ys, x2: 30, y2: ys, stroke: '#525252', 'stroke-dasharray': '3 3' });
+        vdim(add, tx - 30, ys - hg, ys, '760 mm', '#C0392B');
+        // presión atmosférica sobre la cubeta
+        [160, 185].forEach(x => arrow(add, x, ys - 44, x, ys - 3, ATM, 2.2, 9));
+        label(add, 195, ys - 54, 'p atm', { 'font-size': 13, fill: ATM, 'font-style': 'italic' });
+        label(add, 120, 245, 'mercurio', { 'font-size': 12, fill: '#525252', 'font-weight': 400 });
+    }
+</script>
+</body>
+</html>

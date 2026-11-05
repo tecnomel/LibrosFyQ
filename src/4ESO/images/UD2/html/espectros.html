@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Espectros continuo, de emisión y de absorción</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1100px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="a" width="1040" height="400"></svg>
+</div>
+<script src="fig.js"></script>
+<script src="spectrum.js"></script>
+<script>
+    const add = svgAdder('a');
+    rainbowGradient(add, 'rb');
+    const X0 = 520, W = 480, H = 56;
+    // 1) luz blanca → prisma → espectro continuo
+    add('rect', { x: 10, y: 40, width: 60, height: 36, rx: 6, fill: '#F7DC6F', stroke: '#B7950B', 'stroke-width': 2 });
+    add('text', { x: 40, y: 98, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': 700, fill: '#23373B' }, 'luz blanca');
+    add('line', { x1: 70, y1: 58, x2: 200, y2: 58, stroke: '#D5D8DC', 'stroke-width': 8 });
+    add('rect', { x: 120, y: 38, width: 8, height: 40, fill: '#23373B' });
+    add('text', { x: 124, y: 98, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': 700, fill: '#23373B' }, 'rendija');
+    add('polygon', { points: '200,95 250,10 300,95', fill: '#D6EAF8', stroke: '#2471A3', 'stroke-width': 2, opacity: .9 });
+    add('text', { x: 250, y: 115, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': 700, fill: '#23373B' }, 'prisma');
+    for (let i = 0; i <= 6; i++) {
+        const wl = WL_MAX - i * (WL_MAX - WL_MIN) / 6;
+        add('line', { x1: 265, y1: 62, x2: X0, y2: 30 + i * H / 6 + 8, stroke: wl2rgb(wl), 'stroke-width': 3, opacity: .8 });
+    }
+    spectrumBar(add, X0, 30, W, H, 'continuo');
+    add('text', { x: X0 + W / 2, y: 22, 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 800, fill: '#000070' }, 'Espectro continuo (luz blanca)');
+    // 2) emisión
+    const row = (y, title, sub, type) => {
+        add('text', { x: 20, y: y + 22, 'font-size': 18, 'font-weight': 800, fill: '#000070' }, title);
+        add('text', { x: 20, y: y + 46, 'font-size': 14, fill: '#525252' }, sub);
+        spectrumBar(add, X0, y, W, H, type);
+    };
+    row(150, 'Espectro de emisión del hidrógeno', 'rayas luminosas sobre fondo negro: luz emitida por el gas caliente', 'emision');
+    row(250, 'Espectro de absorción del hidrógeno', 'rayas oscuras sobre el arco iris: luz absorbida por el gas frío', 'absorcion');
+    // guías verticales entre emisión y absorción
+    H_LINES.forEach(wl => add('line', { x1: wlX(wl, X0, W), y1: 150 + H, x2: wlX(wl, X0, W), y2: 250, stroke: '#7F8C8D', 'stroke-width': 1, 'stroke-dasharray': '3 3' }));
+    // escala
+    for (let wl = 400; wl <= 750; wl += 50) {
+        const x = wlX(wl, X0, W);
+        add('line', { x1: x, y1: 250 + H, x2: x, y2: 250 + H + 6, stroke: '#23373B', 'stroke-width': 1.5 });
+        add('text', { x, y: 250 + H + 22, 'text-anchor': 'middle', 'font-size': 12, fill: '#23373B' }, wl);
+    }
+    add('text', { x: X0 + W / 2, y: 250 + H + 42, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': 700, fill: '#23373B' }, 'longitud de onda (nm)');
+    add('text', { x: 20, y: 370, 'font-size': 14, 'font-weight': 700, fill: '#1E8449' }, 'Las rayas aparecen exactamente en las mismas posiciones: son la «huella dactilar» del elemento.');
+</script>
+</body>
+</html>

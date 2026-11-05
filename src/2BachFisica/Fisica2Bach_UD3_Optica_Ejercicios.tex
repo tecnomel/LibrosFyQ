@@ -1,0 +1,313 @@
+%! Unidad 3 — Óptica geométrica: ejercicios finales (adaptados de la fuente, con datos cambiados y resueltos)
+
+\section{Ejercicios}\label{sec:opt-ejercicios}
+
+\subsection{Naturaleza de la luz, reflexión y refracción}
+
+\begin{exercise}
+    ¿Cuál es la frecuencia de una luz que en el aire tiene una longitud de onda de \qty{600}{\nm}? ¿Cuál es su frecuencia, su
+    velocidad y su longitud de onda en el agua (\(n = 1{,}33\))?
+    \begin{solu}
+        \(\nu = \dfrac{c}{\lambda} = \dfrac{3\cdot 10^8}{600\cdot 10^{-9}} = \textcolor{red}{\qty{5e14}{\hertz}}\); \textcolor{red}{en el agua es la misma}.
+
+        \(v = \dfrac{c}{n} = \textcolor{red}{\qty{2.26e8}{\m\per\second}}\); \(\lambda = \dfrac{600}{1{,}33} = \textcolor{red}{\qty{451}{\nm}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un rayo que viaja por el aire llega a la superficie de un estanque con un ángulo de incidencia de \ang{40}
+    (\(n_{\text{agua}} = 1{,}33\)).
+    \begin{enumerate}[label=\letraminuscula]
+        \item ¿Qué ángulo forman entre sí el rayo reflejado y el refractado?
+        \item Si la luz fuera del agua al aire, ¿a partir de qué ángulo de incidencia habría reflexión total?
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(\sen\hat r = \dfrac{\sen\ang{40}}{1{,}33} \Rightarrow \hat r = \ang{28.9}\).
+            \textcolor{blue}{El reflejado forma \ang{40} con la normal por arriba y el refractado \ang{28.9} por abajo:}
+            \(\ang{180} - \ang{40} - \ang{28.9} = \textcolor{red}{\ang{111.1}}\).
+            \item \(\sen\hat{\imath}_L = \dfrac{1}{1{,}33} \Rightarrow \textcolor{red}{\hat{\imath}_L = \ang{48.8}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Cuando un rayo incide sobre cierto material con un ángulo de \ang{35}, los rayos reflejado y refractado forman entre sí
+    \ang{125}. Calcula el índice de refracción del material.
+    \begin{solu}
+        \textcolor{blue}{\(\ang{180} = \hat{\imath} + \ang{125} + \hat r \Rightarrow \hat r = \ang{20}\).}
+        \(n = \dfrac{\sen\ang{35}}{\sen\ang{20}} = \textcolor{red}{1{,}68}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    El índice de refracción del agua es \num{1.33} y el de un vidrio \emph{flint}, \num{1.60}. Calcula el ángulo límite entre
+    los dos medios. ¿En qué sentido debe ir la luz para que pueda haber reflexión total?
+    \begin{solu}
+        \(\sen\hat{\imath}_L = \dfrac{1{,}33}{1{,}60} = 0{,}831 \Rightarrow \textcolor{red}{\hat{\imath}_L = \ang{56.2}}\).
+        \textcolor{red}{Del vidrio hacia el agua} \textcolor{blue}{(de más a menos refringente).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Si un rayo de luz pasa del etanol (\(n = 1{,}36\)) al aire, ¿a partir de qué ángulo de incidencia hay reflexión total?
+    \begin{solu}
+        \(\sen\hat{\imath}_L = \dfrac{1}{1{,}36} \Rightarrow \textcolor{red}{\hat{\imath}_L = \ang{47.3}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un cubo de vidrio (\(n = 1{,}6\)) está sumergido en agua (\(n = 1{,}33\)). Un rayo entra por una cara lateral y llega a
+    la cara superior. ¿Qué ángulo de incidencia en la cara lateral, como máximo, hace falta para que en la cara superior se
+    produzca reflexión total?
+    \begin{solu}
+        \textcolor{blue}{Ángulo límite vidrio-agua: \(\sen\hat{\imath}_L = 1{,}33/1{,}6 \Rightarrow \hat{\imath}_L = \ang{56.2}\).
+        Las dos caras son perpendiculares, así que el ángulo con que el rayo llega a la cara superior es \(\ang{90} - \hat r\),
+        donde \(\hat r\) es el de refracción en la lateral. Para reflexión total: \(\ang{90} - \hat r \geq \ang{56.2} \Rightarrow \hat r \leq \ang{33.8}\).}
+        \[ \sen\hat{\imath} \leq \dfrac{1{,}6}{1{,}33}\sen\ang{33.8} = 0{,}669 \;\Rightarrow\; \textcolor{red}{\hat{\imath} \leq \ang{42.0}} \]
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    En el laboratorio se hace llegar un rayo de luz a la cara plana de un semicilindro de vidrio con distintos ángulos de
+    incidencia y se miden los de refracción:
+    \begin{center}
+        \begin{tabular}{@{}lcccc@{}}
+            \toprule
+            \(\hat{\imath}\) & \ang{15} & \ang{30} & \ang{45} & \ang{60} \\
+            \midrule
+            \(\hat r\) & \ang{10.0} & \ang{19.6} & \ang{28.3} & \ang{35.5} \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+    Calcula el índice de refracción del vidrio, la velocidad de la luz en él y su ángulo límite.
+    \begin{solu}
+        \textcolor{blue}{\(n = \sen\hat{\imath}/\sen\hat r\) en cada medida: \num{1.49}; \num{1.49}; \num{1.49}; \num{1.49}.}
+        \(n = \textcolor{red}{1{,}49}\); \(v = \dfrac{c}{n} = \textcolor{red}{\qty{2.01e8}{\m\per\second}}\);
+        \(\sen\hat{\imath}_L = \dfrac{1}{1{,}49} \Rightarrow \textcolor{red}{\hat{\imath}_L = \ang{42.2}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Lámina y prisma}
+
+\begin{exercise}
+    Una lámina de vidrio de caras paralelas, situada en el aire, tiene \qty{6}{\cm} de espesor e índice \num{1.58}. Un rayo
+    incide en ella con un ángulo de \ang{35}. Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item El ángulo de refracción dentro de la lámina y el de emergencia.
+        \item El desplazamiento lateral del rayo y la distancia que recorre dentro de la lámina.
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(\sen\hat r = \dfrac{\sen\ang{35}}{1{,}58} \Rightarrow \textcolor{red}{\hat r = \ang{21.3}}\); \textcolor{red}{emerge con \ang{35}}.
+            \item \(AB = \dfrac{6}{\cos\ang{21.3}} = \textcolor{red}{\qty{6.44}{\cm}}\);
+            \(\delta = 6{,}44\sen(\ang{35} - \ang{21.3}) = \textcolor{red}{\qty{1.53}{\cm}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Sobre una cara de un prisma de vidrio (\(n = 1{,}5\)) de ángulo \ang{50}, situado en el aire, incide un rayo con un
+    ángulo de \ang{25}. Calcula el ángulo de emergencia, la desviación y la desviación mínima del prisma.
+    \begin{solu}
+        \textcolor{blue}{Primera cara:} \(\sen\hat r_1 = \dfrac{\sen\ang{25}}{1{,}5} \Rightarrow \hat r_1 = \ang{16.4}\).
+        \textcolor{blue}{Segunda cara:} \(\hat{\imath}_2 = \varphi - \hat r_1 = \ang{33.6}\);
+        \(\sen\hat r_2 = 1{,}5\sen\ang{33.6} \Rightarrow \textcolor{red}{\hat r_2 = \ang{56.2}}\).
+
+        \(\delta = \hat{\imath}_1 + \hat r_2 - \varphi = 25 + 56{,}2 - 50 = \textcolor{red}{\ang{31.2}}\).
+
+        \textcolor{blue}{Desviación mínima: \(\hat r_1 = \ang{25}\), \(\sen\hat{\imath}_1 = 1{,}5\sen\ang{25} \Rightarrow \hat{\imath}_1 = \ang{39.3}\);}
+        \(\delta_m = 2\cdot\ang{39.3} - \ang{50} = \textcolor{red}{\ang{28.7}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un prisma de \ang{60} produce una desviación mínima de \ang{40}. Calcula el índice de refracción del material y el
+    ángulo de incidencia que da esa desviación.
+    \begin{solu}
+        \(n = \dfrac{\sen\dfrac{40 + 60}{2}}{\sen 30} = \dfrac{\sen\ang{50}}{\sen\ang{30}} = \textcolor{red}{1{,}53}\);
+        \(\hat{\imath}_1 = \dfrac{\delta_m + \varphi}{2} = \textcolor{red}{\ang{50}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    En un prisma de \ang{40}, un rayo que incide con un ángulo de \ang{31} recorre el interior del prisma paralelo a su base.
+    Calcula el índice de refracción del prisma.
+    \begin{solu}
+        \textcolor{blue}{Si el rayo interior es paralelo a la base, la marcha es simétrica: \(\hat r_1 = \varphi/2 = \ang{20}\).}
+        \(n = \dfrac{\sen\ang{31}}{\sen\ang{20}} = \textcolor{red}{1{,}51}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Dioptrios y espejos}
+
+\begin{exercise}
+    Una piscina parece tener \qty{1.5}{\m} de profundidad. ¿Cuál es su profundidad real? (\(n_{\text{agua}} = 1{,}33\)).
+    \begin{solu}
+        \(\dfrac{s'}{s} = \dfrac{n'}{n} = \dfrac{1}{1{,}33} \Rightarrow s = 1{,}33\cdot 1{,}5 = \textcolor{red}{\qty{2.0}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un objeto de \qty{15}{\mm} está a \qty{12}{\cm} del vértice de un espejo convexo de \qty{30}{\cm} de radio. ¿Dónde se
+    forma la imagen y cómo es?
+    \begin{solu}
+        \textcolor{blue}{\(f = R/2 = \qty{15}{\cm}\).} \(\dfrac{1}{s'} = \dfrac{1}{15} + \dfrac{1}{12} \Rightarrow \textcolor{red}{s' = \qty{6.67}{\cm}}\);
+        \(\beta = -\dfrac{6{,}67}{-12} = 0{,}556 \Rightarrow \textcolor{red}{y' = \qty{8.3}{\mm}}\).
+        \textcolor{red}{Virtual, derecha y menor.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un objeto de \qty{2}{\cm} está a \qty{24}{\cm} del vértice de un espejo cóncavo de \qty{16}{\cm} de radio. ¿Dónde está
+    la imagen y qué características tiene? Dibuja el esquema de rayos.
+    \begin{solu}
+        \textcolor{blue}{\(f = \qty{-8}{\cm}\).} \(\dfrac{1}{s'} = \dfrac{1}{-8} - \dfrac{1}{-24} = -\dfrac{1}{12} \Rightarrow \textcolor{red}{s' = \qty{-12}{\cm}}\);
+        \(\beta = -0{,}5 \Rightarrow \textcolor{red}{y' = \qty{-1}{\cm}}\).
+        \textcolor{red}{Real, invertida y menor} \textcolor{blue}{(el objeto está más allá de \(C\), como en la figura~\ref{fig:opt-espejos-imagenes}a).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un espejo situado a \qty{1.5}{\m} de un objeto da una imagen derecha y cuatro veces mayor. ¿Es cóncavo o convexo?
+    ¿Cuánto mide su radio de curvatura?
+    \begin{solu}
+        \textcolor{blue}{Una imagen derecha y mayor solo la da un espejo cóncavo con el objeto entre el foco y el espejo.}
+        \(\beta = -\dfrac{s'}{s} = 4 \Rightarrow s' = -4s = \qty{600}{\cm}\).
+        \[ \dfrac{1}{f} = \dfrac{1}{600} + \dfrac{1}{-150} = -\dfrac{3}{600} \;\Rightarrow\; f = \qty{-200}{\cm} \]
+        \textcolor{red}{Cóncavo, de radio \(R = 2f = \qty{-4}{\m}\).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿Qué características tiene la imagen que da un espejo esférico si la distancia imagen es negativa y el aumento lateral
+    también?
+    \begin{solu}
+        \textcolor{red}{\(s' < 0\): la imagen está delante del espejo y es real. \(\beta < 0\): es invertida.}
+        \textcolor{blue}{Solo puede darla un espejo cóncavo con el objeto más allá del foco.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Tenemos un espejo cóncavo de \qty{1}{\m} de radio. ¿Dónde hay que poner un objeto pequeño para obtener una imagen
+    invertida y tres veces mayor?
+    \begin{solu}
+        \textcolor{blue}{\(f = \qty{-50}{\cm}\). Invertida: \(\beta = -\dfrac{s'}{s} = -3 \Rightarrow s' = 3s\).}
+        \[ \dfrac{1}{3s} + \dfrac{1}{s} = \dfrac{1}{-50} \;\Rightarrow\; \dfrac{4}{3s} = -\dfrac{1}{50} \;\Rightarrow\; \textcolor{red}{s = \qty{-66.7}{\cm}} \]
+        \textcolor{blue}{(Entre \(C\) y \(F\); la imagen, real, está a \qty{2}{\m} del espejo.)}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un espejo cóncavo forma una imagen real tres veces mayor que el objeto, que está a \qty{30}{\cm} del espejo. Calcula el
+    radio de curvatura.
+    \begin{solu}
+        \textcolor{blue}{Real: invertida, \(\beta = -3 \Rightarrow s' = 3s = \qty{-90}{\cm}\).}
+        \(\dfrac{1}{f} = \dfrac{1}{-90} + \dfrac{1}{-30} = -\dfrac{4}{90} \Rightarrow f = \qty{-22.5}{\cm}\);
+        \(\textcolor{red}{R = \qty{-45}{\cm}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Lentes}
+
+\begin{exercise}
+    Un objeto de \qty{1.5}{\cm} se coloca a \qty{20}{\cm} de una lente convergente de \qty{30}{\cm} de distancia focal.
+    Calcula la posición y el tamaño de la imagen.
+    \begin{solu}
+        \(\dfrac{1}{s'} = \dfrac{1}{30} + \dfrac{1}{-20} = -\dfrac{1}{60} \Rightarrow \textcolor{red}{s' = \qty{-60}{\cm}}\);
+        \(\beta = \dfrac{-60}{-20} = 3 \Rightarrow \textcolor{red}{y' = \qty{4.5}{\cm}}\).
+        \textcolor{red}{Virtual, derecha y mayor} \textcolor{blue}{(actúa como lupa).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Dibuja el esquema de rayos de la imagen que da una lente convergente de distancia focal \(f'\) cuando el objeto está:
+    a) a menos de \(f'\); b) a más de \(2f'\); c) entre \(f'\) y \(2f'\). Indica las características de cada imagen.
+    \begin{solu}
+        \textcolor{blue}{Ver la figura~\ref{fig:opt-lentes-imagenes}.}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \textcolor{red}{Virtual, derecha y mayor}, del mismo lado que el objeto.
+            \item \textcolor{red}{Real, invertida y menor}, entre \(F'\) y \(2F'\).
+            \item \textcolor{red}{Real, invertida y mayor}, más allá de \(2F'\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Construye la imagen de un objeto situado más allá del foco de una lente divergente. ¿Cambian sus características si el
+    objeto está entre el foco y la lente?
+    \begin{solu}
+        \textcolor{blue}{El rayo paralelo al eje sale como si viniera de \(F'\) (que está delante de la lente) y el que pasa por
+        el centro no se desvía. Sus prolongaciones se cortan entre \(F'\) y la lente.}
+        \textcolor{red}{La imagen es siempre virtual, derecha y menor, esté donde esté el objeto.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿Qué aumento produce una lente convergente de \qty{12}{\cm} de distancia focal si el objeto está a \qty{4}{\cm} de ella?
+    \begin{solu}
+        \(\dfrac{1}{s'} = \dfrac{1}{12} - \dfrac{1}{4} = -\dfrac{1}{6} \Rightarrow s' = \qty{-6}{\cm}\);
+        \(\beta = \dfrac{-6}{-4} = \textcolor{red}{1{,}5}\) \textcolor{blue}{(imagen virtual y derecha).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un objeto de \qty{2}{\cm} está a \qty{15}{\cm} de una lente divergente de \qty{25}{\cm} de distancia focal. Calcula la
+    posición y el tamaño de la imagen.
+    \begin{solu}
+        \textcolor{blue}{\(f' = \qty{-25}{\cm}\).} \(\dfrac{1}{s'} = -\dfrac{1}{25} - \dfrac{1}{15} \Rightarrow \textcolor{red}{s' = \qty{-9.4}{\cm}}\);
+        \(\beta = 0{,}625 \Rightarrow \textcolor{red}{y' = \qty{1.25}{\cm}}\): \textcolor{red}{virtual, derecha y menor}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La imagen real de un objeto, invertida y tres veces mayor, se forma a \qty{30}{\cm} de una lente convergente. Calcula
+    la potencia de la lente.
+    \begin{solu}
+        \textcolor{blue}{\(\beta = \dfrac{s'}{s} = -3\) con \(s' = \qty{30}{\cm} \Rightarrow s = \qty{-10}{\cm}\).}
+        \(\dfrac{1}{f'} = \dfrac{1}{30} - \dfrac{1}{-10} = \dfrac{4}{30} \Rightarrow f' = \qty{7.5}{\cm}\);
+        \(P = \dfrac{1}{0{,}075} = \textcolor{red}{\qty{13.3}{D}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un objeto de \qty{2}{\cm} está a \qty{30}{\cm} de una lente de \qty{-5}{D}. Calcula la distancia focal, la posición, el
+    tamaño y las características de la imagen, y construye el diagrama de rayos.
+    \begin{solu}
+        \(f' = \dfrac{1}{-5} = \textcolor{red}{\qty{-20}{\cm}}\) \textcolor{blue}{(divergente).}
+        \(\dfrac{1}{s'} = -\dfrac{1}{20} - \dfrac{1}{30} \Rightarrow \textcolor{red}{s' = \qty{-12}{\cm}}\);
+        \(\beta = 0{,}4 \Rightarrow \textcolor{red}{y' = \qty{0.8}{\cm}}\): \textcolor{red}{virtual, derecha y menor}
+        \textcolor{blue}{(como en la figura~\ref{fig:opt-lentes-imagenes}d).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Dos lentes convergentes delgadas, de \qty{8}{\cm} y \qty{12}{\cm} de distancia focal, están separadas \qty{50}{\cm}. Un
+    objeto de \qty{3}{\cm} se coloca \qty{24}{\cm} delante de la primera. Calcula la posición y el tamaño de la imagen final.
+    \begin{solu}
+        \textcolor{blue}{Primera lente:} \(\dfrac{1}{s'_1} = \dfrac{1}{8} - \dfrac{1}{24} \Rightarrow s'_1 = \qty{12}{\cm}\); \(\beta_1 = \dfrac{12}{-24} = -0{,}5\).
+
+        \textcolor{blue}{Esa imagen hace de objeto para la segunda, a \(50 - 12 = \qty{38}{\cm}\) delante de ella: \(s_2 = \qty{-38}{\cm}\).}
+        \(\dfrac{1}{s'_2} = \dfrac{1}{12} - \dfrac{1}{38} \Rightarrow \textcolor{red}{s'_2 = \qty{17.5}{\cm}}\) \textcolor{blue}{detrás de la segunda lente}; \(\beta_2 = -0{,}46\).
+
+        \(\beta = \beta_1\beta_2 = 0{,}23 \Rightarrow \textcolor{red}{y' = \qty{0.69}{\cm}}\): \textcolor{red}{real, derecha y menor}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una lente planoconvexa de vidrio (\(n = 1{,}5\)) tiene una distancia focal de \qty{40}{\cm}. ¿Cuál es el radio de su cara
+    curva? ¿Y su potencia?
+    \begin{solu}
+        \textcolor{blue}{Con \(R_2 = \infty\):} \(\dfrac{1}{40} = 0{,}5\cdot\dfrac{1}{R_1} \Rightarrow \textcolor{red}{R_1 = \qty{20}{\cm}}\);
+        \(P = \dfrac{1}{0{,}40} = \textcolor{red}{\qty{2.5}{D}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    El punto próximo de una persona con presbicia está a \qty{1}{\m}. ¿Qué potencia deben tener sus gafas para leer a
+    \qty{25}{\cm}?
+    \begin{solu}
+        \textcolor{blue}{El texto (\(s = \qty{-0.25}{\m}\)) debe dar una imagen virtual en el punto próximo (\(s' = \qty{-1}{\m}\)):}
+        \(P = \dfrac{1}{s'} - \dfrac{1}{s} = -1 + 4 = \textcolor{red}{\qty{3}{D}}\) \textcolor{blue}{(convergente).}
+    \end{solu}
+\end{exercise}

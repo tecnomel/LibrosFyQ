@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_19 · Geometría trigonal plana del BI3</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/moleculas.js"></script>
+</head>
+<body>
+<script>
+// AB3: trigonal plana, 120°.
+const svg = crearFigura(560, 360);
+const cam = [1, -0.12, 0.08];
+esquemaGeometria(svg, 10, 10, 170, 150, GEOM.trigonal.map(p => ({ p, t: "B" })), { camara: cam, escala: 55, angulo: "120°" });
+const m = molAB("B", "I", GEOM.trigonal, 1.15, { angEtq: [0, -30, 210] });
+m.atomos.forEach((a, i) => { if (i) a.r = 0.32; });
+m.angulos = [{ a: 2, c: 0, b: 3, texto: "120°", radio: 0.5, dy: 18 }];
+dibujarMolecula(svg, m, { cx: 360, cy: 185, escala: 115, camara: cam });
+</script>
+</body>
+</html>

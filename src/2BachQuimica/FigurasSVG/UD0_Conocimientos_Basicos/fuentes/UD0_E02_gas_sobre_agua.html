@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD0_E02 · Gas recogido sobre agua</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// El gas producido en el matraz desplaza el agua de una probeta invertida. Con los niveles
+// igualados, la presión dentro es la atmosférica y es la suma de la del gas seco y la del
+// vapor de agua (ley de Dalton): p(gas) = p(total) − p(vapor H2O).
+const svg = crearFigura(820, 330);
+const T = (x, y, t, a = {}) => texto(svg, x, y, t, { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto, ...a });
+const VID = "#6E9FB3", AGUA = "#BFE3F4", AGUA2 = "#8FCDEA";
+
+// Matraz generador (Erlenmeyer) con reactivos
+el("path", { d: "M70,120 L70,165 L25,265 L165,265 L120,165 L120,120", fill: "#fff", stroke: VID, "stroke-width": 3, "stroke-linejoin": "round" }, svg);
+el("path", { d: "M40,232 L150,232 L162,262 L28,262 Z", fill: "#D7D2C8" }, svg);
+for (let i = 0; i < 9; i++) el("circle", { cx: 50 + i * 11, cy: 245 + (i % 2) * 8, r: 3.5, fill: "#9E978A" }, svg);
+for (const [x, y] of [[70, 220], [95, 205], [118, 215], [85, 185]]) el("circle", { cx: x, cy: y, r: 4, fill: "none", stroke: "#7A9", "stroke-width": 1.2 }, svg);
+el("rect", { x: 66, y: 110, width: 58, height: 14, rx: 3, fill: "#8A6D5A" }, svg);
+T(95, 295, "reacción que", { "font-size": 13 });
+T(95, 312, "produce el gas", { "font-size": 13 });
+
+// Cubeta con agua
+el("rect", { x: 330, y: 200, width: 360, height: 90, fill: AGUA }, svg);
+el("path", { d: "M330,150 L330,290 L690,290 L690,150", fill: "none", stroke: VID, "stroke-width": 3 }, svg);
+el("line", { x1: 330, y1: 200, x2: 690, y2: 200, stroke: AGUA2, "stroke-width": 2 }, svg);
+
+// Probeta invertida: gas arriba, agua abajo; nivel interior = nivel exterior
+const px = 540, pw = 60;
+el("rect", { x: px - pw / 2, y: 90, width: pw, height: 110, fill: "#FFF7E8" }, svg);
+el("rect", { x: px - pw / 2, y: 200, width: pw, height: 75, fill: AGUA }, svg);
+// Tubo de desprendimiento
+el("path", { d: "M95,110 L95,60 L470,60 L470,282 L540,282 L540,240", fill: "none", stroke: "#8A9AA2", "stroke-width": 7, "stroke-linejoin": "round" }, svg);
+el("path", { d: "M95,110 L95,60 L470,60 L470,282 L540,282 L540,240", fill: "none", stroke: "#fff", "stroke-width": 3, "stroke-linejoin": "round" }, svg);
+
+el("path", { d: `M${px - pw / 2},275 L${px - pw / 2},92 Q${px},80 ${px + pw / 2},92 L${px + pw / 2},275`, fill: "none", stroke: VID, "stroke-width": 3 }, svg);
+for (const [x, y] of [[528, 120], [552, 140], [535, 165], [556, 108], [545, 185]]) el("circle", { cx: x, cy: y, r: 3, fill: COLORES.ocre }, svg);
+for (const [x, y] of [[523, 150], [560, 170], [540, 130]]) el("circle", { cx: x, cy: y, r: 2.4, fill: "#2E8DBA" }, svg);
+for (const [x, y] of [[540, 228], [536, 214], [543, 202]]) el("circle", { cx: x, cy: y, r: 3.2, fill: "none", stroke: "#fff", "stroke-width": 1.3 }, svg);
+
+// Leyenda
+el("circle", { cx: 625, cy: 101, r: 4, fill: COLORES.ocre }, svg); texto(svg, 635, 106, "gas seco", { "font-size": 13 });
+el("circle", { cx: 625, cy: 123, r: 3, fill: "#2E8DBA" }, svg); texto(svg, 635, 128, "vapor de agua", { "font-size": 13 });
+indicador(svg, 702, 200, 572, 200, { color: COLORES.gris });
+texto(svg, 706, 196, "mismo nivel dentro", { "font-size": 12, fill: COLORES.gris });
+texto(svg, 706, 212, "y fuera", { "font-size": 12, fill: COLORES.gris });
+
+// Ecuaciones
+el("rect", { x: 190, y: 92, width: 260, height: 74, rx: 8, fill: "#FFF3EA", stroke: COLORES.ocre }, svg);
+T(320, 114, [{ t: "p" }, { t: "atm", sub: true }, { t: " = p" }, { t: "gas", sub: true }, { t: " + p" }, { t: "vapor", sub: true }], { "font-size": 15, "font-weight": "bold" });
+T(320, 136, [{ t: "p" }, { t: "gas", sub: true }, { t: " = p" }, { t: "atm", sub: true }, { t: " − p" }, { t: "vapor", sub: true }], { "font-size": 15, "font-weight": "bold", fill: COLORES.ocre });
+T(320, 156, "(p del vapor: dato tabulado a esa T)", { "font-size": 12, fill: COLORES.gris });
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_02 · Estructuras de Lewis de átomos neutros</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/cajas.js"></script>
+</head>
+<body>
+<script>
+// Estructura de Lewis de un átomo: se representan solo los electrones de valencia
+// (en negrita en la configuración electrónica).
+const FILAS = [
+    { Z: 16, s: "S", conf: "1s2 2s2 2p6 *3s2 *3p4", pares: [90, 180], e: [0, 270] },
+    { Z: 20, s: "Ca", conf: "1s2 2s2 2p6 3s2 3p6 *4s2", pares: [0] },
+    { Z: 8, s: "O", conf: "1s2 *2s2 *2p4", pares: [90, 180], e: [0, 270] },
+    { Z: 35, s: "Br", conf: "1s2 2s2 2p6 3s2 3p6 3d10 *4s2 *4p5", pares: [90, 180, 270], e: [0] },
+    { Z: 17, s: "Cl", conf: "1s2 2s2 2p6 *3s2 *3p5", pares: [90, 180, 270], e: [0] },
+];
+const svg = crearFigura(660, 330);
+const COL = [60, 110, 560], FILA = 56, Y0 = 70;
+texto(svg, COL[1], 28, "Configuración electrónica", { "font-size": 17, "font-weight": "bold", fill: COLORES.texto });
+texto(svg, COL[2], 28, "Estructura de Lewis", { "text-anchor": "middle", "font-size": 17, "font-weight": "bold", fill: COLORES.texto });
+el("line", { x1: 20, y1: 40, x2: 640, y2: 40, stroke: COLORES.ocre, "stroke-width": 1.5 }, svg);
+FILAS.forEach((f, i) => {
+    const y = Y0 + i * FILA;
+    if (i % 2) el("rect", { x: 20, y: y - 26, width: 620, height: FILA, fill: "#FFF5EE" }, svg);
+    simboloZ(svg, COL[0], y + 6, f.Z, f.s);
+    texto(svg, COL[1], y + 6, configuracion(f.conf), { "font-size": 18, fill: COLORES.texto });
+    dibujarLewis(svg, COL[2], y, { atomos: [{ s: f.s, x: 0, y: 0, pares: f.pares, e: f.e, colorPares: "#D32F2F" }] });
+});
+</script>
+</body>
+</html>

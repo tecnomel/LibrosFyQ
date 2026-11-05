@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cromatografía</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="steps.css">
+<script src="lab_es.js"></script>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1></h1>
+    <div class="prop" id="prop"></div>
+    <div class="row" id="row"></div>
+</div>
+<script>
+const paper = (inner, solvH) => `<rect x="70" y="10" width="120" height="180" fill="#FDFEFE" stroke="#AAB7B8" stroke-width="3"/>${inner}` +
+  (solvH ? `<path d="M50 ${200 - solvH} L50 200 L210 200 L210 ${200 - solvH}" fill="#D6EAF8" opacity="0.8"/><path d="M50 60 L50 200 L210 200 L210 60" fill="none" stroke="${C.line}" stroke-width="4"/>` : '');
+buildSteps('Cómo separar por cromatografía', 'la distancia que el disolvente <b>arrastra</b> cada sustancia por el papel', 'tintas o colorantes alimentarios', [
+  [paper(`<line x1="78" y1="160" x2="182" y2="160" stroke="#7F8C8D" stroke-dasharray="5 4" stroke-width="2"/>` + dots([[105,160],[155,160]],6,'#23373B')) +
+   T(222,160,'lápiz',{fs:12,fw:400}) + T(105,184,'A',{fs:13}) + T(155,184,'B',{fs:13}),
+   'Traza una línea a <b>lápiz</b> en el papel y pon encima una gotita de cada tinta.'],
+  [paper(`<line x1="78" y1="160" x2="182" y2="160" stroke="#7F8C8D" stroke-dasharray="5 4" stroke-width="2"/>` + dots([[105,160],[155,160]],6,'#23373B'), 25),
+   'Mete la parte de abajo del papel en el <b>disolvente</b> (agua o alcohol). Las gotas deben quedar <b>por encima</b>.'],
+  [paper(`<rect x="72" y="85" width="116" height="90" fill="#D6EAF8" opacity="0.7"/>` + dots([[105,105]],7,'#F4D03F') + dots([[105,125],[155,125]],7,'#E74C3C') + dots([[105,145]],7,'#3498DB') + dots([[155,140]],7,'#8E44AD'), 25) +
+   arrowD(235,175,235,100,C.blue) + T(255,90,'disolvente',{fs:12,fw:400,a:'end'}),
+   'El disolvente <b>sube</b> por el papel y arrastra cada colorante una distancia <b>diferente</b>.'],
+  [paper(dots([[105,60]],8,'#F4D03F') + dots([[105,95]],8,'#E74C3C') + dots([[105,130]],8,'#3498DB') +
+   dots([[155,95]],8,'#E74C3C') + dots([[155,118]],8,'#8E44AD') + T(105,184,'A',{fs:13}) + T(155,184,'B',{fs:13})),
+   'Déjalo secar: cada <b>mancha</b> es una sustancia distinta. Misma altura = misma sustancia.'],
+]);
+</script>
+</body>
+</html>

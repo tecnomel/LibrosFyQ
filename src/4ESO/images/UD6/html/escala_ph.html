@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Escala de pH</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="960" height="250"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const cols = ['#C0392B', '#E74C3C', '#E67E22', '#F39C12', '#F4D03F', '#D4E157', '#9CCC65', '#58D68D', '#26A69A', '#29B6F6', '#1E88E5', '#3949AB', '#5E35B1', '#6A1B9A', '#4A148C'];
+    const X = ph => 40 + ph * 60;
+    for (let i = 0; i <= 14; i++) {
+        add('rect', { x: X(i) - 30, y: 90, width: 60, height: 50, fill: cols[i] });
+        label(add, X(i), 122, i, { 'font-size': 18, fill: '#fff' });
+    }
+    add('rect', { x: X(0) - 30, y: 90, width: 900, height: 50, fill: 'none', stroke: '#23373B', 'stroke-width': 2 });
+    arrow(add, X(6.6), 165, X(0) - 20, 165, '#C0392B', 3, 12); label(add, X(3.3), 185, 'cada vez más ácido', { 'font-size': 15, fill: '#C0392B' });
+    arrow(add, X(7.4), 165, X(14) + 20, 165, '#3949AB', 3, 12); label(add, X(10.7), 185, 'cada vez más básico', { 'font-size': 15, fill: '#3949AB' });
+    label(add, X(7), 175, 'neutro', { 'font-size': 14, fill: '#1E8449' });
+    // ejemplos
+    [[0.5, 'ácido de baterías'], [2.3, 'zumo de limón'], [3, 'vinagre'], [5, 'café'], [5.5, 'champú'], [7, 'agua pura'], [7.5, 'agua de mar'], [8.3, 'bicarbonato'], [11.5, 'amoníaco'], [12.5, 'lejía'], [13.8, 'sosa cáustica']].forEach(([ph, t], i) => {
+        const y = i % 2 ? 40 : 65;
+        add('line', { x1: X(ph), y1: y + 4, x2: X(ph), y2: 90, stroke: '#7F8C8D', 'stroke-width': 1.2 });
+        label(add, X(ph), y, t, { 'font-size': 13, fill: '#23373B', 'font-weight': 600 });
+    });
+    label(add, 480, 225, 'pH < 7: ácido   ·   pH = 7: neutro   ·   pH > 7: básico', { 'font-size': 16, fill: '#000070' });
+</script>
+</body>
+</html>

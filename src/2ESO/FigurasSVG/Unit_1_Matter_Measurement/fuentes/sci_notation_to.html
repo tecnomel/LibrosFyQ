@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Writing a number in scientific notation</title>
+<link rel="stylesheet" href="style.css">
+<script src="sci_jumps.js"></script>
+<style>
+    body { width: 1150px; }
+    .case { display: flex; align-items: center; gap: 22px; border-radius: 18px; padding: 10px 18px; margin-bottom: 16px; }
+    .big { background: var(--ocre-soft); border: 3px solid var(--ocre); }
+    .small { background: var(--blue-soft); border: 3px solid var(--blue); }
+    .lab { width: 230px; font-size: 18px; }
+    .lab h2 { font-size: 23px; margin-bottom: 4px; }
+    .big h2 { color: #A3400B; } .small h2 { color: var(--blue); }
+    .start { font-size: 30px; font-weight: 800; }
+    .diag { background: #FFFFFF; border-radius: 12px; padding: 0 6px; }
+    .arrow { font-size: 40px; color: var(--teal); }
+    .res { text-align: center; }
+    .res .v { font-size: 38px; font-weight: 800; color: var(--red); white-space: nowrap; }
+    .res .v sup { font-size: 0.6em; }
+    .res .why { font-size: 17px; }
+    .res .why b { color: var(--red); }
+    .rule { text-align: center; font-size: 19px; margin-top: 4px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>From decimal to scientific notation: count the jumps of the comma</h1>
+    <div class="case big">
+        <div class="lab"><h2>Number ≥ 10</h2><div class="start">45 000</div>The comma is hidden at the end: 45 000<b style="color:var(--red)">,</b></div>
+        <div class="diag" id="d1"></div>
+        <div class="arrow">→</div>
+        <div class="res"><div class="v">4,5 · 10<sup>4</sup></div><div class="why">4 jumps to the <b>LEFT</b><br>→ exponent <b>+4</b></div></div>
+    </div>
+    <div class="case small">
+        <div class="lab"><h2>Number &lt; 1</h2><div class="start">0,0032</div>The zeros in front of the 3 disappear.</div>
+        <div class="diag" id="d2"></div>
+        <div class="arrow">→</div>
+        <div class="res"><div class="v">3,2 · 10<sup>−3</sup></div><div class="why">3 jumps to the <b>RIGHT</b><br>→ exponent <b>−3</b></div></div>
+    </div>
+    <div class="rule">Move the comma until <b>only one digit (not zero)</b> is left in front of it. <b>Number of jumps = exponent.</b></div>
+</div>
+<script>
+    drawJumps(document.getElementById("d1"), { digits: "45000", from: 5, to: 1, faded: [2, 3, 4], colour: "#F36619" });
+    drawJumps(document.getElementById("d2"), { digits: "00032", from: 1, to: 4, faded: [0, 1, 2], colour: "#000070" });
+</script>
+</body>
+</html>

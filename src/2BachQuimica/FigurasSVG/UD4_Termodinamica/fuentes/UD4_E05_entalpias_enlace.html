@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD4_E05 · Entalpías de enlace</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Entalpías medias de enlace (kJ/mol).
+const D = [
+    ["H−H", 436, "N=O", 221], ["C−H", 415, "N−F", 272], ["N−H", 390, "N−Cl", 200], ["O−H", 460, "N−Br", 242], ["Cl−H", 431, "N−N", 163],
+    ["F−H", 564, "N=N", 412], ["Br−H", 368, "N≡N", 945], ["I−H", 299, "O−O", 152], ["S−H", 338, "O=O", 494], ["C−C", 347, "I−I", 150],
+    ["C=C", 610, "Br−Br", 192], ["C≡C", 830, "Cl−Cl", 244], ["C−O", 352, "F−F", 155], ["C−N", 285, "C≡N", 887], ["C−Cl", 335, "C=N", 615],
+    ["C−Br", 280, "C=O", 735], ["C−I", 234, "C−S", 259],
+];
+const svg = crearFigura(640, 18 * 32 + 12);
+const h = [{ t: "ΔH (kJ·mol" }, { t: "−1", sup: true }, { t: ")" }];
+tabla(svg, 5, 5, [["Enlace", h, "Enlace", h], ...D.map(r => r.map(String))], { anchos: [155, 160, 155, 160], alto: 32, tam: 16 });
+</script>
+</body>
+</html>

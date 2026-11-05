@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ósmosis inversa</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 720px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="660" height="310"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const yb = 270, xm = 330;
+    // agua de mar (izquierda) a presión, agua pura (derecha)
+    add('rect', { x: 40, y: 110, width: xm - 40, height: yb - 110, fill: '#5DADE2' });
+    add('rect', { x: xm, y: 170, width: 620 - xm, height: yb - 170, fill: '#D6EAF8' });
+    add('path', { d: `M40 20 L40 ${yb} L620 ${yb} L620 120`, fill: 'none', stroke: '#5D6D7E', 'stroke-width': 3 });
+    // émbolo
+    add('rect', { x: 43, y: 96, width: xm - 46, height: 14, fill: '#85929E' });
+    add('rect', { x: 177, y: 20, width: 14, height: 76, fill: '#85929E' });
+    arrow(add, 230, 10, 230, 90, '#C0392B', 7, 20);
+    label(add, 262, 50, 'p > π', { 'font-size': 20, fill: '#C0392B' });
+    // membrana
+    add('line', { x1: xm, y1: 100, x2: xm, y2: yb, stroke: '#A04000', 'stroke-width': 5, 'stroke-dasharray': '7 4' });
+    // sales
+    const r = rng(7);
+    for (let k = 0; k < 45; k++) add('circle', { cx: 55 + r() * (xm - 75), cy: 125 + r() * (yb - 140), r: 4, fill: '#7D3C98' });
+    // flujo de agua
+    arrow(add, xm - 60, 200, xm + 70, 200, '#1F618D', 5, 16);
+    arrow(add, xm - 60, 240, xm + 70, 240, '#1F618D', 5, 16);
+    // salida de agua potable
+    add('path', { d: `M620 220 L655 220`, stroke: '#5D6D7E', 'stroke-width': 3 });
+    label(add, 160, 300, 'agua de mar', { 'font-size': 17 });
+    label(add, 480, 300, 'agua desalada', { 'font-size': 17 });
+    label(add, xm, 92, 'membrana semipermeable', { 'font-size': 14, fill: '#A04000', 'text-anchor': 'start', x: xm + 8 });
+</script>
+</body>
+</html>

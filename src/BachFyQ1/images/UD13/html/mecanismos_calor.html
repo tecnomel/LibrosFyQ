@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Mecanismos de propagación del calor</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 980px; } .card svg { display: block; margin: 0 auto; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Conducción</h2><svg id="a" width="280" height="230"></svg>
+            <div class="t">Las partículas chocan y se pasan energía; no hay transporte de materia.</div></div>
+        <div class="card"><h2>Convección</h2><svg id="b" width="280" height="230"></svg>
+            <div class="t">El fluido caliente, menos denso, sube; el frío baja: corrientes de convección.</div></div>
+        <div class="card"><h2>Radiación</h2><svg id="c" width="280" height="230"></svg>
+            <div class="t">Ondas electromagnéticas (infrarrojo); se propaga incluso en el vacío.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    function llama(add, x, y, s = 1) {
+        add('path', { d: `M${x} ${y} C ${x - 16 * s} ${y - 10 * s} ${x - 8 * s} ${y - 30 * s} ${x} ${y - 46 * s} C ${x + 8 * s} ${y - 30 * s} ${x + 16 * s} ${y - 10 * s} ${x} ${y} Z`, fill: '#F39C12' });
+        add('path', { d: `M${x} ${y} C ${x - 7 * s} ${y - 6 * s} ${x - 4 * s} ${y - 16 * s} ${x} ${y - 26 * s} C ${x + 4 * s} ${y - 16 * s} ${x + 7 * s} ${y - 6 * s} ${x} ${y} Z`, fill: '#F7DC6F' });
+    }
+    function mezcla(c1, c2, f) {
+        const a = [c1, c2].map(h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)));
+        return '#' + a[0].map((v, i) => Math.round(v + (a[1][i] - v) * f).toString(16).padStart(2, '0')).join('');
+    }
+    // ---------- Conducción: barra metálica calentada por un extremo ----------
+    const A = svgAdder('a');
+    A('rect', { x: 20, y: 70, width: 240, height: 54, rx: 6, fill: '#EAECEE', stroke: '#5D6D7E', 'stroke-width': 2 });
+    const r = rng(7);
+    for (let i = 0; i < 9; i++) for (let j = 0; j < 3; j++) {
+        const f = i / 8, amp = 4 * (1 - f) + 0.8;
+        const x = 36 + i * 26 + (r() - .5) * amp, y = 82 + j * 15 + (r() - .5) * amp;
+        bead(A, x, y, 6, mezcla('#E74C3C', '#3498DB', f));
+    }
+    llama(A, 46, 178, 1.1);
+    A('rect', { x: 26, y: 178, width: 40, height: 12, rx: 3, fill: '#7F8C8D' });
+    arrow(A, 70, 150, 240, 150, '#C0392B', 3, 12);
+    rich(A, 155, 172, 'flujo de calor', { 'font-size': 14, fill: '#C0392B' });
+    rich(A, 50, 48, 'caliente', { 'font-size': 14, fill: '#C0392B' });
+    rich(A, 230, 48, 'frío', { 'font-size': 14, fill: '#2471A3' });
+    // ---------- Convección: agua calentada en un vaso ----------
+    const B = svgAdder('b');
+    beaker(B, 60, 30, 160, 150, { fill: 0.85 });
+    // corrientes
+    const cv = (d, col) => B('path', { d, fill: 'none', stroke: col, 'stroke-width': 3.5, 'stroke-linecap': 'round' });
+    cv('M140 160 L140 70', '#C0392B'); cv('M140 70 Q 140 58 120 58 L 92 58', '#E59866');
+    cv('M140 70 Q 140 58 160 58 L 188 58', '#E59866');
+    cv('M85 62 L85 150 Q 85 165 110 165', '#2471A3'); cv('M195 62 L195 150 Q 195 165 170 165', '#2471A3');
+    arrow(B, 140, 120, 140, 82, '#C0392B', 3.5, 13);
+    arrow(B, 85, 100, 85, 132, '#2471A3', 3.5, 13); arrow(B, 195, 100, 195, 132, '#2471A3', 3.5, 13);
+    B('rect', { x: 50, y: 186, width: 180, height: 24, rx: 4, fill: '#E59866', stroke: '#A04000', 'stroke-width': 1.5 });
+    B('rect', { x: 110, y: 182, width: 60, height: 5, fill: '#C0392B' });
+    label(B, 140, 225, 'placa calefactora', { 'font-size': 13, fill: '#525252', 'font-weight': 400 });
+    // ---------- Radiación: el Sol calienta un objeto ----------
+    const C = svgAdder('c');
+    const dd = C('defs', {});
+    dd.innerHTML = '<radialGradient id="sol" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FDEBD0"/><stop offset=".5" stop-color="#F7DC6F"/><stop offset="1" stop-color="#F39C12"/></radialGradient>';
+    C('circle', { cx: 50, cy: 110, r: 38, fill: 'url(#sol)' });
+    for (let k = 0; k < 12; k++) {
+        const a = k * Math.PI / 6;
+        C('line', { x1: 50 + 44 * Math.cos(a), y1: 110 + 44 * Math.sin(a), x2: 50 + 56 * Math.cos(a), y2: 110 + 56 * Math.sin(a), stroke: '#F39C12', 'stroke-width': 3 });
+    }
+    for (const dy of [-40, 0, 40]) {
+        let d = '';
+        for (let x = 0; x <= 110; x += 2) d += (x ? 'L' : 'M') + (115 + x) + ' ' + (110 + dy * (x / 110) * 0.3 + dy * 0.7 + 8 * Math.sin(x / 110 * 6 * Math.PI)).toFixed(1);
+        C('path', { d, fill: 'none', stroke: '#C0392B', 'stroke-width': 2.5 });
+        arrow(C, 222, 110 + dy + 0, 236, 110 + dy, '#C0392B', 2.5, 11);
+    }
+    C('rect', { x: 240, y: 60, width: 26, height: 100, rx: 4, fill: '#E6B0AA', stroke: '#922B21', 'stroke-width': 2 });
+    label(C, 50, 190, 'Sol', { 'font-size': 14, fill: '#B9770E' });
+    label(C, 172, 190, 'vacío o aire', { 'font-size': 13, fill: '#525252', 'font-weight': 400 });
+</script>
+</body>
+</html>

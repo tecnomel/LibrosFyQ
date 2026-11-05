@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Experimento de la lámina de oro</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Lo que se esperaba (modelo de Thomson)</h2><svg id="a" width="440" height="270"></svg><div class="t">Carga y masa repartidas: las partículas α atraviesan casi sin desviarse.</div></div>
+        <div class="card"><h2>Lo que se observó</h2><svg id="b" width="440" height="270"></svg><div class="t">La mayoría pasan; unas pocas se desvían mucho, y alguna rebota.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const ROWS = [45, 100, 155, 210], COLS = [210, 265, 320];
+    // Thomson: esferas positivas difusas
+    let A = svgAdder('a');
+    COLS.forEach(x => ROWS.forEach(y => { A('circle', { cx: x, cy: y, r: 27, fill: '#F5B7B1', stroke: '#E6B0AA' }); }));
+    const rr = rng(3);
+    COLS.forEach(x => ROWS.forEach(y => { for (let k = 0; k < 3; k++) A('circle', { cx: x - 14 + 28 * rr(), cy: y - 14 + 28 * rr(), r: 2.5, fill: '#1F618D' }); }));
+    [30, 72, 128, 182, 238].forEach((y, i) => {
+        A('path', { d: `M10 ${y} L420 ${y + (i - 2) * 2}`, stroke: '#C0392B', 'stroke-width': 2.5, fill: 'none' });
+        arrow(A, 400, y + (i - 2) * 2, 430, y + (i - 2) * 2.2, '#C0392B', 2.5, 10);
+    });
+    label(A, 40, 262, 'partículas α', { 'font-size': 13, fill: '#C0392B' });
+    // Rutherford: núcleos diminutos
+    A = svgAdder('b');
+    COLS.forEach(x => ROWS.forEach(y => { A('circle', { cx: x, cy: y, r: 27, fill: 'none', stroke: '#D5D8DC', 'stroke-dasharray': '3 3' }); bead(A, x, y, 4, '#C0392B'); }));
+    const pth = (d, end) => { A('path', { d, stroke: '#C0392B', 'stroke-width': 2.5, fill: 'none' }); arrow(A, ...end, '#C0392B', 2.5, 10); };
+    pth('M10 30 L410 30', [400, 30, 430, 30]);
+    pth('M10 72 L410 72', [400, 72, 430, 72]);
+    pth('M10 128 L410 128', [400, 128, 430, 128]);
+    pth('M10 238 L410 238', [400, 238, 430, 238]);
+    pth('M10 155 L255 155 Q262 155 255 158 L60 180', [80, 177.5, 50, 181]);              // rebota
+    pth('M10 104 L255 104 Q275 106 300 125 L360 175', [345, 162, 370, 186]);              // se desvía
+    pth('M10 214 L300 214 Q318 213 335 200 L390 165', [380, 172, 400, 158]);              // se desvía
+    label(A, 120, 200, 'rebota', { 'font-size': 13, fill: '#922B21' });
+    label(A, 375, 210, 'se desvía', { 'font-size': 13, fill: '#922B21' });
+    label(A, 330, 262, '● núcleo (no está a escala)', { 'font-size': 12, fill: '#7F8C8D' });
+</script>
+</body>
+</html>

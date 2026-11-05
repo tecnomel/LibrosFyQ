@@ -1,0 +1,57 @@
+/* Shared style for the Unit 3 figures (HTML -> PDF + SVG with ../../exportar.mjs) */
+:root {
+    --ocre: #F36619;
+    --ocre-soft: #FDE3D3;
+    --blue: #000070;
+    --blue-soft: #E3E6F7;
+    --teal: #23373B;
+    --green: #1E8449;
+    --green-soft: #DFF3E6;
+    --red: #C0392B;
+    --red-soft: #F9E0DD;
+    --grey: #525252;
+    --line: #C9CCD6;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { background: #FFFFFF; }
+
+body {
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    color: var(--teal);
+    overflow: hidden;
+}
+
+.canvas { padding: 28px 32px; }
+
+h1 {
+    font-size: 26px;
+    color: var(--blue);
+    margin-bottom: 18px;
+    border-left: 8px solid var(--ocre);
+    padding-left: 12px;
+}
+
+.note { font-size: 17px; color: var(--grey); }
+
+sup { font-size: 0.65em; }
+
+.frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 6px;
+}
+.frac > span { padding: 2px 8px; }
+.frac > span:first-child { border-bottom: 3px solid currentColor; }
+
+.cancel { position: relative; display: inline-block; }
+.cancel::after {
+    content: "";
+    position: absolute;
+    left: -3px; right: -3px; top: 50%;
+    border-top: 3px solid var(--red);
+    transform: rotate(-25deg);
+}

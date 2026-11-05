@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Carga eléctrica y fuerzas entre cargas</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>¿Cómo se carga un cuerpo?</h2><svg id="a" width="430" height="230"></svg>
+            <div class="t">Un cuerpo neutro tiene tantas cargas positivas como negativas.<br>Se carga cuando gana o pierde electrones.</div></div>
+        <div class="card"><h2>Fuerzas entre cargas</h2><svg id="b" width="380" height="230"></svg>
+            <div class="t">Las cargas del mismo signo se repelen<br>y las de signo contrario se atraen.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // a) cuerpos neutro, negativo y positivo
+    {
+        const add = svgAdder('a');
+        const body = (x, y, np, nn, title, col, sub) => {
+            add('circle', { cx: x, cy: y, r: 52, fill: col, stroke: '#5D6D7E', 'stroke-width': 2 });
+            const r = rng(7 + nn);
+            const signs = [...Array(np).fill('+'), ...Array(nn).fill('−')];
+            signs.forEach((s, i) => {
+                const ang = i * 2.4, rr = 12 + 30 * Math.sqrt((i + 0.5) / signs.length);
+                label(add, x + rr * Math.cos(ang), y + rr * Math.sin(ang) + 6, s, { 'font-size': 20, fill: s === '+' ? '#C0392B' : '#2471A3' });
+            });
+            label(add, x, y + 80, title, { 'font-size': 14 });
+            label(add, x, y + 98, sub, { 'font-size': 12, fill: '#525252', 'font-weight': 600 });
+        };
+        body(70, 85, 5, 5, 'neutro', '#F4F6F7', '5 (+) y 5 (−)');
+        body(215, 85, 5, 7, 'carga negativa', '#D6EAF8', 'ha ganado 2 electrones');
+        body(360, 85, 5, 3, 'carga positiva', '#FADBD8', 'ha perdido 2 electrones');
+        // electrones que entran y salen
+        arrow(add, 268, 20, 248, 40, '#2471A3', 2, 9); label(add, 283, 18, 'e⁻', { 'font-size': 14, fill: '#2471A3' });
+        arrow(add, 392, 40, 412, 20, '#2471A3', 2, 9); label(add, 422, 34, 'e⁻', { 'font-size': 14, fill: '#2471A3' });
+    }
+    // b) atracción y repulsión
+    {
+        const add = svgAdder('b');
+        const row = (y, s1, s2, txt) => {
+            const x1 = 120, x2 = 260, att = s1 !== s2;
+            charge(add, x1, y, s1); charge(add, x2, y, s2);
+            if (att) { arrow(add, x1 + 20, y, x1 + 60, y, '#23373B', 2.5, 10); arrow(add, x2 - 20, y, x2 - 60, y, '#23373B', 2.5, 10); }
+            else { arrow(add, x1 - 20, y, x1 - 70, y, '#23373B', 2.5, 10); arrow(add, x2 + 20, y, x2 + 70, y, '#23373B', 2.5, 10); }
+            label(add, 190, y + 40, txt, { 'font-size': 13, fill: att ? '#1E8449' : '#C0392B' });
+        };
+        row(35, 1, 1, 'se repelen');
+        row(110, -1, -1, 'se repelen');
+        row(185, 1, -1, 'se atraen');
+    }
+</script>
+</body>
+</html>

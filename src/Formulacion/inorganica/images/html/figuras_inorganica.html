@@ -1,0 +1,823 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Figuras nomenclatura inorgánica</title>
+<!--
+  Figuras para inorganica_nuevo.tex.
+  Cada figura es un <section class="fig" id="...">. Se exportan a PNG
+  (images/<id>.png) haciendo captura de cada sección con Playwright:
+     await page.locator('#fig-secuencia').screenshot({path: 'images/fig-secuencia.png'})
+  Colores coherentes con estilocrispropio.sty:
+     darkblue #000070 · mygreen #007F00 · myBlue #027FDF · myOrange3 #DD3A12
+-->
+<style>
+  :root{
+    --azul:#000070; --azul2:#027FDF; --verde:#007F00; --naranja:#DD3A12;
+    --rojo:#C00000; --gris:#6b7280; --fondo:#ffffff; --suave:#f4f6fb;
+    --metal:#cfe3ff; --nometal:#ffe2c6; --oxi:#ffd0d0; --hal:#e3f7d4; --h:#fff3a6;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:24px;background:#e9edf3;font-family:"Segoe UI",Calibri,Arial,sans-serif;color:#1d2433}
+  .fig{background:var(--fondo);width:1000px;margin:0 auto 32px;padding:26px 30px;border-radius:14px;
+       border:2px solid var(--azul)}
+  h2{margin:0 0 6px;color:var(--azul);font-size:26px}
+  .sub{margin:0 0 18px;color:var(--gris);font-size:16px}
+  sub,sup{font-size:70%}
+  .f{font-family:"Cambria Math",Cambria,"Times New Roman",serif}
+
+  /* ---------- 1. Secuencia ---------- */
+  .chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:22px;font-weight:700}
+  .chip{min-width:46px;padding:8px 10px;border-radius:9px;text-align:center;border:2px solid #0002}
+  .chip.big{padding:8px 16px}
+  .arrow{color:var(--gris);font-weight:400}
+  .m{background:var(--metal)} .nm{background:var(--nometal)} .hh{background:var(--h)}
+  .hal{background:var(--hal)} .ox{background:var(--oxi)} .fl{background:#f3c6ff}
+  .rule{display:flex;gap:16px;margin-top:20px}
+  .rule>div{flex:1;background:var(--suave);border-radius:10px;padding:14px 16px;font-size:18px}
+  .rule b{color:var(--naranja)}
+  .barra{height:14px;margin:14px 0 4px;border-radius:7px;
+         background:linear-gradient(90deg,#cfe3ff,#ffe2c6 55%,#ff9c9c)}
+  .barra-txt{display:flex;justify-content:space-between;font-size:15px;color:var(--gris)}
+
+  /* ---------- 2. Tabla periódica ---------- */
+  .pt{display:grid;grid-template-columns:repeat(18,1fr);gap:3px}
+  .el{height:50px;border-radius:5px;border:1px solid #0002;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;background:#f1f1f1;color:#9aa0a6;font-weight:700;font-size:16px}
+  .el small{font-size:12px;font-weight:700;line-height:1}
+  .el.k{color:#111}
+  .gnum{font-size:12px;color:var(--gris);text-align:center;align-self:end}
+  .c-alc{background:#9ec9ff}.c-alt{background:#c4e0ff}.c-zn{background:#c4e0ff}.c-ag{background:#9ec9ff}
+  .c-al{background:#d9ccff}.c-h{background:var(--h)}.c-o{background:#ffb3b3}.c-s{background:#ffd9a8}
+  .c-f{background:#f3c6ff}.c-x{background:#c9f0b0}
+  .leyenda{display:grid;grid-template-columns:1fr 1fr;gap:6px 22px;margin-top:16px;font-size:16px}
+  .leyenda span.sw{display:inline-block;width:18px;height:18px;border-radius:4px;vertical-align:-3px;margin-right:8px;border:1px solid #0003}
+  .nota{margin-top:14px;padding:10px 14px;border-left:6px solid var(--naranja);background:#fff4ee;font-size:16px}
+
+  /* ---------- 3. Receta ---------- */
+  .receta{display:flex;align-items:stretch;justify-content:center;gap:0;font-size:24px}
+  .pieza{padding:14px 18px;text-align:center;border:3px solid;border-radius:12px;margin:0 6px;min-width:150px}
+  .pieza .t{font-size:14px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px}
+  .p1{border-color:var(--azul2);color:var(--azul2)} .p2{border-color:var(--verde);color:var(--verde)}
+  .p3{border-color:var(--gris);color:var(--gris)} .p4{border-color:var(--naranja);color:var(--naranja)}
+  .formula{font-size:58px;text-align:center;margin:8px 0 2px;letter-spacing:2px}
+  .formula .izq{color:var(--naranja)} .formula .der{color:var(--verde)}
+  .lectura{text-align:center;font-size:18px;color:var(--gris);margin-bottom:16px}
+  .ejemplos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
+  .ejemplos div{background:var(--suave);border-radius:10px;padding:10px;text-align:center;font-size:18px}
+  .ejemplos .f{font-size:24px;font-weight:700;display:block;margin-bottom:4px}
+
+  /* ---------- 4. Suma cero ---------- */
+  .zero{display:flex;gap:22px}
+  .zcol{flex:1;background:var(--suave);border-radius:12px;padding:16px}
+  .zcol h3{margin:0 0 10px;font-size:20px;color:var(--azul)}
+  .atoms{display:flex;gap:8px;justify-content:center;margin:10px 0}
+  .atom{width:62px;height:62px;border-radius:50%;display:flex;flex-direction:column;align-items:center;
+        justify-content:center;font-weight:800;font-size:22px;border:3px solid #0003}
+  .atom small{font-size:14px}
+  .pos{background:#cfe3ff;color:#003a8c}.neg{background:#ffd0d0;color:#8c0000}
+  .cuenta{text-align:center;font-size:22px;margin-top:6px}
+  .cuenta b{color:var(--verde)}
+  .mal{border:3px dashed var(--rojo);background:#fff3f3}
+  .mal h3{color:var(--rojo)}
+
+  /* ---------- 5. Prefijos ---------- */
+  .pref{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .pref div{border-radius:10px;padding:10px;text-align:center;background:var(--suave);border:2px solid #0001}
+  .pref b{display:block;font-size:30px;color:var(--azul)}
+  .pref span{font-size:21px;color:var(--naranja);font-weight:700}
+  .pref2{display:flex;gap:12px;margin-top:14px}
+  .pref2 div{flex:1;background:#eef8ea;border-radius:10px;padding:10px 14px;font-size:16px}
+
+  /* ---------- 6. Hidruros progenitores ---------- */
+  .hid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .hid .cab{background:var(--azul);color:#fff;text-align:center;border-radius:8px;padding:6px;font-weight:700}
+  .hid .c{border-radius:8px;padding:8px;text-align:center;font-size:17px;border:1px solid #0002}
+  .hid .c .f{display:block;font-size:21px;font-weight:700}
+  .hid .imp{background:#fff3a6;border:2px solid #b48a00}
+  .hid .norm{background:#f7f7f7;color:#555}
+  .hid .hx{background:#e3f7d4}
+
+  /* ---------- 7. Escalera oxoácidos ---------- */
+  .escalera{display:flex;align-items:flex-end;gap:12px;height:440px;margin-top:6px}
+  .peld{flex:1;border-radius:12px 12px 0 0;color:#fff;padding:12px;display:flex;flex-direction:column;justify-content:flex-start;text-align:center}
+  .peld .eo{font-size:30px;font-weight:800}
+  .peld .suf{font-size:19px;font-weight:700;margin:4px 0 8px}
+  .peld .ac{background:#ffffff26;border-radius:8px;padding:6px;font-size:17px;margin-bottom:6px}
+  .peld .an{background:#ffffff;color:#333;border-radius:8px;padding:6px;font-size:17px}
+  .l1{height:64%;background:#4a90d9}.l2{height:76%;background:#2c6fb7}
+  .l3{height:88%;background:#14508f}.l4{height:100%;background:#000070}
+  .nemo{margin-top:16px;display:flex;gap:14px}
+  .nemo div{flex:1;background:#fff4ee;border-left:6px solid var(--naranja);border-radius:6px;padding:10px 14px;font-size:17px}
+
+  /* ---------- 8. Del ácido a la sal ---------- */
+  .flujo{display:flex;align-items:center;justify-content:center;gap:10px}
+  .caja{border-radius:14px;padding:14px 16px;text-align:center;min-width:200px;border:3px solid}
+  .caja .t{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+  .caja .f{display:block;font-size:34px;font-weight:700;margin:4px 0}
+  .caja .n{font-size:18px}
+  .ca{border-color:var(--azul2);background:#eaf4ff}.cb{border-color:var(--verde);background:#eef8ea}
+  .cc{border-color:var(--naranja);background:#fff4ee}
+  .flecha{text-align:center;color:var(--gris);font-size:15px;max-width:120px}
+  .flecha b{display:block;font-size:34px;color:#333}
+  .terminaciones{display:flex;justify-content:center;gap:20px;margin-top:20px}
+  .terminaciones div{background:var(--suave);border-radius:10px;padding:10px 18px;font-size:22px}
+  .terminaciones b{color:var(--naranja)}
+
+  /* ---------- 9. Mapa ---------- */
+  .mapa{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .tipo{border-radius:12px;padding:12px;border:2px solid;background:#fff}
+  .tipo h4{margin:0 0 6px;font-size:18px}
+  .tipo .f{font-size:20px;font-weight:700}
+  .tipo p{margin:4px 0 0;font-size:15px;color:#444}
+  .bin{border-color:var(--azul2)} .bin h4{color:var(--azul2)}
+  .ter{border-color:var(--verde)} .ter h4{color:var(--verde)}
+  .ion{border-color:var(--naranja)} .ion h4{color:var(--naranja)}
+  .grupo{grid-column:1/-1;font-weight:800;font-size:18px;padding:6px 12px;border-radius:8px;color:#fff}
+  .g1{background:var(--azul2)}.g2{background:var(--verde)}.g3{background:var(--naranja)}
+
+  /* ---------- 10. Esquemas de nombres (reglas) ---------- */
+  .fig.esq{width:900px;padding:18px 22px;border-width:2px}
+  .esq h3{margin:0 0 12px;font-size:19px;color:var(--azul)}
+  .esq .fila{display:grid;gap:8px;align-items:stretch}
+  .tok{border:2.5px solid;border-radius:10px;padding:6px 8px 8px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+  .tok .q{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;opacity:.85;line-height:1.15}
+  .tok .v{font-size:19px;font-weight:700;margin-top:3px;line-height:1.15}
+  .tok.k-pref{border-color:#027FDF;color:#027FDF;background:#eaf4ff}
+  .tok.k-raiz{border-color:#007F00;color:#007F00;background:#eef8ea}
+  .tok.k-fija{border-color:#000070;color:#000070;background:#eef0fb}
+  .tok.k-elem{border-color:#DD3A12;color:#DD3A12;background:#fff4ee}
+  .tok.k-nox{border-color:#7a2bb5;color:#7a2bb5;background:#f6eefc}
+  .tok.k-de{border:2.5px dashed #9aa0a6;color:#6b7280;background:#fff}
+  .tok.k-par{border:none;background:none;color:#555;font-size:34px;font-weight:300;padding:0}
+  .esq .ej{display:grid;gap:8px;margin-top:6px}
+  .esq .ej div{text-align:center;font-size:19px;font-weight:700;color:#333;border-top:2px solid #e3e6ee;padding-top:4px}
+  .esq .ej div.vacio{color:#bbb}
+  .esq .res{margin-top:10px;display:flex;align-items:center;gap:14px;background:var(--suave);border-radius:10px;padding:8px 14px;font-size:19px}
+  .esq .res .f{font-size:26px;font-weight:700;color:#1d2433}
+  .esq .res .flecha2{color:var(--gris);font-size:22px}
+  .esq .res .nombre{font-weight:700;color:var(--azul)}
+  .esq .res .nota2{margin-left:auto;font-size:14px;color:var(--gris);max-width:330px;text-align:right}
+
+  /* ---------- 11. Figuras de 2.º ESO ---------- */
+  .anat{display:flex;align-items:center;justify-content:center;gap:40px}
+  .anat .big{font-size:96px;font-family:"Cambria Math",Cambria,serif;letter-spacing:4px}
+  .anat .big .s{color:var(--naranja)} .anat .big sub{color:var(--azul2)}
+  .notas{display:flex;flex-direction:column;gap:10px;font-size:19px}
+  .notas div{background:var(--suave);border-left:6px solid;border-radius:8px;padding:8px 14px}
+  .n1{border-color:var(--naranja)!important}.n2{border-color:var(--azul2)!important}.n3{border-color:var(--verde)!important}
+  .bolas{display:flex;gap:30px;justify-content:center;margin-top:20px}
+  .bolas .grupo2{display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--suave);border-radius:12px;padding:12px 18px}
+  .bolas .fila2{display:flex;gap:6px}
+  .bola{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;border:2px solid #0003}
+  .bH{background:#ffffff}.bO{background:#ff8f8f}.bC{background:#555;color:#fff}.bFe{background:#d8a36b}
+  .bolas .t2{font-size:17px;color:#333}
+  .uro{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .uro div{border:2px solid #0001;border-radius:10px;padding:8px;text-align:center;background:var(--suave);font-size:17px}
+  .uro b{display:block;font-size:21px;color:var(--verde)}
+  .uro .esp{background:#fff4ee;border-color:var(--naranja)} .uro .esp b{color:var(--naranja)}
+  .pasos{display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr;align-items:stretch;gap:6px}
+  .paso{border:3px solid;border-radius:12px;padding:12px;text-align:center}
+  .paso .t{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+  .paso .c{font-size:21px;line-height:1.5}
+  .pa{border-color:var(--azul2);background:#eaf4ff}.pa .t{color:var(--azul2)}
+  .pb{border-color:var(--verde);background:#eef8ea}.pb .t{color:var(--verde)}
+  .pc{border-color:var(--naranja);background:#fff4ee}.pc .t{color:var(--naranja)}
+  .flp{display:flex;align-items:center;justify-content:center;font-size:34px;color:var(--gris)}
+  .ident{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .ident .tp{border:3px solid;border-radius:12px;padding:10px;text-align:center;display:flex;flex-direction:column;gap:6px}
+  .ident .fin{font-size:15px;color:#444}
+  .ident .fin b{font-size:26px;display:block;color:#1d2433}
+  .ident .nm2{font-size:20px;font-weight:800}
+  .ident .ej2{font-size:16px;color:#333}
+  .ident .i1{border-color:#DD3A12}.i1 .nm2{color:#DD3A12}
+  .ident .i2{border-color:#027FDF}.i2 .nm2{color:#027FDF}
+  .ident .i3{border-color:#007F00}.i3 .nm2{color:#007F00}
+  .ident .i4{border-color:#7a2bb5}.i4 .nm2{color:#7a2bb5}
+  .ident .i5{border-color:#000070}.i5 .nm2{color:#000070}
+  .especiales{display:flex;gap:12px;justify-content:center;margin-top:14px}
+  .especiales div{background:#fff3a6;border:2px solid #b48a00;border-radius:10px;padding:8px 16px;font-size:19px}
+
+  /* ---------- 13. Números de oxidación por grupos ---------- */
+  .grupos{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+  .gcol{border:2px solid #0002;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;text-align:center}
+  .gcol .gh{color:#fff;font-weight:800;font-size:17px;padding:6px 4px}
+  .gcol .ge{font-size:15px;color:#333;padding:6px 4px;background:#fff;min-height:52px}
+  .gcol .gp{font-size:16px;white-space:nowrap;letter-spacing:-.3px;font-weight:800;color:#003a8c;background:#eaf4ff;padding:6px 2px;flex:1}
+  .gcol .gn{font-size:19px;font-weight:800;color:#8c0000;background:#fff0f0;padding:6px 2px}
+  .gcol .lbl{display:block;font-size:11px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.3px}
+  .g-m .gh{background:#2c6fb7}.g-a .gh{background:#5b8fd6}.g-13 .gh{background:#7a2bb5}
+  .g-14 .gh{background:#555}.g-15 .gh{background:#007F00}.g-16 .gh{background:#DD3A12}.g-17 .gh{background:#000070}
+  .reglas{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+  .reglas div{background:var(--suave);border-left:6px solid var(--naranja);border-radius:8px;padding:8px 12px;font-size:16px}
+  .reglas b{color:var(--naranja)}
+
+  /* ---------- 12. Raíz del nombre ---------- */
+  .raiz{display:grid;grid-template-columns:1.2fr 1.3fr 1fr 1.3fr;gap:6px;font-size:21px;text-align:center}
+  .raiz>div{padding:7px 8px;border-radius:8px;background:var(--suave)}
+  .raiz .rcab{background:var(--azul);color:#fff;font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+  .raiz s{color:var(--rojo);text-decoration-thickness:3px}
+  .raiz .q2{color:var(--rojo);font-size:18px}
+  .raiz .r{color:var(--verde);font-weight:800}
+  .raiz .u b{color:var(--naranja)}
+  .raiz .u small{font-size:13px;color:var(--gris)}
+  .raiz .esp2{background:#fff4ee;font-weight:700}
+
+  /* Modo exportación: ?solo=<id> muestra solo esa figura, sin márgenes */
+  body.solo{padding:0;background:#fff}
+  body.solo .fig{margin:0}
+</style>
+</head>
+<body>
+
+<!-- ===================================================== 1 -->
+<section class="fig" id="fig-secuencia">
+  <h2>¿Qué elemento se escribe a la derecha?</h2>
+  <p class="sub">Secuencia de los elementos (IUPAC 2005, Tabla VI simplificada). Avanza en el sentido de las flechas.</p>
+  <div class="chain">
+    <div class="chip big m">METALES</div><span class="arrow">→</span>
+    <div class="chip nm">B</div><span class="arrow">→</span>
+    <div class="chip nm">Si</div><span class="arrow">→</span>
+    <div class="chip nm">C</div><span class="arrow">→</span>
+    <div class="chip nm">Sb</div><span class="arrow">→</span>
+    <div class="chip nm">As</div><span class="arrow">→</span>
+    <div class="chip nm">P</div><span class="arrow">→</span>
+    <div class="chip nm">N</div><span class="arrow">→</span>
+    <div class="chip hh">H</div><span class="arrow">→</span>
+    <div class="chip nm">Te</div><span class="arrow">→</span>
+    <div class="chip nm">Se</div><span class="arrow">→</span>
+    <div class="chip nm">S</div><span class="arrow">→</span>
+    <div class="chip ox">O</div><span class="arrow">→</span>
+    <div class="chip hal">I</div><span class="arrow">→</span>
+    <div class="chip hal">Br</div><span class="arrow">→</span>
+    <div class="chip hal">Cl</div><span class="arrow">→</span>
+    <div class="chip fl">F</div>
+  </div>
+  <div class="barra"></div>
+  <div class="barra-txt"><span>se escriben a la IZQUIERDA</span><span>se escriben a la DERECHA</span></div>
+  <div class="rule">
+    <div>El elemento que está <b>más a la derecha</b> en la secuencia se escribe <b>a la derecha</b> de la fórmula… <br><span class="f">Na<b style="color:#007F00">Cl</b> · Fe<sub>2</sub><b style="color:#007F00">O</b><sub>3</sub> · N<b style="color:#007F00">H</b><sub>3</sub> · H<sub>2</sub><b style="color:#007F00">S</b> · O<b style="color:#007F00">Cl</b><sub>2</sub> · O<b style="color:#007F00">F</b><sub>2</sub></span></div>
+    <div>…y es el que se <b>nombra primero</b>: <b>raíz de su nombre + uro</b> (u <b>óxido</b> si es el oxígeno). <br>NaCl → <b>cloruro</b> de sodio · Fe<sub>2</sub>O<sub>3</sub> → tri<b>óxido</b> de dihierro<br>OCl<sub>2</sub> → di<b>cloruro</b> de oxígeno · OF<sub>2</sub> → di<b>fluoruro</b> de oxígeno</div>
+  </div>
+</section>
+
+<!-- ===================================================== 2 -->
+<section class="fig" id="fig-tabla-eo">
+  <h2>Los únicos números de oxidación que necesitas saber</h2>
+  <p class="sub">El resto se deduce con la regla de la suma cero. No hace falta memorizar tablas.</p>
+  <div class="pt" id="pt"></div>
+  <div class="leyenda">
+    <div><span class="sw c-alc"></span><b>Alcalinos y Ag: +1</b></div>
+    <div><span class="sw c-h"></span><b>H: −1</b> con metales · <b>+1</b> con no metales</div>
+    <div><span class="sw c-alt"></span><b>Alcalinotérreos y Zn: +2</b></div>
+    <div><span class="sw c-o"></span><b>O: −2</b> (peróxidos −1; con halógenos, positivo)</div>
+    <div><span class="sw c-al"></span><b>Al: +3</b></div>
+    <div><span class="sw c-s"></span><b>S: −2</b> en los sulfuros</div>
+    <div><span class="sw c-f"></span><b>F: −1</b> siempre</div>
+    <div><span class="sw c-x"></span><b>Cl, Br, I: −1</b> en los compuestos binarios</div>
+  </div>
+  <div class="nota">Truco: el número de los <b>alcalinos (grupo 1)</b>, <b>alcalinotérreos (grupo 2)</b> y del <b>Al (grupo 13)</b> coincide con su grupo (13 → 3). El de los no metales sin oxígeno es <b>grupo − 18</b>: O, S (16) → −2; F, Cl, Br, I (17) → −1.</div>
+</section>
+
+<!-- ===================================================== 3 -->
+<section class="fig" id="fig-receta">
+  <h2>La receta: el nombre se lee de derecha a izquierda</h2>
+  <p class="sub">Nomenclatura de composición con prefijos multiplicadores</p>
+  <div class="formula f"><span class="izq">Fe<sub>2</sub></span><span class="der">O<sub>3</sub></span></div>
+  <div class="lectura">① primero lo que está a la derecha &nbsp;&nbsp;·&nbsp;&nbsp; ② después lo de la izquierda</div>
+  <div class="receta">
+    <div class="pieza p1"><div class="t">prefijo</div>tri</div>
+    <div class="pieza p2"><div class="t">raíz del elemento de la derecha + uro (u óxido)</div>óxido</div>
+    <div class="pieza p3"><div class="t">enlace</div>de</div>
+    <div class="pieza p1"><div class="t">prefijo</div>di</div>
+    <div class="pieza p4"><div class="t">izquierda (tal cual)</div>hierro</div>
+  </div>
+  <div class="ejemplos">
+    <div><span class="f">CO<sub>2</sub></span>di<b>óxido</b> de carbono</div>
+    <div><span class="f">PCl<sub>5</sub></span>penta<b>cloruro</b> de fósforo</div>
+    <div><span class="f">Al<sub>2</sub>S<sub>3</sub></span>tri<b>sulfuro</b> de dialuminio</div>
+    <div><span class="f">CoH<sub>3</sub></span>tri<b>hidruro</b> de cobalto</div>
+    <div><span class="f">H<sub>2</sub>S</span><b>sulfuro</b> de dihidrógeno</div>
+    <div><span class="f">N<sub>2</sub>O<sub>4</sub></span>tetra<b>óxido</b> de dinitrógeno</div>
+  </div>
+</section>
+
+<!-- ===================================================== 4 -->
+<section class="fig" id="fig-suma-cero">
+  <h2>La regla de la suma cero</h2>
+  <p class="sub">En un compuesto neutro, la suma de todos los números de oxidación es <b>0</b>. En un ion, es igual a su carga.</p>
+  <div class="zero">
+    <div class="zcol">
+      <h3>① Del nombre a la fórmula: óxido de hierro(III)</h3>
+      <div class="atoms">
+        <div class="atom pos">Fe<small>+3</small></div><div class="atom pos">Fe<small>+3</small></div>
+        <div class="atom neg">O<small>−2</small></div><div class="atom neg">O<small>−2</small></div><div class="atom neg">O<small>−2</small></div>
+      </div>
+      <div class="cuenta f">2·(+3) + 3·(−2) = +6 − 6 = <b>0 ✔</b></div>
+      <div class="cuenta">Busco el menor número de átomos que suman cero → <b class="f">Fe<sub>2</sub>O<sub>3</sub></b></div>
+    </div>
+    <div class="zcol">
+      <h3>② De la fórmula al número: PbO<sub>2</sub></h3>
+      <div class="atoms">
+        <div class="atom pos">Pb<small>x</small></div>
+        <div class="atom neg">O<small>−2</small></div><div class="atom neg">O<small>−2</small></div>
+      </div>
+      <div class="cuenta f">x + 2·(−2) = 0 → <b>x = +4</b></div>
+      <div class="cuenta">óxido de plomo(IV) · dióxido de plomo</div>
+    </div>
+  </div>
+  <div class="zero" style="margin-top:16px">
+    <div class="zcol mal">
+      <h3>⚠ Cuidado con "cruzar y simplificar"</h3>
+      <div class="cuenta">tetraóxido de dinitrógeno es <b class="f" style="color:#C00000">N<sub>2</sub>O<sub>4</sub></b> y <u>no</u> NO<sub>2</sub> (que es otra sustancia distinta: dióxido de nitrógeno). Con prefijos, la fórmula se escribe tal y como dice el nombre: <b>no se simplifica</b>.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== 5 -->
+<section class="fig" id="fig-prefijos">
+  <h2>Prefijos multiplicadores</h2>
+  <p class="sub">Indican cuántos átomos (o grupos) hay de cada constituyente</p>
+  <div class="pref">
+    <div><b>1</b><span>mono</span></div><div><b>2</b><span>di</span></div><div><b>3</b><span>tri</span></div>
+    <div><b>4</b><span>tetra</span></div><div><b>5</b><span>penta</span></div><div><b>6</b><span>hexa</span></div>
+    <div><b>7</b><span>hepta</span></div><div><b>8</b><span>octa</span></div><div><b>9</b><span>nona</span></div>
+    <div><b>10</b><span>deca</span></div>
+  </div>
+  <div class="pref2">
+    <div><b>mono</b> solo se usa si hay otros compuestos con los mismos elementos: CO <b>monóxido</b> de carbono (existe el CO<sub>2</sub>). En el elemento de la izquierda casi nunca: NaCl, no "monocloruro de monosodio".</div>
+    <div>No se quitan vocales: <b>tetraóxido</b>, <b>pentaóxido</b>, <b>heptaóxido</b> (pero sí se acepta monóxido).<br>Para grupos con prefijo: <b>bis, tris, tetrakis</b>: Ca<sub>3</sub>(PO<sub>4</sub>)<sub>2</sub> → bis(tetraoxidofosfato) de tricalcio.</div>
+  </div>
+</section>
+
+<!-- ===================================================== 6 -->
+<section class="fig" id="fig-hidruros">
+  <h2>Hidrógeno + no metal: los nombres que debes conocer</h2>
+  <p class="sub">Grupos 13 a 15 → hidruros progenitores (terminan en <b>-ano</b>). Grupos 16 y 17 → "-uro de hidrógeno".</p>
+  <div class="hid">
+    <div class="cab">Grupo 13</div><div class="cab">Grupo 14</div><div class="cab">Grupo 15</div><div class="cab">Grupo 16</div><div class="cab">Grupo 17</div>
+    <div class="c norm"><span class="f">BH<sub>3</sub></span>borano</div>
+    <div class="c imp"><span class="f">CH<sub>4</sub></span>metano</div>
+    <div class="c imp"><span class="f">NH<sub>3</sub></span>amoniaco · azano</div>
+    <div class="c imp"><span class="f">H<sub>2</sub>O</span>agua · oxidano</div>
+    <div class="c hx"><span class="f">HF</span>fluoruro de hidrógeno</div>
+    <div class="c norm"><span class="f">AlH<sub>3</sub></span>alumano</div>
+    <div class="c imp"><span class="f">SiH<sub>4</sub></span>silano</div>
+    <div class="c imp"><span class="f">PH<sub>3</sub></span>fosfano</div>
+    <div class="c hx"><span class="f">H<sub>2</sub>S</span>sulfuro de dihidrógeno</div>
+    <div class="c hx"><span class="f">HCl</span>cloruro de hidrógeno</div>
+    <div class="c norm"><span class="f">GaH<sub>3</sub></span>galano</div>
+    <div class="c norm"><span class="f">GeH<sub>4</sub></span>germano</div>
+    <div class="c imp"><span class="f">AsH<sub>3</sub></span>arsano</div>
+    <div class="c hx"><span class="f">H<sub>2</sub>Se</span>seleniuro de dihidrógeno</div>
+    <div class="c hx"><span class="f">HBr</span>bromuro de hidrógeno</div>
+    <div class="c norm"></div>
+    <div class="c norm"><span class="f">SnH<sub>4</sub></span>estannano</div>
+    <div class="c imp"><span class="f">SbH<sub>3</sub></span>estibano</div>
+    <div class="c hx"><span class="f">H<sub>2</sub>Te</span>telururo de dihidrógeno</div>
+    <div class="c hx"><span class="f">HI</span>yoduro de hidrógeno</div>
+  </div>
+  <div class="nota">✖ No se admiten: <b>fosfina, arsina, estibina</b>. &nbsp; «Ácido clorhídrico», «ácido sulfhídrico»… son nombres tradicionales de <u>disoluciones</u> (mezclas): la IUPAC <b>no</b> los admite.</div>
+</section>
+
+<!-- ===================================================== 7 -->
+<section class="fig" id="fig-escalera">
+  <h2>La escalera de los oxoácidos (ejemplo: el cloro)</h2>
+  <p class="sub">Cuanto más alto es el número de oxidación, más oxígenos tiene el ácido</p>
+  <div class="escalera">
+    <div class="peld l1"><div class="eo">+1</div><div class="suf">hipo…oso</div><div class="ac">HClO<br>ácido hipocloroso</div><div class="an">ClO<sup>−</sup><br>hipoclorito</div></div>
+    <div class="peld l2"><div class="eo">+3</div><div class="suf">…oso</div><div class="ac">HClO<sub>2</sub><br>ácido cloroso</div><div class="an">ClO<sub>2</sub><sup>−</sup><br>clorito</div></div>
+    <div class="peld l3"><div class="eo">+5</div><div class="suf">…ico</div><div class="ac">HClO<sub>3</sub><br>ácido clórico</div><div class="an">ClO<sub>3</sub><sup>−</sup><br>clorato</div></div>
+    <div class="peld l4"><div class="eo">+7</div><div class="suf">per…ico</div><div class="ac">HClO<sub>4</sub><br>ácido perclórico</div><div class="an">ClO<sub>4</sub><sup>−</sup><br>perclorato</div></div>
+  </div>
+  <div class="nemo">
+    <div><b>Regla del oxígeno:</b> nº de O = (nº de oxidación + nº de H) ÷ 2<br>HClO<sub>3</sub>: (5 + 1) ÷ 2 = 3 ✔</div>
+    <div><b>Del ácido al anión:</b> "el <b>oso</b> toca el p<b>ito</b> y Per<b>ico</b> el silb<b>ato</b>"<br>-oso → -ito &nbsp;·&nbsp; -ico → -ato</div>
+  </div>
+</section>
+
+<!-- ===================================================== 8 -->
+<section class="fig" id="fig-acido-sal">
+  <h2>Del ácido a la sal en tres pasos</h2>
+  <p class="sub">El ácido pierde sus hidrones (H<sup>+</sup>) y el anión que queda se une a un catión metálico</p>
+  <div class="flujo">
+    <div class="caja ca"><div class="t">Oxoácido</div><span class="f">H<sub>2</sub>SO<sub>4</sub></span><div class="n">ácido sulfúr<b>ico</b></div></div>
+    <div class="flecha"><b>→</b>pierde 2 H<sup>+</sup></div>
+    <div class="caja cb"><div class="t">Oxoanión</div><span class="f">SO<sub>4</sub><sup>2−</sup></span><div class="n">ion sulf<b>ato</b></div></div>
+    <div class="flecha"><b>→</b>+ Na<sup>+</sup> (×2, para que sume 0)</div>
+    <div class="caja cc"><div class="t">Oxosal</div><span class="f">Na<sub>2</sub>SO<sub>4</sub></span><div class="n">sulfato de sodio</div></div>
+  </div>
+  <div class="terminaciones">
+    <div>nº de H del ácido = <b>carga negativa</b> del anión</div>
+    <div>Sal = <b>anión</b> + de + <b>metal</b></div>
+  </div>
+</section>
+
+<!-- ===================================================== 9 -->
+<section class="fig" id="fig-mapa">
+  <h2>Mapa de los compuestos inorgánicos</h2>
+  <p class="sub">Mira la fórmula: ¿cuántos elementos tiene y cuáles son?</p>
+  <div class="mapa">
+    <div class="grupo g1">BINARIOS (2 elementos)</div>
+    <div class="tipo bin"><h4>Óxidos</h4><span class="f">Fe<sub>2</sub>O<sub>3</sub>, CO<sub>2</sub></span><p>elemento + O(−2)</p></div>
+    <div class="tipo bin"><h4>Peróxidos</h4><span class="f">Na<sub>2</sub>O<sub>2</sub>, H<sub>2</sub>O<sub>2</sub></span><p>metal + grupo O<sub>2</sub><sup>2−</sup></p></div>
+    <div class="tipo bin"><h4>Hidruros</h4><span class="f">NaH, NH<sub>3</sub>, HCl</span><p>elemento + H</p></div>
+    <div class="tipo bin"><h4>Sales binarias</h4><span class="f">NaCl, PCl<sub>3</sub></span><p>metal o no metal + no metal</p></div>
+    <div class="grupo g2">TERNARIOS (3 elementos)</div>
+    <div class="tipo ter"><h4>Hidróxidos</h4><span class="f">NaOH, Ca(OH)<sub>2</sub></span><p>metal + OH<sup>−</sup></p></div>
+    <div class="tipo ter"><h4>Oxoácidos</h4><span class="f">HNO<sub>3</sub>, H<sub>2</sub>SO<sub>4</sub></span><p>H + no metal + O</p></div>
+    <div class="tipo ter"><h4>Oxosales</h4><span class="f">KNO<sub>3</sub>, CaCO<sub>3</sub></span><p>metal + no metal + O</p></div>
+    <div class="tipo ter"><h4>Sales ácidas</h4><span class="f">NaHCO<sub>3</sub></span><p>metal + H + no metal + O</p></div>
+    <div class="grupo g3">IONES (tienen carga)</div>
+    <div class="tipo ion"><h4>Cationes</h4><span class="f">Na<sup>+</sup>, Fe<sup>3+</sup></span><p>ion hierro(3+)</p></div>
+    <div class="tipo ion"><h4>Cationes poliatómicos</h4><span class="f">NH<sub>4</sub><sup>+</sup>, H<sub>3</sub>O<sup>+</sup></span><p>amonio, oxonio</p></div>
+    <div class="tipo ion"><h4>Aniones</h4><span class="f">Cl<sup>−</sup>, S<sup>2−</sup></span><p>cloruro, sulfuro</p></div>
+    <div class="tipo ion"><h4>Oxoaniones</h4><span class="f">NO<sub>3</sub><sup>−</sup>, SO<sub>4</sub><sup>2−</sup></span><p>nitrato, sulfato</p></div>
+  </div>
+</section>
+
+<!-- ===================================================== nº de oxidación por grupos -->
+<section class="fig" id="fig-eo-grupos">
+  <h2>Números de oxidación según el grupo</h2>
+  <p class="sub">Grupos principales de la tabla periódica. Los positivos se dan con el oxígeno; los negativos, con metales e hidrógeno</p>
+  <div class="grupos">
+    <div class="gcol g-m"><div class="gh">Grupo 1</div><div class="ge">Li, Na, K, Rb, Cs</div><div class="gp"><span class="lbl">positivo</span>+1</div><div class="gn"><span class="lbl">negativo</span>—</div></div>
+    <div class="gcol g-a"><div class="gh">Grupo 2</div><div class="ge">Be, Mg, Ca, Sr, Ba</div><div class="gp"><span class="lbl">positivo</span>+2</div><div class="gn"><span class="lbl">negativo</span>—</div></div>
+    <div class="gcol g-13"><div class="gh">Grupo 13</div><div class="ge">B, Al</div><div class="gp"><span class="lbl">positivo</span>+3</div><div class="gn"><span class="lbl">negativo</span>—</div></div>
+    <div class="gcol g-14"><div class="gh">Grupo 14</div><div class="ge">C, Si, Sn, Pb</div><div class="gp"><span class="lbl">positivos</span>+4 +2</div><div class="gn"><span class="lbl">negativo</span>−4</div></div>
+    <div class="gcol g-15"><div class="gh">Grupo 15</div><div class="ge">N, P, As, Sb</div><div class="gp"><span class="lbl">positivos</span>+5 +3 (+1)</div><div class="gn"><span class="lbl">negativo</span>−3</div></div>
+    <div class="gcol g-16"><div class="gh">Grupo 16</div><div class="ge">S, Se, Te<br><small>(O: −2)</small></div><div class="gp"><span class="lbl">positivos</span>+6 +4 (+2)</div><div class="gn"><span class="lbl">negativo</span>−2</div></div>
+    <div class="gcol g-17"><div class="gh">Grupo 17</div><div class="ge">Cl, Br, I<br><small>(F: solo −1)</small></div><div class="gp"><span class="lbl">positivos</span>+7 +5 +3 +1</div><div class="gn"><span class="lbl">negativo</span>−1</div></div>
+  </div>
+  <div class="reglas">
+    <div><b>① El mayor positivo</b> es la última cifra del grupo: 1, 2, 1<b>3</b>→+3, 1<b>4</b>→+4 … 1<b>7</b>→+7.</div>
+    <div><b>② El negativo</b> de los no metales es <b>grupo − 18</b>: 14→−4, 15→−3, 16→−2, 17→−1.</div>
+    <div><b>③ Los demás positivos</b> se obtienen restando de <b>2 en 2</b>: los grupos impares tienen números impares y los pares, pares.</div>
+  </div>
+</section>
+
+<!-- ===================================================== raíz -->
+<section class="fig" id="fig-raiz">
+  <h2>¿Cómo se obtiene la raíz del nombre de un elemento?</h2>
+  <p class="sub">Se quita la terminación del nombre y a lo que queda (la raíz) se le añade -uro</p>
+  <div class="raiz">
+    <div class="rcab">nombre del elemento</div><div class="rcab">quitamos</div><div class="rcab">raíz</div><div class="rcab">+ uro</div>
+    <div>clor<s>o</s></div><div class="q2">-o</div><div class="r">clor</div><div class="u">clor<b>uro</b></div>
+    <div>nitr<s>ógeno</s></div><div class="q2">-ógeno</div><div class="r">nitr</div><div class="u">nitr<b>uro</b></div>
+    <div>carb<s>ono</s></div><div class="q2">-ono</div><div class="r">carb</div><div class="u">carb<b>uro</b></div>
+    <div>fósf<s>oro</s></div><div class="q2">-oro</div><div class="r">fosf</div><div class="u">fosf<b>uro</b> <small>(sin tilde)</small></div>
+    <div>arsén<s>ico</s></div><div class="q2">-ico</div><div class="r">arsen</div><div class="u">arsen<b>uro</b></div>
+    <div class="esp2">azufre</div><div class="q2">raíz latina (<i>sulphur</i>)</div><div class="r">sulf</div><div class="u">sulf<b>uro</b></div>
+    <div class="esp2">oxígeno</div><div class="q2">excepción</div><div class="r">—</div><div class="u"><b>óxido</b></div>
+  </div>
+</section>
+
+<!-- ===================================================== 2.º ESO -->
+<section class="fig" id="fig2-formula">
+  <h2>¿Qué nos dice una fórmula?</h2>
+  <p class="sub">Qué elementos hay y cuántos átomos hay de cada uno</p>
+  <div class="anat">
+    <div class="big"><span class="s">H</span><sub>2</sub><span class="s">O</span></div>
+    <div class="notas">
+      <div class="n1"><b>H</b> y <b>O</b> son los <b>símbolos</b> de los elementos: hidrógeno y oxígeno.</div>
+      <div class="n2">El número pequeño de abajo (<b>subíndice</b>) dice cuántos átomos hay: <b>2</b> de H.</div>
+      <div class="n3">Si un símbolo <b>no lleva número</b>, hay <b>1</b> átomo: 1 de O.</div>
+    </div>
+  </div>
+  <div class="bolas">
+    <div class="grupo2"><div class="fila2"><div class="bola bH">H</div><div class="bola bO">O</div><div class="bola bH">H</div></div><div class="t2">H<sub>2</sub>O: 2 H y 1 O</div></div>
+    <div class="grupo2"><div class="fila2"><div class="bola bO">O</div><div class="bola bC">C</div><div class="bola bO">O</div></div><div class="t2">CO<sub>2</sub>: 1 C y 2 O</div></div>
+    <div class="grupo2"><div class="fila2"><div class="bola bFe">Fe</div><div class="bola bFe">Fe</div><div class="bola bO">O</div><div class="bola bO">O</div><div class="bola bO">O</div></div><div class="t2">Fe<sub>2</sub>O<sub>3</sub>: 2 Fe y 3 O</div></div>
+  </div>
+</section>
+
+<section class="fig" id="fig2-prefijos">
+  <h2>Los prefijos: números que se dicen con palabras</h2>
+  <p class="sub">El prefijo dice cuántos átomos hay. Va pegado al nombre: <b>tri</b>óxido, <b>di</b>hierro</p>
+  <div class="pref">
+    <div><b>1</b><span>mono</span></div><div><b>2</b><span>di</span></div><div><b>3</b><span>tri</span></div>
+    <div><b>4</b><span>tetra</span></div><div><b>5</b><span>penta</span></div><div><b>6</b><span>hexa</span></div>
+    <div><b>7</b><span>hepta</span></div><div><b>8</b><span>octa</span></div><div><b>9</b><span>nona</span></div>
+    <div><b>10</b><span>deca</span></div>
+  </div>
+  <div class="pref2">
+    <div><b>Sin prefijo = 1 átomo.</b><br>NaCl → cloruro de sodio (no "monocloruro de monosodio").</div>
+    <div><b>mono</b> solo se usa para distinguir dos compuestos parecidos:<br>CO <b>mon</b>óxido de carbono · CO<sub>2</sub> <b>di</b>óxido de carbono.</div>
+  </div>
+</section>
+
+<section class="fig" id="fig2-uro">
+  <h2>Raíz del elemento + uro: los que más vas a usar</h2>
+  <p class="sub">Al elemento de la derecha se le quita la terminación y se añade -uro. El oxígeno es especial: se dice óxido</p>
+  <div class="uro">
+    <div>flúor<b>fluoruro</b></div><div>cloro<b>cloruro</b></div><div>bromo<b>bromuro</b></div><div>yodo<b>yoduro</b></div>
+    <div>azufre<b>sulfuro</b></div><div>selenio<b>seleniuro</b></div><div>nitrógeno<b>nitruro</b></div><div>fósforo<b>fosfuro</b></div>
+    <div>carbono<b>carburo</b></div><div>hidrógeno<b>hidruro</b></div><div class="esp">oxígeno<b>óxido</b></div><div class="esp">grupo OH<b>hidróxido</b></div>
+  </div>
+</section>
+
+<section class="fig" id="fig2-formular">
+  <h2>Del nombre a la fórmula en 3 pasos</h2>
+  <p class="sub">Ejemplo: trióxido de dihierro</p>
+  <div class="pasos">
+    <div class="paso pa"><div class="t">1. Corta por «de»</div><div class="c"><b>trióxido</b><br>de<br><b>dihierro</b></div></div>
+    <div class="flp">→</div>
+    <div class="paso pb"><div class="t">2. Traduce los prefijos</div><div class="c">tri + óxido = <b>3 O</b><br>di + hierro = <b>2 Fe</b></div></div>
+    <div class="flp">→</div>
+    <div class="paso pc"><div class="t">3. Escribe al revés</div><div class="c">primero lo de después de «de»<br><b style="font-size:34px;font-family:Cambria,serif">Fe<sub>2</sub>O<sub>3</sub></b></div></div>
+  </div>
+  <div class="nota">Para nombrar se hace lo contrario: se lee la fórmula de <b>derecha a izquierda</b>. Fe<sub>2</sub>O<sub>3</sub> → <b>tri</b>óxido de <b>di</b>hierro.</div>
+</section>
+
+<section class="fig" id="fig2-identificar">
+  <h2>¿Qué tipo de compuesto es?</h2>
+  <p class="sub">Mira qué hay a la derecha de la fórmula</p>
+  <div class="ident">
+    <div class="tp i1"><div class="fin">a la derecha<b>O</b></div><div class="nm2">óxido</div><div class="ej2">CO<sub>2</sub>, Fe<sub>2</sub>O<sub>3</sub></div></div>
+    <div class="tp i2"><div class="fin">metal y a la derecha<b>H</b></div><div class="nm2">hidruro</div><div class="ej2">NaH, CaH<sub>2</sub></div></div>
+    <div class="tp i3"><div class="fin">a la derecha<b>OH</b></div><div class="nm2">hidróxido</div><div class="ej2">NaOH, Ca(OH)<sub>2</sub></div></div>
+    <div class="tp i4"><div class="fin">H a la izquierda<b>H + F, Cl, Br, I, S</b></div><div class="nm2">…uro de hidrógeno</div><div class="ej2">HCl, H<sub>2</sub>S</div></div>
+    <div class="tp i5"><div class="fin">a la derecha otro no metal<b>F, Cl, S, N…</b></div><div class="nm2">…uro</div><div class="ej2">NaCl, PCl<sub>3</sub></div></div>
+  </div>
+  <div class="especiales"><div><b>H<sub>2</sub>O</b> agua</div><div><b>NH<sub>3</sub></b> amoniaco</div><div><b>CH<sub>4</sub></b> metano</div><div>¡Estos tres tienen nombre propio!</div></div>
+</section>
+
+<!-- ===================================================== ENGLISH VERSIONS (2.º ESO, -en) -->
+<section class="fig" id="fig-secuencia-en">
+  <h2>Which element is written on the right?</h2>
+  <p class="sub">IUPAC element sequence: the one further to the right goes on the right of the formula</p>
+  <div class="chain">
+    <div class="chip big m">METALS</div><span class="arrow">→</span>
+    <div class="chip nm">B</div><span class="arrow">→</span>
+    <div class="chip nm">Si</div><span class="arrow">→</span>
+    <div class="chip nm">C</div><span class="arrow">→</span>
+    <div class="chip nm">Sb</div><span class="arrow">→</span>
+    <div class="chip nm">As</div><span class="arrow">→</span>
+    <div class="chip nm">P</div><span class="arrow">→</span>
+    <div class="chip nm">N</div><span class="arrow">→</span>
+    <div class="chip hh">H</div><span class="arrow">→</span>
+    <div class="chip nm">Te</div><span class="arrow">→</span>
+    <div class="chip nm">Se</div><span class="arrow">→</span>
+    <div class="chip nm">S</div><span class="arrow">→</span>
+    <div class="chip ox">O</div><span class="arrow">→</span>
+    <div class="chip hal">I</div><span class="arrow">→</span>
+    <div class="chip hal">Br</div><span class="arrow">→</span>
+    <div class="chip hal">Cl</div><span class="arrow">→</span>
+    <div class="chip fl">F</div>
+  </div>
+  <div class="barra"></div>
+  <div class="barra-txt"><span>written on the LEFT</span><span>written on the RIGHT</span></div>
+  <div class="rule">
+    <div>The element <b>further to the right</b> in the sequence is written <b>on the right</b> of the formula… <br><span class="f">Na<b style="color:#007F00">Cl</b> · Fe<sub>2</sub><b style="color:#007F00">O</b><sub>3</sub> · N<b style="color:#007F00">H</b><sub>3</sub> · H<sub>2</sub><b style="color:#007F00">S</b> · O<b style="color:#007F00">Cl</b><sub>2</sub> · O<b style="color:#007F00">F</b><sub>2</sub></span></div>
+    <div>…and in English it is named <b>last</b>: <b>root of its name + ide</b>. <br>NaCl → sodium <b>chloride</b> · Fe<sub>2</sub>O<sub>3</sub> → diiron tri<b>oxide</b><br>OCl<sub>2</sub> → oxygen di<b>chloride</b> · OF<sub>2</sub> → oxygen di<b>fluoride</b></div>
+  </div>
+</section>
+
+<section class="fig" id="fig-receta-en">
+  <h2>The recipe: in English the name is read from left to right</h2>
+  <p class="sub">Compositional nomenclature with multiplying prefixes</p>
+  <div class="formula f"><span class="izq">Fe<sub>2</sub></span><span class="der">O<sub>3</sub></span></div>
+  <div class="lectura">① first the element on the left &nbsp;&nbsp;·&nbsp;&nbsp; ② then the element on the right</div>
+  <div class="receta">
+    <div class="pieza p1"><div class="t">prefix</div>di</div>
+    <div class="pieza p4"><div class="t">left element (as it is)</div>iron</div>
+    <div class="pieza p1"><div class="t">prefix</div>tri</div>
+    <div class="pieza p2"><div class="t">root of the right element + ide</div>oxide</div>
+  </div>
+  <div class="ejemplos">
+    <div><span class="f">CO<sub>2</sub></span>carbon di<b>oxide</b></div>
+    <div><span class="f">PCl<sub>5</sub></span>phosphorus penta<b>chloride</b></div>
+    <div><span class="f">Al<sub>2</sub>S<sub>3</sub></span>dialuminium tri<b>sulfide</b></div>
+    <div><span class="f">CoH<sub>3</sub></span>cobalt tri<b>hydride</b></div>
+    <div><span class="f">H<sub>2</sub>S</span>dihydrogen <b>sulfide</b></div>
+    <div><span class="f">N<sub>2</sub>O<sub>4</sub></span>dinitrogen tetra<b>oxide</b></div>
+  </div>
+</section>
+
+<section class="fig" id="fig-raiz-en">
+  <h2>How do we get the root of an element name in English?</h2>
+  <p class="sub">Remove the ending of the name and add -ide to what is left (the root)</p>
+  <div class="raiz">
+    <div class="rcab">element name</div><div class="rcab">we remove</div><div class="rcab">root</div><div class="rcab">+ ide</div>
+    <div>chlor<s>ine</s></div><div class="q2">-ine</div><div class="r">chlor</div><div class="u">chlor<b>ide</b></div>
+    <div>nitr<s>ogen</s></div><div class="q2">-ogen</div><div class="r">nitr</div><div class="u">nitr<b>ide</b></div>
+    <div>ox<s>ygen</s></div><div class="q2">-ygen</div><div class="r">ox</div><div class="u">ox<b>ide</b></div>
+    <div>carb<s>on</s></div><div class="q2">-on</div><div class="r">carb</div><div class="u">carb<b>ide</b></div>
+    <div>phosph<s>orus</s></div><div class="q2">-orus</div><div class="r">phosph</div><div class="u">phosph<b>ide</b></div>
+    <div>sulf<s>ur</s></div><div class="q2">-ur</div><div class="r">sulf</div><div class="u">sulf<b>ide</b> <small>(UK: sulphide)</small></div>
+    <div>selen<s>ium</s></div><div class="q2">-ium</div><div class="r">selen</div><div class="u">selen<b>ide</b></div>
+    <div>arsen<s>ic</s></div><div class="q2">-ic</div><div class="r">arsen</div><div class="u">arsen<b>ide</b></div>
+  </div>
+</section>
+
+<section class="fig" id="fig2-formula-en">
+  <h2>What does a formula tell us?</h2>
+  <p class="sub">Which elements there are and how many atoms of each</p>
+  <div class="anat">
+    <div class="big"><span class="s">H</span><sub>2</sub><span class="s">O</span></div>
+    <div class="notas">
+      <div class="n1"><b>H</b> and <b>O</b> are the <b>symbols</b> of the elements: hydrogen and oxygen.</div>
+      <div class="n2">The small number at the bottom (<b>subscript</b>) tells how many atoms there are: <b>2</b> of H.</div>
+      <div class="n3">If a symbol has <b>no number</b>, there is <b>1</b> atom: 1 of O.</div>
+    </div>
+  </div>
+  <div class="bolas">
+    <div class="grupo2"><div class="fila2"><div class="bola bH">H</div><div class="bola bO">O</div><div class="bola bH">H</div></div><div class="t2">H<sub>2</sub>O: 2 H and 1 O</div></div>
+    <div class="grupo2"><div class="fila2"><div class="bola bO">O</div><div class="bola bC">C</div><div class="bola bO">O</div></div><div class="t2">CO<sub>2</sub>: 1 C and 2 O</div></div>
+    <div class="grupo2"><div class="fila2"><div class="bola bFe">Fe</div><div class="bola bFe">Fe</div><div class="bola bO">O</div><div class="bola bO">O</div><div class="bola bO">O</div></div><div class="t2">Fe<sub>2</sub>O<sub>3</sub>: 2 Fe and 3 O</div></div>
+  </div>
+</section>
+
+<section class="fig" id="fig2-prefijos-en">
+  <h2>Prefixes: numbers said with words</h2>
+  <p class="sub">The prefix tells how many atoms there are. It is joined to the name: <b>tri</b>oxide, <b>di</b>iron</p>
+  <div class="pref">
+    <div><b>1</b><span>mono</span></div><div><b>2</b><span>di</span></div><div><b>3</b><span>tri</span></div>
+    <div><b>4</b><span>tetra</span></div><div><b>5</b><span>penta</span></div><div><b>6</b><span>hexa</span></div>
+    <div><b>7</b><span>hepta</span></div><div><b>8</b><span>octa</span></div><div><b>9</b><span>nona</span></div>
+    <div><b>10</b><span>deca</span></div>
+  </div>
+  <div class="pref2">
+    <div><b>No prefix = 1 atom.</b><br>NaCl → sodium chloride (not "monosodium monochloride").</div>
+    <div><b>mono</b> is only used to tell two similar compounds apart:<br>CO carbon <b>mon</b>oxide · CO<sub>2</sub> carbon <b>di</b>oxide.</div>
+  </div>
+</section>
+
+<section class="fig" id="fig2-uro-en">
+  <h2>Root of the element + ide: the ones you will use most</h2>
+  <p class="sub">The element on the right loses its ending and takes -ide. In English oxygen follows the rule too: oxide</p>
+  <div class="uro">
+    <div>fluorine<b>fluoride</b></div><div>chlorine<b>chloride</b></div><div>bromine<b>bromide</b></div><div>iodine<b>iodide</b></div>
+    <div>sulfur<b>sulfide</b></div><div>selenium<b>selenide</b></div><div>nitrogen<b>nitride</b></div><div>phosphorus<b>phosphide</b></div>
+    <div>carbon<b>carbide</b></div><div>hydrogen<b>hydride</b></div><div>oxygen<b>oxide</b></div><div class="esp">OH group<b>hydroxide</b></div>
+  </div>
+</section>
+
+<section class="fig" id="fig2-formular-en">
+  <h2>From the name to the formula in 3 steps</h2>
+  <p class="sub">Example: diiron trioxide</p>
+  <div class="pasos">
+    <div class="paso pa"><div class="t">1. Split the two words</div><div class="c"><b>diiron</b><br>·<br><b>trioxide</b></div></div>
+    <div class="flp">→</div>
+    <div class="paso pb"><div class="t">2. Translate the prefixes</div><div class="c">di + iron = <b>2 Fe</b><br>tri + oxide = <b>3 O</b></div></div>
+    <div class="flp">→</div>
+    <div class="paso pc"><div class="t">3. Write in the same order</div><div class="c">first word on the left<br><b style="font-size:34px;font-family:Cambria,serif">Fe<sub>2</sub>O<sub>3</sub></b></div></div>
+  </div>
+  <div class="nota">To name a compound, read the formula from <b>left to right</b>. Fe<sub>2</sub>O<sub>3</sub> → <b>di</b>iron <b>tri</b>oxide. (In Spanish it is read the other way round: trióxido de dihierro.)</div>
+</section>
+
+<section class="fig" id="fig2-identificar-en">
+  <h2>What type of compound is it?</h2>
+  <p class="sub">Look at what is on the right of the formula</p>
+  <div class="ident">
+    <div class="tp i1"><div class="fin">on the right<b>O</b></div><div class="nm2">oxide</div><div class="ej2">CO<sub>2</sub>, Fe<sub>2</sub>O<sub>3</sub></div></div>
+    <div class="tp i2"><div class="fin">metal and on the right<b>H</b></div><div class="nm2">hydride</div><div class="ej2">NaH, CaH<sub>2</sub></div></div>
+    <div class="tp i3"><div class="fin">on the right<b>OH</b></div><div class="nm2">hydroxide</div><div class="ej2">NaOH, Ca(OH)<sub>2</sub></div></div>
+    <div class="tp i4"><div class="fin">H on the left<b>H + F, Cl, Br, I, S</b></div><div class="nm2">hydrogen …ide</div><div class="ej2">HCl, H<sub>2</sub>S</div></div>
+    <div class="tp i5"><div class="fin">another non-metal on the right<b>F, Cl, S, N…</b></div><div class="nm2">…ide</div><div class="ej2">NaCl, PCl<sub>3</sub></div></div>
+  </div>
+  <div class="especiales"><div><b>H<sub>2</sub>O</b> water</div><div><b>NH<sub>3</sub></b> ammonia</div><div><b>CH<sub>4</sub></b> methane</div><div>These three have their own names!</div></div>
+</section>
+
+<script>
+// Construcción de la tabla periódica (periodos 1-6, sin lantánidos)
+const filas = [
+ ["H",,,,,,,,,,,,,,,,,"He"],
+ ["Li","Be",,,,,,,,,,,"B","C","N","O","F","Ne"],
+ ["Na","Mg",,,,,,,,,,,"Al","Si","P","S","Cl","Ar"],
+ ["K","Ca","Sc","Ti","V","Cr","Mn","Fe","Co","Ni","Cu","Zn","Ga","Ge","As","Se","Br","Kr"],
+ ["Rb","Sr","Y","Zr","Nb","Mo","Tc","Ru","Rh","Pd","Ag","Cd","In","Sn","Sb","Te","I","Xe"],
+ ["Cs","Ba","La","Hf","Ta","W","Re","Os","Ir","Pt","Au","Hg","Tl","Pb","Bi","Po","At","Rn"]
+];
+const clase = {
+  Li:["c-alc","+1"],Na:["c-alc","+1"],K:["c-alc","+1"],Rb:["c-alc","+1"],Cs:["c-alc","+1"],Ag:["c-ag","+1"],
+  Be:["c-alt","+2"],Mg:["c-alt","+2"],Ca:["c-alt","+2"],Sr:["c-alt","+2"],Ba:["c-alt","+2"],Zn:["c-zn","+2"],
+  Al:["c-al","+3"],H:["c-h","±1"],O:["c-o","−2"],S:["c-s","−2"],F:["c-f","−1"],
+  Cl:["c-x","−1"],Br:["c-x","−1"],I:["c-x","−1"]
+};
+const pt = document.getElementById("pt");
+for (let g=1; g<=18; g++){ const d=document.createElement("div"); d.className="gnum"; d.textContent=g; pt.appendChild(d); }
+for (const fila of filas){
+  for (let i=0;i<18;i++){
+    const s=fila[i]; const d=document.createElement("div");
+    if(!s){ pt.appendChild(d); continue; }
+    d.className="el";
+    if(clase[s]){ d.classList.add("k",clase[s][0]); d.innerHTML=s+"<small>"+clase[s][1]+"</small>"; }
+    else d.textContent=s;
+    pt.appendChild(d);
+  }
+}
+
+// ---------------------------------------------------------------
+// Esquemas de nombres. Cada token: [clase, pregunta, valor del ejemplo]
+//   pref = prefijo · raiz = parte que cambia (-uro, -ato…) · fija = palabra fija
+//   elem = elemento/catión · nox = nº de oxidación o carga · de = enlace · par = paréntesis
+// ---------------------------------------------------------------
+const esquemas = [
+ {id:"esq-binario", t:"Compuestos binarios: regla general",
+  k:[["pref","prefijo · nº de átomos de la derecha","tri"],["raiz","raíz del elemento de la derecha + uro","sulfuro"],["de","enlace","de"],["pref","prefijo · nº de átomos de la izquierda","di"],["elem","elemento de la izquierda","aluminio"]],
+  f:"Al<sub>2</sub>S<sub>3</sub>", n:"trisulfuro de dialuminio", nota:"Se lee la fórmula de derecha a izquierda"},
+ {id:"esq-oxido-pref", t:"Óxidos con prefijos multiplicadores",
+  k:[["pref","prefijo₁ · nº de oxígenos","tri"],["fija","palabra fija","óxido"],["de","enlace","de"],["pref","prefijo₂ · nº de átomos del elemento","di"],["elem","nombre del elemento","hierro"]],
+  f:"Fe<sub>2</sub>O<sub>3</sub>", n:"trióxido de dihierro", nota:"mono solo si hay varios óxidos: CO monóxido de carbono"},
+ {id:"esq-oxido-eo", t:"Óxidos con número de oxidación",
+  k:[["fija","palabra fija","óxido"],["de","enlace","de"],["elem","nombre del elemento","hierro"],["nox","nº de oxidación (romanos), sin espacio","(III)"]],
+  f:"Fe<sub>2</sub>O<sub>3</sub>", n:"óxido de hierro(III)", nota:"Si el elemento tiene un solo nº de oxidación, se omite"},
+ {id:"esq-peroxido", t:"Peróxidos",
+  k:[["fija","palabra fija","peróxido"],["de","enlace","de"],["elem","nombre del elemento","sodio"]],
+  f:"Na<sub>2</sub>O<sub>2</sub>", n:"peróxido de sodio", nota:"El grupo O<sub>2</sub><sup>2−</sup> no se simplifica"},
+ {id:"esq-hidruro-pref", t:"Hidruros metálicos con prefijos multiplicadores",
+  k:[["pref","prefijo · nº de hidrógenos","tri"],["fija","palabra fija","hidruro"],["de","enlace","de"],["elem","nombre del metal","cobalto"]],
+  f:"CoH<sub>3</sub>", n:"trihidruro de cobalto", nota:"El metal no lleva prefijo: siempre hay un solo átomo"},
+ {id:"esq-hidruro-eo", t:"Hidruros metálicos con número de oxidación",
+  k:[["fija","palabra fija","hidruro"],["de","enlace","de"],["elem","nombre del metal","níquel"],["nox","nº de oxidación (romanos)","(II)"]],
+  f:"NiH<sub>2</sub>", n:"hidruro de níquel(II)", nota:"Nº de H = nº de oxidación del metal"},
+ {id:"esq-hidrogeno-nm", t:"Hidrógeno con los grupos 16 y 17",
+  k:[["pref","prefijo · nº de átomos del no metal","—"],["raiz","raíz del no metal + uro","sulfuro"],["de","enlace","de"],["pref","prefijo · nº de hidrógenos","di"],["elem","palabra fija","hidrógeno"]],
+  f:"H<sub>2</sub>S", n:"sulfuro de dihidrógeno", nota:"Se admite omitir el prefijo del H: sulfuro de hidrógeno"},
+ {id:"esq-hidracido", t:"Nombre tradicional de las disoluciones en agua (no admitido por la IUPAC)",
+  k:[["fija","palabra fija","ácido"],["raiz","raíz del no metal","clor"],["fija","terminación fija","hídrico"]],
+  f:"HCl(aq)", n:"ácido clorhídrico", nota:"Es una mezcla, no un compuesto: el HCl es cloruro de hidrógeno"},
+ {id:"esq-halogenuro-oxigeno", t:"Oxígeno con halógenos: halogenuros de oxígeno",
+  k:[["pref","prefijo · nº de átomos del halógeno","di"],["raiz","raíz del halógeno + uro","cloruro"],["de","enlace","de"],["pref","prefijo · nº de oxígenos","—"],["elem","palabra fija","oxígeno"]],
+  f:"OCl<sub>2</sub>", n:"dicloruro de oxígeno", nota:"El O va a la izquierda: no son óxidos"},
+ {id:"esq-sal-pref", t:"Sales binarias con prefijos multiplicadores",
+  k:[["pref","prefijo₁ · nº de átomos del no metal","di"],["raiz","raíz del no metal + uro","fosfuro"],["de","enlace","de"],["pref","prefijo₂ · nº de átomos del metal","tri"],["elem","nombre del metal","calcio"]],
+  f:"Ca<sub>3</sub>P<sub>2</sub>", n:"difosfuro de tricalcio", nota:"Igual para no metal + no metal: PCl<sub>5</sub> pentacloruro de fósforo"},
+ {id:"esq-sal-eo", t:"Sales binarias con número de oxidación",
+  k:[["raiz","raíz del no metal + uro","cloruro"],["de","enlace","de"],["elem","nombre del metal","hierro"],["nox","nº de oxidación (romanos)","(III)"]],
+  f:"FeCl<sub>3</sub>", n:"cloruro de hierro(III)", nota:"Con número de carga: cloruro de hierro(3+)"},
+ {id:"esq-hidroxido-pref", t:"Hidróxidos con prefijos multiplicadores",
+  k:[["pref","prefijo · nº de grupos OH","di"],["fija","palabra fija","hidróxido"],["de","enlace","de"],["elem","nombre del metal","calcio"]],
+  f:"Ca(OH)<sub>2</sub>", n:"dihidróxido de calcio", nota:"Si hay más de un OH, va entre paréntesis"},
+ {id:"esq-hidroxido-eo", t:"Hidróxidos con número de oxidación",
+  k:[["fija","palabra fija","hidróxido"],["de","enlace","de"],["elem","nombre del metal","hierro"],["nox","nº de oxidación (romanos)","(II)"]],
+  f:"Fe(OH)<sub>2</sub>", n:"hidróxido de hierro(II)", nota:"Con número de carga: hidróxido de hierro(2+)"},
+ {id:"esq-cation", t:"Cationes monoatómicos",
+  k:[["fija","opcional","ion"],["elem","nombre del elemento","hierro"],["nox","nº de carga: número y después el signo","(3+)"]],
+  f:"Fe<sup>3+</sup>", n:"ion hierro(3+)", nota:"Incorrecto: (+3)"},
+ {id:"esq-anion", t:"Aniones monoatómicos",
+  k:[["fija","opcional","ion"],["raiz","raíz del elemento + uro","cloruro"],["nox","nº de carga (se puede omitir)","(1−)"]],
+  f:"Cl<sup>−</sup>", n:"ion cloruro", nota:"El oxígeno es la excepción: O<sup>2−</sup> óxido"},
+ {id:"esq-oxoacido", t:"Oxoácidos: nombres vulgares admitidos",
+  k:[["fija","palabra fija","ácido"],["pref","hipo- o per- (si hace falta)","hipo"],["raiz","raíz del elemento central","clor"],["nox","-oso o -ico","oso"]],
+  f:"HClO", n:"ácido hipocloroso", nota:"Solo valen los nombres de la lista oficial"},
+ {id:"esq-hidrogeno", t:"Oxoácidos: nomenclatura de hidrógeno",
+  k:[["pref","prefijo₁ · nº de H","di"],["fija","sin tilde","hidrogeno"],["par","","("],["pref","prefijo₂ · nº de O","tetra"],["fija","sin tilde","oxido"],["pref","prefijo₃ · nº de X (si no es 1)","—"],["raiz","raíz del elemento central","sulf"],["fija","siempre","ato"],["par","",")"]],
+  f:"H<sub>2</sub>SO<sub>4</sub>", n:"dihidrogeno(tetraoxidosulfato)", nota:"Todo junto; nunca -oso, -ico, hipo- ni per-"},
+ {id:"esq-oxoanion-adicion", t:"Oxoaniones: nomenclatura de adición",
+  k:[["pref","prefijo · nº de O","tetra"],["fija","sin tilde","oxido"],["pref","prefijo · nº de X (si no es 1)","—"],["raiz","raíz del elemento central","sulf"],["fija","siempre","ato"],["nox","carga del ion","(2−)"]],
+  f:"SO<sub>4</sub><sup>2−</sup>", n:"tetraoxidosulfato(2−)", nota:"Nombre vulgar admitido: sulfato"},
+ {id:"esq-oxosal", t:"Oxosales",
+  k:[["raiz","nombre del oxoanión (-ito / -ato)","sulfato"],["de","enlace","de"],["elem","nombre del catión","hierro"],["nox","nº de oxidación (si tiene varios)","(III)"]],
+  f:"Fe<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub>", n:"sulfato de hierro(III)", nota:"El oso toca el pito y Perico el silbato"},
+ // ---------- English versions (2.º ESO): the name is read from left to right ----------
+ {id:"esq-binario-en", t:"Binary compounds: general rule (English)",
+  k:[["pref","prefix · no. of atoms on the left","di"],["elem","element on the left","aluminium"],["pref","prefix · no. of atoms on the right","tri"],["raiz","root of the element on the right + ide","sulfide"]],
+  f:"Al<sub>2</sub>S<sub>3</sub>", n:"dialuminium trisulfide", nota:"The formula is read from left to right"},
+ {id:"esq-oxido-pref-en", t:"Oxides with multiplying prefixes (English)",
+  k:[["pref","prefix₁ · no. of atoms of the element","di"],["elem","name of the element","iron"],["pref","prefix₂ · no. of oxygens","tri"],["fija","fixed word","oxide"]],
+  f:"Fe<sub>2</sub>O<sub>3</sub>", n:"diiron trioxide", nota:"mono only if there are several oxides: CO carbon monoxide"},
+ {id:"esq-hidruro-pref-en", t:"Metal hydrides with multiplying prefixes (English)",
+  k:[["elem","name of the metal","cobalt"],["pref","prefix · no. of hydrogens","tri"],["fija","fixed word","hydride"]],
+  f:"CoH<sub>3</sub>", n:"cobalt trihydride", nota:"The metal has no prefix: there is always one atom"},
+ {id:"esq-hidrogeno-nm-en", t:"Hydrogen with groups 16 and 17 (English)",
+  k:[["pref","prefix · no. of hydrogens","di"],["elem","fixed word","hydrogen"],["pref","prefix · no. of non-metal atoms","—"],["raiz","root of the non-metal + ide","sulfide"]],
+  f:"H<sub>2</sub>S", n:"dihydrogen sulfide", nota:"The H prefix may be left out: hydrogen sulfide"},
+ {id:"esq-halogenuro-oxigeno-en", t:"Oxygen with halogens: oxygen halides (English)",
+  k:[["pref","prefix · no. of oxygens","—"],["elem","fixed word","oxygen"],["pref","prefix · no. of halogen atoms","di"],["raiz","root of the halogen + ide","chloride"]],
+  f:"OCl<sub>2</sub>", n:"oxygen dichloride", nota:"O is written on the left: they are not oxides"},
+ {id:"esq-sal-pref-en", t:"Binary salts with multiplying prefixes (English)",
+  k:[["pref","prefix₁ · no. of metal atoms","tri"],["elem","name of the metal","calcium"],["pref","prefix₂ · no. of non-metal atoms","di"],["raiz","root of the non-metal + ide","phosphide"]],
+  f:"Ca<sub>3</sub>P<sub>2</sub>", n:"tricalcium diphosphide", nota:"Same for non-metal + non-metal: PCl<sub>5</sub> phosphorus pentachloride"},
+ {id:"esq-hidroxido-pref-en", t:"Hydroxides with multiplying prefixes (English)",
+  k:[["elem","name of the metal","calcium"],["pref","prefix · no. of OH groups","di"],["fija","fixed word","hydroxide"]],
+  f:"Ca(OH)<sub>2</sub>", n:"calcium dihydroxide", nota:"If there is more than one OH, use brackets"}
+];
+for (const e of esquemas){
+  const s=document.createElement("section"); s.className="fig esq"; s.id=e.id;
+  const cols=e.k.map(k=>k[0]==="par"?"28px":(k[0]==="de"?"70px":"1fr")).join(" ");
+  let h=`<h3>${e.t}</h3><div class="fila" style="grid-template-columns:${cols}">`;
+  // En las palabras fijas y en "de" la caja muestra la propia palabra
+  for(const [c,q,v] of e.k) h += c==="par" ? `<div class="tok k-par">${v}</div>`
+     : `<div class="tok k-${c}">${(c==="fija"||c==="de") && v!=="—" ? `<div class="v">${v.replace(/^\(|\)$/g,"")}</div>` : ""}<div class="q">${q}</div></div>`;
+  h+=`</div><div class="ej" style="grid-template-columns:${cols}">`;
+  const color={pref:"#027FDF",raiz:"#007F00",fija:"#000070",elem:"#DD3A12",nox:"#7a2bb5",de:"#6b7280",par:"#555"};
+  for(const [c,,v] of e.k) h+=`<div class="${v==="—"?"vacio":""}" style="color:${v==="—"?"#bbb":color[c]};${c==="par"?"border:none;font-weight:300;font-size:24px":""}">${c==="par"?"":v}</div>`;
+  h+=`</div><div class="res"><span class="f">${e.f}</span><span class="flecha2">→</span><span class="nombre">${e.n}</span><span class="nota2">${e.nota}</span></div>`;
+  s.innerHTML=h; document.body.appendChild(s);
+}
+
+// Modo exportación
+const solo=new URLSearchParams(location.search).get("solo");
+if(solo){
+  document.body.classList.add("solo");
+  document.querySelectorAll("section.fig").forEach(s=>{ if(s.id!==solo) s.remove(); });
+  const r=document.getElementById(solo).getBoundingClientRect();
+  const st=document.createElement("style");
+  st.textContent=`@page{size:${Math.ceil(r.width)}px ${Math.ceil(r.height)+1}px;margin:0} html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact}`;
+  document.head.appendChild(st);
+}
+</script>
+</body>
+</html>

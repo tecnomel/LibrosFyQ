@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cristal iónico frágil frente a metal maleable</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1000px; }
+    .card { margin-bottom: 10px; }
+    .card h2 { font-size: 18px; }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="card"><h2>Cristal iónico: frágil</h2><svg id="a" width="920" height="170"></svg></div>
+    <div class="card"><h2>Metal: dúctil y maleable</h2><svg id="b" width="920" height="170"></svg></div>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    const ion = (add, x, y, pos) => {
+        add('circle', { cx: x, cy: y, r: 13, fill: pos ? '#F5B7B1' : '#AED6F1', stroke: pos ? '#C0392B' : '#2471A3', 'stroke-width': 1.5 });
+        label(add, x, y + 6, pos ? '+' : '−', { 'font-size': 18, fill: pos ? '#C0392B' : '#2471A3', 'font-weight': 800 });
+    };
+    function grid(add, x0, shift, metal) {
+        for (let r = 0; r < 4; r++) for (let c = 0; c < 5; c++) {
+            const dx = r < 2 ? shift : 0, x = x0 + c * 28 + dx, y = 30 + r * 28;
+            if (metal) {
+                add('circle', { cx: x, cy: y, r: 13, fill: '#F0B27A', stroke: '#A04000', 'stroke-width': 1.5 });
+                label(add, x, y + 6, '+', { 'font-size': 16, fill: '#7E5109', 'font-weight': 800 });
+            } else ion(add, x, y, (r + c) % 2 === 0);
+        }
+        // electrones libres en los huecos entre cationes
+        if (metal) for (let r = 0; r < 3; r++) for (let c = 0; c < 4; c++) {
+            if ((r + c) % 2) continue;
+            add('circle', { cx: x0 + 14 + c * 28 + (r < 1 ? shift : 0), cy: 44 + r * 28, r: 4, fill: '#2471A3' });
+        }
+    }
+    // martillo
+    const hammer = (add, x) => {
+        add('rect', { x: x - 8, y: 2, width: 16, height: 26, rx: 3, fill: '#5D6D7E' });
+        add('rect', { x: x - 60, y: 9, width: 52, height: 10, rx: 4, fill: '#A04000' });
+        arrow(add, x + 10, 15, x + 34, 15, '#E67E22', 3, 10);
+    };
+    let add = svgAdder('a');
+    grid(add, 40, 0, false); hammer(add, 15);
+    arrow(add, 200, 72, 260, 72, '#23373B', 4, 14);
+    grid(add, 290, 14, false);
+    label(add, 360, 160, 'la capa superior se desplaza', { 'font-size': 14, fill: '#525252' });
+    arrow(add, 450, 72, 510, 72, '#23373B', 4, 14);
+    // rotura
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 5; c++) {
+        const x = 550 + c * 28 + (r < 2 ? 14 : 0), y = 20 + r * 28 + (r < 2 ? -10 : 18);
+        ion(add, x, y, (r + c) % 2 === 0);
+    }
+    for (let c = 0; c < 5; c++) add('path', { d: `M${560 + c * 28} 66 l4 -6 l4 6 l4 -6`, stroke: '#C0392B', 'stroke-width': 2, fill: 'none' });
+    label(add, 790, 60, 'iones del mismo signo', { 'font-size': 15, fill: '#C0392B' });
+    label(add, 790, 80, 'quedan enfrentados:', { 'font-size': 15, fill: '#C0392B' });
+    label(add, 790, 100, 'se repelen y el cristal', { 'font-size': 15, fill: '#C0392B' });
+    label(add, 790, 120, 'se rompe', { 'font-size': 15, fill: '#C0392B' });
+    add = svgAdder('b');
+    grid(add, 40, 0, true); hammer(add, 15);
+    arrow(add, 200, 72, 260, 72, '#23373B', 4, 14);
+    grid(add, 300, 28, true);
+    label(add, 380, 160, 'la capa superior se desliza', { 'font-size': 14, fill: '#525252' });
+    label(add, 680, 60, 'el «mar de electrones»', { 'font-size': 15, fill: '#1E8449' });
+    label(add, 680, 80, 'sigue uniendo los iones:', { 'font-size': 15, fill: '#1E8449' });
+    label(add, 680, 100, 'el metal se deforma', { 'font-size': 15, fill: '#1E8449' });
+    label(add, 680, 120, 'sin romperse', { 'font-size': 15, fill: '#1E8449' });
+</script>
+</body>
+</html>

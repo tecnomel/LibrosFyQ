@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_54 · Puentes de hidrógeno en el fluoruro de hidrógeno</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// En el HF las moléculas forman cadenas en zigzag: el H (δ+) de una molécula se une
+// mediante un puente de hidrógeno al F (δ−) de la siguiente.
+const svg = crearFigura(780, 400);
+const gm = el("radialGradient", { id: "hf", cx: "65%", cy: "30%", r: "80%" }, defs(svg));
+[["0%", "#E0E0E0"], ["30%", "#5C8A5C"], ["100%", "#1E4D1E"]].forEach(([o, c]) => el("stop", { offset: o, "stop-color": c }, gm));
+function cadena(y0, fase) {
+    const pts = Array.from({ length: 6 }, (_, k) => [60 + k * 132, y0 + ((k + fase) % 2 ? 26 : -26)]);
+    for (let k = 0; k < pts.length - 1; k++) {
+        const [x1, y1] = pts[k], [x2, y2] = pts[k + 1];
+        const ang = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+        const cx = x1 + (x2 - x1) * 0.35, cy = y1 + (y2 - y1) * 0.35;
+        const g = el("g", { transform: "translate(" + cx + " " + cy + ") rotate(" + ang + ")" }, svg);
+        el("ellipse", { cx: 0, cy: 0, rx: 34, ry: 20, fill: "url(#hf)" }, g);
+        texto(g, -16, 6, "−", { "text-anchor": "middle", "font-size": 20, "font-weight": "bold", fill: "#fff" });
+        texto(g, 17, 6, "+", { "text-anchor": "middle", "font-size": 18, "font-weight": "bold", fill: "#fff" });
+        texto(g, -46, 6, "F", { "text-anchor": "middle", "font-size": 16, "font-weight": "bold", fill: COLORES.texto, transform: "rotate(" + (-ang) + " -46 0)" });
+        texto(g, 46, 6, "H", { "text-anchor": "middle", "font-size": 16, "font-weight": "bold", fill: COLORES.texto, transform: "rotate(" + (-ang) + " 46 0)" });
+        if (k < pts.length - 2) {                                       // puente H···F
+            for (const dy of [-5, 0, 5]) el("path", { d: "M60," + dy + " q 2.5,-4 5,0 t 5,0 t 5,0 t 5,0 t 5,0 t 5,0", fill: "none", stroke: "#4FB0E0", "stroke-width": 1.8 }, g);
+        }
+    }
+}
+cadena(70, 0); cadena(200, 1); cadena(330, 0);
+texto(svg, 770, 392, "puentes de hidrógeno (~~~)", { "text-anchor": "end", "font-size": 13, fill: "#1E88E5" });
+</script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+% Libro de Física y Química de 2.º ESO — versión en ESPAÑOL.
+% Es la traducción de Libro_2_ESO_ENG.tex: mismas unidades, mismos ejercicios y mismas etiquetas (\label).
+% Unidades: Unidad_N_*.tex (la Unidad 4, Unit_4_nomenclature_EN_ES.tex, es bilingüe y la comparten los dos libros).
+% Figuras: FigurasSVG/Unit_x/pdf/<nombre>_es.pdf (fuente: FigurasSVG/Unit_x/fuentes/<nombre>_es.html).
+% Soluciones en un fichero propio (out/soluciones2ESOes.tex) para no chocar con las del libro en inglés.
+
+% Nombres de los entornos de la clase en español (la clase usa \providecommand con los nombres ingleses)
+\newcommand{\LOBPropositionname}{Proposición}
+\newcommand{\LOBTheoremname}{Teorema}
+\newcommand{\LOBProblemname}{Problema}
+\newcommand{\LOBExercisename}{Ejercicio}
+\newcommand{\LOBExamplename}{Ejemplo}
+\newcommand{\LOBNotationname}{Notación}
+\newcommand{\LOBVocabularyname}{Vocabulario}
+\newcommand{\LOBDefinitionname}{Definición}
+\newcommand{\LOBCorollaryname}{Corolario}
+
+\documentclass[
+    11pt, % Default font size, select one of 10pt, 11pt or 12pt
+    fleqn, % Left align equations
+    a4paper, % Paper size, use either 'a4paper' for A4 size or 'letterpaper' for US letter size
+%oneside, % Uncomment for oneside mode, this doesn't start new chapters and parts on odd pages (adding an empty page if required), this mode is more suitable if the book is to be read on a screen instead of printed
+]{LegrandOrangeBook}
+
+\usepackage{estilocrispropioLibro}
+
+% Idioma: español (capítulo, índice, figura, tabla, guiones). Sin atajos de babel-spanish
+% (es-noshorthands: > y < no se activan) y con punto decimal normal en modo matemático (siunitx ya pone la coma).
+\usepackage[spanish, es-noshorthands, es-tabla, es-nolists, es-nodecimaldot]{babel}
+\providecommand{\didyouknowname}{}
+\renewcommand{\didyouknowname}{¿Sabías que\ldots?}
+
+% Color principal del libro: verde (2.º ESO). La clase y estilocrispropioLibro lo usan con el nombre «ocre»
+% (títulos, cajas, índice, enlaces…); el estilo lo define naranja y aquí se redefine para este libro.
+\definecolor{ocre}{RGB}{31, 138, 82}
+
+
+%% -------------------------------------------------
+%% SISTEMA DE SOLUCIONES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Con borde de box
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Redefinir el ambiente Solution para usar el box personalizado
+\renewenvironment{Solution}[1]{%
+    \begin{solBox}%
+    \noindent{\small\sffamily\bfseries\color{ocre}Ejercicio~#1}%
+    \par\vspace{3pt}%
+}{%
+    \end{solBox}%
+}
+
+
+% Book information for PDF metadata
+\hypersetup{
+    pdftitle={Física y Química 2.º ESO}, % Title field
+    pdfauthor={Cristóbal Melero}, % Author field
+    pdfsubject={Física y Química}, % Subject field
+    pdfkeywords={Física, Química, 2.º ESO}, % Keywords
+    pdfcreator={LaTeX}, % Content creator field
+}
+
+
+\chapterimage{images/portada_cabeceras/cabecera_general} % Cabecera general (las de cada unidad van antes de cada \chapter)
+\chapterspaceabove{6.5cm} % Default whitespace from the top of the page to the chapter title on chapter pages
+\chapterspacebelow{6.75cm} % Default amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+%----------------------------------------------------------------------------------------
+% Para formulación
+%----------------------------------------------------------------------------------------
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{tabularray}
+\UseTblrLibrary{siunitx}
+
+\newcommand{\acu}{{(aq)}}
+
+\newcounter{numeroformula}
+\setcounter{numeroformula}{0}
+
+\newcommand{\myorder}{\textbf{\addtocounter{numeroformula}{1}\arabic{numeroformula}}}
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+    % Abrir el archivo de soluciones (nombre propio: no comparte out/soluciones.tex con el libro en inglés)
+    \Opensolutionfile{ans}[soluciones2ESOes]
+
+%----------------------------------------------------------------------------------------
+%	PORTADA
+%----------------------------------------------------------------------------------------
+
+    \titlepage
+    {\includegraphics[width=\paperwidth]{images/portada_cabeceras/portada_2ESO_ES}} % Portada (PDF vectorial, fuente en images/portada_cabeceras/html/portada.html)
+
+%----------------------------------------------------------------------------------------
+%	CRÉDITOS
+%----------------------------------------------------------------------------------------
+
+    \thispagestyle{empty}
+
+    ~\vfill
+
+    \noindent Copyright \copyright\ 2026 Cristóbal Melero\\
+
+    \noindent \textsc{Publicado por CM Editorial}\\
+
+    \noindent \textsc{\href{https://webfyq.com}{https://Webfyq.com}}\\
+
+    \noindent Obra publicada con licencia Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 (la «Licencia»). No se puede utilizar este documento salvo en las condiciones de la Licencia, que se puede consultar en \url{https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es}. Salvo que lo exija la ley aplicable o se acuerde por escrito, el material se distribuye \textsc{«tal cual», sin garantías ni condiciones de ningún tipo}, ni expresas ni implícitas. Consulte la Licencia para conocer los permisos y limitaciones concretos.\\
+
+    \noindent \textit{Primera edición, marzo de 2026}
+
+
+%----------------------------------------------------------------------------------------
+%	ÍNDICE
+%----------------------------------------------------------------------------------------
+
+    \pagestyle{empty}
+
+    \tableofcontents
+
+    \pagestyle{fancy}
+
+    \cleardoublepage
+
+%----------------------------------------------------------------------------------------
+%	HERRAMIENTAS MATEMÁTICAS
+%----------------------------------------------------------------------------------------
+
+
+    \part{Herramientas matemáticas}
+
+    \chapterimage{images/portada_cabeceras/cabecera_general}
+    \chapterspaceabove{6.75cm}
+    \chapterspacebelow{7.25cm}
+
+    \setcounter{chapter}{-1} % esta unidad es la Unidad 0
+    \chapterimage{images/portada_cabeceras/cabecera_Math}
+    \chapter{Herramientas matemáticas}
+    \input{Unidad_0_Herramientas_Matematicas}
+
+
+%----------------------------------------------------------------------------------------
+%	QUÍMICA
+%----------------------------------------------------------------------------------------
+
+    \part{Química}
+
+    \chapterimage{images/portada_cabeceras/cabecera_general}
+    \chapterspaceabove{6.75cm}
+    \chapterspacebelow{7.25cm}
+
+%------------------------------------------------
+
+    \chapterimage{images/portada_cabeceras/cabecera_Unit1}
+    \chapter{La materia y su medida}
+    \input{Unidad_1_Materia_Medida}
+
+%------------------------------------------------
+
+    \chapterimage{images/portada_cabeceras/cabecera_Unit2}
+    \chapter{Los estados de la materia}
+    \input{Unidad_2_Estados_Materia}
+
+%------------------------------------------------
+
+    \chapterimage{images/portada_cabeceras/cabecera_Unit3}
+    \chapter{La diversidad de la materia}
+    \input{Unidad_3_Diversidad_Materia}
+
+%------------------------------------------------
+
+    \chapterimage{images/portada_cabeceras/cabecera_Unit4}
+    \chapter{Formulación y nomenclatura}
+    \input{Unit_4_nomenclature_EN_ES} % unidad bilingüe, común a los dos libros
+
+%------------------------------------------------
+
+    \chapterimage{images/portada_cabeceras/cabecera_Unit5}
+    \chapter{Los cambios de la materia}
+    \input{Unidad_5_Cambios_Materia}
+
+%------------------------------------------------
+
+    \chapterimage{images/portada_cabeceras/cabecera_Unit6}
+    \chapter{Las reacciones químicas}
+    \input{Unidad_6_Reacciones_Quimicas}
+
+
+%----------------------------------------------------------------------------------------
+%	FÍSICA
+%----------------------------------------------------------------------------------------
+
+\part{Física}
+
+%------------------------------------------------
+
+    \chapterimage{images/portada_cabeceras/cabecera_Unit7}
+    \chapter{El movimiento}
+    \input{Unidad_7_Movimiento}
+
+%------------------------------------------------
+
+    \chapterimage{images/portada_cabeceras/cabecera_Unit8}
+    \chapter{Las fuerzas}
+    \input{Unidad_8_Fuerzas}
+
+%------------------------------------------------
+
+    \chapterimage{images/portada_cabeceras/cabecera_Unit9}
+    \chapter{La energía}
+    \input{Unidad_9_Energia}
+
+
+    \chapterimage{images/portada_cabeceras/cabecera_general}
+    \chapterspaceabove{6.75cm}
+    \chapterspacebelow{7.25cm}
+
+
+%----------------------------------------------------------------------------------------
+%	TABLAS PERIÓDICAS (solo las versiones en español; se mantienen las etiquetas del libro en inglés)
+%----------------------------------------------------------------------------------------
+
+    \part{Tabla periódica}
+
+    \newpage
+    \pagestyle{empty}
+    \begin{landscape}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{images/SP_atomo/2_3_ESO_TP_ES_html}
+            \caption{Tabla periódica de los elementos}
+            \label{fig:tabla_periodica}
+            \label{fig:periodic_table}
+        \end{figure}
+    \end{landscape}
+    \newpage
+    \begin{landscape}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{images/SP_atomo/2_3_ESO_TP_ES_reducida_html}
+            \caption{Tabla periódica de los elementos (2.º ESO)}
+            \label{fig:tabla_periodica_reducida}
+            \label{fig:periodic_table_reducida}
+        \end{figure}
+    \end{landscape}
+    \newpage
+    \begin{landscape}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{images/TP_Valencias_ES_html}
+            \caption{Tabla periódica: números de oxidación}
+            \label{fig:tabla_valencias}
+        \end{figure}
+    \end{landscape}
+    \newpage
+    \begin{landscape}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{images/TP_Valencias_ES_reducida_html}
+            \caption{Tabla periódica: números de oxidación (2.º ESO)}
+            \label{fig:tabla_valencias_reducida}
+        \end{figure}
+    \end{landscape}
+    \pagestyle{fancy}
+
+%----------------------------------------------------------------------------------------
+%	SOLUCIONES
+%----------------------------------------------------------------------------------------
+
+    \part{Soluciones de los ejercicios}
+
+    \chapterimage{images/portada_cabeceras/cabecera_general}
+    \chapter{Soluciones} % las soluciones van agrupadas por capítulo (secciones)
+
+    \Closesolutionfile{ans}
+
+    \input{soluciones2ESOes}
+
+
+\end{document}

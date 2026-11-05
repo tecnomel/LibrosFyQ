@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Medida de la masa</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 26px; }
+    .panel { border: 2px solid var(--line); border-radius: 16px; padding: 14px 16px; }
+    .panel h2 { font-size: 21px; color: var(--blue); margin-bottom: 6px; }
+    .p1 { width: 400px; } .p2 { flex: 1; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .steps { display: flex; gap: 12px; }
+    .st { flex: 1; text-align: center; }
+    .st .n { display: inline-block; width: 30px; height: 30px; border-radius: 50%; background: var(--ocre); color: #fff; font-weight: 800; line-height: 30px; }
+    .st .cap { font-size: 16px; margin-top: 6px; }
+    .scale { margin: 8px auto 0; width: 190px; position: relative; height: 150px; }
+    .plate { position: absolute; top: 46px; left: 25px; width: 140px; height: 10px; background: #95A5A6; border-radius: 4px; }
+    .base { position: absolute; top: 56px; left: 5px; width: 180px; height: 80px; background: #D5D8DC; border-radius: 10px; border: 3px solid #7F8C8D; }
+    .disp { position: absolute; top: 74px; left: 30px; width: 130px; height: 34px; background: #1B2631; color: #58D68D; border-radius: 6px;
+        font-family: Consolas, monospace; font-size: 22px; text-align: center; line-height: 34px; font-weight: 700; }
+    .btn { position: absolute; top: 114px; left: 75px; width: 40px; height: 16px; border-radius: 4px; background: var(--ocre); color: #fff; font-size: 10px; text-align: center; line-height: 16px; font-weight: 700; }
+    .beaker { position: absolute; left: 66px; width: 58px; height: 46px; border: 3px solid #5D6D7E; border-top: none; border-radius: 0 0 8px 8px; background: rgba(214,234,248,.6); top: 0; }
+    .salt { position: absolute; bottom: 0; left: 0; right: 0; height: 18px; background: #F2F3F4; border-top: 2px dotted #AAB7B8; }
+    .press { position: absolute; top: 108px; left: 120px; font-size: 26px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Medida de la masa: balanzas</h1>
+    <div class="row">
+        <div class="panel p1">
+            <h2>Balanza de platillos</h2>
+            <svg width="370" height="230" viewBox="0 0 370 230">
+                <rect x="160" y="200" width="50" height="14" rx="4" fill="#7F8C8D"/>
+                <rect x="180" y="60" width="10" height="142" fill="#95A5A6"/>
+                <rect x="50" y="56" width="270" height="10" rx="5" fill="#5D6D7E"/>
+                <polygon points="185,52 177,66 193,66" fill="#C0392B"/>
+                <line x1="185" y1="66" x2="185" y2="110" stroke="#C0392B" stroke-width="3"/>
+                <text x="185" y="128" text-anchor="middle" font-size="13" fill="#C0392B" font-weight="700">aguja en el 0</text>
+                <line x1="70" y1="66" x2="70" y2="140" stroke="#5D6D7E" stroke-width="2"/>
+                <line x1="300" y1="66" x2="300" y2="140" stroke="#5D6D7E" stroke-width="2"/>
+                <path d="M25 140 Q70 165 115 140 Z" fill="#AAB7B8"/>
+                <path d="M255 140 Q300 165 345 140 Z" fill="#AAB7B8"/>
+                <text x="70" y="132" text-anchor="middle" font-size="36">🍎</text>
+                <rect x="276" y="114" width="20" height="24" rx="3" fill="#B7950B"/><rect x="300" y="122" width="14" height="16" rx="3" fill="#B7950B"/><rect x="318" y="128" width="10" height="10" rx="2" fill="#B7950B"/>
+                <text x="70" y="185" text-anchor="middle" font-size="15">objeto</text>
+                <text x="300" y="185" text-anchor="middle" font-size="15">pesas conocidas</text>
+            </svg>
+            <div class="note">Masa del objeto = suma de las pesas.</div>
+        </div>
+        <div class="panel p2">
+            <h2>Balanza electrónica: usa el botón TARA</h2>
+            <div class="steps">
+                <div class="st"><span class="n">1</span>
+                    <div class="scale"><div class="beaker"></div><div class="plate"></div><div class="base"></div><div class="disp">85,0 g</div><div class="btn">TARA</div></div>
+                    <div class="cap">Pon el recipiente <b>vacío</b>.</div></div>
+                <div class="st"><span class="n">2</span>
+                    <div class="scale"><div class="beaker"></div><div class="plate"></div><div class="base"></div><div class="disp">0,0 g</div><div class="btn">TARA</div><div class="press">👆</div></div>
+                    <div class="cap">Pulsa <b>TARA</b>: la pantalla marca 0.</div></div>
+                <div class="st"><span class="n">3</span>
+                    <div class="scale"><div class="beaker"><div class="salt"></div></div><div class="plate"></div><div class="base"></div><div class="disp">47,4 g</div><div class="btn">TARA</div></div>
+                    <div class="cap">Añade la sustancia y <b>lee su masa</b>.</div></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

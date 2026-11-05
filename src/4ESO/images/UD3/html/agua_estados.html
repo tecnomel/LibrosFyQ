@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Fuerzas entre moléculas de agua en los tres estados</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1000px; }
+    .row { display: flex; gap: 12px; }
+    .card { flex: 1; text-align: center; }
+    .t { font-size: 14px; color: var(--grey); }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Sólido (hielo)</h2><svg id="a" width="290" height="240"></svg><div class="t">Red de hexágonos con huecos: ocupa más volumen y es menos denso.</div></div>
+        <div class="card"><h2>Líquido</h2><svg id="b" width="290" height="240"></svg><div class="t">Grupos de moléculas unidas que se rompen y forman continuamente.</div></div>
+        <div class="card"><h2>Gas (vapor)</h2><svg id="c" width="290" height="240"></svg><div class="t">Moléculas sueltas y muy separadas: sin enlaces de hidrógeno.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    function w(add, x, y, ang, s = 1) {
+        const h1 = [x + 15 * s * Math.cos(ang - 0.91), y + 15 * s * Math.sin(ang - 0.91)], h2 = [x + 15 * s * Math.cos(ang + 0.91), y + 15 * s * Math.sin(ang + 0.91)];
+        ball(add, ...h1, 'H', 6 * s, false); ball(add, ...h2, 'H', 6 * s, false); ball(add, x, y, 'O', 10 * s, false);
+    }
+    const hb = (add, a, b) => add('line', { x1: a[0], y1: a[1], x2: b[0], y2: b[1], stroke: '#C0392B', 'stroke-width': 2, 'stroke-dasharray': '3 4' });
+    // hielo: vértices de una red hexagonal
+    let add = svgAdder('a');
+    const r = 34, V = [];
+    for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) {
+        const cx = 40 + j * r * Math.sqrt(3) + (i % 2) * r * Math.sqrt(3) / 2, cy = 35 + i * r * 1.5;
+        for (let k = 0; k < 6; k++) V.push([cx + r * Math.cos(Math.PI / 6 + k * Math.PI / 3), cy + r * Math.sin(Math.PI / 6 + k * Math.PI / 3)]);
+    }
+    const U = V.filter((p, i) => V.findIndex(q => Math.hypot(q[0] - p[0], q[1] - p[1]) < 1) === i).filter(([x, y]) => x > 5 && x < 285 && y > 5 && y < 235);
+    for (let i = 0; i < U.length; i++) for (let j = i + 1; j < U.length; j++) if (Math.abs(Math.hypot(U[i][0] - U[j][0], U[i][1] - U[j][1]) - r) < 1) hb(add, U[i], U[j]);
+    U.forEach(([x, y], i) => w(add, x, y, i * 1.3));
+    // líquido: agrupaciones
+    add = svgAdder('b');
+    const L = [[60, 50], [100, 70], [70, 95], [180, 40], [215, 70], [190, 100], [240, 110], [80, 170], [120, 190], [60, 210], [200, 175], [235, 200], [150, 125]];
+    [[0, 1], [1, 2], [3, 4], [4, 5], [5, 6], [7, 8], [8, 9], [10, 11], [2, 12], [12, 5]].forEach(([i, j]) => hb(add, L[i], L[j]));
+    L.forEach(([x, y], i) => w(add, x, y, i * 2.1));
+    // gas
+    add = svgAdder('c');
+    [[50, 40], [210, 60], [130, 130], [60, 200], [240, 190]].forEach(([x, y], i) => {
+        w(add, x, y, i * 1.7);
+        arrow(add, x + 14, y + 12, x + 45, y + 30 - i * 8, '#AAB7B8', 2, 9);
+    });
+</script>
+</body>
+</html>

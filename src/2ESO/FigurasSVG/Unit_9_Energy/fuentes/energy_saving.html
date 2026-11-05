@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Saving energy</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 20px; }
+    .label { width: 300px; border: 3px solid #23373B; border-radius: 12px; padding: 10px; }
+    .label h2 { font-size: 18px; text-align: center; margin-bottom: 6px; }
+    .lv { height: 34px; margin: 4px 0; color: #fff; font-weight: 800; font-size: 20px; padding-left: 12px; line-height: 34px; clip-path: polygon(0 0, calc(100% - 17px) 0, 100% 50%, calc(100% - 17px) 100%, 0 100%); }
+    .tips { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .tip { border-radius: 12px; padding: 8px 10px; background: var(--green-soft); border: 2px solid var(--green); font-size: 15px; display: flex; gap: 10px; align-items: center; }
+    .tip .ic { font-size: 34px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Saving energy every day</h1>
+    <div class="row">
+        <div class="label"><h2>⚡ Energy label</h2><div id="lv"></div><div class="note" style="font-size:13px;text-align:center">A: uses the least energy · G: uses the most</div></div>
+        <div class="tips">
+            <div class="tip"><span class="ic">💡</span><span>Use <b>LED</b> bulbs: they use about 85 % less energy.</span></div>
+            <div class="tip"><span class="ic">🔌</span><span>Switch off devices: <b>standby</b> also consumes energy.</span></div>
+            <div class="tip"><span class="ic">🌡️</span><span>Heating at <b>19–21 °C</b> in winter; close windows when it is on.</span></div>
+            <div class="tip"><span class="ic">🚿</span><span>Take <b>short showers</b> instead of baths.</span></div>
+            <div class="tip"><span class="ic">🚌🚲</span><span>Walk, cycle or use <b>public transport</b>.</span></div>
+            <div class="tip"><span class="ic">🏠</span><span>Good <b>insulation</b> keeps the heat in.</span></div>
+            <div class="tip"><span class="ic">♻️</span><span>Recycle and buy <b>local</b> products.</span></div>
+            <div class="tip"><span class="ic">🧺</span><span>Use the washing machine <b>full</b> and at low temperature.</span></div>
+        </div>
+    </div>
+</div>
+<script>
+    const c = ['#1E8449', '#52BE80', '#ABEBC6', '#F7DC6F', '#F5B041', '#E67E22', '#C0392B'];
+    'ABCDEFG'.split('').forEach((l, i) => document.getElementById('lv').insertAdjacentHTML('beforeend', `<div class="lv" style="background:${c[i]};width:${45 + i * 9}%;color:${i === 2 || i === 3 ? '#23373B' : '#fff'}">${l}</div>`));
+</script>
+</body>
+</html>

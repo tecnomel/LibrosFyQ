@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Rozamiento y energía</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card .t { font-size: 13.5px; } .card h3 { font-size: 15px; color: var(--blue); margin-bottom: 4px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3>Una canica en un cuenco</h3><svg id="a" width="380" height="230"></svg>
+            <div class="t">Por el rozamiento, en cada oscilación la canica sube un poco menos hasta que se para: la energía mecánica disminuye y se transforma en <b>energía térmica</b>.</div></div>
+        <div class="card"><h3>Transformaciones de la energía</h3><svg id="b" width="380" height="230"></svg>
+            <div class="t">Unas formas de energía se transforman en otras, pero la <b>energía total se conserva</b>. Al final, buena parte acaba como energía térmica (se degrada).</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    {
+        const add = svgAdder('a');
+        const cx = 190, cy = 30, R = 170;
+        // cuenco: arco de circunferencia (de 200° a 340°, medido como en matemáticas con y hacia abajo)
+        const P = a => [cx + R * Math.cos(a * Math.PI / 180), cy + R * Math.sin(a * Math.PI / 180)];
+        let d = ''; for (let a = 20; a <= 160; a += 2) { const [x, y] = P(a); d += (a === 20 ? 'M' : ' L') + x + ' ' + y; }
+        add('path', { d: d + ' Z', fill: '#D6EAF8' });
+        add('path', { d, fill: 'none', stroke: '#2471A3', 'stroke-width': 5 });
+        // posiciones extremas cada vez más bajas
+        [[150, 1], [40, 0.8], [140, 0.6], [55, 0.45]].forEach(([a, op], i) => {
+            const [x, y] = P(a), r = 11;
+            const nx = (cx - x) / R, ny = (cy - y) / R;
+            bead(add, x + nx * r, y + ny * r, r, '#C0392B');
+            if (i) add('circle', { cx: x + nx * r, cy: y + ny * r, r, fill: '#fff', opacity: 1 - op });
+            label(add, x + nx * r + (a > 90 ? 22 : -22), y + ny * r + 4, String(i + 1), { 'font-size': 12, fill: '#525252' });
+        });
+        const [bx, by] = P(90); bead(add, bx, by - 11, 11, '#7F8C8D');
+        label(add, bx, by + 22, 'reposo final', { 'font-size': 12, fill: '#525252', 'font-weight': 400 });
+        label(add, 190, 20, 'cada vez sube menos', { 'font-size': 13, fill: '#C0392B' });
+    }
+    {
+        const add = svgAdder('b');
+        const nodes = [
+            ['eléctrica', 70, 40, '#F4D03F'], ['química', 70, 190, '#82E0AA'],
+            ['cinética', 310, 40, '#5DADE2'], ['potencial', 310, 190, '#AF7AC5'],
+            ['térmica', 190, 115, '#F1948A']];
+        const pos = {}; nodes.forEach(([n, x, y]) => pos[n] = [x, y]);
+        const links = [['eléctrica', 'cinética', 'motor eléctrico'], ['química', 'eléctrica', 'pila'], ['potencial', 'cinética', 'caída'], ['cinética', 'térmica', 'frenado'], ['eléctrica', 'térmica', 'plancha'], ['química', 'térmica', 'combustión']];
+        links.forEach(([a, b, t]) => {
+            const [x1, y1] = pos[a], [x2, y2] = pos[b];
+            const L = Math.hypot(x2 - x1, y2 - y1), ux = (x2 - x1) / L, uy = (y2 - y1) / L;
+            arrow(add, x1 + ux * 48, y1 + uy * 22, x2 - ux * 48, y2 - uy * 24, '#7F8C8D', 2, 9);
+            const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+            label(add, mx + (Math.abs(uy) > 0.9 ? 8 : 0), my - 6, t, { 'font-size': 11, fill: '#525252', 'font-weight': 400, 'text-anchor': Math.abs(uy) > 0.9 ? 'start' : 'middle', stroke: '#FBFCFC', 'stroke-width': 4, 'paint-order': 'stroke' });
+        });
+        nodes.forEach(([n, x, y, c]) => {
+            add('rect', { x: x - 48, y: y - 18, width: 96, height: 36, rx: 18, fill: c, stroke: '#566573', 'stroke-width': 1.2 });
+            label(add, x, y + 5, n, { 'font-size': 13 });
+        });
+    }
+</script>
+</body>
+</html>

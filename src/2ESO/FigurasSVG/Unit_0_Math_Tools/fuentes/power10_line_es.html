@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Potencias de 10</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .line { display: flex; align-items: stretch; justify-content: center; gap: 6px; margin-top: 6px; }
+    .p { width: 126px; border-radius: 12px; text-align: center; padding: 8px 4px; color: #fff; }
+    .p b { display: block; font-size: 28px; }
+    .p span { font-size: 15px; display: block; margin-top: 4px; }
+    .p small { font-size: 13px; opacity: .9; }
+    .neg { background: var(--green); } .zero { background: var(--ocre); } .pos { background: var(--blue); }
+    .arrows { display: flex; justify-content: space-between; margin: 14px 40px 0; font-size: 17px; font-weight: 700; }
+    .rules { display: flex; gap: 16px; margin-top: 16px; }
+    .rules > div { flex: 1; border-radius: 12px; padding: 10px 14px; font-size: 17px; line-height: 1.45; }
+    .r1 { background: var(--blue-soft); border: 2px solid var(--blue); }
+    .r2 { background: var(--green-soft); border: 2px solid var(--green); }
+    .r3 { background: var(--ocre-soft); border: 2px solid var(--ocre); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Potencias de 10: el exponente cuenta los lugares</h1>
+    <div class="line">
+        <div class="p neg"><b>10<sup>-3</sup></b><span>0,001</span><small>3 lugares tras la coma</small></div>
+        <div class="p neg"><b>10<sup>-2</sup></b><span>0,01</span><small>2 lugares</small></div>
+        <div class="p neg"><b>10<sup>-1</sup></b><span>0,1</span><small>1 lugar</small></div>
+        <div class="p zero"><b>10<sup>0</sup></b><span>1</span><small>ningún cero</small></div>
+        <div class="p pos"><b>10<sup>1</sup></b><span>10</span><small>1 cero</small></div>
+        <div class="p pos"><b>10<sup>2</sup></b><span>100</span><small>2 ceros</small></div>
+        <div class="p pos"><b>10<sup>3</sup></b><span>1000</span><small>3 ceros</small></div>
+        <div class="p pos"><b>10<sup>6</sup></b><span>1 000 000</span><small>6 ceros</small></div>
+    </div>
+    <div class="arrows"><span style="color:var(--green)">⟵ menores que 1: exponente negativo</span><span style="color:var(--blue)">mayores que 1: exponente positivo ⟶</span></div>
+    <div class="rules">
+        <div class="r1"><b>Exponente positivo</b> 10<sup>n</sup>: un <b>1</b> seguido de <b>n ceros</b>.<br>10<sup>4</sup> = 10 000</div>
+        <div class="r3"><b>Exponente cero</b>: 10<sup>0</sup> = <b>1</b><br>(cualquier número elevado a 0 es 1)</div>
+        <div class="r2"><b>Exponente negativo</b> 10<sup>-n</sup>: el <b>1</b> está en el <b>lugar n</b> después de la coma.<br>10<sup>-4</sup> = 0,0001</div>
+    </div>
+</div>
+</body>
+</html>

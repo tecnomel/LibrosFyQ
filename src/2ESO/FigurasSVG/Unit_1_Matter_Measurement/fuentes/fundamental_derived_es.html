@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Fundamental and derived quantities</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1100px; height: 560px; }
+    .row { display: flex; gap: 40px; align-items: stretch; }
+    .col { flex: 1; }
+    .col h2 { font-size: 21px; margin-bottom: 12px; text-align: center; padding: 8px; border-radius: 10px; }
+    .fund h2 { background: var(--blue); color: #fff; }
+    .der h2 { background: var(--ocre); color: #fff; }
+    .chip {
+        display: flex; align-items: center; gap: 12px;
+        border: 2px solid var(--blue); background: var(--blue-soft);
+        border-radius: 12px; padding: 8px 14px; margin-bottom: 9px; font-size: 18px;
+    }
+    .chip b { color: var(--blue); min-width: 120px; }
+    .chip .u { margin-left: auto; font-weight: 700; color: var(--ocre); }
+    .recipe {
+        border: 2px solid var(--ocre); background: var(--ocre-soft);
+        border-radius: 12px; padding: 10px 14px; margin-bottom: 12px; font-size: 19px;
+    }
+    .recipe .name { font-weight: 700; color: #A3400B; }
+    .recipe .eq { margin-top: 4px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .tag { background: var(--blue); color: #fff; border-radius: 6px; padding: 2px 9px; font-size: 16px; }
+    .unit { margin-left: auto; font-weight: 700; color: var(--blue); }
+    .arrow { font-size: 60px; color: var(--grey); align-self: center; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Magnitudes fundamentales y derivadas</h1>
+    <div class="row">
+        <div class="col fund">
+            <h2>Magnitudes fundamentales (los «ladrillos»)</h2>
+            <div class="chip"><b>Longitud</b> <span>l</span><span class="u">m</span></div>
+            <div class="chip"><b>Masa</b> <span>m</span><span class="u">kg</span></div>
+            <div class="chip"><b>Tiempo</b> <span>t</span><span class="u">s</span></div>
+            <div class="chip"><b>Temperatura</b> <span>T</span><span class="u">K</span></div>
+            <div class="chip"><b>Cantidad de sustancia</b> <span>n</span><span class="u">mol</span></div>
+            <div class="note" style="margin-top:6px">… y además la intensidad de corriente (A) y la intensidad luminosa (cd)</div>
+        </div>
+        <div class="arrow">➜</div>
+        <div class="col der">
+            <h2>Magnitudes derivadas (hechas con los ladrillos)</h2>
+            <div class="recipe"><div class="name">Superficie</div>
+                <div class="eq"><span class="tag">longitud</span> × <span class="tag">longitud</span><span class="unit">m<sup>2</sup></span></div></div>
+            <div class="recipe"><div class="name">Volumen</div>
+                <div class="eq"><span class="tag">longitud</span> × <span class="tag">longitud</span> × <span class="tag">longitud</span><span class="unit">m<sup>3</sup></span></div></div>
+            <div class="recipe"><div class="name">Velocidad</div>
+                <div class="eq"><span class="tag">longitud</span> ÷ <span class="tag">tiempo</span><span class="unit">m/s</span></div></div>
+            <div class="recipe"><div class="name">Densidad</div>
+                <div class="eq"><span class="tag">masa</span> ÷ <span class="tag">volumen</span><span class="unit">kg/m<sup>3</sup></span></div></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

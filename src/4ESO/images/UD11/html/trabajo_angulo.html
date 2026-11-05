@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Trabajo de una fuerza que forma un ángulo y del rozamiento</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card .t { font-size: 13.5px; } .card h3 { font-size: 15px; color: var(--blue); margin-bottom: 4px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3>La fuerza forma un ángulo θ con el desplazamiento</h3><svg id="a" width="370" height="220"></svg>
+            <div class="t">Solo trabaja la componente en la dirección del desplazamiento, <i>F<sub>x</sub></i> = <i>F</i> · cos θ: &nbsp;<b><i>W</i> = <i>F</i> · Δ<i>x</i> · cos θ</b>.</div></div>
+        <div class="card"><h3>Trabajo de la fuerza de rozamiento</h3><svg id="b" width="370" height="220"></svg>
+            <div class="t">El rozamiento tiene sentido contrario al desplazamiento: su trabajo es <b>negativo</b>, <i>W</i> = −<i>F</i><sub>roz</sub> · Δ<i>x</i>.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const RED = '#C0392B', BLUE = '#2471A3', GREEN = '#1E8449', G = 160;
+    function box(add, x, y, w, h, ghost) {
+        add('rect', { x, y, width: w, height: h, rx: 4, fill: ghost ? 'none' : '#E59866', stroke: ghost ? '#AAB7B8' : '#A04000', 'stroke-width': 2, 'stroke-dasharray': ghost ? '5 4' : 'none' });
+    }
+    {
+        const add = svgAdder('a');
+        add('rect', { x: 0, y: G, width: 370, height: 10, fill: '#D7BDA0' });
+        box(add, 40, G - 50, 70, 50, true);
+        box(add, 200, G - 50, 70, 50);
+        // fuerza a 35° y sus componentes
+        const ox = 270, oy = G - 30, F = 120, th = 35 * Math.PI / 180;
+        const fx = ox + F * Math.cos(th), fy = oy - F * Math.sin(th);
+        add('line', { x1: fx, y1: fy, x2: fx, y2: oy, stroke: '#7F8C8D', 'stroke-dasharray': '4 3' });
+        arrow(add, ox, oy, fx, fy, RED, 3, 12);
+        arrow(add, ox, oy, fx, oy, GREEN, 3, 11);
+        arrow(add, ox, oy, ox, fy, '#7F8C8D', 2, 9);
+        vlabel(add, fx - 18, fy - 2, 'F', RED);
+        const t = label(add, fx - 20, oy + 22, '', { fill: GREEN, 'font-style': 'italic' }); t.innerHTML = 'F<tspan baseline-shift="sub" font-size="70%">x</tspan>';
+        const u = label(add, ox - 16, fy + 16, '', { fill: '#7F8C8D', 'font-style': 'italic', 'font-size': 14 }); u.innerHTML = 'F<tspan baseline-shift="sub" font-size="70%">y</tspan>';
+        add('path', { d: arcD(ox, oy, 38, 0, 35), fill: 'none', stroke: '#B9770E', 'stroke-width': 2 });
+        label(add, ox + 48, oy - 10, 'θ', { fill: '#B9770E', 'font-size': 15 });
+        arrow(add, 75, G + 30, 235, G + 30, BLUE, 2.5, 10);
+        label(add, 155, G + 50, 'Δx', { fill: BLUE, 'font-style': 'italic' });
+    }
+    {
+        const add = svgAdder('b');
+        add('rect', { x: 0, y: G, width: 370, height: 10, fill: '#D7BDA0' });
+        for (let x = 5; x < 370; x += 12) add('line', { x1: x, y1: G + 10, x2: x + 8, y2: G + 2, stroke: '#B9A07E', 'stroke-width': 1 });
+        box(add, 150, G - 50, 70, 50);
+        arrow(add, 220, G - 25, 320, G - 25, RED, 3, 12);
+        vlabel(add, 300, G - 34, 'F', RED);
+        arrow(add, 150, G - 4, 80, G - 4, '#7D3C98', 3, 11);
+        const t = label(add, 92, G - 14, '', { fill: '#7D3C98', 'font-style': 'italic' }); t.innerHTML = 'F<tspan baseline-shift="sub" font-size="70%">roz</tspan>';
+        arrow(add, 120, G + 30, 290, G + 30, BLUE, 2.5, 10);
+        label(add, 205, G + 50, 'Δx', { fill: BLUE, 'font-style': 'italic' });
+        label(add, 185, 40, 'sentidos opuestos ⇒ W < 0', { 'font-size': 14, fill: '#7D3C98' });
+    }
+</script>
+</body>
+</html>

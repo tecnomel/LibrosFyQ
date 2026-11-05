@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Carrete de vasos con una goma</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="a" width="720" height="270"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const A = svgAdder('a');
+    const yc = 130, Cg = '#A04000', Cl = '#525252';
+    // dos vasos unidos por la boca: el de la izquierda (fondo en x=150), el de la derecha (fondo en x=530)
+    const xF1 = 150, xM = 340, xF2 = 530, rF = 52, rB = 78;
+    const vaso = (xf, s) => A('path', { d: `M${xf} ${yc - rF} L${xM} ${yc - rB} L${xM} ${yc + rB} L${xf} ${yc + rF} Z`,
+        fill: '#EBF5FB', stroke: '#5D6D7E', 'stroke-width': 2 });
+    vaso(xF1); vaso(xF2);
+    A('ellipse', { cx: xF1, cy: yc, rx: 12, ry: rF, fill: '#D6EAF8', stroke: '#5D6D7E', 'stroke-width': 2 });
+    A('ellipse', { cx: xF2, cy: yc, rx: 12, ry: rF, fill: '#D6EAF8', stroke: '#5D6D7E', 'stroke-width': 2 });
+    // cinta aislante en la unión
+    A('rect', { x: xM - 14, y: yc - rB - 3, width: 28, height: 2 * rB + 6, rx: 4, fill: '#34495E' });
+    // goma (doble) por el eje
+    A('path', { d: `M${xF1 - 6} ${yc - 4} L${xF2 + 6} ${yc - 4} M${xF1 - 6} ${yc + 4} L${xF2 + 6} ${yc + 4}`, stroke: Cg, 'stroke-width': 3, fill: 'none' });
+    // arandelas
+    [xF1 - 12, xF2 + 12].forEach(x => A('ellipse', { cx: x, cy: yc, rx: 5, ry: 16, fill: '#BDC3C7', stroke: '#566573', 'stroke-width': 2 }));
+    // pajita en la izquierda (vertical, larga, apoyada en el suelo)
+    A('line', { x1: xF1 - 20, y1: yc - 110, x2: xF1 - 20, y2: yc + rB - 4, stroke: '#2E86C1', 'stroke-width': 7, 'stroke-linecap': 'round' });
+    // clip a la derecha
+    A('path', { d: `M${xF2 + 18} ${yc - 10} q 14 0 14 10 q 0 10 -14 10`, fill: 'none', stroke: '#566573', 'stroke-width': 2.5 });
+    // suelo
+    A('line', { x1: 20, y1: yc + rB + 2, x2: 700, y2: yc + rB + 2, stroke: '#7F8C8D', 'stroke-width': 2 });
+    // rótulos
+    const rot = (x, y, t, x2, y2) => { A('line', { x1: x, y1: y + 4, x2, y2, stroke: Cl, 'stroke-width': 1.2 }); label(A, x, y, t, { 'font-size': 14, fill: Cl }); };
+    rot(70, 22, 'pajita', xF1 - 22, yc - 90);
+    rot(205, 248, 'arandela', xF1 - 12, yc + 18);
+    rot(270, 22, 'gomas elásticas', 260, yc - 6);
+    rot(xM, 248, 'cinta aislante', xM, yc + rB + 4);
+    rot(600, 22, 'arandela y clip', xF2 + 16, yc - 16);
+    rot(450, 22, 'vaso de plástico', 440, yc - 62);
+    // flecha del movimiento
+    arrow(A, 600, 200, 690, 200, '#1E8449', 3, 12);
+    label(A, 645, 190, 'avanza', { 'font-size': 14, fill: '#1E8449' });
+</script>
+</body>
+</html>

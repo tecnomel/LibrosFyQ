@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Desplazamiento de tres corredoras</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 920px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="880" height="250"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const X = m => 70 + m * 14;
+    // pista
+    for (let i = 0; i < 3; i++) add('rect', { x: 40, y: 50 + i * 55, width: 800, height: 55, fill: i % 2 ? '#E59866' : '#DC7633' });
+    for (let i = 0; i <= 3; i++) add('line', { x1: 40, y1: 50 + i * 55, x2: 840, y2: 50 + i * 55, stroke: '#FDFEFE', 'stroke-width': 3 });
+    add('line', { x1: X(0), y1: 50, x2: X(0), y2: 215, stroke: '#FDFEFE', 'stroke-width': 6 });
+    label(add, X(0) - 18, 140, 'SALIDA', { 'font-size': 14, fill: '#FDFEFE', transform: `rotate(-90 ${X(0) - 18} 140)` });
+    for (let m = 5; m <= 50; m += 5) { add('line', { x1: X(m), y1: 45, x2: X(m), y2: 215, stroke: '#FDFEFE', 'stroke-width': 1, 'stroke-dasharray': '4 6', opacity: 0.7 }); label(add, X(m), 38, m + ' m', { 'font-size': 13 }); }
+    label(add, 40, 20, 't = 5 s', { 'font-size': 15, 'text-anchor': 'start', fill: '#000070' });
+    [[45, 1, '#2471A3'], [35, 2, '#8E44AD'], [40, 3, '#1E8449']].forEach(([d, c, col], i) => {
+        const y = 77 + i * 55;
+        arrow(add, X(0), y + 12, X(d), y + 12, '#FDFEFE', 3, 11);
+        add('circle', { cx: X(d), cy: y - 6, r: 13, fill: col, stroke: '#FDFEFE', 'stroke-width': 2 });
+        label(add, X(d), y - 1, c, { 'font-size': 14, fill: '#fff' });
+        label(add, X(d) + 24, y + 4, 'Δx = ' + d + ' m', { 'font-size': 15, fill: '#FDFEFE', 'text-anchor': 'start' });
+    });
+    label(add, 440, 240, 'Cada corredora se ha desplazado desde la línea de salida (t = 0) hasta su posición en t = 5 s', { 'font-size': 14, fill: '#525252' });
+</script>
+</body>
+</html>

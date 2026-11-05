@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Disolución de un compuesto iónico en agua</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 920px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="860" height="300"></svg>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    const add = svgAdder('s');
+    const ion = (x, y, pos, r = 15) => {
+        add('circle', { cx: x, cy: y, r, fill: pos ? '#D2B4DE' : '#A9DFBF', stroke: pos ? '#8E44AD' : '#1E8449', 'stroke-width': 1.5 });
+        label(add, x, y + 6, pos ? 'Na⁺' : 'Cl⁻', { 'font-size': r * 0.75, 'font-weight': 800 });
+    };
+    // molécula de agua como dipolo: O (δ−) y dos H (δ+)
+    const water = (x, y, ang) => {
+        const h1 = [x + 15 * Math.cos(ang - 0.91), y + 15 * Math.sin(ang - 0.91)], h2 = [x + 15 * Math.cos(ang + 0.91), y + 15 * Math.sin(ang + 0.91)];
+        ball(add, ...h1, 'H', 6, false); ball(add, ...h2, 'H', 6, false); ball(add, x, y, 'O', 10, false);
+    };
+    // cristal a la izquierda
+    for (let r = 0; r < 5; r++) for (let c = 0; c < 4; c++) ion(40 + c * 32, 60 + r * 32, (r + c) % 2 === 0);
+    // aguas atacando el borde
+    [[200, 70, Math.PI], [205, 135, Math.PI], [195, 200, Math.PI]].forEach(([x, y, a]) => water(x, y, a));
+    arrow(add, 250, 140, 330, 140, '#23373B', 4, 15);
+    // ion Na+ hidratado: O hacia el catión
+    ion(470, 140, true, 22);
+    for (let k = 0; k < 6; k++) { const a = k * Math.PI / 3; water(470 + 50 * Math.cos(a), 140 + 50 * Math.sin(a), a); }
+    // ion Cl- hidratado: H hacia el anión
+    ion(700, 140, false, 22);
+    for (let k = 0; k < 6; k++) { const a = k * Math.PI / 3 + 0.5; water(700 + 55 * Math.cos(a), 140 + 55 * Math.sin(a), a + Math.PI); }
+    label(add, 470, 240, 'el O (δ⁻) del agua', { 'font-size': 15, fill: '#8E44AD' }); label(add, 470, 260, 'apunta al catión', { 'font-size': 15, fill: '#8E44AD' });
+    label(add, 700, 240, 'los H (δ⁺) del agua', { 'font-size': 15, fill: '#1E8449' }); label(add, 700, 260, 'apuntan al anión', { 'font-size': 15, fill: '#1E8449' });
+    label(add, 100, 260, 'cristal de NaCl', { 'font-size': 15 });
+    label(add, 430, 25, 'Las moléculas de agua (dipolos) rodean los iones y los separan de la red', { 'font-size': 15, fill: '#000070' });
+</script>
+</body>
+</html>

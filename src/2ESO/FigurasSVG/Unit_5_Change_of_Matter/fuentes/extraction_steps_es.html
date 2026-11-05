@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Extracción con disolvente</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="steps.css">
+<script src="lab_es.js"></script>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1></h1>
+    <div class="prop" id="prop"></div>
+    <div class="row" id="row"></div>
+</div>
+<script>
+const sandP = rnd(40,75,185,160,182,9), saltP = rnd(25,75,185,150,182,4);
+buildSteps('Cómo separar disolviendo (extracción con disolvente)', 'la <b>solubilidad</b>: el disolvente disuelve solo uno de los componentes', 'arena + sal', [
+  [beaker(70,90,120,100,[[30,C.sand]]) + dots(saltP,3,C.salt,'#7F8C8D') + T(130,70,'arena + sal'),
+   'Pon la mezcla en un vaso de precipitados.'],
+  [beaker(70,60,120,130,[[30,C.sand],[60,C.water]]) + dots(rnd(12,80,180,110,150,2),2.5,'#fff','#2471A3') +
+   `<line x1="150" y1="30" x2="120" y2="170" stroke="#7F8C8D" stroke-width="6" stroke-linecap="round"/>` + T(222,110,'remover',{fs:13,fw:400}),
+   'Añade <b>agua</b> y remueve: la sal se <b>disuelve</b> y la arena <b>no</b>.'],
+  [funnel(110,15,dots([[100,45],[112,52],[120,44],[108,40]],6,C.sandDark)) + `<ellipse cx="110" cy="132" rx="4" ry="7" fill="#5DADE2"/>` +
+   beaker(65,145,90,60,[[30,C.water]]) + tag(210,52,'keep','✔ arena') + T(208,175,'agua salada',{c:C.blue,fs:13}) + T(208,192,'→ evaporar',{c:C.blue,fs:13}),
+   '<b>Filtra</b>: la arena se queda en el papel. La sal va en el agua que pasa.'],
+]);
+</script>
+</body>
+</html>

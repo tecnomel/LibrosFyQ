@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Espectros atómicos</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="850" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const A = svgAdder('s');
+    const X0 = 230, X1 = 830, W0 = 380, W1 = 720;
+    const xw = wl => X0 + (wl - W0) / (W1 - W0) * (X1 - X0);
+    const H = [410.2, 434.0, 486.1, 656.3];
+    const g = spectrumGrad(A, 'g', W0, W1);
+    const rows = [[30, 'Espectro continuo', 'luz blanca'], [120, 'Espectro de emisión', 'hidrógeno excitado'], [210, 'Espectro de absorción', 'luz blanca a través de H₂']];
+    rows.forEach(([y, t, s], i) => {
+        label(A, 10, y + 28, t, { 'text-anchor': 'start', 'font-size': 16 });
+        label(A, 10, y + 48, s, { 'text-anchor': 'start', 'font-size': 13, 'font-weight': 400, fill: '#525252' });
+        if (i === 1) {
+            A('rect', { x: X0, y, width: X1 - X0, height: 60, fill: '#111' });
+            H.forEach(wl => A('rect', { x: xw(wl) - 2.5, y, width: 5, height: 60, fill: wlColor(wl) }));
+        } else {
+            A('rect', { x: X0, y, width: X1 - X0, height: 60, fill: g });
+            if (i === 2) H.forEach(wl => A('rect', { x: xw(wl) - 2.5, y, width: 5, height: 60, fill: '#111' }));
+        }
+    });
+    // escala
+    const ys = 290;
+    A('line', { x1: X0, y1: ys, x2: X1, y2: ys, stroke: '#23373B', 'stroke-width': 1.5 });
+    for (let wl = 400; wl <= 700; wl += 50) { A('line', { x1: xw(wl), y1: ys - 5, x2: xw(wl), y2: ys + 5, stroke: '#23373B', 'stroke-width': 1.5 }); label(A, xw(wl), ys + 22, wl, { 'font-size': 13, 'font-weight': 400 }); }
+    label(A, X1, ys + 40, 'λ (nm)', { 'font-size': 13, 'text-anchor': 'end' });
+    H.forEach(wl => { A('line', { x1: xw(wl), y1: 270, x2: xw(wl), y2: ys - 6, stroke: '#7F8C8D', 'stroke-dasharray': '3 3' }); });
+    label(A, xw(656.3), 116, '656 nm', { 'font-size': 12, fill: '#922B21' });
+    label(A, xw(486.1), 116, '486', { 'font-size': 12, fill: '#1F618D' });
+    label(A, xw(434.0), 116, '434', { 'font-size': 12, fill: '#5B2C6F' });
+    label(A, xw(410.2) - 6, 116, '410', { 'font-size': 12, fill: '#5B2C6F', 'text-anchor': 'end' });
+</script>
+</body>
+</html>

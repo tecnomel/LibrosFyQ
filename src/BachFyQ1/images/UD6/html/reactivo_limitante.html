@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Reactivo limitante y reactivo en exceso</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Antes: 6 H<sub>2</sub> y 5 O<sub>2</sub></h2><svg id="a" width="330" height="190"></svg></div>
+        <div style="align-self:center"><svg id="m" width="70" height="60"></svg></div>
+        <div class="card"><h2>Después: 6 H<sub>2</sub>O y sobran 2 O<sub>2</sub></h2><svg id="b" width="330" height="190"></svg></div>
+    </div>
+    <div class="note" style="text-align:center; margin-top:8px">2 H<sub>2</sub> + O<sub>2</sub> → 2 H<sub>2</sub>O: el H<sub>2</sub> se agota (reactivo limitante) y queda O<sub>2</sub> sin reaccionar (reactivo en exceso).</div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const r = 12;
+    const A = svgAdder('a');
+    [[45, 40], [125, 35], [205, 45], [60, 110], [140, 105], [215, 120]].forEach(([x, y]) => molecule(A, x, y, MOL.H2, r));
+    [[285, 40], [280, 105], [80, 165], [175, 165], [275, 165]].forEach(([x, y]) => molecule(A, x, y, MOL.O2, r));
+    const M = svgAdder('m');
+    arrow(M, 5, 30, 65, 30, '#23373B', 3.5, 14);
+    const B = svgAdder('b');
+    [[45, 45], [125, 40], [205, 50], [50, 120], [130, 115], [210, 125]].forEach(([x, y]) => molecule(B, x, y, MOL.H2O, r));
+    [[285, 70], [270, 160]].forEach(([x, y]) => {
+        B('circle', { cx: x, cy: y, r: 30, fill: 'none', stroke: '#C0392B', 'stroke-width': 2, 'stroke-dasharray': '5 4' });
+        molecule(B, x, y, MOL.O2, r);
+    });
+    label(B, 120, 175, 'sobran', { fill: '#C0392B', 'font-size': 15 });
+    arrow(B, 160, 170, 232, 162, '#C0392B', 2, 9);
+</script>
+</body>
+</html>

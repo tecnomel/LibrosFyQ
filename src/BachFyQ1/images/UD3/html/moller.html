@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Diagrama de Möller</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 520px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="470" height="480"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const A = svgAdder('s');
+    const COL = { s: '#E74C3C', p: '#27AE60', d: '#2E86C1', f: '#B9770E' }, MAX = { s: 2, p: 6, d: 10, f: 14 };
+    const L = ['s', 'p', 'd', 'f'], dx = 95, dy = 60, x0 = 50, y0 = 40;
+    const pos = (n, l) => [x0 + l * dx, y0 + (n - 1) * dy];
+    // flechas diagonales (orden de llenado): cada diagonal tiene n + l constante
+    for (let k = 1; k <= 8; k++) {
+        const cells = [];
+        for (let l = 3; l >= 0; l--) { const n = k - l; if (n >= l + 1 && n <= 7 && !(l === 3 && n > 5) && !(l === 2 && n > 6)) cells.push(pos(n, l)); }
+        if (!cells.length) continue;
+        const a = cells[0], b = cells[cells.length - 1];
+        const ex = b[0] - 30, ey = b[1] + 30;
+        if (cells.length > 1 || k > 0) {
+            A('line', { x1: a[0] + 26, y1: a[1] - 26, x2: ex + 8, y2: ey - 8, stroke: '#C0392B', 'stroke-width': 2, opacity: 0.75 });
+            arrow(A, ex + 10, ey - 10, ex, ey, '#C0392B', 2, 10);
+        }
+    }
+    for (let n = 1; n <= 7; n++) for (let l = 0; l < 4; l++) {
+        if (l >= n || (l === 3 && n > 5) || (l === 2 && n > 6)) continue;
+        const [x, y] = pos(n, l), k = L[l];
+        bead(A, x, y, 21, COL[k]);
+        const t = label(A, x, y + 6, '', { 'font-size': 16, fill: '#fff' });
+        t.innerHTML = `${n}${k}<tspan baseline-shift="super" font-size="65%">${MAX[k]}</tspan>`;
+    }
+    label(A, 235, 470, 'Se sigue cada flecha de arriba abajo, empezando por la de arriba', { 'font-size': 13, 'font-weight': 400 });
+</script>
+</body>
+</html>

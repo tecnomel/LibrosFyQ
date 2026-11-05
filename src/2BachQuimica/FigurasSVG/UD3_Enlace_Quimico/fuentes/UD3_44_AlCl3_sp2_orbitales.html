@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_44 · Hibridación sp2: formación del AlCl3</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/orbitales.js"></script>
+    <script src="../../comun/moleculas.js"></script>
+</head>
+<body>
+<script>
+// Los 3 híbridos sp2 del Al están en un plano a 120° y se solapan con un orbital 3p de cada Cl.
+const svg = crearFigura(860, 300);
+const MO = "#6B4FC8", RO = "#E0463A";
+const cam = [1, -0.12, 0.1];
+const D = GEOM.trigonal;
+const sp2 = union(...D.map(d => OA.hibrido([0, 0, 0], d)));
+escenaOrbital(svg, 70, 150, OA.p([0, 0, 0], [0, 1, 0]), { escala: 40, caja: [1.8, 1, 1], colorPos: RO, colorNeg: RO, camara: cam, nucleos: [[0, 0, 0]] });
+texto(svg, 70, 205, "3p (Cl)", { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto });
+texto(svg, 150, 158, "+", { "text-anchor": "middle", "font-size": 24, fill: COLORES.texto });
+escenaOrbital(svg, 290, 150, sp2, { escala: 60, caja: [2, 2, 2], colorPos: MO, colorNeg: mezclar(MO, "#ffffff", 0.4), camara: cam, nucleos: [[0, 0, 0]] });
+texto(svg, 290, 290, "3 orbitales sp² (Al)", { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto });
+flecha(svg, 420, 150, 480, 150, { punta: 11, ancho: 1.8 });
+const e3 = escenaOrbital(svg, 680, 165, sp2, { escala: 42, caja: [3.6, 3.6, 3.6], colorPos: MO, colorNeg: mezclar(MO, "#ffffff", 0.4), camara: cam,
+    otros: D.map(d => ({ fn: OA.p(esc(d, 2.3), esc(d, -1), 2, 2), colorPos: RO, colorNeg: RO })), nucleos: [[0, 0, 0], ...D.map(d => esc(d, 2.3))] });
+D.forEach(d => { const q = e3.p(esc(d, 3.1)); texto(svg, q[0], q[1] + 5, "Cl", { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto }); });
+texto(svg, 700, 178, "Al", { "font-size": 14, fill: COLORES.texto });
+texto(svg, 680, 290, [{ t: "AlCl" }, { t: "3", sub: true }, { t: ": trigonal plana, 120°" }], { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto });
+</script>
+</body>
+</html>

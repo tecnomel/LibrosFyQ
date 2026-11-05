@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Flotación</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card .t { font-size: 13.5px; } .card h3 { font-size: 15px; color: var(--blue); margin-bottom: 4px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3><i>P</i> &gt; <i>E</i>: se hunde</h3><svg id="a" width="230" height="230"></svg>
+            <div class="t"><i>ρ</i><sub>cuerpo</sub> &gt; <i>ρ</i><sub>líquido</sub>. Cae hasta el fondo (una bola de hierro en agua).</div></div>
+        <div class="card"><h3><i>P</i> = <i>E</i>: en equilibrio</h3><svg id="b" width="230" height="230"></svg>
+            <div class="t"><i>ρ</i><sub>cuerpo</sub> = <i>ρ</i><sub>líquido</sub>. Queda quieto en cualquier punto del líquido (un globo lleno de agua).</div></div>
+        <div class="card"><h3><i>P</i> &lt; <i>E</i>: flota</h3><svg id="c" width="230" height="230"></svg>
+            <div class="t"><i>ρ</i><sub>cuerpo</sub> &lt; <i>ρ</i><sub>líquido</sub>. Sube y flota con una parte sumergida, hasta que <i>E</i> = <i>P</i> (corcho en agua).</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    function forces(add, x, y, lp, le) {
+        arrow(add, x, y, x, y + lp, '#23373B', 3.5, 12);
+        arrow(add, x, y, x, y - le, '#C0392B', 3.5, 12);
+        add('circle', { cx: x, cy: y, r: 3, fill: '#23373B' });
+        label(add, x + 10, y + lp - 2, 'P', { 'font-style': 'italic', 'text-anchor': 'start' });
+        label(add, x + 10, y - le + 14, 'E', { 'font-style': 'italic', fill: '#C0392B', 'text-anchor': 'start' });
+    }
+    {
+        const add = svgAdder('a');
+        tank(add, 15, 30, 200, 190, 170);
+        bead(add, 115, 155, 26, '#7F8C8D');
+        forces(add, 115, 155, 60, 30);
+        arrow(add, 175, 120, 175, 170, '#525252', 1.5, 8);
+    }
+    {
+        const add = svgAdder('b');
+        tank(add, 15, 30, 200, 190, 170);
+        add('ellipse', { cx: 115, cy: 135, rx: 30, ry: 26, fill: '#82E0AA', stroke: '#1E8449', 'stroke-width': 2, opacity: 0.9 });
+        forces(add, 115, 135, 50, 50);
+    }
+    {
+        const add = svgAdder('c');
+        const ys = tank(add, 15, 30, 200, 190, 170);
+        // bloque de corcho con algo menos de la mitad sumergido
+        add('rect', { x: 80, y: ys - 22, width: 70, height: 40, rx: 3, fill: '#F0B27A', stroke: '#A04000', 'stroke-width': 2 });
+        add('line', { x1: 15, y1: ys, x2: 215, y2: ys, stroke: '#2E86C1', 'stroke-width': 1.5 });
+        forces(add, 115, ys - 2, 46, 46);
+        label(add, 180, ys - 8, 'línea de', { 'font-size': 11, fill: '#525252', 'font-weight': 400 });
+        label(add, 180, ys + 18, 'flotación', { 'font-size': 11, fill: '#525252', 'font-weight': 400 });
+    }
+</script>
+</body>
+</html>

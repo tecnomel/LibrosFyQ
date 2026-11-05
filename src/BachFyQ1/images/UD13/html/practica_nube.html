@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Una nube en una botella</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card svg { display: block; margin: 0 auto; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>1. Comprimir</h2><svg id="a" width="240" height="280"></svg>
+            <div class="t">Bombeamos aire: el trabajo de compresión aumenta <i>U</i> y la temperatura.</div></div>
+        <div class="card"><h2>2. Descomprimir</h2><svg id="b" width="240" height="280"></svg>
+            <div class="t">Quitamos el tapón: el gas se expande casi sin intercambiar calor, se enfría y aparece la nube.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    function botella(add, conTapon, nube) {
+        const x = 70, w = 100;
+        add('path', { d: `M${x + 35} 40 L${x + 35} 62 Q ${x} 80 ${x} 110 L${x} 250 Q ${x} 262 ${x + 12} 262 L${x + w - 12} 262 Q ${x + w} 262 ${x + w} 250 L${x + w} 110 Q ${x + w} 80 ${x + w - 35} 62 L${x + w - 35} 40`,
+            fill: '#EBF5FB', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+        add('path', { d: `M${x + 3} 232 L${x + w - 3} 232 L${x + w - 3} 250 Q ${x + w - 3} 259 ${x + w - 12} 259 L${x + 12} 259 Q ${x + 3} 259 ${x + 3} 250 Z`, fill: '#85C1E9' });
+        if (nube) {
+            const r = rng(4);
+            for (let k = 0; k < 26; k++) add('circle', { cx: x + 18 + r() * 64, cy: 100 + r() * 120, r: 10 + r() * 10, fill: '#FFFFFF', opacity: 0.75, stroke: '#D5D8DC', 'stroke-width': 0.6 });
+        }
+        if (conTapon) {
+            add('rect', { x: x + 30, y: 26, width: 40, height: 18, rx: 3, fill: '#A04000' });
+            add('rect', { x: x + 47, y: 2, width: 6, height: 26, fill: '#7F8C8D' });
+        }
+    }
+    const A = svgAdder('a');
+    botella(A, true, false);
+    arrow(A, 20, 14, 112, 14, '#2471A3', 3, 11);
+    label(A, 40, 36, 'aire', { 'font-size': 13, fill: '#2471A3' });
+    rich(A, 120, 170, '*T* ↑', { 'font-size': 20, fill: '#C0392B' });
+    rich(A, 120, 196, '*W* > 0', { 'font-size': 15, fill: '#23373B' });
+    const B = svgAdder('b');
+    botella(B, false, true);
+    arrow(B, 120, 34, 120, 2, '#7F8C8D', 3, 11);
+    arrow(B, 108, 34, 82, 6, '#7F8C8D', 3, 11); arrow(B, 132, 34, 158, 6, '#7F8C8D', 3, 11);
+    rich(B, 205, 170, '*T* ↓', { 'font-size': 20, fill: '#2471A3' });
+    rich(B, 205, 196, '*W* < 0', { 'font-size': 15, fill: '#23373B' });
+</script>
+</body>
+</html>

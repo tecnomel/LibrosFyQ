@@ -1,0 +1,19 @@
+% Compila UNA unidad suelta para revisar sus figuras.
+% Desde la carpeta LibroQuimica2Bach:
+%   pdflatex "\def\unidad{Quimica2Bach_UD1_Estructura_Atomica_Libro_claude}\input{FigurasSVG/prueba_unidad.tex}"
+\documentclass[11pt, a4paper]{LegrandOrangeBookES}
+\usepackage[spanish,es-noquoting,es-noshorthands,es-tabla]{babel}
+\usepackage{estilocrispropioLibro}
+\usepackage{tikz}
+\usetikzlibrary{positioning,trees,arrows.meta,shadows.blur}
+\definecolor{ocre}{RGB}{243, 102, 25}
+\chapterimage{orange3b.png}
+\chapterspaceabove{6.75cm}
+\chapterspacebelow{7.25cm}
+
+\begin{document}
+    \Opensolutionfile{ans}[soluciones_prueba]
+    \chapter{Prueba de figuras}
+    \input{\unidad}
+    \Closesolutionfile{ans}
+\end{document}

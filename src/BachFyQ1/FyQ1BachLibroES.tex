@@ -1,0 +1,287 @@
+%----------------------------------------------------------------------------------------
+%	Física y Química 1.º Bachillerato — libro de texto
+%	Clase LegrandOrangeBookES y estilo estilocrispropioLibro del texmf local.
+%	Unidades: FyQ1Bach_UDn_<tema>_Libro.tex (teoría, ejemplos resueltos, prácticas)
+%	          FyQ1Bach_UDn_<tema>_Ejercicios.tex (ejercicios finales con solución)
+%	Progreso de las unidades: progreso_temas.md
+%----------------------------------------------------------------------------------------
+
+\documentclass[
+    11pt, % Default font size, select one of 10pt, 11pt or 12pt
+    a4paper, % Paper size, use either 'a4paper' for A4 size or 'letterpaper' for US letter size
+]{LegrandOrangeBookES}
+
+\usepackage[spanish,es-noquoting,es-noshorthands,es-tabla]{babel}
+
+\usepackage{estilocrispropioLibro}
+\usepackage{longtable} % tablas largas con formato booktabs
+
+% Color principal del libro: turquesa (1.º Bachillerato). La clase y estilocrispropioLibro lo usan con el nombre «ocre».
+\definecolor{ocre}{RGB}{0, 131, 143}
+
+% Si un párrafo no se puede ajustar (fórmulas en línea, configuraciones electrónicas, nombres químicos largos), TeX estira algo
+% más los espacios en lugar de sacar la línea por el margen. No cambia los párrafos que ya se componían bien.
+\setlength{\emergencystretch}{2em}
+
+% Entradas de las partes en el índice: el diseño de la clase mete la caja con el título (de todo el ancho) en una etiqueta de
+% 1,25 cm y avisa de una caja desbordada de unos 391 pt. Con \rlap se ve igual y no hay aviso. (Copia de
+% \tocentrypartnumbered de LegrandOrangeBookES.cls; se cambia aquí para no tocar la clase del texmf, que comparten otros libros.)
+\renewcommand{\tocentrypartnumbered}[1]{%
+    \setlength\fboxsep{0pt}%
+    \contentslabel[\rlap{%
+        \colorbox{ocre!20}{\strut\parbox[c][.7cm]{1.1cm}{\color{ocre!70}\Large\sffamily\bfseries\centering\thecontentslabel}}%
+        \hspace{4pt}%
+        \colorbox{ocre!40}{\strut\parbox[c][.7cm]{\linewidth-1.25cm}{\centering\Large\sffamily #1}}%
+    }]{1.25cm}%
+}
+
+\providecommand{\sen}{\operatorname{sen}}
+\providecommand{\tg}{\operatorname{tg}}
+
+% Unidades que no trae siunitx
+\DeclareSIUnit\atm{atm}
+\DeclareSIUnit\mmHg{mmHg}
+\DeclareSIUnit\uma{u}
+\DeclareSIUnit\ppm{ppm}
+
+% Estructura atómica (UD3): configuraciones electrónicas en redonda, p. ej. \conf{1s^2\,2s^2\,2p^6},
+% y cajas de orbitales para la regla de Hund, p. ej. \orbcaja{\uparrow\downarrow}\orbcaja{\uparrow}\orbcaja{}
+\newcommand{\conf}[1]{\ensuremath{\mathrm{#1}}}
+\newcommand{\orbcaja}[1]{{\setlength{\fboxsep}{1.2pt}\fbox{\makebox[1.25em]{\strut\ensuremath{#1}}}}\hspace{-\fboxrule}}
+
+% Cinemática (UD8): vectores unitarios y la «d» de las derivadas, p. ej. \vec r = x\,\ivec + y\,\jvec, \dfrac{\dif x}{\dif t}
+\newcommand{\ivec}{\vec{i}}
+\newcommand{\jvec}{\vec{j}}
+\newcommand{\kvec}{\vec{k}}
+\newcommand{\dif}{\mathrm{d}}
+
+% Gráficas de funciones (leyes de los gases, presión de vapor…)
+\pgfplotsset{
+    grafica/.style={
+        width=0.42\linewidth, height=4.6cm,
+        axis lines=left, axis line style={-latex, thick},
+        tick label style={font=\scriptsize}, label style={font=\small},
+        grid=major, grid style={gray!25},
+        samples=120, enlargelimits=false, clip=false,
+    },
+}
+
+\hypersetup{
+    pdftitle={Física y Química 1.º Bachillerato}, % Title field
+    pdfauthor={Cristóbal Melero}, % Author field
+    pdfsubject={Física y Química}, % Subject field
+    pdfkeywords={Física, Química, Bachillerato, leyes ponderales, gases, mol, disoluciones, estructura atómica, tabla periódica, enlace químico, reacciones químicas, estequiometría, termoquímica, química orgánica, hidrocarburos, grupos funcionales, isomería, cinemática, velocidad, aceleración, caída libre, tiro parabólico, movimiento circular, dinámica, leyes de Newton, momento lineal, momento angular, rozamiento, ley de Coulomb, gravitación, fuerza centrípeta, energía, trabajo, termodinámica, calor, temperatura, entropía}, % Keywords
+    pdfcreator={LaTeX}, % Content creator field
+}
+
+\chapterimage{images/portada_cabeceras/cabecera_general} % Chapter heading image
+\chapterspaceabove{6.5cm} % Default whitespace from the top of the page to the chapter title on chapter pages
+\chapterspacebelow{6.75cm} % Default amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+\begin{document}
+
+    % Fichero de soluciones propio del libro (out/ lo comparten todos los libros)
+    \Opensolutionfile{ans}[soluciones1BachFyQ]
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+    \titlepage % Output the title page
+    {\includegraphics[width=\paperwidth]{images/portada_cabeceras/portada_1BachFyQ}} % Portada (PDF vectorial, fuente en images/portada_cabeceras/html/portada.html)
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+    \thispagestyle{empty} % Suppress headers and footers on this page
+
+    ~\vfill % Push the text down to the bottom of the page
+
+    \noindent Copyright \copyright\ 2026 Cristóbal Melero\\ % Copyright notice
+
+    \noindent \textsc{Published by CM Editorial}\\ % Publisher
+
+    \noindent \textsc{\url{https://webfyq.com}}\\ % URL
+
+    \noindent Licenciado bajo la licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional (la ``Licencia''). No puede utilizar este archivo salvo en cumplimiento de la Licencia. Puede obtener una copia de la Licencia en \url{https://creativecommons.org/licenses/by-nc-sa/4.0}. Salvo que la legislación aplicable lo exija o se acuerde por escrito, el contenido distribuido bajo esta Licencia se proporciona \textsc{``tal cual'', sin garantías ni condiciones de ningún tipo}, ya sean expresas o implícitas. Consulte la Licencia para conocer el idioma específico que rige los permisos y las limitaciones establecidas en ella.\\
+
+    \noindent \textit{Primera edición, 2026}
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+    \pagestyle{empty} % Disable headers and footers for the following pages
+
+    \tableofcontents % Output the table of contents
+
+    \pagestyle{fancy} % Enable default headers and footers again
+
+    \cleardoublepage % Start the following content on a new page
+
+%----------------------------------------------------------------------------------------
+%	QUÍMICA (unidades 1-7)
+%----------------------------------------------------------------------------------------
+
+
+    \part{Química}
+
+    \chapterspaceabove{6.75cm} % Whitespace from the top of the page to the chapter title on chapter pages
+    \chapterspacebelow{7.25cm} % Amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD1}
+
+
+    \chapter{Leyes fundamentales de la química}
+
+    \input{FyQ1Bach_UD1_Leyes_Libro}
+    \newpage
+    \input{FyQ1Bach_UD1_Leyes_Ejercicios}
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD2}
+
+
+    \chapter{Disoluciones}
+
+    \input{FyQ1Bach_UD2_Disoluciones_Libro}
+    \newpage
+    \input{FyQ1Bach_UD2_Disoluciones_Ejercicios}
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD3}
+
+
+    \chapter{Estructura atómica y tabla periódica}
+
+    \input{FyQ1Bach_UD3_Estructura_Libro}
+    \newpage
+    \input{FyQ1Bach_UD3_Estructura_Ejercicios}
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD4}
+
+
+    \chapter{El enlace químico}
+
+    \input{FyQ1Bach_UD4_Enlace_Libro}
+    \newpage
+    \input{FyQ1Bach_UD4_Enlace_Ejercicios}
+
+
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD6}
+
+
+    \chapter{Reacciones químicas}
+
+    \input{FyQ1Bach_UD6_Reacciones_Libro}
+    \newpage
+    \input{FyQ1Bach_UD6_Reacciones_Ejercicios}
+
+
+%----------------------------------------------------------------------------------------
+%	Nomenclatura (unidades 8-13)
+%----------------------------------------------------------------------------------------
+
+
+    \part{Nomenclatura}
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD5}
+
+
+    \chapter{Nomenclatura de química inorgánica}
+
+    \input{FyQ1Bach_UD5_Nomenclatura_Libro}
+    \newpage
+    \input{FyQ1Bach_UD5_Nomenclatura_Ejercicios}
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD7}
+
+
+    \chapter{La química del carbono}
+
+    \input{FyQ1Bach_UD7_Carbono_Libro}
+    \newpage
+    \input{FyQ1Bach_UD7_Carbono_Ejercicios}
+%----------------------------------------------------------------------------------------
+%	FÍSICA (unidades 8-13)
+%----------------------------------------------------------------------------------------
+
+
+    \part{Física}
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD8}
+
+
+    \chapter{Principios básicos de cinemática}
+
+    \input{FyQ1Bach_UD8_Cinematica_Libro}
+    \newpage
+    \input{FyQ1Bach_UD8_Cinematica_Ejercicios}
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD9}
+
+
+    \chapter{Movimientos rectilíneos, compuestos y circulares}
+
+    \input{FyQ1Bach_UD9_Movimientos_Libro}
+    \newpage
+    \input{FyQ1Bach_UD9_Movimientos_Ejercicios}
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD10}
+
+
+    \chapter{Fundamentos de la dinámica}
+
+    \input{FyQ1Bach_UD10_Dinamica_Libro}
+    \newpage
+    \input{FyQ1Bach_UD10_Dinamica_Ejercicios}
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD11}
+
+
+    \chapter{Dinámica aplicada}
+
+    \input{FyQ1Bach_UD11_DinamicaAplicada_Libro}
+    \newpage
+    \input{FyQ1Bach_UD11_DinamicaAplicada_Ejercicios}
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD12}
+
+
+    \chapter{Energía y trabajo}
+
+    \input{FyQ1Bach_UD12_Energia_Libro}
+    \newpage
+    \input{FyQ1Bach_UD12_Energia_Ejercicios}
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD13}
+
+
+    \chapter{Termodinámica}
+
+    \input{FyQ1Bach_UD13_Termodinamica_Libro}
+    \newpage
+    \input{FyQ1Bach_UD13_Termodinamica_Ejercicios}
+
+%----------------------------------------------------------------------------------------
+%	SOLUCIONES
+%----------------------------------------------------------------------------------------
+
+
+    \part{Soluciones a los ejercicios}
+
+    \chapterimage{images/portada_cabeceras/cabecera_general}
+
+
+    \chapter{Soluciones}
+
+    \pagestyle{fancy}
+
+    \Closesolutionfile{ans}
+
+    % Las soluciones van en cajas estrechas (solBox) con muchas fórmulas en línea y nombres químicos largos que no se pueden
+    % partir: \sloppy y \emergencystretch evitan que se salgan del margen.
+    {\sloppy\setlength{\emergencystretch}{3em}%
+    \IfFileExists{soluciones1BachFyQ.tex}{\input{soluciones1BachFyQ}}{}\par}
+
+\end{document}

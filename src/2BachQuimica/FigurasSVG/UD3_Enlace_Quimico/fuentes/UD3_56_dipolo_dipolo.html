@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_56 · Fuerzas dipolo-dipolo</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Moléculas polares (dipolos permanentes): el polo + de una atrae al polo − de la vecina.
+const svg = crearFigura(760, 200);
+const g = el("radialGradient", { id: "dip", cx: "65%", cy: "35%", r: "75%" }, defs(svg));
+[["0%", "#FFB0A8"], ["35%", "#F0453A"], ["100%", "#B71C1C"]].forEach(([o, c]) => el("stop", { offset: o, "stop-color": c }, g));
+[120, 380, 640].forEach((x, i) => {
+    el("ellipse", { cx: x, cy: 70, rx: 105, ry: 55, fill: "url(#dip)" }, svg);
+    texto(svg, x - 75, 80, "−", { "text-anchor": "middle", "font-size": 30, fill: "#1A1A1A" });
+    texto(svg, x + 75, 80, "+", { "text-anchor": "middle", "font-size": 30, fill: "#1A1A1A" });
+    if (i < 2) for (const dy of [-8, 0, 8]) el("path", { d: `M${x + 112},${70 + dy} q 4,-5 8,0 t 8,0 t 8,0 t 8,0`, fill: "none", stroke: "#F39C12", "stroke-width": 2 }, svg);
+});
+texto(svg, 380, 160, "Dipolos permanentes", { "text-anchor": "middle", "font-size": 22, "font-weight": "bold", fill: COLORES.texto });
+texto(svg, 380, 188, "(moléculas covalentes polares)", { "text-anchor": "middle", "font-size": 18, fill: COLORES.texto });
+</script>
+</body>
+</html>

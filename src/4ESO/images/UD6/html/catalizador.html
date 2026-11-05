@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Efecto de un catalizador en la energía de activación</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1100px; } .card h2 { font-size: 17px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Sin catalizador</h2><svg id="a" width="320" height="230"></svg></div>
+        <div class="card"><h2 style="color:#1E8449">Catalizador positivo</h2><svg id="b" width="320" height="230"></svg><div class="t">Menor energía de activación: reacción más rápida.</div></div>
+        <div class="card"><h2 style="color:#C0392B">Catalizador negativo</h2><svg id="c" width="320" height="230"></svg><div class="t">Mayor energía de activación: reacción más lenta.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const base = { x0: 40, y0: 200, w: 260, h: 170, r: 0.25, p: 0.08 };
+    energyProfile(svgAdder('a'), Object.assign({}, base, { peak: 0.65, col: '#7F8C8D' }));
+    let add = svgAdder('b');
+    energyProfile(add, Object.assign({}, base, { peak: 0.65, col: '#BFC9CA', dash: '6 5', ea: false }));
+    energyProfile(add, Object.assign({}, base, { peak: 0.42, col: '#1E8449', axes: false, rl: '', pl: '', ca: false }));
+    add = svgAdder('c');
+    energyProfile(add, Object.assign({}, base, { peak: 0.65, col: '#BFC9CA', dash: '6 5', ea: false }));
+    energyProfile(add, Object.assign({}, base, { peak: 0.92, col: '#C0392B', axes: false, rl: '', pl: '', ca: false }));
+</script>
+</body>
+</html>

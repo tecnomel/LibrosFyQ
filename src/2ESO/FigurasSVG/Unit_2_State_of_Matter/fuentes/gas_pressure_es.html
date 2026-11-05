@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>La presión de un gas</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 26px; align-items: flex-start; }
+    .col { flex: 1; text-align: center; }
+    .col h2 { font-size: 21px; color: var(--blue); margin-bottom: 6px; }
+    .cap { font-size: 17px; margin-top: 6px; }
+    .cap b { color: var(--red); }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>¿De dónde sale la presión de un gas?</h1>
+    <div class="row">
+        <div class="col"><h2>Las partículas chocan con las paredes 💥</h2>
+            <svg id="a" width="340" height="270"></svg>
+            <div class="cap">Cada choque empuja un poco la pared.<br>Millones de choques = <b>presión</b>.</div></div>
+        <div class="col"><h2>Menos volumen → más choques</h2>
+            <svg id="b" width="340" height="270"></svg>
+            <div class="cap">Las mismas partículas en menos espacio:<br>chocan con las paredes <b>más a menudo</b>.</div></div>
+        <div class="col"><h2>Más calor → más rapidez → choques más fuertes</h2>
+            <svg id="c" width="340" height="270"></svg>
+            <div class="cap">Al calentar, las partículas se mueven <b>más deprisa</b>:<br>la presión aumenta.</div></div>
+    </div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg';
+    const add = (svg, tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t) e.textContent = t; svg.appendChild(e); return e; };
+    function arrowDef(svg) {
+        const m = add(add(svg, 'defs', {}), 'marker', { id: svg.id + 'm', markerWidth: 8, markerHeight: 8, refX: 4, refY: 4, orient: 'auto' });
+        add(m, 'path', { d: 'M0 0 L8 4 L0 8 Z', fill: '#C0392B' });
+    }
+    function particles(svg, pts, len, x0, x1, y0, y1) {
+        pts.forEach(([x, y, a]) => {
+            add(svg, 'circle', { cx: x, cy: y, r: 10, fill: '#F5B041', stroke: '#9C640C', 'stroke-width': 1.5 });
+            const r = a * Math.PI / 180;
+            add(svg, 'line', { x1: x + 12 * Math.cos(r), y1: y + 12 * Math.sin(r), x2: x + len * Math.cos(r), y2: y + len * Math.sin(r), stroke: '#C0392B', 'stroke-width': 2.5, 'marker-end': `url(#${svg.id}m)` });
+        });
+    }
+    function star(svg, x, y) { add(svg, 'text', { x, y, 'font-size': 22, 'text-anchor': 'middle' }, '💥'); }
+    // a: container with collisions
+    let s = document.getElementById('a'); arrowDef(s);
+    add(s, 'rect', { x: 40, y: 20, width: 260, height: 230, fill: '#FBFCFC', stroke: '#23373B', 'stroke-width': 5 });
+    particles(s, [[80,70,200],[180,50,270],[260,100,0],[120,150,140],[220,190,60],[90,220,250],[170,120,330]], 34);
+    star(s, 42, 82); star(s, 180, 30); star(s, 300, 108); star(s, 240, 252);
+    // b: syringe with piston pushed in
+    s = document.getElementById('b'); arrowDef(s);
+    add(s, 'rect', { x: 30, y: 60, width: 200, height: 150, fill: '#FBFCFC', stroke: '#23373B', 'stroke-width': 5 });
+    add(s, 'rect', { x: 230, y: 60, width: 16, height: 150, fill: '#7F8C8D' });
+    add(s, 'rect', { x: 246, y: 125, width: 70, height: 20, fill: '#7F8C8D' });
+    add(s, 'text', { x: 300, y: 110, 'font-size': 30 }, '👈');
+    particles(s, [[60,90,180],[110,80,270],[170,100,0],[80,150,120],[150,170,60],[200,140,10],[120,125,200],[60,190,250],[190,190,330]], 28);
+    star(s, 32, 92); star(s, 226, 104); star(s, 110, 62); star(s, 226, 150); star(s, 60, 212);
+    // c: heated container
+    s = document.getElementById('c'); arrowDef(s);
+    add(s, 'rect', { x: 40, y: 20, width: 260, height: 190, fill: '#FDEDEC', stroke: '#23373B', 'stroke-width': 5 });
+    particles(s, [[90,60,200],[200,50,330],[250,120,10],[120,130,150],[200,170,60],[80,180,250]], 52);
+    star(s, 42, 72); star(s, 300, 112); star(s, 240, 30); star(s, 225, 212);
+    add(s, 'text', { x: 170, y: 262, 'font-size': 40, 'text-anchor': 'middle' }, '🔥🔥🔥');
+</script>
+</body>
+</html>

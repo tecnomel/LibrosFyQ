@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El problema del modelo de Rutherford</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 560px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="a" width="500" height="320"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('a');
+    const cx = 220, cy = 165;
+    add('circle', { cx, cy, r: 130, fill: 'none', stroke: '#AAB7B8', 'stroke-width': 2, 'stroke-dasharray': '6 5' });
+    // espiral hacia el núcleo
+    let d = '';
+    for (let t = 0; t <= 6 * Math.PI; t += 0.08) {
+        const r = 130 * (1 - t / (6.6 * Math.PI)), a = -Math.PI / 2 + t;
+        d += (d ? ' L' : 'M') + (cx + r * Math.cos(a)).toFixed(1) + ' ' + (cy + r * Math.sin(a)).toFixed(1);
+    }
+    add('path', { d, fill: 'none', stroke: '#2471A3', 'stroke-width': 2, 'stroke-dasharray': '4 3' });
+    add('circle', { cx, cy, r: 18, fill: '#C0392B' });
+    add('text', { x: cx, y: cy + 7, 'text-anchor': 'middle', 'font-size': 22, 'font-weight': 800, fill: '#fff' }, '+');
+    particle(add, cx, cy - 130, 'e', 13);
+    // radiación emitida
+    const wave = (x, y, ang) => {
+        let p = `M${x} ${y}`;
+        for (let i = 0; i < 6; i++) p += ` q5 -8 10 0 q5 8 10 0`;
+        add('path', { d: p, fill: 'none', stroke: '#F39C12', 'stroke-width': 2.5, transform: `rotate(${ang} ${x} ${y})` });
+    };
+    wave(238, 20, -15); wave(355, 150, 5); wave(300, 280, 35);
+    add('text', { x: 360, y: 30, 'font-size': 15, 'font-weight': 800, fill: '#D35400' }, 'emite energía');
+    add('text', { x: 360, y: 50, 'font-size': 15, 'font-weight': 800, fill: '#D35400' }, 'sin parar');
+    add('text', { x: 380, y: 210, 'font-size': 14, fill: '#23373B' }, 'pierde energía y');
+    add('text', { x: 380, y: 228, 'font-size': 14, fill: '#23373B' }, 'cae al núcleo…');
+    add('text', { x: 380, y: 260, 'font-size': 14, 'font-weight': 800, fill: '#C0392B' }, '¡esto no ocurre!');
+</script>
+</body>
+</html>

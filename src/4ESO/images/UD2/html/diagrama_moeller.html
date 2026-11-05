@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Diagrama de Moeller</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="a" width="700" height="520"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('a');
+    const rows = [['1s'], ['2s', '2p'], ['3s', '3p', '3d'], ['4s', '4p', '4d', '4f'], ['5s', '5p', '5d', '5f'], ['6s', '6p', '6d'], ['7s', '7p']];
+    const colors = { s: '#F5B7B1', p: '#F9E79F', d: '#FAD7A0', f: '#A9DFBF' };
+    const pos = {};
+    const dx = 80, dy = 56, x0 = 70, y0 = 50;
+    rows.forEach((r, i) => r.forEach((s, j) => { pos[s] = [x0 + j * dx, y0 + i * dy]; }));
+    // diagonales: n + l constante
+    add('defs', {}).innerHTML = '<marker id="m" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#C0392B"/></marker>';
+    const L = { s: 0, p: 1, d: 2, f: 3 };
+    const seq = [];
+    for (let k = 1; k <= 8; k++) {
+        const diag = Object.keys(pos).filter(s => +s[0] + L[s[1]] === k).sort((a, b) => b[0] - a[0] ? 0 : 0).sort((a, b) => L[b[1]] - L[a[1]]);
+        if (!diag.length) continue;
+        seq.push(...diag);
+        const [xa, ya] = pos[diag[0]], [xb, yb] = pos[diag[diag.length - 1]];
+        add('line', { x1: xa + 30, y1: ya - 30 * dy / dx, x2: xb - 24, y2: yb + 24 * dy / dx, stroke: '#C0392B', 'stroke-width': 2.5, 'marker-end': 'url(#m)', opacity: .85 });
+    }
+    Object.entries(pos).forEach(([s, [x, y]]) => {
+        add('circle', { cx: x, cy: y, r: 21, fill: colors[s[1]], stroke: '#5D6D7E', 'stroke-width': 1.5 });
+        add('text', { x, y: y + 6, 'text-anchor': 'middle', 'font-size': 17, 'font-weight': 800, fill: '#23373B' }, s);
+    });
+    add('text', { x: 380, y: 60, 'font-size': 15, 'font-weight': 800, fill: '#000070' }, 'Se sigue cada flecha de arriba');
+    add('text', { x: 380, y: 80, 'font-size': 15, 'font-weight': 800, fill: '#000070' }, 'abajo, empezando por la de 1s.');
+    // orden resultante
+    const t = add('text', { x: 20, y: 470, 'font-size': 16, 'font-weight': 700, fill: '#23373B' }, 'Orden de llenado:');
+    const t2 = add('text', { x: 20, y: 498, 'font-size': 16, 'font-weight': 800, fill: '#C0392B' }, seq.join(' → '));
+</script>
+</body>
+</html>

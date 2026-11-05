@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Presión hidrostática</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card .t { font-size: 14px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><svg id="a" width="370" height="250"></svg>
+            <div class="t">La columna de líquido de base <i>S</i> y altura <i>h</i> pesa <i>m · g = ρ · S · h · g</i>; al dividir entre <i>S</i>: <b><i>p = ρ · g · h</i></b>.</div></div>
+        <div class="card"><svg id="b" width="370" height="250"></svg>
+            <div class="t">La presión del agua sobre una presa aumenta con la profundidad; por eso la presa es <b>más gruesa en la base</b>.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    {
+        const add = svgAdder('a');
+        const ys = tank(add, 40, 20, 290, 210, 190);
+        // columna imaginaria de líquido encima del punto A
+        const cx = 185, cw = 56, yA = 195;
+        add('rect', { x: cx - cw / 2, y: ys, width: cw, height: yA - ys, fill: '#2E86C1', opacity: 0.45, stroke: '#1B4F72', 'stroke-width': 1.5, 'stroke-dasharray': '5 3' });
+        add('ellipse', { cx, cy: yA, rx: cw / 2, ry: 7, fill: '#1B4F72', opacity: 0.8 });
+        label(add, cx, yA + 26, 'A', { 'font-size': 16 });
+        label(add, cx - cw / 2 - 16, yA + 5, 'S', { 'font-size': 16, 'font-style': 'italic' });
+        add('circle', { cx, cy: yA, r: 3.5, fill: '#C0392B' });
+        vdim(add, cx + cw / 2 + 16, ys, yA, 'h', '#C0392B', true);
+        arrow(add, cx, ys + 50, cx, ys + 120, '#C0392B', 3, 11);
+        label(add, cx + 12, ys + 98, 'P', { fill: '#C0392B', 'font-style': 'italic', 'text-anchor': 'start' });
+        label(add, 48, ys + 40, 'peso del líquido', { 'font-size': 13, fill: '#525252', 'font-weight': 400, 'text-anchor': 'start' });
+        label(add, 48, ys + 56, 'que hay encima', { 'font-size': 13, fill: '#525252', 'font-weight': 400, 'text-anchor': 'start' });
+        label(add, 48, ys + 72, 'del punto A', { 'font-size': 13, fill: '#525252', 'font-weight': 400, 'text-anchor': 'start' });
+    }
+    {
+        const add = svgAdder('b');
+        const ground = 220, ys = 50;
+        // embalse: agua sobre el terreno
+        add('path', { d: `M110 ${ground} L370 ${ground} L370 40 L350 40 L350 ${ground - 70} Q 320 ${ground - 40} 290 ${ground - 20} Q 250 ${ground} 200 ${ground} Z`, fill: '#D7BDA0' });
+        add('path', { d: `M110 ${ys} L350 ${ys} L350 ${ground - 70} Q 320 ${ground - 40} 290 ${ground - 20} Q 250 ${ground} 200 ${ground} L110 ${ground} Z`, fill: '#AED6F1', opacity: 0.95 });
+        add('line', { x1: 110, y1: ys, x2: 350, y2: ys, stroke: '#2E86C1', 'stroke-width': 1.5 });
+        // presa (más gruesa abajo)
+        add('path', { d: `M80 30 L110 30 L110 ${ground} L20 ${ground} Z`, fill: '#AAB7B8', stroke: '#5D6D7E', 'stroke-width': 2 });
+        add('rect', { x: 0, y: ground, width: 370, height: 12, fill: '#B9A07E' });
+        // flechas de presión, cada vez más largas
+        for (let k = 0; k < 6; k++) {
+            const y = ys + 18 + k * 27, L = 14 + (y - ys) * 0.42;
+            arrow(add, 112 + L, y, 112, y, '#000070', 2.2, 8);
+        }
+        vdim(add, 325, ys, ground - 60, 'profundidad', '#525252');
+        label(add, 60, 20, 'presa', { 'font-size': 14 });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_51 · Estructura del grafito</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/moleculas.js"></script>
+</head>
+<body>
+<script>
+// Grafito: capas de hexágonos (C con hibridación sp2) unidas entre sí por fuerzas débiles.
+// Separación entre capas: 0,335 nm (la celda, con dos capas, mide c = 0,67 nm).
+const svg = crearFigura(460, 460);
+const e3 = new Escena3D({ cx: 250, cy: 230, escala: 62, camara: [1, -0.55, 0.42] });
+const a = 0.55, sep = 1.5;
+function capa(z, desplaz) {
+    const atomos = [];
+    for (let i = -2; i <= 2; i++) for (let j = -2; j <= 2; j++) {
+        const x0 = i * 1.5 * a * 2 / 2 * 2, y0 = j * Math.sqrt(3) * a + (i % 2 ? Math.sqrt(3) * a / 2 : 0);
+        for (const [dx, dy] of [[-a / 2, 0], [a / 2, 0]]) atomos.push([x0 * 0.5 + dx + desplaz, y0 + dy, z]);
+    }
+    return atomos;
+}
+// Red de panal: generamos puntos del grafeno por vectores de red
+function grafeno(z, d) {
+    const A1 = [1.5 * a, Math.sqrt(3) / 2 * a], A2 = [1.5 * a, -Math.sqrt(3) / 2 * a];
+    const pts = [];
+    for (let i = -4; i <= 4; i++) for (let j = -4; j <= 4; j++) {
+        const x = i * A1[0] + j * A2[0], y = i * A1[1] + j * A2[1];
+        for (const [bx, by] of [[0, 0], [a, 0]]) {
+            const p = [x + bx + d, y + by, z];
+            if (Math.abs(p[0]) < 2.1 && Math.abs(p[1]) < 1.7) pts.push(p);
+        }
+    }
+    return pts;
+}
+const capas = [0, 1, 2].map(k => grafeno((k - 1) * sep, k % 2 ? a : 0));
+capas.forEach((pts, k) => {
+    for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++)
+        if (Math.abs(longitud(resta(pts[i], pts[j])) - a) < 1e-3) e3.segmento(pts[i], pts[j], { color: "#333", ancho: 1.6, trozos: 3 });
+    pts.forEach(p => e3.bola(p, 0.07, "#3A3A3A", svg));
+    // plano de la capa (sombreado)
+    e3.plano([k % 2 ? a : 0, 0, (k - 1) * sep], [2.2, 0, 0], [0, 1.8, 0], { color: "#9A9A9A", borde: "#888", opacidad: 0.22, teselas: 6 });
+});
+// Líneas verticales entre capas alternas (A-B-A-B)
+[[0, 0], [a, 0], [-1.5 * a + a, Math.sqrt(3) / 2 * a]].forEach(([x, y]) =>
+    e3.segmento([x, y, -1 * sep], [x, y, 1 * sep], { color: "#222", ancho: 1, trazo: "3 3", trozos: 20 }));
+e3.dibujar(svg);
+const q1 = e3.p([-2.2, -1.8, -1 * sep]), q2 = e3.p([-2.2, -1.8, 1 * sep]);
+flecha(svg, q1[0] - 18, q1[1], q2[0] - 18, q2[1], { ancho: 2.2, punta: 12 });
+texto(svg, q1[0] - 30, (q1[1] + q2[1]) / 2, "c = 0,67 nm", { "text-anchor": "middle", "font-size": 16, "font-weight": "bold", fill: COLORES.texto,
+    transform: `rotate(-90 ${q1[0] - 30} ${(q1[1] + q2[1]) / 2})` });
+</script>
+</body>
+</html>

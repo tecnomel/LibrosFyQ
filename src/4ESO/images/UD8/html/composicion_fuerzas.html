@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Composición de fuerzas</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1100px; } .card h2 { font-size: 16px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Misma dirección y sentido</h2><svg id="a" width="320" height="220"></svg><div class="t">R = F₁ + F₂</div></div>
+        <div class="card"><h2>Misma dirección, sentidos opuestos</h2><svg id="b" width="320" height="220"></svg><div class="t">R = F₁ − F₂ (sentido de la mayor)</div></div>
+        <div class="card"><h2>Direcciones perpendiculares</h2><svg id="c" width="320" height="220"></svg><div class="t">Regla del paralelogramo: R = √(F₁² + F₂²)</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const box = (add, x, y) => { add('rect', { x: x - 22, y: y - 18, width: 44, height: 36, fill: '#E5C07B', stroke: '#A04000', 'stroke-width': 2 }); add('line', { x1: x, y1: y - 18, x2: x, y2: y + 18, stroke: '#A04000' }); add('line', { x1: x - 22, y1: y, x2: x + 22, y2: y, stroke: '#A04000' }); };
+    const S = 22; // px por newton
+    // a) misma dirección y sentido: 6 N y 4 N
+    let add = svgAdder('a');
+    box(add, 40, 60); arrow(add, 62, 52, 62 + 6 * S, 52, '#1E8449', 3, 11); arrow(add, 62, 68, 62 + 4 * S, 68, '#2471A3', 3, 11);
+    vlabel(add, 62 + 6 * S + 16, 50, 'F', '#1E8449', '1'); vlabel(add, 62 + 4 * S + 16, 82, 'F', '#2471A3', '2');
+    label(add, 170, 40, '6 N', { 'font-size': 13, fill: '#1E8449' }); label(add, 120, 96, '4 N', { 'font-size': 13, fill: '#2471A3' });
+    box(add, 40, 160); arrow(add, 62, 160, 62 + 10 * S > 300 ? 300 : 62 + 10 * S, 160, '#C0392B', 4, 13);
+    vlabel(add, 270, 190, 'R', '#C0392B'); label(add, 200, 150, '10 N', { 'font-size': 14, fill: '#C0392B' });
+    // b) sentidos opuestos: 6 N hacia la derecha y 4 N hacia la izquierda
+    add = svgAdder('b');
+    box(add, 130, 60); arrow(add, 152, 60, 152 + 6 * S * 0.8, 60, '#1E8449', 3, 11); arrow(add, 108, 60, 108 - 4 * S * 0.8, 60, '#2471A3', 3, 11);
+    vlabel(add, 152 + 6 * S * 0.8 + 16, 58, 'F', '#1E8449', '1'); vlabel(add, 108 - 4 * S * 0.8 - 18, 58, 'F', '#2471A3', '2');
+    label(add, 210, 85, '6 N', { 'font-size': 13, fill: '#1E8449' }); label(add, 65, 85, '4 N', { 'font-size': 13, fill: '#2471A3' });
+    box(add, 130, 160); arrow(add, 152, 160, 152 + 2 * S * 0.8, 160, '#C0392B', 4, 13);
+    vlabel(add, 152 + 2 * S * 0.8 + 18, 158, 'R', '#C0392B'); label(add, 175, 190, '2 N', { 'font-size': 14, fill: '#C0392B' });
+    // c) perpendiculares: 8 N y 6 N -> 10 N
+    add = svgAdder('c');
+    const k = 22, ox = 50, oy = 190;
+    add('line', { x1: ox + 8 * k, y1: oy, x2: ox + 8 * k, y2: oy - 6 * k, stroke: '#7F8C8D', 'stroke-dasharray': '5 4' });
+    add('line', { x1: ox, y1: oy - 6 * k, x2: ox + 8 * k, y2: oy - 6 * k, stroke: '#7F8C8D', 'stroke-dasharray': '5 4' });
+    arrow(add, ox, oy, ox + 8 * k, oy, '#1E8449', 3, 11); arrow(add, ox, oy, ox, oy - 6 * k, '#2471A3', 3, 11); arrow(add, ox, oy, ox + 8 * k, oy - 6 * k, '#C0392B', 4, 13);
+    vlabel(add, ox + 8 * k - 10, oy + 22, 'F', '#1E8449', '1'); label(add, ox + 4 * k, oy + 18, '8 N', { 'font-size': 13, fill: '#1E8449' });
+    vlabel(add, ox - 18, oy - 6 * k + 12, 'F', '#2471A3', '2'); label(add, ox - 18, oy - 3 * k, '6 N', { 'font-size': 13, fill: '#2471A3' });
+    vlabel(add, ox + 4 * k - 12, oy - 3 * k - 14, 'R', '#C0392B'); label(add, ox + 4 * k + 30, oy - 3 * k + 2, '10 N', { 'font-size': 13, fill: '#C0392B' });
+    add('path', { d: `M${ox + 34} ${oy} A34 34 0 0 0 ${ox + 34 * 0.8} ${oy - 34 * 0.6}`, fill: 'none', stroke: '#23373B', 'stroke-width': 1.5 });
+    label(add, ox + 46, oy - 8, 'α', { 'font-size': 14 });
+</script>
+</body>
+</html>

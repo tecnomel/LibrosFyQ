@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cruzar un río: composición de dos MRU perpendiculares</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 880px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Nadando perpendicular a la corriente</h2><svg id="a" width="390" height="300"></svg>
+            <div class="t">La corriente arrastra al nadador: llega a la otra orilla río abajo.</div></div>
+        <div class="card"><h2>Para llegar justo enfrente</h2><svg id="b" width="390" height="300"></svg>
+            <div class="t">Hay que nadar inclinado río arriba, con sen α = v<sub>c</sub> / v<sub>n</sub>.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    function rio(add) {
+        add('rect', { x: 0, y: 40, width: 390, height: 210, fill: '#D6EAF8' });
+        add('rect', { x: 0, y: 0, width: 390, height: 40, fill: '#D5F5E3' });
+        add('rect', { x: 0, y: 250, width: 390, height: 50, fill: '#D5F5E3' });
+        [80, 140, 200].forEach(y => { arrow(add, 260, y, 330, y, '#85C1E9', 1.5, 8); });
+        label(add, 295, 228, 'corriente', { 'font-size': 13, fill: '#2E86C1' });
+    }
+    // a) nadador perpendicular
+    const A = svgAdder('a'); rio(A);
+    const P = [90, 250];
+    arrow(A, P[0], P[1], P[0], P[1] - 120, '#1E8449', 3.5, 13);
+    arrow(A, P[0], P[1], P[0] + 72, P[1], '#2471A3', 3.5, 13);
+    arrow(A, P[0], P[1], P[0] + 72, P[1] - 120, '#C0392B', 4, 14);
+    dashed(A, P[0], P[1], P[0] + 126, 40, '#C0392B', 1.5);
+    dashed(A, P[0], 40, P[0] + 126, 40, '#7F8C8D', 1.2);
+    vlab(A, P[0] - 20, P[1] - 64, 'v', 'n', '#1E8449');
+    vlab(A, P[0] + 34, P[1] + 22, 'v', 'c', '#2471A3');
+    vlab(A, P[0] + 70, P[1] - 82, 'v', '', '#C0392B');
+    dot(A, P[0], P[1]); dot(A, P[0] + 126, 40, '#C0392B');
+    label(A, P[0] + 63, 30, 'arrastre río abajo', { 'font-size': 12, fill: '#525252' });
+    label(A, 18, 150, 'anchura', { 'font-size': 12, fill: '#525252', transform: 'rotate(-90 18 150)' });
+    // b) nadador inclinado
+    const B = svgAdder('b'); rio(B);
+    const Q = [190, 250], vc = 60, vn = 120, s = vc / vn, c = Math.sqrt(1 - s * s);
+    arrow(B, Q[0], Q[1], Q[0] - vn * s, Q[1] - vn * c, '#1E8449', 3.5, 13);
+    arrow(B, Q[0] - vn * s, Q[1] - vn * c, Q[0], Q[1] - vn * c, '#2471A3', 3.5, 13);
+    arrow(B, Q[0], Q[1], Q[0], Q[1] - vn * c, '#C0392B', 4, 14);
+    dashed(B, Q[0], Q[1], Q[0], 40, '#C0392B', 1.5);
+    vlab(B, Q[0] - 52, Q[1] - 56, 'v', 'n', '#1E8449');
+    vlab(B, Q[0] - 30, Q[1] - vn * c - 12, 'v', 'c', '#2471A3');
+    vlab(B, Q[0] + 18, Q[1] - 50, 'v', '', '#C0392B');
+    B('path', { d: `M${Q[0]} ${Q[1] - 40} A40 40 0 0 0 ${Q[0] - 40 * s} ${Q[1] - 40 * c}`, fill: 'none', stroke: '#525252', 'stroke-width': 1.5 });
+    label(B, Q[0] - 10, Q[1] - 48, 'α', { 'font-size': 15, fill: '#525252' });
+    dot(B, Q[0], Q[1]); dot(B, Q[0], 40, '#C0392B');
+</script>
+</body>
+</html>

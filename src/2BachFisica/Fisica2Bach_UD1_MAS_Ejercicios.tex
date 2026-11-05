@@ -1,0 +1,445 @@
+%! Unidad 1 — Movimiento armónico simple: ejercicios finales (adaptados de la fuente, con datos cambiados y resueltos)
+
+\section{Ejercicios}\label{sec:mas-ejercicios}
+
+\subsection{Cinemática del m.a.s.}
+
+\begin{exercise}
+    Una partícula oscila con un m.a.s. cuya aceleración máxima es \qty{20}{\m\per\second\squared} y cuya velocidad máxima
+    es \qty{4}{\m\per\second}. Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La frecuencia de oscilación.
+        \item La amplitud del movimiento.
+    \end{enumerate}
+    \begin{solu}
+        \textcolor{blue}{\(a_{\text{máx}} = A\omega^2\) y \(v_{\text{máx}} = A\omega\); dividiendo: \(\omega = \dfrac{a_{\text{máx}}}{v_{\text{máx}}} = \dfrac{20}{4} = \qty{5}{\radian\per\second}\).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(\nu = \dfrac{\omega}{2\pi} = \textcolor{red}{\qty{0.80}{\hertz}}\).
+            \item \(A = \dfrac{v_{\text{máx}}}{\omega} = \dfrac{4}{5} = \textcolor{red}{\qty{0.8}{\m}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La ecuación de un m.a.s. es \(y = 4\,\sen\!\left(\dfrac{\pi}{2}\,t\right)\) en unidades del SI.
+    \begin{enumerate}[label=\letraminuscula]
+        \item ¿Cuáles son su período, su frecuencia y su amplitud?
+        \item Si la masa del cuerpo es \qty{0.5}{\kg}, ¿cuál es su energía cinética en \(t = \qty{0.5}{\second}\)?
+        \item ¿En qué instante alcanza por primera vez la separación máxima?
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \textcolor{blue}{\(\omega = \pi/2\ \unit{\radian\per\second}\):} \(T = \dfrac{2\pi}{\omega} = \textcolor{red}{\qty{4}{\second}}\);
+            \(\nu = \textcolor{red}{\qty{0.25}{\hertz}}\); \(A = \textcolor{red}{\qty{4}{\m}}\).
+            \item \(v = A\omega\cos(\omega t) = 4\cdot\dfrac{\pi}{2}\cos\dfrac{\pi}{4} = \qty{4.44}{\m\per\second}\);
+            \(E_c = \frac{1}{2}\cdot 0{,}5\cdot 4{,}44^2 = \textcolor{red}{\qty{4.93}{\joule}}\).
+            \item \textcolor{blue}{\(y = A\) cuando \(\sen(\pi t/2) = 1 \Rightarrow \pi t/2 = \pi/2\)} \(\Rightarrow \textcolor{red}{t = \qty{1}{\second}}\) (un cuarto de período).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un m.a.s. tiene un período de \qty{4}{\second} y una amplitud de \qty{5}{\cm}. El móvil pasa por el centro de la
+    trayectoria, moviéndose en sentido positivo, en \(t = \qty{2}{\second}\). Escribe la ecuación del movimiento y calcula la
+    velocidad en \(t = \qty{4}{\second}\).
+    \begin{solu}
+        \textcolor{blue}{\(\omega = \dfrac{2\pi}{4} = \dfrac{\pi}{2}\ \unit{\radian\per\second}\), \(A = \qty{0.05}{\m}\). En \(t = 2\): \(y = 0\) y \(v > 0\), luego la fase
+        vale \(0\) (o \(2\pi\)): \(\dfrac{\pi}{2}\cdot 2 + \varphi_0 = 2\pi \Rightarrow \varphi_0 = \pi\).}
+        \[ \textcolor{red}{y = 0{,}05\,\sen\!\left(\dfrac{\pi}{2}t + \pi\right)\ \text{(m)}} \]
+        \(v(4) = 0{,}05\cdot\dfrac{\pi}{2}\cos(2\pi + \pi) = \textcolor{red}{\qty{-0.0785}{\m\per\second}}\) \textcolor{blue}{(vuelve a pasar por el centro, ahora hacia abajo).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Escribe la ecuación de un m.a.s. de amplitud \qty{10}{\cm} y frecuencia \qty{2}{\hertz} sabiendo que en \(t = 0\) el móvil
+    está en el punto medio de la amplitud positiva (\(y = A/2\)) y se aleja del centro.
+    \begin{solu}
+        \textcolor{blue}{\(\omega = 2\pi\nu = 4\pi\ \unit{\radian\per\second}\). En \(t = 0\): \(\sen\varphi_0 = \dfrac{1}{2}\); como se aleja del centro, \(v > 0\) y
+        \(\cos\varphi_0 > 0\), así que \(\varphi_0 = \dfrac{\pi}{6}\) (la otra solución, \(5\pi/6\), corresponde a acercarse).}
+        \[ \textcolor{red}{y = 0{,}10\,\sen\!\left(4\pi t + \dfrac{\pi}{6}\right)\ \text{(m)}} \]
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un punto vibra con una amplitud de \qty{3}{\cm} y una frecuencia de \qty{60}{\hertz}. Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La velocidad máxima.
+        \item La velocidad cuando la elongación es de \qty{1}{\cm}.
+        \item Cuántas vibraciones da en un minuto.
+    \end{enumerate}
+    \begin{solu}
+        \textcolor{blue}{\(\omega = 2\pi\cdot 60 = 120\pi\ \unit{\radian\per\second}\).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(v_{\text{máx}} = A\omega = 0{,}03\cdot 120\pi = \textcolor{red}{\qty{11.3}{\m\per\second}}\).
+            \item \(v = \omega\sqrt{A^2 - y^2} = 120\pi\sqrt{0{,}03^2 - 0{,}01^2} = \textcolor{red}{\qty{10.7}{\m\per\second}}\).
+            \item \(60\ \unit{\hertz}\cdot\qty{60}{\second} = \textcolor{red}{\num{3600}\ \text{vibraciones}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una partícula tiene un m.a.s. de período \qty{6}{\second} y fase inicial nula. Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item El tiempo que tarda en tener una velocidad igual a la mitad de la máxima.
+        \item El instante en que la elongación es la mitad de la amplitud.
+    \end{enumerate}
+    \begin{solu}
+        \textcolor{blue}{\(\omega = 2\pi/6 = \pi/3\ \unit{\radian\per\second}\).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(A\omega\cos\omega t = \dfrac{A\omega}{2} \Rightarrow \cos\omega t = \dfrac{1}{2} \Rightarrow \omega t = \dfrac{\pi}{3}\)
+            \(\Rightarrow \textcolor{red}{t = \qty{1}{\second}} = T/6\).
+            \item \(A\sen\omega t = \dfrac{A}{2} \Rightarrow \omega t = \dfrac{\pi}{6}\) \(\Rightarrow \textcolor{red}{t = \qty{0.5}{\second}} = T/12\).
+        \end{enumerate}
+        \textcolor{blue}{Fíjate en que no tarda \(T/8\) en llegar a \(A/2\): al principio va más deprisa.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿Cómo cambian la velocidad máxima y la aceleración máxima de un m.a.s. si:
+    \begin{enumerate}[label=\letraminuscula]
+        \item se triplica la frecuencia y se reduce la amplitud a la mitad?
+        \item se reduce la frecuencia a la mitad manteniendo la amplitud?
+    \end{enumerate}
+    \begin{solu}
+        \textcolor{blue}{\(v_{\text{máx}} = A\omega = 2\pi\nu A\) y \(a_{\text{máx}} = A\omega^2 = 4\pi^2\nu^2 A\).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(v'_{\text{máx}} \propto 3\nu\cdot\dfrac{A}{2}\): \textcolor{red}{se multiplica por \(1{,}5\)}; \(a'_{\text{máx}} \propto 9\nu^2\cdot\dfrac{A}{2}\): \textcolor{red}{se multiplica por \(4{,}5\)}.
+            \item \textcolor{red}{\(v_{\text{máx}}\) se reduce a la mitad y \(a_{\text{máx}}\) a la cuarta parte.}
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una partícula con m.a.s. recorre \qty{20}{\cm} en cada ciclo y su aceleración máxima es \qty{20}{\m\per\second\squared}.
+    Calcula la frecuencia, el período y la velocidad máxima.
+    \begin{solu}
+        \textcolor{blue}{En un ciclo recorre \(4A\): \(A = \qty{0.05}{\m}\). \(\omega = \sqrt{\dfrac{a_{\text{máx}}}{A}} = \sqrt{\dfrac{20}{0{,}05}} = \qty{20}{\radian\per\second}\).}
+
+        \(\nu = \dfrac{20}{2\pi} = \textcolor{red}{\qty{3.18}{\hertz}}\); \(T = \textcolor{red}{\qty{0.314}{\second}}\);
+        \(v_{\text{máx}} = A\omega = \textcolor{red}{\qty{1}{\m\per\second}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una partícula con m.a.s. recorre \qty{24}{\cm} en cada ciclo y su aceleración máxima es \qty{54}{\cm\per\second\squared}.
+    Calcula la frecuencia, el período y la velocidad máxima.
+    \begin{solu}
+        \textcolor{blue}{\(4A = \qty{24}{\cm} \Rightarrow A = \qty{0.06}{\m}\); \(\omega = \sqrt{\dfrac{0{,}54}{0{,}06}} = \qty{3}{\radian\per\second}\).}
+
+        \(\nu = \textcolor{red}{\qty{0.477}{\hertz}}\); \(T = \dfrac{2\pi}{3} = \textcolor{red}{\qty{2.09}{\second}}\);
+        \(v_{\text{máx}} = 0{,}06\cdot 3 = \textcolor{red}{\qty{0.18}{\m\per\second}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Deduce la ecuación de la elongación de los movimientos representados en las gráficas (en todas, el tiempo está en
+    segundos):
+
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{axis}[fisica, width=0.46\linewidth, xmin=0, xmax=0.48, ymin=-5.5, ymax=5.8, xlabel={\(t\)}, ylabel={(a) \(y\) (\unit{\cm})},
+                xtick={0.1,0.2,0.3,0.4}, xticklabel style={/pgf/number format/use comma}, ytick={-4,4}]
+                \addplot[domain=0:0.45, very thick, ocre] {4*sin(deg(5*pi*x))};
+            \end{axis}
+        \end{tikzpicture}\hfill
+        \begin{tikzpicture}
+            \begin{axis}[fisica, width=0.46\linewidth, xmin=0, xmax=0.48, ymin=-7.5, ymax=7.8, xlabel={\(t\)}, ylabel={(b) \(y\) (\unit{\cm})},
+                xtick={0.1,0.2,0.3,0.4}, xticklabel style={/pgf/number format/use comma}, ytick={-6,6}]
+                \addplot[domain=0:0.45, very thick, ocre] {6*cos(deg(5*pi*x))};
+            \end{axis}
+        \end{tikzpicture}
+
+        \vspace{6pt}
+        \begin{tikzpicture}
+            \begin{axis}[fisica, width=0.46\linewidth, xmin=0, xmax=0.24, ymin=-190, ymax=200, xlabel={\(t\)}, ylabel={(c) \(v\) (\unit{\cm\per\second})},
+                xtick={0.05,0.1,0.15,0.2}, xticklabel style={/pgf/number format/use comma}, ytick={-150,150}]
+                \addplot[domain=0:0.225, very thick, blue] {-150*sin(deg(10*pi*x))};
+            \end{axis}
+        \end{tikzpicture}\hfill
+        \begin{tikzpicture}
+            \begin{axis}[fisica, width=0.46\linewidth, xmin=0, xmax=0.48, ymin=-500, ymax=520, xlabel={\(t\)}, ylabel={(d) \(a\) (\unit{\cm\per\second\squared})},
+                xtick={0.1,0.2,0.3,0.4}, xticklabel style={/pgf/number format/use comma}, ytick={-400,400}]
+                \addplot[domain=0:0.45, very thick, red] {400*sin(deg(5*pi*x))};
+            \end{axis}
+        \end{tikzpicture}
+    \end{center}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \textcolor{blue}{\(A = \qty{0.04}{\m}\), \(T = \qty{0.4}{\second} \Rightarrow \omega = 5\pi\ \unit{\radian\per\second}\); empieza en \(y = 0\) subiendo: \(\varphi_0 = 0\).}
+            \(\textcolor{red}{y = 0{,}04\,\sen(5\pi t)\ \text{(m)}}\)
+            \item \textcolor{blue}{\(A = \qty{0.06}{\m}\), \(\omega = 5\pi\); empieza en el extremo positivo: \(\varphi_0 = \pi/2\).}
+            \(\textcolor{red}{y = 0{,}06\,\sen\!\left(5\pi t + \dfrac{\pi}{2}\right)\ \text{(m)}}\)
+            \item \textcolor{blue}{\(T = \qty{0.2}{\second} \Rightarrow \omega = 10\pi\); \(A\omega = \qty{1.5}{\m\per\second} \Rightarrow A = \dfrac{1{,}5}{10\pi} = \qty{0.0477}{\m}\).
+            En \(t = 0\), \(v = 0\) y empieza a ser negativa: está en el extremo positivo, \(\varphi_0 = \pi/2\).}
+            \(\textcolor{red}{y = 0{,}0477\,\sen\!\left(10\pi t + \dfrac{\pi}{2}\right)\ \text{(m)}}\)
+            \item \textcolor{blue}{\(\omega = 5\pi\); \(A\omega^2 = \qty{4}{\m\per\second\squared} \Rightarrow A = \dfrac{4}{25\pi^2} = \qty{0.0162}{\m}\).
+            Como \(a = -\omega^2 y\), si la aceleración empieza en 0 creciendo, la posición empieza en 0 decreciendo: \(\varphi_0 = \pi\).}
+            \(\textcolor{red}{y = 0{,}0162\,\sen(5\pi t + \pi)\ \text{(m)}}\)
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\subsection{Dinámica del m.a.s.: muelles y péndulos}
+
+\begin{exercise}
+    Un cuerpo de \qty{50}{\kg} oscila sobre una superficie horizontal sin rozamiento unido a un muelle, con una frecuencia de
+    \qty{3}{\hertz} y una amplitud de \qty{8}{\cm}. ¿Cuánto vale la constante del muelle?
+    \begin{solu}
+        \textcolor{blue}{\(k = m\omega^2 = m\,(2\pi\nu)^2 = 50\cdot(6\pi)^2 = 1800\pi^2\)} \(= \textcolor{red}{\qty{1.78e4}{\newton\per\m}}\).
+        \textcolor{blue}{(La amplitud no influye en \(k\).)}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un punto material de \qty{40}{\g} describe un m.a.s. de \qty{12}{\cm} de amplitud y \qty{2}{\second} de período. En
+    \(t = 0\) su elongación es máxima. Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La velocidad máxima.
+        \item La fuerza recuperadora en \(t = \qty{0.25}{\second}\).
+    \end{enumerate}
+    \begin{solu}
+        \textcolor{blue}{\(\omega = \pi\ \unit{\radian\per\second}\), \(\varphi_0 = \pi/2\): \(y = 0{,}12\,\sen(\pi t + \pi/2)\).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(v_{\text{máx}} = A\omega = 0{,}12\pi = \textcolor{red}{\qty{0.377}{\m\per\second}}\).
+            \item \(y(0{,}25) = 0{,}12\,\sen(0{,}75\pi) = \qty{0.0849}{\m}\);
+            \(F = -m\omega^2 y = -0{,}04\cdot\pi^2\cdot 0{,}0849 = \textcolor{red}{\qty{-0.0335}{\newton}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La energía total de un cuerpo con m.a.s. es \qty{4e-4}{\joule} y la fuerza máxima que actúa sobre él es
+    \qty{2e-2}{\newton}. Si el período es \qty{4}{\second} y la fase inicial \ang{30}, determina:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La ecuación del movimiento.
+        \item La velocidad y la aceleración en \(t = 0\).
+    \end{enumerate}
+    \begin{solu}
+        \textcolor{blue}{\(E = \frac{1}{2}kA^2\) y \(F_{\text{máx}} = kA\); dividiendo: \(\dfrac{E}{F_{\text{máx}}} = \dfrac{A}{2}
+        \Rightarrow A = \dfrac{2\cdot 4\cdot 10^{-4}}{2\cdot 10^{-2}} = \qty{0.04}{\m}\). \(\omega = 2\pi/4 = \pi/2\); \(\varphi_0 = \pi/6\).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(\textcolor{red}{y = 0{,}04\,\sen\!\left(\dfrac{\pi}{2}t + \dfrac{\pi}{6}\right)\ \text{(m)}}\)
+            \item \(v(0) = 0{,}04\cdot\dfrac{\pi}{2}\cos\dfrac{\pi}{6} = \textcolor{red}{\qty{0.0544}{\m\per\second}}\);
+            \(a(0) = -0{,}04\cdot\dfrac{\pi^2}{4}\sen\dfrac{\pi}{6} = \textcolor{red}{\qty{-0.0493}{\m\per\second\squared}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Para calibrar un muelle se cuelgan distintas masas y se mide su longitud:
+    \begin{center}
+        \begin{tabular}{@{}lcccccc@{}}
+            \toprule
+            \textbf{Masa (\unit{\g})} & 0 & 50 & 100 & 150 & 200 & 250 \\
+            \midrule
+            \textbf{Longitud (\unit{\mm})} & \num{60.0} & \num{64.9} & \num{69.8} & \num{74.8} & \num{79.6} & \num{84.5} \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+    Calcula la constante del muelle mediante una representación gráfica.
+    \begin{solu}
+        \textcolor{blue}{Representamos el peso \(F = mg\) frente al alargamiento \(\Delta l = l - l_0\). La pendiente es \(k\):}
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{axis}[fisica, width=0.55\linewidth, height=5cm, xmin=0, xmax=28, ymin=0, ymax=2.8,
+                    xlabel={\(\Delta l\) (\unit{\mm})}, ylabel={\(F\) (\unit{\newton})}, yticklabel style={/pgf/number format/use comma}]
+                    \addplot[only marks, mark=*, ocre] coordinates {(0,0) (4.9,0.49) (9.8,0.98) (14.8,1.47) (19.6,1.96) (24.5,2.45)};
+                    \addplot[domain=0:26, thick, red] {0.09994*x};
+                \end{axis}
+            \end{tikzpicture}
+        \end{center}
+        \textcolor{blue}{La recta de ajuste pasa por \((24{,}5\ \unit{\mm};\ \qty{2.45}{\newton})\):}
+        \(k = \dfrac{2{,}45}{0{,}0245} = \textcolor{red}{\qty{100}{\newton\per\m}}\) \textcolor{blue}{(longitud natural \qty{60}{\mm}).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un muelle de masa despreciable mide \qty{10}{\cm}; un extremo está fijo a una pared y el otro unido a una masa que
+    descansa sobre una superficie horizontal sin rozamiento. Hace falta una fuerza de \qty{24}{\newton} para mantenerlo
+    estirado hasta \qty{16}{\cm}. Desde ahí se suelta y oscila con una pulsación de \(2\pi\ \unit{\radian\per\second}\). Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La constante del muelle.
+        \item La masa que oscila.
+        \item La ecuación del movimiento.
+        \item Las energías cinética y potencial cuando \(x = \qty{2}{\cm}\).
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(k = \dfrac{F}{\Delta l} = \dfrac{24}{0{,}06} = \textcolor{red}{\qty{400}{\newton\per\m}}\).
+            \item \(m = \dfrac{k}{\omega^2} = \dfrac{400}{4\pi^2} = \textcolor{red}{\qty{10.1}{\kg}}\).
+            \item \textcolor{blue}{Se suelta desde el extremo: \(A = \qty{0.06}{\m}\), \(\varphi_0 = \pi/2\).} \(\textcolor{red}{x = 0{,}06\,\sen\!\left(2\pi t + \dfrac{\pi}{2}\right)\ \text{(m)}}\)
+            \item \(E_p = \frac{1}{2}\cdot 400\cdot 0{,}02^2 = \textcolor{red}{\qty{0.08}{\joule}}\);
+            \(E_c = \frac{1}{2}\cdot 400\,(0{,}06^2 - 0{,}02^2) = \textcolor{red}{\qty{0.64}{\joule}}\) \textcolor{blue}{(\(E_m = \qty{0.72}{\joule}\)).}
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La aceleración de una partícula de \qty{5}{\g} cumple \(a = -25\pi^2 y\) (SI). Recorre un segmento de \qty{10}{\cm} y, al
+    empezar a contar el tiempo, está en \(y = 2{,}5\sqrt 2\ \unit{\cm}\) alejándose del centro. Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La ecuación del movimiento.
+        \item La velocidad máxima y la elongación en la que se alcanza.
+        \item Las energías cinética, potencial y mecánica cuando \(y = \qty{3}{\cm}\).
+    \end{enumerate}
+    \begin{solu}
+        \textcolor{blue}{Comparando con \(a = -\omega^2 y\): \(\omega = 5\pi\ \unit{\radian\per\second}\). \(A = \qty{0.05}{\m}\). En \(t = 0\),
+        \(\sen\varphi_0 = \dfrac{2{,}5\sqrt 2}{5} = \dfrac{\sqrt 2}{2}\) y \(v > 0\): \(\varphi_0 = \pi/4\).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(\textcolor{red}{y = 0{,}05\,\sen\!\left(5\pi t + \dfrac{\pi}{4}\right)\ \text{(m)}}\)
+            \item \(v_{\text{máx}} = A\omega = 0{,}25\pi = \textcolor{red}{\qty{0.785}{\m\per\second}}\), \textcolor{red}{en el centro (\(y = 0\))}.
+            \item \textcolor{blue}{\(k = m\omega^2 = 0{,}005\cdot 25\pi^2 = \qty{1.23}{\newton\per\m}\).}
+            \(E_m = \frac{1}{2}kA^2 = \textcolor{red}{\qty{1.54e-3}{\joule}}\); \(E_p = \frac{1}{2}k\,(0{,}03)^2 = \textcolor{red}{\qty{5.55e-4}{\joule}}\);
+            \(E_c = E_m - E_p = \textcolor{red}{\qty{9.87e-4}{\joule}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un bloque de \qty{2}{\kg} está unido a un muelle de constante \qty{200}{\newton\per\m}. En \(t = 0\) el muelle está en
+    su posición de equilibrio y el bloque se mueve a \qty{3}{\m\per\second}. ¿Cuál es la máxima deformación del muelle?
+    \begin{solu}
+        \textcolor{blue}{En el equilibrio la velocidad es la máxima: \(v_{\text{máx}} = A\omega\), con \(\omega = \sqrt{k/m} = \qty{10}{\radian\per\second}\).}
+        \(A = \dfrac{3}{10} = \textcolor{red}{\qty{0.3}{\m}}\).
+        \textcolor{blue}{También por energías: \(\frac{1}{2}mv^2 = \frac{1}{2}kA^2\).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una partícula de \qty{2}{\g} empieza un m.a.s. en el punto de máxima elongación, a \qty{0.5}{\m} del origen, y tarda
+    \qty{0.2}{\second} en llegar al origen. Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La pulsación.
+        \item La fuerza sobre la partícula \qty{0.1}{\second} después de empezar.
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \textcolor{blue}{Del extremo al centro: \(T/4 = \qty{0.2}{\second} \Rightarrow T = \qty{0.8}{\second}\);} \(\omega = \dfrac{2\pi}{0{,}8} = \textcolor{red}{2{,}5\pi \approx \qty{7.85}{\radian\per\second}}\).
+            \item \textcolor{blue}{\(y = 0{,}5\,\sen(2{,}5\pi t + \pi/2)\); \(y(0{,}1) = 0{,}5\cos(\pi/4) = \qty{0.354}{\m}\).}
+            \(F = -m\omega^2 y = -0{,}002\cdot(2{,}5\pi)^2\cdot 0{,}354 = \textcolor{red}{\qty{-0.0436}{\newton}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un muelle fijo por un extremo sostiene por el otro una masa de \qty{4}{\kg}. Se separa la masa del equilibrio y se suelta;
+    se observa que 20 oscilaciones duran \qty{6.28}{\second}. Calcula la constante del muelle.
+    \begin{solu}
+        \textcolor{blue}{\(T = \dfrac{6{,}28}{20} = \qty{0.314}{\second} \Rightarrow \omega = \dfrac{2\pi}{0{,}314} = \qty{20}{\radian\per\second}\).}
+        \(k = m\omega^2 = 4\cdot 20^2 = \textcolor{red}{\qty{1600}{\newton\per\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    De un soporte cuelga un muelle de constante \qty{50}{\newton\per\m} con una masa de \qty{2}{\kg}. En equilibrio, la masa
+    está a \qty{1.2}{\m} del soporte.
+    \begin{enumerate}[label=\letraminuscula]
+        \item ¿Cuánto mide el muelle sin ninguna masa colgada?
+        \item Se engancha otra masa de \qty{0.5}{\kg} y el sistema empieza a oscilar. ¿Cuál es la frecuencia de oscilación?
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(\Delta l = \dfrac{mg}{k} = \dfrac{2\cdot 9{,}8}{50} = \qty{0.392}{\m}\); \(l_0 = 1{,}2 - 0{,}392 = \textcolor{red}{\qty{0.808}{\m}}\).
+            \item \(\nu = \dfrac{1}{2\pi}\sqrt{\dfrac{k}{m}} = \dfrac{1}{2\pi}\sqrt{\dfrac{50}{2{,}5}} = \textcolor{red}{\qty{0.712}{\hertz}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    De un muelle vertical de masa despreciable se cuelga una masa de \qty{80}{\g}, que lo alarga \qty{4}{\cm} hasta el
+    equilibrio.
+    \begin{enumerate}[label=\letraminuscula]
+        \item ¿Cuánto vale la constante elástica?
+        \item ¿Cuál es el período de oscilación?
+        \item Si se añaden \qty{40}{\g}, ¿cuál es el nuevo alargamiento en equilibrio? ¿Y el nuevo período?
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(k = \dfrac{0{,}08\cdot 9{,}8}{0{,}04} = \textcolor{red}{\qty{19.6}{\newton\per\m}}\).
+            \item \(T = 2\pi\sqrt{\dfrac{0{,}08}{19{,}6}} = \textcolor{red}{\qty{0.401}{\second}}\).
+            \item \(\Delta l = \dfrac{0{,}12\cdot 9{,}8}{19{,}6} = \textcolor{red}{\qty{6}{\cm}}\); \(T = 2\pi\sqrt{\dfrac{0{,}12}{19{,}6}} = \textcolor{red}{\qty{0.492}{\second}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Los períodos de dos péndulos simples A y B cumplen \(T_A = 4\,T_B\). ¿Qué relación hay entre sus longitudes?
+    \begin{solu}
+        \[ \dfrac{T_A}{T_B} = \sqrt{\dfrac{l_A}{l_B}} = 4 \;\Rightarrow\; \textcolor{red}{l_A = 16\,l_B} \]
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un objeto de \qty{2}{\kg} está sujeto a un muelle horizontal de constante \qty{8}{\newton\per\m}. Se estira el muelle
+    \qty{15}{\cm} y se suelta. Determina la frecuencia, el período, la amplitud, la velocidad máxima y la aceleración máxima.
+    ¿Cuándo pasa el objeto por primera vez por la posición de equilibrio? ¿Cuánto vale entonces la aceleración?
+    \begin{solu}
+        \textcolor{blue}{\(\omega = \sqrt{8/2} = \qty{2}{\radian\per\second}\).}
+        \(\nu = \dfrac{1}{\pi} = \textcolor{red}{\qty{0.318}{\hertz}}\); \(T = \textcolor{red}{\pi \approx \qty{3.14}{\second}}\);
+        \(A = \textcolor{red}{\qty{0.15}{\m}}\); \(v_{\text{máx}} = A\omega = \textcolor{red}{\qty{0.3}{\m\per\second}}\);
+        \(a_{\text{máx}} = A\omega^2 = \textcolor{red}{\qty{0.6}{\m\per\second\squared}}\).
+
+        \textcolor{blue}{Del extremo al equilibrio tarda \(T/4\):} \(t = \textcolor{red}{\qty{0.785}{\second}}\), y ahí \(a = -\omega^2\cdot 0 = \textcolor{red}{0}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un cuerpo de \qty{250}{\g} unido a un muelle horizontal oscila sin rozamiento con una pulsación de
+    \qty{10}{\radian\per\second}. En \(t = 0\) el alargamiento es \qty{3}{\cm} y su velocidad \qty{-40}{\cm\per\second}.
+    Calcula la amplitud, la fase inicial, la constante elástica y la energía mecánica.
+    \begin{solu}
+        \textcolor{blue}{En \(t = 0\): \(x_0 = A\sen\varphi_0\) y \(v_0 = A\omega\cos\varphi_0\). Elevando al cuadrado y sumando:}
+        \[ A = \sqrt{x_0^2 + \left(\dfrac{v_0}{\omega}\right)^2} = \sqrt{0{,}03^2 + 0{,}04^2} = \textcolor{red}{\qty{0.05}{\m}} \]
+        \textcolor{blue}{\(\sen\varphi_0 = 0{,}6\) y \(\cos\varphi_0 = -0{,}8\) (segundo cuadrante):} \(\varphi_0 = \textcolor{red}{\qty{2.50}{\radian}}\) \textcolor{blue}{(\ang{143.1}).}
+
+        \(k = m\omega^2 = 0{,}25\cdot 100 = \textcolor{red}{\qty{25}{\newton\per\m}}\); \(E_m = \frac{1}{2}\cdot 25\cdot 0{,}05^2 = \textcolor{red}{\qty{0.0313}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Energía del m.a.s.}
+
+\begin{exercise}
+    ¿En qué posiciones y en qué instantes son iguales la energía cinética y la potencial de una partícula con m.a.s.
+    (con \(\varphi_0 = 0\))?
+    \begin{solu}
+        \textcolor{blue}{\(E_c = E_p \Rightarrow \frac{1}{2}k(A^2 - y^2) = \frac{1}{2}k y^2 \Rightarrow y^2 = \dfrac{A^2}{2}\)}
+        \(\Rightarrow \textcolor{red}{y = \pm\dfrac{A}{\sqrt 2} \approx \pm 0{,}71\,A}\).
+
+        \textcolor{blue}{Entonces \(\sen\omega t = \pm\dfrac{\sqrt 2}{2} \Rightarrow \omega t = \dfrac{\pi}{4} + n\dfrac{\pi}{2}\):}
+        \(\textcolor{red}{t = \dfrac{T}{8} + n\,\dfrac{T}{4}}\) \textcolor{blue}{(\(n = 0, 1, 2\ldots\)): cuatro veces en cada período.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un cuerpo de \qty{1.2}{\kg} unido a un muelle de \qty{30}{\newton\per\m} oscila con una amplitud de \qty{4}{\cm}. Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La energía total.
+        \item Las energías cinética y potencial cuando el desplazamiento es \qty{2.5}{\cm}.
+        \item La velocidad máxima.
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(E = \frac{1}{2}kA^2 = \frac{1}{2}\cdot 30\cdot 0{,}04^2 = \textcolor{red}{\qty{0.024}{\joule}}\).
+            \item \(E_p = \frac{1}{2}\cdot 30\cdot 0{,}025^2 = \textcolor{red}{\qty{9.38e-3}{\joule}}\); \(E_c = 0{,}024 - 0{,}00938 = \textcolor{red}{\qty{1.46e-2}{\joule}}\).
+            \item \(v_{\text{máx}} = A\sqrt{k/m} = 0{,}04\cdot 5 = \textcolor{red}{\qty{0.2}{\m\per\second}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una masa de \qty{200}{\g} unida a un muelle horizontal de constante \qty{80}{\newton\per\m} forma un oscilador de
+    \qty{6}{\cm} de amplitud. Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La energía potencial cuando la velocidad es nula.
+        \item La energía cinética cuando la velocidad es máxima.
+        \item Las energías cinética y potencial cuando la aceleración vale \qty{15}{\m\per\second\squared}.
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \textcolor{blue}{\(v = 0\) en los extremos: toda la energía es potencial.} \(E_p = \frac{1}{2}\cdot 80\cdot 0{,}06^2 = \textcolor{red}{\qty{0.144}{\joule}}\).
+            \item \textcolor{blue}{En el centro toda es cinética:} \(E_c = \textcolor{red}{\qty{0.144}{\joule}}\).
+            \item \textcolor{blue}{\(|a| = \dfrac{k}{m}|y| \Rightarrow |y| = \dfrac{15\cdot 0{,}2}{80} = \qty{0.0375}{\m}\).}
+            \(E_p = \frac{1}{2}\cdot 80\cdot 0{,}0375^2 = \textcolor{red}{\qty{0.0563}{\joule}}\); \(E_c = 0{,}144 - 0{,}0563 = \textcolor{red}{\qty{0.0878}{\joule}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}

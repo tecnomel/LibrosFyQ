@@ -1,0 +1,824 @@
+%! Unidad 13 — Termodinámica: ejercicios resueltos, ejercicios finales y autoevaluación
+%! Fuente: Fuentes/Fisica/Unidad 13 («Ejercicios resueltos», «Practica y calcula», «Piensa y resuelve»). La fuente no trae
+%! olimpiadas ni autoevaluación de este tema: la autoevaluación es propia. Enunciados adaptados con datos cambiados y soluciones
+%! rehechas con 1 cal = 4,18 J, R = 8,31 J/(mol·K) y 1 atm = 101 325 Pa.
+%! Dificultad: \(\star\) baja, \(\star\star\) media, \(\star\star\star\) alta.
+
+\section{Ejercicios resueltos}\label{sec:ud13-resueltos}
+
+\begin{example}
+    \textbf{Los cilindros de una moto.} El motor de una moto de competición tiene 4 cilindros de \qty{250}{\cm\cubed} cada uno. En
+    cada ciclo, la mezcla de aire y combustible se comprime hasta ocupar \qty{25}{\cm\cubed}, y se pierden \qty{15}{\joule} de calor
+    por cilindro. Suponiendo (para simplificar) que la compresión se produce a una presión constante de \qty{101}{\kilo\pascal},
+    calcula: a) el trabajo que hace cada cilindro sobre el gas; b) la variación de energía interna del gas.
+
+    \textbf{Solución.} \textbf{1. Unidades SI}: \(V_i = \qty{2.5e-4}{\m\cubed}\), \(V_f = \qty{2.5e-5}{\m\cubed}\),
+    \(p = \qty{1.01e5}{\pascal}\).
+
+    \textbf{2. a)} Es una compresión:
+    \(W = -p\,(V_f - V_i) = -\num{1.01e5} \cdot (\num{2.5e-5} - \num{2.5e-4}) = \qty{+22.7}{\joule}\). Es positivo porque el
+    entorno (el pistón) hace trabajo sobre el gas.
+
+    \textbf{3. b)} El gas cede calor, \(Q = \qty{-15}{\joule}\):
+    \(\Delta U = Q + W = -15 + \num{22.7} = \qty{+7.7}{\joule}\). La energía interna (y la temperatura) de la mezcla aumenta.
+\end{example}
+
+\begin{example}
+    \textbf{Mezcla de agua con paredes adiabáticas y diatérmanas.} En un recipiente con \qty{1500}{\cm\cubed} de agua a
+    \qty{12}{\degreeCelsius} se echan \qty{500}{\cm\cubed} de agua a \qty{72}{\degreeCelsius}. La densidad del agua es
+    \qty{1}{\g\per\cm\cubed} y \(c_e = \qty{1}{\calorie\per\g\per\degreeCelsius}\). a) Si las paredes son adiabáticas, ¿cuál es la
+    temperatura final? b) ¿Qué calor intercambia cada parte? c) ¿Qué ocurriría si las paredes fueran diatérmanas y el exterior
+    estuviera a \qty{22}{\degreeCelsius}?
+
+    \textbf{Solución.} \textbf{1. Masas}: \(m_1 = \qty{1500}{\g}\) (fría) y \(m_2 = \qty{500}{\g}\) (caliente).
+
+    \textbf{2. a)} Con paredes adiabáticas, \(Q_1 + Q_2 = 0\):
+    \[ m_1\,c_e\,(T - T_1) + m_2\,c_e\,(T - T_2) = 0 \Rightarrow T = \frac{m_1\,T_1 + m_2\,T_2}{m_1 + m_2} = \frac{1500 \cdot 12 +
+    500 \cdot 72}{2000} = \qty{27}{\degreeCelsius} \]
+    No hace falta pasar a kelvin, porque solo intervienen diferencias de temperatura.
+
+    \textbf{3. b)} \(Q_1 = 1500 \cdot 1 \cdot (27 - 12) = \qty{22500}{\calorie} = \qty{94.1}{\kilo\joule}\) (absorbe);
+    \(Q_2 = \qty{-94.1}{\kilo\joule}\) (cede lo mismo).
+
+    \textbf{4. c)} Con paredes diatérmanas, todo el sistema acaba en equilibrio con el exterior, a \qty{22}{\degreeCelsius} (el entorno
+    es tan grande que su temperatura no cambia):
+    \(Q_1 = 1500 \cdot \num{4.18} \cdot (22 - 12) = \qty{+62.7}{\kilo\joule}\);
+    \(Q_2 = 500 \cdot \num{4.18} \cdot (22 - 72) = \qty{-104.5}{\kilo\joule}\). Ahora no se compensan: el sistema cede
+    \qty{41.8}{\kilo\joule} al exterior.
+\end{example}
+
+\begin{example}
+    \textbf{Un ciclo con un tramo isotérmico.} Una masa fija de gas ideal recorre el ciclo de la figura~\ref{fig:ud13-res-ciclo}: de 1
+    (\qty{3}{\litre}, \qty{3}{\atm}) a 2 (\qty{6}{\litre}, \qty{1.5}{\atm}) de forma isotérmica; de 2 a 3 (\qty{3}{\litre},
+    \qty{1.5}{\atm}) a presión constante, y de 3 a 1 a volumen constante. a) Calcula el trabajo en cada tramo y en el ciclo. b) Calcula
+    \(\Delta U\) y \(Q\) en el tramo 1 \(\rightarrow\) 2.
+
+    \textbf{Solución.} \textbf{1. Tramo 1 \(\rightarrow\) 2} (isotérmico). No conocemos \(n\) ni \(T\), pero \(n\,R\,T = p_1\,V_1\):
+    \[ W_{1\to2} = -p_1\,V_1 \ln\frac{V_2}{V_1} = -3 \cdot 101325 \cdot \num{3e-3} \cdot \ln 2 = \qty{-632}{\joule} \]
+
+    \textbf{2. Tramo 2 \(\rightarrow\) 3} (isobárico, compresión):
+    \(W_{2\to3} = -\num{1.5} \cdot 101325 \cdot (3 - 6) \cdot \num{e-3} = \qty{+456}{\joule}\).
+
+    \textbf{3. Tramo 3 \(\rightarrow\) 1} (isocórico): \(W_{3\to1} = 0\).
+
+    \textbf{4. Ciclo}: \(W = -632 + 456 + 0 = \qty{-176}{\joule}\). El gas realiza trabajo neto sobre el entorno.
+
+    \textbf{5. b)} En el tramo isotérmico de un gas ideal, \(\Delta U_{1\to2} = 0\), y por el primer principio
+    \(Q_{1\to2} = -W_{1\to2} = \qty{+632}{\joule}\): el gas absorbe \qty{632}{\joule} de calor y los devuelve como trabajo.
+\end{example}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[grafica, width=0.5\linewidth, height=5cm, xlabel={\(V\) (L)}, ylabel={\(p\) (atm)}, xmin=0, xmax=7.5, ymin=0,
+            ymax=3.6, xtick={3,6}, ytick={1.5,3}]
+            \addplot[fill=ocre!20, draw=none, domain=3:6] {9/x} \closedcycle;
+            \addplot[fill=white, draw=none] coordinates {(3,0) (3,1.5) (6,1.5) (6,0)} \closedcycle;
+            \addplot[very thick, ocre, domain=3:6] {9/x};
+            \addplot[very thick, ocre, -latex] coordinates {(6,1.5) (4.4,1.5)};
+            \addplot[very thick, ocre] coordinates {(4.5,1.5) (3,1.5)};
+            \addplot[very thick, ocre, -latex] coordinates {(3,1.5) (3,2.35)};
+            \addplot[very thick, ocre] coordinates {(3,2.3) (3,3)};
+            \node[font=\small, anchor=south west] at (axis cs:3,3) {1};
+            \node[font=\small, anchor=south west] at (axis cs:6,1.5) {2};
+            \node[font=\small, anchor=north east] at (axis cs:3,1.5) {3};
+            \node[font=\scriptsize, anchor=west] at (axis cs:4.3,2.4) {\(T\) = cte};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Ciclo con un tramo isotérmico (1 \(\rightarrow\) 2), uno isobárico y uno isocórico.}
+    \label{fig:ud13-res-ciclo}
+\end{figure}
+
+\begin{example}
+    \textbf{Cubitos para el refresco.} Tenemos \qty{330}{\g} de refresco (que trataremos como agua) a \qty{25}{\degreeCelsius}. ¿Qué
+    masa de hielo a \qty{0}{\degreeCelsius} hay que añadir para que la mezcla quede a \qty{5}{\degreeCelsius}? Supón que no hay
+    intercambio de calor con el exterior. Datos: \(L_f = \qty{80}{\calorie\per\g}\); \(c_{\text{agua}} =
+    \qty{1}{\calorie\per\g\per\degreeCelsius}\).
+
+    \textbf{Solución.} \textbf{1. Calor cedido por el refresco}:
+    \(Q_1 = 330 \cdot 1 \cdot (5 - 25) = \qty{-6600}{\calorie}\).
+
+    \textbf{2. Calor absorbido por el hielo}: primero se funde a \qty{0}{\degreeCelsius} y después el agua resultante se calienta hasta
+    \qty{5}{\degreeCelsius}: \(Q_2 = m\,L_f + m\,c\,(5 - 0) = m\,(80 + 5) = 85\,m\).
+
+    \textbf{3. Balance}: \(Q_1 + Q_2 = 0 \Rightarrow 85\,m = 6600 \Rightarrow m = \qty{77.6}{\g}\), unos cuatro cubitos. Fíjate
+    en que la mayor parte del enfriamiento se debe a la fusión del hielo, no a su calentamiento posterior.
+\end{example}
+
+\begin{example}
+    \textbf{Una central térmica.} En una central térmica, el vapor entra en la turbina a \qty{550}{\degreeCelsius} y sale al
+    condensador a \qty{40}{\degreeCelsius}. La central produce \qty{500}{\mega\watt} de potencia eléctrica con un rendimiento real del
+    \qty{38}{\percent}. a) ¿Cuál es el rendimiento máximo (de Carnot) entre esas temperaturas? b) ¿Qué potencia térmica toma del
+    combustible? c) ¿Qué potencia cede en forma de calor al río o a las torres de refrigeración?
+
+    \textbf{Solución.} \textbf{a)} Temperaturas en kelvin: \(T_1 = \qty{823}{\kelvin}\), \(T_2 = \qty{313}{\kelvin}\).
+    \(\eta_{\text{máx}} = 1 - \dfrac{313}{823} = \num{0.62}\), un \qty{62}{\percent}.
+
+    \textbf{b)} \(\eta = \dfrac{P_{\text{útil}}}{P_{\text{absorbida}}} \Rightarrow P_{\text{absorbida}} = \dfrac{500}{\num{0.38}} =
+    \qty{1316}{\mega\watt}\).
+
+    \textbf{c)} Por el primer principio (en cada ciclo, \(\Delta U = 0\)), lo que no se convierte en trabajo se cede al foco frío:
+    \(P_{\text{cedida}} = 1316 - 500 = \qty{816}{\mega\watt}\). ¡Más de lo que produce! Por eso estas centrales necesitan grandes
+    torres de refrigeración o estar junto a un río o al mar.
+\end{example}
+
+%========================================================================================
+\section{Ejercicios de aplicación}\label{sec:ud13-aplicacion}
+%========================================================================================
+
+\subsection{Introducción a la termodinámica}
+
+\begin{exercise}
+    \(\star\star\) Explica con tus palabras qué es un sistema termodinámico. Enumera los tipos de sistemas que hay y pon un ejemplo
+    de cada uno.
+    \begin{solu}
+        Es la \textcolor{red}{porción del universo que estudiamos}, separada del entorno por una pared real o imaginaria.
+        \textcolor{red}{Abierto} (intercambia materia y energía: una cazuela destapada), \textcolor{red}{cerrado} (solo energía: una
+        lata cerrada) y \textcolor{red}{aislado} (ni materia ni energía: un termo ideal).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Clasifica en sistemas abiertos, cerrados o aislados: a) el motor de una moto en marcha; b) un móvil cargándose; c) una
+    bombona de oxígeno cerrada; d) una célula; e) una lata de sardinas; f) un perro; g) un cactus; h) una ciudad; i) una pelota de
+    fútbol; j) un cuenco de sopa caliente.
+    \begin{solu}
+        \textcolor{red}{Abiertos}: a, d, f, g, h, j. \textcolor{red}{Cerrados}: b, c, e, i. Ninguno es realmente aislado.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Explica qué es una función de estado. ¿Cuáles de estas magnitudes lo son? a) El trabajo. b) La energía interna. c)
+    La entropía. d) El calor. e) La presión. f) El volumen.
+    \begin{solu}
+        Es una magnitud cuya variación solo depende de los estados inicial y final, no del camino. Son funciones de estado
+        \textcolor{red}{b, c, e y f}; el trabajo y el calor \textcolor{red}{no}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Razona si son verdaderas o falsas: a) El calor absorbido por un sistema siempre es negativo. b) En un proceso
+    isotérmico la temperatura no varía. c) Un proceso a presión constante se llama isocórico. d) En un proceso adiabático hay
+    transferencia de calor. e) En un proceso isobárico no cambia el volumen. f) El trabajo que el sistema realiza sobre el entorno
+    es positivo.
+    \begin{solu}
+        a) \textcolor{red}{F}: es positivo. b) \textcolor{red}{V}. c) \textcolor{red}{F}: isobárico. d) \textcolor{red}{F}: \(Q =
+        0\). e) \textcolor{red}{F}: lo que no cambia es la presión. f) \textcolor{red}{F}: es negativo (criterio IUPAC).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Qué es el equilibrio termodinámico? Si a un sistema en equilibrio le aportamos calor o trabajo, ¿qué le ocurre?
+    \begin{solu}
+        Es el estado en que las variables del sistema \textcolor{red}{no cambian con el tiempo}. Si le aportamos calor o trabajo,
+        \textcolor{red}{se rompe el equilibrio} y el sistema evoluciona hasta alcanzar un nuevo estado de equilibrio.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Explica la diferencia entre paredes rígidas y paredes móviles, y entre paredes diatérmanas y adiabáticas.
+    \begin{solu}
+        Las \textcolor{red}{rígidas} mantienen el volumen constante (no hay trabajo de expansión); las \textcolor{red}{móviles}
+        permiten cambiarlo e intercambiar trabajo. Las \textcolor{red}{diatérmanas} dejan pasar el calor y las
+        \textcolor{red}{adiabáticas}, no.
+    \end{solu}
+\end{exercise}
+
+\subsection{El principio cero de la termodinámica}
+
+\begin{exercise}
+    \(\star\) ¿Es lo mismo calor que temperatura? Justifica tu respuesta.
+    \begin{solu}
+        \textcolor{red}{No}. La temperatura es una \textcolor{red}{propiedad del cuerpo} (mide la energía cinética media de sus
+        partículas); el calor es \textcolor{red}{energía en tránsito} que pasa de un cuerpo a otro por su diferencia de temperatura.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Puede hablarse de equilibrio térmico con un solo cuerpo? Justifica tu respuesta.
+    \begin{solu}
+        El equilibrio térmico es una relación \textcolor{red}{entre dos o más sistemas} (o entre las partes de un mismo cuerpo):
+        se alcanza cuando todos están a la misma temperatura y deja de haber intercambio neto de calor.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Tres cubos del mismo material y la misma masa, aislados del exterior, se colocan en fila en el orden 3, 1, 2 (el
+    1 en el centro, tocando a los otros dos). Sus temperaturas cumplen \(T_3 > T_2 > T_1\). a) ¿Qué cubos ceden calor y cuál lo
+    absorbe al principio? b) ¿Cómo acaba el sistema?
+    \begin{solu}
+        a) El cubo 1, el más frío, \textcolor{red}{absorbe calor de los cubos 3 y 2}, que lo ceden. b) Todos alcanzan la
+        \textcolor{red}{misma temperatura}, \(T_{eq} = (T_1 + T_2 + T_3)/3\) (igual masa y material), intermedia entre \(T_1\) y \(T_3\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Hay equilibrio térmico? Si no lo hay, ¿cómo evolucionará el sistema para alcanzarlo? a) Al añadir leche fría a
+    un café caliente. b) Un termómetro en la axila tras cinco minutos. c) Una botella de agua «del tiempo». d) Un paquete de
+    mantequilla recién sacado del frigorífico.
+    \begin{solu}
+        a) \textcolor{red}{No}: el café cede calor a la leche hasta que la mezcla tiene una temperatura intermedia. b)
+        \textcolor{red}{Sí}, con el cuerpo. c) \textcolor{red}{Sí}, con el ambiente. d) \textcolor{red}{No}: absorbe calor del
+        ambiente hasta alcanzar su temperatura (y se ablanda).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Expresa en kelvin: a) \qty{25}{\degreeCelsius}; b) \qty{-40}{\degreeCelsius}. Expresa en grados Celsius: c)
+    \qty{4}{\kelvin} (helio líquido); d) \qty{1500}{\kelvin}.
+    \begin{solu}
+        a) \(\textcolor{red}{\qty{298.15}{\kelvin}}\). b) \(\textcolor{red}{\qty{233.15}{\kelvin}}\). c)
+        \(\textcolor{red}{\qty{-269.15}{\degreeCelsius}}\). d) \(\textcolor{red}{\qty{1226.85}{\degreeCelsius}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Mecanismos de propagación del calor}
+
+\begin{exercise}
+    \(\star\) Explica con tus palabras los tres mecanismos de propagación del calor y pon un ejemplo de cada uno.
+    \begin{solu}
+        \textcolor{red}{Conducción}: por choques entre partículas, sin transporte de materia (una cuchara en la sopa).
+        \textcolor{red}{Convección}: por corrientes de fluido caliente que sube y frío que baja (agua al calentarse en una olla).
+        \textcolor{red}{Radiación}: por ondas electromagnéticas, incluso en el vacío (el calor del Sol).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Por qué nos quemamos si ponemos la mano encima de la llama de una vela, y no si la ponemos al lado a la misma
+    distancia?
+    \begin{solu}
+        Encima nos llega el aire caliente que sube por \textcolor{red}{convección}, además de la radiación; al lado solo nos llega la
+        \textcolor{red}{radiación}, que transporta mucha menos energía.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Por qué los utensilios de cocina metálicos tienen el mango de plástico o de madera?
+    \begin{solu}
+        Porque el plástico y la madera son \textcolor{red}{malos conductores del calor} (aislantes): el mango no se calienta y no nos
+        quemamos.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un termo tiene doble pared de vidrio con vacío entre ellas y las superficies plateadas. Explica qué mecanismo de
+    propagación del calor evita cada elemento.
+    \begin{solu}
+        El \textcolor{red}{vacío} impide la \textcolor{red}{conducción} y la \textcolor{red}{convección}, que necesitan materia; las
+        superficies \textcolor{red}{plateadas} reflejan la \textcolor{red}{radiación} infrarroja. El tapón reduce las pérdidas por
+        convección.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un astronauta en el espacio debe mantener estable la temperatura de su cuerpo. Investiga cómo están hechos los
+    trajes espaciales y qué mecanismos de transmisión del calor intervienen.
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta}. En el vacío solo hay \textcolor{red}{radiación}: el traje tiene capas exteriores
+        reflectantes y varias capas aislantes (aislamiento multicapa); para evacuar el calor del cuerpo usa una prenda interior con
+        tubos por los que circula \textcolor{red}{agua de refrigeración}.
+    \end{solu}
+\end{exercise}
+
+\subsection{Transferencia de energía mediante calor}
+
+\begin{exercise}
+    \(\star\) Define con tus palabras el calor específico. ¿En qué unidades se mide?
+    \begin{solu}
+        Es el \textcolor{red}{calor que necesita la unidad de masa de una sustancia para que su temperatura suba un grado}. Se mide
+        en \textcolor{red}{\unit{\joule\per\kg\per\kelvin}} en el SI, o en \unit{\calorie\per\g\per\degreeCelsius}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) El calor específico del etanol es \qty{0.58}{\calorie\per\g\per\degreeCelsius}. Exprésalo en unidades del SI.
+    \begin{solu}
+        \(\num{0.58} \cdot \dfrac{\qty{4.18}{\joule}}{\qty{e-3}{\kg} \cdot \qty{1}{\kelvin}} = \textcolor{red}{\qty{2.42e3}{\joule\per\kg\per\kelvin}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una sustancia A tiene el doble de masa y el doble de calor específico que otra B. Si les suministramos el mismo
+    calor, ¿cuál sufrirá un mayor aumento de temperatura?
+    \begin{solu}
+        \(\Delta T_A = \dfrac{Q}{2m \cdot 2c} = \dfrac{\Delta T_B}{4}\): \textcolor{red}{B se calienta cuatro veces más}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un bloque de cobre de \qty{1.2}{\kg} está a \qty{20}{\degreeCelsius} y le suministramos \qty{40}{\kilo\joule}. ¿Qué
+    temperatura alcanza? \(c_{\text{Cu}} = \qty{0.093}{\calorie\per\g\per\degreeCelsius}\).
+    \begin{solu}
+        \(c = \qty{389}{\joule\per\kg\per\kelvin}\); \(\Delta T = \dfrac{40000}{\num{1.2} \cdot 389} = \qty{85.7}{\kelvin}\);
+        \(T_f = \textcolor{red}{\qty{105.7}{\degreeCelsius}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El recocido es una técnica de joyería que ablanda los metales para trabajarlos mejor. ¿Qué calor hay que dar a una
+    pieza de plata de \qty{200}{\g} para calentarla desde \qty{25}{\degreeCelsius} hasta \qty{600}{\degreeCelsius}?
+    \(c_{\text{Ag}} = \qty{0.056}{\calorie\per\g\per\degreeCelsius}\).
+    \begin{solu}
+        \(Q = 200 \cdot \num{0.056} \cdot 575 = \textcolor{red}{\qty{6440}{\calorie}} = \textcolor{red}{\qty{26.9}{\kilo\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Se mezclan \qty{4}{\kg} de agua a \qty{70}{\degreeCelsius} con \qty{12}{\kg} de agua a \qty{30}{\degreeCelsius}.
+    Calcula la temperatura final y el calor que cede y absorbe cada muestra.
+    \begin{solu}
+        \(T = \dfrac{4 \cdot 70 + 12 \cdot 30}{16} = \textcolor{red}{\qty{40}{\degreeCelsius}}\); \(Q = 4 \cdot 4180 \cdot (40 - 70)
+        = \textcolor{red}{\qty{-502}{\kilo\joule}}\) (cede la caliente) y \(\textcolor{red}{\qty{+502}{\kilo\joule}}\) (absorbe la fría).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Si se mezclan \qty{8}{\kg} de agua a \qty{50}{\degreeCelsius} con \qty{12}{\kg} de agua a \qty{15}{\degreeCelsius},
+    ¿cuál será la temperatura final?
+    \begin{solu}
+        \(T = \dfrac{8 \cdot 50 + 12 \cdot 15}{20} = \textcolor{red}{\qty{29}{\degreeCelsius}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Qué calor hay que extraer de \qty{500}{\g} de agua a \qty{20}{\degreeCelsius} para convertirla en cubitos de
+    hielo a \qty{-5}{\degreeCelsius}? Datos: \(L_f = \qty{80}{\calorie\per\g}\); \(c_{\text{hielo}} =
+    \qty{0.50}{\calorie\per\g\per\degreeCelsius}\).
+    \begin{solu}
+        \(|Q| = 500\,(1 \cdot 20 + 80 + \num{0.5} \cdot 5) = \textcolor{red}{\qty{51250}{\calorie}} \approx \qty{214}{\kilo\joule}\).
+        Con el criterio de signos, \(Q = \qty{-214}{\kilo\joule}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Qué energía hace falta para fundir \qty{2}{\kg} de plomo que están a \qty{27}{\degreeCelsius}? Usa los datos de las
+    tablas~\ref{tab:ud13-calor-especifico} y~\ref{tab:ud13-latentes}.
+    \begin{solu}
+        Calentar hasta \qty{327}{\degreeCelsius}: \(2 \cdot 130 \cdot 300 = \qty{78}{\kilo\joule}\); fundir: \(2 \cdot 25 =
+        \qty{50}{\kilo\joule}\). Total: \(\textcolor{red}{\qty{128}{\kilo\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un puente de hierro de \qty{500}{\m} tiene su longitud nominal a \qty{18}{\degreeCelsius}. Un día de verano, su
+    longitud ha aumentado \qty{12}{\cm}. ¿Qué temperatura tiene? \(\lambda = \qty{1.2e-5}{\per\kelvin}\).
+    \begin{solu}
+        \(\Delta T = \dfrac{\Delta L}{L_0\,\lambda} = \dfrac{\num{0.12}}{500 \cdot \num{1.2e-5}} = \qty{20}{\kelvin}\);
+        \(T = \textcolor{red}{\qty{38}{\degreeCelsius}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Cómo se pueden obtener los coeficientes de dilatación superficial y cúbica de un sólido a partir del lineal? Pon un
+    ejemplo.
+    \begin{solu}
+        \(\beta \approx 2\lambda\) y \(\gamma \approx 3\lambda\). Para el acero, \(\lambda = \qty{1.2e-5}{\per\kelvin}\):
+        \(\textcolor{red}{\beta \approx \qty{2.4e-5}{\per\kelvin}}\) y \(\textcolor{red}{\gamma \approx \qty{3.6e-5}{\per\kelvin}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Transferencia de energía mediante trabajo}
+
+\begin{exercise}
+    \(\star\) Define el trabajo termodinámico. ¿Es lo mismo un trabajo de expansión que uno de compresión?
+    \begin{solu}
+        Es la \textcolor{red}{energía intercambiada sin que intervenga una diferencia de temperatura}, en un gas al cambiar su
+        volumen. \textcolor{red}{No}: en la expansión el gas hace trabajo sobre el entorno (\(W < 0\)); en la compresión el entorno lo
+        hace sobre el gas (\(W > 0\)).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un gas ocupa \qty{12}{\litre} y se expande hasta el doble de su volumen a una presión constante de \qty{3}{\atm}.
+    Calcula el trabajo.
+    \begin{solu}
+        \(W = -3 \cdot 101325 \cdot \num{12e-3} = \textcolor{red}{\qty{-3.65}{\kilo\joule}}\) (\(\num{-36}~\mathrm{atm\cdot L}\)).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) En el tiempo de compresión de un motor de gasolina, el volumen del cilindro pasa de \qty{450}{\cm\cubed} a
+    \qty{40}{\cm\cubed}. Si suponemos una presión media constante de \qty{9}{\atm}, ¿qué trabajo se hace sobre el gas?
+    \begin{solu}
+        \(W = -9 \cdot 101325 \cdot (40 - 450) \cdot \num{e-6} = \textcolor{red}{\qty{+374}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Qué trabajo realizan \qty{0.20}{\mol} de argón a \qty{30}{\degreeCelsius} al expandirse de forma isotérmica de
+    \qty{2.0}{\litre} a \qty{4.5}{\litre}?
+    \begin{solu}
+        \(W = -\num{0.20} \cdot \num{8.31} \cdot \num{303} \cdot \ln\dfrac{\num{4.5}}{\num{2.0}} = \textcolor{red}{\qty{-409}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un gas pasa del estado A (\qty{8}{\litre}, \qty{60}{\kilo\pascal}) al B (\qty{8}{\litre}, \qty{250}{\kilo\pascal})
+    y después al C (\qty{20}{\litre}, \qty{250}{\kilo\pascal}). Representa el proceso en un diagrama \(p\)-\(V\) y calcula el trabajo
+    total.
+    \begin{solu}
+        A \(\rightarrow\) B es isocórico (\(W = 0\)) y B \(\rightarrow\) C, isobárico:
+        \(W = -\num{2.5e5} \cdot (20 - 8) \cdot \num{e-3} = \textcolor{red}{\qty{-3000}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un gas ocupa \qty{4}{\litre} a \qty{2}{\atm} y recorre este ciclo: a) se calienta a presión constante hasta
+    triplicar su volumen; b) se enfría a volumen constante hasta que la presión se reduce a la mitad; c) se comprime a presión
+    constante hasta el volumen inicial; d) se calienta a volumen constante hasta la presión inicial. Represéntalo en un diagrama
+    \(p\)-\(V\) y calcula el trabajo del ciclo.
+    \begin{solu}
+        \(W_a = -2 \cdot 8 = \num{-16}~\mathrm{atm\cdot L}\); \(W_b = W_d = 0\);
+        \(W_c = -1 \cdot (-8) = \num{+8}~\mathrm{atm\cdot L}\).
+        \(W = \num{-8}~\mathrm{atm\cdot L} = \textcolor{red}{\qty{-811}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Qué expresiones son correctas para un proceso isobárico? a) \(W = -p\,\Delta V\); b) \(W = \Delta U\); c) \(W =
+    -p\,(V_i - V_f)\); d) \(\Delta U = Q_p - p\,\Delta V\).
+    \begin{solu}
+        \textcolor{red}{a y d}. La b solo vale en un proceso adiabático, y la c tiene el signo cambiado.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un gas ideal sufre tres etapas: A \(\rightarrow\) B, compresión a presión constante; B \(\rightarrow\) C,
+    calentamiento a volumen constante; C \(\rightarrow\) A, expansión isotérmica que lo devuelve al estado inicial. Dibuja el ciclo en
+    un diagrama \(p\)-\(V\) e indica el signo de \(W\), \(\Delta U\) y \(Q\) en cada etapa.
+    \begin{solu}
+        A \(\rightarrow\) B: \(W > 0\); la temperatura baja (menor \(V\) a igual \(p\)), \(\Delta U < 0\) y \(Q < 0\).
+        B \(\rightarrow\) C: \(W = 0\), \(\Delta U > 0\), \(Q > 0\). C \(\rightarrow\) A: \(W < 0\), \(\Delta U = 0\), \(Q > 0\). El
+        ciclo se recorre en sentido horario y el \textcolor{red}{trabajo neto es negativo}.
+    \end{solu}
+\end{exercise}
+
+\subsection{Primer principio de la termodinámica}
+
+\begin{exercise}
+    \(\star\star\) Explica con tus palabras el primer principio de la termodinámica y el concepto de energía interna.
+    \begin{solu}
+        La \textcolor{red}{energía interna} es la suma de las energías de todas las partículas del sistema. El
+        \textcolor{red}{primer principio} dice que solo cambia si el sistema intercambia calor o trabajo: \(\Delta U = Q + W\); es
+        la conservación de la energía.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Haz un esquema de cómo se aplica el primer principio en los procesos adiabático, isocórico, isobárico, isotérmico
+    y cíclico.
+    \begin{solu}
+        Adiabático: \(\textcolor{red}{\Delta U = W}\). Isocórico: \(\textcolor{red}{\Delta U = Q_V}\). Isobárico:
+        \(\textcolor{red}{\Delta U = Q_p - p\,\Delta V}\). Isotérmico (gas ideal) y cíclico: \(\textcolor{red}{\Delta U = 0}\), \(Q = -W\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Razona si son verdaderas o falsas: a) En un proceso isocórico, \(\Delta U = W\). b) La energía interna aumenta
+    siempre que el sistema cede calor. c) En un proceso isotérmico de un gas ideal, \(\Delta U = Q_p - p\,\Delta V\). d) La energía
+    interna disminuye siempre que el sistema recibe trabajo. e) En un proceso isobárico, \(\Delta U = 0\).
+    \begin{solu}
+        Todas \textcolor{red}{falsas}. a) \(\Delta U = Q_V\). b) Ceder calor tiende a disminuirla. c) \(\Delta U = 0\). d) Recibir
+        trabajo tiende a aumentarla. e) En general \(\Delta U = Q_p - p\,\Delta V \neq 0\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Es cierto que en un proceso cíclico \(W = -Q\)? Razona tu respuesta.
+    \begin{solu}
+        \textcolor{red}{Sí}: el sistema vuelve al estado inicial y, como \(U\) es función de estado, \(\Delta U = 0 = Q + W\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Cuando se pincha la rueda de una bicicleta, el aire que se escapa parece más frío que el del exterior. ¿Por qué?
+    \begin{solu}
+        Al salir, el aire \textcolor{red}{se expande muy deprisa}, sin tiempo para intercambiar calor (proceso adiabático):
+        \(\Delta U = W < 0\), su energía interna disminuye y \textcolor{red}{se enfría}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Cuál es la variación de energía interna de un sistema que recibe \qty{400}{\calorie} de calor y sobre el que se
+    realiza un trabajo de \qty{250}{\joule}?
+    \begin{solu}
+        \(\Delta U = 400 \cdot \num{4.18} + 250 = \textcolor{red}{\qty{1922}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) La energía interna de un sistema aumenta \qty{320}{\joule} mientras cede \qty{450}{\joule} de calor. ¿Qué trabajo
+    realiza el entorno sobre el sistema?
+    \begin{solu}
+        \(W = \Delta U - Q = 320 - (-450) = \textcolor{red}{\qty{+770}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Aumentará la energía interna de un gas si se le somete a una compresión adiabática? Justifícalo.
+    \begin{solu}
+        \textcolor{red}{Sí}: \(Q = 0\) y \(W > 0\) (compresión), así que \(\Delta U = W > 0\); el gas se calienta. Es lo que ocurre
+        en el tiempo de compresión de un motor diésel.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Clausius, Carnot y Joule hicieron aportaciones fundamentales a la termodinámica, pero ninguno era químico ni físico
+    «de formación» (Carnot era ingeniero militar y Joule, cervecero). Investiga sus contribuciones y debatid en clase la importancia
+    de otras disciplinas en el desarrollo de la física y de la química.
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta}. Carnot: rendimiento máximo de las máquinas térmicas (1824). Joule: equivalente mecánico
+        del calor. Clausius: primer y segundo principios y el concepto de entropía.
+    \end{solu}
+\end{exercise}
+
+\subsection{Segundo principio de la termodinámica}
+
+\begin{exercise}
+    \(\star\star\) Explica con tus palabras el segundo principio de la termodinámica y el concepto de entropía.
+    \begin{solu}
+        La \textcolor{red}{entropía} mide el desorden molecular de un sistema. El \textcolor{red}{segundo principio} dice que en todo
+        proceso espontáneo la entropía del universo aumenta; por eso el calor pasa del cuerpo caliente al frío y no se puede convertir
+        todo el calor en trabajo.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Sería correcto decir que el segundo principio es una restricción del primero? Justifica tu respuesta.
+    \begin{solu}
+        En cierto modo, \textcolor{red}{sí}: el primer principio dice que la energía se conserva; el segundo añade que
+        \textcolor{red}{no todos los procesos que conservan la energía son posibles}, solo los que no disminuyen la entropía del
+        universo (el café no se calienta solo enfriando el aire, aunque se conservara la energía).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Justifica por qué el grafito tiene mayor entropía que el diamante.
+    \begin{solu}
+        En el diamante cada carbono está unido rígidamente a otros cuatro en una red tridimensional; el grafito está formado por
+        \textcolor{red}{capas} unidas por fuerzas débiles que pueden deslizar: su estructura es \textcolor{red}{menos ordenada}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) En un capítulo de una serie de dibujos animados, una niña construye una máquina que se mueve sin parar y sin
+    consumir nada, y su padre exclama: «¡En esta casa obedecemos las leyes de la termodinámica!». ¿Tiene razón? ¿Qué principios
+    violaría una máquina de movimiento perpetuo?
+    \begin{solu}
+        \textcolor{red}{Sí}. Una máquina que produjera trabajo sin consumir energía violaría el \textcolor{red}{primer principio}; una
+        que convirtiera íntegramente en trabajo el calor de un solo foco (por ejemplo, el del aire) violaría el
+        \textcolor{red}{segundo}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Da una opinión razonada sobre esta afirmación: «Todo el trabajo mecánico puede convertirse en calor, pero no todo
+    el calor puede convertirse en trabajo mecánico».
+    \begin{solu}
+        \textcolor{red}{Es correcta}: el trabajo se transforma íntegramente en calor (rozamiento), pero una máquina térmica siempre
+        debe ceder parte del calor a un foco frío (\(\eta < 1\)), como exige el segundo principio.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Pronostica cómo cambia la entropía en estas reacciones: a) \ch{2 KClO3(s) -> 2 KCl(s) + 3 O2(g)}; b)
+    \ch{2 CO(g) + O2(g) -> 2 CO2(g)}; c) \ch{Zn(s) + 2 HCl(aq) -> ZnCl2(aq) + H2(g)}; d) \ch{H2O(l) -> H2O(s)}; e) \ch{CH4(g) + 2
+    O2(g) -> CO2(g) + 2 H2O(l)}.
+    \begin{solu}
+        a) \textcolor{red}{Aumenta} (se forma gas). b) \textcolor{red}{Disminuye} (de 3 a 2 moles de gas). c) \textcolor{red}{Aumenta}.
+        d) \textcolor{red}{Disminuye}. e) \textcolor{red}{Disminuye} (de 3 a 1 mol de gas).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Cuál es el rendimiento de una máquina térmica que realiza un trabajo de \qty{150}{\joule} por ciclo absorbiendo
+    \qty{120}{\calorie}? ¿Qué calor cede en cada ciclo?
+    \begin{solu}
+        \(Q_1 = \qty{501.6}{\joule}\); \(\eta = \dfrac{150}{\num{501.6}} = \textcolor{red}{\qty{29.9}{\percent}}\);
+        \(|Q_2| = \textcolor{red}{\qty{352}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una máquina de Carnot trabaja entre \qty{400}{\kelvin} y \qty{300}{\kelvin} y absorbe \qty{1200}{\joule} del foco
+    caliente en cada ciclo. Calcula su rendimiento, el trabajo que realiza y el calor que cede.
+    \begin{solu}
+        \(\eta = 1 - \dfrac{300}{400} = \textcolor{red}{\qty{25}{\percent}}\); \(|W| = \textcolor{red}{\qty{300}{\joule}}\);
+        \(|Q_2| = \textcolor{red}{\qty{900}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+%========================================================================================
+\section{Ejercicios de ampliación}\label{sec:ud13-ampliacion}
+%========================================================================================
+
+\begin{exercise}
+    \(\star\star\star\) Joule estableció que «en un sistema aislado térmicamente, el trabajo necesario para pasar de un estado A a
+    un estado B es independiente del camino». Investiga sus experiencias y elabora un informe que incluya un ejemplo numérico: ¿qué
+    aumento de temperatura sufriría el agua de una cascada de \qty{50}{\m} si toda su energía potencial se convirtiera en energía
+    interna?
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta}. Ejemplo: \(m\,g\,h = m\,c\,\Delta T \Rightarrow \Delta T = \dfrac{\num{9.8} \cdot 50}{4180} =
+        \textcolor{red}{\qty{0.12}{\kelvin}}\). (Joule llegó a intentar medirlo en una cascada de los Alpes durante su luna de miel.)
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) ¿Qué energía se necesita para transformar \qty{60}{\g} de hielo a \qty{-15}{\degreeCelsius} en vapor de agua a
+    \qty{100}{\degreeCelsius}, a presión constante? Datos: \(L_f = \qty{80}{\calorie\per\g}\); \(L_v = \qty{540}{\calorie\per\g}\);
+    \(c_{\text{hielo}} = \qty{0.50}{\calorie\per\g\per\degreeCelsius}\); \(c_{\text{agua}} = \qty{1}{\calorie\per\g\per\degreeCelsius}\).
+    \begin{solu}
+        \(Q = 60\,(\num{0.5} \cdot 15 + 80 + 1 \cdot 100 + 540) = \textcolor{red}{\qty{43650}{\calorie}} = \qty{182}{\kilo\joule}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Un mol de hidrógeno a \qty{220}{\degreeCelsius} se enfría hasta \qty{100}{\degreeCelsius} a una presión
+    constante de \qty{1}{\atm}. Considerándolo un gas ideal, calcula el calor y el trabajo intercambiados y la variación de energía
+    interna. Dato: \(c_p(\ch{H2}) = \qty{14.3}{\joule\per\g\per\kelvin}\).
+    \begin{solu}
+        \(Q = \num{2.016} \cdot \num{14.3} \cdot (-120) = \textcolor{red}{\qty{-3.46}{\kilo\joule}}\).
+        \(W = -p\,\Delta V = -n\,R\,\Delta T = -1 \cdot \num{8.31} \cdot (-120) = \textcolor{red}{\qty{+997}{\joule}}\).
+        \(\Delta U = Q + W = \textcolor{red}{\qty{-2.46}{\kilo\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) \qty{2.0}{\mol} de un gas ideal realizan un trabajo de \qty{4500}{\joule} sobre el entorno al expandirse de
+    forma isotérmica hasta una presión de \qty{1.2}{\atm} y un volumen de \qty{40}{\litre}. Calcula: a) la temperatura del gas; b) su
+    volumen inicial.
+    \begin{solu}
+        a) \(T = \dfrac{p\,V}{n\,R} = \dfrac{\num{1.2} \cdot 101325 \cdot \num{0.040}}{2 \cdot \num{8.31}} = \textcolor{red}{\qty{293}{\kelvin}}\).
+        b) \(\ln\dfrac{V_f}{V_i} = \dfrac{4500}{n\,R\,T} = \num{0.925} \Rightarrow V_i = \dfrac{40}{e^{\num{0.925}}} =
+        \textcolor{red}{\qty{15.9}{\litre}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[grafica, width=0.5\linewidth, height=5cm, xlabel={\(V\) (L)}, ylabel={\(p\) (atm)}, xmin=0, xmax=7.5,
+            ymin=0, ymax=4.3, xtick={2,5,6}, ytick={1,2,3.5}]
+            \addplot[very thick, ocre, mark=*, mark size=1.5pt] coordinates {(2,1) (2,2) (5,2) (5,3.5) (6,3.5)};
+            \node[font=\small, anchor=west] at (axis cs:2,1) {A};
+            \node[font=\small, anchor=south east] at (axis cs:2,2) {B};
+            \node[font=\small, anchor=north west] at (axis cs:5,2) {C};
+            \node[font=\small, anchor=south east] at (axis cs:5,3.5) {D};
+            \node[font=\small, anchor=south west] at (axis cs:6,3.5) {E};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Etapas de un gas en un diagrama \(p\)-\(V\).}
+    \label{fig:ud13-amp-etapas}
+\end{figure}
+
+\begin{exercise}
+    \(\star\star\star\) Un gas recorre las etapas de la figura~\ref{fig:ud13-amp-etapas}: A \(\rightarrow\) B, B \(\rightarrow\) C,
+    C \(\rightarrow\) D y D \(\rightarrow\) E. Calcula el trabajo en cada una y el total.
+    \begin{solu}
+        \(W_{AB} = W_{CD} = \textcolor{red}{0}\) (isocóricos); \(W_{BC} = -2 \cdot 101325 \cdot \num{3e-3} = \textcolor{red}{\qty{-608}{\joule}}\);
+        \(W_{DE} = -\num{3.5} \cdot 101325 \cdot \num{1e-3} = \textcolor{red}{\qty{-355}{\joule}}\). Total: \(\textcolor{red}{\qty{-963}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Un gas pasa del estado A (\qty{1.5}{\litre}, \qty{2}{\atm}) al C (\qty{4}{\litre}, \qty{6}{\atm}) por dos
+    caminos: camino 1, A \(\rightarrow\) B (\qty{1.5}{\litre}, \qty{6}{\atm}) \(\rightarrow\) C; camino 2, A \(\rightarrow\) D
+    (\qty{4}{\litre}, \qty{2}{\atm}) \(\rightarrow\) C. a) Calcula el trabajo en cada camino. b) Si por el camino 1 el gas absorbe
+    \qty{2600}{\joule} de calor, ¿cuánto vale \(\Delta U\)? ¿Qué calor absorbe por el camino 2? c) ¿Es el trabajo una función de
+    estado?
+    \begin{solu}
+        a) \(W_1 = -6 \cdot 101325 \cdot \num{2.5e-3} = \textcolor{red}{\qty{-1520}{\joule}}\); \(W_2 = -2 \cdot 101325 \cdot \num{2.5e-3} =
+        \textcolor{red}{\qty{-507}{\joule}}\). b) \(\Delta U = 2600 - 1520 = \textcolor{red}{\qty{1080}{\joule}}\), igual por los dos
+        caminos; \(Q_2 = 1080 + 507 = \textcolor{red}{\qty{1587}{\joule}}\). c) \textcolor{red}{No}: depende del camino, mientras que
+        \(\Delta U\) no.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Una bala de plomo de \qty{10}{\g} que viaja a \qty{400}{\m\per\s} se incrusta en un bloque de madera. Si el
+    \qty{60}{\percent} de su energía cinética se invierte en aumentar la energía interna de la bala, ¿cuánto sube su temperatura?
+    Si estaba a \qty{20}{\degreeCelsius}, ¿llegará a fundirse? Usa los datos de las tablas de la unidad.
+    \begin{solu}
+        \(\Delta T = \dfrac{\num{0.6} \cdot \frac{1}{2}\,v^2}{c} = \dfrac{\num{0.6} \cdot 80000}{130} = \textcolor{red}{\qty{369}{\kelvin}}\).
+        Llegaría a \qty{389}{\degreeCelsius} \(>\) \qty{327}{\degreeCelsius}: \textcolor{red}{empezaría a fundirse} (en parte, porque
+        también hay que aportar el calor latente).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Un frigorífico extrae \qty{300}{\joule} de calor de su interior en cada ciclo y el compresor consume
+    \qty{100}{\joule} de trabajo. a) ¿Qué calor cede a la cocina en cada ciclo? b) Su eficiencia es el cociente entre el calor extraído
+    y el trabajo consumido; calcúlala. c) Si el interior está a \qty{4}{\degreeCelsius} y la cocina a \qty{25}{\degreeCelsius}, la
+    eficiencia máxima es \(T_2/(T_1 - T_2)\). ¿Cuánto vale?
+    \begin{solu}
+        a) \(|Q_1| = 300 + 100 = \textcolor{red}{\qty{400}{\joule}}\). b) \(\varepsilon = \dfrac{300}{100} = \textcolor{red}{3}\). c)
+        \(\varepsilon_{\text{máx}} = \dfrac{277}{21} = \textcolor{red}{\num{13.2}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[grafica, width=0.33\linewidth, height=4cm, xlabel={\(V\)}, ylabel={\(p\)}, xmin=0, xmax=6, ymin=0, ymax=5,
+            xtick=\empty, ytick=\empty, title={\small A}]
+            \addplot[fill=ocre!25, draw=none, domain=1:5] {4/x} \closedcycle;
+            \addplot[very thick, ocre, domain=1:5] {4/x};
+        \end{axis}
+    \end{tikzpicture}\hfill
+    \begin{tikzpicture}
+        \begin{axis}[grafica, width=0.33\linewidth, height=4cm, xlabel={\(V\)}, ylabel={\(p\)}, xmin=0, xmax=6, ymin=0, ymax=5,
+            xtick=\empty, ytick=\empty, title={\small B}]
+            \addplot[fill=ocre!25, draw=none] coordinates {(1,0) (1,4) (5,0.8) (5,0)} \closedcycle;
+            \addplot[very thick, ocre] coordinates {(1,4) (5,0.8)};
+        \end{axis}
+    \end{tikzpicture}\hfill
+    \begin{tikzpicture}
+        \begin{axis}[grafica, width=0.33\linewidth, height=4cm, xlabel={\(V\)}, ylabel={\(p\)}, xmin=0, xmax=6, ymin=0, ymax=5,
+            xtick=\empty, ytick=\empty, title={\small C}]
+            \addplot[fill=ocre!25, draw=none] coordinates {(1,0) (1,4) (5,4) (5,0)} \closedcycle;
+            \addplot[very thick, ocre] coordinates {(1,0.8) (1,4) (5,4)};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Tres procesos entre los mismos volúmenes.}
+    \label{fig:ud13-amp-diagramas}
+\end{figure}
+
+\begin{exercise}
+    \(\star\star\star\) Determina qué diagrama de la figura~\ref{fig:ud13-amp-diagramas} corresponde a un mayor trabajo realizado
+    por el gas (en valor absoluto), sabiendo que en los tres el gas pasa del mismo volumen inicial al mismo volumen final.
+    \begin{solu}
+        El trabajo es el área bajo la curva: \(|W_C| > |W_B| > |W_A|\). En C el gas se expande a la presión más alta; el mayor
+        trabajo corresponde al \textcolor{red}{diagrama C}. Esto muestra, de nuevo, que el trabajo depende del camino.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) El ciclo de Carnot, del que se deduce el segundo principio, consta de dos procesos isotérmicos y dos
+    adiabáticos. Por grupos, preparad una presentación que lo explique, junto con otros ciclos importantes como el de Otto (motores
+    de gasolina) y el de Brayton (turbinas de gas y motores de avión), con sus diagramas \(p\)-\(V\).
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta}. Carnot: expansión isotérmica, expansión adiabática, compresión isotérmica y compresión
+        adiabática. Otto: dos adiabáticas y dos isocóricas. Brayton: dos adiabáticas y dos isobáricas.
+    \end{solu}
+\end{exercise}
+
+%========================================================================================
+\section{Autoevaluación}\label{sec:ud13-autoevaluacion}
+%========================================================================================
+
+\begin{exercise}
+    Justifica si son verdaderas o falsas: a) Un cuerpo caliente contiene mucho calor. b) En un proceso adiabático no cambia la
+    energía interna. c) El trabajo de expansión de un gas es negativo. d) La entropía de un sistema nunca puede disminuir.
+    \begin{solu}
+        a) \textcolor{red}{F}: tiene una temperatura alta y mucha energía interna; el calor es energía en tránsito. b)
+        \textcolor{red}{F}: \(\Delta U = W\). c) \textcolor{red}{V}. d) \textcolor{red}{F}: puede disminuir; la que no disminuye es la
+        del universo.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿Qué calor hay que dar a \qty{250}{\g} de agua para calentarla de \qty{20}{\degreeCelsius} a \qty{100}{\degreeCelsius}?
+    \begin{solu}
+        \(Q = \num{0.25} \cdot 4180 \cdot 80 = \textcolor{red}{\qty{83.6}{\kilo\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Se mezclan \qty{2}{\kg} de agua a \qty{60}{\degreeCelsius} con \qty{3}{\kg} de agua a \qty{10}{\degreeCelsius} en un recipiente
+    aislado. ¿Cuál es la temperatura final?
+    \begin{solu}
+        \(T = \dfrac{2 \cdot 60 + 3 \cdot 10}{5} = \textcolor{red}{\qty{30}{\degreeCelsius}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un raíl de acero mide \qty{30}{\m} a \qty{0}{\degreeCelsius}. ¿Cuánto se alarga a \qty{40}{\degreeCelsius}? \(\lambda =
+    \qty{1.2e-5}{\per\kelvin}\).
+    \begin{solu}
+        \(\Delta L = 30 \cdot \num{1.2e-5} \cdot 40 = \textcolor{red}{\qty{14.4}{\mm}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un gas se expande de \qty{2}{\litre} a \qty{5}{\litre} a una presión constante de \qty{100}{\kilo\pascal} y absorbe \qty{800}{\joule}
+    de calor. Calcula el trabajo y la variación de energía interna.
+    \begin{solu}
+        \(W = -\num{1e5} \cdot \num{3e-3} = \textcolor{red}{\qty{-300}{\joule}}\); \(\Delta U = 800 - 300 = \textcolor{red}{\qty{500}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un motor con un rendimiento del \qty{25}{\percent} absorbe \qty{4000}{\joule} de calor en cada ciclo. ¿Qué trabajo realiza y qué
+    calor cede?
+    \begin{solu}
+        \(|W| = \num{0.25} \cdot 4000 = \textcolor{red}{\qty{1000}{\joule}}\); \(|Q_2| = \textcolor{red}{\qty{3000}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Indica si aumenta o disminuye la entropía: a) se evapora un charco; b) \ch{2 SO2(g) + O2(g) -> 2 SO3(g)}; c) se disuelve sal en
+    agua.
+    \begin{solu}
+        a) \textcolor{red}{Aumenta}. b) \textcolor{red}{Disminuye} (de 3 a 2 moles de gas). c) \textcolor{red}{Aumenta}.
+    \end{solu}
+\end{exercise}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD0_01 · Unidad de masa atómica: la doceava parte del carbono-12</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/particulas.js"></script>
+</head>
+<body>
+<script>
+// Balanza en equilibrio: un átomo de carbono-12 equivale a 12 "unidades" de 1 u.
+// A la derecha, la masa atómica relativa de un elemento (Mg = 24 -> dos átomos de C-12).
+const svg = crearFigura(760, 330);
+const T = (x, y, t, a = {}) => texto(svg, x, y, t, { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto, ...a });
+const GRIS = "#6B7378";
+
+function balanza(cx, yViga, semi) {
+    // pie y columna
+    el("path", { d: `M${cx - 55},${yViga + 175} L${cx + 55},${yViga + 175} L${cx + 35},${yViga + 160} L${cx - 35},${yViga + 160} Z`, fill: GRIS }, svg);
+    el("rect", { x: cx - 5, y: yViga, width: 10, height: 162, fill: GRIS }, svg);
+    el("path", { d: `M${cx - 9},${yViga - 4} L${cx + 9},${yViga - 4} L${cx},${yViga - 20} Z`, fill: COLORES.ocre }, svg);
+    // viga
+    el("rect", { x: cx - semi, y: yViga - 4, width: 2 * semi, height: 8, rx: 4, fill: COLORES.mDarkTeal }, svg);
+    // platillos (colgados de los extremos)
+    for (const s of [-1, 1]) {
+        const x = cx + s * semi, yp = yViga + 95;
+        el("line", { x1: x, y1: yViga, x2: x - 48, y2: yp, stroke: GRIS, "stroke-width": 1.4 }, svg);
+        el("line", { x1: x, y1: yViga, x2: x + 48, y2: yp, stroke: GRIS, "stroke-width": 1.4 }, svg);
+        el("path", { d: `M${x - 58},${yp} Q${x},${yp + 26} ${x + 58},${yp} Z`, fill: "#C9CED2", stroke: GRIS, "stroke-width": 1.4 }, svg);
+    }
+    return { izq: [cx - semi, yViga + 95], der: [cx + semi, yViga + 95] };
+}
+
+// --- Balanza 1: 1 átomo de 12C = 12 u
+const b1 = balanza(190, 70, 95);
+bola(svg, b1.izq[0], b1.izq[1] - 24, 24, "#3A3F44", "¹²C");
+// 12 cubitos de 1 u (3 filas de 4)
+for (let i = 0; i < 12; i++) {
+    const c = i % 4, f = Math.floor(i / 4);
+    const x = b1.der[0] - 38 + c * 19, y = b1.der[1] - 18 - f * 17;
+    el("rect", { x: x - 8, y: y - 8, width: 17, height: 15, rx: 2, fill: "#FFD9BF", stroke: COLORES.ocre, "stroke-width": 1.1 }, svg);
+}
+T(b1.der[0], b1.der[1] + 44, "12 × (1 u)", { "font-size": 14, fill: COLORES.ocre, "font-weight": "bold" });
+T(b1.izq[0], b1.izq[1] + 44, "1 átomo de carbono-12", { "font-size": 13 });
+el("rect", { x: 50, y: 282, width: 280, height: 40, rx: 8, fill: "#FFF3EA", stroke: COLORES.ocre }, svg);
+T(190, 300, [{ t: "1 u = " }, { t: "1", attrs: {} }, { t: "/" }, { t: "12" }, { t: " de la masa del " }, { t: "12", sup: true }, { t: "C" }], { "font-size": 13 });
+T(190, 317, [{ t: "1 u = 1,66·10" }, { t: "−27", sup: true }, { t: " kg" }], { "font-size": 14, "font-weight": "bold" });
+
+// --- Balanza 2: 1 átomo de Mg = 2 átomos de 12C -> masa atómica relativa 24
+const b2 = balanza(570, 70, 95);
+bola(svg, b2.izq[0], b2.izq[1] - 30, 30, "#7FB83A", "Mg");
+bola(svg, b2.der[0] - 25, b2.der[1] - 24, 24, "#3A3F44", "¹²C");
+bola(svg, b2.der[0] + 25, b2.der[1] - 24, 24, "#3A3F44", "¹²C");
+T(b2.izq[0], b2.izq[1] + 44, "1 átomo de Mg", { "font-size": 13 });
+T(b2.der[0], b2.der[1] + 44, "2 átomos de carbono-12", { "font-size": 13 });
+el("rect", { x: 430, y: 282, width: 280, height: 40, rx: 8, fill: "#EEF3FC", stroke: COLORES.myBlue }, svg);
+T(570, 300, "masa atómica relativa del Mg ≈ 24", { "font-size": 13 });
+T(570, 317, "(número sin unidades)", { "font-size": 13, fill: COLORES.gris });
+
+T(190, 22, "Patrón: el carbono-12", { "font-size": 18, "font-weight": "bold" });
+T(570, 22, "Masa atómica relativa", { "font-size": 18, "font-weight": "bold" });
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Un coche en una curva plana y en una curva peraltada</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Curva plana</h2><svg id="a" width="400" height="290"></svg>
+            <div class="t">El rozamiento lateral de los neumáticos es la fuerza centrípeta.</div></div>
+        <div class="card"><h2>Curva peraltada (sin rozamiento)</h2><svg id="b" width="400" height="290"></svg>
+            <div class="t">La componente horizontal de la normal es la fuerza centrípeta.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const Cn = '#1E8449', Cp = '#2471A3', Cr = '#7D3C98', Ca = '#C0392B';
+    // coche visto de frente (centrado en x, y = suelo), girado un ángulo
+    function coche(add, x, y, ang, op = 1) {
+        const g = add('g', { transform: `rotate(${ang} ${x} ${y})`, opacity: op });
+        const ad = (t, a) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); g.appendChild(e); return e; };
+        ad('rect', { x: x - 70, y: y - 62, width: 140, height: 44, rx: 12, fill: '#5DADE2', stroke: '#21618C', 'stroke-width': 2 });
+        ad('path', { d: `M${x - 48} ${y - 62} L${x - 36} ${y - 92} L${x + 36} ${y - 92} L${x + 48} ${y - 62} Z`, fill: '#AED6F1', stroke: '#21618C', 'stroke-width': 2 });
+        ad('rect', { x: x - 64, y: y - 22, width: 26, height: 22, rx: 4, fill: '#23373B' });
+        ad('rect', { x: x + 38, y: y - 22, width: 26, height: 22, rx: 4, fill: '#23373B' });
+    }
+    // a) curva plana
+    const A = svgAdder('a');
+    A('rect', { x: 0, y: 220, width: 400, height: 70, fill: '#ABB2B9' });
+    coche(A, 200, 220, 0);
+    const G = [200, 175];
+    arrow(A, G[0], G[1], G[0], G[1] - 110, Cn, 3, 12); vlab(A, G[0] + 18, G[1] - 92, 'N', '', Cn);
+    arrow(A, G[0], G[1], G[0], G[1] + 105, Cp, 3, 12); vlab(A, G[0] + 18, G[1] + 98, 'P', '', Cp);
+    arrow(A, G[0] - 50, 214, G[0] - 140, 214, Cr, 3.5, 12); vlab(A, G[0] - 110, 204, 'F', 'r', Cr);
+    dot(A, G[0], G[1]);
+    label(A, 20, 40, 'centro de la curva', { 'font-size': 13, fill: '#525252', 'text-anchor': 'start' });
+    arrow(A, 100, 54, 20, 54, '#525252', 1.5, 9);
+    rich(A, 300, 40, '*F*_r = *m* · *v*^2 / *r*', { 'font-size': 15, fill: Cr });
+    rich(A, 300, 64, '*v*_{máx} = √(μ · *g* · *r*)', { 'font-size': 15, fill: Ca });
+    // b) curva peraltada
+    const B = svgAdder('b');
+    const al = 14, ar = al * Math.PI / 180, x0 = 200, y0 = 220;
+    B('path', { d: `M0 ${y0 - 200 * Math.tan(ar) * -1} L400 ${y0 - 200 * Math.tan(ar)} L400 290 L0 290 Z`, fill: '#ABB2B9' });
+    coche(B, x0, y0, -al, 0.45);
+    const Q = [x0 - 45 * Math.sin(ar), y0 - 45 * Math.cos(ar)];
+    const Nn = 130;
+    const Ne = [Q[0] - Nn * Math.sin(ar), Q[1] - Nn * Math.cos(ar)];
+    dashed(B, Ne[0], Ne[1], Ne[0], Q[1], Cn, 1.3); dashed(B, Ne[0], Ne[1], Q[0], Ne[1], Cn, 1.3);
+    arrow(B, Q[0], Q[1], Ne[0], Ne[1], Cn, 3, 12); vlab(B, Ne[0] - 4, Ne[1] - 10, 'N', '', Cn);
+    arrow(B, Q[0], Q[1], Ne[0], Q[1], Ca, 3, 11); rich(B, Ne[0] - 30, Q[1] + 4, '*N* sen α', { 'font-size': 13, fill: Ca });
+    arrow(B, Q[0], Q[1], Q[0], Q[1] + Nn * Math.cos(ar), Cp, 3, 12); vlab(B, Q[0] + 18, Q[1] + 110, 'P', '', Cp);
+    rich(B, Q[0] + 60, Q[1] - 70, '*N* cos α', { 'font-size': 13, fill: Cn, 'text-anchor': 'start' });
+    dot(B, Q[0], Q[1]);
+    const xa = 40, ya = y0 + (x0 - xa) * Math.tan(ar);
+    B('line', { x1: xa, y1: ya, x2: xa + 110, y2: ya, stroke: '#525252', 'stroke-width': 1.2, 'stroke-dasharray': '5 4' });
+    B('path', { d: `M${xa + 80} ${ya} A80 80 0 0 0 ${xa + 80 * Math.cos(ar)} ${ya - 80 * Math.sin(ar)}`, fill: 'none', stroke: '#525252', 'stroke-width': 1.5 });
+    label(B, xa + 96, ya - 6, 'α', { 'font-size': 15, fill: '#FFFFFF' });
+    rich(B, 300, 30, '*N* sen α = *m* · *v*^2 / *r*', { 'font-size': 14, fill: Ca });
+    rich(B, 300, 52, '*v* = √(*g* · *r* · tg α)', { 'font-size': 14, fill: Ca });
+    label(B, 40, 30, 'centro', { 'font-size': 13, fill: '#525252' });
+    arrow(B, 80, 44, 14, 44, '#525252', 1.5, 9);
+</script>
+</body>
+</html>

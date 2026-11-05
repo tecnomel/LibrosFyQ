@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_21 · Geometría bipirámide trigonal del PCl5</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/moleculas.js"></script>
+</head>
+<body>
+<script>
+// AB5: bipirámide trigonal; ángulos de 90° (axial-ecuatorial) y 120° (ecuatoriales).
+const svg = crearFigura(580, 400);
+const cam = [1, -0.2, 0.62];
+const d = rotarZ(GEOM.bipiramide, 73);
+esquemaGeometria(svg, 10, 10, 170, 160, d.map(p => ({ p, t: "B" })), { camara: cam, escala: 55, angulo: "90° y 120°" });
+const m = molAB("P", "Cl", d, 1.35, { angEtq: [30, 30, 30, 30, 150] });
+m.angulos = [{ a: 1, c: 0, b: 3, texto: "90°", radio: 0.6, dx: 14 }, { a: 4, c: 0, b: 5, texto: "120°", radio: 0.6, dy: 22 }];
+dibujarMolecula(svg, m, { cx: 330, cy: 205, escala: 115, camara: cam });
+</script>
+</body>
+</html>

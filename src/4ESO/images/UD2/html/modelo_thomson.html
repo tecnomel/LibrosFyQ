@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Modelo atómico de Thomson</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 980px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="a" width="920" height="380"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('a');
+    const defs = add('defs', {});
+    const grad = (id, c0, c1) => {
+        const g = document.createElementNS(NS, 'radialGradient');
+        g.setAttribute('id', id); g.setAttribute('cx', '.38'); g.setAttribute('cy', '.35');
+        [[0, c0], [1, c1]].forEach(([o, c]) => {
+            const s = document.createElementNS(NS, 'stop');
+            s.setAttribute('offset', o); s.setAttribute('stop-color', c); g.appendChild(s);
+        });
+        defs.appendChild(g);
+    };
+    grad('pos', '#FDEDEC', '#E6B0AA');
+    grad('bizcocho', '#FCF3CF', '#E0B060');
+
+    // ---- izquierda: el átomo de Thomson ----
+    const cx = 230, cy = 190, R = 140;
+    add('circle', { cx, cy, r: R, fill: 'url(#pos)', stroke: '#C0392B', 'stroke-width': 3 });
+    // carga positiva repartida por toda la esfera
+    [[-95, -50], [-40, -100], [30, -95], [95, -55], [-110, 20], [-55, 0], [10, -30], [70, 5], [110, 50],
+     [-80, 75], [-20, 60], [45, 90], [-30, 120], [60, -60]].forEach(([dx, dy]) =>
+        add('text', { x: cx + dx, y: cy + dy + 7, 'text-anchor': 'middle', 'font-size': 22, 'font-weight': 800, fill: '#C0392B', opacity: 0.85 }, '+'));
+    // electrones incrustados
+    const el = [[-65, -70], [5, -65], [70, -95], [-100, -15], [-15, 10], [60, -25], [100, 15], [-50, 50], [20, 45], [85, 75], [-75, 105], [10, 105]];
+    el.forEach(([dx, dy]) => particle(add, cx + dx, cy + dy, 'e', 12));
+
+    // rótulos
+    const callout = (x1, y1, x2, y2, txt, color) => {
+        add('line', { x1, y1, x2, y2, stroke: color, 'stroke-width': 1.8 });
+        add('circle', { cx: x1, cy: y1, r: 3.5, fill: color });
+        add('text', { x: x2 + 6, y: y2 + 5, 'font-size': 17, 'font-weight': 700, fill: color }, txt);
+    };
+    callout(cx + 111, cy + 8, 420, 120, 'electrón (carga −)', '#2471A3');
+    callout(cx + 128, cy + 60, 420, 255, 'esfera de carga +', '#C0392B');
+    add('text', { x: cx, y: 368, 'text-anchor': 'middle', 'font-size': 18, 'font-weight': 800, fill: '#23373B' }, 'Átomo de Thomson (1904)');
+
+    // ---- derecha: el «pastel de pasas» ----
+    const bx = 735, by = 175;
+    add('ellipse', { cx: bx, cy: by + 70, rx: 150, ry: 26, fill: '#D5D8DC' });                 // plato
+    add('path', { d: `M${bx - 125} ${by + 55} Q${bx - 135} ${by - 95} ${bx} ${by - 100} Q${bx + 135} ${by - 95} ${bx + 125} ${by + 55} Z`,
+        fill: 'url(#bizcocho)', stroke: '#B9770E', 'stroke-width': 3 });
+    [[-80, -20], [-30, -60], [30, -55], [80, -15], [-55, 25], [5, -5], [60, 30], [-10, 40], [40, -90], [-75, -60]].forEach(([dx, dy], i) =>
+        add('ellipse', { cx: bx + dx, cy: by + dy, rx: 9, ry: 6, fill: '#5B2C6F', transform: `rotate(${i * 37} ${bx + dx} ${by + dy})` }));
+    add('text', { x: bx, y: 300, 'text-anchor': 'middle', 'font-size': 18, 'font-weight': 800, fill: '#23373B' }, '«Pastel de pasas»');
+    add('text', { x: bx, y: 326, 'text-anchor': 'middle', 'font-size': 15, fill: '#525252' }, 'bizcocho = carga positiva');
+    add('text', { x: bx, y: 348, 'text-anchor': 'middle', 'font-size': 15, fill: '#525252' }, 'pasas = electrones');
+
+    // nota de neutralidad
+    add('text', { x: 230, y: 26, 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 700, fill: '#1E8449' },
+        'carga positiva total = carga de los electrones → átomo neutro');
+</script>
+</body>
+</html>

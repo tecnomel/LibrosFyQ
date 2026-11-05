@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Variación de las propiedades periódicas</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1060px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Radio atómico<br>y carácter metálico</h2><svg id="a" width="470" height="300"></svg></div>
+        <div class="card"><h2>Energía de ionización, afinidad electrónica<br>y electronegatividad</h2><svg id="b" width="470" height="300"></svg></div>
+    </div>
+</div>
+<script src="tabla.js"></script>
+<script src="fig.js"></script>
+<script>
+    function mini(id, col, dir) {
+        const A = svgAdder(id), W = 21, H = 26, X0 = 50, Y0 = 50;
+        ELEMENTOS.forEach(e => {
+            if (e.f) return;
+            const x = X0 + (e.g - 1) * W, y = Y0 + (e.p - 1) * H;
+            // intensidad del color según la tendencia
+            let t = dir > 0 ? (e.g - 1) / 17 + (7 - e.p) / 6 : (18 - e.g) / 17 + (e.p - 1) / 6;
+            t = Math.min(1, t / 2);
+            A('rect', { x: x + 0.7, y: y + 0.7, width: W - 1.4, height: H - 1.4, rx: 2, fill: col, 'fill-opacity': 0.12 + 0.8 * t });
+            label(A, x + W / 2, y + H / 2 + 4, e.s, { 'font-size': 8.5, 'font-weight': 600, fill: '#1B2631' });
+        });
+        const xr = X0 + 18 * W, yb = Y0 + 7 * H;
+        if (dir < 0) {
+            arrow(A, X0 + 16 * W, Y0 - 18, X0 + 2 * W, Y0 - 18, '#922B21', 4, 16);
+            label(A, X0 + 9 * W, Y0 - 28, 'aumenta hacia la izquierda en un periodo', { 'font-size': 13, fill: '#922B21' });
+            arrow(A, xr + 18, Y0 + 10, xr + 18, yb - 4, '#922B21', 4, 16);
+            const t = label(A, xr + 36, (Y0 + yb) / 2, 'aumenta hacia abajo en un grupo', { 'font-size': 13, fill: '#922B21' });
+            t.setAttribute('transform', `rotate(90 ${xr + 36} ${(Y0 + yb) / 2})`);
+        } else {
+            arrow(A, X0 + 2 * W, yb + 18, X0 + 16 * W, yb + 18, '#1A5276', 4, 16);
+            label(A, X0 + 9 * W, yb + 40, 'aumenta hacia la derecha en un periodo', { 'font-size': 13, fill: '#1A5276' });
+            arrow(A, X0 - 20, yb - 4, X0 - 20, Y0 + 10, '#1A5276', 4, 16);
+            const t = label(A, X0 - 32, (Y0 + yb) / 2, 'aumenta hacia arriba en un grupo', { 'font-size': 13, fill: '#1A5276' });
+            t.setAttribute('transform', `rotate(-90 ${X0 - 32} ${(Y0 + yb) / 2})`);
+        }
+    }
+    mini('a', '#C0392B', -1);
+    mini('b', '#2471A3', 1);
+</script>
+</body>
+</html>

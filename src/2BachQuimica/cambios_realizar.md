@@ -1,0 +1,23 @@
+Eres un profesor de química exprimentado y tienes que realizar la programación académica anual par la materia. Para ello:
+- En la carpeta C:\Users\crist\OneDrive - Consejería de Educación, Cultura y Deportes Castilla La-Mancha\PyCharm\Latex\Quimica2Bach\src\archivos_md crea un archivo md que diga análisis de las unidades.
+- Debes analizar las unidades con sus ejercicios que tienes en:
+  - [ ] Las unidades a analizar las tienes en con sus correspondientes archivos: 
+  - # CONOCIMIEN | Conocimientos Previos -> Teoría: C:\Users\crist\OneDrive - Consejería de Educación, Cultura y Deportes Castilla La-Mancha\PyCharm\Latex\Quimica2Bach\src\LibroQuimica2Bach\Quimica2Bach_Conocimientos_Basicos.tex  
+  - # ESTRUCTURA | Estructura Atómica -> Teoría: C:\Users\crist\OneDrive - Consejería de Educación, Cultura y Deportes Castilla La-Mancha\PyCharm\Latex\Quimica2Bach\src\LibroQuimica2Bach\Quimica2Bach_UD1_Estructura_Atomica_Libro_claude.tex  
+  - # TABLAPERIO | Tabla Periódica -> Teoría: C:\Users\crist\OneDrive - Consejería de Educación, Cultura y Deportes Castilla La-Mancha\PyCharm\Latex\Quimica2Bach\src\LibroQuimica2Bach\Quimica2Bach_UD2_Tabla_Periodica_Libro_claude.tex  
+  - # ENLACEQUIM | Enlace Químico -> Teoría:  C:\Users\crist\OneDrive - Consejería de Educación, Cultura y Deportes Castilla La-Mancha\PyCharm\Latex\Quimica2Bach\src\LibroQuimica2Bach\Quimica2Bach_UD3_Enlace_Quimico_Libro_claude.tex  
+  - # TERMODINAM | Termodinámica ->  Teoría: C:\Users\crist\OneDrive - Consejería de Educación, Cultura y Deportes Castilla La-Mancha\PyCharm\Latex\Quimica2Bach\src\LibroQuimica2Bach\Quimica2Bach_UD4_Termodinamica_Libro.tex  
+  - # CINETICAQU | Cinética Química -> Teoría: C:\Users\crist\OneDrive - Consejería de Educación, Cultura y Deportes Castilla La-Mancha\PyCharm\Latex\Quimica2Bach\src\LibroQuimica2Bach\Quimica2Bach_UD5_Cinetica_Quimica_Libro_claude.tex  
+  - # EQUILIBRIO | Equilibrio Químico -> Teoría:  C:\Users\crist\OneDrive - Consejería de Educación, Cultura y Deportes Castilla La-Mancha\PyCharm\Latex\Quimica2Bach\src\LibroQuimica2Bach\Quimica2Bach_UD6_Equilibrio_Quimico_Libro_claude.tex 
+  - # ACIDOBASE | Equilibrio Ácido-Base -> Teoría: C:\Users\crist\OneDrive - Consejería de Educación, Cultura y Deportes Castilla La-Mancha\PyCharm\Latex\Quimica2Bach\src\LibroQuimica2Bach\Quimica2Bach_UD7_Equilibrio_Acido_Base_Libro_claude.tex
+  - # REACCIONES | Reacciones Redox -> Teoría:  C:\Users\crist\OneDrive - Consejería de Educación, Cultura y Deportes Castilla La-Mancha\PyCharm\Latex\Quimica2Bach\src\LibroQuimica2Bach\Quimica2Bach_UD8_Reacciones_Redox_Libro_claude.tex
+  - # QUIMICAORG | Química Orgánica -> Teoría:  C:\Users\crist\OneDrive - Consejería de Educación, Cultura y Deportes Castilla La-Mancha\PyCharm\Latex\Quimica2Bach\src\LibroQuimica2Bach\Quimica2Bach_UD9_Quimica_Organica_Libro_claude.tex 
+  - # POLIMEROS | Polímeros -> Teoría: C:\Users\crist\OneDrive - Consejería de Educación, Cultura y Deportes Castilla La-Mancha\PyCharm\Latex\Quimica2Bach\src\LibroQuimica2Bach\Quimica2Bach_UD_10_Polimeros_Libro_nuevo.tex 
+- Quiero que en el archivo anáisis de las unidades escribas:
+  - Un resomen de lo que se verá en todas las unidades del libro.
+  - Una por unidad:
+    - Descripción de la unidad.
+    - Contenidos de la unidad.
+    - Los saberes básicos que se pueden asociar a esa unidad, el listado de saberes básicos está en: C:\Users\crist\OneDrive - Consejería de Educación, Cultura y Deportes Castilla La-Mancha\PyCharm\Latex\Quimica2Bach\src\archivos_md\Quimica_2º_Bach.md
+    - Los criterios de evaluación que se pueden evaluar en esa unidad. Los criterios están en: C:\Users\crist\OneDrive - Consejería de Educación, Cultura y Deportes Castilla La-Mancha\PyCharm\Latex\Quimica2Bach\src\archivos_md\Quimica_2º_Bach.md
+- 

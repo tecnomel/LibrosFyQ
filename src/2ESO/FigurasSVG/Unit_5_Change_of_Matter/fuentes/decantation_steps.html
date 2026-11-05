@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Decantation</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="steps.css">
+<script src="lab.js"></script>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1></h1>
+    <div class="prop" id="prop"></div>
+    <div class="row" id="row"></div>
+</div>
+<script>
+buildSteps('How to separate by decantation (separating funnel)', 'the <b>density</b> of liquids that do not mix', 'oil + water', [
+  [sepFunnel(130,30,C.oil,C.water,0,0,false) + `<g transform="rotate(-35 205 40)">${beaker(180,0,50,60,[[35,'#D4E6A5']])}</g>` + arrowD(185,55,160,70) +
+   T(130,200,'tap closed',{c:C.red,fs:13}),
+   'Pour the mixture into the separating funnel with the <b>tap closed</b>.'],
+  [sepFunnel(130,30,C.oil,C.water,40,62,false) + T(215,70,'oil',{c:'#B7950B'}) + T(215,120,'water',{c:C.blue}) +
+   T(215,88,'less dense ↑',{fs:12,fw:400}) + T(215,138,'more dense ↓',{fs:12,fw:400}),
+   'Wait: the liquids form <b>two layers</b>. The less dense one (oil) floats on top.'],
+  [sepFunnel(110,20,C.oil,C.water,40,24,true) + `<ellipse cx="110" cy="174" rx="4" ry="7" fill="#5DADE2"/>` + beaker(70,160,80,45,[[25,C.water]]) +
+   tag(205,185,'keep','✔ water'),
+   'Open the tap: the <b>bottom</b> liquid (water) comes out. Close it when the oil reaches the tap.'],
+  [sepFunnel(110,20,C.oil,C.water,40,0,false) + tag(205,70,'keep','✔ oil') + beaker(70,160,80,45,[]),
+   'The <b>oil</b> stays in the funnel. Pour it out through the top into another beaker.'],
+]);
+</script>
+</body>
+</html>

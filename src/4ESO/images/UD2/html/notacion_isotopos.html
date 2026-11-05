@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Notación de un núclido e isótopos del hidrógeno</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1220px; }
+    .row { display: flex; gap: 16px; }
+    .card { text-align: center; }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>La «tarjeta de identidad» del átomo</h2><svg id="a" width="520" height="300"><g id="ag" transform="translate(50,0)"></g></svg></div>
+        <div class="card"><h2>Isótopos del hidrógeno</h2><svg id="b" width="680" height="300"></svg></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    let add = svgAdder('ag');
+    add('text', { x: 210, y: 170, 'font-size': 110, 'font-weight': 800, fill: '#C0392B', 'font-family': 'Cambria, Georgia, serif' }, 'X');
+    add('text', { x: 196, y: 105, 'text-anchor': 'end', 'font-size': 52, 'font-weight': 800, fill: '#1E8449', 'font-family': 'Cambria, Georgia, serif', 'font-style': 'italic' }, 'A');
+    add('text', { x: 196, y: 178, 'text-anchor': 'end', 'font-size': 52, 'font-weight': 800, fill: '#2471A3', 'font-family': 'Cambria, Georgia, serif', 'font-style': 'italic' }, 'Z');
+    add('text', { x: 300, y: 92, 'font-size': 40, 'font-weight': 800, fill: '#8E44AD' }, 'q');
+    const lab = (x, y, x2, y2, t1, t2, col, anchor = 'end') => {
+        add('line', { x1: x, y1: y, x2, y2, stroke: col, 'stroke-width': 2 });
+        add('text', { x: x + (anchor === 'end' ? -6 : 6), y: y - 2, 'text-anchor': anchor, 'font-size': 16, 'font-weight': 800, fill: col }, t1);
+        add('text', { x: x + (anchor === 'end' ? -6 : 6), y: y + 16, 'text-anchor': anchor, 'font-size': 13, fill: '#525252' }, t2);
+    };
+    lab(120, 70, 158, 80, 'número másico', 'protones + neutrones', '#1E8449');
+    lab(120, 200, 158, 165, 'número atómico', 'n.º de protones', '#2471A3');
+    lab(340, 60, 325, 75, 'carga del ion', '(si la tiene)', '#8E44AD', 'start');
+    lab(300, 210, 270, 175, 'símbolo', 'del elemento', '#C0392B', 'start');
+    add('rect', { x: 30, y: 236, width: 400, height: 56, rx: 10, fill: '#E3E6F7' });
+    add('text', { x: 130, y: 258, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 700, fill: '#000070' }, 'protones = Z');
+    add('text', { x: 330, y: 258, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 700, fill: '#000070' }, 'neutrones = A − Z');
+    add('text', { x: 230, y: 282, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 700, fill: '#000070' }, 'electrones = Z − q');
+    // B: isótopos
+    add = svgAdder('b');
+    const iso = [['Protio', '1', 0, '99,98 %'], ['Deuterio', '2', 1, '0,02 %'], ['Tritio', '3', 2, 'trazas (radiactivo)']];
+    iso.forEach(([name, A, N, ab], i) => {
+        const cx = 115 + i * 225, cy = 120;
+        add('circle', { cx, cy, r: 82, fill: 'none', stroke: '#AAB7B8', 'stroke-width': 2, 'stroke-dasharray': '5 4' });
+        if (N === 0) particle(add, cx, cy, 'p', 13);
+        if (N === 1) { particle(add, cx - 11, cy, 'p', 13); particle(add, cx + 11, cy, 'n', 13); }
+        if (N === 2) { particle(add, cx, cy - 10, 'p', 13); particle(add, cx - 11, cy + 9, 'n', 13); particle(add, cx + 11, cy + 9, 'n', 13); }
+        particle(add, cx + 58, cy - 58, 'e', 11);
+        add('text', { x: cx, y: 238, 'text-anchor': 'middle', 'font-size': 20, 'font-weight': 800, fill: '#23373B' }, name);
+        const t = add('text', { x: cx, y: 268, 'text-anchor': 'middle', 'font-size': 18, 'font-weight': 700, fill: '#000070' }, '');
+        t.innerHTML = `<tspan baseline-shift="super" font-size="12">${A}</tspan><tspan>H</tspan>  ·  ${N} neutrón${N === 1 ? '' : 'es'}`;
+        add('text', { x: cx, y: 292, 'text-anchor': 'middle', 'font-size': 13, fill: '#525252' }, ab);
+    });
+</script>
+</body>
+</html>

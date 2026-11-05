@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Teoría de las colisiones</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } .card h2 { font-size: 18px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Poca energía</h2><svg id="a" width="280" height="180"></svg><div class="t">Las moléculas chocan despacio y rebotan: no reaccionan.</div></div>
+        <div class="card"><h2>Orientación inadecuada</h2><svg id="b" width="280" height="180"></svg><div class="t">Aunque choquen con energía, si no se orientan bien tampoco reaccionan.</div></div>
+        <div class="card" style="border-color:#1E8449"><h2 style="color:#1E8449">Choque eficaz</h2><svg id="c" width="280" height="180"></svg><div class="t">Energía suficiente y orientación adecuada: se forman 2 HI.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const H = '#D5D8DC', I = '#8E44AD';
+    const rH = 9, rI = 15;
+    // ---------- a) poca energía ----------
+    let add = svgAdder('a');
+    dimer(add, 60, 70, Math.PI / 2, rI, I, rI, I, 26); dimer(add, 125, 70, Math.PI / 2, rH, H, rH, H, 16);
+    arrow(add, 30, 120, 60, 120, '#E67E22', 2, 8); arrow(add, 160, 120, 130, 120, '#E67E22', 2, 8);
+    label(add, 95, 150, 'choque lento', { 'font-size': 13, fill: '#525252' });
+    arrow(add, 175, 70, 200, 70, '#23373B', 3, 11);
+    dimer(add, 220, 70, Math.PI / 2, rI, I, rI, I, 26); dimer(add, 262, 70, Math.PI / 2, rH, H, rH, H, 16);
+    arrow(add, 215, 120, 195, 120, '#7F8C8D', 2, 8); arrow(add, 265, 120, 280, 120, '#7F8C8D', 2, 8);
+    label(add, 238, 150, 'rebotan', { 'font-size': 13, fill: '#525252' });
+    // ---------- b) orientación ----------
+    add = svgAdder('b');
+    dimer(add, 60, 70, 0, rI, I, rI, I, 26); dimer(add, 125, 70, Math.PI / 2, rH, H, rH, H, 16);
+    arrow(add, 20, 120, 55, 120, '#C0392B', 3, 10); arrow(add, 165, 120, 130, 120, '#C0392B', 3, 10);
+    label(add, 95, 150, 'choque de frente', { 'font-size': 13, fill: '#525252' });
+    arrow(add, 175, 70, 200, 70, '#23373B', 3, 11);
+    dimer(add, 232, 70, 0, rI, I, rI, I, 26); dimer(add, 268, 40, Math.PI / 2, rH, H, rH, H, 16);
+    label(add, 238, 150, 'no reaccionan', { 'font-size': 13, fill: '#525252' });
+    // ---------- c) choque eficaz ----------
+    add = svgAdder('c');
+    dimer(add, 55, 70, Math.PI / 2, rI, I, rI, I, 26); dimer(add, 95, 70, Math.PI / 2, rH, H, rH, H, 16);
+    arrow(add, 15, 120, 50, 120, '#C0392B', 3, 10); arrow(add, 135, 120, 100, 120, '#C0392B', 3, 10);
+    label(add, 75, 150, 'ejes paralelos', { 'font-size': 13, fill: '#525252' });
+    arrow(add, 145, 70, 170, 70, '#23373B', 3, 11);
+    dimer(add, 215, 45, 0, rI, I, rH, H, 22); dimer(add, 225, 105, 0, rI, I, rH, H, 22);
+    label(add, 220, 150, '2 HI', { 'font-size': 15, fill: '#1E8449' });
+    // leyenda de colores
+</script>
+</body>
+</html>

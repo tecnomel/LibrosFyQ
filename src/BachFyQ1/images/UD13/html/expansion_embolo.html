@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Expansión de un gas a presión constante</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="a" width="720" height="400"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const A = svgAdder('a');
+    const base = 340;
+    function cilindro(x, h, n, seed, titulo) {
+        // paredes
+        A('path', { d: `M${x} 40 L${x} ${base} L${x + 150} ${base} L${x + 150} 40`, fill: 'none', stroke: '#5D6D7E', 'stroke-width': 4 });
+        const yp = base - h;
+        A('rect', { x: x + 3, y: yp, width: 144, height: h - 2, fill: '#D6EAF8' });
+        const r = rng(seed);
+        for (let k = 0; k < n; k++) bead(A, x + 16 + r() * 118, yp + 14 + r() * (h - 28), 5.5, '#E74C3C');
+        // émbolo y vástago
+        A('rect', { x: x + 3, y: yp - 18, width: 144, height: 18, fill: '#AAB7B8', stroke: '#566573', 'stroke-width': 2 });
+        label(A, x + 75, yp - 4, 'S', { 'font-size': 14, fill: '#23373B', 'font-style': 'italic' });
+        A('rect', { x: x + 68, y: yp - 90, width: 14, height: 72, fill: '#909497', stroke: '#566573', 'stroke-width': 1.5 });
+        // presión exterior (hacia abajo) y fuerza del gas (hacia arriba)
+        arrow(A, x + 30, yp - 70, x + 30, yp - 22, '#2471A3', 3, 11);
+        rich(A, x + 30, yp - 76, '*p*_{ext}', { 'font-size': 15, fill: '#2471A3' });
+        arrow(A, x + 120, yp + 40, x + 120, yp + 4, '#C0392B', 3, 11);
+        rich(A, x + 120, yp + 58, '*F*_{gas}', { 'font-size': 15, fill: '#C0392B' });
+        label(A, x + 75, 18, titulo, { 'font-size': 15 });
+        return yp;
+    }
+    const y1 = cilindro(60, 120, 18, 5, 'Estado inicial');
+    const y2 = cilindro(380, 210, 18, 9, 'Estado final');
+    // alturas
+    function cota(x, ya, yb, t, col) {
+        arrow(A, x, (ya + yb) / 2, x, ya, col, 2, 9); arrow(A, x, (ya + yb) / 2, x, yb, col, 2, 9);
+        rich(A, x - 8, (ya + yb) / 2 + 5, t, { 'font-size': 15, fill: col, 'text-anchor': 'end' });
+    }
+    cota(560, base, y2, '*h*_2', '#23373B');
+    cota(250 , base, y1, '*h*_1', '#23373B');
+    dashed(A, 210, y1, 620, y1);
+    cota(610, y1, y2, 'Δ*h*', '#B9770E');
+    // calor que entra
+    for (const xf of [425, 455, 485]) { const base2 = base - 14;
+        A('path', { d: `M${xf} ${base2 + 50} C ${xf - 8} ${base2 + 44} ${xf - 4} ${base2 + 34} ${xf} ${base2 + 24} C ${xf + 4} ${base2 + 34} ${xf + 8} ${base2 + 44} ${xf} ${base2 + 50} Z`, fill: '#F39C12' });
+    }
+    rich(A, 510, base + 30, '*Q*', { 'font-size': 16, fill: '#B9770E', 'text-anchor': 'start' });
+    arrow(A, 260, 200, 350, 200, '#1E8449', 3, 12);
+    label(A, 305, 190, 'se calienta', { 'font-size': 13, fill: '#1E8449' });
+</script>
+</body>
+</html>

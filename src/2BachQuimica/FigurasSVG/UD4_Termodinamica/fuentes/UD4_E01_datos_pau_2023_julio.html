@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD4_E01 · Datos PAU 2023 (julio)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+const svg = crearFigura(620, 100);
+const f = { "font-size": 19, fill: COLORES.texto, "font-family": "Arial, sans-serif" };
+const U = [{ t: " J·mol" }, { t: "−1", sup: true }, { t: "·K" }, { t: "−1", sup: true }];
+texto(svg, 5, 25, [{ t: "Datos: P = 1 atm, T = 298 K, R = 0,082 atm·L·mol" }, { t: "−1", sup: true }, { t: "·K" }, { t: "−1", sup: true }], f);
+texto(svg, 5, 57, [{ t: "S° " }, ...quim("C4H10 (l)"), { t: " = 229,7" }, ...U, { t: ";  S° " }, ...quim("O2 (g)"), { t: " = 204,8" }, ...U], f);
+texto(svg, 5, 89, [{ t: "S° " }, ...quim("CO2 (g)"), { t: " = 213,6" }, ...U, { t: ";  S° " }, ...quim("H2O (l)"), { t: " = 69,9" }, ...U], f);
+</script>
+</body>
+</html>

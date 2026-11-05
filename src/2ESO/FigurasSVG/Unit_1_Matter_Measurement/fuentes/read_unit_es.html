@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cómo se lee una unidad</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .steps { display: flex; gap: 14px; margin-bottom: 20px; }
+    .s { flex: 1; border-radius: 14px; padding: 10px 14px; font-size: 17px; display: flex; gap: 10px; align-items: center; }
+    .s .n { width: 34px; height: 34px; border-radius: 50%; color: #fff; font-weight: 800; font-size: 19px;
+        display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .s1 { background: var(--green-soft); border: 2px solid var(--green); } .s1 .n { background: var(--green); }
+    .s2 { background: var(--blue-soft); border: 2px solid var(--blue); } .s2 .n { background: var(--blue); }
+    .s3 { background: var(--ocre-soft); border: 2px solid var(--ocre); } .s3 .n { background: var(--ocre); }
+    .cards { display: flex; gap: 18px; }
+    .card { flex: 1; border: 2px solid var(--line); border-radius: 16px; padding: 12px 8px 10px; text-align: center; }
+    .sym { font-size: 64px; font-weight: 800; line-height: 1.1; letter-spacing: 2px; }
+    .sym .p { color: var(--ocre); }
+    .sym .u { color: var(--green); }
+    .arrows { display: flex; justify-content: center; gap: 28px; font-size: 24px; color: var(--grey); line-height: 1; margin: 2px 0 6px; }
+    .lab { font-size: 15px; border-radius: 10px; padding: 6px 4px; margin-top: 6px; line-height: 1.35; }
+    .lu { background: var(--green-soft); }
+    .lu b { color: var(--green); }
+    .lp { background: var(--ocre-soft); }
+    .lp b { color: #A3400B; }
+    .tag { display: inline-block; margin-top: 6px; font-size: 15px; font-weight: 800; color: #fff; border-radius: 8px; padding: 2px 10px; }
+    .mul { background: var(--blue); } .sub { background: var(--green); }
+    .note { margin-top: 16px; text-align: center; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Cómo se lee una unidad: de derecha a izquierda</h1>
+    <div class="steps">
+        <div class="s s1"><div class="n">1</div><div>Busca el <b>símbolo de la unidad</b>: es la <b>última</b> letra (o letras).</div></div>
+        <div class="s s2"><div class="n">2</div><div>Di qué <b>magnitud</b> mide: m → longitud, g → masa, L → capacidad, s → tiempo&hellip;</div></div>
+        <div class="s s3"><div class="n">3</div><div>Mira la letra de <b>delante</b>: es el <b>prefijo</b>. ¿Múltiplo o submúltiplo?</div></div>
+    </div>
+    <div class="cards">
+        <div class="card">
+            <div class="sym"><span class="p">k</span><span class="u">m</span></div>
+            <div class="arrows"><span>↓</span><span>↓</span></div>
+            <div class="lab lu"><b>m</b> = metro<br>→ <b>longitud</b></div>
+            <div class="lab lp"><b>k</b> = kilo = 10<sup>3</sup></div>
+            <div class="tag mul">MÚLTIPLO</div>
+        </div>
+        <div class="card">
+            <div class="sym"><span class="p">m</span><span class="u">g</span></div>
+            <div class="arrows"><span>↓</span><span>↓</span></div>
+            <div class="lab lu"><b>g</b> = gramo<br>→ <b>masa</b></div>
+            <div class="lab lp"><b>m</b> = mili = 10<sup>-3</sup></div>
+            <div class="tag sub">SUBMÚLTIPLO</div>
+        </div>
+        <div class="card">
+            <div class="sym"><span class="p">c</span><span class="u">L</span></div>
+            <div class="arrows"><span>↓</span><span>↓</span></div>
+            <div class="lab lu"><b>L</b> = litro<br>→ <b>capacidad</b></div>
+            <div class="lab lp"><b>c</b> = centi = 10<sup>-2</sup></div>
+            <div class="tag sub">SUBMÚLTIPLO</div>
+        </div>
+        <div class="card">
+            <div class="sym"><span class="p">m</span><span class="u">m</span></div>
+            <div class="arrows"><span>↓</span><span>↓</span></div>
+            <div class="lab lu"><b>m</b> (2.ª) = metro<br>→ <b>longitud</b></div>
+            <div class="lab lp"><b>m</b> (1.ª) = mili = 10<sup>-3</sup></div>
+            <div class="tag sub">SUBMÚLTIPLO</div>
+        </div>
+        <div class="card">
+            <div class="sym"><span class="p">h</span><span class="u">Pa</span></div>
+            <div class="arrows"><span>↓</span><span>↓</span></div>
+            <div class="lab lu"><b>Pa</b> = pascal<br>→ <b>presión</b></div>
+            <div class="lab lp"><b>h</b> = hecto = 10<sup>2</sup></div>
+            <div class="tag mul">MÚLTIPLO</div>
+        </div>
+    </div>
+    <div class="note">Si <b>no hay ninguna letra</b> delante de la unidad (m, g, L, s&hellip;), es la <b>unidad básica</b>. Cuidado con <b>mm</b>: ¡la primera m es el prefijo y la segunda m es la unidad!</div>
+</div>
+</body>
+</html>

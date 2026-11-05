@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Reglas de las potencias de 10</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .card { border-radius: 16px; padding: 12px 16px; border: 3px solid; }
+    .card h2 { font-size: 22px; margin-bottom: 6px; }
+    .rule { font-size: 30px; font-weight: 800; text-align: center; margin: 6px 0 8px; }
+    .rule sup { font-size: 0.6em; }
+    .ex { background: #fff; border-radius: 10px; padding: 6px 10px; font-size: 18px; text-align: center; line-height: 1.6; }
+    .ex sup { font-size: 0.65em; }
+    .say { font-size: 16px; color: var(--grey); text-align: center; margin-top: 6px; }
+    .c1 { border-color: var(--blue); background: var(--blue-soft); } .c1 h2 { color: var(--blue); }
+    .c2 { border-color: var(--green); background: var(--green-soft); } .c2 h2 { color: var(--green); }
+    .c3 { border-color: var(--ocre); background: var(--ocre-soft); } .c3 h2 { color: #A3400B; }
+    .c4 { border-color: #8E44AD; background: #F5EEF8; } .c4 h2 { color: #6C3483; }
+    .r { color: var(--red); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Las cuatro reglas de las potencias de 10</h1>
+    <div class="grid">
+        <div class="card c1"><h2>1. Multiplicar: se SUMAN los exponentes</h2>
+            <div class="rule">10<sup>a</sup> · 10<sup>b</sup> = 10<sup class="r">a + b</sup></div>
+            <div class="ex">10<sup>3</sup> · 10<sup>4</sup> = 10<sup>3+4</sup> = <b class="r">10<sup>7</sup></b> &nbsp;·&nbsp; 10<sup>5</sup> · 10<sup>-2</sup> = 10<sup>5+(-2)</sup> = <b class="r">10<sup>3</sup></b></div>
+            <div class="say">Con números delante: se multiplican los números y se suman los exponentes.</div></div>
+        <div class="card c2"><h2>2. Dividir: se RESTAN los exponentes</h2>
+            <div class="rule">10<sup>a</sup> / 10<sup>b</sup> = 10<sup class="r">a − b</sup></div>
+            <div class="ex">10<sup>7</sup> / 10<sup>3</sup> = 10<sup>7−3</sup> = <b class="r">10<sup>4</sup></b> &nbsp;·&nbsp; 10<sup>2</sup> / 10<sup>-3</sup> = 10<sup>2−(−3)</sup> = <b class="r">10<sup>5</sup></b></div>
+            <div class="say">exponente de arriba menos exponente de abajo</div></div>
+        <div class="card c3"><h2>3. Subir o bajar: se CAMBIA el signo</h2>
+            <div class="rule"><span class="frac"><span>1</span><span>10<sup>b</sup></span></span> = 10<sup class="r">−b</sup></div>
+            <div class="ex"><span class="frac"><span>1</span><span>10<sup>3</sup></span></span> = <b class="r">10<sup>-3</sup></b> &nbsp;·&nbsp; <span class="frac"><span>5</span><span>10<sup>-2</sup></span></span> = <b class="r">5 · 10<sup>2</sup></b></div>
+            <div class="say">Una potencia de 10 puede subir o bajar de la raya de fracción si su exponente cambia de signo.</div></div>
+        <div class="card c4"><h2>4. Potencia de una potencia: se MULTIPLICAN</h2>
+            <div class="rule">(10<sup>a</sup>)<sup>b</sup> = 10<sup class="r">a · b</sup></div>
+            <div class="ex">(10<sup>2</sup>)<sup>3</sup> = 10<sup>2·3</sup> = <b class="r">10<sup>6</sup></b> &nbsp;·&nbsp; (10<sup>-3</sup>)<sup>2</sup> = 10<sup>(−3)·2</sup> = <b class="r">10<sup>-6</sup></b></div>
+            <div class="say">Se usa para cambiar unidades de superficie (²) y de volumen (³).</div></div>
+    </div>
+</div>
+</body>
+</html>

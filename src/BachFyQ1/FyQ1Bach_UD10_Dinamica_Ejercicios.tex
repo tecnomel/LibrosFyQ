@@ -1,0 +1,708 @@
+%! Unidad 10 — Fundamentos de la dinámica: ejercicios resueltos, ejercicios finales y autoevaluación
+%! Fuente: Fuentes/Fisica/Unidad 10 («Ejercicios resueltos», «Practica y calcula», «Piensa y resuelve») y Unidad 11 (captura 425:
+%! «Autoevaluación» de este tema; la fuente no trae olimpiadas en esta unidad). Enunciados adaptados con datos cambiados (y más
+%! realistas cuando los de la fuente no lo eran: tiempos de contacto, velocidades de proyectiles, cohetes); soluciones rehechas
+%! con g = 9,8 m/s². Dificultad: \(\star\) baja, \(\star\star\) media, \(\star\star\star\) alta.
+
+\section{Ejercicios resueltos}\label{sec:ud10-resueltos}
+
+\begin{example}
+    \textbf{Choque totalmente inelástico.} Dos bloques de conglomerado se mueven por un carril en la misma dirección y chocan
+    quedando unidos. El bloque 1 tiene \qty{1.5}{\kg} y una velocidad de \qty{12}{\m\per\s}; el bloque 2, \qty{2.0}{\kg} y
+    \qty{14}{\m\per\s}. Calcula la velocidad de los bloques después del choque: a) si se movían en sentidos contrarios; b) si se
+    movían en el mismo sentido (el bloque 2 alcanza al 1).
+
+    \textbf{Solución.} \textbf{1. Datos}: \(m_1 = \qty{1.5}{\kg}\), \(m_2 = \qty{2.0}{\kg}\); tomamos el eje \(X\) en la dirección del
+    movimiento, positivo en el sentido del bloque 1. \textbf{Incógnita}: la velocidad común \(\vec{v}\,'\) después del choque.
+
+    \textbf{2. Planteamiento}: en el choque se conserva el momento lineal, \(m_1\,\vec{v}_1 + m_2\,\vec{v}_2 = (m_1 + m_2)\,\vec{v}\,'\).
+
+    \textbf{3. a)} \(\vec{v}_1 = 12\,\ivec\) y \(\vec{v}_2 = -14\,\ivec\)~\unit{\m\per\s}:
+    \[ \vec{v}\,' = \frac{\num{1.5} \cdot 12\,\ivec + 2 \cdot (-14)\,\ivec}{\num{3.5}} = -\num{2.86}\,\ivec~\unit{\m\per\s} \]
+    Tras el choque los dos se mueven en el sentido en que iba el bloque 2, que tenía más momento lineal (\qty{28}{\kg\m\per\s}
+    frente a \qty{18}{\kg\m\per\s}). Comprobación: \(\Delta p_1 = \num{1.5} \cdot (\num{-2.86} - 12) = \qty{-22.3}{\kg\m\per\s}\) y
+    \(\Delta p_2 = 2 \cdot (\num{-2.86} + 14) = \qty{+22.3}{\kg\m\per\s}\): lo que pierde uno lo gana el otro.
+
+    \textbf{4. b)} Ahora \(\vec{v}_2 = 14\,\ivec\)~\unit{\m\per\s}:
+    \(\vec{v}\,' = \dfrac{\num{1.5} \cdot 12 + 2 \cdot 14}{\num{3.5}}\,\ivec = \num{13.1}\,\ivec~\unit{\m\per\s}\). El bloque 1 gana
+    momento lineal y el bloque 2 pierde la misma cantidad.
+\end{example}
+
+\begin{example}
+    \textbf{Equilibrio: en la tirolina.} En un parque de multiaventura, un alumno de \qty{62}{\kg} se queda colgado de una cuerda
+    que forma en ese punto ángulos de \(14^\circ\) y \(6^\circ\) con la horizontal. Dibuja las fuerzas y calcula la tensión de cada
+    tramo de la cuerda.
+
+    \textbf{Solución.} \textbf{1. Datos}: \(m = \qty{62}{\kg}\), \(P = 62 \cdot \num{9.8} = \qty{607.6}{\newton}\);
+    \(\alpha_1 = 14^\circ\), \(\alpha_2 = 6^\circ\). \textbf{Incógnitas}: \(T_1\) y \(T_2\).
+
+    \textbf{2. Fuerzas}: el peso (vertical hacia abajo) y las dos tensiones, dirigidas a lo largo de la cuerda (como en la
+    figura~\ref{fig:ud10-cuerda}). El alumno está en equilibrio: \(\sum F_x = 0\) y \(\sum F_y = 0\).
+
+    \textbf{3. Eje \(X\)}: \(T_2\cos 6^\circ = T_1\cos 14^\circ \Rightarrow T_2 = \dfrac{\cos 14^\circ}{\cos 6^\circ}\,T_1 = \num{0.9756}\,T_1\).
+
+    \textbf{4. Eje \(Y\)}: \(T_1\sen 14^\circ + T_2\sen 6^\circ = P \Rightarrow T_1\,(\num{0.2419} + \num{0.9756} \cdot \num{0.1045}) = \num{607.6}\)
+    \[ T_1 = \frac{\num{607.6}}{\num{0.3439}} = \qty{1767}{\newton} \qquad T_2 = \num{0.9756} \cdot 1767 = \qty{1724}{\newton} \]
+    Las tensiones son casi tres veces el peso del alumno: por eso las cuerdas de las tirolinas son tan resistentes.
+\end{example}
+
+\begin{example}
+    \textbf{Segunda ley en un plano inclinado.} Un operario sube un mueble de \qty{40}{\kg} a un camión por una rampa inclinada
+    \(20^\circ\), empujándolo con una fuerza de \qty{300}{\newton} paralela a la rampa. La fuerza de rozamiento es de \qty{70}{\newton}.
+    a) Dibuja las fuerzas que actúan sobre el mueble. b) Calcula su aceleración.
+
+    \textbf{Solución.} \textbf{1.} Sobre el mueble actúan el peso \(\vec{P}\), la normal \(\vec{N}\), la fuerza del operario
+    \(\vec{F}\) (hacia arriba de la rampa) y el rozamiento \(\vec{F}_r\) (hacia abajo, porque se opone al movimiento).
+
+    \textbf{2.} Ejes paralelo y perpendicular a la rampa: \(P = 40 \cdot \num{9.8} = \qty{392}{\newton}\);
+    \(P_x = 392\sen 20^\circ = \qty{134.1}{\newton}\); \(P_y = 392\cos 20^\circ = \qty{368.4}{\newton} = N\).
+
+    \textbf{3.} En la dirección del movimiento: \(F - P_x - F_r = m\,a\)
+    \[ a = \frac{300 - \num{134.1} - 70}{40} = \qty{2.40}{\m\per\s\squared} \]
+\end{example}
+
+\begin{example}
+    \textbf{Una explosión en el plano.} Un petardo de \qty{300}{\g} explota cuando su velocidad es
+    \(\vec{v}_0 = (20\,\ivec + 15\,\jvec)\)~\unit{\m\per\s} y se divide en dos trozos. Uno, de \qty{120}{\g}, sale con una velocidad
+    \(\vec{v}_1 = (35\,\ivec - 40\,\jvec)\)~\unit{\m\per\s}. Calcula la velocidad del otro trozo.
+
+    \textbf{Solución.} \textbf{1.} Las fuerzas de la explosión son internas: el momento lineal se conserva,
+    \(m\,\vec{v}_0 = m_1\,\vec{v}_1 + m_2\,\vec{v}_2\), con \(m_2 = 300 - 120 = \qty{180}{\g}\).
+
+    \textbf{2.} \(m\,\vec{v}_0 = \num{0.3} \cdot (20\,\ivec + 15\,\jvec) = (6\,\ivec + \num{4.5}\,\jvec)\)~\unit{\kg\m\per\s};
+    \(m_1\,\vec{v}_1 = \num{0.12} \cdot (35\,\ivec - 40\,\jvec) = (\num{4.2}\,\ivec - \num{4.8}\,\jvec)\)~\unit{\kg\m\per\s}.
+
+    \textbf{3.} \(\vec{v}_2 = \dfrac{(6 - \num{4.2})\,\ivec + (\num{4.5} + \num{4.8})\,\jvec}{\num{0.18}} = (10\,\ivec + \num{51.7}\,\jvec)~\unit{\m\per\s}\),
+    de módulo \(\sqrt{10^2 + \num{51.7}^2} = \qty{52.7}{\m\per\s}\).
+\end{example}
+
+\begin{example}
+    \textbf{Un choque en curling.} En un lanzamiento de curling, una piedra de \qty{20}{\kg} que se mueve a \qty{2.2}{\m\per\s}
+    choca con otra igual en reposo. Después del choque, las piedras salen formando ángulos de \(30^\circ\) y \(60^\circ\) con la
+    dirección inicial, a uno y otro lado de ella. Calcula sus velocidades.
+
+    \textbf{Solución.} \textbf{1.} Eje \(X\) en la dirección inicial. Como las masas son iguales, se simplifican en la conservación del
+    momento lineal: \(\vec{v} = \vec{v}_1 + \vec{v}_2\).
+
+    \textbf{2.} Eje \(X\): \(\num{2.2} = v_1\cos 30^\circ + v_2\cos 60^\circ\). Eje \(Y\): \(0 = v_1\sen 30^\circ - v_2\sen 60^\circ\).
+
+    \textbf{3.} De la segunda, \(v_1 = v_2\,\dfrac{\sen 60^\circ}{\sen 30^\circ} = \num{1.732}\,v_2\). Sustituyendo en la primera:
+    \(\num{2.2} = v_2\,(\num{1.732} \cdot \num{0.866} + \num{0.5}) = 2\,v_2\), así que \(v_2 = \qty{1.1}{\m\per\s}\) y
+    \(v_1 = \qty{1.91}{\m\per\s}\).
+\end{example}
+
+%========================================================================================
+\section{Ejercicios de aplicación}\label{sec:ud10-aplicacion}
+%========================================================================================
+
+\subsection{Las fuerzas}
+
+\begin{exercise}
+    \(\star\) Define con tus palabras el concepto de fuerza y clasifica las fuerzas: a) según la proximidad de los cuerpos que
+    interaccionan; b) según las interacciones fundamentales de la naturaleza.
+    \begin{solu}
+        \textcolor{red}{Fuerza: interacción entre dos cuerpos capaz de cambiar su estado de movimiento o de deformarlos.}
+        a) \textcolor{red}{De contacto y a distancia.} b) \textcolor{red}{Nuclear fuerte, nuclear débil, electromagnética y
+        gravitatoria.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Explica por qué la fuerza es una magnitud vectorial. ¿Qué elementos tiene?
+    \begin{solu}
+        Porque su efecto depende de hacia dónde y dónde se aplica, no solo de su intensidad. \textcolor{red}{Módulo, dirección,
+        sentido y punto de aplicación.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Clasifica estas fuerzas en fuerzas de contacto o a distancia: a) una alumna arrastra una silla; b) un profesor mueve
+    un trozo de hierro con un imán sin tocarlo; c) Saturno atrae a su satélite Titán; d) suena el timbre del recreo (el aire empuja
+    el tímpano); e) un jugador de baloncesto lanza a canasta.
+    \begin{solu}
+        \textcolor{red}{De contacto: a, d y e. A distancia: b y c.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Qué interacción fundamental actúa en cada caso? a) Una hoja de papel cae desde un segundo piso. b) En el Sol se
+    funden núcleos de hidrógeno. c) Los quarks de un protón permanecen unidos. d) Un imán desvía la aguja de una brújula. e) Un
+    núcleo de uranio-238 se transforma en torio-234 emitiendo una partícula alfa. f) Se producen las mareas. g) Un paciente se hace
+    una resonancia magnética.
+    \begin{solu}
+        a) \textcolor{red}{Gravitatoria} (y electromagnética en el rozamiento con el aire). b) \textcolor{red}{Nuclear fuerte}
+        (y débil). c) \textcolor{red}{Nuclear fuerte}. d) \textcolor{red}{Electromagnética}. e) \textcolor{red}{Nuclear fuerte} (y
+        electromagnética, que expulsa la partícula alfa). f) \textcolor{red}{Gravitatoria}. g) \textcolor{red}{Electromagnética}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un muelle mide \qty{12}{\cm} y, al colgarle un peso de \qty{3}{\newton}, pasa a medir \qty{15}{\cm}. a) Calcula su
+    constante elástica. b) ¿Cuánto medirá si se le cuelgan \qty{5}{\newton}?
+    \begin{solu}
+        a) \(k = \dfrac{3}{\num{0.03}} = \textcolor{red}{\qty{100}{\newton\per\m}}\). b) \(\Delta L = \dfrac{5}{100} = \qty{0.05}{\m}\):
+        \(L = \textcolor{red}{\qty{17}{\cm}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Componer y descomponer fuerzas}
+
+\begin{exercise}
+    \(\star\star\) Mi perro se ha hecho daño en una pata y lo llevo al veterinario en una carretilla de la que tiro con una cuerda,
+    aplicando una fuerza de \qty{600}{\newton} que forma \(30^\circ\) con la horizontal. Calcula las componentes horizontal y vertical
+    de la fuerza.
+    \begin{solu}
+        \(F_x = 600\cos 30^\circ = \textcolor{red}{\qty{520}{\newton}}\); \(F_y = 600\sen 30^\circ = \textcolor{red}{\qty{300}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) La resultante de dos fuerzas perpendiculares es de \qty{17}{\newton}. Si una de ellas mide \qty{8}{\newton},
+    ¿cuánto mide la otra?
+    \begin{solu}
+        \(F_2 = \sqrt{17^2 - 8^2} = \textcolor{red}{\qty{15}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Sobre un cuerpo actúan cuatro fuerzas en las direcciones de los puntos cardinales: \qty{15}{\newton} hacia el este,
+    \qty{9}{\newton} hacia el oeste, \qty{6}{\newton} hacia el norte y \qty{14}{\newton} hacia el sur. Dibújalas y calcula el módulo,
+    la dirección y el sentido de la resultante.
+    \begin{solu}
+        \textcolor{blue}{Este = \(+X\), norte = \(+Y\): \(\vec{F} = (15 - 9)\,\ivec + (6 - 14)\,\jvec = 6\,\ivec - 8\,\jvec\).}
+        \(F = \textcolor{red}{\qty{10}{\newton}}\), \textcolor{red}{hacia el sureste, \(\num{53.1}^\circ\) por debajo del este}
+        (\(306{,}9^\circ\)).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Calcula la resultante de tres fuerzas concurrentes de 20, 12 y \qty{15}{\newton}. Las de 12 y \qty{15}{\newton}
+    tienen la misma dirección y sentidos opuestos, y la de \qty{20}{\newton} es perpendicular a ellas.
+    \begin{solu}
+        \(F = \sqrt{20^2 + (15 - 12)^2} = \textcolor{red}{\qty{20.2}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Dos personas empujan un armario. Cuando empujan en la misma dirección y sentido, la resultante es de
+    \qty{400}{\newton}; cuando, por error, empujan en sentidos contrarios, es de \qty{90}{\newton}. ¿Qué fuerza hace cada una?
+    \begin{solu}
+        \textcolor{blue}{\(F_1 + F_2 = 400\) y \(F_1 - F_2 = 90\).} \(\textcolor{red}{F_1 = \qty{245}{\newton}}\) y
+        \(\textcolor{red}{F_2 = \qty{155}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un caballo tira de un carro con una fuerza de \qty{2800}{\newton} que forma \(30^\circ\) con la horizontal. ¿Qué
+    parte de esa fuerza actúa en la dirección del movimiento?
+    \begin{solu}
+        \(F_x = 2800\cos 30^\circ = \textcolor{red}{\qty{2425}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Para devolver a la corriente un tronco varado en un río, dos personas, una en cada orilla, tiran de él con cuerdas
+    perpendiculares entre sí con fuerzas de \qty{80}{\newton} y \qty{95}{\newton}. Calcula la fuerza total y el ángulo que forma con
+    la primera cuerda.
+    \begin{solu}
+        \(F = \sqrt{80^2 + 95^2} = \textcolor{red}{\qty{124}{\newton}}\); \(\tg\varphi = \dfrac{95}{80} \Rightarrow
+        \textcolor{red}{\varphi = \num{49.9}^\circ}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Calcula la resultante de dos fuerzas de \qty{50}{\newton} y \qty{30}{\newton} que forman un ángulo de \(40^\circ\).
+    \begin{solu}
+        \(F = \sqrt{50^2 + 30^2 + 2 \cdot 50 \cdot 30\cos 40^\circ} = \textcolor{red}{\qty{75.5}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Calcula la fuerza resultante en cada caso (ejes \(X\) horizontal e \(Y\) vertical):
+    a) \(\vec{F}_1 = -4\,\ivec\), \(\vec{F}_2 = -1\,\ivec\), \(\vec{F}_3 = 7\,\ivec\)~N.
+    b) \(\vec{F}_1\) de \qty{10}{\newton} a \(45^\circ\) sobre la horizontal, \(\vec{F}_2 = -5\,\ivec\)~N y \(\vec{F}_3 = -6\,\jvec\)~N.
+    c) \(\vec{F}_1 = 8\,\jvec\), \(\vec{F}_2 = -12\,\jvec\), \(\vec{F}_3 = 5\,\ivec\), \(\vec{F}_4 = -2\,\ivec\)~N.
+    \begin{solu}
+        a) \(\vec{F} = 2\,\ivec\)~N: \(\textcolor{red}{\qty{2}{\newton}}\). b) \(\vec{F} = (\num{7.07} - 5)\,\ivec + (\num{7.07} - 6)\,\jvec
+        = \num{2.07}\,\ivec + \num{1.07}\,\jvec\): \(\textcolor{red}{\qty{2.33}{\newton}}\). c) \(\vec{F} = 3\,\ivec - 4\,\jvec\):
+        \(\textcolor{red}{\qty{5}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{El equilibrio}
+
+\begin{exercise}
+    \(\star\star\) Para secar un vestido de \qty{450}{\g} sin que se arrugue, lo colgamos de una percha en una cuerda, que forma con
+    la horizontal ángulos de \(15^\circ\) y \(8^\circ\) a cada lado de la percha. Calcula la tensión de cada tramo de la cuerda.
+    \begin{solu}
+        \textcolor{blue}{\(T_2 = \num{0.9754}\,T_1\); \(T_1\,(\sen 15^\circ + \num{0.9754}\sen 8^\circ) = \num{0.45} \cdot \num{9.8}\).}
+        \(\textcolor{red}{T_1 = \qty{11.2}{\newton}}\) y \(\textcolor{red}{T_2 = \qty{10.9}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una farola tiene un brazo horizontal del que cuelga una lámpara de \qty{5}{\kg}. El extremo del brazo está sujeto
+    también por un cable diagonal que forma \(30^\circ\) con el brazo. Calcula la tensión del cable y la fuerza que soporta el brazo.
+    \begin{solu}
+        \textcolor{blue}{Vertical: \(T\sen 30^\circ = m\,g\); horizontal: el brazo compensa \(T\cos 30^\circ\).}
+        \(T = \dfrac{49}{\num{0.5}} = \textcolor{red}{\qty{98}{\newton}}\); brazo: \(98\cos 30^\circ = \textcolor{red}{\qty{84.9}{\newton}}\)
+        (de compresión).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Queremos colgar una lámpara de \qty{1.6}{\kg} de dos cables iguales que forman entre sí un ángulo de \(50^\circ\).
+    ¿Qué tensión soporta cada cable?
+    \begin{solu}
+        \textcolor{blue}{Cada cable forma \(25^\circ\) con la vertical: \(2T\cos 25^\circ = m\,g\).}
+        \(T = \dfrac{\num{15.68}}{2\cos 25^\circ} = \textcolor{red}{\qty{8.65}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Para aflojar el tornillo de la rueda de una avioneta hace falta un momento de \qty{110}{\newton\metre}. ¿Qué fuerza
+    perpendicular hay que aplicar con una llave de \qty{30}{\cm}?
+    \begin{solu}
+        \(F = \dfrac{M}{r} = \dfrac{110}{\num{0.30}} = \textcolor{red}{\qty{367}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Dos personas llevan un saco de arroz de \qty{150}{\kg} colgado de una barra de \qty{2}{\m} de peso despreciable.
+    Si una aguanta 1,5 veces más peso que la otra, ¿qué fuerza hace cada una y dónde está colgado el saco?
+    \begin{solu}
+        \textcolor{blue}{\(F_1 + F_2 = 1470\) y \(F_1 = \num{1.5}\,F_2\); momentos respecto al saco: \(F_1\,d_1 = F_2\,d_2\).}
+        \(\textcolor{red}{F_2 = \qty{588}{\newton}}\), \(\textcolor{red}{F_1 = \qty{882}{\newton}}\); \(d_1 = \dfrac{2 \cdot 588}{1470} =
+        \textcolor{red}{\qty{0.8}{\m}}\) de la persona que soporta más peso.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) En muchos países se transportan cargas colgadas de los extremos de una barra que se apoya en el hombro. Si una
+    persona lleva cubos de agua de \qty{5}{\kg} y \qty{8}{\kg} en los extremos de una barra de \qty{1.5}{\m}, ¿qué fuerza hace y en
+    qué punto de la barra debe apoyarla?
+    \begin{solu}
+        \(F = 13 \cdot \num{9.8} = \textcolor{red}{\qty{127.4}{\newton}}\); \(5\,x = 8\,(\num{1.5} - x) \Rightarrow
+        \textcolor{red}{x = \qty{0.92}{\m}}\) del cubo de \qty{5}{\kg}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Dos pintores transportan una escalera de \qty{5}{\m} y \qty{25}{\kg}. Uno la sujeta por un extremo y el otro a
+    \qty{60}{\cm} del otro extremo. ¿Qué fuerza hace cada uno?
+    \begin{solu}
+        \textcolor{blue}{Momentos respecto al primero: \(F_B \cdot \num{4.4} = 245 \cdot \num{2.5}\).}
+        \(\textcolor{red}{F_B = \qty{139}{\newton}}\) y \(\textcolor{red}{F_A = 245 - 139 = \qty{106}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) En un balancín, un niño de \qty{30}{\kg} se sienta a \qty{1.6}{\m} del eje. ¿Dónde debe sentarse su hermana, de
+    \qty{40}{\kg}, para que el balancín quede en equilibrio horizontal?
+    \begin{solu}
+        \(30 \cdot \num{1.6} = 40\,x \Rightarrow \textcolor{red}{x = \qty{1.2}{\m}}\) del eje, al otro lado.
+    \end{solu}
+\end{exercise}
+
+\subsection{Las leyes de Newton}
+
+\begin{exercise}
+    \(\star\) Explica con tus palabras qué es la inercia y pon un ejemplo de la vida cotidiana en el que se manifieste.
+    \begin{solu}
+        \textcolor{red}{Es la tendencia de los cuerpos a mantener su estado de reposo o de MRU.} Ejemplo: al arrancar un autobús, los
+        pasajeros de pie se van hacia atrás.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Son verdaderas estas afirmaciones? Corrige las falsas. a) Si sobre un cuerpo actúa una sola fuerza, la resultante es
+    cero. b) La masa de un cuerpo no influye en su movimiento. c) La fuerza de rozamiento sobre el hielo se opone muy poco al
+    movimiento. d) Para que un cuerpo en reposo empiece a moverse no hace falta aplicarle una fuerza. e) Una fuerza constante puede
+    hacer que un cuerpo lleve un MRUA.
+    \begin{solu}
+        a) \textcolor{red}{F}: la resultante es esa fuerza. b) \textcolor{red}{F}: a mayor masa, menor aceleración para la misma fuerza.
+        c) \textcolor{red}{V}. d) \textcolor{red}{F}: hace falta una fuerza neta. e) \textcolor{red}{V}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Tenemos dos bloques de hierro de \qty{3}{\kg} y \qty{6}{\kg}. ¿Cuáles de estas afirmaciones son verdaderas?
+    a) El primero tiene la mitad de inercia que el segundo. b) Si se aplica la misma fuerza neta a ambos, el primero adquiere el doble
+    de aceleración. c) Si dejan de actuar las fuerzas sobre los bloques en movimiento, el de mayor masa se moverá durante más tiempo.
+    \begin{solu}
+        \textcolor{red}{Verdaderas: a y b.} c) es falsa: sin fuerzas, \textcolor{red}{los dos seguirían moviéndose indefinidamente con
+        MRU}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Sobre un cuerpo de \qty{12}{\kg} que está en un plano horizontal sin rozamiento actúan dos fuerzas de
+    \qty{10}{\newton} y \qty{26}{\newton}. Calcula su aceleración si las fuerzas: a) tienen la misma dirección y sentido; b) tienen
+    la misma dirección y sentidos contrarios; c) son perpendiculares.
+    \begin{solu}
+        a) \(a = \dfrac{36}{12} = \textcolor{red}{\qty{3}{\m\per\s\squared}}\). b) \(a = \dfrac{16}{12} = \textcolor{red}{\qty{1.33}{\m\per\s\squared}}\).
+        c) \(a = \dfrac{\sqrt{10^2 + 26^2}}{12} = \textcolor{red}{\qty{2.32}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Por qué un objeto que se desliza por una superficie horizontal acaba parándose? ¿Contradice esto la primera ley?
+    \begin{solu}
+        Porque actúa sobre él la \textcolor{red}{fuerza de rozamiento}, que lo frena. \textcolor{red}{No la contradice}: la primera
+        ley dice que el cuerpo mantendría su velocidad solo si la fuerza neta fuese nula.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una caja de \qty{80}{\kg} en reposo se empuja horizontalmente con una fuerza de \qty{280}{\newton}. El
+    rozamiento es de \qty{180}{\newton}. ¿Qué velocidad tiene al cabo de \qty{4}{\s}?
+    \begin{solu}
+        \(a = \dfrac{100}{80} = \qty{1.25}{\m\per\s\squared}\); \(v = \textcolor{red}{\qty{5}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un trabajador sube un mueble de \qty{45}{\kg} a un camión por una rampa inclinada \(18^\circ\), empujándolo con
+    una fuerza de \qty{320}{\newton} paralela a la rampa. El rozamiento es de \qty{60}{\newton}. a) Dibuja las fuerzas. b) ¿Con qué
+    aceleración sube?
+    \begin{solu}
+        \(P_x = 45 \cdot \num{9.8}\sen 18^\circ = \qty{136.3}{\newton}\); b) \(a = \dfrac{320 - 60 - \num{136.3}}{45} =
+        \textcolor{red}{\qty{2.75}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una persona sostiene a un bebé con los brazos extendidos. ¿Cuál es la reacción al peso del bebé? a) La normal que
+    el suelo hace sobre los pies de la persona. b) La fuerza que las manos hacen sobre el bebé. c) La fuerza que el bebé hace sobre las
+    manos. d) La fuerza gravitatoria con que el bebé atrae a la Tierra.
+    \begin{solu}
+        \textcolor{red}{d}. El peso es la fuerza con que la Tierra atrae al bebé; su reacción, aplicada en la Tierra, es la fuerza con
+        que el bebé atrae a la Tierra. Las manos y el bebé forman otro par de acción y reacción (b y c).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un cohete Falcon 9 de \qty{550}{t} despega verticalmente con una aceleración inicial de \qty{4}{\m\per\s\squared}.
+    ¿Qué fuerza de empuje producen sus motores?
+    \begin{solu}
+        \textcolor{blue}{\(F - m\,g = m\,a\).} \(F = \num{550000} \cdot (\num{9.8} + 4) = \textcolor{red}{\qty{7.59e6}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Explica con la tercera ley de Newton cómo avanza: a) una nadadora; b) una barca de remos; c) un calamar.
+    \begin{solu}
+        \textcolor{red}{En los tres casos el cuerpo empuja el agua hacia atrás y el agua lo empuja hacia delante con una fuerza igual
+        y opuesta}: a) con brazos y piernas; b) con los remos; c) expulsando un chorro de agua.
+    \end{solu}
+\end{exercise}
+
+\subsection{Momento lineal}
+
+\begin{exercise}
+    \(\star\star\) Un patinador de \qty{80}{\kg} (con su monopatín) va a \qty{18}{\km\per\hour} y frena durante \qty{0.8}{\s} hasta
+    \qty{7.2}{\km\per\hour}. Calcula: a) la variación de su momento lineal; b) la fuerza media de frenado.
+    \begin{solu}
+        a) \(\Delta p = 80 \cdot (2 - 5) = \textcolor{red}{\qty{-240}{\kg\m\per\s}}\). b) \(F = \dfrac{-240}{\num{0.8}} =
+        \textcolor{red}{\qty{-300}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una pelota de béisbol de \qty{145}{\g} llega al bate a \qty{90}{\km\per\hour} y sale en sentido contrario a
+    \qty{120}{\km\per\hour}. Si el contacto dura \qty{1}{\milli\s}, calcula el impulso y la fuerza media que ejerce el bate.
+    \begin{solu}
+        \(\Delta v = \num{33.3} + 25 = \qty{58.3}{\m\per\s}\); \(I = \num{0.145} \cdot \num{58.3} = \textcolor{red}{\qty{8.46}{\newton\s}}\);
+        \(F = \textcolor{red}{\qty{8.46e3}{\newton}}\), en el sentido de salida.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) En un partido de bádminton, un volante de \qty{5}{\g} llega a la raqueta a \qty{80}{\m\per\s} y sale en sentido
+    contrario con la misma rapidez. Si el contacto dura \qty{3}{\milli\s}, ¿qué impulso le da la raqueta? ¿Qué fuerza media hace?
+    \begin{solu}
+        \(I = \num{0.005} \cdot (-80 - 80) = \textcolor{red}{\qty{-0.8}{\newton\s}}\); \(F = \dfrac{\num{-0.8}}{\num{0.003}} =
+        \textcolor{red}{\qty{-267}{\newton}}\) (signo negativo: en sentido contrario al de llegada).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un petardo de \qty{400}{\g} explota cuando su velocidad es \(\vec{v}_0 = (30\,\ivec + 20\,\jvec)\)~\unit{\m\per\s}
+    y se divide en dos partes. La primera, de \qty{150}{\g}, sale con \(\vec{v}_1 = (40\,\ivec - 30\,\jvec)\)~\unit{\m\per\s}.
+    Calcula la velocidad de la otra parte.
+    \begin{solu}
+        \(\vec{v}_2 = \dfrac{\num{0.4}\,\vec{v}_0 - \num{0.15}\,\vec{v}_1}{\num{0.25}} = \dfrac{(12 - 6)\,\ivec + (8 + \num{4.5})\,\jvec}{\num{0.25}}
+        = \textcolor{red}{(24\,\ivec + 50\,\jvec)~\unit{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un astronauta de la Estación Espacial sale al exterior para reparar un panel. Para moverse, sus propulsores expulsan
+    \qty{25}{\g} de gas por segundo a \qty{100}{\m\per\s}. Si su masa total es de \qty{200}{\kg}, calcula el impulso que recibe cada
+    segundo, la fuerza de empuje y su aceleración.
+    \begin{solu}
+        \(I = \num{0.025} \cdot 100 = \textcolor{red}{\qty{2.5}{\newton\s}}\) cada segundo; \(F = \textcolor{red}{\qty{2.5}{\newton}}\);
+        \(a = \dfrac{\num{2.5}}{200} = \textcolor{red}{\qty{0.0125}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una gaviota de \qty{1.1}{\kg} vuela con \(\vec{v}_g = (16\,\ivec + 10\,\jvec)\)~\unit{\m\per\s} y atrapa un pájaro
+    de \qty{120}{\g} que vuela con \(\vec{v}_p = (12\,\ivec + 6\,\jvec)\)~\unit{\m\per\s}. ¿Qué velocidad tiene la gaviota justo
+    después?
+    \begin{solu}
+        \(\vec{v} = \dfrac{(\num{17.6} + \num{1.44})\,\ivec + (11 + \num{0.72})\,\jvec}{\num{1.22}} = \textcolor{red}{(\num{15.6}\,\ivec + \num{9.61}\,\jvec)~\unit{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un vagón de \qty{12}{t} que se mueve a \qty{2}{\m\per\s} choca con otro de \qty{8}{t} en reposo y quedan
+    enganchados. a) ¿Con qué velocidad se mueven después? b) Calcula la energía cinética antes y después. ¿Qué tipo de choque es?
+    \begin{solu}
+        a) \(v' = \dfrac{12000 \cdot 2}{20000} = \textcolor{red}{\qty{1.2}{\m\per\s}}\). b) \(E_{c,0} = \frac{1}{2} \cdot 12000 \cdot 2^2 =
+        \textcolor{red}{\qty{24000}{\joule}}\); \(E_{c,f} = \frac{1}{2} \cdot 20000 \cdot \num{1.2}^2 = \textcolor{red}{\qty{14400}{\joule}}\).
+        Se pierde el \qty{40}{\percent}: \textcolor{red}{choque totalmente inelástico}.
+    \end{solu}
+\end{exercise}
+
+\subsection{Momento angular}
+
+\begin{exercise}
+    \(\star\star\) Calcula el momento angular de Venus respecto al Sol, sabiendo que el radio de su órbita (casi circular) es de
+    \qty{108.2e6}{\km}, su masa es de \qty{4.87e24}{\kg} y tarda 224,7 días en completarla.
+    \begin{solu}
+        \(\omega = \dfrac{2\pi}{\num{224.7} \cdot 86400} = \qty{3.24e-7}{\radian\per\s}\); \(L = m\,\omega\,r^2 =
+        \textcolor{red}{\qty{1.85e40}{\kg\m\squared\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un disco de vinilo de \qty{15}{\cm} de radio gira a \qty{45}{rpm}. Una mosca de \qty{0.06}{\g} se posa en su borde
+    y gira con él. ¿Cuál es su momento angular respecto al eje?
+    \begin{solu}
+        \(\omega = 45 \cdot \dfrac{2\pi}{60} = \qty{4.71}{\radian\per\s}\); \(L = \num{6e-5} \cdot \num{4.71} \cdot \num{0.15}^2 =
+        \textcolor{red}{\qty{6.36e-6}{\kg\m\squared\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) La Estación Espacial Internacional, de unas \qty{420}{t}, gira alrededor de la Tierra a \qty{7.66}{\km\per\s} a
+    \qty{410}{\km} de altura. Calcula su momento angular respecto al centro de la Tierra (\(R_T = \qty{6371}{\km}\)).
+    \begin{solu}
+        \(L = m\,v\,r = \num{4.2e5} \cdot 7660 \cdot \num{6.781e6} = \textcolor{red}{\qty{2.18e16}{\kg\m\squared\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El cometa Halley pasa por el perihelio a \qty{0.586}{UA} del Sol con una velocidad de \qty{54.6}{\km\per\s}. Su
+    afelio está a \qty{35.1}{UA}. ¿Qué velocidad lleva allí?
+    \begin{solu}
+        \(v_a = \dfrac{\num{0.586} \cdot \num{54.6}}{\num{35.1}} = \textcolor{red}{\qty{0.91}{\km\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Explica con la conservación del momento angular por qué una patinadora gira más deprisa al recoger los brazos y por qué
+    la órbita de la Tierra es plana.
+    \begin{solu}
+        \textcolor{red}{Al recoger los brazos, la masa se acerca al eje; como \(L\) se conserva, aumenta la velocidad angular. La
+        fuerza del Sol es central, así que \(\vec{L}\) de la Tierra es constante en dirección: la órbita está siempre en el plano
+        perpendicular a \(\vec{L}\).}
+    \end{solu}
+\end{exercise}
+
+%========================================================================================
+\section{Ejercicios de ampliación}\label{sec:ud10-ampliacion}
+%========================================================================================
+
+\begin{exercise}
+    \(\star\star\star\) Haz un trabajo de investigación sobre las ideas de Aristóteles y de Galileo acerca del movimiento y las
+    fuerzas. ¿En qué se diferencian de las de Newton?
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta.} Aristóteles: hace falta una fuerza para mantener el movimiento; Galileo: introduce la
+        inercia; Newton: la fuerza causa la aceleración (\(\vec{F} = m\,\vec{a}\)) y las fuerzas son interacciones (acción y reacción).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un cuerpo de \qty{90}{\kg} es arrastrado por una superficie horizontal con una fuerza de \qty{700}{\newton}.
+    Suponiendo que el rozamiento vale siempre \qty{180}{\newton}, calcula la aceleración cuando la fuerza: a) es horizontal;
+    b) forma \(25^\circ\) con la horizontal. Dibuja las fuerzas en ambos casos.
+    \begin{solu}
+        a) \(a = \dfrac{700 - 180}{90} = \textcolor{red}{\qty{5.78}{\m\per\s\squared}}\). b) \(a = \dfrac{700\cos 25^\circ - 180}{90} =
+        \textcolor{red}{\qty{5.05}{\m\per\s\squared}}\). (En realidad, al tirar hacia arriba disminuye la normal y con ella el
+        rozamiento; lo estudiaremos en la unidad siguiente.)
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Sobre un meteorito de \qty{5}{\kg} que viaja por el espacio actúa durante \qty{12}{\s} una fuerza constante
+    \(\vec{F} = (20\,\ivec - 10\,\jvec + 40\,\kvec)\)~N. Si al final su velocidad es \((25\,\ivec + 20\,\jvec - 30\,\kvec)\)~\unit{\m\per\s},
+    ¿cuál era su velocidad inicial?
+    \begin{solu}
+        \textcolor{blue}{\(\vec{F}\,\Delta t = m\,(\vec{v} - \vec{v}_0) \Rightarrow \vec{v}_0 = \vec{v} - \dfrac{\vec{F}\,\Delta t}{m} =
+        \vec{v} - (48\,\ivec - 24\,\jvec + 96\,\kvec)\).}
+        \(\textcolor{red}{\vec{v}_0 = (-23\,\ivec + 44\,\jvec - 126\,\kvec)~\unit{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una persona de \qty{60}{\kg} está sobre una báscula dentro de un ascensor. ¿Qué marca la báscula (en newtons)
+    cuando el ascensor: a) sube con velocidad constante; b) arranca hacia arriba con una aceleración de \qty{1.5}{\m\per\s\squared};
+    c) frena al subir con una aceleración de \qty{1.5}{\m\per\s\squared}?
+    \begin{solu}
+        \textcolor{blue}{La báscula marca la normal: \(N - m\,g = m\,a\).} a) \(N = \textcolor{red}{\qty{588}{\newton}}\).
+        b) \(N = 60 \cdot (\num{9.8} + \num{1.5}) = \textcolor{red}{\qty{678}{\newton}}\). c) \(N = 60 \cdot (\num{9.8} - \num{1.5}) =
+        \textcolor{red}{\qty{498}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Un lanzador de peso sostiene en la mano una bola que pesa \qty{50}{\newton}, con el antebrazo horizontal y
+    formando \(90^\circ\) con el brazo. El bíceps se inserta a \qty{4}{\cm} del codo y tira verticalmente hacia arriba; la bola está a
+    \qty{32}{\cm} del codo. Despreciando el peso del antebrazo, ¿qué fuerza hace el bíceps?
+    \begin{solu}
+        \textcolor{blue}{Momentos respecto al codo: \(F \cdot \num{0.04} = 50 \cdot \num{0.32}\).}
+        \(F = \textcolor{red}{\qty{400}{\newton}}\): ocho veces el peso de la bola.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Una plataforma de \qty{12}{\m} y \qty{300}{\kg} está colocada sobre el tejado de un edificio, apoyada en su
+    borde, de modo que una parte sobresale. Una persona de \qty{700}{\newton} camina por la parte que sobresale hasta el extremo.
+    ¿Cuánto puede sobresalir como máximo la plataforma sin que vuelque?
+    \begin{solu}
+        \textcolor{blue}{Si sobresale \(x\), el peso de la plataforma actúa a \(6 - x\) del borde y la persona a \(x\): \(700\,x = 2940\,(6 - x)\).}
+        \(x = \textcolor{red}{\qty{4.85}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Un jugador despeja un balón de \qty{430}{\g} golpeándolo con una fuerza media de \qty{400}{\newton}. El balón
+    sale con un ángulo de \(40^\circ\) y vuelve a tocar el suelo a \qty{45}{\m}. ¿Cuánto duró el golpe?
+    \begin{solu}
+        \textcolor{blue}{Alcance del tiro parabólico: \(x = \dfrac{v_0^2\sen 2\alpha}{g} \Rightarrow v_0 = \sqrt{\dfrac{45 \cdot \num{9.8}}{\sen 80^\circ}} = \qty{21.2}{\m\per\s}\).}
+        \(\Delta t = \dfrac{m\,v_0}{F} = \dfrac{\num{0.43} \cdot \num{21.2}}{400} = \textcolor{red}{\qty{0.023}{\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Dos bolas de billar iguales chocan frontalmente de forma elástica. Una iba a \qty{4}{\m\per\s} y la otra
+    estaba en reposo. Demuestra, con la conservación del momento lineal y de la energía cinética, que intercambian sus velocidades.
+    \begin{solu}
+        \textcolor{blue}{\(4 = v_1' + v_2'\) y \(16 = v_1'^2 + v_2'^2\). Elevando la primera al cuadrado y restando, \(v_1'\,v_2' = 0\).}
+        La solución con choque es \(\textcolor{red}{v_1' = 0}\) y \(\textcolor{red}{v_2' = \qty{4}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Péndulo balístico. Una bala de \qty{8}{\g} se incrusta en un bloque de madera de \qty{2}{\kg} que cuelga de
+    unos hilos, y el bloque sube \qty{10}{\cm}. a) ¿Con qué velocidad empezó a moverse el bloque? (Usa la conservación de la energía
+    mecánica.) b) ¿Cuál era la velocidad de la bala?
+    \begin{solu}
+        a) \(V = \sqrt{2\,g\,h} = \textcolor{red}{\qty{1.4}{\m\per\s}}\). b) Choque totalmente inelástico: \(v = \dfrac{\num{2.008} \cdot
+        \num{1.4}}{\num{0.008}} = \textcolor{red}{\qty{351}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Una piedra atada a una cuerda gira en un plano horizontal sin rozamiento, en una circunferencia de \qty{1}{\m}
+    de radio, a 2 vueltas por segundo. La cuerda pasa por un tubo vertical en el centro y tiramos de ella hasta que el radio es de
+    \qty{0.5}{\m}. ¿Qué velocidad y qué frecuencia tiene ahora la piedra?
+    \begin{solu}
+        \textcolor{blue}{La fuerza de la cuerda es central: \(m\,r_1\,v_1 = m\,r_2\,v_2\), con \(v_1 = 2\pi \cdot 1 \cdot 2 = \qty{12.6}{\m\per\s}\).}
+        \(v_2 = \textcolor{red}{\qty{25.1}{\m\per\s}}\); \(f = \dfrac{v_2}{2\pi r_2} = \textcolor{red}{8~\text{vueltas/s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Un coche de \qty{1200}{\kg} a \qty{90}{\km\per\hour} choca de frente con un camión de \qty{8000}{\kg} que
+    circula en sentido contrario a \qty{54}{\km\per\hour}, y quedan unidos. a) ¿Con qué velocidad se mueven tras el choque? b) Si el
+    choque dura \qty{0.1}{\s}, calcula la aceleración media de los ocupantes del coche y compárala con \(g\). c) ¿Qué fuerza media
+    actúa sobre cada vehículo?
+    \begin{solu}
+        a) \(v' = \dfrac{1200 \cdot 25 - 8000 \cdot 15}{9200} = \textcolor{red}{\qty{-9.78}{\m\per\s}}\) (en el sentido del camión).
+        b) \(a = \dfrac{\num{-9.78} - 25}{\num{0.1}} = \textcolor{red}{\qty{-348}{\m\per\s\squared}}\), unas \textcolor{red}{35 veces
+        \(g\)}. c) \(F = 1200 \cdot 348 = \textcolor{red}{\qty{4.17e5}{\newton}}\) sobre cada uno (acción y reacción), aunque el
+        camión apenas cambia su velocidad.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Dos patinadores de \qty{60}{\kg} y \qty{75}{\kg} están en reposo sobre el hielo y se empujan. Si el primero sale a
+    \qty{1.5}{\m\per\s}, ¿qué velocidad adquiere el segundo? ¿Hacen la misma fuerza los dos?
+    \begin{solu}
+        \(v_2 = -\dfrac{60 \cdot \num{1.5}}{75} = \textcolor{red}{\qty{-1.2}{\m\per\s}}\) (en sentido contrario).
+        \textcolor{red}{Sí}: por la tercera ley, las fuerzas son iguales y opuestas.
+    \end{solu}
+\end{exercise}
+
+%========================================================================================
+\section{Autoevaluación}\label{sec:ud10-autoevaluacion}
+%========================================================================================
+
+\begin{exercise}
+    ¿Podemos decir que no actúa ninguna fuerza sobre un objeto que se mueve con velocidad constante? Razónalo.
+    \begin{solu}
+        \textcolor{red}{No}: pueden actuar varias fuerzas, pero su \textcolor{red}{resultante es nula} (primera ley).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Clasifica las fuerzas según las interacciones fundamentales de la naturaleza y pon un ejemplo de cada una.
+    \begin{solu}
+        \textcolor{red}{Nuclear fuerte} (cohesión del núcleo), \textcolor{red}{nuclear débil} (desintegración beta),
+        \textcolor{red}{electromagnética} (atracción de un imán) y \textcolor{red}{gravitatoria} (el peso).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Explica con tus palabras las tres leyes de la dinámica y pon un ejemplo cotidiano de cada una.
+    \begin{solu}
+        \textcolor{red}{Inercia} (los pasajeros se van hacia delante al frenar), \textcolor{red}{fundamental} (cuesta más acelerar un
+        carro lleno que uno vacío) y \textcolor{red}{acción y reacción} (al caminar empujamos el suelo hacia atrás).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Tiramos de un cuerpo con una cuerda que forma \(30^\circ\) con la horizontal, aplicando una fuerza de \qty{250}{\newton}. Calcula
+    las componentes horizontal y vertical de la fuerza.
+    \begin{solu}
+        \(F_x = \textcolor{red}{\qty{216.5}{\newton}}\); \(F_y = \textcolor{red}{\qty{125}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Ana y Luis transportan en una tabla de \qty{3}{\m} de peso despreciable un cuerpo que pesa \qty{800}{\newton}. Si Ana aguanta
+    1,5 veces más peso que Luis, ¿dónde está colocado el cuerpo?
+    \begin{solu}
+        \(F_A = \qty{480}{\newton}\) y \(F_L = \qty{320}{\newton}\); \(d_A = \dfrac{3 \cdot 320}{800} = \textcolor{red}{\qty{1.2}{\m}}\)
+        de Ana (\qty{1.8}{\m} de Luis).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Dos caballos tiran de un carruaje con cuerdas que forman \(45^\circ\) entre sí. Si cada caballo hace una fuerza de
+    \qty{700}{\newton}, ¿cuál es la fuerza neta?
+    \begin{solu}
+        \(F = \sqrt{700^2 + 700^2 + 2 \cdot 700^2 \cos 45^\circ} = 2 \cdot 700\cos \num{22.5}^\circ = \textcolor{red}{\qty{1293}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un golfista golpea con el \textit{driver} una pelota de \qty{45.9}{\g}, que sale a 160 millas por hora. Si el contacto dura
+    \qty{0.5}{\milli\s}, calcula el impulso que recibe la pelota y la fuerza media del golpe. (Dato: 1 milla por hora equivale a
+    \qty{0.447}{\m\per\s}.)
+    \begin{solu}
+        \(v = \qty{71.5}{\m\per\s}\); \(I = \num{0.0459} \cdot \num{71.5} = \textcolor{red}{\qty{3.28}{\newton\s}}\);
+        \(F = \dfrac{\num{3.28}}{\num{0.0005}} = \textcolor{red}{\qty{6.57e3}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un petardo de \qty{500}{\g} sube con \(\vec{v}_0 = (10\,\ivec + 30\,\jvec)\)~\unit{\m\per\s} cuando explota en dos trozos iguales.
+    Si uno sale con \(\vec{v}_1 = (25\,\ivec - 10\,\jvec)\)~\unit{\m\per\s}, ¿qué velocidad tiene el otro?
+    \begin{solu}
+        \(\vec{v}_2 = 2\,\vec{v}_0 - \vec{v}_1 = \textcolor{red}{(-5\,\ivec + 70\,\jvec)~\unit{\m\per\s}}\).
+    \end{solu}
+\end{exercise}

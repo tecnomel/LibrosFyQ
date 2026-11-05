@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_16 · Haluro de alquilo + alcohol: éter</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+const svg = crearFigura(620, 120);
+molecula(svg, "CC(Br)CC", 70, 50, { colores: { Br: ROJO } });
+mas(svg, 150, 50); fq(svg, 205, 56, [["HO−CH3", AZUL]]);
+flechaR(svg, 255, 50, 335);
+molecula(svg, "CC(OC)CC", 415, 55, { colores: { O: AZUL } });
+mas(svg, 495, 50); fq(svg, 545, 56, [["H", AZUL], ["Br", ROJO]]);
+</script>
+</body>
+</html>

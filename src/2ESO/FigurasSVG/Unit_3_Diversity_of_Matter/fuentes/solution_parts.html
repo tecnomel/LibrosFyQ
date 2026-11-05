@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Solutions</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; align-items: center; justify-content: center; gap: 18px; }
+    .it { text-align: center; }
+    .it .lb { font-size: 20px; font-weight: 800; margin-top: 4px; }
+    .it .s { font-size: 15px; color: var(--grey); }
+    .op { font-size: 46px; font-weight: 800; color: var(--grey); }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .dc { display: flex; gap: 30px; justify-content: center; margin-top: 18px; }
+    .dc .box { border-radius: 14px; padding: 10px 18px; text-align: center; border: 2px solid var(--line); }
+    .dc .box b { font-size: 19px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>A solution: solute + solvent</h1>
+    <div class="row">
+        <div class="it"><svg width="150" height="150"><g fill="#FDFEFE" stroke="#7F8C8D" stroke-width="2"><rect x="40" y="70" width="18" height="18"/><rect x="62" y="80" width="18" height="18"/><rect x="84" y="68" width="18" height="18"/><rect x="52" y="96" width="18" height="18"/><rect x="76" y="102" width="18" height="18"/></g><ellipse cx="75" cy="130" rx="60" ry="10" fill="#D5D8DC"/></svg>
+            <div class="lb" style="color:var(--red)">SOLUTE</div><div class="s">the smaller amount<br>(salt)</div></div>
+        <div class="op">+</div>
+        <div class="it"><svg width="150" height="150"><path d="M30 20 L30 135 Q30 142 37 142 L113 142 Q120 142 120 135 L120 20" fill="none" stroke="#5D6D7E" stroke-width="4"/><rect x="32" y="50" width="86" height="90" fill="#AED6F1"/></svg>
+            <div class="lb" style="color:#2471A3">SOLVENT</div><div class="s">the larger amount<br>(water)</div></div>
+        <div class="op">=</div>
+        <div class="it"><svg width="150" height="150" id="sol"><path d="M30 20 L30 135 Q30 142 37 142 L113 142 Q120 142 120 135 L120 20" fill="none" stroke="#5D6D7E" stroke-width="4"/><rect x="32" y="50" width="86" height="90" fill="#AED6F1"/></svg>
+            <div class="lb" style="color:var(--green)">SOLUTION</div><div class="s">homogeneous mixture<br>(salt water)</div></div>
+    </div>
+    <div class="dc">
+        <div class="box"><svg width="120" height="110" id="d1"></svg><br><b style="color:#5DADE2">Dilute</b><br>little solute</div>
+        <div class="box"><svg width="120" height="110" id="d2"></svg><br><b style="color:#1A5276">Concentrated</b><br>a lot of solute</div>
+        <div class="box"><svg width="120" height="110" id="d3"></svg><br><b style="color:var(--red)">Saturated</b><br>no more can dissolve</div>
+        <div class="box" style="max-width:330px; text-align:left; font-size:16px"><b>The solution has the same state as the solvent.</b><br>🥤 gas in liquid (fizzy drink)<br>🌬️ gas in gas (air)<br>🔩 solid in solid: <b>alloys</b> (steel = iron + carbon)</div>
+    </div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg';
+    const add = (svg, tag, a) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); svg.appendChild(e); return e; };
+    // dots of dissolved salt in the solution
+    const s = document.getElementById('sol');
+    [[45,65],[70,60],[98,70],[55,90],[85,88],[105,105],[48,120],[75,115],[95,128],[62,135]].forEach(([x,y]) => add(s, 'circle', { cx: x, cy: y, r: 3, fill: '#fff', stroke: '#2471A3' }));
+    function beaker(id, color, deposit) {
+        const b = document.getElementById(id);
+        add(b, 'rect', { x: 22, y: 30, width: 76, height: 70, fill: color });
+        if (deposit) add(b, 'path', { d: 'M24 100 Q60 80 96 100 Z', fill: '#FDFEFE', stroke: '#7F8C8D' });
+        add(b, 'path', { d: 'M20 10 L20 98 Q20 104 26 104 L94 104 Q100 104 100 98 L100 10', fill: 'none', stroke: '#5D6D7E', 'stroke-width': 4 });
+    }
+    beaker('d1', '#D6EAF8', false);
+    beaker('d2', '#2E86C1', false);
+    beaker('d3', '#1A5276', true);
+</script>
+</body>
+</html>

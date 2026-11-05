@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Secuencia de los elementos (IUPAC 2005)</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1180px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="1136" height="440"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    // Columnas en el orden de la secuencia: grupo 18, 1, 2, 3 ... 15, H, 16, 17.
+    // Cada columna: [periodo de la primera casilla, símbolos de arriba abajo]
+    const COLS = [
+        [1, ['He', 'Ne', 'Ar', 'Kr', 'Xe', 'Rn', 'Og']],
+        [2, ['Li', 'Na', 'K', 'Rb', 'Cs', 'Fr']],
+        [2, ['Be', 'Mg', 'Ca', 'Sr', 'Ba', 'Ra']],
+        [4, ['Sc', 'Y', 'La*', 'Ac*']],
+        [4, ['Ti', 'Zr', 'Hf', 'Rf']],
+        [4, ['V', 'Nb', 'Ta', 'Db']],
+        [4, ['Cr', 'Mo', 'W', 'Sg']],
+        [4, ['Mn', 'Tc', 'Re', 'Bh']],
+        [4, ['Fe', 'Ru', 'Os', 'Hs']],
+        [4, ['Co', 'Rh', 'Ir', 'Mt']],
+        [4, ['Ni', 'Pd', 'Pt', 'Ds']],
+        [4, ['Cu', 'Ag', 'Au', 'Rg']],
+        [4, ['Zn', 'Cd', 'Hg', 'Cn']],
+        [2, ['B', 'Al', 'Ga', 'In', 'Tl', 'Nh']],
+        [2, ['C', 'Si', 'Ge', 'Sn', 'Pb', 'Fl']],
+        [2, ['N', 'P', 'As', 'Sb', 'Bi', 'Mc']],
+        [1, ['H']],
+        [2, ['O', 'S', 'Se', 'Te', 'Po', 'Lv']],
+        [2, ['F', 'Cl', 'Br', 'I', 'At', 'Ts']],
+    ];
+    const S = svgAdder('s');
+    const W = 42, H = 38, GAP = 16, X0 = 30, Y0 = 46;
+    const colX = i => X0 + i * (W + GAP);
+    const rowY = p => Y0 + (p - 1) * H;
+    const N = COLS.length;
+
+    // Color de la casilla según su posición en la secuencia (de gris azulado a rojo)
+    function mix(a, b, t) {
+        const pa = a.match(/\w\w/g).map(h => parseInt(h, 16)), pb = b.match(/\w\w/g).map(h => parseInt(h, 16));
+        return 'rgb(' + pa.map((v, k) => Math.round(v + (pb[k] - v) * t)).join(',') + ')';
+    }
+    const C1 = 'DCE6F2', C2 = 'F8C9C0';
+
+    // Conectores (por el hueco entre columnas): de lo alto de una columna al pie de la siguiente
+    for (let i = 0; i < N - 1; i++) {
+        const [p0, a] = COLS[i], [p1, b] = COLS[i + 1];
+        const xa = colX(i) + W / 2, xg = colX(i) + W + GAP / 2, xb = colX(i + 1) + W / 2;
+        const yTop = rowY(p0) - 8, yBot = rowY(p1 + b.length - 1) + H + 8;
+        S('path', { d: `M${xa} ${yTop} Q${xa} ${yTop - 10} ${xa + 10} ${yTop - 10} L${xg - 4} ${yTop - 10} Q${xg} ${yTop - 10} ${xg} ${yTop - 4}
+                         L${xg} ${yBot + 2} Q${xg} ${yBot + 10} ${xg + 4} ${yBot + 10} L${xb - 10} ${yBot + 10} Q${xb} ${yBot + 10} ${xb} ${yBot}`,
+            fill: 'none', stroke: '#1E8449', 'stroke-width': 1.8, 'stroke-dasharray': '5 4', opacity: 0.75 });
+    }
+
+    // Casillas
+    let k = 0; const total = COLS.reduce((s, c) => s + c[1].length, 0);
+    const order = [];
+    COLS.forEach(([p, els], i) => {
+        // dentro de cada grupo se avanza de abajo arriba
+        for (let j = els.length - 1; j >= 0; j--) order.push([i, p + j, els[j]]);
+    });
+    order.forEach(([i, p, el], n) => {
+        const x = colX(i), y = rowY(p);
+        S('rect', { x, y, width: W, height: H - 4, rx: 6, fill: mix(C1, C2, n / (total - 1)), stroke: '#8A94A6', 'stroke-width': 1 });
+        label(S, x + W / 2, y + 23, el.replace('*', ''), { 'font-size': 16, fill: '#1B2631' });
+        if (el.endsWith('*')) label(S, x + W - 6, y + 12, '*', { 'font-size': 13, fill: '#C0392B' });
+    });
+
+    // Flechas hacia arriba dentro de cada columna (sentido de avance)
+    COLS.forEach(([p, els], i) => {
+        const x = colX(i) + W / 2;
+        const yb = rowY(p + els.length - 1) + H + 8, yt = rowY(p) - 8;
+        arrow(S, x, yb, x, yb - 7, '#1E8449', 2.2, 9);         // entra por abajo
+        arrow(S, x, yt + 7, x, yt - 2, '#1E8449', 2.2, 9);     // sale por arriba
+    });
+
+    // Inicio y fin
+    label(S, colX(0) + W / 2, rowY(8) + 30, 'INICIO', { 'font-size': 14, fill: '#1E8449' });
+    arrow(S, colX(0) + W / 2, rowY(8) + 14, colX(0) + W / 2, rowY(7) + H + 6, '#1E8449', 2.5, 10);
+    label(S, colX(N - 1) + W / 2, Y0 - 16, 'FIN', { 'font-size': 14, fill: '#C0392B' });
+
+    // Leyenda: barra de color
+    const by = 384, bx = colX(3), bw = colX(N - 1) + W - bx;
+    const d = S('defs', {});
+    d.innerHTML = `<linearGradient id="gr"><stop offset="0" stop-color="#${C1}"/><stop offset="1" stop-color="#${C2}"/></linearGradient>`;
+    S('rect', { x: bx, y: by, width: bw, height: 16, rx: 8, fill: 'url(#gr)', stroke: '#8A94A6' });
+    label(S, bx, by + 40, 'aparece antes: se escribe a la IZQUIERDA (papel electropositivo)', { 'text-anchor': 'start', 'font-size': 15, 'font-weight': 600, fill: '#2E4A7D' });
+    label(S, bx + bw, by + 40, 'aparece después: a la DERECHA (electronegativo)', { 'text-anchor': 'end', 'font-size': 15, 'font-weight': 600, fill: '#C0392B' });
+    label(S, colX(3), rowY(8) + 44, '* En el grupo 3 se incluyen también los lantánidos (tras el La) y los actínidos (tras el Ac).',
+        { 'text-anchor': 'start', 'font-size': 14, 'font-weight': 400, fill: '#525252' });
+</script>
+</body>
+</html>

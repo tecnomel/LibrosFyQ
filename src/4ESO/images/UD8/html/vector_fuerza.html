@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Elementos de una fuerza y ley de Hooke</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } .card h2 { font-size: 17px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Elementos del vector fuerza</h2><svg id="a" width="430" height="230"></svg></div>
+        <div class="card"><h2>Ley de Hooke: F = k · x</h2><svg id="b" width="430" height="270"></svg><div class="t">El alargamiento de un muelle es proporcional a la fuerza aplicada.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // ---------- vector fuerza ----------
+    let add = svgAdder('a');
+    add('line', { x1: 20, y1: 120, x2: 410, y2: 120, stroke: '#7F8C8D', 'stroke-dasharray': '6 5' });
+    arrow(add, 90, 120, 330, 120, '#2471A3', 7, 26);
+    add('circle', { cx: 90, cy: 120, r: 7, fill: '#000070' });
+    vlabel(add, 210, 155, 'F', '#2471A3');
+    // cotas
+    add('line', { x1: 90, y1: 70, x2: 330, y2: 70, stroke: '#23373B', 'stroke-width': 1.2 });
+    arrow(add, 210, 70, 90, 70, '#23373B', 1.2, 8); arrow(add, 210, 70, 330, 70, '#23373B', 1.2, 8);
+    label(add, 210, 60, 'módulo (intensidad, en N)', { 'font-size': 14 });
+    label(add, 90, 200, 'punto de', { 'font-size': 14 }); label(add, 90, 216, 'aplicación', { 'font-size': 14 });
+    add('line', { x1: 90, y1: 185, x2: 90, y2: 130, stroke: '#7F8C8D' });
+    label(add, 330, 175, 'sentido', { 'font-size': 14 }); add('line', { x1: 330, y1: 162, x2: 322, y2: 130, stroke: '#7F8C8D' });
+    label(add, 395, 150, 'dirección', { 'font-size': 14 }); add('line', { x1: 395, y1: 137, x2: 395, y2: 124, stroke: '#7F8C8D' });
+    // ---------- ley de Hooke ----------
+    add = svgAdder('b');
+    add('rect', { x: 20, y: 20, width: 390, height: 12, fill: '#7F8C8D' });
+    function spring(x, L, m) {
+        const n = 12, pts = [[x, 32], [x, 42]];
+        for (let i = 1; i <= n; i++) pts.push([x + (i % 2 ? -12 : 12), 42 + i * (L - 20) / n]);
+        pts.push([x, 42 + L - 10]);
+        add('polyline', { points: pts.map(p => p.join(',')).join(' '), fill: 'none', stroke: '#2471A3', 'stroke-width': 2.5 });
+        const yb = 32 + L + 10;
+        if (m) { add('rect', { x: x - 18, y: yb - 6, width: 36, height: 24 + 6 * m, fill: '#5D6D7E', rx: 3 }); label(add, x, yb + 12 + 3 * m, m + ' N', { 'font-size': 13, fill: '#fff' }); }
+        return yb;
+    }
+    const L0 = 70;
+    [[70, 0], [180, 2], [290, 4]].forEach(([x, m]) => spring(x, L0 + m * 18, m));
+    add('line', { x1: 40, y1: 32 + L0, x2: 380, y2: 32 + L0, stroke: '#C0392B', 'stroke-dasharray': '5 4' });
+    label(add, 70, 125, 'sin peso', { 'font-size': 13, fill: '#525252' });
+    arrow(add, 330, 32 + L0, 330, 32 + L0 + 72, '#C0392B', 2, 9); label(add, 345, 32 + L0 + 40, 'x', { 'font-size': 16, fill: '#C0392B', 'font-style': 'italic', 'text-anchor': 'start' });
+    label(add, 215, 262, 'doble de fuerza ⇒ doble de alargamiento', { 'font-size': 14, fill: '#000070' });
+</script>
+</body>
+</html>

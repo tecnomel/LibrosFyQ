@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_26 · Estructura de Lewis del SF2</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+</head>
+<body>
+<script>
+// SF2: 4 pares alrededor del S (2 enlazantes y 2 no enlazantes) -> angular.
+const svg = crearFigura(380, 150);
+dibujarLewis(svg, 70, 95, { atomos: [
+    { s: "S", x: 0, y: 0, pares: [180, 270] }, { s: "F", id: "a", x: 0, y: 1, libres: 3 }, { s: "F", id: "b", x: 1, y: 0, libres: 3 }],
+    enlaces: [{ a: "S", b: "a" }, { a: "S", b: "b" }] }, { L: 52 });
+flecha(svg, 180, 85, 240, 85, { punta: 10 });
+dibujarLewis(svg, 290, 95, { atomos: [
+    { s: "S", x: 0, y: 0, pares: [180, 270] }, { s: "F", id: "a", x: 0, y: 1, libres: 3 }, { s: "F", id: "b", x: 1, y: 0, libres: 3 }],
+    enlaces: [{ a: "S", b: "a" }, { a: "S", b: "b" }] }, { L: 52, estilo: "rayas" });
+</script>
+</body>
+</html>

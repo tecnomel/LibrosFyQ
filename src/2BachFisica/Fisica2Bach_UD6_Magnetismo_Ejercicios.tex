@@ -1,0 +1,333 @@
+%! Unidad 6 — Campo magnético e inducción electromagnética: ejercicios finales (adaptados de la fuente, con datos cambiados y resueltos)
+
+\section{Ejercicios}\label{sec:mag-ejercicios}
+
+Salvo que se indique otra cosa, usa \(e = \qty{1.6e-19}{\coulomb}\), \(m_e = \qty{9.11e-31}{\kg}\), \(m_p = \qty{1.67e-27}{\kg}\),
+\(\mu_0 = 4\pi\cdot 10^{-7}\ \unit{\tesla\m\per\ampere}\) y \(g = \qty{9.8}{\m\per\second\squared}\).
+
+\subsection{Cuestiones}
+
+\begin{exercise}
+    Una partícula cargada se mueve en un campo magnético uniforme sin experimentar ninguna fuerza. ¿Cómo es su velocidad respecto del campo?
+    \begin{solu}
+        \textcolor{red}{Paralela (o antiparalela) al campo}: \textcolor{blue}{entonces \(\sen\varphi = 0\) y \(F = qvB\sen\varphi = 0\).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿Verdadero o falso?: «La fuerza magnética que actúa sobre una carga en movimiento no hace trabajo».
+    \begin{solu}
+        \textcolor{red}{Verdadero.} \textcolor{blue}{La fuerza es siempre perpendicular a la velocidad (y al desplazamiento): solo cambia la dirección
+        de la velocidad, no su módulo ni la energía cinética.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿Puede ser nula la fuerza magnética sobre una partícula cargada que se mueve en un campo magnético no nulo? ¿Y la fuerza eléctrica
+    sobre una partícula cargada en un campo eléctrico no nulo?
+    \begin{solu}
+        \textcolor{red}{La magnética sí}, \textcolor{blue}{si se mueve paralela al campo.} \textcolor{red}{La eléctrica no}: \(\vec F = q\vec E\)
+        \textcolor{blue}{no depende de la velocidad y solo es nula si \(q = 0\).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un neutrón entra perpendicularmente en un campo magnético uniforme a gran velocidad. ¿Qué trayectoria sigue?
+    \begin{solu}
+        \textcolor{red}{Una línea recta, con velocidad constante}: \textcolor{blue}{no tiene carga y el campo no ejerce fuerza sobre él.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una carga entra de izquierda a derecha en un campo uniforme perpendicular al papel y entrante, y se desvía en el sentido de las
+    agujas del reloj. ¿Qué signo tiene?
+    \begin{solu}
+        \textcolor{blue}{Moviéndose hacia la derecha, girar en sentido horario es curvarse hacia abajo. Para una carga positiva,
+        \(\vec v\times\vec B = \vec{i}\times(-\vec{k}) = \vec{j}\): hacia arriba.} \textcolor{red}{La carga es negativa.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una espira circular está en un campo uniforme. ¿Con qué orientación es máximo el flujo que la atraviesa? ¿Con cuál es nulo?
+    \begin{solu}
+        \textcolor{red}{Máximo con la espira perpendicular al campo} (\(\vec S\) paralelo a \(\vec B\)); \textcolor{red}{nulo con la espira paralela al campo}
+        (\(\vec S\perp\vec B\)).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Indica el sentido de la corriente inducida en una espira cuando se aleja de ella el polo sur de un imán, y cuando se le acerca el polo norte.
+    \begin{solu}
+        \textcolor{blue}{Al alejar el polo sur, la espira se opone atrayéndolo: la cara que mira al imán se convierte en un polo norte. Al acercar el
+        polo norte, se opone repeliéndolo: también forma un polo norte.} \textcolor{red}{En los dos casos la corriente, vista desde el imán, circula en
+        sentido antihorario.}
+    \end{solu}
+\end{exercise}
+
+\subsection{Fuerzas sobre cargas y corrientes}
+
+\begin{exercise}
+    Un protón se mueve a \qty{2e7}{\m\per\second} en un campo de \qty{1.5}{\tesla} y sufre una fuerza de \qty{3e-12}{\newton}. ¿Qué ángulo
+    forma su velocidad con el campo?
+    \begin{solu}
+        \(\sen\varphi = \dfrac{F}{qvB} = \dfrac{3\cdot 10^{-12}}{1{,}6\cdot 10^{-19}\cdot 2\cdot 10^7\cdot 1{,}5} = 0{,}625 \Rightarrow \textcolor{red}{\varphi = \ang{38.7}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un electrón entra con \qty{4e6}{\m\per\second} perpendicularmente en un campo de \qty{5e-3}{\tesla}. Calcula la fuerza, el radio de su
+    trayectoria y su período.
+    \begin{solu}
+        \(F = evB = \textcolor{red}{\qty{3.2e-15}{\newton}}\); \(R = \dfrac{m v}{e B} = \textcolor{red}{\qty{4.55e-3}{\m}}\);
+        \(T = \dfrac{2\pi m}{e B} = \textcolor{red}{\qty{7.16e-9}{\second}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    En una región hay un campo \(\vec E = 3\,\vec{i} + 5\,\vec{j}\ \unit{\newton\per\coulomb}\) y un campo \(\vec B = 0{,}5\,\vec{k}\ \unit{\tesla}\).
+    Un electrón entra con \(\vec v = 1000\,\vec{i}\ \unit{\m\per\second}\). Calcula la fuerza y la aceleración.
+    \begin{solu}
+        \(\vec v\times\vec B = 1000\,\vec{i}\times 0{,}5\,\vec{k} = -500\,\vec{j}\); \(\vec E + \vec v\times\vec B = 3\,\vec{i} - 495\,\vec{j}\).
+        \[ \vec F = -e\,(3\,\vec{i} - 495\,\vec{j}) = \textcolor{red}{(-4{,}8\cdot 10^{-19}\,\vec{i} + 7{,}92\cdot 10^{-17}\,\vec{j})\ \unit{\newton}} \]
+        \(a = \dfrac{F}{m} = \textcolor{red}{\qty{8.69e13}{\m\per\second\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un electrón se acelera desde el reposo con una diferencia de potencial de \qty{200}{\volt} y entra perpendicularmente en un campo de
+    \qty{0.01}{\tesla}. Calcula su velocidad, el radio de la trayectoria y el período.
+    \begin{solu}
+        \(v = \sqrt{\dfrac{2eV}{m}} = \textcolor{red}{\qty{8.38e6}{\m\per\second}}\); \(R = \dfrac{mv}{eB} = \textcolor{red}{\qty{4.77}{\mm}}\);
+        \(T = \dfrac{2\pi m}{eB} = \textcolor{red}{\qty{3.58e-9}{\second}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    En una región hay un campo magnético \(\vec B = 0{,}4\,\vec{k}\ \unit{\tesla}\) y uno eléctrico \(\vec E = 200\,\vec{j}\ \unit{\newton\per\coulomb}\).
+    ¿Con qué velocidad debe entrar una partícula cargada para seguir una línea recta?
+    \begin{solu}
+        \textcolor{blue}{Las fuerzas deben anularse: \(\vec E + \vec v\times\vec B = 0\). Con \(\vec v = v\,\vec{i}\): \(v\,\vec{i}\times 0{,}4\,\vec{k} = -0{,}4v\,\vec{j}\), luego \(200 = 0{,}4v\).}
+        \(\textcolor{red}{\vec v = 500\,\vec{i}\ \unit{\m\per\second}}\) \textcolor{blue}{(sea cual sea su carga: es un \emph{selector de velocidades}).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un electrón entra de izquierda a derecha con \qty{2e6}{\m\per\second} en un campo de \qty{2e-3}{\tesla} perpendicular al papel y entrante.
+    \begin{enumerate}[label=\letraminuscula]
+        \item Calcula la fuerza que actúa sobre él.
+        \item Calcula el radio de su trayectoria. ¿Cómo sería la de un protón?
+        \item ¿Qué campo eléctrico habría que añadir para que siguiera en línea recta?
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(\vec v\times\vec B = 2\cdot 10^6\,\vec{i}\times(-2\cdot 10^{-3}\,\vec{k}) = 4000\,\vec{j}\);
+            \(\textcolor{red}{\vec F = -e\cdot 4000\,\vec{j} = -6{,}4\cdot 10^{-16}\,\vec{j}\ \unit{\newton}}\) \textcolor{blue}{(hacia abajo).}
+            \item \(R = \dfrac{mv}{eB} = \textcolor{red}{\qty{5.69}{\mm}}\). \textcolor{blue}{El protón se curvaría hacia arriba (sentido antihorario) con un radio
+            \(m_p/m_e \approx 1835\) veces mayor:} \textcolor{red}{\qty{10.4}{\m}}.
+            \item \(\vec E = -\vec v\times\vec B = \textcolor{red}{-4000\,\vec{j}\ \unit{\newton\per\coulomb}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una bobina rectangular de 40 espiras de \qty{4}{\cm} \(\times\) \qty{6}{\cm} lleva una corriente de \qty{30}{\milli\ampere}. Calcula su
+    momento magnético y el momento del par si se coloca paralela a un campo de \qty{0.3}{\tesla}.
+    \begin{solu}
+        \(m = NIS = 40\cdot 0{,}03\cdot 2{,}4\cdot 10^{-3} = \textcolor{red}{\qty{2.88e-3}{\ampere\m\squared}}\);
+        \textcolor{blue}{paralela al campo, \(\vec S\perp\vec B\):} \(M = mB = \textcolor{red}{\qty{8.64e-4}{\newton\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un conductor de \qty{15}{\cm} lleva \qty{5}{\ampere} y forma \ang{35} con un campo horizontal. ¿Qué campo hace falta para que la fuerza
+    sobre él sea de \qty{0.3}{\newton}?
+    \begin{solu}
+        \(B = \dfrac{F}{IL\sen\alpha} = \dfrac{0{,}3}{5\cdot 0{,}15\cdot\sen\ang{35}} = \textcolor{red}{\qty{0.697}{\tesla}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una varilla horizontal de \qty{25}{\cm} y \qty{15}{\g} puede deslizar sin rozamiento por dos raíles verticales, y por ella circula una
+    corriente de \qty{2}{\ampere} hacia la derecha. ¿Qué campo magnético perpendicular al plano de los raíles la mantiene en reposo?
+    \begin{solu}
+        \textcolor{blue}{La fuerza magnética debe ser vertical hacia arriba e igual al peso: \(ILB = mg\).}
+        \(B = \dfrac{0{,}015\cdot 9{,}8}{2\cdot 0{,}25} = \textcolor{red}{\qty{0.294}{\tesla}}\).
+        \textcolor{blue}{Como \(\vec{i}\times(-\vec{k}) = \vec{j}\),} \textcolor{red}{el campo debe ser entrante} \textcolor{blue}{(con el eje \(Y\) hacia arriba y el \(Z\) hacia el lector).}
+    \end{solu}
+\end{exercise}
+
+\subsection{Campos creados por corrientes}
+
+\begin{exercise}
+    Un solenoide de \qty{25}{\cm} tiene 500 espiras y lleva una corriente de \qty{2}{\ampere}. ¿Cuánto vale el campo en su interior? Una
+    partícula cargada entra en el solenoide moviéndose a lo largo de su eje: ¿qué trayectoria sigue?
+    \begin{solu}
+        \(B = \mu_0\,\dfrac{N}{L}\,I = 4\pi\cdot 10^{-7}\,\dfrac{500}{0{,}25}\cdot 2 = \textcolor{red}{\qty{5.03e-3}{\tesla}}\).
+        \textcolor{red}{Una recta}: \textcolor{blue}{se mueve paralela al campo y no sufre fuerza.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Dos conductores paralelos y muy largos están separados \qty{10}{\cm} y llevan \qty{10}{\ampere} y \qty{5}{\ampere} en el mismo sentido.
+    Calcula el campo en un punto de la recta perpendicular a ellos situado \qty{5}{\cm} a la izquierda del primero, y en el punto medio.
+    \begin{solu}
+        \textcolor{blue}{A la izquierda de los dos, los campos tienen el mismo sentido:}
+        \(B = \dfrac{\mu_0}{2\pi}\left(\dfrac{10}{0{,}05} + \dfrac{5}{0{,}15}\right) = \textcolor{red}{\qty{4.67e-5}{\tesla}}\).
+
+        \textcolor{blue}{En el punto medio tienen sentidos opuestos:} \(B = \dfrac{\mu_0}{2\pi}\,\dfrac{10 - 5}{0{,}05} = \textcolor{red}{\qty{2e-5}{\tesla}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Dos conductores rectilíneos y paralelos, perpendiculares al papel, están separados \qty{1}{\m}. Por el primero circulan \qty{4}{\ampere}
+    saliendo del papel.
+    \begin{enumerate}[label=\letraminuscula]
+        \item ¿Qué corriente debe circular por el segundo, y en qué sentido, para que el campo se anule en un punto entre ellos situado a
+        \qty{80}{\cm} del primero?
+        \item Calcula la fuerza por unidad de longitud entre los dos hilos.
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \textcolor{blue}{Entre los hilos los campos son opuestos si las corrientes tienen el mismo sentido:}
+            \(\dfrac{4}{0{,}8} = \dfrac{I_2}{0{,}2} \Rightarrow \textcolor{red}{I_2 = \qty{1}{\ampere}}\), \textcolor{red}{también saliente}.
+            \item \(\dfrac{F}{L} = \dfrac{\mu_0 I_1 I_2}{2\pi d} = \textcolor{red}{\qty{8e-7}{\newton\per\m}}\), \textcolor{red}{de atracción}.
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Dos conductores rectilíneos y paralelos, separados \qty{15}{\cm}, llevan \qty{8}{\ampere} y \qty{5}{\ampere}. Calcula la fuerza por unidad de
+    longitud sobre cada uno si las corrientes tienen el mismo sentido y si tienen sentidos contrarios.
+    \begin{solu}
+        \(\dfrac{F}{L} = \dfrac{\mu_0 I_1 I_2}{2\pi d} = 2\cdot 10^{-7}\,\dfrac{8\cdot 5}{0{,}15} = \textcolor{red}{\qty{5.33e-5}{\newton\per\m}}\) \textcolor{blue}{sobre cada uno:}
+        \textcolor{red}{de atracción si tienen el mismo sentido y de repulsión si son contrarias.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Por un conductor horizontal fijo circulan \qty{80}{\ampere}. Otro conductor paralelo de \qty{1}{\m} y \qty{15}{\g}, situado encima, puede
+    moverse verticalmente. ¿Qué corriente, y en qué sentido, debe llevar para quedar en equilibrio a \qty{4}{\mm} del primero?
+    \begin{solu}
+        \textcolor{blue}{La fuerza debe ser de repulsión (hacia arriba), así que} \textcolor{red}{la corriente debe tener sentido contrario}.
+        \[ \dfrac{\mu_0 I_1 I_2 L}{2\pi d} = mg \;\Rightarrow\; I_1 = \dfrac{mg\,2\pi d}{\mu_0 I_2 L} = \dfrac{0{,}015\cdot 9{,}8\cdot 2\pi\cdot 0{,}004}{4\pi\cdot 10^{-7}\cdot 80} = \textcolor{red}{\qty{36.8}{\ampere}} \]
+    \end{solu}
+\end{exercise}
+
+\subsection{Flujo e inducción}
+
+\begin{exercise}
+    Calcula el flujo a través de una espira de vector superficie \(\vec S = (4\,\vec{i} + 3\,\vec{j} - 12\,\vec{k})\ \unit{\cm\squared}\) en un campo
+    \(\vec B = 0{,}2\,\vec{i}\ \unit{\tesla}\).
+    \begin{solu}
+        \(\Phi = \vec B\cdot\vec S = 0{,}2\cdot 4\cdot 10^{-4} = \textcolor{red}{\qty{8e-5}{\weber}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una espira de \qty{20}{\cm\squared} está en el plano \(XY\). Calcula el flujo que la atraviesa si \(\vec B = 0{,}3\,\vec{i} + 0{,}05\,\vec{k}\ \unit{\tesla}\).
+    \begin{solu}
+        \textcolor{blue}{\(\vec S = 2\cdot 10^{-3}\,\vec{k}\ \unit{\m\squared}\); solo cuenta la componente \(z\) del campo:}
+        \(\Phi = 0{,}05\cdot 2\cdot 10^{-3} = \textcolor{red}{\qty{1e-4}{\weber}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una bobina de 200 espiras cuadradas de \qty{5}{\cm} de lado está perpendicular a un campo de \qty{0.4}{\tesla}. ¿Qué fem media se induce
+    si gira \ang{90} en \qty{0.02}{\second}?
+    \begin{solu}
+        \textcolor{blue}{El flujo pasa de \(BS\) a 0:} \(|\varepsilon| = N\,\dfrac{BS}{\Delta t} = 200\,\dfrac{0{,}4\cdot 0{,}0025}{0{,}02} = \textcolor{red}{\qty{10}{\volt}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una bobina de 300 espiras de \qty{8}{\cm} de radio está perpendicular a un campo de \qty{0.6}{\tesla}. Calcula la fem media inducida si el
+    campo se anula en \qty{0.15}{\second}.
+    \begin{solu}
+        \(|\varepsilon| = N\,\dfrac{B\pi r^2}{\Delta t} = 300\,\dfrac{0{,}6\cdot\pi\cdot 0{,}08^2}{0{,}15} = \textcolor{red}{\qty{24.1}{\volt}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    El flujo a través de cada espira de una bobina de 400 espiras pasa de \qty{3e-4}{\weber} a \qty{1e-4}{\weber} en \qty{0.05}{\second}. ¿Qué fem media se induce?
+    \begin{solu}
+        \(\varepsilon = -N\,\dfrac{\Delta\Phi}{\Delta t} = -400\,\dfrac{(1 - 3)\cdot 10^{-4}}{0{,}05} = \textcolor{red}{\qty{1.6}{\volt}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una espira cuadrada de \qty{4}{\cm} de lado entra a \qty{5}{\cm\per\second} en una región con un campo perpendicular de \qty{0.5}{\tesla}.
+    ¿Qué fem se induce mientras entra? ¿Y cuando está entera dentro del campo?
+    \begin{solu}
+        \textcolor{blue}{Mientras entra, el área dentro del campo crece a razón de \(lv\):} \(\varepsilon = B l v = 0{,}5\cdot 0{,}04\cdot 0{,}05 = \textcolor{red}{\qty{1e-3}{\volt}}\).
+        \textcolor{red}{Cuando está dentro, el flujo no cambia y \(\varepsilon = 0\).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una bobina de 20 espiras de \qty{5}{\cm} de radio está perpendicular a un campo que varía según \(B = 0{,}05t - 0{,}02t^2\) (SI). Calcula el
+    flujo que atraviesa la bobina en función del tiempo y la fem inducida en \(t = \qty{3}{\second}\).
+    \begin{solu}
+        \(\Phi = N B S = 20\cdot\pi\cdot 0{,}05^2\,(0{,}05t - 0{,}02t^2) = \textcolor{red}{0{,}157\,(0{,}05t - 0{,}02t^2)\ \unit{\weber}}\).
+
+        \(\varepsilon = -\dfrac{d\Phi}{dt} = -0{,}157\,(0{,}05 - 0{,}04t)\); en \(t = 3\): \(\varepsilon = \textcolor{red}{\qty{0.011}{\volt}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    El flujo a través de una espira de \qty{20}{\cm\squared} varía según \(\Phi = 4\cdot 10^{-4}\cos(100t)\) (SI). Calcula el campo, supuesto
+    uniforme, y la fem inducida.
+    \begin{solu}
+        \(B = \dfrac{\Phi_{\text{máx}}}{S} = \dfrac{4\cdot 10^{-4}}{2\cdot 10^{-3}} = \textcolor{red}{\qty{0.2}{\tesla}}\);
+        \(\varepsilon = -\dfrac{d\Phi}{dt} = \textcolor{red}{0{,}04\sen(100t)\ \unit{\volt}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una espira cuadrada de \qty{10}{\cm} de lado está en el plano \(XY\), en un campo que forma \ang{30} con el eje \(Z\) y cuyo módulo varía
+    según \(B = 0{,}02\,(t^2 + 3t + 1)\) (SI). Calcula el flujo en función del tiempo y la fem en \(t = \qty{5}{\second}\). ¿En qué sentido circula
+    la corriente?
+    \begin{solu}
+        \(\Phi = B S\cos\ang{30} = \textcolor{red}{1{,}73\cdot 10^{-4}\,(t^2 + 3t + 1)\ \unit{\weber}}\);
+        \(\varepsilon = -\dfrac{d\Phi}{dt} = -1{,}73\cdot 10^{-4}(2t + 3)\); en \(t = 5\): \(|\varepsilon| = \textcolor{red}{\qty{2.25e-3}{\volt}}\).
+
+        \textcolor{blue}{El flujo en el sentido \(+Z\) aumenta, así que el campo inducido apunta hacia \(-Z\):} \textcolor{red}{la corriente circula en sentido
+        horario visto desde arriba (desde \(+Z\)).}
+    \end{solu}
+\end{exercise}
+
+\subsection{Alternador y transformador}
+
+\begin{exercise}
+    Una bobina de 100 espiras cuadradas de \qty{4}{\cm} de lado gira en un campo de \qty{0.5}{\tesla}. ¿Con qué frecuencia debe girar para
+    que la fem máxima sea de \qty{10}{\volt}?
+    \begin{solu}
+        \(\omega = \dfrac{\varepsilon_0}{NBS} = \dfrac{10}{100\cdot 0{,}5\cdot 0{,}0016} = \qty{125}{\radian\per\second}\);
+        \(f = \dfrac{\omega}{2\pi} = \textcolor{red}{\qty{19.9}{\hertz}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un generador tiene una bobina de 20 espiras de \qty{0.05}{\m\squared} que gira a \qty{50}{\hertz} en un campo de \qty{0.4}{\tesla}. Calcula la
+    fem máxima.
+    \begin{solu}
+        \(\varepsilon_0 = NBS\omega = 20\cdot 0{,}4\cdot 0{,}05\cdot 100\pi = \textcolor{red}{\qty{126}{\volt}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una bobina de 50 espiras de \qty{200}{\cm\squared} gira a \qty{600}{rpm} alrededor de un eje de su plano perpendicular a un campo de
+    \qty{0.3}{\tesla}. Escribe la fem inducida en función del tiempo.
+    \begin{solu}
+        \(\omega = 600\cdot\dfrac{2\pi}{60} = 20\pi\ \unit{\radian\per\second}\); \(\varepsilon_0 = NBS\omega = 50\cdot 0{,}3\cdot 0{,}02\cdot 20\pi = \qty{18.8}{\volt}\).
+        \[ \textcolor{red}{\varepsilon = 18{,}8\sen(20\pi t)\ \text{(V)}} \]
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Se quiere obtener \qty{12}{\volt} a partir de la red de \qty{220}{\volt} con un transformador cuyo primario tiene 1000 espiras. ¿Cuántas
+    espiras debe tener el secundario? Si por el secundario circulan \qty{2}{\ampere}, ¿qué intensidad circula por el primario?
+    \begin{solu}
+        \(N_2 = N_1\,\dfrac{V_2}{V_1} = 1000\,\dfrac{12}{220} \approx \textcolor{red}{55\ \text{espiras}}\);
+        \(I_1 = I_2\,\dfrac{V_2}{V_1} = \textcolor{red}{\qty{0.109}{\ampere}}\).
+    \end{solu}
+\end{exercise}

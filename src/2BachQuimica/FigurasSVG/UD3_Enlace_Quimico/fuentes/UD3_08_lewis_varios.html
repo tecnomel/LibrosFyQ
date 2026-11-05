@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_08 · Estructuras de Lewis de HF, O2, CO2 y HCN</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+</head>
+<body>
+<script>
+// HF, O2, CO2 y HCN: enlaces simple, doble y triple.
+const svg = crearFigura(760, 95);
+const L = { L: 56 };
+dibujarLewis(svg, 40, 45, { atomos: [{ s: "H", x: 0, y: 0 }, { s: "F", x: 1, y: 0, libres: 3 }], enlaces: [{ a: "H", b: "F" }] }, L);
+dibujarLewis(svg, 190, 45, { atomos: [{ s: "O", id: "a", x: 0, y: 0, libres: 2 }, { s: "O", id: "b", x: 1, y: 0, libres: 2 }], enlaces: [{ a: "a", b: "b", orden: 2 }] }, L);
+dibujarLewis(svg, 350, 45, { atomos: [{ s: "O", id: "a", x: 0, y: 0, libres: 2 }, { s: "C", x: 1, y: 0 }, { s: "O", id: "b", x: 2, y: 0, libres: 2 }],
+    enlaces: [{ a: "a", b: "C", orden: 2 }, { a: "C", b: "b", orden: 2 }] }, L);
+dibujarLewis(svg, 570, 45, { atomos: [{ s: "H", x: 0, y: 0 }, { s: "C", x: 1, y: 0 }, { s: "N", x: 2, y: 0, libres: 1 }],
+    enlaces: [{ a: "H", b: "C" }, { a: "C", b: "N", orden: 3 }] }, L);
+[["HF", 68], ["O₂", 218], ["CO₂", 406], ["HCN", 626]].forEach(([t, x]) =>
+    texto(svg, x, 88, t, { "text-anchor": "middle", "font-size": 14, fill: COLORES.gris }));
+</script>
+</body>
+</html>

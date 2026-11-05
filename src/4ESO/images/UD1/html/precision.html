@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Precisión de un instrumento</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card .t { font-size: 13px; } .card h3 { font-size: 15px; color: var(--blue); margin-bottom: 4px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3>Regla graduada en milímetros</h3><svg id="a" width="370" height="150"></svg>
+            <div class="t">La varilla mide algo más de 7,6 cm sin llegar a 7,7 cm: la medida tiene <b>dos cifras significativas</b>, 7,6 cm (precisión: 0,1 cm).</div></div>
+        <div class="card"><h3>Cinta graduada en centímetros</h3><svg id="b" width="370" height="150"></svg>
+            <div class="t">Solo podemos asegurar que mide más de 7 cm y menos de 8 cm: la medida tiene <b>una cifra significativa</b>, 7 cm (precisión: 1 cm).</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    function ruler(id, mm) {
+        const add = svgAdder(id);
+        const x0 = 20, cm = 80, y = 90;   // 1 cm = 80 px; la regla muestra de 3 a 7,9 cm
+        add('rect', { x: 10, y, width: 350, height: 46, fill: mm ? '#F9E79F' : '#D6EAF8', stroke: '#7F8C8D', 'stroke-width': 1.5 });
+        for (let k = 0; k <= 42; k++) {
+            const x = x0 + k * cm / 10;
+            if (x > 355) break;
+            const big = k % 10 === 0, half = k % 5 === 0;
+            if (!mm && !big) continue;
+            add('line', { x1: x, y1: y, x2: x, y2: y + (big ? 18 : half ? 12 : 8), stroke: '#2C3E50', 'stroke-width': big ? 1.5 : 1 });
+            if (big) label(add, x, y + 36, String(4 + k / 10), { 'font-size': 14 });
+        }
+        // varilla: termina en 7,64 cm
+        const xEnd = x0 + (7.64 - 4) * cm;
+        add('rect', { x: 0, y: y - 22, width: xEnd, height: 16, rx: 4, fill: '#85C1E9', stroke: '#1B4F72', 'stroke-width': 1.5 });
+        add('line', { x1: xEnd, y1: y - 30, x2: xEnd, y2: y + 4, stroke: '#C0392B', 'stroke-width': 1.5, 'stroke-dasharray': '3 2' });
+        // lupa
+        const cx = xEnd, cy = 30;
+        add('circle', { cx, cy, r: 26, fill: '#fff', stroke: '#5D6D7E', 'stroke-width': 2 });
+        label(add, cx, cy + 5, mm ? '7,6…' : '7…', { 'font-size': 15, fill: '#C0392B' });
+    }
+    ruler('a', true);
+    ruler('b', false);
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_E02 · Temperaturas de ebullición: H2O, HF, HCl, Cl2</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Temperaturas de ebullición normales (°C).
+const svg = crearFigura(560, 80);
+const cols = [["Sustancia", "Temperatura de ebullición normal (°C)"], [[{ t: "H" }, { t: "2", sub: true }, { t: "O" }], "100"], ["HF", "20"], ["HCl", "−85"], [[{ t: "Cl" }, { t: "2", sub: true }], "−34"]];
+const anchos = [300, 65, 65, 65, 55];
+let x = 5;
+cols.forEach((c, i) => {
+    [0, 1].forEach(f => {
+        el("rect", { x, y: 5 + f * 34, width: anchos[i], height: 34, fill: f ? "#fff" : "#F3F3F3", stroke: "#333", "stroke-width": 1 }, svg);
+        texto(svg, x + anchos[i] / 2, 28 + f * 34, c[f], { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto, "font-family": "Times New Roman, serif" });
+    });
+    x += anchos[i];
+});
+</script>
+</body>
+</html>

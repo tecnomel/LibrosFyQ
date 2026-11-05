@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>U8 - Chemical reaction: C + O2 -> CO2</title>
+<!-- Unit 8 · fig:reaccion_quimica · sustituye a
+     Images/reacciones_quimicas/reaccion_quimica_gemini.png -->
+<script src="../lib/smiles-drawer.min.js"></script>
+<script src="../lib/comun.js"></script>
+</head>
+<body>
+<script>
+const { svg, defs } = crearLienzo(1000, 470);
+
+/* Generador pseudoaleatorio con semilla: la figura sale siempre igual */
+let semilla = 7;
+const azar = () => ((semilla = (semilla * 16807) % 2147483647) / 2147483647);
+
+const VIDRIO = degradadoLineal(defs, 'vidrio',
+  [['0%', '#d6ebf7', 0.85], ['40%', '#ffffff', 0.45], ['100%', '#bcd7ea', 0.85]], 0, 0, 1, 0);
+const TRAZO_VIDRIO = { stroke: '#5b8db8', 'stroke-width': 2.2, 'stroke-linejoin': 'round' };
+const METAL = degradadoLineal(defs, 'metal', [['0%', '#c9d1d9'], ['100%', '#7d8894']]);
+const BASE = degradadoLineal(defs, 'base', [['0%', '#4d6f99'], ['100%', '#2c4466']]);
+
+const molO2 = (g, x, y, r, ang = 0) => {
+  const dx = r * 0.7 * Math.cos(ang), dy = r * 0.7 * Math.sin(ang);
+  atomo(g, defs, x - dx, y - dy, r, 'O', { etiqueta: false });
+  atomo(g, defs, x + dx, y + dy, r, 'O', { etiqueta: false });
+};
+const molCO2 = (g, x, y, r, ang = 0) => {
+  const dx = r * 1.35 * Math.cos(ang), dy = r * 1.35 * Math.sin(ang);
+  atomo(g, defs, x - dx, y - dy, r * 0.9, 'O', { etiqueta: false });
+  atomo(g, defs, x + dx, y + dy, r * 0.9, 'O', { etiqueta: false });
+  atomo(g, defs, x, y, r, 'C', { etiqueta: false });
+};
+
+/* Matraz Erlenmeyer inclinado con partículas dentro */
+function matraz(x, y, giro, tipo) {
+  const g = el('g', { transform: `translate(${x},${y}) rotate(${giro})` }, svg);
+  const d = 'M-11,-78 L-11,-38 L-58,34 Q-62,44 -50,44 L50,44 Q62,44 58,34 L11,-38 L11,-78 Z';
+  el('path', { d, fill: VIDRIO, ...TRAZO_VIDRIO }, g);
+  el('rect', { x: -15, y: -84, width: 30, height: 7, rx: 3, fill: VIDRIO, ...TRAZO_VIDRIO }, g);
+  for (let i = 0; i < 14; i++) {
+    const py = -20 + azar() * 56, ancho = 12 + (py + 38) * 0.62;
+    const px = (azar() * 2 - 1) * (ancho - 10);
+    if (tipo === 'C') atomo(g, defs, px, py, 6.5, 'C', { etiqueta: false });
+    else molO2(g, px, py, 5.5, azar() * Math.PI);
+  }
+  return g;
+}
+
+/* Placa calefactora */
+function placa(cx, y, ancho) {
+  el('rect', { x: cx - ancho / 2, y, width: ancho, height: 16, rx: 4, fill: METAL, stroke: '#56606b', 'stroke-width': 1.5 }, svg);
+  el('rect', { x: cx - ancho / 2 - 10, y: y + 16, width: ancho + 20, height: 44, rx: 8, fill: BASE, stroke: '#1f3350', 'stroke-width': 1.5 }, svg);
+  el('circle', { cx: cx - ancho / 2 + 16, cy: y + 38, r: 6, fill: '#ff5a36', stroke: '#8a2210' }, svg);
+  el('circle', { cx: cx + ancho / 2 - 16, cy: y + 38, r: 9, fill: METAL, stroke: '#1f3350', 'stroke-width': 1.5 }, svg);
+}
+
+/* ===================== Escena 1: los reactivos ===================== */
+placa(215, 352, 150);
+// Vaso de precipitados
+el('path', { d: 'M160,238 L166,346 Q166,352 172,352 L258,352 Q264,352 264,346 L270,238', fill: VIDRIO, ...TRAZO_VIDRIO }, svg);
+el('path', { d: 'M154,234 L276,234', ...TRAZO_VIDRIO, 'stroke-width': 3, fill: 'none' }, svg);
+for (let i = 0; i < 7; i++) atomo(svg, defs, 180 + azar() * 70, 290 + azar() * 52, 6.5, 'C', { etiqueta: false });
+for (let i = 0; i < 6; i++) molO2(svg, 180 + azar() * 70, 290 + azar() * 52, 5.5, azar() * Math.PI);
+
+// el cuello apunta hacia el vaso: se están vertiendo los reactivos
+matraz(104, 140, 118, 'C');
+matraz(328, 140, -118, 'O');
+// Partículas cayendo al vaso
+for (let i = 0; i < 6; i++) atomo(svg, defs, 176 + i * 6 + azar() * 6, 176 + i * 11, 6.5, 'C', { etiqueta: false });
+for (let i = 0; i < 5; i++) molO2(svg, 256 - i * 6 - azar() * 6, 176 + i * 12, 5.5, azar() * Math.PI);
+
+const E = { size: 20, weight: 600 };
+texto(svg, 58, 262, 'Carbon', E);  texto(svg, 58, 288, '(C)', E);
+texto(svg, 378, 262, 'Oxygen', E); texto(svg, 378, 288, '(O_2)', E);
+el('line', { x1: 58, y1: 238, x2: 58, y2: 178, stroke: '#333' }, svg);
+el('line', { x1: 378, y1: 238, x2: 378, y2: 178, stroke: '#333' }, svg);
+
+/* Flecha central */
+flechaReaccion(svg, defs, 440, 290, 110, 28);
+texto(svg, 495, 340, 'heat', { size: 17, fill: '#c8471d', weight: 600 });
+
+/* ===================== Escena 2: la reacción ===================== */
+// Manta calefactora con resplandor
+const BRILLO = degradadoLineal(defs, 'brillo', [['0%', '#ffb347', 0.15], ['100%', '#ff5a1f', 0.85]]);
+el('path', { d: 'M590,216 L610,196 L890,196 L910,216 L920,392 L580,392 Z', fill: BASE, stroke: '#1f3350', 'stroke-width': 2 }, svg);
+el('rect', { x: 620, y: 214, width: 260, height: 170, rx: 10, fill: BRILLO }, svg);
+for (let i = 0; i < 3; i++)
+  el('ellipse', { cx: 750, cy: 368 - i * 5, rx: 110 - i * 22, ry: 10 - i * 2, fill: 'none', stroke: '#ffd166', 'stroke-width': 2.5, opacity: 0.9 }, svg);
+el('rect', { x: 570, y: 392, width: 360, height: 34, rx: 8, fill: BASE, stroke: '#1f3350', 'stroke-width': 1.5 }, svg);
+el('circle', { cx: 596, cy: 409, r: 7, fill: '#ff5a36', stroke: '#8a2210' }, svg);
+el('circle', { cx: 900, cy: 409, r: 10, fill: METAL, stroke: '#1f3350', 'stroke-width': 1.5 }, svg);
+
+// Reactor de vidrio con agitador y tubos de entrada/salida
+el('path', { d: 'M700,98 L700,128 Q640,138 640,178 L640,356 Q640,378 662,378 L838,378 Q860,378 860,356 L860,178 Q860,138 800,128 L800,98 Z', fill: VIDRIO, ...TRAZO_VIDRIO }, svg);
+el('rect', { x: 692, y: 86, width: 116, height: 16, rx: 5, fill: METAL, stroke: '#56606b' }, svg);
+el('line', { x1: 750, y1: 30, x2: 750, y2: 330, stroke: '#7d8894', 'stroke-width': 5 }, svg);
+el('path', { d: 'M722,334 Q736,322 750,330 Q764,322 778,334 Q764,342 750,334 Q736,342 722,334 Z', fill: METAL, stroke: '#56606b' }, svg);
+el('line', { x1: 718, y1: 86, x2: 700, y2: 30, stroke: '#5b8db8', 'stroke-width': 7, 'stroke-linecap': 'round' }, svg);
+el('line', { x1: 786, y1: 86, x2: 806, y2: 36, stroke: '#5b8db8', 'stroke-width': 7, 'stroke-linecap': 'round' }, svg);
+molCO2(svg, 824, 22, 5, -1.2);   // una molécula de CO2 escapa por el tubo
+// Líquido y su superficie
+el('path', { d: 'M642,190 L858,190 L858,356 Q858,376 838,376 L662,376 Q642,376 642,356 Z', fill: '#bfe3f7', opacity: 0.45 }, svg);
+el('ellipse', { cx: 750, cy: 190, rx: 108, ry: 9, fill: '#bfe3f7', stroke: '#5b8db8', 'stroke-width': 1.2, opacity: 0.8 }, svg);
+// Moléculas de CO2 formadas
+for (const [x, y, a] of [[672, 220, 0.3], [812, 214, -0.5], [690, 272, 1.1], [760, 250, -0.2], [826, 280, 0.9],
+                          [680, 336, -0.8], [800, 330, 0.4], [735, 300, 1.6], [838, 244, 0.1]])
+  molCO2(svg, x, y, 9, a);
+
+texto(svg, 560, 60, 'Chemical', E); texto(svg, 560, 86, 'reaction', E);
+el('line', { x1: 616, y1: 66, x2: 694, y2: 50, stroke: '#333' }, svg);
+texto(svg, 955, 210, 'Carbon', E); texto(svg, 955, 236, 'dioxide', E); texto(svg, 955, 262, '(CO_2)', E);
+el('line', { x1: 955, y1: 272, x2: 955, y2: 300, stroke: '#333' }, svg);
+el('line', { x1: 955, y1: 300, x2: 850, y2: 300, stroke: '#333' }, svg);
+
+/* Ecuación y fórmula desarrollada del producto (SMILES) */
+texto(svg, 430, 455, 'C + O_2 → CO_2', { size: 26, weight: 700, fill: '#b5541b' });
+estructuraSMILES(svg, 'O=C=O', 628, 446, { enlace: 30, tam: 18 });
+
+finalizar();
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ions</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 22px; }
+    .c { flex: 1; border-radius: 16px; padding: 12px; text-align: center; border: 3px solid; }
+    .cat { border-color: #2471A3; background: #EAF2F8; } .cat h2 { color: #2471A3; }
+    .an { border-color: var(--red); background: var(--red-soft); } .an h2 { color: var(--red); }
+    h2 { font-size: 23px; }
+    .seq { display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .seq .ar { font-size: 15px; font-weight: 700; color: var(--grey); text-align: center; }
+    .seq .ar b { display: block; font-size: 30px; }
+    .t { font-size: 17px; margin-top: 6px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Ions: atoms that gain or lose electrons</h1>
+    <div class="row">
+        <div class="c cat"><h2>Cation (+): LOSES electrons</h2>
+            <div class="seq"><svg id="na" width="190" height="190"></svg><div class="ar"><b>➜</b>loses 1 e⁻</div><svg id="nap" width="190" height="190"></svg></div>
+            <div class="t">11 p⁺ and 10 e⁻ → charge <b>+1</b>: <b>Na⁺</b> (sodium ion)<br>Metals form cations.</div></div>
+        <div class="c an"><h2>Anion (−): GAINS electrons</h2>
+            <div class="seq"><svg id="cl" width="190" height="190"></svg><div class="ar"><b>➜</b>gains 1 e⁻</div><svg id="clm" width="190" height="190"></svg></div>
+            <div class="t">17 p⁺ and 18 e⁻ → charge <b>−1</b>: <b>Cl⁻</b> (chloride ion)<br>Nonmetals form anions.</div></div>
+    </div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg';
+    function atom(id, shells, label, color, extra, charge) {
+        const s = document.getElementById(id);
+        const add = (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; s.appendChild(e); return e; };
+        const c = 95, R = [32, 55, 80];
+        shells.forEach((n, i) => {
+            add('circle', { cx: c, cy: c, r: R[i], fill: 'none', stroke: '#AAB7B8', 'stroke-width': 1.5, 'stroke-dasharray': '4 4' });
+            for (let k = 0; k < n; k++) { const a = k * 2 * Math.PI / n - 1.2;
+                add('circle', { cx: c + R[i] * Math.cos(a), cy: c + R[i] * Math.sin(a), r: 6.5, fill: (extra && i === shells.length - 1 && k === n - 1) ? '#F1C40F' : '#2471A3' }); }
+        });
+        add('circle', { cx: c, cy: c, r: 20, fill: color });
+        add('text', { x: c, y: c + 6, 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 800, fill: '#fff' }, label);
+        if (charge) add('text', { x: 175, y: 30, 'text-anchor': 'end', 'font-size': 30, 'font-weight': 800, fill: color }, charge);
+    }
+    atom('na', [2, 8, 1], 'Na', '#C0392B');
+    atom('nap', [2, 8], 'Na', '#2471A3', false, '+');
+    atom('cl', [2, 8, 7], 'Cl', '#1E8449');
+    atom('clm', [2, 8, 8], 'Cl', '#C0392B', true, '−');
+</script>
+</body>
+</html>

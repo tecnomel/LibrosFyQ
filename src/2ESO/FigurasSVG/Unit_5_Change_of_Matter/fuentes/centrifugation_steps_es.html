@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Centrifugación</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="steps.css">
+<script src="lab_es.js"></script>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1></h1>
+    <div class="prop" id="prop"></div>
+    <div class="row" id="row"></div>
+</div>
+<script>
+const mixed = [[90,'#B03A2E']];
+buildSteps('Cómo separar por centrifugación', 'la <b>densidad</b>: las partículas más pesadas van al fondo', 'sangre (células + plasma) o agua con barro', [
+  [tube(70,40,0,[[90,'#C0392B']]) + tube(160,40,0,[[90,'#C0392B']]) + T(130,190,'dos tubos, igual cantidad',{fs:14}),
+   'Llena los tubos y colócalos <b>uno frente al otro</b> para que la centrífuga esté equilibrada.'],
+  [`<circle cx="130" cy="110" r="85" fill="#F4F6F7" stroke="${C.line}" stroke-width="4"/><circle cx="130" cy="110" r="8" fill="${C.line}"/>` +
+   `<g transform="rotate(-30 130 110)"><rect x="150" y="100" width="60" height="20" rx="8" fill="#F5B7B1" stroke="${C.line}"/><rect x="50" y="100" width="60" height="20" rx="8" fill="#F5B7B1" stroke="${C.line}"/></g>` +
+   `<path d="M60 35 A95 95 0 0 1 180 25" stroke="${C.red}" stroke-width="4" fill="none"/><polygon points="180,15 192,27 176,33" fill="${C.red}"/>`,
+   'La centrífuga <b>gira muy deprisa</b> durante unos minutos.'],
+  [tube(100,40,0,[[38,'#922B21'],[52,'#F7DC6F']]) + T(185,120,'plasma',{c:'#B7950B'}) + T(185,138,'(líquido)',{fs:12,fw:400}) +
+   T(185,168,'células',{c:'#922B21'}) + T(185,186,'(más densas)',{fs:12,fw:400}),
+   'La parte <b>más densa</b> queda abajo y el líquido arriba. Vierte el líquido con cuidado.'],
+]);
+</script>
+</body>
+</html>

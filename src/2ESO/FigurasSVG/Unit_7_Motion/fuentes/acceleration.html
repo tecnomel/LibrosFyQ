@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Acceleration</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .lane { border-radius: 16px; padding: 10px 14px; margin-bottom: 14px; border: 3px solid; }
+    .up { border-color: var(--green); background: var(--green-soft); } .up h2 { color: var(--green); }
+    .dn { border-color: var(--red); background: var(--red-soft); } .dn h2 { color: var(--red); }
+    h2 { font-size: 21px; }
+    .road { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 6px; }
+    .car { text-align: center; }
+    .car .ic { line-height: 1; }
+    .car .t { font-size: 14px; color: var(--grey); }
+    .car .v { font-size: 18px; font-weight: 800; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Acceleration: how quickly the speed changes</h1>
+    <div class="lane up"><h2>Speeding up: a &gt; 0 &nbsp;(+5 m/s every second → a = 5 m/s²)</h2><div class="road" id="r1"></div></div>
+    <div class="lane dn"><h2>Slowing down: a &lt; 0 &nbsp;(−5 m/s every second → a = −5 m/s²)</h2><div class="road" id="r2"></div></div>
+    <div style="text-align:center; font-size:22px">a = <span class="frac"><span>v<sub>final</sub> − v<sub>initial</sub></span><span>time</span></span> &nbsp;·&nbsp; SI unit: <b>m/s²</b></div>
+</div>
+<script>
+    function road(id, vs) {
+        const r = document.getElementById(id);
+        vs.forEach((v, i) => r.insertAdjacentHTML('beforeend', `<div class="car"><div class="ic" style="font-size:${26 + v * 1.4}px">🚗</div><div class="v">${v} m/s</div><div class="t">t = ${i} s</div></div>`));
+    }
+    road('r1', [5, 10, 15, 20, 25]);
+    road('r2', [25, 20, 15, 10, 5]);
+</script>
+</body>
+</html>

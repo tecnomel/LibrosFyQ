@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Conductividad eléctrica y temperatura</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } .row { display: flex; gap: 14px; } .card { flex: 1; text-align: center; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Gráfica a)</h2><svg id="a" width="400" height="280"></svg></div>
+        <div class="card"><h2>Gráfica b)</h2><svg id="b" width="400" height="280"></svg></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    function axes(add, tmax, ylab) {
+        for (let i = 0; i <= 10; i++) {
+            add('line', { x1: 60 + i * 30, y1: 30, x2: 60 + i * 30, y2: 230, stroke: '#EBF5FB', 'stroke-width': 1 });
+            add('line', { x1: 60, y1: 30 + i * 20, x2: 360, y2: 30 + i * 20, stroke: '#EBF5FB', 'stroke-width': 1 });
+        }
+        arrow(add, 60, 230, 375, 230, '#23373B', 2, 10); arrow(add, 60, 230, 60, 15, '#23373B', 2, 10);
+        label(add, 378, 222, 'T (°C)', { 'font-size': 14, 'text-anchor': 'end' });
+        label(add, 66, 14, ylab, { 'font-size': 13, 'text-anchor': 'start' });
+        [0, 0.5, 1].forEach(f => label(add, 60 + f * 300, 248, Math.round(f * tmax), { 'font-size': 13 }));
+    }
+    // a) metal: alta en sólido, baja tras fundir
+    let add = svgAdder('a');
+    axes(add, 600, 'conductividad eléctrica');
+    add('polyline', { points: '60,60 200,95', fill: 'none', stroke: '#C0392B', 'stroke-width': 3 });
+    add('line', { x1: 200, y1: 95, x2: 200, y2: 160, stroke: '#C0392B', 'stroke-width': 2, 'stroke-dasharray': '5 4' });
+    add('polyline', { points: '200,160 350,185', fill: 'none', stroke: '#C0392B', 'stroke-width': 3 });
+    label(add, 120, 60, 'sólido', { 'font-size': 14, fill: '#C0392B' }); label(add, 290, 160, 'líquido', { 'font-size': 14, fill: '#C0392B' });
+    label(add, 205, 130, 'fusión', { 'font-size': 13, 'text-anchor': 'start', fill: '#525252' });
+    // b) iónico: casi nula en sólido, sube al fundir
+    add = svgAdder('b');
+    axes(add, 1000, 'conductividad eléctrica');
+    add('polyline', { points: '60,226 260,222', fill: 'none', stroke: '#2471A3', 'stroke-width': 3 });
+    add('line', { x1: 260, y1: 222, x2: 260, y2: 70, stroke: '#2471A3', 'stroke-width': 2, 'stroke-dasharray': '5 4' });
+    add('polyline', { points: '260,70 350,55', fill: 'none', stroke: '#2471A3', 'stroke-width': 3 });
+    label(add, 150, 210, 'sólido', { 'font-size': 14, fill: '#2471A3' }); label(add, 310, 48, 'líquido', { 'font-size': 14, fill: '#2471A3' });
+    label(add, 255, 140, 'fusión', { 'font-size': 13, 'text-anchor': 'end', fill: '#525252' });
+</script>
+</body>
+</html>

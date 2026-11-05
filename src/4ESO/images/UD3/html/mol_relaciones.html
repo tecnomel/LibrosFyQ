@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Masa, cantidad de sustancia y número de partículas</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="900" height="230"></svg>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    const add = svgAdder('s');
+    const box = (x, title, unit, col) => {
+        add('rect', { x: x - 100, y: 70, width: 200, height: 90, rx: 18, fill: col + '22', stroke: col, 'stroke-width': 3 });
+        label(add, x, 108, title, { 'font-size': 20, fill: col, 'font-weight': 800 });
+        label(add, x, 138, unit, { 'font-size': 16, fill: '#23373B' });
+    };
+    box(130, 'Masa', 'm (g)', '#C0392B');
+    box(450, 'Cantidad de sustancia', 'n (mol)', '#000070');
+    box(770, 'N.º de partículas', 'N', '#1E8449');
+    // flechas curvas
+    const curve = (x1, x2, up, txt, col) => {
+        const y = up ? 64 : 166, cy = up ? 10 : 220;
+        add('path', { d: `M${x1} ${y} Q${(x1 + x2) / 2} ${cy} ${x2} ${y}`, fill: 'none', stroke: col, 'stroke-width': 3 });
+        const a = up ? 0.45 : -0.45;
+        arrow(add, x2 - 12 * (x2 > x1 ? 1 : -1), y + (up ? -8 : 8), x2, y, col, 3, 13);
+        label(add, (x1 + x2) / 2, up ? 30 : 214, txt, { 'font-size': 18, fill: col, 'font-weight': 800 });
+    };
+    curve(200, 380, true, '÷ M (g/mol)', '#C0392B');
+    curve(380, 200, false, '× M (g/mol)', '#C0392B');
+    curve(520, 700, true, '× Nₐ', '#1E8449');
+    curve(700, 520, false, '÷ Nₐ', '#1E8449');
+</script>
+</body>
+</html>

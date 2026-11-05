@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Separating heterogeneous mixtures</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .c { border-radius: 16px; padding: 10px; text-align: center; border: 2px solid var(--line); background: #FBFCFC; }
+    .c h2 { font-size: 21px; color: var(--blue); }
+    .c .u { font-size: 15px; color: var(--grey); }
+    .c .ex { font-size: 15px; font-weight: 700; color: var(--ocre); }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Separating heterogeneous mixtures</h1>
+    <div class="grid">
+        <div class="c"><h2>Sieving</h2><svg width="300" height="170">
+            <ellipse cx="150" cy="50" rx="110" ry="22" fill="#D5D8DC" stroke="#5D6D7E" stroke-width="3"/>
+            <g stroke="#7F8C8D" stroke-width="1"><line x1="60" y1="40" x2="240" y2="40"/><line x1="50" y1="52" x2="250" y2="52"/><line x1="70" y1="62" x2="230" y2="62"/><line x1="100" y1="30" x2="100" y2="70"/><line x1="150" y1="28" x2="150" y2="72"/><line x1="200" y1="30" x2="200" y2="70"/></g>
+            <g fill="#A04000"><circle cx="110" cy="38" r="12"/><circle cx="170" cy="42" r="14"/><circle cx="210" cy="48" r="11"/></g>
+            <g fill="#F0B27A"><circle cx="120" cy="100" r="3"/><circle cx="140" cy="115" r="3"/><circle cx="165" cy="105" r="3"/><circle cx="150" cy="130" r="3"/><circle cx="185" cy="122" r="3"/></g>
+            <path d="M80 150 Q150 125 220 150 Z" fill="#F0B27A"/></svg>
+            <div class="u">solids of very different sizes</div><div class="ex">pebbles + sand</div></div>
+        <div class="c"><h2>Filtration</h2><svg width="300" height="170">
+            <path d="M90 20 L150 95 L210 20 Z" fill="#FDFEFE" stroke="#5D6D7E" stroke-width="3"/><path d="M102 26 L150 86 L198 26" fill="none" stroke="#AAB7B8" stroke-width="2" stroke-dasharray="5 4"/>
+            <g fill="#A04000"><circle cx="140" cy="62" r="5"/><circle cx="155" cy="66" r="5"/><circle cx="148" cy="74" r="5"/></g>
+            <rect x="145" y="95" width="10" height="30" fill="#5D6D7E"/><rect x="110" y="128" width="80" height="38" fill="#AED6F1" stroke="#5D6D7E" stroke-width="3"/></svg>
+            <div class="u">a solid that does not dissolve, from a liquid</div><div class="ex">sand + water</div></div>
+        <div class="c"><h2>Decantation</h2><svg width="300" height="170">
+            <path d="M110 15 L190 15 L190 70 L155 115 L145 115 L110 70 Z" fill="#AED6F1" stroke="#5D6D7E" stroke-width="3"/>
+            <path d="M112 17 L188 17 L188 45 L112 45 Z" fill="#F7DC6F"/>
+            <rect x="145" y="115" width="10" height="30" fill="#5D6D7E"/><rect x="138" y="125" width="24" height="8" fill="#C0392B"/>
+            <text x="205" y="35" font-size="14" fill="#7D6608" font-weight="700">oil</text><text x="205" y="75" font-size="14" fill="#1B4F72" font-weight="700">water</text>
+            <rect x="120" y="148" width="60" height="20" fill="#AED6F1" stroke="#5D6D7E" stroke-width="2"/></svg>
+            <div class="u">liquids that do not mix (different density)</div><div class="ex">oil + water</div></div>
+        <div class="c"><h2>Magnetic separation</h2><svg width="300" height="170">
+            <path d="M110 30 L110 90 Q110 120 150 120 Q190 120 190 90 L190 30 L165 30 L165 90 Q165 100 150 100 Q135 100 135 90 L135 30 Z" fill="#C0392B"/>
+            <rect x="110" y="30" width="25" height="15" fill="#D5D8DC"/><rect x="165" y="30" width="25" height="15" fill="#D5D8DC"/>
+            <g stroke="#2C3E50" stroke-width="3"><line x1="112" y1="50" x2="104" y2="58"/><line x1="188" y1="50" x2="196" y2="60"/><line x1="115" y1="40" x2="100" y2="46"/></g>
+            <g fill="#E59866"><rect x="60" y="145" width="180" height="16" rx="6"/></g>
+            <g stroke="#2C3E50" stroke-width="3"><line x1="90" y1="148" x2="98" y2="140"/><line x1="200" y1="150" x2="210" y2="142"/></g></svg>
+            <div class="u">iron and other magnetic metals</div><div class="ex">iron filings + sawdust</div></div>
+        <div class="c"><h2>Solvent extraction</h2><svg width="300" height="170">
+            <rect x="80" y="40" width="120" height="110" fill="#AED6F1" stroke="#5D6D7E" stroke-width="3"/>
+            <path d="M82 150 L82 128 Q140 110 198 128 L198 150 Z" fill="#F0B27A"/>
+            <g fill="#fff" stroke="#2471A3"><circle cx="120" cy="70" r="3"/><circle cx="150" cy="85" r="3"/><circle cx="180" cy="65" r="3"/><circle cx="135" cy="100" r="3"/><circle cx="175" cy="98" r="3"/></g>
+            <text x="214" y="80" font-size="12" fill="#1B4F72" font-weight="700">salt dissolves</text><text x="214" y="140" font-size="12" fill="#A04000" font-weight="700">sand doesn't</text></svg>
+            <div class="u">a solvent that dissolves only ONE component</div><div class="ex">sand + salt (use water)</div></div>
+        <div class="c"><h2>Centrifugation</h2><svg width="300" height="170">
+            <circle cx="150" cy="85" r="70" fill="#F4F6F7" stroke="#5D6D7E" stroke-width="3"/><circle cx="150" cy="85" r="8" fill="#5D6D7E"/>
+            <g transform="rotate(-30 150 85)"><rect x="180" y="77" width="50" height="16" rx="8" fill="#FADBD8" stroke="#922B21" stroke-width="2"/><rect x="212" y="79" width="16" height="12" rx="5" fill="#922B21"/></g>
+            <g transform="rotate(150 150 85)"><rect x="180" y="77" width="50" height="16" rx="8" fill="#FADBD8" stroke="#922B21" stroke-width="2"/><rect x="212" y="79" width="16" height="12" rx="5" fill="#922B21"/></g>
+            <path d="M85 40 A80 80 0 0 1 150 10" fill="none" stroke="#C0392B" stroke-width="3"/><path d="M146 4 L156 10 L146 16" fill="#C0392B"/></svg>
+            <div class="u">it spins very fast: the denser part goes to the bottom</div><div class="ex">blood · spin-dryer</div></div>
+    </div>
+</div>
+</body>
+</html>

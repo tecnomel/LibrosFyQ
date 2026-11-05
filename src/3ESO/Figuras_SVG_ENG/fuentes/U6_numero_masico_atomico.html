@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>U6 - Mass number and atomic number</title>
+<!-- Unit 6 · fig:massatomic · sustituye a Images/SP_atomo/z_a_atomica_figura.pdf -->
+<script src="../lib/comun.js"></script>
+</head>
+<body>
+<script>
+const { svg, defs } = crearLienzo(460, 360);
+
+const VERDE = '#1a9e2c', AZUL = '#0a84c6', ROJO = '#c8102e';
+
+// Notación nuclear  ^A_Z X
+texto(svg, 262, 118, 'A', { size: 64, fill: VERDE, weight: 700 });
+texto(svg, 262, 212, 'Z', { size: 64, fill: AZUL, weight: 700 });
+texto(svg, 345, 185, 'X', { size: 150, fill: ROJO, weight: 700 });
+
+// Rótulos
+texto(svg, 110, 60, 'mass', { size: 34, fill: VERDE, weight: 700 });
+texto(svg, 110, 98, 'number', { size: 34, fill: VERDE, weight: 700 });
+texto(svg, 110, 178, 'atomic', { size: 34, fill: AZUL, weight: 700 });
+texto(svg, 110, 216, 'number', { size: 34, fill: AZUL, weight: 700 });
+texto(svg, 345, 290, 'Symbol of', { size: 30, fill: ROJO, weight: 700 });
+texto(svg, 345, 326, 'the element', { size: 30, fill: ROJO, weight: 700 });
+
+// Flechas indicadoras
+flecha(svg, defs, 190, 72, 236, 90, { ancho: 2.5, tam: 16 });
+flecha(svg, defs, 190, 192, 236, 192, { ancho: 2.5, tam: 16 });
+flecha(svg, defs, 345, 208, 345, 258, { ancho: 2.5, tam: 16 });
+
+finalizar();
+</script>
+</body>
+</html>

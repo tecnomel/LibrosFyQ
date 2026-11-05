@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Práctica: segunda ley de Newton con un carrito</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="720" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const yM = 150, xE = 560;
+    // mesa
+    add('rect', { x: 20, y: yM, width: xE - 20, height: 14, fill: '#B9770E' });
+    add('rect', { x: 50, y: yM + 14, width: 14, height: 150, fill: '#B9770E' });
+    add('rect', { x: xE - 40, y: yM + 14, width: 14, height: 150, fill: '#B9770E' });
+    add('line', { x1: 0, y1: yM + 164, x2: 720, y2: yM + 164, stroke: '#23373B', 'stroke-width': 2 });
+    // polea
+    add('line', { x1: xE - 6, y1: yM + 2, x2: xE + 14, y2: yM - 16, stroke: '#566573', 'stroke-width': 4 });
+    add('circle', { cx: xE + 14, cy: yM - 16, r: 14, fill: '#D5D8DC', stroke: '#566573', 'stroke-width': 3 });
+    // carrito con bloques
+    const cx = 170, cw = 130;
+    add('rect', { x: cx, y: yM - 46, width: cw, height: 30, rx: 4, fill: '#E74C3C', stroke: '#922B21', 'stroke-width': 2 });
+    box(add, cx + 18, yM - 74, 40, 28, '#F7DC6F'); box(add, cx + 64, yM - 74, 40, 28, '#F7DC6F');
+    label(add, cx + 60, yM - 84, 'carga del carrito', { 'font-size': 12, fill: '#525252', 'font-weight': 600 });
+    [cx + 26, cx + cw - 26].forEach(x => add('circle', { cx: x, cy: yM - 9, r: 9, fill: '#23373B' }));
+    // cuerda y masa colgante
+    add('line', { x1: cx + cw, y1: yM - 31, x2: xE + 14, y2: yM - 31 + 1, stroke: '#566573', 'stroke-width': 2 });
+    add('line', { x1: xE + 28, y1: yM - 16, x2: xE + 28, y2: yM + 70, stroke: '#566573', 'stroke-width': 2 });
+    box(add, xE + 12, yM + 70, 32, 36, '#85929E', '#34495E');
+    label(add, xE + 28, yM + 94, 'm', { 'font-size': 15, fill: '#FFFFFF', 'font-style': 'italic' });
+    arrow(add, xE + 28, yM + 110, xE + 28, yM + 150, '#2471A3', 3, 11);
+    rich(add, xE + 58, yM + 140, '*P* = *m* · *g*', { 'font-size': 14, fill: '#2471A3', 'text-anchor': 'start' });
+    arrow(add, cx + cw + 10, yM - 52, cx + cw + 70, yM - 52, '#C0392B', 3, 11);
+    vlab(add, cx + cw + 40, yM - 60, 'a', '', '#C0392B');
+    label(add, cx + 65, yM - 26, 'M', { 'font-size': 15, fill: '#FFFFFF', 'font-style': 'italic' });
+    // marcas de distancia y cronómetro
+    arrow(add, cx, yM + 50, cx + 300, yM + 50, '#525252', 1.3, 8); arrow(add, cx + 294, yM + 50, cx, yM + 50, '#525252', 1.3, 8);
+    label(add, cx + 150, yM + 70, 'distancia d (1 m)', { 'font-size': 13, fill: '#525252' });
+    dashed(add, cx, yM, cx, yM + 56, '#AEB6BF', 1); dashed(add, cx + 300, yM, cx + 300, yM + 56, '#AEB6BF', 1);
+    rich(add, 360, 40, '*a* = 2*d* / *t*^2', { 'font-size': 18, fill: '#C0392B', 'text-anchor': 'start' });
+    rich(add, 360, 68, '*m* · *g* = (*M* + *m*) · *a*', { 'font-size': 18, fill: '#C0392B', 'text-anchor': 'start' });
+    label(add, 360, 94, '(sin rozamiento)', { 'font-size': 13, fill: '#525252', 'text-anchor': 'start' });
+</script>
+</body>
+</html>

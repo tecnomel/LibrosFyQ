@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Modelos atómicos</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 14px; position: relative; }
+    .m { flex: 1; text-align: center; border-radius: 16px; padding: 10px; border: 2px solid var(--line); background: #FBFCFC; }
+    .y { display: inline-block; background: var(--blue); color: #fff; font-weight: 800; border-radius: 8px; padding: 2px 12px; font-size: 18px; }
+    .m h2 { font-size: 21px; margin: 6px 0 2px; color: var(--teal); }
+    .m .k { font-size: 15px; font-weight: 700; color: var(--ocre); margin-bottom: 4px; }
+    .m .t { font-size: 15px; color: var(--grey); }
+    .line { height: 6px; border-radius: 3px; background: linear-gradient(90deg, #AED6F1, var(--blue)); margin: 14px 10px 0; position: relative; }
+    .line::after { content: "▶"; position: absolute; right: -14px; top: -11px; color: var(--blue); font-size: 20px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Cómo ha cambiado nuestra idea del átomo</h1>
+    <div class="row">
+        <div class="m"><span class="y">1803</span><h2>Dalton</h2><div class="k">«bola de billar»</div>
+            <svg width="200" height="170"><defs><radialGradient id="g1" cx=".35" cy=".35"><stop offset="0" stop-color="#FDFEFE"/><stop offset="1" stop-color="#5D6D7E"/></radialGradient></defs><circle cx="100" cy="85" r="65" fill="url(#g1)"/></svg>
+            <div class="t">Los átomos son esferas macizas diminutas que no se pueden dividir.</div></div>
+        <div class="m"><span class="y">1904</span><h2>Thomson</h2><div class="k">«pudin de pasas»</div>
+            <svg width="200" height="170" id="th"><circle cx="100" cy="85" r="65" fill="#FADBD8" stroke="#C0392B" stroke-width="3"/></svg>
+            <div class="t">Una esfera positiva con electrones negativos incrustados.</div></div>
+        <div class="m"><span class="y">1911</span><h2>Rutherford</h2><div class="k">«planetario»</div>
+            <svg width="200" height="170" id="ru"></svg>
+            <div class="t">Un núcleo positivo diminuto y denso; los electrones se mueven a su alrededor. ¡El átomo está casi vacío!</div></div>
+        <div class="m"><span class="y">1913</span><h2>Bohr</h2><div class="k">«niveles de energía»</div>
+            <svg width="200" height="170" id="bo"></svg>
+            <div class="t">Los electrones se mueven en capas fijas (niveles de energía) alrededor del núcleo.</div></div>
+    </div>
+    <div class="line"></div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg';
+    const mk = id => { const s = document.getElementById(id); return (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; s.appendChild(e); return e; }; };
+    const el = (add, x, y) => { add('circle', { cx: x, cy: y, r: 9, fill: '#2471A3' }); add('text', { x, y: y + 5, 'text-anchor': 'middle', 'font-size': 14, 'font-weight': 800, fill: '#fff' }, '−'); };
+    let add = mk('th');
+    [[70,55],[125,50],[100,85],[60,105],[135,110],[95,128]].forEach(([x, y]) => el(add, x, y));
+    add('text', { x: 152, y: 75, 'font-size': 18, 'font-weight': 800, fill: '#C0392B' }, '+');
+    add('text', { x: 45, y: 82, 'font-size': 18, 'font-weight': 800, fill: '#C0392B' }, '+');
+    add = mk('ru');
+    [[0, 70, 25], [60, 70, 25], [120, 70, 25]].forEach(([rot, rx, ry]) => add('ellipse', { cx: 100, cy: 85, rx, ry, fill: 'none', stroke: '#AAB7B8', 'stroke-width': 2, transform: `rotate(${rot} 100 85)` }));
+    add('circle', { cx: 100, cy: 85, r: 9, fill: '#C0392B' });
+    el(add, 170, 85); el(add, 65, 30); el(add, 65, 140);
+    add = mk('bo');
+    [35, 60].forEach(r => add('circle', { cx: 100, cy: 85, r, fill: 'none', stroke: '#AAB7B8', 'stroke-width': 2 }));
+    add('circle', { cx: 100, cy: 85, r: 16, fill: '#C0392B' });
+    add('text', { x: 100, y: 91, 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 800, fill: '#fff' }, '+');
+    el(add, 135, 85); el(add, 65, 85);
+    for (let i = 0; i < 6; i++) { const a = i * Math.PI / 3 + 0.3; el(add, 100 + 60 * Math.cos(a), 85 + 60 * Math.sin(a)); }
+</script>
+</body>
+</html>

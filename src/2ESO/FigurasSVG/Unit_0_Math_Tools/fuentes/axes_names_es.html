@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Nombre de los ejes</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .row { display: flex; gap: 20px; }
+    .col { flex: 1; border: 2px solid var(--line); border-radius: 16px; padding: 10px; text-align: center; }
+    .col h2 { font-size: 20px; color: var(--blue); }
+    .rule { margin-top: 14px; font-size: 21px; text-align: center; background: var(--ocre-soft); border: 2px solid var(--ocre); border-radius: 12px; padding: 10px; }
+    .rule .v { color: var(--red); font-weight: 800; } .rule .h { color: var(--blue); font-weight: 800; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>En ciencias, los ejes llevan el nombre de las magnitudes</h1>
+    <div class="row" id="row"></div>
+    <div class="rule">«<span class="v">A</span> <b>frente a</b> <span class="h">B</span>» (A <i>vs</i> B): <span class="v">A va en el eje VERTICAL</span> y <span class="h">B va en el eje HORIZONTAL</span>.</div>
+</div>
+<script>
+    const cards = [
+        ['Matemáticas', 'y frente a x', 'y', 'x', ''],
+        ['Gráfica posición-tiempo', 'x frente a t', 'x (m)', 't (s)', ''],
+        ['Gráfica velocidad-tiempo', 'v frente a t', 'v (m/s)', 't (s)', ''],
+        ['Gráfica masa-volumen', 'm frente a V', 'm (g)', 'V (cm³)', ''],
+    ];
+    const row = document.getElementById('row');
+    cards.forEach(([t, name, vy, hx], k) => {
+        row.insertAdjacentHTML('beforeend', `<div class="col"><h2>${t}</h2>
+        <svg width="240" height="230" viewBox="0 0 240 230">
+            <defs><marker id="m${k}" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#23373B"/></marker></defs>
+            <line x1="50" y1="190" x2="225" y2="190" stroke="#2471A3" stroke-width="4" marker-end="url(#m${k})"/>
+            <line x1="50" y1="190" x2="50" y2="20" stroke="#C0392B" stroke-width="4" marker-end="url(#m${k})"/>
+            <line x1="50" y1="170" x2="200" y2="50" stroke="#F36619" stroke-width="4"/>
+            <text x="58" y="22" font-size="18" font-weight="800" fill="#C0392B">${vy}</text>
+            <text x="225" y="218" text-anchor="end" font-size="18" font-weight="800" fill="#2471A3">${hx}</text>
+            <text x="40" y="208" text-anchor="middle" font-size="15" fill="#525252">0</text>
+        </svg>
+        <div style="font-size:22px;font-weight:800">${name}</div></div>`);
+    });
+</script>
+</body>
+</html>

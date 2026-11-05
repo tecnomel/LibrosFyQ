@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>How to balance a chemical equation</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    sub { font-size: 0.6em; }
+    .flow { display: flex; flex-direction: column; align-items: center; gap: 0; }
+    .b { width: 640px; border-radius: 14px; padding: 9px 16px; font-size: 17px; text-align: center; line-height: 1.35; }
+    .s { background: var(--blue-soft); border: 2px solid var(--blue); }
+    .q { background: var(--ocre-soft); border: 2px solid var(--ocre); font-weight: 700; }
+    .e { background: var(--green-soft); border: 2px solid var(--green); }
+    .d { font-size: 24px; color: var(--grey); line-height: 1.1; }
+    .split { display: flex; gap: 30px; align-items: flex-start; width: 900px; }
+    .split > div { flex: 1; border-radius: 14px; padding: 9px 14px; font-size: 16px; line-height: 1.35; }
+    .yes { background: var(--green-soft); border: 2px solid var(--green); }
+    .no { background: var(--red-soft); border: 2px solid var(--red); }
+    .yes b.t { color: var(--green); } .no b.t { color: var(--red); }
+    .loop { margin-top: 8px; font-size: 15px; color: var(--teal); background: #fff; border-radius: 8px; padding: 6px; }
+    .order { display: flex; gap: 10px; justify-content: center; margin-top: 4px; }
+    .order span { border-radius: 8px; padding: 2px 10px; font-weight: 800; color: #fff; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>How to balance a chemical equation, step by step</h1>
+    <div class="flow">
+        <div class="b s"><b>1.</b> Write the equation and draw the <b>table</b>: the elements below the equation, and under each formula the number of atoms of each element.</div>
+        <div class="d">↓</div>
+        <div class="b s"><b>2.</b> Choose the elements in this order:
+            <div class="order"><span style="background:var(--blue)">metals and other elements</span><span style="background:var(--teal)">H</span><span style="background:var(--red)">O (the last one)</span></div></div>
+        <div class="d">↓</div>
+        <div class="b q">3. Count the atoms of the element on the LEFT and on the RIGHT. Are they the same?</div>
+        <div class="d">↙ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↘</div>
+        <div class="split">
+            <div class="yes"><b class="t">✔ YES</b><br>This element is balanced. Keep its coefficients and go on to the <b>next element</b> (back to step 3).</div>
+            <div class="no"><b class="t">✘ NO</b><br>Go to the side with <b>FEWER</b> atoms of that element and write a coefficient <b>one unit bigger</b> in front of the formula that contains it (no number = 1, so we try 2, then 3&hellip;).
+                <div class="loop">🔁 <b>Count again.</b> Still different? Again, increase by one the coefficient on the side that now has <b>fewer</b> atoms, until both sides are equal.</div></div>
+        </div>
+        <div class="d">↓</div>
+        <div class="b q">4. When you change a coefficient, the other elements of that formula change too! Check again ALL the elements you had already balanced.</div>
+        <div class="d">↓</div>
+        <div class="b e"><b>5.</b> All the elements are balanced on both sides → <b>the equation is balanced!</b> If all the coefficients can be divided by the same number, simplify them.</div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD5_03 · Cinética de orden uno</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/graficas.js"></script>
+</head>
+<body>
+<script>
+// Orden uno: ln[A] = ln[A]0 − k·t  → recta de pendiente −k.
+const svg = crearFigura(330, 270);
+texto(svg, 175, 22, "Orden uno", { "text-anchor": "middle", "font-size": 19, fill: COLORES.texto });
+const g = grafica(svg, { x: 55, y: 40, w: 245, h: 190, xmin: 0, xmax: 10, ymin: 0, ymax: 10, etqX: "Tiempo" });
+texto(svg, 50, 36, [{ t: "ln", attrs: { "font-style": "italic" } }, { t: " [A]" }], { "text-anchor": "end", "font-size": 16, fill: COLORES.texto });
+g.curva(t => 8.8 - 0.6 * t, { desde: 1, hasta: 9, ancho: 3 });
+texto(svg, g.px(5.2), g.py(7), "pendiente = −k", { "font-size": 13, fill: "#D32F2F" });
+</script>
+</body>
+</html>

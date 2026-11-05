@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_01 · Redes cristalinas iónicas: NaCl, ZnS y CaF2</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/moleculas.js"></script>
+</head>
+<body>
+<script>
+// Celdas unidad de tres redes iónicas. Los radios de las esferas son aproximados.
+const svg = crearFigura(900, 330);
+const cam = [1, -0.45, 0.35];
+const GRIS = "#6E7478";
+function celda(cx, iones, enlaces = []) {
+    const e3 = new Escena3D({ cx, cy: 140, escala: 120, camara: cam });
+    const V = [];
+    for (const x of [0, 1]) for (const y of [0, 1]) for (const z of [0, 1]) V.push([x - 0.5, y - 0.5, z - 0.5]);
+    for (let i = 0; i < 8; i++) for (let j = i + 1; j < 8; j++) {
+        if (longitud(resta(V[i], V[j])) === 1) e3.segmento(V[i], V[j], { color: GRIS, ancho: 3, trozos: 8 });
+    }
+    for (const [a, b] of enlaces) e3.segmento(a, b, { color: "#9AA", ancho: 2.2, trozos: 6 });
+    for (const io of iones) e3.bola(io.p.map(v => v - 0.5), io.r, io.c, svg);
+    e3.dibujar(svg);
+}
+const pts = n => { const r = []; for (let i = 0; i <= n; i++) for (let j = 0; j <= n; j++) for (let k = 0; k <= n; k++) r.push([i / n, j / n, k / n, i + j + k]); return r; };
+const fcc = pts(2).filter(p => p[3] % 2 === 0).map(p => p.slice(0, 3));
+const NA = "#E9B98A", CL = "#6FAE98", ZN = "#E9B98A", S = "#6FAE98", CA = "#6FAE98", F = "#E9B98A";
+// NaCl: Na+ y Cl− alternados en una red 3×3×3 de puntos
+celda(150, pts(2).map(p => ({ p: p.slice(0, 3), r: p[3] % 2 ? 0.1 : 0.16, c: p[3] % 2 ? NA : CL })));
+// ZnS (blenda): S2− en fcc, Zn2+ en la mitad de los huecos tetraédricos
+const zn = [[0.25, 0.25, 0.25], [0.75, 0.75, 0.25], [0.75, 0.25, 0.75], [0.25, 0.75, 0.75]];
+const enl = [];
+zn.forEach(z => fcc.forEach(s => { if (Math.abs(longitud(resta(z, s)) - Math.sqrt(3) / 4) < 1e-6) enl.push([z.map(v => v - 0.5), s.map(v => v - 0.5)]); }));
+celda(450, [...fcc.map(p => ({ p, r: 0.15, c: S })), ...zn.map(p => ({ p, r: 0.09, c: ZN }))], enl);
+// CaF2 (fluorita): Ca2+ en fcc, F− en los 8 huecos tetraédricos (cubo interior)
+const fl = []; for (const a of [0.25, 0.75]) for (const b of [0.25, 0.75]) for (const c of [0.25, 0.75]) fl.push([a, b, c]);
+celda(750, [...fcc.map(p => ({ p, r: 0.12, c: CA })), ...fl.map(p => ({ p, r: 0.1, c: F }))]);
+const pie = (x, l1, l2, l3) => {
+    texto(svg, x, 262, l1, { "text-anchor": "middle", "font-size": 18, "font-weight": "bold", fill: COLORES.texto });
+    texto(svg, x, 284, l2, { "text-anchor": "middle", "font-size": 13, fill: COLORES.texto });
+    if (l3) texto(svg, x, 302, l3, { "text-anchor": "middle", "font-size": 13, fill: COLORES.texto });
+};
+pie(150, "NaCl", "Cúbica centrada en las caras");
+pie(450, "ZnS", [{ t: "S" }, { t: "2−", sup: true }, { t: ": cúbica centrada en las caras" }], [{ t: "Zn" }, { t: "2+", sup: true }, { t: ": huecos tetraédricos" }]);
+pie(750, [{ t: "CaF" }, { t: "2", sub: true }], [{ t: "Ca" }, { t: "2+", sup: true }, { t: ": cúbica centrada en las caras" }], [{ t: "F" }, { t: "−", sup: true }, { t: ": cúbica simple (interior)" }]);
+[[NA, "catión (Na⁺, Zn²⁺) / F⁻"], [CL, "anión (Cl⁻, S²⁻) / Ca²⁺"]].forEach(([c, t], i) => {
+    el("circle", { cx: 30 + i * 260, cy: 320, r: 7, fill: c }, svg);
+    texto(svg, 44 + i * 260, 325, t, { "font-size": 12, fill: COLORES.gris });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Isolating in Boyle-Mariotte’s law</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="isolate.css">
+<script src="isolate.js"></script>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1></h1>
+    <div class="grid" id="grid"></div>
+    <div class="tip" id="tip"></div>
+</div>
+<script>
+const p1 = q('p', 1), V1 = q('V', 1), p2 = q('p', 2), V2 = q('V', 2);
+const F = `${p1} · ${V1} = ${p2} · ${V2}`;
+buildIsolate('Boyle-Mariotte’s law: how to isolate each quantity', [
+    { goal: V2, steps: [
+        ['Write the law.', F],
+        [`${p2} is <b>multiplying</b> ${g(V2)}: divide <b>both sides</b> by ${p2}.`, `${f(`${p1} · ${V1}`, o(p2))} = ${f(`${c(p2)} · ${g(V2)}`, o(c(p2)))}`]],
+      result: `${g(V2)} = ${f(`${p1} · ${V1}`, p2)}` },
+    { goal: p2, steps: [
+        ['Write the law.', F],
+        [`${V2} is <b>multiplying</b> ${g(p2)}: divide <b>both sides</b> by ${V2}.`, `${f(`${p1} · ${V1}`, o(V2))} = ${f(`${g(p2)} · ${c(V2)}`, o(c(V2)))}`]],
+      result: `${g(p2)} = ${f(`${p1} · ${V1}`, V2)}` },
+    { goal: V1, steps: [
+        ['Write the law.', F],
+        [`${p1} is <b>multiplying</b> ${g(V1)}: divide <b>both sides</b> by ${p1}.`, `${f(`${c(p1)} · ${g(V1)}`, o(c(p1)))} = ${f(`${p2} · ${V2}`, o(p1))}`]],
+      result: `${g(V1)} = ${f(`${p2} · ${V2}`, p1)}` },
+    { goal: p1, steps: [
+        ['Write the law.', F],
+        [`${V1} is <b>multiplying</b> ${g(p1)}: divide <b>both sides</b> by ${V1}.`, `${f(`${g(p1)} · ${c(V1)}`, o(c(V1)))} = ${f(`${p2} · ${V2}`, o(V1))}`]],
+      result: `${g(p1)} = ${f(`${p2} · ${V2}`, V1)}` },
+], '<b>Shortcut:</b> what is <b>multiplying</b> on one side goes to the other side <b>dividing</b>.');
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_24 · Adición de hidrógeno (hidrogenación)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Hidrogenación de alquenos (catalizador: Ni, Pt o Pd): se obtiene el alcano.
+const svg = crearFigura(560, 220);
+alquenoGen(svg, 40, 50);
+mas(svg, 125, 50); fq(svg, 175, 56, [["H−H", AZUL]]);
+flechaR(svg, 215, 50, 295, "Pt");
+alcanoGen(svg, 350, 50, { i1: ["H", ROJO], d2: ["H", ROJO] });
+molecula(svg, "C=CC", 70, 160);
+mas(svg, 125, 160); fq(svg, 175, 166, [["H−H", AZUL]]);
+flechaR(svg, 215, 160, 295, "Pt");
+molecula(svg, "[He]CC([He])C", 390, 160, { grupos: { He: { t: "H", color: ROJO } } });
+texto(svg, 70, 210, "propeno", { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto, "font-family": TNR });
+texto(svg, 390, 210, "propano", { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto, "font-family": TNR });
+</script>
+</body>
+</html>

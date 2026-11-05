@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cómo se ordenan las partículas</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 18px; }
+    .c { flex: 1; text-align: center; border-radius: 16px; padding: 12px; border: 3px solid; }
+    .a1 { border-color: #8E44AD; background: #F5EEF8; } .a1 h2 { color: #6C3483; }
+    .a2 { border-color: var(--green); background: var(--green-soft); } .a2 h2 { color: var(--green); }
+    .a3 { border-color: #2471A3; background: #EAF2F8; } .a3 h2 { color: #2471A3; }
+    h2 { font-size: 23px; }
+    .t { font-size: 16px; color: var(--grey); margin: 4px 0 6px; }
+    .ex { font-size: 16px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>¿Cómo se ordenan las partículas de la materia?</h1>
+    <div class="row">
+        <div class="c a1"><h2>Átomos aislados</h2><div class="t">átomos sueltos</div><svg id="a" width="300" height="220"></svg>
+            <div class="ex">Solo los <b>gases nobles</b>: helio (He), neón (Ne)…</div></div>
+        <div class="c a2"><h2>Moléculas</h2><div class="t">grupos pequeños de átomos unidos</div><svg id="b" width="300" height="220"></svg>
+            <div class="ex">Simples: H<sub>2</sub>, O<sub>2</sub>, O<sub>3</sub> · Compuestos: H<sub>2</sub>O, CO<sub>2</sub></div></div>
+        <div class="c a3"><h2>Cristales</h2><div class="t">millones de átomos ordenados</div><svg id="c" width="300" height="220"></svg>
+            <div class="ex">Simples: diamante (C) · Compuestos: sal (NaCl)</div></div>
+    </div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg';
+    const mk = id => { const s = document.getElementById(id); return (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; s.appendChild(e); return e; }; };
+    let add = mk('a');
+    [[60,50],[200,40],[140,110],[60,170],[240,160],[250,95]].forEach(([x, y]) => add('circle', { cx: x, cy: y, r: 18, fill: '#BB8FCE', stroke: '#6C3483', 'stroke-width': 2 }));
+    add = mk('b');
+    const h2o = (x, y, r) => { add('circle', { cx: x, cy: y, r: 20, fill: '#E74C3C', stroke: '#922B21', 'stroke-width': 2 });
+        [[-1, 1], [1, 1]].forEach(([dx]) => add('circle', { cx: x + dx * 22 * Math.cos(r), cy: y + 18, r: 13, fill: '#FDFEFE', stroke: '#7F8C8D', 'stroke-width': 2 })); };
+    h2o(70, 60, 0.6); h2o(220, 70, 0.6); h2o(140, 150, 0.6);
+    [[60, 170], [240, 165]].forEach(([x, y]) => { add('circle', { cx: x - 11, cy: y, r: 14, fill: '#FDFEFE', stroke: '#7F8C8D', 'stroke-width': 2 }); add('circle', { cx: x + 11, cy: y, r: 14, fill: '#FDFEFE', stroke: '#7F8C8D', 'stroke-width': 2 }); });
+    add('text', { x: 150, y: 212, 'text-anchor': 'middle', 'font-size': 14, fill: '#525252' }, 'moléculas de H₂O y de H₂');
+    add = mk('c');
+    for (let i = 0; i < 7; i++) for (let j = 0; j < 5; j++) {
+        const na = (i + j) % 2 === 0;
+        add('circle', { cx: 35 + i * 38, cy: 30 + j * 38, r: na ? 11 : 16, fill: na ? '#AF7AC5' : '#58D68D', stroke: '#23373B', 'stroke-width': 1.5 });
+    }
+    add('text', { x: 150, y: 212, 'text-anchor': 'middle', 'font-size': 14, fill: '#525252' }, 'cristal de NaCl: Na⁺ (morado) y Cl⁻ (verde)');
+</script>
+</body>
+</html>

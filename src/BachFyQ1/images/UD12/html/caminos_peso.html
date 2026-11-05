@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El trabajo del peso no depende del camino</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Caída vertical</h2><svg id="a" width="260" height="250"></svg>
+            <div class="t"><i>W</i> = <i>m</i> · <i>g</i> · <i>h</i></div></div>
+        <div class="card"><h2>Plano inclinado</h2><svg id="b" width="260" height="250"></svg>
+            <div class="t"><i>W</i> = <i>m</i> · <i>g</i> · sen θ · <i>L</i> = <i>m</i> · <i>g</i> · <i>h</i></div></div>
+        <div class="card"><h2>Trayectoria curva</h2><svg id="c" width="260" height="250"></svg>
+            <div class="t"><i>W</i> = <i>m</i> · <i>g</i> · <i>h</i></div></div>
+    </div>
+    <div class="note" style="margin-top:8px; text-align:center">Sin rozamiento, el trabajo del peso entre las dos alturas es el mismo por los tres caminos:
+        el peso es una <b>fuerza conservativa</b>.</div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const Cb = "#E67E22", Cp = "#2471A3", y0 = 40, bot = 215;
+    function torre(add, x) {
+        add('rect', { x: x - 26, y: y0 + 8, width: 26, height: bot - y0 - 8, fill: '#ABB2B9', stroke: '#566573', 'stroke-width': 1.5 });
+        add('rect', { x: 0, y: bot, width: 260, height: 35, fill: '#D5D8DC' });
+        add('line', { x1: 0, y1: bot, x2: 260, y2: bot, stroke: '#566573', 'stroke-width': 2 });
+    }
+    function cota(add, x) {
+        add('line', { x1: x, y1: y0 + 14, x2: x, y2: bot, stroke: '#525252', 'stroke-width': 1.3 });
+        add('line', { x1: x - 6, y1: y0 + 14, x2: x + 6, y2: y0 + 14, stroke: '#525252', 'stroke-width': 1.3 });
+        add('line', { x1: x - 6, y1: bot, x2: x + 6, y2: bot, stroke: '#525252', 'stroke-width': 1.3 });
+        rich(add, x - 12, (y0 + bot) / 2 + 6, '*h*', { 'font-size': 17, fill: '#525252' });
+    }
+    function peso(add, x, y) { arrow(add, x, y, x, y + 42, Cp, 2.5, 10); vlab(add, x + 14, y + 40, 'P', '', Cp, 15); }
+    // a) vertical
+    const A = svgAdder('a');
+    torre(A, 110); cota(A, 30);
+    [y0 + 14, 95, 150, bot - 12].forEach((y, i) => bead(A, 125, y, 11, Cb));
+    dashed(A, 125, y0 + 26, 125, bot - 24, Cb, 1.5);
+    peso(A, 125, 95);
+    // b) plano inclinado
+    const B = svgAdder('b');
+    torre(B, 70); cota(B, 22);
+    B('path', { d: `M70 ${y0 + 14} L230 ${bot} L70 ${bot} Z`, fill: '#E5E8E8', stroke: '#566573', 'stroke-width': 1.5 });
+    const L = (t) => [70 + 160 * t, y0 + 14 + (bot - y0 - 14) * t];
+    [0, 0.35, 0.7].forEach(t => { const q = L(t); bead(B, q[0] + 8, q[1] - 10, 11, Cb); });
+    { const q = L(0.35); peso(B, q[0] + 8, q[1] - 10); }
+    B('path', { d: `M200 ${bot} A30 30 0 0 1 ${230 - 30 * Math.cos(Math.atan2(bot - y0 - 14, 160))} ${bot - 30 * Math.sin(Math.atan2(bot - y0 - 14, 160))}`, fill: 'none', stroke: '#525252', 'stroke-width': 1.5 });
+    label(B, 188, bot - 8, 'θ', { 'font-size': 15, fill: '#525252' });
+    rich(B, 175, 110, '*L*', { 'font-size': 17, fill: '#525252' });
+    // c) curva (tiro horizontal)
+    const C = svgAdder('c');
+    torre(C, 70); cota(C, 22);
+    const vx = 150, f = t => [70 + 8 + t * vx, y0 + 14 + (bot - y0 - 26) * t * t];
+    curve(C, f, 0, 1, Cb, 2, { 'stroke-dasharray': '6 5' });
+    [0, 0.45, 0.75, 1].forEach(t => { const q = f(t); bead(C, q[0], q[1], 11, Cb); });
+    { const q = f(0.45); peso(C, q[0], q[1]); }
+</script>
+</body>
+</html>

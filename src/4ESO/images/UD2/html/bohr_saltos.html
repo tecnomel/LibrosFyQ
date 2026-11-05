@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Saltos electrónicos en el modelo de Bohr</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1220px; }
+    .row { display: flex; gap: 16px; }
+    .card { text-align: center; }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Absorción y emisión</h2><svg id="a" width="430" height="400"></svg></div>
+        <div class="card"><h2>Cada salto produce una raya del espectro</h2><svg id="b" width="700" height="400"></svg></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script src="spectrum.js"></script>
+<script>
+    let add = svgAdder('a');
+    const cx = 200, cy = 200;
+    add('defs', {}).innerHTML = '<marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1E8449"/></marker><marker id="m2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#C0392B"/></marker>';
+    [50, 95, 140, 180].forEach((r, i) => {
+        add('circle', { cx, cy, r, fill: 'none', stroke: '#AAB7B8', 'stroke-width': 2 });
+        add('text', { x: cx + r * 0.71 + 4, y: cy + r * 0.71 + 14, 'font-size': 14, 'font-weight': 800, fill: '#000070' }, 'n=' + (i + 1));
+    });
+    nucleus(add, cx, cy, 4, 4, 7);
+    // absorción: n=1 → n=3 (lado izquierdo)
+    add('path', { d: `M${cx - 50} ${cy - 6} Q${cx - 100} ${cy - 30} ${cx - 134} ${cy - 40}`, fill: 'none', stroke: '#1E8449', 'stroke-width': 3, 'marker-end': 'url(#m1)' });
+    particle(add, cx - 50, cy, 'e', 9); particle(add, cx - 134, cy - 42, 'e', 9);
+    add('text', { x: 20, y: 120, 'font-size': 14, 'font-weight': 800, fill: '#1E8449' }, 'absorbe energía');
+    add('text', { x: 20, y: 137, 'font-size': 14, 'font-weight': 800, fill: '#1E8449' }, '(sube de nivel)');
+    // emisión: n=3 → n=2 (lado derecho) con fotón
+    add('path', { d: `M${cx + 140} ${cy + 6} Q${cx + 120} ${cy + 10} ${cx + 98} ${cy + 8}`, fill: 'none', stroke: '#C0392B', 'stroke-width': 3, 'marker-end': 'url(#m2)' });
+    particle(add, cx + 140, cy, 'e', 9); particle(add, cx + 95, cy, 'e', 9);
+    let p = `M${cx + 150} ${cy - 30}`;
+    for (let i = 0; i < 4; i++) p += ' q5 -8 10 0 q5 8 10 0';
+    add('path', { d: p, fill: 'none', stroke: '#E74C3C', 'stroke-width': 2.5, transform: `rotate(-35 ${cx + 150} ${cy - 30})` });
+    add('text', { x: 300, y: 380, 'font-size': 14, 'font-weight': 800, fill: '#C0392B', 'text-anchor': 'middle' }, 'emite luz (baja de nivel)');
+    // B: diagrama de niveles con saltos hacia n = 2
+    add = svgAdder('b');
+    rainbowGradient(add, 'rb');
+    const X0 = 140, W = 520;
+    const YL = { 1: 300, 2: 200, 3: 140, 4: 110, 5: 92, 6: 80 };
+    const ylev = n => YL[n];
+    const SUB = '₀₁₂₃₄₅₆';
+    for (let n = 1; n <= 6; n++) {
+        add('line', { x1: 60, y1: YL[n], x2: X0 + W, y2: YL[n], stroke: '#23373B', 'stroke-width': n === 2 ? 3 : 1.6 });
+        add('text', { x: 50, y: YL[n] + 5, 'text-anchor': 'end', 'font-size': 15, 'font-weight': 800, fill: '#000070' }, 'E' + SUB[n]);
+    }
+    // saltos de Balmer: 3→2 (656), 4→2 (486), 5→2 (434), 6→2 (410)
+    [[3, 656.3], [4, 486.1], [5, 434.0], [6, 410.2]].forEach(([n, wl]) => {
+        const x = wlX(wl, X0, W), col = wl2rgb(wl);
+        add('line', { x1: x, y1: ylev(n), x2: x, y2: ylev(2) - 8, stroke: col, 'stroke-width': 4 });
+        add('path', { d: `M${x - 7} ${ylev(2) - 12} L${x} ${ylev(2)} L${x + 7} ${ylev(2) - 12} Z`, fill: col });
+        add('line', { x1: x, y1: ylev(2), x2: x, y2: 340, stroke: '#7F8C8D', 'stroke-width': 1, 'stroke-dasharray': '3 3' });
+        add('text', { x: x + 6, y: ylev(n) + 16, 'font-size': 12, 'font-weight': 700, fill: '#23373B' }, `${n}→2`);
+    });
+    spectrumBar(add, X0, 340, W, 40, 'emision');
+    add('text', { x: 60, y: 30, 'font-size': 14, fill: '#525252' }, 'energía');
+    add('text', { x: 300, y: 30, 'font-size': 14, 'font-weight': 700, fill: '#23373B' }, 'E₆ > E₅ > E₄ > E₃ > E₂ > E₁');
+</script>
+</body>
+</html>

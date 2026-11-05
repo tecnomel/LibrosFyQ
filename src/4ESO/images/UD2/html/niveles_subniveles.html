@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Niveles y subniveles de energía</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1020px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="a" width="960" height="500"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('a');
+    // orden real de energía (Moeller) para n = 1…4 (+5s para mostrar que va antes que 4d)
+    const order = ['1s', '2s', '2p', '3s', '3p', '4s', '3d', '4p', '5s', '4d', '4f'];
+    const boxes = { s: 1, p: 3, d: 5, f: 7 };
+    const colors = { s: '#F5B7B1', p: '#F9E79F', d: '#FAD7A0', f: '#A9DFBF' };
+    const colX = { 1: 110, 2: 270, 3: 430, 4: 600, 5: 600 };
+    const yOf = i => 460 - i * 37 - (i > 0 ? 18 : 0) - (i > 2 ? 18 : 0) - (i > 4 ? 18 : 0);
+    // eje de energía
+    add('line', { x1: 40, y1: 480, x2: 40, y2: 30, stroke: '#1E8449', 'stroke-width': 4 });
+    add('path', { d: 'M31 38 L40 18 L49 38 Z', fill: '#1E8449' });
+    add('text', { x: 28, y: 260, 'font-size': 16, 'font-weight': 800, fill: '#1E8449', transform: 'rotate(-90 28 260)', 'text-anchor': 'middle' }, 'energía');
+    for (let n = 1; n <= 4; n++) add('text', { x: colX[n] + 40, y: 495, 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 800, fill: '#000070' }, `nivel n = ${n}`);
+    order.forEach((s, i) => {
+        const n = +s[0], l = s[1], k = boxes[l], y = yOf(i);
+        const w = 26, x = n === 5 ? 760 : colX[n] + (l === 'f' ? -40 : 0);
+        for (let j = 0; j < k; j++) add('rect', { x: x + j * w, y: y - 13, width: w, height: 26, fill: colors[l], stroke: '#5D6D7E', 'stroke-width': 1.2 });
+        add('text', { x: x - 8, y: y + 6, 'text-anchor': 'end', 'font-size': 16, 'font-weight': 800, fill: '#23373B' }, s);
+        add('text', { x: x + k * w + 8, y: y + 5, 'font-size': 13, fill: '#525252' }, `${2 * k} e⁻`);
+    });
+    // aviso 4s < 3d
+    add('text', { x: 665, y: yOf(5) + 5, 'font-size': 13, 'font-weight': 800, fill: '#C0392B' }, '← el 4s tiene menos energía que el 3d');
+    add('text', { x: 70, y: 50, 'font-size': 15, 'font-weight': 700, fill: '#525252' }, 'Cada casilla es un orbital: caben 2 electrones.');
+</script>
+</body>
+</html>

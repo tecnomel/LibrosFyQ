@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Imanes y líneas de campo magnético</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 980px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Líneas de campo</h2><svg id="a" width="330" height="260"></svg>
+            <div class="t">Fuera del imán van del polo norte al polo sur. Son líneas cerradas que no se cortan.</div></div>
+        <div class="card"><h2>Polos inseparables</h2><svg id="b" width="250" height="260"></svg>
+            <div class="t">Al romper un imán, cada trozo tiene su polo norte y su polo sur.</div></div>
+        <div class="card"><h2>La Tierra es un imán</h2><svg id="c" width="270" height="260"></svg>
+            <div class="t">La brújula señala el norte geográfico, donde está el polo sur magnético de la Tierra.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // punta de flecha pequeña en (x, y) apuntando en el ángulo ang (rad, en coordenadas de pantalla)
+    function tip(add, x, y, ang, col) {
+        const h = 9, p = [[x + h * 0.6 * Math.cos(ang), y + h * 0.6 * Math.sin(ang)], [x - h * 0.5 * Math.cos(ang - 0.5), y - h * 0.5 * Math.sin(ang - 0.5)], [x - h * 0.5 * Math.cos(ang + 0.5), y - h * 0.5 * Math.sin(ang + 0.5)]];
+        add('path', { d: 'M' + p.map(q => q.join(' ')).join(' L') + ' Z', fill: col });
+    }
+    // a) imán de barra y líneas de campo
+    {
+        const add = svgAdder('a'), x = 165, y = 130, hw = 70, col = '#7D3C98';
+        for (let k = 1; k <= 4; k++) {
+            const o = 26 * k;
+            [-1, 1].forEach(s => {
+                add('path', { d: `M${x - hw + 4} ${y + s * 8} C${x - hw - 22 * k} ${y + s * (8 + o)} ${x + hw + 22 * k} ${y + s * (8 + o)} ${x + hw - 4} ${y + s * 8}`, fill: 'none', stroke: col, 'stroke-width': 1.6 });
+                tip(add, x, y + s * (8 + 0.75 * o), 0, col);
+            });
+        }
+        add('line', { x1: x - hw, y1: y, x2: x - hw - 70, y2: y, stroke: col, 'stroke-width': 1.6 }); tip(add, x - hw - 50, y, Math.PI, col);
+        add('line', { x1: x + hw, y1: y, x2: x + hw + 70, y2: y, stroke: col, 'stroke-width': 1.6 }); tip(add, x + hw + 30, y, Math.PI, col);
+        magnet(add, x, y, 2 * hw, 34);
+    }
+    // b) imán roto
+    {
+        const add = svgAdder('b'), x = 125;
+        magnet(add, x, 45, 200, 30);
+        magnet(add, x - 55, 120, 90, 30); magnet(add, x + 55, 120, 90, 30);
+        [-82, -28, 28, 82].forEach(dx => magnet(add, x + dx, 195, 46, 30));
+        arrow(add, x, 66, x, 96, '#7F8C8D', 2, 9); arrow(add, x, 141, x, 171, '#7F8C8D', 2, 9);
+    }
+    // c) la Tierra como imán
+    {
+        const add = svgAdder('c'), cx = 135, cy = 140, R = 70, col = '#7D3C98';
+        // líneas de campo: salen del sur geográfico (norte magnético) y entran por el norte geográfico
+        [1, 2].forEach(k => [-1, 1].forEach(s => {
+            const w = R + 28 * k;
+            add('path', { d: `M${cx} ${cy + R - 6} C${cx + s * w * 1.25} ${cy + R + 20 * k} ${cx + s * w * 1.25} ${cy - R - 20 * k} ${cx} ${cy - R + 6}`, fill: 'none', stroke: col, 'stroke-width': 1.4 });
+            tip(add, cx + s * w * 0.94, cy, -Math.PI / 2, col);
+        }));
+        const d = add('defs', {});
+        d.innerHTML = '<radialGradient id="tierra" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#D6EAF8"/><stop offset=".7" stop-color="#5DADE2"/><stop offset="1" stop-color="#2874A6"/></radialGradient>';
+        add('circle', { cx, cy, r: R, fill: 'url(#tierra)', stroke: '#2874A6' });
+        // eje geográfico
+        add('line', { x1: cx, y1: cy - R - 16, x2: cx, y2: cy + R + 16, stroke: '#23373B', 'stroke-dasharray': '5 4' });
+        // imán interior, inclinado ~11°: S arriba
+        const g = add('g', { transform: `translate(${cx} ${cy}) rotate(${90 + 11})` });
+        magnet(svgAdder(g), 0, 0, 96, 26, true);
+        label(add, cx, cy - R - 22, 'norte geográfico', { 'font-size': 12, fill: '#23373B' });
+        label(add, cx, cy + R + 32, 'sur geográfico', { 'font-size': 12, fill: '#23373B' });
+        compass(add, cx + R + 42, cy - R + 4, 16, 90);
+    }
+</script>
+</body>
+</html>

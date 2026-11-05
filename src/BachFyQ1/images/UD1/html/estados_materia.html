@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Estados de agregación de la materia</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Sólido</h2><svg id="a" width="280" height="220"></svg><div class="t">Partículas ordenadas y muy unidas que solo vibran: forma y volumen fijos.</div></div>
+        <div class="card"><h2>Líquido</h2><svg id="b" width="280" height="220"></svg><div class="t">Partículas juntas pero desordenadas que se deslizan: volumen fijo, forma variable.</div></div>
+        <div class="card"><h2>Gas</h2><svg id="c" width="280" height="220"></svg><div class="t">Partículas muy separadas que se mueven deprisa: ocupan todo el recipiente.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const col = '#E74C3C';
+    // ---------- sólido: red ordenada con marcas de vibración ----------
+    let add = svgAdder('a');
+    for (let i = 0; i < 6; i++) for (let j = 0; j < 7; j++) {
+        const x = 50 + j * 30, y = 30 + i * 30;
+        add('path', { d: `M${x - 15} ${y} q3 -4 6 0 M${x + 9} ${y} q3 -4 6 0`, stroke: '#AAB7B8', fill: 'none', 'stroke-width': 1.2 });
+        bead(add, x, y, 12, col);
+    }
+    label(add, 140, 214, 'fuerzas de atracción fuertes', { 'font-size': 13, fill: '#525252' });
+    // ---------- líquido: vaso con partículas juntas y desordenadas ----------
+    add = svgAdder('b');
+    const lvl = beaker(add, 50, 20, 180, 180, { fill: 0.62, color: '#EBF5FB' });
+    let r = rng(11); const P = [];
+    for (let k = 0; k < 3000 && P.length < 34; k++) {
+        const x = 66 + r() * 148, y = lvl + 12 + r() * (200 - lvl - 28);
+        if (P.every(([a, b]) => Math.hypot(a - x, b - y) > 23)) { P.push([x, y]); bead(add, x, y, 11, col); }
+    }
+    // ---------- gas: recipiente cerrado con partículas separadas y rápidas ----------
+    add = svgAdder('c');
+    add('rect', { x: 30, y: 15, width: 220, height: 190, rx: 16, fill: '#FBFCFC', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+    r = rng(5); const G = [];
+    for (let k = 0; k < 3000 && G.length < 9; k++) {
+        const x = 60 + r() * 160, y = 45 + r() * 130;
+        if (G.every(([a, b]) => Math.hypot(a - x, b - y) > 55)) G.push([x, y]);
+    }
+    G.forEach(([x, y], i) => {
+        const a = i * 2.1;
+        arrow(add, x, y, x + 30 * Math.cos(a), y + 30 * Math.sin(a), '#7F8C8D', 1.8, 8);
+        bead(add, x, y, 11, col);
+    });
+</script>
+</body>
+</html>

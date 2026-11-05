@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sensitivity of an instrument</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .lab { font-size: 19px; margin: 4px 0 2px; }
+    .lab b { color: var(--blue); }
+    .res { font-size: 20px; font-weight: 800; }
+    .good { color: var(--green); } .bad { color: var(--red); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Sensitivity: the smallest division of the instrument</h1>
+    <div class="lab">Ruler A · smallest division <b>1 mm</b> → sensitivity = <b>1 mm</b></div>
+    <svg id="r1" width="1080" height="120"></svg>
+    <div class="res good">Reading: 15.4 cm ✔ more precise (we can estimate the next digit)</div>
+    <div class="lab" style="margin-top:18px">Ruler B · smallest division <b>1 cm</b> → sensitivity = <b>1 cm</b></div>
+    <svg id="r2" width="1080" height="120"></svg>
+    <div class="res bad">Reading: 15 cm ✘ less precise</div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg';
+    function el(svg, tag, attrs, text) {
+        const e = document.createElementNS(NS, tag);
+        for (const k in attrs) e.setAttribute(k, attrs[k]);
+        if (text !== undefined) e.textContent = text;
+        svg.appendChild(e); return e;
+    }
+    function ruler(id, mm) {
+        const svg = document.getElementById(id);
+        const x0 = 30, cm = 60;                          // 1 cm = 60 px, 17 cm shown
+        // pencil 15.4 cm long
+        el(svg, 'rect', { x: x0, y: 6, width: 15.4 * cm - 30, height: 26, fill: '#F4D03F', stroke: '#B7950B', 'stroke-width': 2 });
+        el(svg, 'polygon', { points: `${x0 + 15.4 * cm - 30},6 ${x0 + 15.4 * cm},19 ${x0 + 15.4 * cm - 30},32`, fill: '#F5CBA7', stroke: '#B7950B', 'stroke-width': 2 });
+        el(svg, 'rect', { x: x0 - 2, y: 6, width: 14, height: 26, fill: '#E59866' });
+        el(svg, 'line', { x1: x0 + 15.4 * cm, y1: 2, x2: x0 + 15.4 * cm, y2: 110, stroke: '#C0392B', 'stroke-width': 2, 'stroke-dasharray': '5 4' });
+        // ruler body
+        el(svg, 'rect', { x: x0 - 10, y: 40, width: 17 * cm + 20, height: 60, rx: 6, fill: '#FEF9E7', stroke: '#7D6608', 'stroke-width': 2 });
+        for (let i = 0; i <= 17 * (mm ? 10 : 1); i++) {
+            const x = x0 + i * cm / (mm ? 10 : 1);
+            const big = mm ? i % 10 === 0 : true, mid = mm && i % 5 === 0;
+            el(svg, 'line', { x1: x, y1: 40, x2: x, y2: 40 + (big ? 26 : mid ? 18 : 11), stroke: '#23373B', 'stroke-width': big ? 2 : 1 });
+            if (big) el(svg, 'text', { x: x, y: 88, 'text-anchor': 'middle', 'font-size': 15, fill: '#23373B' }, mm ? i / 10 : i);
+        }
+    }
+    ruler('r1', true);
+    ruler('r2', false);
+</script>
+</body>
+</html>

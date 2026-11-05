@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD4_E03 · Datos termodinámicos EvAU 2013</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+const svg = crearFigura(620, 110);
+const cab = ["", quim("C2H6 (g)"), quim("O2 (g)"), quim("CO2 (g)"), quim("H2O (l)")];
+tabla(svg, 5, 5, [
+    cab,
+    [[{ t: "ΔH" }, { t: "f", sub: true }, { t: "° (kJ/mol)" }], "−84,9", "0", "−393,13", "−285,8"],
+    [[{ t: "S° (J/mol·K)" }], "229", "205,1", "213,7", "69,9"],
+], { anchos: [170, 110, 110, 110, 110], alto: 32, tam: 16, columnaCab: true, colorCab: "#EFEFEF", colorBorde: "#333" });
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Experimento de Joule</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } .note { font-size: 13.5px; text-align: center; margin-top: 4px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="700" height="405"></svg>
+    <div class="note">Al caer, las pesas hacen girar las paletas dentro del agua. El rozamiento de las paletas con el agua aumenta su temperatura:
+        el trabajo mecánico se transforma en energía térmica.</div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const cx = 350, ty = 150, w = 200, h = 200;
+    // recipiente aislado con agua
+    add('rect', { x: cx - w / 2 - 12, y: ty - 6, width: w + 24, height: h + 18, rx: 10, fill: '#D5D8DC', stroke: '#5D6D7E', 'stroke-width': 3 });
+    add('rect', { x: cx - w / 2, y: ty, width: w, height: h, fill: '#AED6F1' });
+    add('rect', { x: cx - w / 2 - 16, y: ty - 18, width: w + 32, height: 14, rx: 4, fill: '#7F8C8D' });
+    // eje y paletas
+    add('line', { x1: cx, y1: 70, x2: cx, y2: ty + h - 10, stroke: '#424949', 'stroke-width': 5 });
+    [ty + 40, ty + 95, ty + 150].forEach(y => {
+        add('rect', { x: cx - 70, y: y - 14, width: 140, height: 28, fill: '#D6EAF8', stroke: '#2E4053', 'stroke-width': 1.5, opacity: 0.9 });
+        add('line', { x1: cx - 70, y1: y, x2: cx + 70, y2: y, stroke: '#2E4053', 'stroke-width': 1 });
+    });
+    // paletas fijas en las paredes (impiden que el agua gire en bloque)
+    [ty + 67, ty + 122].forEach(y => {
+        add('rect', { x: cx - w / 2, y: y - 6, width: 22, height: 12, fill: '#85929E' });
+        add('rect', { x: cx + w / 2 - 22, y: y - 6, width: 22, height: 12, fill: '#85929E' });
+    });
+    // tambor con la cuerda enrollada y manivela
+    add('rect', { x: cx - 22, y: 70, width: 44, height: 40, rx: 4, fill: '#A04000', stroke: '#6E2C00', 'stroke-width': 2 });
+    for (let i = 0; i < 5; i++) add('line', { x1: cx - 22, y1: 76 + i * 7, x2: cx + 22, y2: 78 + i * 7, stroke: '#F5CBA7', 'stroke-width': 1.2 });
+    // poleas laterales y cuerdas
+    [[-1, 170], [1, 170]].forEach(([sg, d]) => {
+        const px = cx + sg * d, py = 90;
+        add('line', { x1: cx + sg * 22, y1: 82, x2: px, y2: py - 18, stroke: '#424949', 'stroke-width': 1.5 });
+        add('circle', { cx: px, cy: py, r: 18, fill: '#D5D8DC', stroke: '#424949', 'stroke-width': 2 });
+        add('circle', { cx: px, cy: py, r: 4, fill: '#424949' });
+        add('line', { x1: px + sg * 18, y1: py, x2: px + sg * 18, y2: 270, stroke: '#424949', 'stroke-width': 1.5 });
+        // pesa
+        add('rect', { x: px + sg * 18 - 18, y: 270, width: 36, height: 56, rx: 4, fill: '#5D6D7E', stroke: '#2C3E50', 'stroke-width': 2 });
+        label(add, px + sg * 18, 304, 'm', { 'font-style': 'italic', fill: '#fff' });
+        arrow(add, px + sg * 18 + sg * 36, 280, px + sg * 18 + sg * 36, 330, '#C0392B', 2.5, 10);
+        // soporte de la polea
+        add('line', { x1: px, y1: py, x2: cx + sg * 60, y2: 40, stroke: '#7F8C8D', 'stroke-width': 4 });
+    });
+    add('line', { x1: cx - 60, y1: 40, x2: cx + 60, y2: 40, stroke: '#7F8C8D', 'stroke-width': 4 });
+    vdim(add, 610, 280, 380, 'h', '#C0392B', true);
+    // termómetro
+    thermometer(add, cx + 80, 60, 230, 0.35);
+    callout(add, cx + 85, 75, 520, 30, 'Termómetro');
+    callout(add, cx - 40, ty + 150, 220, 392, 'Paletas giratorias', 'end');
+    callout(add, cx + 60, ty + 185, 480, 392, 'Agua');
+    label(add, 162, 345, 'pesas que caen', { 'font-size': 13, fill: '#525252' });
+</script>
+</body>
+</html>

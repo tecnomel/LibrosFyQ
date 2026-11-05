@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Destilación fraccionada del petróleo</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+<svg id="s" width="800" height="540"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+const add = svgAdder('s');
+const el = (tag, at) => add(tag, at);
+// gradiente de la torre: arriba frío (amarillo), abajo caliente (rojo)
+const defs = el('defs', {});
+defs.innerHTML = `<linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#FCF3CF"/><stop offset="0.5" stop-color="#F8C471"/><stop offset="1" stop-color="#E74C3C"/></linearGradient>`;
+const X0 = 300, X1 = 430, YT = 60, YB = 500;
+el('path', { d: `M${X0} ${YB} V${YT + 20} Q${(X0 + X1) / 2} ${YT - 15} ${X1} ${YT + 20} V${YB} Z`, fill: 'url(#g)', stroke: '#7B241C', 'stroke-width': 3 });
+// fracciones
+const fr = [
+  ['Gases (C₁–C₄)', '< 20 °C', 'gas licuado, butano'],
+  ['Gasolina (C₅–C₁₀)', '20–150 °C', 'combustible de coches'],
+  ['Nafta (C₆–C₁₂)', '70–180 °C', 'materia prima petroquímica'],
+  ['Queroseno (C₁₀–C₁₆)', '150–250 °C', 'combustible de aviones'],
+  ['Gasóleo (C₁₄–C₂₀)', '250–350 °C', 'diésel, calefacción'],
+  ['Fuelóleo y lubricantes (C₂₀–C₄₀)', '350–400 °C', 'barcos, aceites, ceras'],
+];
+const n = fr.length, step = (YB - YT - 90) / n;
+fr.forEach((f, i) => {
+  const y = YT + 40 + i * step;
+  if (i > 0) {
+    // platos
+    el('line', { x1: X0, y1: y - 12, x2: X1, y2: y - 12, stroke: '#7B241C', 'stroke-width': 2 });
+    for (let k = 0; k < 3; k++) el('path', { d: `M${X0 + 25 + k * 40} ${y - 12} v-8 h14 v8`, fill: 'none', stroke: '#7B241C', 'stroke-width': 1.6 });
+  }
+  arrow(add, X1, y + 8, X1 + 60, y + 8, '#1F618D', 2.5, 9);
+  label(add, X1 + 70, y + 4, f[0], { 'font-size': 17, 'font-weight': 700, fill: '#1F2D3D', 'text-anchor': 'start' });
+  label(add, X1 + 70, y + 24, `${f[1]} · ${f[2]}`, { 'font-size': 14.5, fill: '#525252', 'font-weight': 400, 'text-anchor': 'start' });
+});
+// residuo
+arrow(add, (X0 + X1) / 2, YB, (X0 + X1) / 2, YB + 30, '#1F618D', 2.5, 9);
+label(add, (X0 + X1) / 2 + 14, YB + 26, 'Residuo (> C₄₀, > 400 °C): asfalto, betún', { 'font-size': 16, 'font-weight': 700, fill: '#1F2D3D', 'text-anchor': 'start' });
+// horno y entrada de crudo
+el('rect', { x: 120, y: 400, width: 110, height: 70, rx: 8, fill: '#FADBD8', stroke: '#922B21', 'stroke-width': 2.5 });
+label(add, 175, 430, 'horno', { 'font-size': 16, 'text-anchor': 'middle', fill: '#922B21', 'font-weight': 700 });
+label(add, 175, 452, '≈ 400 °C', { 'font-size': 14, 'text-anchor': 'middle', fill: '#922B21' });
+for (let k = 0; k < 4; k++) el('path', { d: `M${140 + k * 22} 485 q6 -10 0 -15 q-6 -5 0 -12`, fill: 'none', stroke: '#E67E22', 'stroke-width': 2.2 });
+arrow(add, 20, 435, 118, 435, '#23373B', 3, 11);
+label(add, 20, 425, 'crudo', { 'font-size': 16, 'font-weight': 700, fill: '#23373B', 'text-anchor': 'start' });
+arrow(add, 230, 435, X0 - 2, 435, '#23373B', 3, 11);
+label(add, 236, 425, 'vapor', { 'font-size': 14, fill: '#23373B', 'text-anchor': 'start', 'font-weight': 400 });
+// eje de temperatura
+arrow(add, 255, 380, 255, 90, '#525252', 2, 9);
+label(add, 247, 240, 'temperatura menor', { 'font-size': 14, fill: '#525252', transform: 'rotate(-90 247 240)', 'text-anchor': 'middle' });
+label(add, 365, 40, 'torre de fraccionamiento', { 'font-size': 15, 'text-anchor': 'middle', fill: '#7B241C', 'font-weight': 700 });
+</script>
+</body>
+</html>

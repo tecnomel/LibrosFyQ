@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Emulsions</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 18px; align-items: stretch; }
+    .c { flex: 1; text-align: center; border-radius: 16px; padding: 10px; border: 2px solid var(--line); }
+    .c h2 { font-size: 20px; }
+    .c .t { font-size: 15px; color: var(--grey); }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Emulsions: mixing oil and water</h1>
+    <div class="row">
+        <div class="c"><h2 style="color:var(--red)">① Oil + water</h2><svg id="a" width="240" height="250"></svg><div class="t">They do not mix:<br>the oil floats on top.</div></div>
+        <div class="c"><h2 style="color:#B9770E">② Shake… and wait</h2><svg id="b" width="240" height="250"></svg><div class="t">Droplets form, but soon they<br>join again and separate.</div></div>
+        <div class="c"><h2 style="color:var(--green)">③ Add an emulsifier</h2><svg id="c" width="240" height="250"></svg><div class="t">The droplets stay apart:<br><b>emulsion</b> (mayonnaise 🥚)</div></div>
+        <div class="c" style="background:var(--green-soft); border-color:var(--green)"><h2 style="color:var(--green)">The emulsifier</h2><svg id="d" width="240" height="250"></svg><div class="t">One end likes <b style="color:#2471A3">water</b>,<br>the other likes <b style="color:#B7950B">oil</b>.</div></div>
+    </div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg';
+    const mk = id => { const s = document.getElementById(id); return (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; s.appendChild(e); return e; }; };
+    function glass(add) { add('path', { d: 'M50 20 L50 225 Q50 235 60 235 L180 235 Q190 235 190 225 L190 20', fill: 'none', stroke: '#5D6D7E', 'stroke-width': 4 }); }
+    let add = mk('a');
+    add('rect', { x: 52, y: 60, width: 136, height: 70, fill: '#F7DC6F' }); add('rect', { x: 52, y: 130, width: 136, height: 103, fill: '#AED6F1' }); glass(add);
+    add('text', { x: 120, y: 100, 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 700, fill: '#7D6608' }, 'oil');
+    add('text', { x: 120, y: 190, 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 700, fill: '#1B4F72' }, 'water');
+    add = mk('b');
+    add('rect', { x: 52, y: 60, width: 136, height: 173, fill: '#AED6F1' });
+    [[75,80,9],[110,72,12],[150,85,10],[90,110,8],[135,108,11],[165,130,7],[70,140,7]].forEach(([x,y,r]) => add('circle', { cx: x, cy: y, r, fill: '#F7DC6F' }));
+    add('rect', { x: 52, y: 60, width: 136, height: 14, fill: '#F7DC6F' }); glass(add);
+    add('text', { x: 120, y: 200, 'text-anchor': 'middle', 'font-size': 30 }, '⏳');
+    add = mk('c');
+    add('rect', { x: 52, y: 60, width: 136, height: 173, fill: '#FCF3CF' });
+    for (let i = 0; i < 22; i++) { const x = 66 + (i % 6) * 22 + (Math.floor(i / 6) % 2) * 10, y = 80 + Math.floor(i / 6) * 40; add('circle', { cx: x, cy: y, r: 8, fill: '#F7DC6F', stroke: '#1E8449', 'stroke-width': 2.5, 'stroke-dasharray': '2 2' }); }
+    glass(add);
+    add = mk('d');
+    add('circle', { cx: 120, cy: 120, r: 60, fill: '#F7DC6F' });
+    add('text', { x: 120, y: 126, 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 700, fill: '#7D6608' }, 'oil droplet');
+    for (let i = 0; i < 12; i++) {
+        const a = i * Math.PI / 6, x1 = 120 + 48 * Math.cos(a), y1 = 120 + 48 * Math.sin(a), x2 = 120 + 80 * Math.cos(a), y2 = 120 + 80 * Math.sin(a);
+        add('line', { x1, y1, x2, y2, stroke: '#B7950B', 'stroke-width': 3 });
+        add('circle', { cx: x2, cy: y2, r: 8, fill: '#2E86C1' });
+    }
+    add('text', { x: 120, y: 232, 'text-anchor': 'middle', 'font-size': 14, fill: '#1B4F72' }, 'water all around');
+</script>
+</body>
+</html>

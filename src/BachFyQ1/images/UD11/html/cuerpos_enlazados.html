@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cuerpos enlazados: tres situaciones típicas</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1020px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Dos cuerpos apoyados</h2><svg id="a" width="300" height="250"></svg>
+            <div class="t">La fuerza <i>F</i> arrastra a los dos; la cuerda tira de <i>m</i><sub>2</sub> con <i>T</i>.</div></div>
+        <div class="card"><h2>Uno apoyado y otro colgado</h2><svg id="b" width="300" height="250"></svg>
+            <div class="t">El peso de <i>m</i><sub>1</sub> mueve el conjunto; el rozamiento frena a <i>m</i><sub>2</sub>.</div></div>
+        <div class="card"><h2>Máquina de Atwood</h2><svg id="c" width="300" height="250"></svg>
+            <div class="t">Baja el cuerpo más pesado y sube el otro, con la misma aceleración.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const Cn = '#1E8449', Cp = '#2471A3', Ct = '#D35400', Cf = '#C0392B', Cr = '#7D3C98';
+    // a) dos bloques sobre el suelo
+    const A = svgAdder('a');
+    A('rect', { x: 0, y: 160, width: 300, height: 30, fill: '#D5D8DC' });
+    box(A, 30, 120, 70, 40, '#F5B041'); box(A, 160, 120, 70, 40, '#82E0AA', '#1E8449');
+    rich(A, 65, 145, '*m*_2', { 'font-size': 15 }); rich(A, 195, 145, '*m*_1', { 'font-size': 15 });
+    A('line', { x1: 100, y1: 140, x2: 160, y2: 140, stroke: '#566573', 'stroke-width': 2 });
+    arrow(A, 102, 140, 140, 140, Ct, 3, 11); vlab(A, 120, 130, 'T', '', Ct, 15);
+    arrow(A, 158, 140, 122, 140, Ct, 3, 11);
+    arrow(A, 230, 140, 290, 140, Cf, 3.5, 12); vlab(A, 262, 130, 'F', '', Cf);
+    arrow(A, 65, 140, 65, 80, Cn, 2.5, 10); vlab(A, 78, 92, 'N', '2', Cn, 15);
+    arrow(A, 65, 140, 65, 215, Cp, 2.5, 10); vlab(A, 78, 210, 'P', '2', Cp, 15);
+    arrow(A, 195, 140, 195, 80, Cn, 2.5, 10); vlab(A, 208, 92, 'N', '1', Cn, 15);
+    arrow(A, 195, 140, 195, 215, Cp, 2.5, 10); vlab(A, 208, 210, 'P', '1', Cp, 15);
+    arrow(A, 130, 40, 190, 40, '#23373B', 2, 10); vlab(A, 160, 32, 'a', '', '#23373B', 15);
+    // b) bloque en la mesa y bloque colgado
+    const B = svgAdder('b');
+    B('rect', { x: 0, y: 90, width: 200, height: 160, fill: '#D5D8DC' });
+    B('circle', { cx: 212, cy: 78, r: 12, fill: '#ECF0F1', stroke: '#566573', 'stroke-width': 3 });
+    box(B, 60, 50, 70, 40, '#82E0AA', '#1E8449'); rich(B, 95, 76, '*m*_2', { 'font-size': 15 });
+    B('line', { x1: 130, y1: 66, x2: 212, y2: 66, stroke: '#566573', 'stroke-width': 2 });
+    B('line', { x1: 224, y1: 78, x2: 224, y2: 150, stroke: '#566573', 'stroke-width': 2 });
+    box(B, 204, 150, 40, 40, '#F5B041'); rich(B, 224, 176, '*m*_1', { 'font-size': 14 });
+    arrow(B, 132, 66, 175, 66, Ct, 3, 11); vlab(B, 160, 56, 'T', '', Ct, 15);
+    arrow(B, 60, 80, 22, 80, Cr, 3, 11); vlab(B, 34, 70, 'F', 'r', Cr, 15);
+    arrow(B, 95, 70, 95, 22, Cn, 2.5, 10); vlab(B, 108, 32, 'N', '', Cn, 15);
+    arrow(B, 95, 70, 95, 130, Cp, 2.5, 10); vlab(B, 108, 126, 'P', '2', Cp, 15);
+    arrow(B, 224, 150, 224, 108, Ct, 3, 11); vlab(B, 240, 126, 'T', '', Ct, 15);
+    arrow(B, 224, 190, 224, 238, Cp, 3, 11); vlab(B, 242, 228, 'P', '1', Cp, 15);
+    arrow(B, 268, 150, 268, 200, '#23373B', 2, 10); vlab(B, 284, 182, 'a', '', '#23373B', 15);
+    // c) Atwood
+    const C = svgAdder('c');
+    C('rect', { x: 60, y: 6, width: 180, height: 12, fill: '#7F8C8D' });
+    C('line', { x1: 150, y1: 18, x2: 150, y2: 40, stroke: '#566573', 'stroke-width': 4 });
+    C('circle', { cx: 150, cy: 62, r: 26, fill: '#ECF0F1', stroke: '#566573', 'stroke-width': 4 });
+    C('line', { x1: 124, y1: 62, x2: 124, y2: 160, stroke: '#566573', 'stroke-width': 2 });
+    C('line', { x1: 176, y1: 62, x2: 176, y2: 120, stroke: '#566573', 'stroke-width': 2 });
+    box(C, 104, 160, 40, 36, '#82E0AA', '#1E8449'); rich(C, 124, 184, '*m*_2', { 'font-size': 14 });
+    box(C, 152, 120, 48, 48, '#F5B041'); rich(C, 176, 150, '*m*_1', { 'font-size': 15 });
+    arrow(C, 124, 160, 124, 112, Ct, 3, 11); vlab(C, 106, 128, 'T', '', Ct, 15);
+    arrow(C, 124, 196, 124, 236, Cp, 3, 11); vlab(C, 106, 230, 'P', '2', Cp, 15);
+    arrow(C, 176, 120, 176, 82, Ct, 3, 11); vlab(C, 194, 100, 'T', '', Ct, 15);
+    arrow(C, 176, 168, 176, 228, Cp, 3, 11); vlab(C, 194, 216, 'P', '1', Cp, 15);
+    arrow(C, 62, 200, 62, 150, '#23373B', 2, 10); vlab(C, 46, 182, 'a', '', '#23373B', 15);
+    arrow(C, 250, 150, 250, 200, '#23373B', 2, 10); vlab(C, 266, 182, 'a', '', '#23373B', 15);
+</script>
+</body>
+</html>

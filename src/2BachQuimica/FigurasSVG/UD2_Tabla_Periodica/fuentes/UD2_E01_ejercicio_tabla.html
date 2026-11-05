@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD2_E01 · Esquema de tabla periódica del ejercicio</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Esquema de tabla periódica con las posiciones de A, B, C, D y E (tal como en el enunciado).
+const C = 30, svg = crearFigura(18 * C + 10, 6 * C + 10);
+for (let Z = 1; Z <= 118; Z++) {
+    const p = posicionElemento(Z);
+    if (p.bloqueF || p.periodo > 6) continue;
+    el("rect", { x: 5 + (p.grupo - 1) * C, y: 5 + (p.periodo - 1) * C, width: C, height: C, fill: "#fff", stroke: "#333", "stroke-width": 1 }, svg);
+}
+[["A", 2, 2], ["B", 17, 2], ["C", 17, 4], ["D", 18, 4], ["E", 1, 5]].forEach(([t, g, p]) =>
+    texto(svg, 5 + (g - 0.5) * C, 5 + (p - 0.5) * C + 6, t, { "text-anchor": "middle", "font-size": 17, "font-family": "Times New Roman, serif", fill: "#111" }));
+</script>
+</body>
+</html>

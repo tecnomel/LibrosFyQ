@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Magnitudes de una onda</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="850" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const A = svgAdder('s');
+    function wave(y0, amp, lam, col, x0 = 60, x1 = 780) {
+        let d = '';
+        for (let x = x0; x <= x1; x += 2) d += (x === x0 ? 'M' : 'L') + x + ' ' + (y0 - amp * Math.sin(2 * Math.PI * (x - x0) / lam)).toFixed(1);
+        A('line', { x1: x0, y1: y0, x2: x1 + 20, y2: y0, stroke: '#ABB2B9', 'stroke-width': 1.5 });
+        A('path', { d, fill: 'none', stroke: col, 'stroke-width': 3.5 });
+    }
+    // onda de baja frecuencia
+    wave(105, 55, 240, '#C0392B');
+    label(A, 60, 12, 'Baja frecuencia: λ grande', { 'text-anchor': 'start', 'font-size': 15, fill: '#922B21' });
+    // λ entre crestas
+    const c1 = 60 + 60, c2 = c1 + 240;
+    A('line', { x1: c1, y1: 38, x2: c2, y2: 38, stroke: '#23373B', 'stroke-width': 1.5 });
+    arrow(A, c1 + 20, 38, c1, 38, '#23373B', 1.5, 8); arrow(A, c2 - 20, 38, c2, 38, '#23373B', 1.5, 8);
+    [c1, c2].forEach(x => A('line', { x1: x, y1: 33, x2: x, y2: 44, stroke: '#23373B', 'stroke-width': 1.5 }));
+    label(A, (c1 + c2) / 2, 31, 'λ (longitud de onda)', { 'font-size': 14 });
+    // amplitud
+    const xa = 60 + 540;
+    A('line', { x1: xa, y1: 105, x2: xa, y2: 50, stroke: '#1F618D', 'stroke-width': 1.5 });
+    arrow(A, xa, 70, xa, 50, '#1F618D', 1.5, 8); arrow(A, xa, 85, xa, 105, '#1F618D', 1.5, 8);
+    label(A, xa + 8, 82, 'A (amplitud)', { 'font-size': 14, fill: '#1F618D', 'text-anchor': 'start' });
+    label(A, c1 + 120, 178, 'valle', { 'font-size': 13, fill: '#7F8C8D' });
+    // onda de alta frecuencia
+    wave(260, 40, 60, '#6C3483');
+    label(A, 60, 200, 'Alta frecuencia: λ pequeña', { 'text-anchor': 'start', 'font-size': 15, fill: '#6C3483' });
+    const d1 = 60 + 15, d2 = d1 + 60;
+    A('line', { x1: d1, y1: 312, x2: d2, y2: 312, stroke: '#23373B', 'stroke-width': 1.5 });
+    [d1, d2].forEach(x => A('line', { x1: x, y1: 306, x2: x, y2: 318, stroke: '#23373B', 'stroke-width': 1.5 }));
+    label(A, d2 + 8, 317, 'λ', { 'font-size': 15, 'text-anchor': 'start' });
+    arrow(A, 650, 320, 790, 320, '#23373B', 2, 10);
+    label(A, 720, 312, 'propagación (c)', { 'font-size': 13 });
+</script>
+</body>
+</html>

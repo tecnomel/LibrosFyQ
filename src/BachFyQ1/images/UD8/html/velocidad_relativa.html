@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Posición y velocidad relativas</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Posiciones</h2><svg id="a" width="360" height="250"></svg>
+            <div class="t">r<sub>BO</sub> = r<sub>AO</sub> + r<sub>BA</sub></div></div>
+        <div class="card"><h2>Velocidades (derivando)</h2><svg id="b" width="360" height="250"></svg>
+            <div class="t">v<sub>BO</sub> = v<sub>AO</sub> + v<sub>BA</sub> &nbsp;→&nbsp; v<sub>BA</sub> = v<sub>BO</sub> − v<sub>AO</sub></div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    function triangulo(add, l, conEjes) {
+        const O = [50, 215], A = [260, 150], B = [140, 40];
+        if (conEjes) axes(add, O[0], O[1], 290, 205);
+        arrow(add, O[0], O[1], A[0], A[1], '#2471A3', 3.5, 13);
+        arrow(add, A[0], A[1], B[0], B[1], '#E67E22', 3.5, 13);
+        arrow(add, O[0], O[1], B[0], B[1], '#C0392B', 3.5, 13);
+        vlab(add, (O[0] + A[0]) / 2 - 4, (O[1] + A[1]) / 2 - 12, l, 'AO', '#2471A3');
+        vlab(add, (A[0] + B[0]) / 2 + 28, (A[1] + B[1]) / 2 - 2, l, 'BA', '#E67E22');
+        vlab(add, (O[0] + B[0]) / 2 - 28, (O[1] + B[1]) / 2, l, 'BO', '#C0392B');
+        dot(add, O[0], O[1]); dot(add, A[0], A[1], '#2471A3', 5.5); dot(add, B[0], B[1], '#C0392B', 5.5);
+        if (conEjes) {
+            label(add, A[0] + 16, A[1] + 6, 'A', { 'font-size': 15, fill: '#2471A3' });
+            label(add, B[0] - 2, B[1] - 12, 'B', { 'font-size': 15, fill: '#C0392B' });
+        }
+    }
+    triangulo(svgAdder('a'), 'r', true);
+    triangulo(svgAdder('b'), 'v', false);
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Momento de una fuerza y par de fuerzas</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card" style="flex:1.4"><h2>Momento de una fuerza</h2><svg id="a" width="470" height="280"></svg>
+            <div class="t"><i>M</i> = <i>r</i> · <i>F</i> · sen φ: cuanto más lejos del eje se empuja, más fácil es girar.</div></div>
+        <div class="card"><h2>Par de fuerzas</h2><svg id="b" width="320" height="280"></svg>
+            <div class="t">Dos fuerzas iguales y opuestas en puntos distintos solo hacen girar.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const A = svgAdder('a');
+    const O = [70, 170], r = 280, E = [O[0] + r, O[1]];
+    // tuerca y llave
+    const hex = [...Array(6)].map((_, i) => [O[0] + 30 * Math.cos(i * Math.PI / 3 + Math.PI / 6), O[1] + 30 * Math.sin(i * Math.PI / 3 + Math.PI / 6)]);
+    A('rect', { x: O[0] + 20, y: O[1] - 11, width: r, height: 22, rx: 10, fill: '#AEB6BF', stroke: '#566573', 'stroke-width': 2 });
+    A('path', { d: 'M' + hex.map(p => p.join(' ')).join(' L') + ' Z', fill: '#D5D8DC', stroke: '#566573', 'stroke-width': 2 });
+    A('circle', { cx: O[0], cy: O[1], r: 6, fill: '#23373B' });
+    label(A, O[0] + 6, O[1] + 90, 'O (eje de giro)', { 'font-size': 13, fill: '#525252' });
+    // vector r
+    arrow(A, O[0], O[1] + 40, E[0], O[1] + 40, '#1E8449', 2.5, 11);
+    dashed(A, O[0], O[1] + 8, O[0], O[1] + 46, '#1E8449', 1);
+    dashed(A, E[0], O[1] + 12, E[0], O[1] + 46, '#1E8449', 1);
+    vlab(A, (O[0] + E[0]) / 2, O[1] + 66, 'r', '', '#1E8449');
+    // fuerza aplicada en el extremo
+    const ang = 62 * Math.PI / 180, F = 130;
+    const Fe = [E[0] + F * Math.cos(ang), E[1] - F * Math.sin(ang)];
+    dashed(A, E[0], E[1], E[0] + 90, E[1], '#7F8C8D', 1.3);
+    arrow(A, E[0], E[1], Fe[0], Fe[1], '#C0392B', 4, 14);
+    vlab(A, Fe[0] + 20, Fe[1] + 16, 'F', '', '#C0392B');
+    A('path', { d: `M${E[0] + 40} ${E[1]} A40 40 0 0 0 ${E[0] + 40 * Math.cos(ang)} ${E[1] - 40 * Math.sin(ang)}`, fill: 'none', stroke: '#525252', 'stroke-width': 1.5 });
+    label(A, E[0] + 54, E[1] - 16, 'φ', { 'font-size': 16, fill: '#525252' });
+    // sentido de giro y vector M (sale del papel)
+    A('path', { d: `M${O[0] + 55} ${O[1] - 50} A75 75 0 0 0 ${O[0] - 50} ${O[1] - 40}`, fill: 'none', stroke: '#7D3C98', 'stroke-width': 2.5 });
+    arrow(A, O[0] - 42, O[1] - 48, O[0] - 54, O[1] - 34, '#7D3C98', 2.5, 11);
+    A('circle', { cx: O[0], cy: O[1] - 120, r: 11, fill: 'none', stroke: '#7D3C98', 'stroke-width': 2.5 });
+    A('circle', { cx: O[0], cy: O[1] - 120, r: 3.5, fill: '#7D3C98' });
+    vlab(A, O[0] + 30, O[1] - 113, 'M', '', '#7D3C98');
+    label(A, O[0] + 50, O[1] - 114, 'sale del papel: giro antihorario', { 'font-size': 12, fill: '#7D3C98', 'font-weight': 600, 'text-anchor': 'start' });
+    // b) par de fuerzas: volante
+    const B = svgAdder('b');
+    const C = [160, 135], R = 85;
+    B('circle', { cx: C[0], cy: C[1], r: R, fill: 'none', stroke: '#566573', 'stroke-width': 12 });
+    B('line', { x1: C[0] - R, y1: C[1], x2: C[0] + R, y2: C[1], stroke: '#566573', 'stroke-width': 7 });
+    B('circle', { cx: C[0], cy: C[1], r: 14, fill: '#566573' });
+    arrow(B, C[0] - R, C[1], C[0] - R, C[1] + 85, '#C0392B', 4, 14);
+    arrow(B, C[0] + R, C[1], C[0] + R, C[1] - 85, '#C0392B', 4, 14);
+    vlab(B, C[0] - R - 24, C[1] + 70, 'F', '', '#C0392B');
+    label(B, C[0] + R + 26, C[1] - 56, '−', { 'font-size': 18, fill: '#C0392B' }); vlab(B, C[0] + R + 40, C[1] - 56, 'F', '', '#C0392B');
+    arrow(B, C[0] - R + 6, C[1] + 112, C[0] + R, C[1] + 112, '#525252', 1.3, 8); arrow(B, C[0] + R - 6, C[1] + 112, C[0] - R, C[1] + 112, '#525252', 1.3, 8);
+    label(B, C[0], C[1] + 130, 'd', { 'font-size': 16, fill: '#525252', 'font-style': 'italic' });
+    rich(B, C[0], 22, '*M* = *F* · *d*', { 'font-size': 18, fill: '#7D3C98' });
+</script>
+</body>
+</html>

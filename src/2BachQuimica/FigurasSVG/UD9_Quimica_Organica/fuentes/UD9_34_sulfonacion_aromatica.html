@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_34 · Sulfonación del benceno</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+const svg = crearFigura(620, 110);
+molecula(svg, "C1=CC=CC=C1", 60, 60);
+mas(svg, 125, 60); fq(svg, 170, 66, ["H2SO4"]);
+flechaR(svg, 215, 60, 305, "calor");
+molecula(svg, "[Xe]C1=CC=CC=C1", 390, 55, { grupos: { Xe: { t: "SO3H", color: AZUL } } });
+mas(svg, 485, 60); fq(svg, 530, 66, ["H2O"]);
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Fuerzas que actúan sobre un cuerpo</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1100px; } .card h2 { font-size: 15px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Caída libre</h2><svg id="a" width="220" height="230"></svg><div class="t">Solo actúa el peso.</div></div>
+        <div class="card"><h2>Colgado de un hilo</h2><svg id="b" width="220" height="230"></svg><div class="t">T = P: está en equilibrio.</div></div>
+        <div class="card"><h2>Sobre una mesa</h2><svg id="c" width="220" height="230"></svg><div class="t">N = P: está en equilibrio.</div></div>
+        <div class="card"><h2>Fuerza oblicua</h2><svg id="d" width="220" height="230"></svg><div class="t">Solo F·cos α mueve el cuerpo.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const P = '#2471A3', N = '#1E8449', T = '#C0392B', F = '#C0392B';
+    // a) caída libre
+    let add = svgAdder('a');
+    add('path', { d: 'M0 200 Q110 165 220 200 L220 230 L0 230 Z', fill: '#7FB3D5' });
+    block(add, 110, 70, 50, 40);
+    arrow(add, 110, 70, 110, 150, P, 3, 11); vlabel(add, 130, 140, 'P', P);
+    for (let k = 0; k < 3; k++) add('line', { x1: 80 + k * 30, y1: 25, x2: 80 + k * 30, y2: 40, stroke: '#AAB7B8', 'stroke-width': 2 });
+    // b) colgado de un hilo
+    add = svgAdder('b');
+    add('rect', { x: 50, y: 10, width: 120, height: 10, fill: '#7F8C8D' });
+    add('line', { x1: 110, y1: 20, x2: 110, y2: 100, stroke: '#5D6D7E', 'stroke-width': 2 });
+    block(add, 110, 120, 50, 40);
+    arrow(add, 110, 120, 110, 50, T, 3, 11); vlabel(add, 130, 66, 'T', T);
+    arrow(add, 110, 120, 110, 190, P, 3, 11); vlabel(add, 130, 186, 'P', P);
+    // c) sobre una mesa
+    add = svgAdder('c');
+    add('rect', { x: 20, y: 140, width: 180, height: 14, fill: '#D4AC6E', stroke: '#A04000' });
+    add('rect', { x: 35, y: 154, width: 10, height: 60, fill: '#A04000' }); add('rect', { x: 175, y: 154, width: 10, height: 60, fill: '#A04000' });
+    block(add, 110, 120, 50, 40);
+    arrow(add, 110, 120, 110, 50, N, 3, 11); vlabel(add, 130, 66, 'N', N);
+    arrow(add, 110, 120, 110, 195, P, 3, 11); vlabel(add, 130, 192, 'P', P);
+    // d) fuerza oblicua
+    add = svgAdder('d');
+    add('rect', { x: 10, y: 140, width: 200, height: 14, fill: '#D4AC6E', stroke: '#A04000' });
+    block(add, 80, 120, 50, 40);
+    arrow(add, 80, 120, 80, 55, N, 3, 11); vlabel(add, 64, 66, 'N', N);
+    arrow(add, 80, 120, 80, 195, P, 3, 11); vlabel(add, 100, 192, 'P', P);
+    const a = 35 * Math.PI / 180, L = 110;
+    arrow(add, 80, 120, 80 + L * Math.cos(a), 120 - L * Math.sin(a), F, 3, 11); vlabel(add, 80 + L * Math.cos(a) + 6, 120 - L * Math.sin(a) - 4, 'F', F);
+    add('line', { x1: 80 + L * Math.cos(a), y1: 120 - L * Math.sin(a), x2: 80 + L * Math.cos(a), y2: 120, stroke: '#7F8C8D', 'stroke-dasharray': '4 3' });
+    arrow(add, 80, 120, 80 + L * Math.cos(a), 120, '#E67E22', 2.5, 10);
+    label(add, 160, 112, 'F cos α', { 'font-size': 12, fill: '#E67E22' });
+    add('path', { d: `M${80 + 30} 120 A30 30 0 0 0 ${80 + 30 * Math.cos(a)} ${120 - 30 * Math.sin(a)}`, fill: 'none', stroke: '#23373B' });
+    label(add, 117, 108, 'α', { 'font-size': 12 });
+</script>
+</body>
+</html>

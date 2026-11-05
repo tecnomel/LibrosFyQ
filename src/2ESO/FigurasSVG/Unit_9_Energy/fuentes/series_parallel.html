@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Series and parallel circuits</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 20px; }
+    .c { flex: 1; border-radius: 16px; padding: 10px; text-align: center; border: 3px solid; }
+    .s { border-color: #B9770E; background: #FEF5E7; } .s h2 { color: #B9770E; }
+    .p { border-color: #2471A3; background: #EAF2F8; } .p h2 { color: #2471A3; }
+    h2 { font-size: 22px; }
+    .t { font-size: 15px; text-align: left; margin: 0 10px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Series or parallel?</h1>
+    <div class="row">
+        <div class="c s"><h2>Series: one single path</h2><svg id="a" width="480" height="270"></svg>
+            <div class="t">• The <b>same current</b> flows through every bulb.<br>• If one bulb breaks, <b>all</b> go off ✘ (old Christmas lights 🎄)</div></div>
+        <div class="c p"><h2>Parallel: separate branches</h2><svg id="b" width="480" height="275"></svg>
+            <div class="t">• Each branch has the <b>same voltage</b>.<br>• If one bulb breaks, the others <b>keep working</b> ✔ (our homes 🏠)</div></div>
+    </div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg';
+    const mk = id => { const s = document.getElementById(id); return (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; s.appendChild(e); }; };
+    const W = (add, d) => add('path', { d, stroke: '#23373B', 'stroke-width': 4, fill: 'none' });
+    const bulb = (add, x, y, lit) => {
+        if (lit) add('circle', { cx: x, cy: y, r: 36, fill: '#F9E79F', opacity: .8 });
+        add('circle', { cx: x, cy: y, r: 24, fill: '#FDFEFE', stroke: '#23373B', 'stroke-width': 4 });
+        add('line', { x1: x - 17, y1: y - 17, x2: x + 17, y2: y + 17, stroke: '#23373B', 'stroke-width': 3 });
+        add('line', { x1: x + 17, y1: y - 17, x2: x - 17, y2: y + 17, stroke: '#23373B', 'stroke-width': 3 });
+    };
+    const batt = (add, x, y) => { add('line', { x1: x - 30, y1: y - 10, x2: x + 30, y2: y - 10, stroke: '#23373B', 'stroke-width': 4 }); add('line', { x1: x - 16, y1: y + 10, x2: x + 16, y2: y + 10, stroke: '#23373B', 'stroke-width': 9 }); };
+    let add = mk('a');
+    W(add, 'M60 120 L60 40 L156 40'); W(add, 'M204 40 L276 40'); W(add, 'M324 40 L420 40 L420 230 L60 230 L60 160');
+    batt(add, 60, 140); bulb(add, 180, 40, true); bulb(add, 300, 40, true);
+    add('text', { x: 240, y: 140, 'text-anchor': 'middle', 'font-size': 16, fill: '#525252' }, 'one path for the current');
+    add = mk('b');
+    W(add, 'M60 120 L60 30 L420 30 L420 240 L60 240 L60 160');
+    W(add, 'M200 30 L200 111'); W(add, 'M200 159 L200 240'); W(add, 'M320 30 L320 111'); W(add, 'M320 159 L320 240');
+    batt(add, 60, 140); bulb(add, 200, 135, true); bulb(add, 320, 135, true);
+    add('text', { x: 260, y: 263, 'text-anchor': 'middle', 'font-size': 16, fill: '#525252' }, 'each bulb has its own branch');
+</script>
+</body>
+</html>

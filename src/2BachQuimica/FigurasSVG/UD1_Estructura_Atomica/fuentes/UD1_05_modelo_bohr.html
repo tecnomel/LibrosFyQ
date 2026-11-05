@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD1_05 · Modelo atómico de Bohr</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Bohr: los electrones solo pueden estar en ciertas órbitas circulares estables
+// (niveles n = 1, 2, 3...). En ellas no emiten energía.
+const svg = crearFigura(520, 500);
+const C = { x: 245, y: 255 };
+const R = [80, 140, 200];
+const AZUL = "#1F8FC9";
+R.forEach(r => el("circle", { cx: C.x, cy: C.y, r, fill: "none", stroke: AZUL, "stroke-width": 2 }, svg));
+
+// Núcleo: protones (rojo) y neutrones (gris) empaquetados
+const nuc = [[-9, -8, "p"], [9, -10, "n"], [0, 6, "p"], [-15, 8, "n"], [15, 7, "p"], [2, -22, "n"], [-4, 20, "n"]];
+const gp = degradadoEsfera(svg, "proton", "#C62828"), gn = degradadoEsfera(svg, "neutron", "#8E8E8E");
+nuc.forEach(([dx, dy, t]) => el("circle", { cx: C.x + dx, cy: C.y + dy, r: 13, fill: t === "p" ? gp : gn,
+    stroke: "#444", "stroke-width": 0.7 }, svg));
+texto(svg, C.x + 2, C.y + 58, "núcleo", { "text-anchor": "middle", "font-size": 19, fill: COLORES.texto });
+
+// Electrones con flecha de giro
+const ge = degradadoEsfera(svg, "e", "#3C7FD8");
+const flechaArco = (r, t0, t1) => {
+    const a = t0 * Math.PI / 180, b = t1 * Math.PI / 180, rr = r + 12;
+    const p = [C.x + rr * Math.cos(a), C.y + rr * Math.sin(a)], q = [C.x + rr * Math.cos(b), C.y + rr * Math.sin(b)];
+    el("path", { d: `M${p[0]},${p[1]} A${rr},${rr} 0 0 ${t1 > t0 ? 1 : 0} ${q[0]},${q[1]}`, fill: "none",
+        stroke: "#111", "stroke-width": 2.2, "marker-end": puntaFlecha(svg, "pn", "#111", 10) }, svg);
+};
+[[0, -25, -55], [1, -95, -125], [0, 150, 120]].forEach(([i, t, tf], k) => {
+    const r = R[i], a = t * Math.PI / 180;
+    const x = C.x + r * Math.cos(a), y = C.y + r * Math.sin(a);
+    flechaArco(r, t - 12 * Math.sign(t - tf), tf);
+    el("circle", { cx: x, cy: y, r: 13, fill: ge, stroke: "#1B4A8A", "stroke-width": 0.8 }, svg);
+    el("line", { x1: x - 5.5, y1: y, x2: x + 5.5, y2: y, stroke: "#fff", "stroke-width": 2.4, "stroke-linecap": "round" }, svg);
+});
+texto(svg, C.x - 12, C.y - R[1] - 12, "electrón", { "text-anchor": "middle", "font-size": 19, fill: COLORES.texto });
+
+// Órbitas estables
+texto(svg, 8, 26, "órbitas", { "font-size": 19, fill: COLORES.texto });
+texto(svg, 8, 48, "estables", { "font-size": 19, fill: COLORES.texto });
+[R[0], R[1], R[2]].forEach((r, k) => {
+    const a = (205 + k * 8) * Math.PI / 180;
+    indicador(svg, 45, 60, C.x + r * Math.cos(a), C.y + r * Math.sin(a));
+});
+// Niveles
+R.forEach((r, k) => {
+    const a = 6 * Math.PI / 180;
+    const x = C.x + r * Math.cos(a), y = C.y + r * Math.sin(a);
+    texto(svg, x + 8, y - 6, `n = ${k + 1}`, { "text-anchor": "start", "font-size": 17, "font-weight": "bold", fill: AZUL });
+    indicador(svg, 470, 470, x, y);
+});
+texto(svg, 470, 492, "niveles", { "text-anchor": "middle", "font-size": 19, fill: COLORES.texto });
+</script>
+</body>
+</html>

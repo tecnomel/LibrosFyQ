@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_48 · Hibridación sp: formación del BeF2</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/orbitales.js"></script>
+    <script src="../../comun/moleculas.js"></script>
+</head>
+<body>
+<script>
+// Los 2 híbridos sp del Be forman 180° y se solapan con un orbital 2p de cada F: molécula lineal.
+const svg = crearFigura(900, 190);
+const MO = "#6B4FC8", RO = "#E0463A";
+const cam = [1, 0, 0.15];
+const D = GEOM.lineal;
+const sp = union(...D.map(d => OA.hibrido([0, 0, 0], d)));
+escenaOrbital(svg, 60, 85, OA.p([0, 0, 0], [0, 1, 0]), { escala: 40, caja: [1.8, 1, 1], colorPos: RO, colorNeg: RO, camara: cam, nucleos: [[0, 0, 0]] });
+texto(svg, 60, 150, "2p (F)", { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto });
+texto(svg, 135, 93, "+", { "text-anchor": "middle", "font-size": 24, fill: COLORES.texto });
+escenaOrbital(svg, 250, 85, sp, { escala: 50, caja: [2, 1.2, 1.2], colorPos: MO, colorNeg: mezclar(MO, "#ffffff", 0.4), camara: cam, nucleos: [[0, 0, 0]] });
+texto(svg, 250, 150, "2 orbitales sp (Be)", { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto });
+flecha(svg, 360, 85, 420, 85, { punta: 11, ancho: 1.8 });
+const e3 = escenaOrbital(svg, 660, 85, sp, { escala: 44, caja: [4.8, 1.2, 1.2], colorPos: MO, colorNeg: mezclar(MO, "#ffffff", 0.4), camara: cam,
+    otros: D.map(d => ({ fn: OA.p(esc(d, 2.3), esc(d, -1), 2, 2), colorPos: RO, colorNeg: RO })), nucleos: [[0, 0, 0], ...D.map(d => esc(d, 2.3))] });
+[["F", -2.3], ["Be", 0], ["F", 2.3]].forEach(([t, y]) => { const q = e3.p([0, y, 0]); texto(svg, q[0], q[1] + 48, t, { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto }); });
+texto(svg, 660, 178, [{ t: "BeF" }, { t: "2", sub: true }, { t: ": lineal, 180°" }], { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto });
+</script>
+</body>
+</html>

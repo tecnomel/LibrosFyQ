@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Estructura tetraédrica del carbono</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } .note { font-size: 13.5px; text-align: center; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="710" height="240"></svg>
+    <div class="note">El átomo de carbono forma cuatro enlaces covalentes dirigidos hacia los vértices de un tetraedro regular; el ángulo entre dos enlaces es de 109,5°.</div>
+</div>
+<script src="fig.js"></script>
+<script src="mol.js"></script>
+<script>
+    const add = svgAdder('s');
+    // 1) Diagrama de Lewis del carbono
+    label(add, 90, 30, 'Diagrama de Lewis', { 'font-size': 14, fill: '#000070' });
+    label(add, 90, 128, 'C', { 'font-size': 44, 'font-weight': 800 });
+    [[90, 76], [126, 113], [90, 146], [54, 113]].forEach(([x, y]) => add('circle', { cx: x, cy: y, r: 4.5, fill: '#C0392B' }));
+    label(add, 90, 190, '1s² 2s² 2p²', { 'font-size': 15 });
+    label(add, 90, 212, '4 electrones de valencia', { 'font-size': 12, fill: '#525252', 'font-weight': 400 });
+    // 2) Tetraedro con el carbono en el centro
+    label(add, 340, 30, 'Estructura tetraédrica', { 'font-size': 14, fill: '#000070' });
+    const cx = 340, cy = 130, s = 75, yaw = 25 * Math.PI / 180, pitch = 18 * Math.PI / 180;
+    const k = 1 / Math.sqrt(3), vtx = [[k, k, k], [k, -k, -k], [-k, k, -k], [-k, -k, k]];
+    const pr = ([x, y, z]) => {
+        [x, z] = [x * Math.cos(yaw) + z * Math.sin(yaw), -x * Math.sin(yaw) + z * Math.cos(yaw)];
+        [y, z] = [y * Math.cos(pitch) - z * Math.sin(pitch), y * Math.sin(pitch) + z * Math.cos(pitch)];
+        return [cx + x * s, cy - y * s, z];
+    };
+    const P = vtx.map(pr);
+    add('path', { d: `M${P[0][0]} ${P[0][1]} L${P[1][0]} ${P[1][1]} L${P[2][0]} ${P[2][1]} Z`, fill: '#ABEBC6', opacity: 0.5 });
+    add('path', { d: `M${P[0][0]} ${P[0][1]} L${P[2][0]} ${P[2][1]} L${P[3][0]} ${P[3][1]} Z`, fill: '#82E0AA', opacity: 0.5 });
+    for (let i = 0; i < 4; i++) for (let j = i + 1; j < 4; j++) add('line', { x1: P[i][0], y1: P[i][1], x2: P[j][0], y2: P[j][1], stroke: '#1E8449', 'stroke-width': 1.8 });
+    P.forEach(p => add('line', { x1: cx, y1: cy, x2: p[0], y2: p[1], stroke: '#5D6D7E', 'stroke-width': 4 }));
+    bead(add, cx, cy, 16, '#3B3F42'); label(add, cx, cy + 6, 'C', { fill: '#fff', 'font-size': 15 });
+    P.forEach(p => bead(add, p[0], p[1], 9, '#F4F6F6'));
+    add('path', { d: arcD(cx, cy, 34, Math.atan2(-(P[0][1] - cy), P[0][0] - cx) * 180 / Math.PI, Math.atan2(-(P[1][1] - cy), P[1][0] - cx) * 180 / Math.PI), fill: 'none', stroke: '#C0392B', 'stroke-width': 2 });
+    label(add, cx + 60, cy + 12, '109,5°', { 'font-size': 13, fill: '#C0392B', 'text-anchor': 'start' });
+    // 3) Modelo de bolas y varillas del metano
+    label(add, 590, 30, 'Metano, CH₄', { 'font-size': 14, fill: '#000070' });
+    drawMolecule(add, MOL.metano(), 590, 130, { scale: 60, yaw: 25, pitch: 18 });
+</script>
+</body>
+</html>

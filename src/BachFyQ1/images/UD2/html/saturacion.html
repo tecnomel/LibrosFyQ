@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Disolución insaturada, saturada y con precipitado</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 720px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="660" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const T = [
+        { x: 90, col: '#F9E79F', t: 'Insaturada', s: 'admite más soluto' },
+        { x: 300, col: '#F4D03F', t: 'Saturada', s: 'máximo de soluto disuelto' },
+        { x: 510, col: '#F4D03F', t: 'Con precipitado', s: 'el exceso se va al fondo' },
+    ];
+    T.forEach((o, i) => {
+        tube(add, o.x, 30, 60, 220, { fill: 0.72, color: o.col });
+        const r = rng(5 + i);
+        const n = [10, 28, 28][i];
+        for (let k = 0; k < n; k++) add('circle', { cx: o.x + 8 + r() * 44, cy: 100 + r() * 130, r: 1.8, fill: '#9A7D0A' });
+        if (i === 2) for (let k = 0; k < 30; k++) {
+            const x = o.x + 12 + r() * 36, y = 238 - r() * 14 * (1 - Math.abs(x - o.x - 30) / 30);
+            add('rect', { x, y, width: 6, height: 6, fill: '#FDFEFE', stroke: '#7E5109', 'stroke-width': 1, transform: `rotate(${r() * 90} ${x + 3} ${y + 3})` });
+        }
+        label(add, o.x + 30, 290, o.t, { 'font-size': 18 });
+        label(add, o.x + 30, 312, o.s, { 'font-size': 14, 'font-weight': 400, fill: '#525252' });
+    });
+    arrow(add, 200, 140, 270, 140, '#7F8C8D', 3, 12);
+    label(add, 235, 128, '+ soluto', { 'font-size': 13, 'font-weight': 400, fill: '#525252' });
+    arrow(add, 410, 140, 480, 140, '#7F8C8D', 3, 12);
+    label(add, 445, 128, '+ soluto', { 'font-size': 13, 'font-weight': 400, fill: '#525252' });
+</script>
+</body>
+</html>

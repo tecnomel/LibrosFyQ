@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El agua en la meteorología</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .card { border-radius: 14px; padding: 10px; text-align: center; border: 2px solid var(--line); background: #FBFCFC; }
+    .card .ic { font-size: 50px; line-height: 1.15; }
+    .card h2 { font-size: 20px; color: var(--blue); margin: 2px 0; }
+    .card .ch { display: inline-block; font-size: 14px; font-weight: 700; padding: 2px 10px; border-radius: 8px; margin: 4px 0; color: #fff; }
+    .cond { background: #2471A3; } .frz { background: #5DADE2; } .desub { background: #6C3483; } .none { background: #7F8C8D; }
+    .card .d { font-size: 14px; color: var(--grey); }
+    .legend { margin-top: 12px; font-size: 16px; text-align: center; color: var(--grey); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>El agua en la meteorología: ¿qué cambio de estado?</h1>
+    <div class="grid">
+        <div class="card"><div class="ic">☁️</div><h2>Nubes</h2><span class="ch cond">condensación</span><div class="d">el vapor se enfría en altura y forma gotitas</div></div>
+        <div class="card"><div class="ic">🌧️</div><h2>Lluvia</h2><span class="ch none">sin cambio</span><div class="d">las gotas de las nubes crecen y caen</div></div>
+        <div class="card"><div class="ic">🌫️</div><h2>Niebla</h2><span class="ch cond">condensación</span><div class="d">una nube pegada al suelo</div></div>
+        <div class="card"><div class="ic">🌨️</div><h2>Nieve</h2><span class="ch frz">solidificación / sublimación inversa</span><div class="d">cristalitos de hielo se unen en copos</div></div>
+        <div class="card"><div class="ic">🧊</div><h2>Granizo</h2><span class="ch frz">solidificación</span><div class="d">las gotas se congelan mientras el viento las sube y las baja</div></div>
+        <div class="card"><div class="ic">🍃💧</div><h2>Rocío</h2><span class="ch cond">condensación</span><div class="d">de noche, el vapor forma gotas sobre superficies frías</div></div>
+        <div class="card"><div class="ic">❄️🍂</div><h2>Escarcha</h2><span class="ch desub">sublimación inversa</span><div class="d">el vapor pasa directamente a hielo sobre superficies muy frías</div></div>
+        <div class="card"><div class="ic">✈️</div><h2>Estelas</h2><span class="ch desub">sublimación inversa</span><div class="d">el vapor de los motores se convierte en cristales de hielo</div></div>
+    </div>
+    <div class="legend">Todos son <b>cambios físicos</b>: la sustancia siempre es agua, H<sub>2</sub>O.</div>
+</div>
+</body>
+</html>

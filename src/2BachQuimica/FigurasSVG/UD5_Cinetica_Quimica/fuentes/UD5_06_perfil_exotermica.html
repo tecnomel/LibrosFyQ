@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD5_06 · Perfil de energía de una reacción exotérmica</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/graficas.js"></script>
+</head>
+<body>
+<script>
+// Exotérmica: los productos tienen menos entalpía que los reactivos (ΔH < 0).
+const svg = crearFigura(360, 300);
+texto(svg, 190, 20, "Reacción exotérmica", { "text-anchor": "middle", "font-size": 17, "font-weight": "bold", fill: COLORES.texto });
+const g = grafica(svg, { x: 30, y: 38, w: 310, h: 220, xmin: 0, xmax: 1, ymin: 0, ymax: 10, etqY: "H" });
+texto(svg, 185, 290, "Transcurso de la reacción", { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+const e0 = 5, e1 = 2, emax = 8.6;
+g.curva(x => perfilEnergia(x, e0, emax, e1, 0.45, 0.1), { desde: 0.05, hasta: 0.95, color: "#2E9D6A", ancho: 3 });
+el("line", { x1: g.px(0.05), y1: g.py(e0), x2: g.px(0.85), y2: g.py(e0), stroke: "#333", "stroke-dasharray": "5 4" }, svg);
+flecha(svg, g.px(0.36), g.py(e0), g.px(0.36), g.py(8.5), { color: "#1E6FC0", ancho: 1.6, punta: 9, doble: true });
+texto(svg, g.px(0.3), g.py(6.8), [{ t: "E" }, { t: "a", sub: true }], { "font-size": 17, "font-style": "italic", fill: COLORES.texto });
+flecha(svg, g.px(0.8), g.py(e0), g.px(0.8), g.py(e1), { color: "#1E6FC0", ancho: 1.6, punta: 9, doble: true });
+texto(svg, g.px(0.83), g.py(3.4), "ΔH < 0", { "font-size": 15, fill: COLORES.texto });
+texto(svg, g.px(0.12), g.py(e0) + 20, "Reactivos", { "font-size": 14, fill: COLORES.texto });
+texto(svg, g.px(0.66), g.py(e1) + 20, "Productos", { "font-size": 14, fill: COLORES.texto });
+texto(svg, g.px(0.45), g.py(9.7), "Complejo activado", { "text-anchor": "middle", "font-size": 13, fill: COLORES.texto });
+</script>
+</body>
+</html>

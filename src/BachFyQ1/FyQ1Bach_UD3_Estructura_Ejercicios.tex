@@ -1,0 +1,826 @@
+%! Unidad 3 — Estructura atómica y tabla periódica: ejercicios resueltos y ejercicios finales
+%! Fuente: Fuentes/Quimica/Unidad 3 («Ejercicios resueltos», «Practica y calcula», «Piensa y resuelve»).
+%! Enunciados adaptados con datos cambiados; soluciones recalculadas. Dificultad: \(\star\) baja, \(\star\star\) media, \(\star\star\star\) alta.
+%! Convención para el electrón diferenciador: los orbitales se llenan de m = -l a m = +l, primero con s = +1/2.
+
+\section{Ejercicios resueltos}\label{sec:ud3-resueltos}
+
+Salvo que se indique otra cosa, usa \(h = \qty{6.626e-34}{\joule\s}\); \(c = \qty{3.00e8}{\m\per\s}\);
+\(N_A = \qty{6.022e23}{\per\mol}\); \(R = \qty{1.097e7}{\per\m}\); \(E_n = -\qty{2.18e-18}{\joule}/n^2\) para el hidrógeno y
+\(\qty{1}{\electronvolt} = \qty{1.602e-19}{\joule}\).
+
+\begin{example}
+    \textbf{¿Qué luz tiene más energía?} En el espectro visible, la luz amarilla tiene una longitud de onda de unos
+    \qty{589}{\nm} y la violeta, de unos \qty{400}{\nm}. ¿Cuál de estas afirmaciones es correcta? a) La luz amarilla tiene más
+    energía que la violeta. b) Las dos tienen la misma energía. c) La violeta tiene más energía que la amarilla. d) Las dos son más
+    energéticas que los rayos X.
+
+    \textbf{Solución.} \textbf{1. Datos}: \(\lambda_{\text{amarilla}} = \qty{589}{\nm}\); \(\lambda_{\text{violeta}} = \qty{400}{\nm}\).
+    Se pide comparar la energía de sus fotones.
+
+    \textbf{2. Cálculos.} Con la ecuación de Planck:
+    \begin{gather*}
+        E_{\text{amarilla}} = \frac{h c}{\lambda} = \frac{\num{6.626e-34} \cdot \num{3.00e8}}{\num{589e-9}} = \qty{3.37e-19}{\joule} \\
+        E_{\text{violeta}} = \frac{\num{6.626e-34} \cdot \num{3.00e8}}{\num{400e-9}} = \qty{4.97e-19}{\joule}
+    \end{gather*}
+    La energía es inversamente proporcional a la longitud de onda: la luz violeta es más energética que la amarilla. Los rayos X,
+    con \(\lambda \approx \qty{1}{\nm}\), tienen fotones de unos \qty{2e-16}{\joule}, cientos de veces más energéticos que los
+    visibles. La respuesta correcta es la \textbf{c}.
+\end{example}
+
+\begin{example}
+    \textbf{Números cuánticos permitidos.} Dados los conjuntos de números cuánticos \((2, 2, 0, +\frac{1}{2})\),
+    \((4, 1, 0, +\frac{1}{2})\), \((3, 1, 0, 2)\), \((3, 2, -2, -\frac{1}{2})\) y \((3, 1, 2, +\frac{1}{2})\): a) ¿cuáles están
+    permitidos y cuáles no? b) ¿En qué orbital está el electrón en los permitidos?
+
+    \textbf{Solución.} Recordamos las reglas: \(l = 0, 1\dots, n - 1\); \(m\) va de \(-l\) a \(+l\); \(m_s = \pm\frac{1}{2}\).
+
+    a) \((2, 2, 0, +\frac{1}{2})\): \textbf{no}, \(l\) no puede ser igual a \(n\). \((4, 1, 0, +\frac{1}{2})\): \textbf{sí}.
+    \((3, 1, 0, 2)\): \textbf{no}, \(m_s\) solo puede valer \(\pm\frac{1}{2}\). \((3, 2, -2, -\frac{1}{2})\): \textbf{sí}.
+    \((3, 1, 2, +\frac{1}{2})\): \textbf{no}, con \(l = 1\), \(m\) solo puede ser \(-1\), 0 o \(+1\).
+
+    b) \(n\) indica el nivel y \(l\), el tipo de orbital: \((4, 1, 0, +\frac{1}{2})\) es un electrón \textbf{4p}, y
+    \((3, 2, -2, -\frac{1}{2})\), un electrón \textbf{3d}.
+\end{example}
+
+\begin{example}
+    \textbf{Configuración y propiedades periódicas.} Para los elementos A (\(Z = 17\)), B (\(Z = 35\)), C (\(Z = 19\)) y
+    D (\(Z = 20\)): a) escribe su configuración electrónica; b) indica su periodo y su grupo; c) ¿cuál tiene mayor radio atómico?;
+    d) ¿cuál tiene mayor energía de ionización?; e) ¿cuál tiene mayor afinidad electrónica? Razona las respuestas.
+
+    \textbf{Solución.} a) Como son átomos neutros, tienen \(Z\) electrones. Con el diagrama de Möller:
+    \begin{center}
+        A: \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^5} \qquad B: \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,4s^2\,3d^{10}\,4p^5} \\[2pt]
+        C: \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,4s^1} \qquad D: \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,4s^2}
+    \end{center}
+
+    b) A: capa de valencia \conf{3s^2\,3p^5}, periodo 3, grupo 17 (es el cloro). B: \conf{4s^2\,4p^5}, periodo 4, grupo 17
+    (bromo). C: \conf{4s^1}, periodo 4, grupo 1 (potasio). D: \conf{4s^2}, periodo 4, grupo 2 (calcio).
+
+    c) El radio aumenta al bajar en un grupo (hay más capas) y disminuye hacia la derecha en un periodo (aumenta la carga nuclear
+    efectiva). B, C y D están en el periodo 4, y C es el que está más a la izquierda: \textbf{C} tiene el mayor radio.
+
+    d) La energía de ionización aumenta hacia la derecha y hacia arriba, al contrario que el radio: los electrones están más
+    cerca del núcleo y más atraídos. El mayor valor corresponde a \textbf{A}, el que está más arriba y más a la derecha.
+
+    e) La afinidad electrónica (la energía que se desprende al captar un electrón) también aumenta hacia arriba y hacia la
+    derecha: \textbf{A} es el que tiene mayor tendencia a captar un electrón y completar su capa de valencia.
+\end{example}
+
+\begin{example}
+    \textbf{Una raya del espectro del hidrógeno.} El electrón de un átomo de hidrógeno excitado pasa del nivel \(n = 4\) al
+    \(n = 2\). Calcula la energía, la frecuencia y la longitud de onda del fotón emitido. ¿De qué color es esa raya? ¿A qué serie
+    pertenece?
+
+    \textbf{Solución.} \textbf{1. Energía}: es la diferencia entre los dos niveles:
+    \[ \Delta E = E_4 - E_2 = -\frac{\num{2.18e-18}}{16} - \left( -\frac{\num{2.18e-18}}{4} \right) = \num{2.18e-18} \left( \frac{1}{4} - \frac{1}{16} \right) = \qty{4.09e-19}{\joule} \]
+    \textbf{2. Frecuencia y longitud de onda}:
+    \[ \nu = \frac{\Delta E}{h} = \frac{\num{4.09e-19}}{\num{6.626e-34}} = \qty{6.17e14}{\hertz} \qquad
+    \lambda = \frac{c}{\nu} = \frac{\num{3.00e8}}{\num{6.17e14}} = \qty{4.86e-7}{\m} = \qty{486}{\nm} \]
+    Es una radiación visible, de color \textbf{azul verdoso}. Como el salto termina en \(n = 2\), pertenece a la serie de
+    \textbf{Balmer}. Se obtiene lo mismo con la fórmula de Rydberg: \(1/\lambda = R(1/4 - 1/16)\).
+\end{example}
+
+\begin{example}
+    \textbf{Abundancia de los isótopos del cobre.} El cobre natural tiene dos isótopos, \ch{^{63}Cu} (\qty{62.930}{\uma}) y
+    \ch{^{65}Cu} (\qty{64.928}{\uma}), y su masa atómica es \qty{63.546}{\uma}. Calcula la abundancia de cada isótopo y dibuja el
+    espectro de masas.
+
+    \textbf{Solución.} Llamamos \(x\) al porcentaje de \ch{^{63}Cu}; el de \ch{^{65}Cu} será \(100 - x\):
+    \[ \num{63.546} = \frac{\num{62.930}\,x + \num{64.928}\,(100 - x)}{100} \;\Rightarrow\; \num{6354.6} = \num{6492.8} - \num{1.998}\,x
+    \;\Rightarrow\; x = \num{69.2} \]
+    Hay un \textbf{69,2\,\%} de \ch{^{63}Cu} y un \textbf{30,8\,\%} de \ch{^{65}Cu}. El espectro de masas tiene dos picos, en
+    \(\approx 63\) y \(\approx 65\), y el primero es algo más del doble de alto que el segundo.
+\end{example}
+
+%========================================================================================
+\section{Ejercicios de aplicación}\label{sec:ud3-aplicacion}
+%========================================================================================
+
+\subsection{Modelos atómicos}
+
+\begin{exercise}
+    \(\star\) ¿Qué masa y qué carga tienen un protón, un electrón y un neutrón? ¿Qué tienen en común estas tres partículas? ¿En
+    qué se diferencian?
+    \begin{solu}
+        \textcolor{red}{Protón: \qty{1.673e-27}{\kilo\gram}, \(+\qty{1.602e-19}{\coulomb}\). Electrón: \qty{9.109e-31}{\kilo\gram},
+        \(-\qty{1.602e-19}{\coulomb}\). Neutrón: \qty{1.675e-27}{\kilo\gram}, sin carga.} Las tres forman parte de todos los
+        átomos (salvo el \ch{^{1}H}, sin neutrones). Se diferencian en la carga, en la masa (protón y neutrón tienen masas casi
+        iguales, unas 1840 veces la del electrón) y en su localización: protones y neutrones en el núcleo, electrones en la corteza.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Dibuja en tu cuaderno el modelo atómico de Thomson y el de Rutherford e indica en cada dibujo dónde están la carga
+    positiva, la carga negativa y la masa.
+    \begin{solu}
+        \textcolor{red}{Thomson}: una esfera con la carga positiva y la masa repartidas uniformemente y los electrones incrustados.
+        \textcolor{red}{Rutherford}: un núcleo diminuto, con toda la carga positiva y casi toda la masa, y los electrones girando a
+        su alrededor en un espacio casi vacío (figura~\ref{fig:ud3-modelos}).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Cuáles son las diferencias principales entre el modelo atómico de Thomson y el de Rutherford? ¿Qué experimento
+    obligó a cambiar de uno a otro?
+    \begin{solu}
+        \textcolor{red}{En el de Thomson el átomo es una esfera maciza con la carga positiva repartida; en el de Rutherford está
+        casi vacío, la carga positiva y la masa se concentran en un núcleo pequeñísimo y los electrones giran en la corteza.} El
+        cambio lo provocó \textcolor{red}{el experimento de la lámina de oro} (1910): algunas partículas \(\alpha\) se desviaban
+        mucho o rebotaban, cosa imposible con el modelo de Thomson.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Cuáles son las limitaciones del modelo atómico de Rutherford?
+    \begin{solu}
+        \textcolor{red}{Según la física clásica, el electrón, al girar, emitiría radiación, perdería energía y caería sobre el
+        núcleo: el átomo no sería estable.} Además, \textcolor{red}{no explicaba los espectros discontinuos} de los átomos.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Cuál es la diferencia entre una órbita y un orbital?
+    \begin{solu}
+        \textcolor{red}{Una órbita (modelo de Bohr) es una trayectoria circular definida por la que se mueve el electrón; un
+        orbital (modelo mecanocuántico) es una región del espacio donde la probabilidad de encontrar al electrón es máxima}, sin
+        trayectoria definida, porque no se pueden conocer a la vez su posición y su velocidad.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿A qué modelos atómicos se les llama «pudin de pasas» y «planetario»? ¿Qué aportó cada uno al conocimiento del átomo?
+    \begin{solu}
+        \textcolor{red}{«Pudin de pasas»: el de Thomson}; aportó que el átomo es divisible y contiene electrones.
+        \textcolor{red}{«Planetario»: el de Rutherford}; aportó la existencia del núcleo y que el átomo está casi vacío.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Los modelos sobre la estructura del átomo empezaron a desarrollarse a comienzos del siglo XX. a) ¿A qué crees
+    que se debe? b) Desde entonces no han dejado de aparecer nuevos modelos y aportaciones. ¿Por qué hubo tantos avances en tan
+    poco tiempo?
+    \begin{solu}
+        a) \textcolor{red}{A los descubrimientos de finales del siglo XIX}: el electrón, los rayos X, la radiactividad y la
+        espectroscopía mostraron que el átomo tenía estructura interna. b) \textcolor{red}{Cada modelo se ponía a prueba con nuevos
+        experimentos, cada vez más precisos, y la física cuántica dio herramientas nuevas}; además, los científicos trabajaban en
+        contacto y aprovechaban los resultados de los demás.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Haced en grupo un eje cronológico de la evolución de los modelos atómicos, con los científicos que intervinieron
+    y su aportación, y exponedlo en clase.
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta.} Por ejemplo: Demócrito (s. V a.\,C., idea de átomo); Dalton (1808, esferas
+        indivisibles); Thomson (1897, electrón; 1904, modelo); Millikan (1909, carga del electrón); Rutherford (1911, núcleo;
+        1919, protón); Bohr (1913, niveles de energía); Sommerfeld (1915, subniveles); De Broglie (1924, dualidad onda-partícula);
+        Schrödinger y Heisenberg (1926-1927, modelo mecanocuántico); Chadwick (1932, neutrón).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El radio de un átomo de oro es de unos \qty{1.44e-10}{\m} y el de su núcleo, de unos \qty{7.3e-15}{\m}.
+    Considerando ambos esféricos, ¿qué fracción del volumen del átomo ocupa el núcleo?
+    \begin{solu}
+        \(\dfrac{V_{\text{núcleo}}}{V_{\text{átomo}}} = \left( \dfrac{\num{7.3e-15}}{\num{1.44e-10}} \right)^3 =
+        \textcolor{red}{\num{1.3e-13}}\): el núcleo ocupa una parte en casi diez billones del volumen del átomo.
+    \end{solu}
+\end{exercise}
+
+\subsection{Masa atómica}
+
+\begin{exercise}
+    \(\star\) Indica el número másico, el número atómico y el número de protones, electrones y neutrones de estos átomos neutros:
+    \ch{^{58}_{28}Ni}, \ch{^{87}_{38}Sr}, \ch{^{40}_{20}Ca}, \ch{^{17}_{8}O} y \ch{^{127}_{53}I}.
+    \begin{solu}
+        \begin{tabular}{@{}lccccc@{}}
+            \toprule
+            & \ch{^{58}_{28}Ni} & \ch{^{87}_{38}Sr} & \ch{^{40}_{20}Ca} & \ch{^{17}_{8}O} & \ch{^{127}_{53}I} \\
+            \midrule
+            \(A\) / \(Z\) & 58 / 28 & 87 / 38 & 40 / 20 & 17 / 8 & 127 / 53 \\[3pt]
+            Protones = electrones & 28 & 38 & 20 & 8 & 53 \\[3pt]
+            Neutrones & \textcolor{red}{30} & \textcolor{red}{49} & \textcolor{red}{20} & \textcolor{red}{9} & \textcolor{red}{74} \\
+            \bottomrule
+        \end{tabular}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Indica el número de protones, electrones y neutrones de estos iones: \ch{^{27}_{13}Al^3+}, \ch{^{133}_{55}Cs^+},
+    \ch{^{24}_{12}Mg^2+}, \ch{^{34}_{16}S^2-} y \ch{^{81}_{35}Br^-}.
+    \begin{solu}
+        \ch{Al^3+}: \textcolor{red}{13 p, 10 e, 14 n}. \ch{Cs^+}: \textcolor{red}{55 p, 54 e, 78 n}. \ch{Mg^2+}:
+        \textcolor{red}{12 p, 10 e, 12 n}. \ch{S^2-}: \textcolor{red}{16 p, 18 e, 18 n}. \ch{Br^-}: \textcolor{red}{35 p, 36 e, 46 n}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Determina el número de protones, electrones y neutrones de estas parejas: a) \ch{^{31}_{15}P^3-} y
+    \ch{^{31}_{15}P}; b) \ch{^{138}_{56}Ba^2+} y \ch{^{138}_{56}Ba}. ¿Qué cambia y qué no al formarse el ion?
+    \begin{solu}
+        a) \ch{P^3-}: \textcolor{red}{15 p, 18 e, 16 n}; P: \textcolor{red}{15 p, 15 e, 16 n}. b) \ch{Ba^2+}: \textcolor{red}{56 p,
+        54 e, 82 n}; Ba: \textcolor{red}{56 p, 56 e, 82 n}. \textcolor{red}{Al formarse un ion solo cambia el número de electrones}:
+        el núcleo no varía.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El cobre es un oligoelemento esencial: ayuda a mantener los vasos sanguíneos, los nervios y los huesos, y a
+    formar los glóbulos rojos. Puede formar iones \ch{Cu^+} y \ch{Cu^2+}. Indica el número de protones, neutrones y electrones de
+    \ch{^{63}_{29}Cu^+} y de \ch{^{63}_{29}Cu^2+}.
+    \begin{solu}
+        Los dos tienen \textcolor{red}{29 protones y 34 neutrones}; \ch{Cu^+} tiene \textcolor{red}{28 electrones} y \ch{Cu^2+},
+        \textcolor{red}{27}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) El cobalto tiene 22 isótopos conocidos. El cobalto-60 se usa en radioterapia contra el cáncer. Sabiendo que para el
+    cobalto \(Z = 27\), indica cuántos protones, neutrones y electrones tiene un átomo de \ch{^{60}Co}.
+    \begin{solu}
+        \textcolor{red}{27 protones, 33 neutrones y 27 electrones.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El espectro de masas del magnesio presenta tres picos: \ch{^{24}Mg} (\qty{23.985}{\uma}; 78,99\,\%),
+    \ch{^{25}Mg} (\qty{24.986}{\uma}; 10,00\,\%) y \ch{^{26}Mg} (\qty{25.983}{\uma}; 11,01\,\%). Represéntalo y calcula la masa
+    atómica media del magnesio.
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{axis}[grafica, width=0.5\linewidth, height=4.5cm, ybar, bar width=5pt, xmin=23, xmax=27, ymin=0, ymax=95,
+                xtick={23,24,25,26,27}, xlabel={Masa isotópica (u)}, ylabel={Abundancia (\%)}, grid=none,
+                nodes near coords, nodes near coords style={font=\scriptsize, /pgf/number format/use comma}]
+                \addplot[fill=ocre!70, draw=ocre] coordinates {(23.985,78.99) (24.986,10.00) (25.983,11.01)};
+            \end{axis}
+        \end{tikzpicture}
+    \end{center}
+    \begin{solu}
+        \(\bar{A} = \dfrac{\num{23.985} \cdot \num{78.99} + \num{24.986} \cdot \num{10.00} + \num{25.983} \cdot \num{11.01}}{100} =
+        \textcolor{red}{\qty{24.31}{\uma}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El boro tiene dos isótopos, \ch{^{10}B} y \ch{^{11}B}, de masas \qty{10.013}{\uma} y \qty{11.009}{\uma}. Si
+    la masa atómica del boro es \qty{10.81}{\uma}, calcula la abundancia natural de cada isótopo y representa su espectro de masas.
+    \begin{solu}
+        \(\num{10.81} = \dfrac{\num{10.013}\,x + \num{11.009}\,(100 - x)}{100}\Rightarrow\) \textcolor{red}{\ch{^{10}B}: 20,0\,\%}
+        y \textcolor{red}{\ch{^{11}B}: 80,0\,\%}. El espectro tiene dos picos, el de 11 cuatro veces más alto que el de 10.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Calcula la masa atómica del plomo sabiendo que tiene cuatro isótopos: \ch{^{204}Pb} (\qty{203.97}{\uma};
+    1,4\,\%), \ch{^{206}Pb} (\qty{205.97}{\uma}; 24,1\,\%), \ch{^{207}Pb} (\qty{206.98}{\uma}; 22,1\,\%) y \ch{^{208}Pb}
+    (\qty{207.98}{\uma}).
+    \begin{solu}
+        Abundancia del \ch{^{208}Pb}: \(100 - \num{47.6} = \num{52.4}\)\,\%.
+        \[ \bar{A} = \frac{\num{203.97} \cdot \num{1.4} + \num{205.97} \cdot \num{24.1} + \num{206.98} \cdot \num{22.1} + \num{207.98} \cdot \num{52.4}}{100}
+        = \textcolor{red}{\qty{207.2}{\uma}} \]
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) El espectro de masas del litio da estos datos: \ch{^{6}Li}, \qty{6.015}{\uma} y 7,59\,\%; \ch{^{7}Li},
+    \qty{7.016}{\uma} y 92,41\,\%. Calcula la masa atómica media del litio.
+    \begin{solu}
+        \(\bar{A} = \dfrac{\num{6.015} \cdot \num{7.59} + \num{7.016} \cdot \num{92.41}}{100} = \textcolor{red}{\qty{6.94}{\uma}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El neón tiene tres isótopos estables: \ch{^{20}Ne} (\qty{19.992}{\uma}; 90,48\,\%), \ch{^{21}Ne}
+    (\qty{20.994}{\uma}; 0,27\,\%) y \ch{^{22}Ne} (\qty{21.991}{\uma}; 9,25\,\%). Calcula su masa atómica. ¿Por qué el pico del
+    \ch{^{21}Ne} es casi invisible en el espectro de masas?
+    \begin{solu}
+        \(\bar{A} = \textcolor{red}{\qty{20.18}{\uma}}\). \textcolor{red}{Porque su abundancia es solo del 0,27\,\%}: su pico es
+        unas 335 veces más bajo que el del \ch{^{20}Ne}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Representa el espectro de masas de estos elementos y calcula su masa atómica media: a) plata:
+    \ch{^{107}Ag} (\qty{106.905}{\uma}; 51,84\,\%) y \ch{^{109}Ag} (\qty{108.905}{\uma}; 48,16\,\%); b) estroncio: \ch{^{84}Sr}
+    (\qty{83.913}{\uma}; 0,56\,\%), \ch{^{86}Sr} (\qty{85.909}{\uma}; 9,86\,\%), \ch{^{87}Sr} (\qty{86.909}{\uma}; 7,00\,\%) y
+    \ch{^{88}Sr} (\qty{87.906}{\uma}; 82,58\,\%).
+    \begin{solu}
+        a) \(\textcolor{red}{\qty{107.87}{\uma}}\): dos picos casi iguales. b) \(\textcolor{red}{\qty{87.62}{\uma}}\): un pico
+        dominante en 88 y tres pequeños en 84, 86 y 87.
+    \end{solu}
+\end{exercise}
+
+\subsection{Espectros atómicos}
+
+\begin{exercise}
+    \(\star\star\) A principios del siglo XX, Georges Claude inventó la lámpara de neón. a) Investiga qué colores pueden tener
+    estas lámparas y de qué depende. b) El neón emite sobre todo luz rojo anaranjada, de unos \qty{640}{\nm}. ¿Cuál es su
+    frecuencia? c) Si se sustituye el neón por argón, la luz es azul violácea (unos \qty{420}{\nm}). ¿Cuál es su frecuencia?
+    \begin{solu}
+        a) \textcolor{red}{El color depende del gas (cada uno tiene su espectro de emisión)}, y también del vidrio coloreado o de
+        recubrimientos fluorescentes del tubo. b) \(\nu = \dfrac{\num{3.00e8}}{\num{640e-9}} = \textcolor{red}{\qty{4.69e14}{\hertz}}\).
+        c) \(\textcolor{red}{\qty{7.14e14}{\hertz}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) La banda de radio de onda media (AM) va de 530 a \qty{1600}{\kilo\hertz}. a) ¿Entre qué longitudes de onda está?
+    b) ¿Cuál es la longitud de onda de una emisora que emite a \qty{1008}{\kilo\hertz}?
+    \begin{solu}
+        a) \(\dfrac{\num{3.00e8}}{\num{530e3}} = \qty{566}{\m}\) y \(\dfrac{\num{3.00e8}}{\num{1600e3}} = \qty{188}{\m}\):
+        \textcolor{red}{entre 188 y \qty{566}{\m}}. b) \(\textcolor{red}{\qty{298}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Con la expresión de Bohr para la energía de los niveles del hidrógeno, calcula la longitud de onda de las cuatro
+    rayas visibles de la serie de Balmer (saltos que terminan en \(n = 2\) desde \(n = 3, 4, 5\) y 6). Identifícalas en la
+    figura~\ref{fig:ud3-espectros}.
+    \begin{solu}
+        \(\lambda = \dfrac{h c}{\num{2.18e-18} \left( \frac{1}{4} - \frac{1}{n^2} \right)}\): \(n = 3\): \textcolor{red}{\qty{657}{\nm}}
+        (rojo); \(n = 4\): \textcolor{red}{\qty{486}{\nm}} (azul verdoso); \(n = 5\): \textcolor{red}{\qty{434}{\nm}} (azul
+        violeta); \(n = 6\): \textcolor{red}{\qty{410}{\nm}} (violeta).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) En el espectro de emisión del bario hay una raya verde de \qty{553.5}{\nm}. ¿Qué energía tiene cada fotón de esa
+    luz? ¿Qué diferencia de energía hay entre los dos niveles del átomo de bario que producen esa raya?
+    \begin{solu}
+        \(E = \dfrac{h c}{\lambda} = \textcolor{red}{\qty{3.59e-19}{\joule}}\), que es \textcolor{red}{la misma diferencia de energía
+        entre los dos niveles}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Una radiación de \qty{680}{\nm} se ve de color rojo intenso. ¿Qué energía tiene uno de sus fotones, en julios
+    y en electronvoltios? ¿Y un mol de fotones?
+    \begin{solu}
+        \(E = \dfrac{\num{6.626e-34} \cdot \num{3.00e8}}{\num{680e-9}} = \textcolor{red}{\qty{2.92e-19}{\joule}}\);
+        \(\dfrac{\num{2.92e-19}}{\num{1.602e-19}} = \textcolor{red}{\qty{1.82}{\electronvolt}}\); un mol:
+        \(\textcolor{red}{\qty{1.76e5}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) La energía de ionización de un átomo de litio es \qty{8.637e-19}{\joule}. ¿Cuál es la longitud de onda máxima de la
+    radiación capaz de ionizarlo? ¿En qué zona del espectro está?
+    \begin{solu}
+        \(\lambda = \dfrac{h c}{E} = \dfrac{\num{1.988e-25}}{\num{8.637e-19}} = \textcolor{red}{\qty{2.30e-7}{\m} = \qty{230}{\nm}}\),
+        en el \textcolor{red}{ultravioleta}. Una radiación de longitud de onda mayor no tiene fotones con energía suficiente.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Calcula la longitud de onda de la raya de la serie de Paschen del hidrógeno que corresponde al salto de
+    \(n = 7\) a \(n = 3\).
+    \begin{solu}
+        \(\dfrac{1}{\lambda} = \num{1.097e7} \left( \dfrac{1}{9} - \dfrac{1}{49} \right) = \qty{9.95e5}{\per\m}\):
+        \(\lambda = \textcolor{red}{\qty{1.005e-6}{\m} = \qty{1005}{\nm}}\) (infrarrojo).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Cuántas veces es más energético un fotón ultravioleta de \qty{250}{\nm} que uno infrarrojo de \qty{2}{\micro\m}?
+    \begin{solu}
+        Como \(E = hc/\lambda\), la relación es la inversa de las longitudes de onda: \(\dfrac{2000}{250} = \textcolor{red}{8}\)
+        veces (\qty{7.95e-19}{\joule} frente a \qty{9.94e-20}{\joule}).
+    \end{solu}
+\end{exercise}
+
+\subsection{Números cuánticos}
+
+\begin{exercise}
+    \(\star\) El estado de un electrón queda descrito por cuatro números cuánticos. ¿Qué nos indica cada uno y qué valores pueden
+    tomar?
+    \begin{solu}
+        \(\textcolor{red}{n}\) (\(1, 2, 3\dots\)): el nivel de energía y el tamaño del orbital. \(\textcolor{red}{l}\) (de 0 a
+        \(n-1\)): el subnivel y la forma del orbital. \(\textcolor{red}{m}\) (de \(-l\) a \(+l\)): la orientación del orbital.
+        \(\textcolor{red}{m_s}\) (\(\pm\frac{1}{2}\)): el sentido del espín del electrón.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Si \(n = 2\), ¿qué valores pueden tomar los demás números cuánticos? ¿Cuántos electrones caben en ese nivel?
+    \begin{solu}
+        \(l = 0\): \(m = 0\); \(l = 1\): \(m = -1, 0, +1\); en todos los casos \(m_s = \pm\frac{1}{2}\). Hay 4 orbitales:
+        \textcolor{red}{8 electrones}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Indica en qué orbital se encuentra el electrón descrito por cada conjunto de números cuánticos:
+    \((2, 0, 0, +\frac{1}{2})\); \((3, 2, -1, -\frac{1}{2})\); \((4, 1, 0, -\frac{1}{2})\); \((5, 3, -2, +\frac{1}{2})\).
+    \begin{solu}
+        \textcolor{red}{2s; 3d; 4p; 5f.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) En el subnivel 4s hay dos electrones. ¿Cuáles son sus números cuánticos?
+    \begin{solu}
+        \(\textcolor{red}{(4, 0, 0, +\frac{1}{2})}\) y \(\textcolor{red}{(4, 0, 0, -\frac{1}{2})}\): por el principio de Pauli,
+        solo se diferencian en el espín.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Cuáles de estas combinaciones de números cuánticos están permitidas? Explica por qué.
+    a) \((4, 2, -3, -\frac{1}{2})\); b) \((3, 3, 1, +\frac{1}{2})\); c) \((2, 1, 0, -\frac{1}{2})\); d) \((1, 0, 1, +\frac{1}{2})\).
+    \begin{solu}
+        a) \textcolor{red}{No}: con \(l = 2\), \(m\) va de \(-2\) a \(+2\). b) \textcolor{red}{No}: \(l\) debe ser menor que \(n\).
+        c) \textcolor{red}{Sí} (orbital 2p). d) \textcolor{red}{No}: con \(l = 0\), \(m\) solo puede ser 0.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Indica el número máximo de electrones que puede haber en cada caso y en qué orbitales están:
+    a) \(n = 3\) y \(m_s = -\frac{1}{2}\); b) \(n = 4\), \(l = 2\) y \(m = -1\); c) \(n = 5\) y \(l = 1\).
+    \begin{solu}
+        a) El nivel 3 tiene 9 orbitales (3s, 3p, 3d) y en cada uno hay un electrón con \(m_s = -\frac{1}{2}\):
+        \textcolor{red}{9 electrones}. b) Un orbital 4d: \textcolor{red}{2 electrones}. c) Los tres orbitales 5p:
+        \textcolor{red}{6 electrones}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Son verdaderas o falsas estas afirmaciones? a) Un electrón de un orbital 3s puede tener los números cuánticos
+    \((3, 1, 0, -\frac{1}{2})\). b) La combinación \((3, 1, -1, -\frac{1}{2})\) está permitida. c) En el nivel \(n = 2\) caben como
+    máximo 10 electrones.
+    \begin{solu}
+        a) \textcolor{red}{Falsa}: en un orbital s, \(l = 0\). b) \textcolor{red}{Verdadera} (es un electrón 3p). c)
+        \textcolor{red}{Falsa}: caben \(2n^2 = 8\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Escribe una combinación válida de números cuánticos para un electrón de cada uno de estos subniveles: 2s, 4d y 5p.
+    \begin{solu}
+        Por ejemplo: \(\textcolor{red}{(2, 0, 0, +\frac{1}{2})}\); \(\textcolor{red}{(4, 2, 1, -\frac{1}{2})}\);
+        \(\textcolor{red}{(5, 1, -1, +\frac{1}{2})}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Escribe una combinación válida de números cuánticos para: a) un orbital 3p; b) un electrón 3p. ¿Por qué no hace
+    falta el mismo número de datos en los dos casos?
+    \begin{solu}
+        a) \(\textcolor{red}{(n, l, m) = (3, 1, 0)}\), por ejemplo. b) \(\textcolor{red}{(3, 1, 0, +\frac{1}{2})}\).
+        \textcolor{red}{Un orbital queda definido por \(n\), \(l\) y \(m\); un electrón necesita además su espín}, porque en cada
+        orbital puede haber dos.
+    \end{solu}
+\end{exercise}
+
+\subsection{Configuración electrónica}
+
+\begin{exercise}
+    \(\star\) A partir de la configuración electrónica del cloro, \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^5}, indica: a) su número atómico
+    y su periodo; b) el ion más probable; c) su grupo.
+    \begin{solu}
+        a) \(\textcolor{red}{Z = 17}\), \textcolor{red}{periodo 3}. b) \textcolor{red}{\ch{Cl^-}}: con un electrón más completa su
+        capa de valencia. c) \textcolor{red}{Grupo 17} (halógenos).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) A partir de la configuración electrónica del azufre, \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^4}, indica: a) su número
+    atómico y su periodo; b) el ion más probable; c) su grupo.
+    \begin{solu}
+        a) \(\textcolor{red}{Z = 16}\), \textcolor{red}{periodo 3}. b) \textcolor{red}{\ch{S^2-}}. c) \textcolor{red}{Grupo 16}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Para escribir la configuración electrónica de un átomo hay que seguir tres reglas. ¿Cuáles son? Enúncialas.
+    \begin{solu}
+        \textcolor{red}{Principio de Aufbau} (los electrones ocupan los subniveles de menor a mayor energía),
+        \textcolor{red}{principio de exclusión de Pauli} (no hay dos electrones con los cuatro números cuánticos iguales: dos como
+        máximo por orbital) y \textcolor{red}{regla de Hund} (en un subnivel, máximo número de electrones desapareados).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Cuáles de estas configuraciones corresponden a átomos con propiedades parecidas? a) \conf{1s^2\,2s^2\,2p^6\,3s^1};
+    b) \conf{[Ar]\,4s^2\,3d^{10}\,4p^5}; c) \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^3}; d) \conf{1s^2\,2s^1}; e) \conf{1s^2\,2s^2\,2p^3};
+    f) \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^5}; g) \conf{[Ar]\,4s^1}; h) \conf{[Ar]\,4s^2\,3d^{10}\,4p^3}.
+    \begin{solu}
+        \textcolor{red}{a, d y g} (\conf{ns^1}, grupo 1: Na, Li, K); \textcolor{red}{b y f} (\conf{ns^2\,np^5}, grupo 17: Br, Cl);
+        \textcolor{red}{c, e y h} (\conf{ns^2\,np^3}, grupo 15: P, N, As).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Escribe la configuración electrónica de estos iones e indica cuáles tienen electrones desapareados: \ch{Zn^2+}
+    (\(Z = 30\)), \ch{Br^-} (\(Z = 35\)), \ch{Ga^3+} (\(Z = 31\)), \ch{Se^2-} (\(Z = 34\)), \ch{Fe^3+} (\(Z = 26\)) y \ch{Mg^2+}
+    (\(Z = 12\)).
+    \begin{solu}
+        \ch{Zn^2+}: \conf{[Ar]\,3d^{10}}; \ch{Br^-}: \conf{[Ar]\,4s^2\,3d^{10}\,4p^6}; \ch{Ga^3+}: \conf{[Ar]\,3d^{10}};
+        \ch{Se^2-}: \conf{[Ar]\,4s^2\,3d^{10}\,4p^6}; \ch{Fe^3+}: \conf{[Ar]\,3d^5}; \ch{Mg^2+}: \conf{1s^2\,2s^2\,2p^6}.
+        \textcolor{red}{Solo el \ch{Fe^3+} tiene electrones desapareados} (5, uno en cada orbital 3d); los demás tienen todos los
+        electrones apareados.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Para las configuraciones de la capa de valencia \conf{ns^2\,np^1}, \conf{ns^2\,np^4} y \conf{ns^2\,np^5}: a) indica
+    el grupo de cada una; b) nombra un elemento de cada grupo; c) ¿cuál será el ion más estable que formarán? Razónalo.
+    \begin{solu}
+        a) \textcolor{red}{Grupos 13, 16 y 17.} b) Por ejemplo, \textcolor{red}{aluminio, oxígeno y flúor}. c)
+        \textcolor{red}{\ch{X^3+}, \ch{X^2-} y \ch{X^-}}: el del grupo 13 pierde sus tres electrones de valencia y los de los grupos
+        16 y 17 ganan los electrones que les faltan para completar la capa (configuración de gas noble).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Razona si estas configuraciones corresponden a un estado fundamental, a un estado excitado o si son imposibles:\newline
+    a) \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^4\,4s^1}; b) \conf{1s^2\,2s^2\,2p^6\,2d^1}; c) \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,4s^1}.
+    \begin{solu}
+        a) \textcolor{red}{Excitado}: el 3p no está completo y ya hay un electrón en 4s. b) \textcolor{red}{Imposible}: no existe
+        el subnivel 2d (con \(n = 2\), \(l\) solo puede ser 0 o 1). c) \textcolor{red}{Fundamental} (es el potasio).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Para el elemento de número atómico 33: a) escribe su configuración electrónica; b) ¿a qué grupo y periodo
+    pertenece?; c) ¿qué valores tienen los números cuánticos de su último electrón?
+    \begin{solu}
+        a) \(\textcolor{red}{\conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,4s^2\,3d^{10}\,4p^3}}\). b) \textcolor{red}{Grupo 15, periodo 4}
+        (arsénico). c) El tercer electrón 4p ocupa, según la regla de Hund, el último orbital p con espín \(+\frac{1}{2}\):
+        \(\textcolor{red}{(4, 1, +1, +\frac{1}{2})}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Propiedades periódicas}
+
+\begin{exercise}
+    \(\star\star\) ¿Qué tendrá mayor radio, un átomo en estado fundamental o su catión? ¿Y si en lugar de un catión fuera un anión?
+    \begin{solu}
+        \textcolor{red}{El átomo es mayor que su catión}: al perder electrones disminuye la repulsión entre ellos (y a menudo
+        desaparece la última capa). \textcolor{red}{El anión es mayor que el átomo}: el electrón ganado aumenta la repulsión y la
+        nube se expande.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Por qué no se suelen dar valores del radio atómico de los gases nobles?
+    \begin{solu}
+        \textcolor{red}{Porque el radio atómico se mide a partir de la distancia entre núcleos de átomos enlazados, y los gases
+        nobles prácticamente no forman enlaces.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Ordena de menor a mayor radio atómico: N, P, As, Sb y Bi. Justifica la respuesta.
+    \begin{solu}
+        Son del grupo 15; el radio aumenta al bajar porque cada uno tiene una capa más:
+        \textcolor{red}{N \(<\) P \(<\) As \(<\) Sb \(<\) Bi}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Razona cuál tiene mayor radio en cada pareja: a) Cl y \ch{Cl^-}; b) K y \ch{K^+}.
+    \begin{solu}
+        a) \textcolor{red}{\ch{Cl^-}}: tiene un electrón más con los mismos protones. b) \textcolor{red}{K}: el \ch{K^+} ha perdido
+        la capa 4.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Para los elementos de números atómicos 8 y 11: a) escribe su configuración electrónica; b) indica el ion más
+    estable de cada uno y su configuración; c) ¿cuál de los dos iones tendrá mayor radio iónico?
+    \begin{solu}
+        a) \(Z = 8\): \conf{1s^2\,2s^2\,2p^4} (O); \(Z = 11\): \conf{1s^2\,2s^2\,2p^6\,3s^1} (Na). b) \textcolor{red}{\ch{O^2-} y
+        \ch{Na^+}}, los dos con configuración \conf{1s^2\,2s^2\,2p^6}. c) Tienen los mismos electrones (10), pero el oxígeno solo
+        tiene 8 protones y el sodio 11: \textcolor{red}{el \ch{O^2-} es mayor}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Ordena estos elementos de menor a mayor primera energía de ionización: K, Ca, Fe y Cl. Si tuviéramos en cuenta la
+    segunda energía de ionización, ¿estarían en el mismo orden?
+    \begin{solu}
+        Los cuatro están en el periodo 3 o 4 y la energía de ionización aumenta hacia la derecha y hacia arriba:
+        \textcolor{red}{K \(<\) Ca \(<\) Fe \(<\) Cl} (419, 590, 762 y 1251 kJ/mol).
+        \textcolor{red}{No}: el \ch{K^+} tiene la configuración del argón y arrancarle otro electrón cuesta muchísimo, así que el K
+        pasa a ser el de mayor segunda energía de ionización: \(\mathrm{Ca} < \mathrm{Fe} < \mathrm{Cl} < \mathrm{K}\)
+        (1145, 1562, 2298 y 3052 kJ/mol).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Las tres primeras energías de ionización del magnesio son 738, 1451 y \qty{7733}{\kilo\joule\per\mol}.
+    a) ¿Por qué la segunda es aproximadamente el doble de la primera? b) ¿Por qué la tercera es tanto mayor que la segunda?
+    \begin{solu}
+        a) \textcolor{red}{Los dos primeros electrones salen del mismo subnivel 3s}, pero el segundo se arranca a un ion positivo,
+        que lo atrae más. b) \textcolor{red}{El tercero hay que sacarlo del nivel 2, completo y mucho más cercano al núcleo}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) A partir de estas configuraciones electrónicas fundamentales:\newline a) \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^2};
+    b) \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^5}; c) \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,4s^1}; d) \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,4s^2},
+    ordénalos de mayor a menor primera energía de ionización y de mayor a menor segunda energía de ionización.
+    \begin{solu}
+        Son Si, Cl, K y Ca. Primera: \(\textcolor{red}{\mathrm{b} > \mathrm{a} > \mathrm{d} > \mathrm{c}}\) (Cl \(>\) Si \(>\)
+        Ca \(>\) K). Segunda: \(\textcolor{red}{\mathrm{c} > \mathrm{b} > \mathrm{a} > \mathrm{d}}\): el \ch{K^+} tiene la
+        configuración de gas noble, y el \ch{Ca^+} pierde fácilmente su último electrón 4s para quedar también como el argón.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Para la pareja de átomos Mg y Cl: a) ¿cuál tiene mayor radio?; b) ¿cuál tiene mayor energía de ionización?;
+    c) ¿cuál es más electronegativo?
+    \begin{solu}
+        Los dos están en el periodo 3, el Mg en el grupo 2 y el Cl en el 17. a) \textcolor{red}{Mg}. b) \textcolor{red}{Cl}.
+        c) \textcolor{red}{Cl}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Para la pareja de átomos Rb y Br: a) ¿cuál tiene menor radio?; b) ¿cuál tiene mayor energía de ionización?;
+    c) ¿cuál tiene menor electronegatividad?
+    \begin{solu}
+        El Rb está en el grupo 1 y el periodo 5; el Br, en el grupo 17 y el periodo 4. a) \textcolor{red}{Br}. b)
+        \textcolor{red}{Br}. c) \textcolor{red}{Rb}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Podríamos saber si un elemento es metálico o no metálico a partir del valor de su electronegatividad? Razona la
+    respuesta.
+    \begin{solu}
+        \textcolor{red}{Sí, de forma aproximada}: los metales tienen electronegatividades bajas (en general, menores de 2), porque
+        tienden a perder electrones; los no metales, altas, porque tienden a captarlos.
+    \end{solu}
+\end{exercise}
+
+%========================================================================================
+\section{Ejercicios de ampliación}\label{sec:ud3-ampliacion}
+%========================================================================================
+
+\subsection{Estructura atómica}
+
+\begin{exercise}
+    \(\star\star\) Haz un trabajo de investigación sobre el experimento de la gota de aceite de Millikan. ¿Por qué, muchos años
+    después, se acusó a Millikan de haber seleccionado sus datos? ¿Estaba justificada la polémica?
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta.} \textcolor{blue}{Millikan medía la velocidad de gotitas de aceite cargadas entre dos
+        placas y calculaba su carga: todas eran múltiplos de \qty{1.6e-19}{\coulomb}. Sus cuadernos mostraron que había descartado
+        algunas medidas que no publicó. Se discutió si era un fraude; hoy se piensa que descartó sobre todo medidas con problemas
+        experimentales y que su resultado era correcto, aunque su forma de informar no fue del todo transparente.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El potasio se usa en algunas células fotoeléctricas porque basta una energía pequeña, \qty{2.30}{\electronvolt},
+    para arrancarle electrones de la superficie del metal. ¿Cuál es la longitud de onda máxima de la luz capaz de arrancar
+    electrones a una placa de potasio? ¿Funcionaría la célula con luz roja?
+    \begin{solu}
+        \(E = \num{2.30} \cdot \num{1.602e-19} = \qty{3.68e-19}{\joule}\); \(\lambda = \dfrac{hc}{E} = \textcolor{red}{\qty{5.39e-7}{\m}
+        = \qty{539}{\nm}}\). \textcolor{red}{No}: la luz roja tiene mayor longitud de onda y sus fotones no tienen energía suficiente,
+        por intensa que sea.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Cuál de estas radiaciones electromagnéticas tiene mayor longitud de onda? a) \qty{450}{\nm}; b) \qty{500}{\mega\hertz};
+    c) \qty{3000}{\angstrom}; d) \qty{25000}{\per\cm}.
+    \begin{solu}
+        a) \qty{4.5e-7}{\m}; b) \(\lambda = \dfrac{\num{3.00e8}}{\num{5.00e8}} = \qty{0.6}{\m}\); c) \qty{3e-7}{\m}; d)
+        \(\lambda = 1/\tilde{\nu} = \qty{4e-5}{\cm} = \qty{4e-7}{\m}\). \textcolor{red}{La b} (es una onda de radio).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Al iluminar un átomo de magnesio en estado gaseoso con radiación de \qty{162.2}{\nm} se le arranca un
+    electrón. a) ¿Cuál es la primera energía de ionización del magnesio, en \unit{\kilo\joule\per\mol}? b) Para arrancarle un
+    segundo electrón se necesita radiación de \qty{82.5}{\nm}. ¿Cuál es la segunda energía de ionización? Compara los valores.
+    \begin{solu}
+        a) \(E = \dfrac{h c}{\lambda} = \qty{1.226e-18}{\joule}\) por átomo; \(\cdot N_A = \textcolor{red}{\qty{738}{\kilo\joule\per\mol}}\).
+        b) \(\qty{2.409e-18}{\joule}\); \(\textcolor{red}{\qty{1451}{\kilo\joule\per\mol}}\). \textcolor{red}{La segunda es casi
+        el doble}: el electrón se arranca a un ion \ch{Mg^+}, con más carga positiva que lo atrae.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Explica cuáles de estos conjuntos de números cuánticos son incorrectos: a) \((4, 3, -2, +\frac{1}{2})\);
+    b) \((2, 1, -1, 0)\); c) \((3, 0, 1, -\frac{1}{2})\); d) \((1, 1, 0, +\frac{1}{2})\).
+    \begin{solu}
+        a) Correcto (electrón 4f). \textcolor{red}{b) Incorrecto}: \(m_s\) no puede ser 0. \textcolor{red}{c) Incorrecto}: con
+        \(l = 0\), \(m = 0\). \textcolor{red}{d) Incorrecto}: con \(n = 1\), \(l\) solo puede ser 0.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) ¿Cuántos electrones con números cuánticos distintos puede haber en un subnivel con \(n = 4\) y \(l = 2\)?
+    Escribe los conjuntos de números cuánticos de todos ellos.
+    \begin{solu}
+        Es el subnivel 4d: 5 orbitales (\(m = -2, -1, 0, +1, +2\)), cada uno con dos espines: \textcolor{red}{10 electrones}:
+        \((4, 2, m, \pm\frac{1}{2})\) con \(m = -2, -1, 0, +1, +2\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) El electrón de valencia más externo de un átomo en estado fundamental tiene los números cuánticos
+    \(n = 4\), \(l = 1\), \(m = 0\), \(m_s = -\frac{1}{2}\). Suponiendo que los orbitales se llenan de \(m = -l\) a \(m = +l\) y
+    primero con espín \(+\frac{1}{2}\), ¿de qué elemento se trata?
+    \begin{solu}
+        Es un electrón 4p. Con esa convención, los tres primeros electrones 4p tienen \(m_s = +\frac{1}{2}\) (\(m = -1, 0, +1\)); el
+        cuarto, \((4, 1, -1, -\frac{1}{2})\), y el quinto, \((4, 1, 0, -\frac{1}{2})\). La configuración termina en \conf{4p^5}:
+        \conf{[Ar]\,4s^2\,3d^{10}\,4p^5}, \(Z = 35\): \textcolor{red}{bromo}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) El electrón de un átomo de hidrógeno en su estado fundamental absorbe un fotón de \qty{97.3}{\nm}. ¿A qué
+    nivel salta? ¿Qué radiaciones podrá emitir después al volver al estado fundamental?
+    \begin{solu}
+        \(E = \dfrac{hc}{\lambda} = \qty{2.04e-18}{\joule} = \num{2.18e-18} \left( 1 - \dfrac{1}{n^2} \right) \Rightarrow
+        n^2 = 16\): \textcolor{red}{salta al nivel \(n = 4\)}. Al volver puede hacerlo directamente (\(4 \rightarrow 1\), en el
+        ultravioleta) o por etapas: \textcolor{red}{\(4 \rightarrow 3\) y \(3 \rightarrow 2\) (infrarrojo y visible),
+        \(4 \rightarrow 2\) (visible, \qty{486}{\nm}), \(3 \rightarrow 1\) y \(2 \rightarrow 1\) (ultravioleta)}: seis rayas
+        posibles.
+    \end{solu}
+\end{exercise}
+
+\subsection{Tabla periódica}
+
+\begin{exercise}
+    \(\star\star\star\) Para el elemento de configuración electrónica
+    \[ \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,4s^2\,3d^{10}\,4p^4} \]
+    a) ¿en qué periodo y grupo está?; b) ¿qué elemento es?; c) nombra dos elementos de su mismo grupo; d) escribe los números
+    cuánticos de su electrón diferenciador; e) representa los electrones de valencia en un diagrama de cajas. ¿Tiene electrones
+    desapareados?
+    \begin{solu}
+        a) \textcolor{red}{Periodo 4, grupo 16.} b) \(Z = 34\): \textcolor{red}{selenio}. c) \textcolor{red}{Oxígeno y azufre}
+        (o teluro). d) El cuarto electrón 4p se aparea en el primer orbital: \(\textcolor{red}{(4, 1, -1, -\frac{1}{2})}\).
+        e) 4s \orbcaja{\uparrow\downarrow} 4p \orbcaja{\uparrow\downarrow}\orbcaja{\uparrow}\orbcaja{\uparrow}:
+        \textcolor{red}{dos electrones desapareados}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Cuál de estas configuraciones electrónicas corresponde a un átomo en estado fundamental, cuál a un estado
+    excitado y cuál es imposible? Razona la respuesta. a) \conf{1s^2\,2s^3\,2p^6\,3s^1}; b) \conf{[Ar]\,4s^2\,3d^{10}\,4p^3};
+    c) \conf{1s^2\,2s^2\,2p^5\,3s^1}.
+    \begin{solu}
+        a) \textcolor{red}{Imposible}: en el orbital 2s solo caben dos electrones (Pauli). b) \textcolor{red}{Fundamental} (arsénico).
+        c) \textcolor{red}{Excitado}: un electrón ha pasado del 2p al 3s (es el neón excitado).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Para el átomo de número atómico 53, razona si son verdaderas o falsas estas afirmaciones: a) está en el grupo 16;
+    b) tiene los orbitales 4d completos; c) es un metal de transición; d) si capta un electrón, su anión tiene la configuración del
+    gas noble siguiente.
+    \begin{solu}
+        Su configuración es \conf{[Kr]\,5s^2\,4d^{10}\,5p^5} (yodo). a) \textcolor{red}{Falsa}: grupo 17. b) \textcolor{red}{Verdadera}.
+        c) \textcolor{red}{Falsa}: es un halógeno (no metal, bloque p). d) \textcolor{red}{Verdadera}: \ch{I^-} tiene la
+        configuración del xenón.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Para las configuraciones de dos átomos neutros, A: \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,4s^1} y
+    B: \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,5s^1}, razona si son ciertas estas afirmaciones: a) A es un átomo de potasio; b) A y B son
+    átomos de elementos distintos; c) al pasar de B a A se desprende energía; d) B es un metal alcalinotérreo; e) cuesta más arrancar
+    un electrón de A que de B.
+    \begin{solu}
+        Los dos tienen 19 electrones. a) \textcolor{red}{Cierta.} b) \textcolor{red}{Falsa}: es el mismo elemento; B es el potasio en
+        un estado excitado. c) \textcolor{red}{Cierta}: el electrón baja de nivel y emite un fotón. d) \textcolor{red}{Falsa}: es un
+        alcalino excitado. e) \textcolor{red}{Cierta}: en B el electrón está más lejos del núcleo y menos atraído.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) De cada una de estas parejas de elementos: C y O; Li y K; Al y Cl; Ca y Ba, indica cuál tiene: a) mayor radio
+    atómico; b) menor energía de ionización; c) mayor electronegatividad; d) menor carácter metálico.
+    \begin{solu}
+        \begin{tabular}{@{}lcccc@{}}
+            \toprule
+            & \textbf{C/O} & \textbf{Li/K} & \textbf{Al/Cl} & \textbf{Ca/Ba} \\
+            \midrule
+            Mayor radio & C & K & Al & Ba \\[3pt]
+            Menor energía de ionización & C & K & Al & Ba \\[3pt]
+            Mayor electronegatividad & O & Li & Cl & Ca \\[3pt]
+            Menor carácter metálico & O & Li & Cl & Ca \\
+            \bottomrule
+        \end{tabular}
+
+        \textcolor{red}{C/O y Al/Cl son del mismo periodo} (manda la posición a la derecha); \textcolor{red}{Li/K y Ca/Ba, del mismo
+        grupo} (manda la posición hacia abajo).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) El cloro natural tiene una masa atómica de \qty{35.45}{\uma} y está formado por \ch{^{35}Cl}
+    (\qty{34.969}{\uma}) y \ch{^{37}Cl} (\qty{36.966}{\uma}). a) Calcula la abundancia de cada isótopo. b) Las moléculas de \ch{Cl2}
+    pueden tener masa 70, 72 o 74 u. ¿En qué proporción aparecerá cada una en el espectro de masas del cloro gaseoso? (La
+    probabilidad de que los dos átomos sean \ch{^{35}Cl} es el cuadrado de la abundancia de ese isótopo.)
+    \begin{solu}
+        a) \(\num{35.45} = \dfrac{\num{34.969}\,x + \num{36.966}\,(100 - x)}{100} \Rightarrow\) \textcolor{red}{\ch{^{35}Cl}: 75,9\,\%;
+        \ch{^{37}Cl}: 24,1\,\%}. b) \(p = \num{0.759}\), \(q = \num{0.241}\): masa 70, \(p^2 =\) \textcolor{red}{57,6\,\%}; masa 72
+        (un átomo de cada), \(2pq =\) \textcolor{red}{36,6\,\%}; masa 74, \(q^2 =\) \textcolor{red}{5,8\,\%}.
+    \end{solu}
+\end{exercise}

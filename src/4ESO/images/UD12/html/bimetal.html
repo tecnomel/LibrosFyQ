@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Lámina bimetálica de un termostato</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } .card .t { font-size: 13.5px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><svg id="a" width="360" height="190"></svg>
+            <div class="t">Temperatura baja: la lámina está recta, toca el contacto y <b>pasa la corriente</b>.</div></div>
+        <div class="card"><svg id="b" width="360" height="190"></svg>
+            <div class="t">Temperatura alta: el metal 1 (abajo) se alarga más, la lámina se curva y <b>se corta la corriente</b>.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // Lámina de dos metales empotrada a la izquierda; bend = flecha del extremo (px, hacia arriba)
+    function strip(add, bend) {
+        add('rect', { x: 20, y: 70, width: 30, height: 60, fill: '#909497' });
+        const x0 = 50, L = 250, y0 = 100;
+        const P = (t, off) => {           // punto de la curva desplazado 'off' según la normal (hacia abajo si off > 0)
+            const x = x0 + t * L, y = y0 - bend * t * t, dy = -2 * bend * t / L, n = Math.hypot(1, dy);
+            return [x - off * dy / n, y + off / n];
+        };
+        const layer = (o1, o2, col) => {
+            let d = '', N = 30;
+            for (let i = 0; i <= N; i++) { const [x, y] = P(i / N, o1); d += (i ? ' L' : 'M') + x + ' ' + y; }
+            for (let i = N; i >= 0; i--) { const [x, y] = P(i / N, o2); d += ' L' + x + ' ' + y; }
+            add('path', { d: d + ' Z', fill: col, stroke: '#424949', 'stroke-width': 1 });
+        };
+        layer(-9, 0, '#85929E');   // metal 2 (arriba), menor coeficiente λ2
+        layer(0, 9, '#E59866');    // metal 1 (abajo), mayor coeficiente λ1: queda en la cara convexa
+        return P(1, 9);
+    }
+    function scene(id, bend, on) {
+        const add = svgAdder(id);
+        const [xe, ye] = strip(add, bend);
+        // contacto fijo bajo el extremo de la lámina recta
+        add('rect', { x: 286, y: 109, width: 22, height: 10, fill: '#B7950B' });
+        add('line', { x1: 297, y1: 119, x2: 297, y2: 160, stroke: '#424949', 'stroke-width': 2 });
+        // circuito simplificado: pila y bombilla
+        add('path', { d: 'M35 130 L35 160 L297 160', fill: 'none', stroke: '#424949', 'stroke-width': 2 });
+        add('circle', { cx: 165, cy: 160, r: 13, fill: on ? '#F9E79F' : '#F2F3F4', stroke: '#424949', 'stroke-width': 2 });
+        add('path', { d: 'M156 160 q 4.5 -8 9 0 q 4.5 8 9 0', fill: 'none', stroke: on ? '#D68910' : '#7F8C8D', 'stroke-width': 1.5 });
+        if (on) for (let a = 0; a < 360; a += 45) { const [x1, y1] = pol(165, 160, 17, a), [x2, y2] = pol(165, 160, 24, a); add('line', { x1, y1, x2, y2, stroke: '#F1C40F', 'stroke-width': 2 }); }
+        sub(add, 175, bend > 0 ? 50 : 84, 'λ_2', { 'font-size': 15, fill: '#424949' });
+        sub(add, 175, bend > 0 ? 100 : 128, 'λ_1', { 'font-size': 15, fill: '#A04000' });
+        label(add, 345, 30, 'λ₁ > λ₂', { 'font-size': 14, 'text-anchor': 'end', fill: '#525252' });
+    }
+    scene('a', 0, true);
+    scene('b', 55, false);
+</script>
+</body>
+</html>

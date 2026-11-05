@@ -1,0 +1,753 @@
+%! Unidad 8 — Principios básicos de cinemática: ejercicios resueltos y ejercicios finales
+%! Fuente: Fuentes/Fisica/Unidad 8 («Ejercicios resueltos», «Practica y calcula», «Piensa y resuelve»).
+%! Enunciados adaptados con datos cambiados (y valores más realistas cuando los de la fuente no lo eran); soluciones rehechas.
+%! Dificultad: \(\star\) baja, \(\star\star\) media, \(\star\star\star\) alta.
+
+\section{Ejercicios resueltos}\label{sec:ud8-resueltos}
+
+En todos los problemas de cinemática conviene seguir los mismos pasos: \textbf{1)} leer el enunciado y anotar los datos (vectores,
+instantes) y lo que se pregunta; \textbf{2)} elegir la herramienta (sustituir, restar vectores, derivar\ldots); \textbf{3)} resolver
+con unidades e interpretar el resultado.
+
+\begin{example}
+    \textbf{Posición, distancia y desplazamiento.} Un móvil se desplaza según el vector posición \(\vec r(t) = (t^2 - 4t)\,\ivec +
+    3t^2\,\jvec\), en unidades del SI. Calcula: a) el vector posición en \(t = 0\), \(t = \qty{2}{\s}\) y \(t = \qty{5}{\s}\);
+    b) la distancia a la que está el móvil del origen en cada uno de esos instantes; c) el vector desplazamiento entre \(t = \qty{2}{\s}\)
+    y \(t = \qty{5}{\s}\), y su módulo.
+
+    \textbf{Solución.} \textbf{1. Datos}: \(\vec r(t)\) e instantes 0, 2 y \qty{5}{\s}. \textbf{Incógnitas}: \(\vec r\), \(|\vec r|\),
+    \(\Delta\vec r\) y \(|\Delta\vec r|\).
+
+    \textbf{2. a)} Sustituimos \(t\):
+    \[ \vec r(0) = \vec 0 \qquad \vec r(2) = (4 - 8)\,\ivec + 12\,\jvec = (-4\,\ivec + 12\,\jvec)~\unit{\m} \qquad
+       \vec r(5) = (25 - 20)\,\ivec + 75\,\jvec = (5\,\ivec + 75\,\jvec)~\unit{\m} \]
+    El móvil parte del origen.
+
+    \textbf{3. b)} La distancia al origen es el módulo del vector posición: \(|\vec r(0)| = 0\);
+    \(|\vec r(2)| = \sqrt{16 + 144} = \qty{12.6}{\m}\); \(|\vec r(5)| = \sqrt{25 + 5625} = \qty{75.2}{\m}\).
+
+    \textbf{4. c)} \(\Delta\vec r = \vec r(5) - \vec r(2) = (5 + 4)\,\ivec + (75 - 12)\,\jvec = (9\,\ivec + 63\,\jvec)~\unit{\m}\);
+    \(|\Delta\vec r| = \sqrt{81 + 3969} = \qty{63.6}{\m}\). Observa que \(|\Delta\vec r|\) no es la diferencia de las distancias
+    al origen (\(\num{75.2} - \num{12.6} = \num{62.6}\)).
+\end{example}
+
+\begin{example}
+    \textbf{Velocidad por el límite y por la derivada.} El vector posición de un móvil es \(\vec r(t) = (t^2 - 3t)\,\ivec + 4t^2\,\jvec\),
+    en unidades del SI. Determina: a) el vector velocidad, con la definición de límite y con la derivada; b) la velocidad en
+    \(t = \qty{4}{\s}\); c) la velocidad media en los tres primeros segundos; d) la aceleración; e) la aceleración en
+    \(t = \qty{4}{\s}\).
+
+    \textbf{Solución.} a) Con el límite, componente a componente:
+    \[ v_x = \lim_{\Delta t \to 0} \frac{(t + \Delta t)^2 - 3(t + \Delta t) - t^2 + 3t}{\Delta t} = \lim_{\Delta t \to 0}
+       \frac{2t\,\Delta t + \Delta t^2 - 3\,\Delta t}{\Delta t} = 2t - 3 \]
+    \[ v_y = \lim_{\Delta t \to 0} \frac{4(t + \Delta t)^2 - 4t^2}{\Delta t} = \lim_{\Delta t \to 0} \frac{8t\,\Delta t + 4\,\Delta t^2}{\Delta t}
+       = 8t \]
+    Derivando se obtiene lo mismo directamente: \(\vec v = \dfrac{\dif\vec r}{\dif t} = (2t - 3)\,\ivec + 8t\,\jvec~\unit{\m\per\s}\).
+
+    b) \(\vec v(4) = (5\,\ivec + 32\,\jvec)~\unit{\m\per\s}\).
+
+    c) \(\vec r(0) = \vec 0\) y \(\vec r(3) = (9 - 9)\,\ivec + 36\,\jvec = 36\,\jvec~\unit{\m}\):
+    \(\vec v_m = \dfrac{36\,\jvec}{3} = 12\,\jvec~\unit{\m\per\s}\).
+
+    d) \(\vec a = \dfrac{\dif\vec v}{\dif t} = (2\,\ivec + 8\,\jvec)~\unit{\m\per\s\squared}\). e) La aceleración es constante:
+    \(\vec a(4) = (2\,\ivec + 8\,\jvec)~\unit{\m\per\s\squared}\), igual que en cualquier otro instante.
+\end{example}
+
+\begin{example}
+    \textbf{Componentes intrínsecas sin conocer el radio.} Una partícula se mueve con velocidad \(\vec v(t) = (3 - 2t)\,\ivec -
+    5\,\jvec\), en \unit{\m\per\s}. Halla en \(t = \qty{3}{\s}\): a) la aceleración tangencial; b) la aceleración normal; c) el radio
+    de curvatura de la trayectoria en ese punto.
+
+    \textbf{Solución.} a) La aceleración tangencial es la derivada del módulo de la velocidad:
+    \[ |\vec v| = \sqrt{(3 - 2t)^2 + 25} = \sqrt{4t^2 - 12t + 34} \qquad
+       a_t = \frac{\dif|\vec v|}{\dif t} = \frac{8t - 12}{2\sqrt{4t^2 - 12t + 34}} = \frac{4t - 6}{\sqrt{4t^2 - 12t + 34}} \]
+    \[ a_t(3) = \frac{6}{\sqrt{34}} = \qty{1.03}{\m\per\s\squared} \]
+    b) No conocemos el radio, así que no podemos usar \(a_n = v^2/R\). Calculamos la aceleración total, \(\vec a = \dfrac{\dif\vec v}{\dif t}
+    = -2\,\ivec~\unit{\m\per\s\squared}\) (\(|\vec a| = \qty{2}{\m\per\s\squared}\)), y despejamos de \(a^2 = a_t^2 + a_n^2\):
+    \[ a_n = \sqrt{a^2 - a_t^2} = \sqrt{4 - \num{1.059}} = \qty{1.71}{\m\per\s\squared} \]
+    c) Ahora sí: \(R = \dfrac{v^2}{a_n} = \dfrac{34}{\num{1.71}} = \qty{19.8}{\m}\).
+\end{example}
+
+\begin{example}
+    \textbf{Desplazamiento y espacio con cambio de sentido.} Un móvil se mueve sobre una recta según \(x(t) = t^2 - 6t + 5\), en
+    unidades del SI. Calcula el desplazamiento y el espacio recorrido entre \(t = 0\) y \(t = \qty{8}{\s}\).
+
+    \textbf{Solución.} El desplazamiento solo depende de las posiciones inicial y final: \(x(0) = \qty{5}{\m}\) y
+    \(x(8) = 64 - 48 + 5 = \qty{21}{\m}\), así que \(\Delta x = \qty{16}{\m}\).
+
+    Para el espacio recorrido hay que saber si el móvil cambia de sentido, es decir, si su velocidad se anula:
+    \(v = 2t - 6 = 0 \Rightarrow t = \qty{3}{\s}\). En ese instante, \(x(3) = 9 - 18 + 5 = \qty{-4}{\m}\). El móvil va de
+    \qty{5}{\m} a \qty{-4}{\m} (recorre \qty{9}{\m} hacia la izquierda) y luego de \qty{-4}{\m} a \qty{21}{\m} (\qty{25}{\m} hacia
+    la derecha):
+    \[ e = |{-4} - 5| + |21 - (-4)| = 9 + 25 = \qty{34}{\m} \]
+\end{example}
+
+\begin{example}
+    \textbf{Ecuación de la trayectoria y tipo de movimiento.} Una grúa desplaza una carga según las ecuaciones \(x(t) = 3t^2 - 1\)
+    e \(y(t) = 2t^2\), en unidades del SI. a) Calcula la ecuación de la trayectoria. b) Calcula la velocidad y la aceleración.
+    c) ¿Qué tipo de movimiento es? ¿Qué componentes intrínsecas tiene su aceleración?
+
+    \textbf{Solución.} a) De la segunda ecuación, \(t^2 = y/2\); sustituyendo en la primera:
+    \(x = \dfrac{3y}{2} - 1 \Rightarrow y = \dfrac{2(x + 1)}{3}\). Es una \textbf{recta}.
+
+    b) \(\vec v = 6t\,\ivec + 4t\,\jvec\), con \(|\vec v| = \sqrt{36t^2 + 16t^2} = 2\sqrt{13}\,t = \num{7.21}\,t~\unit{\m\per\s}\);
+    \(\vec a = (6\,\ivec + 4\,\jvec)~\unit{\m\per\s\squared}\), con \(|\vec a| = \sqrt{52} = \qty{7.21}{\m\per\s\squared}\).
+
+    c) Es un movimiento \textbf{rectilíneo uniformemente acelerado}: la trayectoria es recta y la aceleración es constante y
+    tiene la misma dirección que la velocidad. Por eso \(a_t = \dfrac{\dif|\vec v|}{\dif t} = \qty{7.21}{\m\per\s\squared} = |\vec a|\)
+    y \(a_n = 0\).
+\end{example}
+
+%========================================================================================
+\section{Ejercicios de aplicación}\label{sec:ud8-aplicacion}
+%========================================================================================
+
+\subsection{Cuestiones teóricas}
+
+\begin{exercise}
+    \(\star\) Define estos términos: a) posición; b) desplazamiento; c) trayectoria; d) espacio recorrido.
+    \begin{solu}
+        a) \textcolor{red}{Punto del espacio que ocupa el móvil en un instante}, dado por el vector posición respecto al origen.
+        b) \textcolor{red}{Vector que va de la posición inicial a la final}, \(\Delta\vec r = \vec r_2 - \vec r_1\).
+        c) \textcolor{red}{Línea formada por las sucesivas posiciones del móvil}. d) \textcolor{red}{Distancia medida sobre la
+        trayectoria}; es un escalar.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Explica con un ejemplo la diferencia entre trayectoria y espacio recorrido.
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta.} Por ejemplo, un corredor da una vuelta a una pista de \qty{400}{\m}: la trayectoria es
+        la línea (una curva cerrada) que dibuja, sin unidades, y el espacio recorrido es su longitud, \qty{400}{\m}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Explica la diferencia entre velocidad media y velocidad instantánea con dos situaciones de la vida cotidiana.
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta.} La velocidad media de un viaje de \qty{300}{\km} en \qty{3}{\hour} es de
+        \qty{100}{\km\per\hour}, aunque el coche ha ido a veces a 120 y otras ha estado parado; la velocidad instantánea es la que
+        marca el velocímetro en cada momento, o la que mide un radar de tráfico.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Explica la diferencia entre aceleración media e instantánea con dos situaciones de la vida cotidiana.
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta.} Un coche que pasa de 0 a \qty{100}{\km\per\hour} en \qty{10}{\s} tiene una aceleración
+        media de \qty{2.8}{\m\per\s\squared}, aunque al principio acelera más y luego menos; la aceleración instantánea es la que
+        sentimos en cada instante (por ejemplo, el «empujón» contra el asiento en el arranque).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Qué son las componentes intrínsecas de la aceleración? Pon un ejemplo de un movimiento con solo aceleración
+    tangencial, otro con solo aceleración normal y otro con las dos.
+    \begin{solu}
+        \textcolor{red}{Son la aceleración tangencial, que mide el cambio del módulo de la velocidad, y la normal, que mide el
+        cambio de su dirección.} Solo \(a_t\): un coche que acelera en una recta. Solo \(a_n\): una noria que gira con rapidez
+        constante. Las dos: un coche que frena en una curva.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Justifica cómo son las componentes intrínsecas de la aceleración en estos casos: a) un coche de carreras que
+    frena al entrar en una curva; b) un tren que arranca en una vía recta; c) la Tierra en su movimiento alrededor del Sol
+    (supón la órbita circular); d) un balón lanzado desde el centro del campo hacia la portería.
+    \begin{solu}
+        a) \textcolor{red}{\(a_t\) de sentido contrario a \(\vec v\) y \(a_n \neq 0\)}. b) \textcolor{red}{Solo \(a_t\)}, en el sentido
+        del movimiento. c) \textcolor{red}{Solo \(a_n\)}: la rapidez es constante y la dirección cambia. d) \textcolor{red}{Las dos}:
+        la trayectoria es curva y la rapidez cambia (disminuye al subir y aumenta al bajar).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Un ciclomotor se mueve según \(\vec r(t) = (5t - 2)\,\ivec + (3t + 1)\,\jvec\), en unidades del SI. Justifica si son
+    verdaderas o falsas estas afirmaciones: a) la velocidad depende del tiempo; b) la aceleración es constante y distinta de cero.
+    \begin{solu}
+        \(\vec v = 5\,\ivec + 3\,\jvec\) y \(\vec a = \vec 0\). a) \textcolor{red}{Falsa}: la velocidad es constante.
+        b) \textcolor{red}{Falsa}: es constante, pero nula (movimiento rectilíneo uniforme).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Razona si son verdaderas o falsas: a) el módulo del desplazamiento siempre es igual al producto de la rapidez
+    media por el tiempo; b) si la velocidad es constante, la aceleración es nula; c) la velocidad media siempre es la semisuma de
+    las velocidades inicial y final.
+    \begin{solu}
+        a) \textcolor{red}{Falsa}: \(v_m\,\Delta t\) es el espacio recorrido, que solo coincide con \(|\Delta\vec r|\) en movimientos
+        rectilíneos sin cambio de sentido. b) \textcolor{red}{Verdadera}: si \(\vec v\) no cambia (ni en módulo ni en dirección),
+        \(\vec a = \vec 0\). c) \textcolor{red}{Falsa}: solo es así si la aceleración es constante.
+    \end{solu}
+\end{exercise}
+
+\subsection{Trayectoria, posición y desplazamiento}
+
+\begin{exercise}
+    \(\star\) Una motorista da 8 vueltas a un circuito de \qty{4.4}{\km} por vuelta. ¿Cuál es el espacio recorrido? ¿Y su
+    desplazamiento?
+    \begin{solu}
+        \(e = 8 \cdot \num{4.4} = \textcolor{red}{\qty{35.2}{\km}}\); \(\textcolor{red}{\Delta\vec r = \vec 0}\), porque termina donde
+        empezó.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Abre una aplicación de mapas y elige dos ciudades A y B. Busca dos formas distintas de ir de una a otra y compara
+    las distancias que se recorren. Haz un esquema con las dos trayectorias y el desplazamiento entre A y B.
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta.} Las dos rutas tienen distinto espacio recorrido, pero el mismo desplazamiento: el
+        vector que une A con B, cuyo módulo es la distancia en línea recta, menor que cualquiera de las dos rutas.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Un niño juega con una pelota que se mueve en línea recta según \(x(t) = 4t^2 - 2t + 3\), en unidades del SI.
+    Calcula: a) la posición en \(t = 0\), \(t = \qty{4}{\s}\) y \(t = \qty{8}{\s}\); b) el desplazamiento entre el inicio y
+    \(t = \qty{4}{\s}\), y entre el inicio y \(t = \qty{8}{\s}\).
+    \begin{solu}
+        a) \(\textcolor{red}{x(0) = \qty{3}{\m}}\); \(\textcolor{red}{x(4) = \qty{59}{\m}}\); \(\textcolor{red}{x(8) = \qty{243}{\m}}\).
+        b) \(\textcolor{red}{\Delta x = \qty{56}{\m}}\) y \(\textcolor{red}{\Delta x = \qty{240}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Un móvil está en el punto A\((4, 2)\) y, poco después, en el B\((-3, -1)\), en metros. Calcula: a) el vector
+    desplazamiento; b) el espacio recorrido, si la trayectoria es rectilínea.
+    \begin{solu}
+        a) \(\textcolor{red}{\Delta\vec r = (-7\,\ivec - 3\,\jvec)~\unit{\m}}\). b) \(e = |\Delta\vec r| = \sqrt{58} = \textcolor{red}{\qty{7.62}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) En un videojuego, tu personaje está en la posición \(\vec r_1 = (5\,\ivec - \jvec)~\unit{\m}\) en el instante \(t_1\) y
+    en \(\vec r_2 = (-2\,\ivec + 3\,\jvec)~\unit{\m}\) en \(t_2\). Calcula el vector desplazamiento y el espacio recorrido si la
+    trayectoria es rectilínea.
+    \begin{solu}
+        \(\textcolor{red}{\Delta\vec r = (-7\,\ivec + 4\,\jvec)~\unit{\m}}\); \(e = \sqrt{65} = \textcolor{red}{\qty{8.06}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) El vector posición de un móvil en un instante es \(\vec r = (2\,\ivec - 5\,\jvec)~\unit{\m}\). ¿A qué distancia del
+    origen se encuentra?
+    \begin{solu}
+        \(|\vec r| = \sqrt{4 + 25} = \textcolor{red}{\qty{5.39}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Un insecto está en el punto A\((-3, 4)\)~\unit{\cm}; tres segundos después está en B\((6, -2)\)~\unit{\cm}, y
+    \qty{8}{\s} más tarde, en C\((4, 9)\)~\unit{\cm}. a) Halla los vectores desplazamiento entre A y B y entre A y C. b) Represéntalos.
+    c) Calcula sus módulos.
+    \begin{solu}
+        a) \(\textcolor{red}{\Delta\vec r_{AB} = (9\,\ivec - 6\,\jvec)~\unit{\cm}}\); \(\textcolor{red}{\Delta\vec r_{AC} = (7\,\ivec + 5\,\jvec)~\unit{\cm}}\).
+        b) Flechas desde A hasta B y desde A hasta C. c) \(\sqrt{117} = \textcolor{red}{\qty{10.8}{\cm}}\) y
+        \(\sqrt{74} = \textcolor{red}{\qty{8.60}{\cm}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Daniela lanza una pelota contra la pared y esta se mueve según \(\vec r(t) = (t - 3)^2\,\ivec + (2t + 1)\,\jvec\),
+    en unidades del SI. Determina: a) las posiciones en \(t = 0\), \(t = \qty{2}{\s}\) y \(t = \qty{4}{\s}\), y represéntalas;
+    b) los vectores desplazamiento entre el inicio y \(t = \qty{2}{\s}\) y entre el inicio y \(t = \qty{4}{\s}\); c) sus módulos.
+    \begin{solu}
+        a) \(\textcolor{red}{\vec r(0) = 9\,\ivec + \jvec}\); \(\textcolor{red}{\vec r(2) = \ivec + 5\,\jvec}\);
+        \(\textcolor{red}{\vec r(4) = \ivec + 9\,\jvec}\) (en metros). b) \(\textcolor{red}{(-8\,\ivec + 4\,\jvec)~\unit{\m}}\) y
+        \(\textcolor{red}{(-8\,\ivec + 8\,\jvec)~\unit{\m}}\). c) \(\textcolor{red}{\qty{8.94}{\m}}\) y \(\textcolor{red}{\qty{11.3}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Un barco navega en línea recta por un canal según \(x(t) = 150 - 4t\), en unidades del SI. a) ¿Cuál es su posición
+    inicial? b) ¿Qué dirección y sentido tiene su desplazamiento? c) ¿Dónde está a los \qty{10}{\s} y a los \qty{30}{\s}?
+    d) ¿Qué distancia recorre en los \qty{30}{\s}?
+    \begin{solu}
+        a) \(\textcolor{red}{x_0 = \qty{150}{\m}}\). b) \textcolor{red}{La del eje X, en sentido negativo}: \(x\) disminuye.
+        c) \(\textcolor{red}{x(10) = \qty{110}{\m}}\); \(\textcolor{red}{x(30) = \qty{30}{\m}}\). d) \(\textcolor{red}{\qty{120}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un ciclomotor recorre el tramo recto de un circuito según \(x(t) = 20 - 2t - 4t^2\), en unidades del SI.
+    a) Calcula su posición en \(t = 0\), \(t = \qty{10}{\s}\) y \(t = \qty{15}{\s}\). b) ¿Cambia el sentido del movimiento entre
+    \(t = 0\) y \(t = \qty{15}{\s}\)? c) Calcula la distancia recorrida en los 10 y en los 15 primeros segundos.
+    \begin{solu}
+        a) \(\textcolor{red}{x(0) = \qty{20}{\m}}\); \(\textcolor{red}{x(10) = \qty{-400}{\m}}\); \(\textcolor{red}{x(15) = \qty{-910}{\m}}\).
+        b) \textcolor{red}{No}: \(v = -2 - 8t\) es siempre negativa para \(t \geq 0\). c) \(\textcolor{red}{\qty{420}{\m}}\) y
+        \(\textcolor{red}{\qty{930}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Las coordenadas de un móvil son \(x = 4t - 2\) e \(y = 6 - t\), en unidades del SI. Calcula: a) el vector posición en
+    función del tiempo y su valor al inicio y en \(t = \qty{2}{\s}\); b) el desplazamiento entre esos instantes y su módulo; c) la
+    ecuación de la trayectoria.
+    \begin{solu}
+        a) \(\textcolor{red}{\vec r(t) = (4t - 2)\,\ivec + (6 - t)\,\jvec}\); \(\textcolor{red}{\vec r(0) = -2\,\ivec + 6\,\jvec}\);
+        \(\textcolor{red}{\vec r(2) = 6\,\ivec + 4\,\jvec}\) (en metros). b) \(\textcolor{red}{(8\,\ivec - 2\,\jvec)~\unit{\m}}\);
+        \(\sqrt{68} = \textcolor{red}{\qty{8.25}{\m}}\). c) \(t = \dfrac{x + 2}{4}\): \(\textcolor{red}{y = \dfrac{22 - x}{4}}\), una recta.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) La ecuación del movimiento de una cometa es \(\vec r(t) = 4t\,\ivec + (5 - 2t^2)\,\jvec\), en unidades del SI.
+    Halla: a) el vector posición en \(t = 0\) y en \(t = \qty{5}{\s}\); b) el desplazamiento entre esos instantes y su módulo;
+    c) la ecuación de la trayectoria.
+    \begin{solu}
+        a) \(\textcolor{red}{5\,\jvec~\unit{\m}}\) y \(\textcolor{red}{(20\,\ivec - 45\,\jvec)~\unit{\m}}\).
+        b) \(\textcolor{red}{(20\,\ivec - 50\,\jvec)~\unit{\m}}\); \(\sqrt{2900} = \textcolor{red}{\qty{53.9}{\m}}\).
+        c) \(t = x/4\): \(\textcolor{red}{y = 5 - \dfrac{x^2}{8}}\), una parábola.
+    \end{solu}
+\end{exercise}
+
+\subsection{Velocidad}
+
+\begin{exercise}
+    \(\star\) Una niña recorre \qty{150}{\m} en \qty{40}{\s}. ¿Cuál es su rapidez media? Exprésala en \unit{\m\per\s},
+    \unit{\km\per\hour} y \unit{\mm\per\minute}.
+    \begin{solu}
+        \(v_m = \textcolor{red}{\qty{3.75}{\m\per\s}} = \textcolor{red}{\qty{13.5}{\km\per\hour}} = \textcolor{red}{\qty{2.25e5}{\mm\per\minute}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Un avión vuela de Madrid a Tenerife en 2 horas y 30 minutos con una rapidez media de \qty{700}{\km\per\hour}. ¿Qué
+    distancia recorre?
+    \begin{solu}
+        \(e = 700 \cdot \num{2.5} = \textcolor{red}{\qty{1750}{\km}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Pablo va en bicicleta a las fiestas del pueblo de al lado, a \qty{4.5}{\km}, y tarda \qty{20}{\minute}. Allí le
+    roban la bici y vuelve andando: tarda el triple que a la ida. Calcula la rapidez media: a) a la ida; b) a la vuelta; c) en el
+    viaje completo.
+    \begin{solu}
+        a) \(\dfrac{4500}{1200} = \textcolor{red}{\qty{3.75}{\m\per\s}}\); b) \(\dfrac{4500}{3600} = \textcolor{red}{\qty{1.25}{\m\per\s}}\);
+        c) \(\dfrac{9000}{4800} = \textcolor{red}{\qty{1.88}{\m\per\s}}\) (no es la media de las dos anteriores).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Por un carril bici circulan un padre a \qty{27}{\km\per\hour} y su hijo, con ruedines, a \qty{2}{\m\per\s}, en el
+    mismo sentido. Expresa: a) la velocidad del hijo respecto al padre; b) la del padre respecto al hijo; c) la de ambos respecto
+    a la madre, sentada en un banco; d) la de ambos respecto a la madre si ella camina en el mismo sentido a \qty{1.5}{\m\per\s}.
+    \begin{solu}
+        \textcolor{blue}{\(\qty{27}{\km\per\hour} = \qty{7.5}{\m\per\s}\).} a) \(2 - \num{7.5} = \textcolor{red}{\qty{-5.5}{\m\per\s}}\);
+        b) \(\textcolor{red}{\qty{5.5}{\m\per\s}}\); c) \(\textcolor{red}{\qty{7.5}{\m\per\s}}\) y \(\textcolor{red}{\qty{2}{\m\per\s}}\);
+        d) \(\textcolor{red}{\qty{6}{\m\per\s}}\) y \(\textcolor{red}{\qty{0.5}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un pájaro vuela paralelo a una vía de tren según \(x(t) = 0{,}5\,t^2 + 5\), en unidades del SI. Un tren
+    circula por la vía en el mismo sentido a \qty{72}{\km\per\hour}. Halla: a) la velocidad del pájaro en función del tiempo;
+    b) su velocidad en \(t = 0\) y en \(t = \qty{10}{\s}\); c) la velocidad del pájaro, en \(t = \qty{10}{\s}\), para un viajero
+    sentado en el tren; d) la que observa Julia en ese instante, que camina por el pasillo hacia la cola del tren a
+    \qty{1.5}{\m\per\s}.
+    \begin{solu}
+        a) \(\textcolor{red}{v = t~\unit{\m\per\s}}\). b) \(\textcolor{red}{0}\) y \(\textcolor{red}{\qty{10}{\m\per\s}}\).
+        c) \(10 - 20 = \textcolor{red}{\qty{-10}{\m\per\s}}\): el viajero ve al pájaro quedarse atrás.
+        d) \textcolor{blue}{Julia se mueve respecto al suelo a \(20 - \num{1.5} = \qty{18.5}{\m\per\s}\).}
+        \(10 - \num{18.5} = \textcolor{red}{\qty{-8.5}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un nadador va hasta una boya y vuelve. Su posición es \(x(t) = 0{,}05\,t^2 - 3t\), en unidades del SI. Halla:
+    a) la posición en \(t = 0\), \(t = \qty{30}{\s}\) y \(t = \qty{60}{\s}\); b) el instante en que llega a la boya y emprende el
+    regreso; c) la velocidad en esos tres instantes; d) la velocidad media entre 0 y \qty{30}{\s}; e) la velocidad media entre 0 y
+    \qty{60}{\s}.
+    \begin{solu}
+        a) \(\textcolor{red}{0}\), \(\textcolor{red}{\qty{-45}{\m}}\) y \(\textcolor{red}{0}\). b) \textcolor{blue}{Cuando \(v = 0{,}1\,t - 3 = 0\):}
+        \(\textcolor{red}{t = \qty{30}{\s}}\) (la boya está a \qty{45}{\m}). c) \(\textcolor{red}{\qty{-3}{\m\per\s}}\), \(\textcolor{red}{0}\)
+        y \(\textcolor{red}{\qty{3}{\m\per\s}}\). d) \(\dfrac{-45}{30} = \textcolor{red}{\qty{-1.5}{\m\per\s}}\). e) \(\textcolor{red}{0}\):
+        ha vuelto al punto de partida.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) La ecuación del movimiento de un móvil es \(\vec r(t) = 3t\,\ivec + (5 - 2t^2)\,\jvec\), en unidades del SI.
+    Calcula: a) su velocidad en función del tiempo y en \(t = \qty{4}{\s}\); b) la velocidad media entre \(t = 0\) y
+    \(t = \qty{4}{\s}\); c) explica por qué no coinciden los resultados de a) y b).
+    \begin{solu}
+        a) \(\textcolor{red}{\vec v = 3\,\ivec - 4t\,\jvec}\); \(\textcolor{red}{\vec v(4) = (3\,\ivec - 16\,\jvec)~\unit{\m\per\s}}\).
+        b) \textcolor{blue}{\(\vec r(0) = 5\,\jvec\), \(\vec r(4) =
+        12\,\ivec - 27\,\jvec\); \(\Delta\vec r = 12\,\ivec - 32\,\jvec\).} \(\textcolor{red}{\vec v_m = (3\,\ivec - 8\,\jvec)~\unit{\m\per\s}}\).
+        c) \textcolor{red}{Porque la velocidad cambia con el tiempo}: la media resume todo el intervalo y la instantánea solo vale
+        en \(t = \qty{4}{\s}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Al empezar a moverse, un móvil está en el punto P\((1, 4)\)~\unit{\cm} y, \qty{0.5}{\s} después, en Q\((6, -1)\)~\unit{\cm}.
+    Halla: a) el vector desplazamiento; b) la velocidad media y su módulo.
+    \begin{solu}
+        a) \(\textcolor{red}{(5\,\ivec - 5\,\jvec)~\unit{\cm}}\). b) \(\textcolor{red}{\vec v_m = (10\,\ivec - 10\,\jvec)~\unit{\cm\per\s}}\);
+        \(|\vec v_m| = \textcolor{red}{\qty{14.1}{\cm\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El vuelo de un águila sigue el vector \(\vec r(t) = (0{,}5\,t^2 + t)\,\ivec + (0{,}1\,t^3 - t)\,\jvec\), en unidades
+    del SI. Determina: a) el desplazamiento entre el inicio y \(t = \qty{2}{\s}\) y entre \(t = \qty{5}{\s}\) y \(t = \qty{10}{\s}\);
+    b) la velocidad media en el segundo intervalo; c) la velocidad en función del tiempo.
+    \begin{solu}
+        a) \(\textcolor{red}{(4\,\ivec - 1{,}2\,\jvec)~\unit{\m}}\) y, con \(\vec r(5) = 17{,}5\,\ivec + 7{,}5\,\jvec\) y
+        \(\vec r(10) = 60\,\ivec + 90\,\jvec\), \(\textcolor{red}{(42{,}5\,\ivec + 82{,}5\,\jvec)~\unit{\m}}\).
+        b) \(\textcolor{red}{\vec v_m = (8{,}5\,\ivec + 16{,}5\,\jvec)~\unit{\m\per\s}}\). c) \(\textcolor{red}{\vec v = (t + 1)\,\ivec + (0{,}3\,t^2 - 1)\,\jvec~\unit{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El vector posición de un móvil es \(\vec r(t) = (4t^3 - 2t)\,\ivec + (3t^2 - 5t)\,\jvec\), en unidades del SI.
+    Calcula: a) la velocidad con la definición de límite o con la derivada; b) la aceleración con el método que no hayas usado en
+    a); c) el módulo de la velocidad y de la aceleración al inicio y a los \qty{3}{\s}.
+    \begin{solu}
+        a) \(\textcolor{red}{\vec v = (12t^2 - 2)\,\ivec + (6t - 5)\,\jvec}\); b) \(\textcolor{red}{\vec a = 24t\,\ivec + 6\,\jvec}\).
+        c) \(\vec v(0) = -2\,\ivec - 5\,\jvec\): \(\textcolor{red}{\qty{5.39}{\m\per\s}}\); \(\vec a(0) = 6\,\jvec\):
+        \(\textcolor{red}{\qty{6}{\m\per\s\squared}}\). \(\vec v(3) = 106\,\ivec + 13\,\jvec\): \(\textcolor{red}{\qty{107}{\m\per\s}}\);
+        \(\vec a(3) = 72\,\ivec + 6\,\jvec\): \(\textcolor{red}{\qty{72.2}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Aceleración}
+
+\begin{exercise}
+    \(\star\) Un coche entra por el carril de aceleración de una autovía a \qty{54}{\km\per\hour} y sale de él, \qty{6}{\s}
+    después, a \qty{108}{\km\per\hour}. ¿Qué aceleración media ha tenido?
+    \begin{solu}
+        \(a_m = \dfrac{30 - 15}{6} = \textcolor{red}{\qty{2.5}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Una niña lanza una canica por el suelo con una aceleración de \qty{2}{\m\per\s\squared} durante \qty{1.5}{\s}. Si la
+    canica estaba en reposo, ¿qué velocidad alcanza?
+    \begin{solu}
+        \(v = a\,t = 2 \cdot \num{1.5} = \textcolor{red}{\qty{3}{\m\per\s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) La velocidad de una veleta (en un movimiento rectilíneo) es \(v(t) = 2t^2 - 18\), en unidades del SI. Halla:
+    a) la aceleración en función del tiempo; b) la aceleración media entre \(t = \qty{1}{\s}\) y \(t = \qty{3}{\s}\); c) la
+    aceleración en esos dos instantes.
+    \begin{solu}
+        a) \(\textcolor{red}{a = 4t~\unit{\m\per\s\squared}}\). b) \(\dfrac{0 - (-16)}{2} = \textcolor{red}{\qty{8}{\m\per\s\squared}}\).
+        c) \(\textcolor{red}{\qty{4}{\m\per\s\squared}}\) y \(\textcolor{red}{\qty{12}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) La velocidad de una bailarina que cruza el escenario es \(\vec v(t) = (2t + 3)\,\ivec - 4t^2\,\jvec\), en
+    unidades del SI. Calcula: a) la aceleración en función del tiempo; b) la aceleración en \(t = \qty{2}{\s}\) y en
+    \(t = \qty{5}{\s}\), y sus módulos; c) la aceleración media entre \(t = 0\) y \(t = \qty{5}{\s}\).
+    \begin{solu}
+        a) \(\textcolor{red}{\vec a = 2\,\ivec - 8t\,\jvec~\unit{\m\per\s\squared}}\). b) \(\textcolor{red}{2\,\ivec - 16\,\jvec}\),
+        \(\textcolor{red}{\qty{16.1}{\m\per\s\squared}}\); \(\textcolor{red}{2\,\ivec - 40\,\jvec}\), \(\textcolor{red}{\qty{40.0}{\m\per\s\squared}}\).
+        c) \textcolor{blue}{\(\vec v(0) = 3\,\ivec\); \(\vec v(5) = 13\,\ivec - 100\,\jvec\).} \(\vec a_m = \textcolor{red}{(2\,\ivec - 20\,\jvec)~\unit{\m\per\s\squared}}\),
+        de módulo \(\textcolor{red}{\qty{20.1}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Pedro se desplaza según \(\vec r(t) = (t^3 - 2t^2)\,\ivec + (3t^2 - t)\,\jvec\), en unidades del SI. Determina:
+    a) la velocidad en función del tiempo; b) la aceleración en función del tiempo; c) la aceleración media entre \(t = \qty{2}{\s}\)
+    y \(t = \qty{4}{\s}\); d) la aceleración media entre \(t = \qty{3}{\s}\) y \(t = \qty{5}{\s}\).
+    \begin{solu}
+        a) \(\textcolor{red}{\vec v = (3t^2 - 4t)\,\ivec + (6t - 1)\,\jvec}\); b) \(\textcolor{red}{\vec a = (6t - 4)\,\ivec + 6\,\jvec}\).
+        c) \textcolor{blue}{\(\vec v(2) = 4\,\ivec + 11\,\jvec\); \(\vec v(4) = 32\,\ivec + 23\,\jvec\).}
+        \(\vec a_m = \textcolor{red}{(14\,\ivec + 6\,\jvec)~\unit{\m\per\s\squared}}\).
+        d) \textcolor{blue}{\(\vec v(3) = 15\,\ivec + 17\,\jvec\); \(\vec v(5) = 55\,\ivec + 29\,\jvec\).}
+        \(\vec a_m = \textcolor{red}{(20\,\ivec + 6\,\jvec)~\unit{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un móvil se desplaza según \(x(t) = -2t^3\), en unidades del SI. ¿Es constante su aceleración?
+    \begin{solu}
+        \(v = -6t^2\) y \(a = -12t\): \textcolor{red}{no es constante}, depende del tiempo.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Un vagón de una montaña rusa entra en un \textit{looping} de \qty{20}{\m} de radio a \qty{90}{\km\per\hour}. ¿Qué
+    aceleración centrípeta tienen los pasajeros en ese momento?
+    \begin{solu}
+        \(a_n = \dfrac{25^2}{20} = \textcolor{red}{\qty{31.3}{\m\per\s\squared}}\) (más de tres veces la de la gravedad).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Cuál es la aceleración tangencial de un coche que circula a \qty{90}{\km\per\hour} y se detiene en \qty{4}{\s}?
+    \begin{solu}
+        \(a_t = \dfrac{0 - 25}{4} = \textcolor{red}{\qty{-6.25}{\m\per\s\squared}}\): el signo indica que frena.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Durante el centrifugado de una lavadora, una camiseta pegada al tambor tiene una rapidez \(v(t) = 2t + 3\), en
+    unidades del SI. El radio del tambor es de \qty{25}{\cm}. Halla: a) la aceleración tangencial; b) la aceleración normal en
+    \(t = \qty{2}{\s}\); c) el módulo de la aceleración total en ese instante.
+    \begin{solu}
+        a) \(\textcolor{red}{a_t = \qty{2}{\m\per\s\squared}}\). b) \(a_n = \dfrac{7^2}{\num{0.25}} = \textcolor{red}{\qty{196}{\m\per\s\squared}}\).
+        c) \(\sqrt{4 + 196^2} \approx \textcolor{red}{\qty{196}{\m\per\s\squared}}\): casi toda la aceleración es normal.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un móvil se mueve según \(\vec r(t) = (t^3 + 3t)\,\ivec\), en unidades del SI. Determina: a) la velocidad en
+    \(t = \qty{2}{\s}\); b) la aceleración en \(t = \qty{2}{\s}\); c) la velocidad media y la aceleración media en los tres primeros
+    segundos.
+    \begin{solu}
+        a) \(\vec v = (3t^2 + 3)\,\ivec\): \(\textcolor{red}{15\,\ivec~\unit{\m\per\s}}\). b) \(\vec a = 6t\,\ivec\): \(\textcolor{red}{12\,\ivec~\unit{\m\per\s\squared}}\).
+        c) \(\vec v_m = \dfrac{36\,\ivec}{3} = \textcolor{red}{12\,\ivec~\unit{\m\per\s}}\); \(\vec a_m = \dfrac{30\,\ivec - 3\,\ivec}{3} = \textcolor{red}{9\,\ivec~\unit{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Un coche toma una curva de \qty{50}{\m} de radio a \qty{72}{\km\per\hour} constantes. ¿Cuánto valen sus aceleraciones
+    tangencial y normal?
+    \begin{solu}
+        \(\textcolor{red}{a_t = 0}\) (rapidez constante); \(a_n = \dfrac{20^2}{50} = \textcolor{red}{\qty{8}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una partícula tiene una velocidad \(\vec v(t) = (4 - t)\,\ivec + 3\,\jvec\), en \unit{\m\per\s}. En el instante
+    inicial, calcula: a) la aceleración tangencial; b) la aceleración normal; c) el radio de curvatura de la trayectoria.
+    \begin{solu}
+        a) \textcolor{blue}{\(|\vec v| = \sqrt{(4 - t)^2 + 9}\); \(a_t = \dfrac{t - 4}{\sqrt{(4 - t)^2 + 9}}\).} \(a_t(0) = -\dfrac{4}{5} =
+        \textcolor{red}{\qty{-0.8}{\m\per\s\squared}}\) (frena). b) \(\vec a = -\ivec\), \(|\vec a| = 1\): \(a_n = \sqrt{1 - \num{0.64}} =
+        \textcolor{red}{\qty{0.6}{\m\per\s\squared}}\). c) \(R = \dfrac{25}{\num{0.6}} = \textcolor{red}{\qty{41.7}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+%========================================================================================
+\section{Ejercicios de ampliación}\label{sec:ud8-ampliacion}
+%========================================================================================
+
+\begin{exercise}
+    \(\star\star\) Una mosca se mueve por la pantalla del ordenador según las ecuaciones paramétricas \(x = t^2 + 2\) e
+    \(y = t - 4\), con \(x\) e \(y\) en centímetros y \(t\) en segundos. Determina: a) la ecuación del movimiento y la de la
+    trayectoria; b) la velocidad en cada instante; c) la aceleración en \(t = \qty{5}{\s}\).
+    \begin{solu}
+        a) \(\textcolor{red}{\vec r = (t^2 + 2)\,\ivec + (t - 4)\,\jvec~\unit{\cm}}\); \(t = y + 4\):
+        \(\textcolor{red}{x = y^2 + 8y + 18}\), una parábola. b) \(\textcolor{red}{\vec v = 2t\,\ivec + \jvec~\unit{\cm\per\s}}\).
+        c) \(\textcolor{red}{\vec a = 2\,\ivec~\unit{\cm\per\s\squared}}\), constante.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Tu avatar cruza el mapa de un videojuego según \(\vec r(t) = (3t^2 + 2)\,\ivec + (4t^2 - 1)\,\jvec\), en
+    centímetros. Calcula: a) la velocidad en cualquier instante, por dos métodos; b) el módulo de la velocidad media entre
+    \(t = \qty{2}{\s}\) y \(t = \qty{4}{\s}\); c) la velocidad al inicio; d) la aceleración tangencial y la normal; e) la ecuación de
+    la trayectoria. ¿Qué tipo de movimiento es?
+    \begin{solu}
+        a) \(\textcolor{red}{\vec v = 6t\,\ivec + 8t\,\jvec~\unit{\cm\per\s}}\). b) \(\dfrac{(50\,\ivec + 63\,\jvec) - (14\,\ivec + 15\,\jvec)}{2} =
+        18\,\ivec + 24\,\jvec\): \(\textcolor{red}{\qty{30}{\cm\per\s}}\). c) \(\textcolor{red}{\vec v(0) = \vec 0}\).
+        d) \(|\vec v| = 10t\): \(\textcolor{red}{a_t = \qty{10}{\cm\per\s\squared}}\); \(|\vec a| = |6\,\ivec + 8\,\jvec| = 10\), así que
+        \(\textcolor{red}{a_n = 0}\). e) \(\textcolor{red}{y = \dfrac{4x - 11}{3}}\): \textcolor{red}{rectilíneo uniformemente acelerado}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una abeja va de flor en flor por una terraza según \(\vec r(t) = (6t - 2)\,\ivec + (2t + 3)\,\jvec\), en
+    centímetros. ¿Su movimiento es rectilíneo o curvilíneo? Razónalo con la ecuación de la trayectoria y con la velocidad.
+    \begin{solu}
+        \(t = \dfrac{x + 2}{6}\): \(\textcolor{red}{y = \dfrac{x + 11}{3}}\), una recta. Además \(\vec v = 6\,\ivec + 2\,\jvec\) es
+        constante: \textcolor{red}{movimiento rectilíneo uniforme}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Las ecuaciones paramétricas de un móvil son \(x(t) = 2t^2 - t\) e \(y(t) = 4t + 1\), en unidades del SI.
+    a) ¿Cuál es la expresión de la velocidad? b) ¿Tiene aceleración? ¿De qué tipo? Calcúlala. c) ¿Cuál es la velocidad en
+    \(t = \qty{3}{\s}\)? d) ¿Cuáles son la velocidad y la aceleración en \(t = \qty{8}{\s}\)? e) ¿Cuál es la aceleración media en
+    los ocho primeros segundos?
+    \begin{solu}
+        a) \(\textcolor{red}{\vec v = (4t - 1)\,\ivec + 4\,\jvec~\unit{\m\per\s}}\). b) \(\textcolor{red}{\vec a = 4\,\ivec~\unit{\m\per\s\squared}}\),
+        constante; como no tiene la dirección de \(\vec v\), \textcolor{red}{tiene componentes tangencial y normal} (la trayectoria
+        es una parábola). c) \(\textcolor{red}{(11\,\ivec + 4\,\jvec)~\unit{\m\per\s}}\). d) \(\textcolor{red}{(31\,\ivec + 4\,\jvec)~\unit{\m\per\s}}\)
+        y \(\textcolor{red}{4\,\ivec~\unit{\m\per\s\squared}}\). e) \(\dfrac{32\,\ivec}{8} = \textcolor{red}{4\,\ivec~\unit{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un caballo galopa a \qty{60}{\km\per\hour}, un halcón vuela en horizontal a \qty{100}{\km\per\hour} y un delfín
+    nada a \qty{40}{\km\per\hour}. Imagina que hacen una carrera de relevos en la que cada uno recorre la misma distancia a su
+    rapidez máxima. ¿Cuál es la rapidez media del equipo?
+    \begin{solu}
+        \textcolor{blue}{Si cada uno recorre \(S\): \(t = \dfrac{S}{60} + \dfrac{S}{100} + \dfrac{S}{40}\).}
+        \(v_m = \dfrac{3S}{t} = \dfrac{3}{\frac{1}{60} + \frac{1}{100} + \frac{1}{40}} = \textcolor{red}{\qty{58.1}{\km\per\hour}}\),
+        menos que la media aritmética (\qty{66.7}{\km\per\hour}): se pasa más tiempo en los tramos lentos.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un avión necesita alcanzar \qty{300}{\km\per\hour} para despegar y la pista mide \qty{1.5}{\km}. Si parte del
+    reposo y su aceleración es constante (entonces su velocidad media es la mitad de la final), calcula: a) el tiempo que tarda
+    en despegar; b) su aceleración.
+    \begin{solu}
+        \textcolor{blue}{\(v = \qty{83.3}{\m\per\s}\); \(v_m = \qty{41.7}{\m\per\s}\).} a) \(t = \dfrac{1500}{\num{41.7}} =
+        \textcolor{red}{\qty{36}{\s}}\). b) \(a = \dfrac{\num{83.3}}{36} = \textcolor{red}{\qty{2.31}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un objeto se mueve sobre una mesa con componentes de velocidad \(v_x = t^2\) y \(v_y = 3\), en \unit{\m\per\s}.
+    Expresa: a) el vector velocidad; b) el módulo de la aceleración media entre \(t = 0\) y \(t = \qty{3}{\s}\); c) la aceleración
+    en función del tiempo y su módulo en \(t = \qty{3}{\s}\); d) las aceleraciones tangencial y normal en \(t = \qty{3}{\s}\);
+    e) el radio de curvatura en ese instante.
+    \begin{solu}
+        a) \(\textcolor{red}{\vec v = t^2\,\ivec + 3\,\jvec}\). b) \(\dfrac{9\,\ivec}{3}\): \(\textcolor{red}{\qty{3}{\m\per\s\squared}}\).
+        c) \(\textcolor{red}{\vec a = 2t\,\ivec}\); \(\textcolor{red}{\qty{6}{\m\per\s\squared}}\). d) \(a_t = \dfrac{2t^3}{\sqrt{t^4 + 9}}\):
+        \(\dfrac{54}{\sqrt{90}} = \textcolor{red}{\qty{5.69}{\m\per\s\squared}}\); \(a_n = \sqrt{36 - \num{32.4}} = \textcolor{red}{\qty{1.90}{\m\per\s\squared}}\).
+        e) \(R = \dfrac{90}{\num{1.90}} = \textcolor{red}{\qty{47.4}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Una ciclista entra en la curva de un velódromo, de \qty{40}{\m} de radio, a \qty{10}{\m\per\s} y acelera de
+    manera uniforme hasta \qty{16}{\m\per\s} en \qty{4}{\s}. Calcula el módulo de su aceleración a los \qty{2}{\s} de entrar en la
+    curva.
+    \begin{solu}
+        \(a_t = \dfrac{6}{4} = \qty{1.5}{\m\per\s\squared}\); \(v(2) = \qty{13}{\m\per\s}\); \(a_n = \dfrac{169}{40} = \qty{4.23}{\m\per\s\squared}\);
+        \(a = \sqrt{\num{1.5}^2 + \num{4.23}^2} = \textcolor{red}{\qty{4.48}{\m\per\s\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) El movimiento de un cuerpo viene descrito por \(\vec r(t) = t^3\,\ivec + 3t^2\,\jvec\), en unidades del SI.
+    Calcula, en \(t = \qty{2}{\s}\), las aceleraciones tangencial y normal y el radio de curvatura de la trayectoria.
+    \begin{solu}
+        \textcolor{blue}{\(\vec v = 3t^2\,\ivec + 6t\,\jvec\), \(|\vec v| = 3t\sqrt{t^2 + 4}\); \(a_t = \dfrac{6t^2 + 12}{\sqrt{t^2 + 4}}\).
+        En \(t = 2\): \(v = \sqrt{288} = \qty{17.0}{\m\per\s}\); \(\vec a = 6t\,\ivec + 6\,\jvec = 12\,\ivec + 6\,\jvec\), \(a^2 = 180\).}
+        \(\textcolor{red}{a_t = \dfrac{36}{\sqrt 8} = \qty{12.7}{\m\per\s\squared}}\); \(\textcolor{red}{a_n = \sqrt{180 - 162} = \qty{4.24}{\m\per\s\squared}}\);
+        \(R = \dfrac{288}{\num{4.24}} = \textcolor{red}{\qty{67.9}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) El vector posición de una partícula es \(\vec r(t) = R\,\sen(\omega t)\,\ivec + R\,\cos(\omega t)\,\jvec\),
+    donde \(R\) (en metros) y \(\omega\) (en \unit{\radian\per\s}) son constantes. a) Demuestra que la trayectoria es una
+    circunferencia de radio \(R\). b) Calcula el módulo de la velocidad y el de la aceleración. c) Aplícalo a \(R = \qty{2}{\m}\) y
+    \(\omega = \qty{3}{\radian\per\s}\), y comprueba que \(a = v^2/R\).
+    \begin{solu}
+        a) \(x^2 + y^2 = R^2(\sen^2 + \cos^2) = R^2\): \textcolor{red}{circunferencia de radio \(R\)}.
+        b) \(\vec v = R\omega\cos(\omega t)\,\ivec - R\omega\,\sen(\omega t)\,\jvec\): \(\textcolor{red}{|\vec v| = R\omega}\), constante;
+        \(\vec a = -R\omega^2\,\sen(\omega t)\,\ivec - R\omega^2\cos(\omega t)\,\jvec = -\omega^2\,\vec r\): \(\textcolor{red}{|\vec a| = R\omega^2}\),
+        dirigida hacia el centro. c) \(\textcolor{red}{v = \qty{6}{\m\per\s}}\), \(\textcolor{red}{a = \qty{18}{\m\per\s\squared}}\) y
+        \(v^2/R = 36/2 = 18\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Un móvil se mueve sobre una recta según \(x(t) = t^3 - 9t^2 + 15t\), en unidades del SI. Entre \(t = 0\) y
+    \(t = \qty{6}{\s}\), calcula: a) los instantes en que cambia de sentido; b) el desplazamiento; c) el espacio recorrido; d) la
+    aceleración media. ¿Es nula la aceleración durante el movimiento?
+    \begin{solu}
+        a) \(v = 3t^2 - 18t + 15 = 3(t - 1)(t - 5) = 0\): \(\textcolor{red}{t = \qty{1}{\s}}\) y \(\textcolor{red}{t = \qty{5}{\s}}\).
+        b) \textcolor{blue}{\(x(0) = 0\), \(x(1) = 7\), \(x(5) = -25\), \(x(6) = -18\).} \(\textcolor{red}{\Delta x = \qty{-18}{\m}}\).
+        c) \(e = 7 + 32 + 7 = \textcolor{red}{\qty{46}{\m}}\). d) \(v(0) = v(6) = \qty{15}{\m\per\s}\): \(\textcolor{red}{a_m = 0}\),
+        aunque \(a = 6t - 18\) \textcolor{red}{solo se anula en \(t = \qty{3}{\s}\)}: una aceleración media nula no significa que no
+        haya aceleración.
+    \end{solu}
+\end{exercise}
+
+%========================================================================================
+\section{Olimpiadas de Física}\label{sec:ud8-olimpiadas}
+%========================================================================================
+
+%! Fuente: Fuentes/Fisica/Unidad 9, captura 201 (página final del tema 1 del libro original).
+
+\begin{exercise}
+    \(\star\star\) \textit{(Adaptado de la fase local de Córdoba, 2018.)} Un cuerpo describe un movimiento circular partiendo del
+    reposo. Discute razonadamente si son verdaderas o falsas estas afirmaciones: a) la aceleración tangencial debe ser constante y
+    distinta de cero; b) la aceleración normal es directamente proporcional al tiempo transcurrido desde el inicio.
+    \begin{solu}
+        a) \textcolor{red}{Falsa}: tiene que ser distinta de cero en algún momento (si no, seguiría en reposo), pero no tiene por qué
+        ser constante. b) \textcolor{red}{Falsa}: \(a_n = v^2/R\). Incluso si \(a_t\) fuera constante, \(v = a_t\,t\) y
+        \(a_n = a_t^2\,t^2/R\), que es proporcional al \textbf{cuadrado} del tiempo.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) \textit{(Adaptado de la fase local de Pamplona, 2009.)} El recorrido del encierro de San Fermín, desde los corrales hasta
+    la plaza de toros, mide \qty{848.6}{\m}, y su duración media en los últimos años ha sido de \qty{3.55}{\minute}. a) Calcula la
+    rapidez media de un toro en un encierro medio. b) ¿Y en uno muy rápido, que dure 2 minutos y 17 segundos?
+    \begin{solu}
+        a) \(v_m = \dfrac{\num{848.6}}{\num{3.55} \cdot 60} = \textcolor{red}{\qty{3.98}{\m\per\s}}\) (\qty{14.3}{\km\per\hour}).
+        b) \(\dfrac{\num{848.6}}{137} = \textcolor{red}{\qty{6.19}{\m\per\s}}\) (\qty{22.3}{\km\per\hour}).
+    \end{solu}
+\end{exercise}
+
+%========================================================================================
+\section{Autoevaluación}\label{sec:ud8-autoevaluacion}
+%========================================================================================
+
+\begin{exercise}
+    Explica con tus propias palabras: a) vector posición; b) vector desplazamiento; c) trayectoria; d) aceleración centrípeta.
+    \begin{solu}
+        a) \textcolor{red}{El vector que va del origen a la posición del móvil.} b) \textcolor{red}{El que va de la posición inicial a la
+        final.} c) \textcolor{red}{La línea que forman las sucesivas posiciones.} d) \textcolor{red}{La componente de la aceleración
+        perpendicular a la trayectoria, dirigida al centro de la curva}, que mide el cambio de dirección de la velocidad: \(a_n = v^2/R\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Responde razonadamente: a) Un cuerpo que se mueve en línea recta con velocidad constante, ¿puede tener aceleración? b) Si un
+    móvil tiene aceleración tangencial nula y aceleración normal constante, ¿su movimiento es uniforme o acelerado? c) ¿Pueden ser
+    iguales el módulo del desplazamiento y la distancia recorrida? d) ¿Qué tipo de movimiento lleva un móvil con aceleración
+    \(\vec a = 2\,\ivec~\unit{\m\per\s\squared}\)?
+    \begin{solu}
+        a) \textcolor{red}{No}: si \(\vec v\) es constante, \(\vec a = \vec 0\). b) \textcolor{red}{Uniforme} (rapidez constante),
+        aunque acelerado en el sentido vectorial: es un MCU. c) \textcolor{red}{Sí}, en un movimiento rectilíneo sin cambio de sentido.
+        d) \textcolor{red}{Uniformemente acelerado}; será rectilíneo si la velocidad tiene la dirección del eje X, y parabólico si no.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿Qué diferencia hay entre el desplazamiento y el espacio recorrido por una pelota que se lanza hacia arriba desde el suelo y
+    vuelve a caer en el mismo punto?
+    \begin{solu}
+        \textcolor{red}{El desplazamiento es nulo} (vuelve al punto de partida) \textcolor{red}{y el espacio recorrido es el doble de la
+        altura máxima}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    El vector posición de un móvil es \(\vec r(t) = (2t - 3)\,\ivec + (4 - t^2)\,\jvec\), en unidades del SI. Calcula: a) la velocidad
+    media y su módulo en los cinco primeros segundos; b) la velocidad y su módulo en \(t = \qty{3}{\s}\); c) la ecuación de la
+    trayectoria.
+    \begin{solu}
+        a) \(\vec r(0) = -3\,\ivec + 4\,\jvec\); \(\vec r(5) = 7\,\ivec - 21\,\jvec\): \(\vec v_m = \textcolor{red}{(2\,\ivec - 5\,\jvec)~\unit{\m\per\s}}\),
+        \(\textcolor{red}{\qty{5.39}{\m\per\s}}\). b) \(\vec v = 2\,\ivec - 2t\,\jvec\): \(\vec v(3) = \textcolor{red}{(2\,\ivec - 6\,\jvec)~\unit{\m\per\s}}\),
+        \(\textcolor{red}{\qty{6.32}{\m\per\s}}\). c) \(t = \dfrac{x + 3}{2}\): \(\textcolor{red}{y = 4 - \dfrac{(x + 3)^2}{4}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un cuerpo se mueve según \(\vec r(t) = (4t^2 - 1)\,\ivec + (2 - t^2)\,\jvec\), en unidades del SI. Calcula sus aceleraciones
+    tangencial y normal a los \qty{2}{\s}. ¿Qué tipo de movimiento es?
+    \begin{solu}
+        \(\vec v = 8t\,\ivec - 2t\,\jvec\), \(|\vec v| = \sqrt{68}\,t\): \(\textcolor{red}{a_t = \qty{8.25}{\m\per\s\squared}}\);
+        \(|\vec a| = |8\,\ivec - 2\,\jvec| = \num{8.25}\), así que \(\textcolor{red}{a_n = 0}\): \textcolor{red}{rectilíneo uniformemente
+        acelerado} (la velocidad y la aceleración tienen siempre la misma dirección).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    El vector posición de un cuerpo es \(\vec r(t) = 2t\,\ivec + (1 - t^2)\,\jvec\), en unidades del SI. Calcula: a) la velocidad media
+    entre los instantes 2 y \qty{4}{\s}; b) la velocidad en \(t = \qty{3}{\s}\) y en \(t = \qty{6}{\s}\); c) las aceleraciones
+    tangencial y normal en \(t = \qty{3}{\s}\); d) el radio de curvatura en ese instante.
+    \begin{solu}
+        a) \(\dfrac{(8\,\ivec - 15\,\jvec) - (4\,\ivec - 3\,\jvec)}{2} = \textcolor{red}{(2\,\ivec - 6\,\jvec)~\unit{\m\per\s}}\).
+        b) \(\textcolor{red}{(2\,\ivec - 6\,\jvec)}\) y \(\textcolor{red}{(2\,\ivec - 12\,\jvec)~\unit{\m\per\s}}\).
+        c) \(|\vec v| = 2\sqrt{1 + t^2}\), \(a_t = \dfrac{2t}{\sqrt{1 + t^2}}\): \(\textcolor{red}{a_t(3) = \qty{1.90}{\m\per\s\squared}}\);
+        \(|\vec a| = 2\): \(\textcolor{red}{a_n = \sqrt{4 - \num{3.6}} = \qty{0.63}{\m\per\s\squared}}\).
+        d) \(R = \dfrac{40}{\num{0.632}} = \textcolor{red}{\qty{63}{\m}}\).
+    \end{solu}
+\end{exercise}

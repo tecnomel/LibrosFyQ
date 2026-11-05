@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Formas de energía</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .c { border-radius: 14px; padding: 10px; text-align: center; border: 2px solid; }
+    .c .ic { font-size: 44px; line-height: 1.2; }
+    .c h2 { font-size: 19px; margin: 2px 0; }
+    .c .t { font-size: 14px; }
+    .c .ex { font-size: 13px; color: var(--grey); margin-top: 4px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Formas de energía</h1>
+    <div class="grid" id="g"></div>
+</div>
+<script>
+    const F = [
+        ['🏃', 'Cinética', 'la tiene un cuerpo porque se MUEVE; más masa y más velocidad → más energía', 'un coche en marcha', '#2471A3', '#EAF2F8'],
+        ['🎢', 'Potencial gravitatoria', 'se debe a la ALTURA; más masa y más altura → más energía', 'una montaña rusa en lo más alto', '#1E8449', '#E9F7EF'],
+        ['🏹', 'Potencial elástica', 'almacenada en algo estirado o comprimido', 'un arco, un muelle', '#117A65', '#E8F8F5'],
+        ['🔥', 'Térmica', 'movimiento de las partículas de un cuerpo; relacionada con la temperatura', 'una taza de té caliente', '#C0392B', '#FDEDEC'],
+        ['⚡', 'Eléctrica', 'cargas eléctricas en movimiento (corriente eléctrica)', 'un móvil cargándose', '#B7950B', '#FEF9E7'],
+        ['☀️', 'Radiante', 'la transportan la luz y otras ondas (radio, microondas, rayos X)', 'la luz del Sol', '#D68910', '#FEF5E7'],
+        ['🔋', 'Química', 'almacenada en los enlaces entre átomos; se libera en las reacciones', 'alimentos, combustibles, pilas', '#8E44AD', '#F5EEF8'],
+        ['⚛️', 'Nuclear', 'almacenada en el núcleo de los átomos', 'el Sol, las centrales nucleares', '#424949', '#F4F6F7']
+    ];
+    const g = document.getElementById('g');
+    F.forEach(([ic, n, t, ex, c, bg]) => g.insertAdjacentHTML('beforeend', `<div class="c" style="border-color:${c};background:${bg}"><div class="ic">${ic}</div><h2 style="color:${c}">${n}</h2><div class="t">${t}</div><div class="ex">p. ej., ${ex}</div></div>`));
+    g.insertAdjacentHTML('afterend', '<div class="note" style="text-align:center;margin-top:12px"><b>Energía mecánica</b> = energía cinética + energía potencial</div>');
+</script>
+</body>
+</html>

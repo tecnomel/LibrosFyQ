@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Grupos y períodos</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1080px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="ptrow">
+        <svg id="s" width="830" height="440"></svg>
+        <div class="legend" id="lg"></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script src="pt.js"></script>
+<script>
+    const add = svgAdder('s');
+    const col = Z => { const p = pos(Z).period; return p <= 3 ? '#F5B7B1' : (p <= 5 ? '#AED6F1' : '#F9E79F'); };
+    drawPT(add, { x0: 70, y0: 50, c: 40, fill: col });
+    // flechas de grupo y período
+    add('text', { x: 70, y: 18, 'font-size': 16, 'font-weight': 800, fill: '#C0392B' }, 'GRUPOS (columnas) 1 → 18');
+    add('line', { x1: 22, y1: 50, x2: 22, y2: 335, stroke: '#C0392B', 'stroke-width': 3 });
+    add('path', { d: 'M14 330 L22 345 L30 330 Z', fill: '#C0392B' });
+    add('text', { x: 14, y: 200, 'font-size': 16, 'font-weight': 800, fill: '#C0392B', transform: 'rotate(-90 14 200)', 'text-anchor': 'middle' }, 'PERÍODOS (filas) 1 → 7');
+    legend('lg', [['#F5B7B1', 'Períodos cortos<br>(1, 2 y 3)'], ['#AED6F1', 'Períodos largos<br>(4 y 5)'], ['#F9E79F', 'Períodos muy largos<br>(6 y 7)']]);
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_11 · Estructura de Lewis del NO</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+</head>
+<body>
+<script>
+// NO: número impar de electrones (11 de valencia); el N queda con un electrón desapareado.
+const svg = crearFigura(170, 80);
+dibujarLewis(svg, 55, 42, { atomos: [
+    { s: "N", x: 0, y: 0, pares: [180], e: [90] }, { s: "O", x: 1.1, y: 0, pares: [60, 300] }],
+    enlaces: [{ a: "N", b: "O", orden: 2 }] });
+</script>
+</body>
+</html>

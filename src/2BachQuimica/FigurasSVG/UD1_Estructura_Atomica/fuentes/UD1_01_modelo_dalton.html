@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD1_01 · Modelo atómico de Dalton</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Dalton (1808): el átomo es una esfera maciza, indivisible e indestructible.
+const svg = crearFigura(280, 280);
+const g = el("radialGradient", { id: "dalton", cx: "38%", cy: "32%", r: "75%", fx: "34%", fy: "28%" }, defs(svg));
+el("stop", { offset: "0%", "stop-color": "#BFE0FF" }, g);
+el("stop", { offset: "35%", "stop-color": "#4A7FD0" }, g);
+el("stop", { offset: "85%", "stop-color": "#2A4F92" }, g);
+el("stop", { offset: "100%", "stop-color": "#14264A" }, g);
+// sombra
+el("ellipse", { cx: 145, cy: 250, rx: 80, ry: 12, fill: "#000000", opacity: 0.12 }, svg);
+el("circle", { cx: 140, cy: 125, r: 105, fill: "url(#dalton)" }, svg);
+texto(svg, 140, 274, "Esfera maciza e indivisible", { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+</script>
+</body>
+</html>

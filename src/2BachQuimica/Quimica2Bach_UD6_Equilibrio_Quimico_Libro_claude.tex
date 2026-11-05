@@ -1,0 +1,963 @@
+\vspace*{18pt}
+
+\section{Concepto de equilibrio químico}\label{sec:concepto-de-equilibrio-quimico}
+
+\begin{center}
+    \begin{definition}[Equilibrio Químico]
+        Un sistema cerrado está en \negrita{equilibrio químico} cuando no se observan cambios en su composición química a medida que transcurre el tiempo.
+    \end{definition}
+\end{center}
+
+Imaginemos que en un recipiente añadimos \ch{H2} y \ch{I2}, ambos reactivos reaccionarán para formar \ch{HI} según la reacción (la llamaremos reacción directa):
+
+\begin{reaction}[Formación de HI]
+    H2\gas{} + I2\gas{} ->[kd] HI\gas{} \label{rxn:formacionHI}
+\end{reaction}
+
+Pero a medida que se van formando \ch{HI}, estas moléculas pueden reaccionar entre sí, para formar de nuevo los reactivos de partida \ch{H2} y \ch{I2} según la reacción (la llamaremos reacción inversa):
+\begin{reaction}[Descomposición de HI]
+    HI\gas{} + HI\gas{} ->[ki] H2\gas{} + I2\gas{} \label{rxn:descomposicionHI}
+\end{reaction}
+
+La coexistencia de ambas reacciones la podemos escribir:
+
+\begin{reaction}[Equilibrio HI]
+    H2\gas{} + I2\gas{} <=>[kd][ki] 2 HI\gas{} \label{rxn:equilibrioHI}
+\end{reaction}
+
+Cuando la velocidad de reacción de la reacción directa se iguala a la velocidad de reacción de la reacción inversa diremos que hemos alcanzado el \negrita{equilibrio químico}.
+
+Si escribimos la ecuación de velocidad de la reacción directa tendremos que: $v_d = \conc{H2}\ \conc{I2}$.
+En este caso al tratarse de una reacción elemental, los órdenes parciales de reacción coinciden con los coeficientes estequiométricos.
+Si escribimos también la ecuación de velocidad de la reacción inversa, tendremos que: $v_i = \conc{HI}^2$.
+Hemos dicho que cuando se alcanza el equilibrio $v_d = v_i$.
+A la fracción entre $k_d$ y $k_i$ se le denomina \negrita{constante de equilibrio} ($k_{\text{eq}}$)
+
+\begin{gather}
+    v_d = v_i \notag \separ
+    \dfrac{k_d\ \conc{H2}\ \conc{I2}}{k_i\ \conc{HI}^2} = 1 \notag \separ
+    \dfrac{k_d}{k_i} = \dfrac{\conc{HI}^2}{\conc{H2}\ \conc{I2}} = k_{\text{eq}} \notag  \separ
+    k_{\text{eq}} = \dfrac{\conc{HI}^2}{\conc{H2}\ \conc{I2}} \label{eq:cteequilibrio}
+\end{gather}
+
+Puesto que la expresión~\eqref{eq:cteequilibrio} está expresada en función de las concentraciones molares, también la podemos denotar como $K_c$.
+Así para una reacción general tendremos una expresión:
+\begin{reaction}[Reacción general]
+    a\ A\gas{} + b\ B \gas{} <=> c\ C \gas{} + d\ D\gas{} \label{rxn:reacciongeneral}
+\end{reaction}
+
+\begin{centeredequation}
+    \tcboxmath[opteqA]{k_c= \dfrac{\conc{C}^c\ \conc{D}^d }{\conc{A}^a\ \conc{B}^b}}
+\end{centeredequation}
+
+A la relación de las concentraciones de los productos y los reactivos elevadas a sus correspondientes coeficientes estequiométricos se le conoce como \negrita{ley de acción de masas} (l.a.m).
+
+\negsubro{Importante}: En la expresión de la constante de equilibrio (\( K_c \)) \rojon{solo deben aparecer las especies en estado gaseoso o en disolución} ya que las especies en estado sólido o líquido no variarán su concentración y su valor está incluido ya en la constante de equilibrio.
+En la expresión de $\bm{K_c}$ las concentraciones de los reactivos y los productos son las \azuln{concentraciones una vez alcanzado el equilibrio}.
+
+El equilibrio químico también se puede definir como la situación en la que, en un sistema cerrado, no se observan cambios en su composición química a medida que transcurre el tiempo.
+
+\begin{example}
+    Sea el caso de la reacción:
+
+    \begin{centeredequation}
+        \ch{Zn\ (s) + CuSO4 \ (aq) -> Cu \ (s) + ZnSO4\ (aq)}
+    \end{centeredequation}
+    La expresión de la constante de equilibrio quedaría de la forma:
+    \begin{centeredequation}
+        K_c = \dfrac{\conc{ZnSO4}}{\conc{CuSO4}}
+    \end{centeredequation}
+\end{example}
+
+\begin{example}
+    En la síntesis de \ch{SO3 \gas{}} a partir de \ch{SO2\ (g)} y \ch{O2\ (g)} y una vez alcanzado el equilibrio tenemos \moles{0,3} de \ch{SO2\ (g)} y \moles{1,15} de \ch{O2\ (g)} y  \moles{1,7} de \ch{SO3\ (g)} en un reactor de \volumen[l]{10}.
+    Escribe la reacción química ajustada que tiene lugar y la constante de equilibrio \( K_c \).
+
+    Escribimos primero la reacción ajustada:
+    \begin{reaction*}
+        2 SO2 \gas{} + O2 \gas{} -> 2 SO3 \gas{}
+    \end{reaction*}
+%    \begin{centeredequation}
+%        \formula{SO2\ (g) + O2\ (g) -> 2 SO3\ (g)}
+%    \end{centeredequation}
+    Sabemos que la \( K_c \) tiene la siguiente expresión:
+    \begin{centeredequation}
+        k_c = \dfrac{\conc{SO3}^2}{\conc{SO2}^2\ \conc{O2}}
+    \end{centeredequation}
+    Primero debemos calcular las concentraciones molares de cada especie:
+    \begin{centeredequation}
+        \conc{SO2} = \dfrac{0,3}{10} = \moles{0,03}; \qquad \conc{O2} = \dfrac{1,15}{10} = \moles{0,115};\qquad \conc{SO3} = \dfrac{1,7}{10} = \moles{0,17}
+    \end{centeredequation}
+    Una vez calculadas las concentraciones, las sustituimos en la expresión de la constante de equilibrio para obtener:
+    \begin{centeredequation}
+        K_c = \dfrac{0.17^2}{0.03^2\cdot 0.115} = 279 \left( \dfrac{\si{\mole}}{\si{\litre}}\right)^{-1}
+    \end{centeredequation}
+\end{example}
+
+\begin{example}
+    En un recipiente de \volumen[l]{10} se introduce una mezcla de \moles{4} de \ch{N2\ (g)} y \moles{12} de \ch{H2\ (g)}.
+    \begin{enumerate}[label=\letraminuscula]
+            \item Escribir la reacción que tiene lugar.
+            \item Una vez se ha establecido el equilibrio, se observa que tenemos \moles{0,92} de \ch{NH3\ (g)}, determinar las concentraciones de \conc{N2} y \conc{H2} en el equilibrio.
+            \item La constante de equilibrio \( K_c \).
+
+            Primero ponemos la reacción ajustada de la siguiente manera:
+
+            \begin{table}[H]
+                % --- tabla antigua ---
+                % \begin{tblr}{%
+                    % colspec = {X[c]X[c]X[c]X[c]},
+                % % cell{3}{2} = {red9},
+                    % row{2} = {blue9},
+                    % row{5} = {red9},
+                    % vline{2} = {1}{ text = \clap{} },
+                    % vline{3} = {1}{ text = \clap{\ch{+}} },
+                    % vline{4} = {1}{ text = \clap{\ch{->}} },
+                % }
+                    % Ecuación         & \ch{N2\ (g)}        & \ch{3 H2 \ (g)}       & \ch{2 NH3\ (g)}    \\
+                    % $ n_0 $          & $ 4 $               & $ 12 $                & $ - $              \\
+                    % $ n $ reaccionan & $ -x $              & $ -3x $               & $ - $              \\
+                    % $ n $ forman     & $ - $               & $ - $                 & $ +2x $            \\
+                    % $ n $ equilibrio & $ 4-x $             & $ 12-3x $             & $ 2x $             \\
+                    % $ \conc{eq} $    & $ \dfrac{4-x}{10} $ & $ \dfrac{12-3x}{10} $ & $ \dfrac{2x}{10} $ \\
+                % \end{tblr}
+                % --- tabla nueva ---
+                \begin{tabular}{@{}c @{\,}c@{\,} c @{\,}c@{\,} c @{\,}c@{\,} c@{}}
+                    \toprule
+                    \textbf{Ecuación} &  & \textbf{\ch{N2\ (g)}} & \ch{+} & \textbf{\ch{3 H2 \ (g)}} & \ch{->} & \textbf{\ch{2 NH3\ (g)}} \\
+                    \midrule
+                    $ n_0 $ &  & $ 4 $ &  & $ 12 $ &  & $ - $ \\[3pt]
+                    $ n $ reaccionan &  & $ -x $ &  & $ -3x $ &  & $ - $ \\[3pt]
+                    $ n $ forman &  & $ - $ &  & $ - $ &  & $ +2x $ \\[3pt]
+                    $ n $ equilibrio &  & $ 4-x $ &  & $ 12-3x $ &  & $ 2x $ \\[3pt]
+                    $ \conc{eq} $ &  & $ \dfrac{4-x}{10} $ &  & $ \dfrac{12-3x}{10} $ &  & $ \dfrac{2x}{10} $ \\
+                    \bottomrule
+                \end{tabular}
+            \end{table}
+
+
+            Primero de todo, tenemos que calcular $x$ para poder ver así el número de moles que tenemos en el equilibrio.
+            Sabemos que en el equilibrio tenemos $\moles{0.92}$ de \ch{NH3} y hemos visto que en equilibrio deberíamos tener $2x$\ moles.
+            Igualando ambas expresiones tendremos que:
+            \begin{gather*}
+                2x = 0.92 \rightarrow x = \dfrac{0.92}{2} = \moles{0.46}
+            \end{gather*}
+            Sabiendo \(x\) podemos calcular la cantidad de cada especie en el equilibrio.
+            \begin{multicols}{2}
+                \begin{itemize}
+                    \item $n\ \ch{N2} = 4 - 0.46  =  \moles{3.54}$.
+                    \item  $n\ \ch{H2} = 12 - 3\cdot (0.46)  =  \moles{10.62}$.
+                    \item $n\ \ch{NH3} =  \moles{0.92}$.
+                \end{itemize}
+            \end{multicols}
+            Necesitamos calcular ahora las concentraciones de cada especie, como el volumen del recipiente es de \volumen[l]{10} tendremos que:
+
+            \begin{multicols}{2}
+                \begin{itemize}
+                    \item $[\ch{N2}] = \dfrac{3.54}{10} = \SI{0.354}{\M}$.
+                    \item $[\ch{H2}] = \dfrac{10.62}{10} = \SI{1.062}{\M}$.
+                    \item $[\ch{NH3}] = \dfrac{0.92}{10} = \SI{0.092}{\M}$.
+                \end{itemize}
+            \end{multicols}
+
+            Sabemos que:
+            \begin{centeredequation}
+                k_c = \dfrac{\conc{NH3}^2}{\conc{N2}\ \conc{H2}^3}
+            \end{centeredequation}
+            su constante de equilibrio será:
+            \begin{centeredequation}
+                k_c = \dfrac{0,092^2}{0,354\cdot 1,062^3} = \SI{0,01996}{\per\square\M}
+            \end{centeredequation}
+    \end{enumerate}
+\end{example}
+
+\subsection{Cociente de reacción Q}
+
+En una reacción general del tipo \rxref{rxn:reacciongeneral}
+% \begin{centeredequation}
+%     \ch{a\ A\ (g) + b\ B \ (g) <=> c\ C \ (g) + d\ D\ (g)}
+% \end{centeredequation}
+se llama \negrita{cociente de reacción Q} a la relación que existe entre el producto de la concentración de los productos elevados a sus correspondientes coeficientes estequiométricos y el producto de la concentración de los reactivos elevados a sus correspondientes coeficientes estequiométricos de tal manera que:
+\begin{centeredequation}
+    Q = \dfrac{\conc{C}^c\ \conc{D}^d }{\conc{A}^a\ \conc{B}^b}
+\end{centeredequation}
+Como podemos ver, tiene la misma fórmula que $\bm{K_c}$, pero a diferencia de esta, las concentraciones en \( Q \) \textbf{no tienen que ser las del equilibrio}.
+
+\(\bm{Q}\) nos dirá la relación que existe entre las concentraciones de los productos y reactivos en un determinado momento, mientras que \(K_c\) nos dice qué relación existe, pero cuando se ha alcanzado el equilibrio.
+
+Si comparamos el valor obtenido para \(Q\) con \(K_c\) nos podemos encontrar los siguientes casos:
+
+\begin{itemize}
+    \item Si \( Q = K_c \) entonces el sistema está en equilibrio.
+    \item Si $Q < K_c$ entonces el sistema evolucionará hacia la derecha, es decir, aumentarán las concentraciones de los productos y disminuirán la de los reactivos hasta que $Q = K_c$.
+    \item Si $Q > K_c$ entonces el sistema evolucionará hacia la izquierda, es decir aumentarán las concentraciones de los reactivos y disminuirán las de los productos hasta que $Q = K_c$.
+\end{itemize}
+
+La evolución producida en la reacción se debe a que todos los sistemas tenderán a buscar la situación de equilibrio químico.
+
+\begin{example}
+    En un recipiente de 3 litros se introducen \moles{0.6} de \ch{HI}, \moles{0.3} de \ch{H2} y \moles{0.3} de \ch{I2} a \temperatura[c]{490}.
+    La constante  $K_c = 0.022$ a la temperatura de \temperatura[c]{490} para la reacción:
+    \begin{centeredequation}
+        \ch{2 HI\ (g) -> H2\ (g) + I2\ (g)}
+    \end{centeredequation}
+    \begin{enumerate}[label=\letraminuscula]
+            \item ¿Se encuentra en equilibrio?
+            Calculamos primero las concentraciones de todas las especies:
+            \begin{gather*}
+                \conc{H2} = \dfrac{\moles{0.3}}{\volumen[l]{3}} = \concentracion[m]{0.1}; \quad \conc{I2} = \dfrac{\moles{0.3}}{\volumen[l]{3}} = \concentracion[m]{0.1}; \quad \conc{HI} = \dfrac{\moles{0.6}}{\volumen[l]{3}} = \concentracion[m]{0.2}
+            \end{gather*}
+            Ahora, calculamos \( Q \)
+            \begin{centeredequation}
+                Q = \dfrac{\conc{H2}\conc{I2}}{\conc{HI}^2} = \dfrac{0.1\cdot 0.1}{0.2^2} = 0.25
+            \end{centeredequation}
+            Vemos que $Q>K_c$ por lo que la reacción no está en equilibrio y tenderá a desplazarse hacia la izquierda (formación de reactivos) para alcanzar el equilibrio.
+            \item En caso de no encontrarse, ¿cuántos moles de \ch{HI}, \ch{H2} y \ch{I2} habrá en el equilibrio?
+
+            % --- tabla antigua ---
+            % \begin{tblr}{%
+                % colspec = {X[c]X[c]X[c]X[c]},
+            % %cell{1}{1} = {gray!20},
+                % row{2} = {blue9},
+                % row{6} = {red9},
+                % vline{2} = {1}{ text = \clap{} },
+            % %vline{3} = {1}{ text = \clap{\ch{+}} },
+                % vline{3} = {1}{ text = \clap{\ch{->}} },
+                % vline{4} = {1}{ text = \clap{\ch{+}} },
+            % }
+                % Ecuación       & \ch{2 HI}              & \ch{H2}                & \ch{I2}              \\
+                % $n$ iniciales  & $ 0.6 $                & 0.3                    & 0.3                  \\
+                % $n$ reaccionan & --                     & $ -x $                 & $ -x $               \\
+                % $n$ forman     & 2x                     & --                     & --                   \\
+                % $n$ equilibrio & $ 0.6+ 2x $            & $ 0.3 - x $            & $ 0.3-x $            \\
+                % \conc{eq}      & $ \dfrac{0.6+ 2x}{3} $ & $ \dfrac{0.3 - x}{3} $ & $ \dfrac{0.3-x}{3} $ \\
+            % \end{tblr}
+            % --- tabla nueva ---
+            \begin{tabular}{@{}c @{\,}c@{\,} c @{\,}c@{\,} c @{\,}c@{\,} c@{}}
+                \toprule
+                \textbf{Ecuación} &  & \textbf{\ch{2 HI}} & \ch{->} & \textbf{\ch{H2}} & \ch{+} & \textbf{\ch{I2}} \\
+                \midrule
+                $n$ iniciales &  & $ 0.6 $ &  & 0.3 &  & 0.3 \\[3pt]
+                $n$ reaccionan &  & -- &  & $ -x $ &  & $ -x $ \\[3pt]
+                $n$ forman &  & 2x &  & -- &  & -- \\[3pt]
+                $n$ equilibrio &  & $ 0.6+ 2x $ &  & $ 0.3 - x $ &  & $ 0.3-x $ \\[3pt]
+                \conc{eq} &  & $ \dfrac{0.6+ 2x}{3} $ &  & $ \dfrac{0.3 - x}{3} $ &  & $ \dfrac{0.3-x}{3} $ \\
+                \bottomrule
+            \end{tabular}
+            Si ahora los datos los ponemos en la ecuación de la constante de equilibrio tendremos:
+            \begin{gather*}
+                k_c = \dfrac{\conc{H2}\ \conc{I2}}{\conc{HI}^2} = \dfrac{\dfrac{0.3-x}{3}\ \dfrac{0.3 - x}{3}}{\left(\dfrac{0.6+ 2x}{3}\right)^2} = \dfrac{(0,3-x)^2}{(0,6+2x)^2}
+            \end{gather*}
+            resolviendo el sistema, tenemos que $x = \moles{0,163}$
+            Por lo tanto tendremos los siguientes moles en equilibrio de las siguientes sustancias: $\conc{HI} = 0,6 + (2\cdot 0,163) = \moles{0,93} $; $\conc{I2} = 0,3 - 0,163 = \moles{0,14}$; $\conc{H2} = 0,3 - 0,163 = \moles{0,14} $
+    \end{enumerate}
+\end{example}
+
+
+\section{Factores que afectan al equilibrio. Principio de Le Châtelier}\label{sec:factores-que-afectan-al-equilibrio.-principio-de-le-chatelier}
+
+\begin{ley}[Principio de Le Châtelier]
+     Cuando una variación de algún factor afecta al equilibrio del sistema, dicho equilibrio se desplaza en el sentido que permita contrarrestar dicha variación
+Esta reorganización de las condiciones se lleva a cabo para volver a alcanzar el equilibrio químico.
+\end{ley}
+
+
+\subsection{Efecto de la presión}\label{subsec:efecto-de-la-presion}
+
+Solo tiene efecto cuando intervienen gases en la reacción.
+\begin{enumerate}[label=\numberballmDarkTeal]
+\item Un \negrita{aumento de la presión} desplaza el equilibrio en el sentido en el que disminuya el número de moles de las sustancias gaseosas, debido a que, si tenemos un menor número de moléculas gaseosas, mejor contrarrestaremos el aumento de presión.
+\item Un \negrita{descenso en la presión} desplaza el equilibrio en el sentido en el que aumente el número de moles de las sustancias gaseosas, ya que cuanto mayor sea el número de moles, mejor se contrarrestará la disminución de presión.
+\item Si el número de moles gaseosos en los productos es igual al número de moles gaseosos en los reactivos, al ser \(\Delta \text{moles} = 0\) entonces la presión no tendrá ningún efecto en el equilibrio.
+\end{enumerate}
+\begin{example}
+    Sea la reacción:
+    \begin{center}
+        \formula{3 H2\ (g) + N2\ (g) <=> 2 NH3\ (g)}\hspace{12pt} $\Delta H = \energia[kjmol]{-92.4}$
+    \end{center}
+    Según esta reacción 4 moles de reactivos ( 3 moles de \ch{H2} y 1 mol de \ch{N2}) reaccionan para dar tan solo 2 moles de productos (2 moles de \ch{NH3}). Por lo tanto:
+    \begin{itemize}
+        \item Un aumento de la presión hará que el equilibrio se desplace hacia donde existen menos moles, es decir, hacia la derecha, aumentando así la cantidad de productos.
+        \item Una disminución de presión hará que el equilibrio se desplace hacia donde existe un mayor número de moles, es decir, el equilibrio se desplazaría hacia la izquierda y, por tanto, aumentaría la cantidad de reactivos.
+    \end{itemize}
+\end{example}
+
+\begin{example}
+    Sea ahora el caso de la reacción:
+    \begin{centeredequation}
+        \ch{C\ (s) + O2 \ (g) <=> 2 CO\ (g)}
+    \end{centeredequation}
+    En este caso:
+    \begin{itemize}
+        \item Un aumento de la presión produciría que la reacción se desplazara a la izquierda, que es donde menos moles en estado gaseoso tenemos (no contamos al carbono puesto que está en estado sólido y anteriormente se comentó que en el equilibrio solo tendremos en cuenta las especies gaseosas o en disolución).
+        \item Una disminución de la presión, provocaría que la reacción se desplazara hacia la derecha.
+    \end{itemize}
+\end{example}
+
+\subsection{Efecto de la variación del volumen}\label{subsec:efecto-de-la-variacion-del-volumen}
+
+Los efectos en la variación del volumen son equivalentes a los de la presión pero de sentido contrario, ya que \(p\) y \(V\) son inversamente proporcionales.
+En una mezcla gaseosa, sabemos por la ecuación de los gases ideales ($p\ V = n\ R\ T$) que la presión es inversamente proporcional al volumen.
+
+\begin{itemize}
+    \item Un \negrita{aumento de volumen} hará que el equilibrio se desplace hacia donde \negrita{aumente el número de moles} de las sustancias gaseosas.
+    \item Una \negrita{disminución del volumen} hará que el equilibrio se desplace hacia donde exista \negrita{un menor número de moles} de sustancias gaseosas.
+\end{itemize}
+
+\subsection{Efecto de la variación de la concentración}\label{subsec:efecto-de-la-variacion-de-la-concentracion}
+\begin{itemize}
+    \item Un \negrita{aumento} de la concentración de una sustancia \negrita{participante} en la reacción desplaza el equilibrio en el sentido que propicia la desaparición de dicha sustancia.
+    \item Una \negrita{disminución} de concentración de una sustancia desplaza el equilibrio en el sentido de formación de dicha sustancia.
+\end{itemize}
+
+El efecto de la concentración, también lo podemos explicar mediante \( Q \).
+Cuando tenemos un equilibrio tendremos que \( K_c = Q \).
+Si modificamos la concentración de alguno de los productos, entonces \( Q \) cambiará e, inmediatamente, tenderá a buscar de nuevo el equilibrio con el fin de igualar su valor al de la constante de equilibrio, ya que dicha constante no varía (si mantenemos la temperatura constante).
+
+\begin{example}
+    Sea la reacción: \ch{PCl5\ (g) <=> PCl3\ (g) + Cl2\ (g)}  sabemos que, partiendo de 2 moles de \ch{PCl5\ (g)} en un volumen de 5 litros, el equilibrio se consigue con 1,45 moles de \ch{PCl5}, 0,55 moles de \ch{PCl3} y 0,55 moles de \ch{Cl2} ¿cuántos moles habrá en el nuevo equilibrio si una vez alcanzado el primero añadimos 1 mol de \ch{Cl2} al matraz? (\( Kc = 0,042 \) ).
+
+    \begin{table}[H]
+        % --- tabla antigua ---
+        % \begin{tblr}{%
+            % colspec = {X[c]X[c]X[c]X[c]},
+% % cell{3}{2} = {red9},
+            % row{2} = {blue9},
+            % row{6} = {red9},
+            % vline{2} = {1}{ text = \clap{} },
+% % vline{3} = {1}{ text = \clap{\ch{+}} },
+            % vline{3} = {1}{ text = \clap{\ch{->}} },
+            % vline{4} = {1}{ text = \clap{\ch{+}} },
+        % }
+            % Ecuación              & \ch{PCl5}              & \ch{PCl3}               & \ch{Cl2}               \\
+            % $ n_0 $               & $ 1.45 $               & $ 0.55 $                & $ 0.55 + 1 $           \\
+            % $ n $ reaccionan      & $ - $                  & $ 0.55 -x $             & $ 1.55-x $             \\
+            % $ n $ forman          & $ 1.45+x $             & $ - $                   & $ - $                  \\
+            % $ n $ equilibrio      & $ 1.45+x $             & $ 0.55 -x $             & $ 1.55-x $             \\
+            % \([\; ]_{\text{eq}}\) & \(\dfrac{1.45+x}{5} \) & \(\dfrac{0.55 -x}{5} \) & \(\dfrac{1.55-x}{5} \)
+        % \end{tblr}
+        % --- tabla nueva ---
+        \begin{tabular}{@{}c @{\,}c@{\,} c @{\,}c@{\,} c @{\,}c@{\,} c@{}}
+            \toprule
+            \textbf{Ecuación} &  & \textbf{\ch{PCl5}} & \ch{->} & \textbf{\ch{PCl3}} & \ch{+} & \textbf{\ch{Cl2}} \\
+            \midrule
+            $ n_0 $ &  & $ 1.45 $ &  & $ 0.55 $ &  & $ 0.55 + 1 $ \\[3pt]
+            $ n $ reaccionan &  & $ - $ &  & $ 0.55 -x $ &  & $ 1.55-x $ \\[3pt]
+            $ n $ forman &  & $ 1.45+x $ &  & $ - $ &  & $ - $ \\[3pt]
+            $ n $ equilibrio &  & $ 1.45+x $ &  & $ 0.55 -x $ &  & $ 1.55-x $ \\[3pt]
+            \([\; ]_{\text{eq}}\) &  & \(\dfrac{1.45+x}{5} \) &  & \(\dfrac{0.55 -x}{5} \) &  & \(\dfrac{1.55-x}{5} \) \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    Si aplicamos la definición de constante equilibrio tendremos que:
+    \begin{centeredequation}
+        K_c = \dfrac{\conc{PCl3}\ \conc{Cl2}}{\conc{PCl5}} = \cfrac{\cfrac{1.55-x}{5}\ \cfrac{0.55 -x}{5}}{\cfrac{1.45+x}{5}} = 0.042
+    \end{centeredequation}
+    Resolviendo la ecuación, tendremos que \(x=0.268\) (sale también una posible solución de \(x=2.041\) pero esta solución no es posible).
+    Con esto podemos calcular por tanto las nuevas concentraciones en el equilibrio que serán:
+    \begin{multicols}{2}
+        \begin{itemize}
+            \item \(\conc{PCl5}= \dfrac{1.45 + 0.268}{5} = 0.3436 \)
+            \item \(\conc{PCl3} =\dfrac{0.55 - 0.268}{5} = 0.0564 \)
+            \item \(\conc{Cl2} = \dfrac{1.55 - 0.268}{5} = 0.2564\)
+        \end{itemize}
+    \end{multicols}
+
+\end{example}
+
+\subsection{Efecto de la variación de la temperatura}\label{subsec:efecto-de-la-variacion-de-la-temperatura}
+
+\begin{itemize}
+    \item El \negrita{aumento} de la temperatura desplaza el equilibrio en el sentido en el que la reacción absorbe calor.
+    \item El \negrita{descenso} de temperatura desplaza el equilibrio en el sentido en el que la reacción desprende calor.
+\end{itemize}
+Para ello veamos un ejemplo:
+
+\begin{reaction}[Hidrogenación de eteno]
+    C2H4 \gas{} + H2 \gas{}  <=>[exotérmica][endotérmica] C2H6 \gas{} \label{rxn:hidrogenacionEteno}
+%        \ \Delta H = \energia[kjmol]{-136}
+\end{reaction}
+
+Como vemos, la reacción de izquierda a derecha es exotérmica y, por tanto, la reacción de derecha a izquierda será endotérmica, mismo valor de energía pero con signo contrario.
+Si en este caso, aumentamos la temperatura, el equilibrio se irá hacia donde absorba calor, es decir en el sentido de la reacción endotérmica y, en consecuencia, se desplazará hacia la izquierda.
+Si se disminuye la temperatura, la reacción irá en el sentido en el que desprenda calor, es decir hacia la reacción exotérmica y, por tanto, la reacción se desplazará hacia la derecha.
+
+\subsection{Resumen de los cambios en una reacción}\label{subsec:resumen-de-los-cambios-en-una-reaccion}
+
+Como resumen, podemos establecer que:
+\begin{itemize}
+    \item Un aumento en la concentración de los reactivos \( \Delta [\text{reactivos}] > 0 \) hace que el equilibrio se desplaza hacia la formación de los productos (hacia la derecha).
+    \item Una disminución de la concentración de los reactivos \( \Delta [\text{reactivos}] < 0 \) hace que el equilibrio se desplace hacia la formación de los reactivos (hacia la izquierda).
+    \item Un aumento en la concentración de los productos \( \Delta [\text{productos}] > 0 \) hará que el equilibrio se desplace hacia la formación de reactivos (hacia la izquierda).
+    \item Una disminución de la concentración de los productos \( \Delta [\text{productos}] < 0 \) hará que el equilibrio se desplace hacia la formación de los productos (hacia la derecha).
+    \item Un aumento en la temperatura \( \Delta T > 0 \) en una reacción exotérmica hará que el equilibrio se desplace hacia la formación de los reactivos (hacia la izquierda).
+    \item Un aumento en la temperatura \( \Delta T > 0 \) en una reacción endotérmica hará que el equilibrio se desplace hacia la formación de los productos (hacia la derecha).
+    \item Una disminución de la temperatura \( \Delta T < 0 \) en una reacción exotérmica hará que el equilibrio se desplace hacia la formación de los productos (hacia la derecha).
+    \item Una disminución de la temperatura \( \Delta T < 0 \) en una reacción endotérmica hará que el equilibrio se desplace hacia la formación de los reactivos (hacia la izquierda).
+    \item Un incremento en la presión \( \Delta p > 0 \) hará que el equilibrio se desplace hacia donde exista un menor número de moles gaseosos.
+    \item Una disminución en la presión \( \Delta p < 0 \) hará que el equilibrio se desplace hacia donde exista un mayor número de moles gaseosos.
+\end{itemize}
+
+
+\section{Grado de disociación \texorpdfstring{\( \alpha \)}{alfa}}\label{sec:grado-de-disociacion}
+\setcounter{ejemplo}{0}
+
+\begin{center}
+    \begin{definition}[Grado de disociación]
+        El \negrita{grado de disociación} \(\bm{\alpha}\) se define como el cociente entre la cantidad disociada y la cantidad inicial según la expresión (referida a moles):
+        \begin{centeredequation}
+            \alpha = \dfrac{n_{\text{disociado}}}{n_0} \label{eq:grado_de_disociacion}
+        \end{centeredequation}
+    \end{definition}
+\end{center}
+
+El grado de disociación se suele indicar en porcentaje por lo que la expresión \eqref{eq:grado_de_disociacion} la podemos escribir como:
+\begin{centeredequation}
+    \alpha\ (\%)= \dfrac{n_{\text{disociado}}}{n_0}\cdot 100 \label{eq:grado_de_disociacion_porcentaje}
+\end{centeredequation}
+
+De manera análoga, también podemos expresar el grado de disociación en función de la concentración (\(c\)) según las expresiones:
+\begin{gather}
+    \alpha= \dfrac{c_{\text{disociado}}}{c_0} \label{eq:grado_de_disociacion_concentracion}\separ
+    \alpha\ (\%) = \dfrac{c_{\text{disociado}}}{c_0}\cdot 100 \label{eq:grado_de_disociacion__concentracion_porcentaje}
+\end{gather}
+
+%
+%    \section{\texorpdfstring{\(\Delta G\)}{G} en un proceso isotermo (T = constante)}\label{sec:g-en-un-proceso-isotermo-(t-=-constante)}
+%    \setcounter{ejemplo}{0}
+%
+%    Sabemos que:
+%    \begin{centeredequation}
+%        G = H - TS \label{eq:ecuacion_gibbs}
+%    \end{centeredequation}
+%    y que
+%    \[
+%        H = U + PV
+%    \]
+%    Siendo \(G\) la energía libre de Gibbs, \(H\) la entalpía, \(U\) la energía interna y \(S\) la entropía.
+%    Si la ecuación \eqref{eq:ecuacion_gibbs} la expresamos en forma de diferencial tendremos que:
+%    \[
+%        dG = dU + pdV + vdp - TdS - SdT
+%    \]
+%    Como el proceso es a temperatura constante entonces:
+%    \[
+%        dG = dU + pdV + vdp - TdS - \cancelred{SdT}
+%    \]
+%    Haciendo uso de la expresión de la energía interna y de la entropía podemos deducir la expresión de \(dG\) en función de \(V\) y de \(p\).
+%    \begin{centeredequation}
+%        \begin{rcases}
+%            dG = dU + dV + Vdp - TdS \\
+%            dU = dQ - pdV            \\
+%            dS = \dfrac{dQ}{T}
+%        \end{rcases}
+%        dG = Vdp \label{eq:ecuacion_vdp}
+%    \end{centeredequation}
+%    Si ahora aplicamos la ecuación de los gases ideales donde \(pV=nRT\), despejamos el volumen \[v=\dfrac{nRT}{p}\] y lo sustituimos en la ecuación \eqref{eq:ecuacion_vdp} quedaría:
+%    \begin{centeredequation}
+%        dG = nRT\dfrac{dp}{p}
+%    \end{centeredequation}
+%    Si integramos entre las condiciones \(1\) y \(2\) tendremos que:
+%    \begin{gather*}
+%        \int_1^2 dG = nRT\int_1^2\dfrac{dp}{p}\separ
+%        \tcboxmath[opteqA]{\Delta G = G_2 - G_1 = nRT\ln \dfrac{p_2}{p_1}}
+%    \end{gather*}
+%
+%    Si establecemos las siguientes condiciones:
+%    \begin{gather*}
+%        \text{Condiciones estándar}\begin{cases}
+%                                       T_1 = 273.15 \si{\kelvin} \\
+%                                       p_1 = \SI{1}{\atmospher}  \\
+%        \end{cases}\\
+%        \text{Condiciones general}\begin{cases}
+%                                      T_2 = T \si{\kelvin}    \\
+%                                      p_2 = p \si{\atmospher} \\
+%        \end{cases}
+%    \end{gather*}
+%    A las condiciones estándar se las representa con el superíndice \(0\) y a las condiciones generales establecidas no se le pone subíndice ya que serán las condiciones que queremos calcular.
+%    Tendremos que:
+%    \begin{centeredequation}
+%        \Delta G = G - G^0 = nRT\ln \dfrac{p}{\SI{1}{\atmospher}}
+%    \end{centeredequation}
+%    O mejor
+%    \begin{centeredequation}
+%        \tcboxmath[opteqA]{G  = G^0 + nRT\ln p}\label{eq:gibbs_presion}
+%    \end{centeredequation}
+
+
+\section{Constante de equilibrio referida a las presiones \texorpdfstring{\(K_p\)}{Kp}}\label{sec:constante-de-equilibrio-referida-a-las-presiones}
+Sea la reacción general:
+\begin{reaction*}
+    a\ A\gas{} + b\ B \gas{} <=> c\ C \gas{} + d\ D\gas{}
+\end{reaction*}
+
+%    En una reacción química, el incremento de energía libre de Gibbs \(\Delta G\) lo podemos escribir como:
+%    \begin{centeredequation}
+%        \Delta G_{\text{reacción}} = \sum(n_{\text{productos}}\ G_{\text{productos}}) - \sum(n_{\text{reactivos}}\ G_{\text{reactivos}})
+%    \end{centeredequation}
+%    siendo \(n\) el número de moles de cada especie (coeficientes estequiométricos) y \(G\) la entalpía de formación de cada especie.
+%
+%    Consideremos el caso general:
+%    \begin{reaction*}
+%        a\ A + b\ B <=> c\ C + d\ D
+%    \end{reaction*}
+%    tendremos que
+%
+%    \begin{centeredequation}
+%        \Delta G_{\text{reacción}} = (c\ G_c + d\ G_D) - (a\ G_A + b\ G_B)
+%    \end{centeredequation}
+%    Si ahora sustituimos la expresión de \eqref{eq:gibbs_presion} en cada especie tendremos que:
+%    \begin{centeredequation}
+%        \Delta G_{\text{reacción}} = (c\ G_C^0 + \ln p_C) + (d\ G_D^0 + \ln p_D) - (a\ G_A^0 + \ln p_A) - (b\ G_B^0 + \ln p_B)
+%    \end{centeredequation}
+%    siendo \(p_i\) las presiones parciales de cada especie.
+%    Si ahora reordenamos las expresión tendremos que:
+%    \begin{centeredequation}
+%        \Delta G_{\text{reacción}} = \Delta G^0 + RT\ln \dfrac{p_C^c\ p_D^d}{p_A^a\ p_B^b}
+%    \end{centeredequation}
+%    si además establecemos que cuando se establezca el equilibrio \(\Delta G_{\text{reacción}} = 0\) entonces la expresión anterior quedaría como:
+%    \begin{gather}
+%        0 = \Delta G^0 + RT\ln \dfrac{p_C^c\ p_D^d}{p_A^a\ p_B^b}\notag \separ
+%        \Delta G^0 = - RT\ln \dfrac{p_C^c\ p_D^d}{p_A^a\ p_B^b} \label{eq:gibbs_y_presiones}
+%    \end{gather}
+Al cociente entre las presiones parciales, elevadas a sus correspondientes coeficientes estequiométricos, se le denomina constante de equilibrio referida a las presiones, quedando que:
+\begin{centeredequation}
+    K_p = \dfrac{p_C^c\ p_D^d}{p_A^a\ p_B^b} \label{eq:k_p}
+\end{centeredequation}
+
+La expresión de la constante de equilibrio referida a las presiones parciales (\( K_p \)) la podemos relacionar con la energía libre de Gibbs en condiciones estándar según la siguiente ecuación:
+%    Si ahora la expresión de \eqref{eq:k_p} la sustituimos en \eqref{eq:gibbs_y_presiones} tendremos que:
+\begin{centeredequation}
+    \Delta G^0 = - RT\ln K_p \label{eq:Gykp}
+\end{centeredequation}
+
+
+\section{Constante de equilibrio referida a las concentraciones molares}\label{sec:constante-de-equilibrio-referida-a-las-concentraciones-molares}
+
+Anteriormente, ya hemos visto que la constante de equilibrio referida a las concentraciones molares tenía la expresión:
+\begin{centeredequation}
+    K_c= \dfrac{\conc{C}^c\ \conc{D}^d }{\conc{A}^a\ \conc{B}^b}
+\end{centeredequation}
+
+\subsection{Relación entre \texorpdfstring{\(K_c\)}{Kc} y \texorpdfstring{\(K_p\)}{Kp}}\label{subsec:relacion-entre-y-kp}
+
+Un procedimiento habitual es relacionar \(K_p\) con \(K_c\).
+Para ello tenemos que tener en cuenta que:
+\begin{gather*}
+    p\ V = n\ R\ T \rightarrow p = \dfrac{n}{V}\ R\ T  \separ
+    \text{y que} \separ
+    \conc{\; \;} = \dfrac{n}{V}\separ
+    \text{tendremos que:}\separ
+    p = \conc{\; \;}\ R\ T
+\end{gather*}
+
+Si ahora sustituimos estas nuevas presiones en la ecuación de \(K_p\) tendremos que:
+\begin{gather}
+    K_p = \dfrac{p_C^c\ p_D^d}{p_A^a\ p_B^b} \notag \separ
+    K_p = \dfrac{\conc{C}^c\ (R\ T)^c\ \conc{D}^d\ (R\ T)^d}{\conc{A}^a\ (R\ T)^a\ \conc{B}^b\ (R\ T)^b} \notag\separ
+    \text{agrupando términos} \notag \separ
+    K_p= \dfrac{\conc{C}^c\ \conc{D}^d }{\conc{A}^a\ \conc{B}^b}\ (R\ T)^{(c+d)-(a+b)} \notag \separ
+    \text{como } K_c = \dfrac{\conc{C}^c\ \conc{D}^d}{\conc{A}^a\ \conc{B}^b} \notag \separ
+    K_p = K_c\ (R\ T)^{(c+d)-(a+b)} \notag \separ
+    \text{Si llamamos } \Delta n = (c+d)-(a+b) \text{ tendremos que:} \notag \separ
+    K_p = K_c\ (R\ T)^{\Delta n} \label{eq:relacion-kp-kc}
+\end{gather}
+
+
+\section{Constante de equilibrio referida a las fracciones molares \texorpdfstring{\(k_\chi\)}{kx}}\label{sec:constante-de-equilibrio-referida-a-las-fracciones-molares}
+
+De manera análoga podemos escribir la constante de equilibrio referida a las fracciones molares (\(K_{\chi}\)) según la expresión:
+\begin{centeredequation}
+    K_{\chi} = \dfrac{\chi_C^c\ \chi_D^d}{\chi_A^a\ \chi_B^b}
+\end{centeredequation}
+
+\subsection{Relación entre \texorpdfstring{\(K_\chi\)}{Kx} y \texorpdfstring{\(K_p\)}{Kp}}\label{subsec:relacion-entre-kx-y-kp}
+
+Al igual que hicimos en el caso anterior, podemos relacionar \(K_p\) con \(K_\chi\).
+Para ello debemos hacer uso de la ley de Dalton que dice:
+\begin{centeredequation}
+    p_i = \chi_i\ p_T
+\end{centeredequation}
+
+Siendo \(p_i\) la presión parcial de cada componente, \(\chi_i\) la fracción molar de cada componente y \(p_T\) la presión total del sistema.
+Si sustituimos las presiones parciales de cada componente por la expresión de Dalton en ecuación de \(K_p\) tendremos que:
+\begin{gather}
+    K_p = \dfrac{p^c\ \chi_C^c\ p^d\ \chi_D^d}{p^a\ \chi_A^a\ p^b\ \chi_B^b} = \dfrac{\chi_C^c\ \chi_D^d}{\chi_A^a\ \chi_B^b}\ p^{(c+d)-(a+b)} \notag\separ
+    K_p = K_\chi\ p^{\Delta n} \label{eq:relacion-Kp-Kx}
+\end{gather}
+
+
+\section{Equilibrio en varias etapas}\label{sec:equilibrio-en-varias-etapas}
+
+Existen ecuaciones que se producen en varias etapas, la reacción global o total será la suma de cada una de ellas según el esquema siguiente.
+\begin{centeredequation}
+    \begin{array}{cccccccr}
+        A\hspace*{-3cm}  & + & B & \ch{<=>} & C &   &        & K_1 \\
+        C\hspace*{-3cm}  & + & D & \ch{<=>} & E & + & M      & K_2 \\
+        E\hspace*{-3cm}  & + & F & \ch{<=>} & P & + & R      & K_3 \\
+        \hline
+        A\ + B\ + D\ + E & + & F & \ch{<=>} & M & + & P\ + R & K   \\
+    \end{array}
+\end{centeredequation}
+
+La constante \( K \) se puede expresar como la combinación lineal de todas las demás según la expresión
+\begin{centeredequation}
+    K = K_1\cdot K_2\cdot K_3
+\end{centeredequation}
+
+En el caso de que la reacción global se pueda obtener como resta de dos ecuaciones según el siguiente esquema:
+\begin{centeredequation}
+    \begin{array}{cccccccr}
+        A & + & B & \ch{<=>} & C &   &   & K_1 \\
+        E & + & F & \ch{<=>} & C &   &   & K_2 \\
+        \hline
+        A & + & B & \ch{<=>} & E & + & F & K
+    \end{array}
+\end{centeredequation}
+Ahora la constante \( K \) tendrá la siguiente expresión:
+\begin{centeredequation}
+    K = \dfrac{K_1}{K_2}
+\end{centeredequation}
+
+Como resumen, podemos decir que:
+\begin{itemize}
+    \item Cuando la reacción global se puede expresar como \negrita{suma} de dos o más reacciones parciales, la constante de equilibrio total, se obtendrá realizando el \negrita{producto} de las constantes de equilibrio de las reacciones parciales.
+    \item Cuando la reacción global se puede expresar como \negrita{resta} de dos o más reacciones parciales, la constante de equilibrio total, se obtendrá realizando el \negrita{cociente} de las constantes de equilibrio de las reacciones parciales.
+\end{itemize}
+\begin{example}
+    Calcula la constante de equilibrio de formación de \formula{CO} dadas las constantes correspondientes a la formación de \formula{CO2} y a la oxidación de \formula{CO} a \formula{CO2}
+
+    \negsubro{Solución:}
+
+    Escribimos primero la reacción de formación del \ch{CO} tal y como nos pide el problema, debemos tener en cuenta que cuando nos pidan una reacción de formación, debemos partir de sus elementos fundamentales, en este caso sería el \ch{C \sld{}} y el \ch{O2 \gas{}}.
+
+    \begin{reaction}[Formación de CO]
+        C \sld{} + 1/2 O2 \gas{} -> CO \gas{}
+        "\label{rxn:formacionCO}"
+    \end{reaction}
+
+    Ahora escribimos las reacciones a partir de la que hay que obtener la reacción que nos piden:
+
+    \begin{reactions}
+        C \sld{} + O2 \gas{} & -> CO2 \gas{} "\label{rxn:formacionCO2}"\\
+        CO \gas{} + 1/2 O2 \gas{} & -> CO2 \gas{} "\label{rxn:oxidacionCOaCO2}"
+    \end{reactions}
+
+    Para obtener la reacción problema [R\textcolor{blue}{\textbf{\ref{rxn:formacionCO}}}], debemos invertir la reacción
+    [R\textcolor{blue}{\textbf{\ref{rxn:oxidacionCOaCO2}}}], por lo que tendremos que cambiarle el signo (resta) y sumarla a la reacción [R\textcolor{blue}{\textbf{\ref{rxn:formacionCO2}}}] quedando por tanto: [R\textcolor{blue}{\textbf{\ref{rxn:formacionCO}}}] = [R\textcolor{blue}{\textbf{\ref{rxn:formacionCO2}}}] - [R\textcolor{blue}{\textbf{\ref{rxn:oxidacionCOaCO2}}}].
+
+    \begin{centeredequation}
+        \begin{array}{cccccccr}
+            \ch{C \sld{}} & + & \ch{O2 \gas{}} & \ch{->} & \ch{CO2} & & & K_{\text{formación}\ \ch{CO2}} \\
+            \ch{CO \gas{}} & + & \ch{1/2 O2 \gas{}} & \ch{->} & \ch{CO2 \gas{}} & & & K_{\text{oxidación}\ \ch{CO2}}  \separ
+            \hline
+            \ch{C \sld{}}  & + & \ch{1/2 O2 \gas{}}  & \ch{->} & \ch{CO \gas{}}  &  &  & K_{\text{formación}\ \ch{CO}}
+        \end{array}
+    \end{centeredequation}
+
+    Como la constante de formación de \ch{CO} se puede escribir como la resta de otras dos, podemos concluir que:
+    \begin{centeredequation}
+        K_{\text{formación}\ \ch{CO}} = \dfrac{K_{\text{formación}\ \ch{CO2}}}{K_{\text{oxidación}\ \ch{CO2}}}
+    \end{centeredequation}
+\end{example}
+
+
+\section{Dependencia de la constante de equilibrio respecto de la temperatura}\label{sec:dependencia-de-la-constante-de-equilibrio-respecto-de-la-temperatura}
+
+\setcounter{ejemplo}{0}
+La expresión \(\Delta G^0 = - RT\ln K_p\) nos permite calcular la constante de equilibrio a una determinada temperatura si se conoce la constante de equilibrio a otra temperatura.
+Si reordenamos la ecuación anterior despejando \(K_p\) tendremos que:
+\begin{centeredequation}
+    \ln K_p = \dfrac{-\Delta G^0}{R\ T}
+\end{centeredequation}
+Si además sabemos que \(\Delta G^0 = \Delta H^0 - T\Delta S^0\) tendremos que:
+\begin{centeredequation}
+    \ln K_p = \dfrac{-(\Delta H^0 - T\Delta S^0)}{R\ T} = \dfrac{-\Delta H^0}{R\ T} + \dfrac{\Delta S^0}{R}
+\end{centeredequation}
+Si consideramos también que \(\Delta H^0\) y \(\Delta S^0\) permanecen constantes con la temperatura, podemos escribir las siguientes ecuaciones a la temperatura \(T_1\) y a la temperatura \(T_2\).
+\begin{gather*}
+    \ln K_{p1} =  \dfrac{-\Delta H^0}{R\ T_1} + \dfrac{\Delta S^0}{R}\separ
+    \ln K_{p2} =  \dfrac{-\Delta H^0}{R\ T_2} + \dfrac{\Delta S^0}{R}
+\end{gather*}
+Si ahora restamos ambas expresiones tendremos que:
+\begin{centeredequation}
+    \ln\left(\dfrac{K_{p1}}{K_{p2}}\right) = \dfrac{\Delta H^0}{R} \left[\dfrac{1}{T_2} - \dfrac{1}{T_1} \right] \label{eq:relacion-kp-temperatura}
+\end{centeredequation}
+\negsubro{IMPORTANTE}: Aquí las temperaturas deben ser siempre temperaturas absolutas, es decir, las temperaturas en kelvin.
+%    \begin{example}
+%        La descomposición de óxido de mercurio en vapor de mercurio y oxígeno a \temperatura[c]{420} tiene una \(K_p = \SI{0.01956}{\square\atmospher}.\)
+%        Calcula la \(K_p\) para la reacción a \temperatura[c]{429}.
+%
+%        \negsubro{Solución:}
+%
+%        Lo primero que debemos hacer es pasar las temperaturas a \si{\kelvin} para evitar problemas luego, seguidamente debemos la ecuación~\ref{eq:relacion-kp-temperatura}.
+%
+%        \begin{gather*}
+%            \ln\left(\dfrac{K_{p1}}{K_{p2}}\right) = \dfrac{\Delta H^0}{R} \left[\dfrac{1}{T_2} - \dfrac{1}{T_1} \right] \separ
+%            \ln\left(\dfrac{K_{}}{K_{p2}}\right) = \dfrac{\Delta H^0}{R} \left[\dfrac{1}{T_2} - \dfrac{1}{T_1} \right]
+%        \end{gather*}
+%
+%    \end{example}
+
+
+\section{Unidades de las constantes \texorpdfstring{\(K_c\)}{Kc}, \texorpdfstring{\(K_p\)}{Kp} y  \texorpdfstring{\(K_{\chi}\)}{Kx}}
+
+Las constantes {\(K_c\)}, {\(K_p\)} o {\(K_{\chi}\)} tienen todas sus correspondientes unidades e incluso alguna vez puede que sea adimensional dependiendo del tipo de reacción.
+Para determinar las unidades de las constantes veremos un ejemplo.
+Sea la reacción de descomposición del fosgeno (\ch{COCl2}):
+
+\begin{reaction}[Descomposición del fosgeno]
+    COCl2 \gas{} <=> CO \gas{} + Cl2 \gas{}
+    "\label{rxn:Descomposicionfosgeno}"
+\end{reaction}
+
+La constante de equilibrio referida a las concentraciones tendrá la siguiente expresión:
+
+\begin{centeredequation}
+    K_c = \dfrac{[\ch{CO}]\ [\ch{Cl2}]}{\conc{COCl2}}
+\end{centeredequation}
+
+Las unidades de la concentración son \si{\mole\per\litre} o \si{\M}.
+La expresión anterior de la constante de equilibrio quedaría como:
+\begin{centeredequation}
+    K_c = \dfrac{\si{\M}\ \cancelred{\si{\M}}}{\cancelred{\si{\M}}} = \si{\M}
+\end{centeredequation}
+
+En este caso podemos decir que las unidades de \( K_c \) para esta reacción serán \si{\M}
+
+Sea ahora la reacción:
+
+\begin{reaction}[Síntesis del amoniaco]
+    N2 \gas{} + 3 H2 \gas{} <=> 2 NH3 \gas{}
+    "\label{rxn:descomposicionamoniaco}"
+\end{reaction}
+
+Ahora las unidades serían:
+
+\begin{centeredequation}
+    K_c = \dfrac{\conc{NH3}^2}{\conc{N2}\ \conc{H2}^3} = \dfrac{\si{\M}^2}{\si{\M}\ \si{\M}^3 } = \dfrac{1}{\si{\M}^2}
+\end{centeredequation}
+
+De manera análoga podríamos obtener las unidades para \( K_p \) para las reacciones anteriores.
+Si las presiones están en \si{\atmosphere}, para la reacción~[R\textcolor{blue}{\textbf{\ref{rxn:Descomposicionfosgeno}}}] tendremos:
+
+\begin{centeredequation}
+    K_p = \dfrac{p_{\ch{CO} }\ p_{Cl2}}{p_{\ch{COCl2}}} = \dfrac{\si{\atmosphere}\ \si{\atmosphere}}{\si{\atmosphere}} = \si{\atmosphere}
+\end{centeredequation}
+
+Para la reacción~[R\textcolor{blue}{\textbf{\ref{rxn:descomposicionamoniaco}}}] las unidades de \( K_p \) son:
+
+\begin{centeredequation}
+    K_p = \dfrac{p_{\ch{NH3}}^2}{p_{\ch{N2}}\ p_{\ch{H2}}^3} = \dfrac{\si{\atmosphere}^2}{\si{\atmosphere}\ \si{\atmosphere}^3 } = \dfrac{1}{\si{\atmosphere}^2}
+\end{centeredequation}
+
+La \( K_{\chi} \) es una constante \textbf{adimensional} debido a que las fracciones molares son adimensionales y, por tanto, su constante también lo será.
+
+\section{Equilibrios heterogéneos}\label{sec:equilibrios-heterogeneos}
+
+\setcounter{ejemplo}{0}
+Cuando en una reacción tengamos especies en estado sólido o líquido, estas especies \negrita{no deben aparecer} en la expresión de la constante de equilibrio ya que su concentración no varía durante el transcurso de la reacción y, en consecuencia, su valor estaría ya incluida en el propio valor de la constante de equilibrio.
+
+Tan solo las especies en estado gaseoso o acuoso son las que deben aparecer en la expresión de la constante.
+\begin{reaction*}
+    C \sld{} + O2 \gas{} <=> CO2 \gas{}
+\end{reaction*}
+La constante referida a las concentraciones sería:
+\begin{centeredequation}
+    K_c = \dfrac{\conc{CO2}}{\conc{C}\ \conc{O2}}
+\end{centeredequation}
+que quedaría convertida en:
+\begin{centeredequation}
+    K\prima_c = K_c\ \conc{C} = \dfrac{\conc{CO2}}{\conc{O2}}
+\end{centeredequation}
+
+Aunque en esta última expresión, la nueva constante se ha expresado como \(K\prima\) normalmente se expresa como \(K_c\)
+Por lo tanto, para la reacción:
+\begin{center}
+    \formula{Zn\ (s) + CuSO4\ (aq) <=> Cu\ (s) + ZnSO4\ (aq)}
+\end{center}
+Tendremos la siguiente constante:
+\begin{centeredequation}
+    K_c = \dfrac{\conc{ZnSO4}}{\conc{CuSO4}}
+\end{centeredequation}
+
+\subsection{Concepto de solubilidad}\label{subsec:concepto-de-solubilidad}
+
+\begin{center}
+    \begin{definition}[Solubilidad]
+        Se entiende por \negrita{solubilidad} a la máxima cantidad de soluto que podemos disolver en un disolvente (concentración de un soluto que presenta una disolución saturada), es decir, la concentración de soluto disuelta en equilibrio con el soluto sin disolver.
+
+        Las unidades de la solubilidad serán unas unidades de concentración, siendo normalmente la unidad más usada la \si{{\M}}.
+    \end{definition}
+\end{center}
+
+
+\begin{itemize}
+    \item Normalmente, la solubilidad de los \negrita{sólidos} aumenta al aumentar la temperatura.
+    \item En los \negrita{gases}, la solubilidad disminuye con la temperatura.
+\end{itemize}
+
+En general podemos decir que:
+\begin{enumerate}[label=\numberballmDarkTeal]
+\item \negrita{Soluble} es cuando su solubilidad es igual o superior a \concentracion[m]{0.1}.
+\item \negrita{Poco soluble} es cuando su solubilidad está entre \num{0.1} y \concentracion[m]{0.001}.
+\item \negrita{Insoluble} cuando la solubilidad está por debajo de \concentracion[m]{0.001}.
+\end{enumerate}
+La solubilidad dependerá de:
+\begin{enumerate}[label=\numberballmDarkTeal]
+\item \negrita{Temperatura}.
+Ya hemos visto anteriormente el caso de los sólidos y los gases.
+\item \negrita{Energía reticular}.
+Si la energía de solvatación es mayor que la energía reticular (\(U_r\)) se favorece la disolución.
+A mayor carácter covalente mayor \(U_r\) y por tanto menor solubilidad.
+\item \negrita{Entropía}.
+Al diluirse una sal se produce un sistema más desordenado, por lo que la disolución se ve favorecida entrópicamente; así, aunque energéticamente no esté favorecida, esta puede llegar a producirse.
+\end{enumerate}
+
+\subsection{Producto de solubilidad \texorpdfstring{\(K_s\)}{Ks}, \texorpdfstring{\(K_{ps}\)}{Kps} o \texorpdfstring{\(PS\)}{PS}}
+
+Sea una sustancia sólida disuelta según la expresión:
+
+\begin{reaction}[Solubilidad general]
+    A_nB_m \sld{} <=> n A^{m+} \aq{} + m B^{n-} \aq{} \label{rx:solubilidadgeneral}
+\end{reaction}
+
+El producto de solubilidad tendrá la siguiente expresión:
+
+\begin{centeredequation}
+    K_{ps} = \conc{A^{m+}}^n\ \conc{B^{n-}}^m
+\end{centeredequation}
+
+A la solubilidad se le suele representar con \negrita{s}.
+Sea la solubilidad del \ch{NaCl} según la ecuación:
+
+\begin{reaction}[Solubilidad del NaCl]
+    NaCl \sld{} <=> Na^{+} \aq{} + Cl^{-} \aq{} \label{rx:solublidaddelNaCl}
+\end{reaction}
+
+\begin{table}[H]
+    % --- tabla antigua ---
+    % \begin{tblr}{%
+        % colspec = {X[c]X[c]X[c]X[c]},
+% % cell{3}{2} = {red9},
+        % vline{2} = {1}{ text = \clap{:} },
+% % vline{3} = {1}{ text = \clap{\ch{+}} },
+        % vline{3} = {1}{ text = \clap{\ch{->}} },
+        % vline{4} = {1}{ text = \clap{\ch{+}} },
+    % }
+        % Ecuación             & \ch{NaCl \sld{}} & \ch{Na+ \aq{}} & \ch{Cl- \aq{}} \\
+        % \(\conc{\;\;}_{0}\)  & $ c $            & $ - $          & $- $           \\
+        % \(\conc{\;\;}_{eq}\) & $ c $            & $ s $          & $ s $          \\
+    % \end{tblr}
+    % --- tabla nueva ---
+    \begin{tabular}{@{}c @{\,}c@{\,} c @{\,}c@{\,} c @{\,}c@{\,} c@{}}
+        \toprule
+        \textbf{Ecuación} & : & \textbf{\ch{NaCl \sld{}}} & \ch{->} & \textbf{\ch{Na+ \aq{}}} & \ch{+} & \textbf{\ch{Cl- \aq{}}} \\
+        \midrule
+        \(\conc{\;\;}_{0}\) &  & $ c $ &  & $ - $ &  & $- $ \\[3pt]
+        \(\conc{\;\;}_{eq}\) &  & $ c $ &  & $ s $ &  & $ s $ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Quedando, por tanto, la expresión de la constante de solubilidad como:
+\begin{gather*}
+    K_{ps} = \conc{Na+}\ \conc{Cl-}\separ
+    K_{ps} = s\ s\separ
+    K_{ps} = s^2
+\end{gather*}
+Para conocer el valor de la solubilidad solo tenemos que despejar la \(s\) de la expresión anterior y tendremos que:
+\begin{centeredequation}
+    s = \sqrt{K_{ps}}
+\end{centeredequation}
+
+Si tenemos una disolución con una concentración determinada de cada especie, podemos decir fácilmente si tendremos precipitado calculando el cociente de reacción (\(Q\)) visto anteriormente y comparándolo con el \(K_{ps}\).
+\begin{itemize}
+    \item Si \(Q < K_{ps}\) entonces no tendremos precipitado.
+    \item Si \(Q = K_{ps}\) no tendremos precipitado, teniendo en este caso una disolución saturada.
+    \item Si \(Q > K_{ps}\) entonces sí tendremos precipitado.
+\end{itemize}
+
+\subsection{Precipitación fraccionada}\label{subsec:precipitacion-fraccionada}
+
+Algunas veces se encuentra en disolución diferentes iones que precipitan con un mismo reactivo, pero al ser los productos de solubilidad de las especies formadas lo suficientemente diferentes se pueden separar ambos iones.
+A este proceso se le denomina \negrita{precipitación fraccionada.}
+
+\subsection{Factores que afectan a la solubilidad}\label{subsec:factores-que-afectan-a-la-solubilidad}
+
+\begin{enumerate}[label=\numberballmDarkTeal]
+\item \negsubro{Efecto ion común}.
+Si a una disolución saturada de un compuesto poco soluble añadimos una sustancia que aporta uno de los iones,  la concentración de este aumentará y, por tanto, para que no varíe el producto de solubilidad  \( K_{ps} \)  la concentración de la otra especie deberá disminuir desplazándose, en consecuencia, el equilibrio hacia la formación de los reactivos (el equilibrio se desplaza hacia la izquierda).
+
+Al desplazarse el equilibrio hacia la izquierda, la solubilidad disminuirá en consecuencia.
+%
+%        Sea por ejemplo \ch{AgCl} con un producto de solubilidad de \(K_{ps} = \num{1.6e-10}\).
+%        Sacamos primero la solubilidad \(s\)
+%        \begin{table}[H]
+%            \begin{tblr}{%
+%                colspec = {X[c]X[c]X[c]X[c]},
+%            % cell{3}{2} = {red9},
+%                vline{2} = {1}{ text = \clap{:} },
+%            % vline{3} = {1}{ text = \clap{\ch{+}} },
+%                vline{3} = {1}{ text = \clap{\ch{->}} },
+%                vline{4} = {1}{ text = \clap{\ch{+}} },
+%            }
+%                Ecuación             & \ch{AgCl \sld{}} & \ch{Ag+ \aq{}} & \ch{Cl- \aq{}} \\
+%                \(\conc{\;\;}_{0}\)  & \(c\)            & \(-\)          & \(-\)          \\
+%                \(\conc{\;\;}_{eq}\) & \(c\)            & \(s\)          & \(s\)          \\
+%            \end{tblr}
+%        \end{table}
+%        Si:
+%        \begin{gather*}
+%            K_{ps} = s^2\separ
+%            s = \sqrt{K_{ps}} = \concentracion[m]{1.265e-1}
+%        \end{gather*}
+%        Si añadimos ahora nitrato de plata (\ch{AgNO3}) hasta una concentración de \concentracion[m]{0.002} la concentración de \conc{Ag+} sube hasta \concentracion[m]{0.002} y, por lo tanto, para que la constante de solubilidad se mantenga constante, el equilibrio se deberá desplazar hacia la izquierda disminuyendo así la \conc{Cl-}.
+
+\item \negsubro{Influencia del pH}.
+Sea la ecuación general:
+\begin{reaction*}
+    AB \sld{} <=> A- \aq{} + B+ \aq{}
+\end{reaction*}
+
+\begin{itemize}
+    \item \textbf{Adición de un ácido}.
+    Si añadimos un ácido (fuente de \ch{H\pch[]}) este reaccionará con la especie \( A\mch[] \) para formar \ch{HA} lo que provocará una disminución en la concentración de \ch{A\mch[]} provocando que el equilibrio se desplace hacia los productos (hacia la derecha) aumentando así su solubilidad.
+    \item \textbf{Adición de una base}.
+    Ahora si añadimos una base, fuente de iones hidroxilo (\ch{OH\mch[]}) reaccionará con la especie \ch{B\pch[]} formando \ch{BOH} lo que provocará que la concentración de la especie \ch{B\pch[]} disminuya desplazándose el equilibrio hacia la formación de los productos (hacia la derecha) aumentando así la solubilidad.
+\end{itemize}
+
+\end{enumerate}
+%
+%        Si el anión \ch{A-} en que se disocia la especie \ch{AB} forma un ácido débil \ch{HA}, al aumentar la acidez (es decir al aumentar \conc{H+}) el equilibrio de la disociación del ácido se desplazará hacia la izquierda y en consecuencia disminuiría \conc{A-} con lo que solubilizará más la especie \ch{AB}.
+%
+%        El equilibrio de la formación del ácido sería:
+%        \begin{center}
+%            \formula{HA\ (ac) <=> A- \ (ac) + H+ \ (ac)}
+%        \end{center}
+%
+%        También podemos tener el caso de producirse la formación de una base débil.
+%        Consideremos la disolución del \ch{NH4Cl} según el siguiente equilibrio:
+%        \begin{center}
+%            \formula{NH4Cl\ (s) <=> Cl- \ (ac) + NH4+ \ (ac)}
+%        \end{center}
+%        Los cationes \ch{NH4+} reaccionan con \ch{OH-} formándose \ch{NH4OH} al desplazar el equilibro hace la izquierda en la disociación del dicho hidróxido de amonio según el equilibrio:
+%        \begin{center}
+%            \formula{NH4OH\ (ac) <=> NH4+ \ (ac) + OH- \ (ac)}
+%        \end{center}
+%        Al quitar del medio iones \ch{NH4+} entonces el equilibrio de la disolución se desplazará hacia la derecha y, por tanto, aumentará su solubilidad.
+%        Este método es el utilizado para disolver hidróxidos poco solubles tales como \ch{Mg(OH)2}.
+%        \begin{center}
+%            \ch{Mg(OH)2\ (s) <=> Mg2+ \ (ac) + 2 OH- \ (ac)}
+%        \end{center}
+%        Disminuirá la \conc{OH-}, con lo que solubilizará más \ch{MHg(OH)2}
+%        \item \negsubro{Formación de complejos estables}.
+%        Un ion complejo es un ion formado por más de un átomo o grupo de átomos.
+%        \item \negsubro{Reacciones redox}.
+%    \end{enumerate}
+
+%    \begin{example}
+%        Al añadir un ácido fuerte sobre el \ch{ZnCO3}, se formará \ch{H2CO3}, ácido débil, y al disminuir \conc{CO3^{2-}}, se disolverá más \ch{ZnCO3}, pudiéndose llegar a disolver por completo.
+%    \end{example}
+
+%    \listofreactions
+

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cadena de energía en una linterna</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1150px; } svg text { font-family: "Segoe UI", Arial, sans-serif; } </style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>La energía en una linterna: se transforma, se conserva… y se degrada</h1>
+    <svg width="1090" height="360" viewBox="0 0 1090 360">
+        <!-- sankey bands -->
+        <path d="M200 90 L420 90 L420 210 L200 210 Z" fill="#D2B4DE"/>
+        <path d="M600 90 C700 90 740 60 820 60 L820 120 C760 120 700 150 600 150 Z" fill="#F9E79F"/>
+        <path d="M600 150 C700 150 740 230 820 230 L820 320 C740 320 700 210 600 210 Z" fill="#F5B7B1"/>
+        <path d="M420 90 L600 90 L600 210 L420 210 Z" fill="#AED6F1"/>
+        <!-- boxes -->
+        <rect x="40" y="80" width="170" height="140" rx="16" fill="#8E44AD"/><text x="125" y="140" text-anchor="middle" font-size="40">🔋</text>
+        <text x="125" y="180" text-anchor="middle" font-size="18" font-weight="800" fill="#fff">QUÍMICA</text><text x="125" y="202" text-anchor="middle" font-size="14" fill="#fff">pila · 100 J</text>
+        <rect x="430" y="80" width="170" height="140" rx="16" fill="#2471A3"/><text x="515" y="140" text-anchor="middle" font-size="40">⚡</text>
+        <text x="515" y="180" text-anchor="middle" font-size="18" font-weight="800" fill="#fff">ELÉCTRICA</text><text x="515" y="202" text-anchor="middle" font-size="14" fill="#fff">100 J</text>
+        <rect x="820" y="30" width="250" height="100" rx="16" fill="#F1C40F"/><text x="845" y="90" font-size="36">💡</text>
+        <text x="892" y="75" font-size="18" font-weight="800" fill="#7D6608">RADIANTE (luz)</text><text x="892" y="100" font-size="15" fill="#7D6608">≈ 20 J · ÚTIL ✔</text>
+        <rect x="820" y="200" width="250" height="120" rx="16" fill="#E74C3C"/><text x="845" y="270" font-size="36">🌡️</text>
+        <text x="892" y="250" font-size="18" font-weight="800" fill="#fff">TÉRMICA (calor)</text><text x="892" y="275" font-size="15" fill="#fff">≈ 80 J · DEGRADADA ✘</text>
+        <text x="545" y="345" text-anchor="middle" font-size="18" fill="#23373B"><tspan font-weight="800">Se conserva:</tspan> 100 J = 20 J + 80 J &nbsp;·&nbsp; <tspan font-weight="800">Se degrada:</tspan> la mayor parte se convierte en calor inútil</text>
+    </svg>
+</div>
+</body>
+</html>

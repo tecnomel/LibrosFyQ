@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Modelos moleculares</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card h3 { font-size: 15px; color: var(--blue); } .card .t { font-size: 13px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3>Metano, CH₄</h3><svg id="a" width="180" height="170"></svg>
+            <div class="t">Cuatro enlaces simples C–H dirigidos hacia los vértices de un tetraedro.</div></div>
+        <div class="card"><h3>Clorometano, CH₃Cl</h3><svg id="b" width="180" height="170"></svg>
+            <div class="t">Un hidrógeno del metano se sustituye por un átomo de cloro (verde).</div></div>
+        <div class="card"><h3>Etano, CH₃–CH₃</h3><svg id="c" width="180" height="170"></svg>
+            <div class="t">Enlace simple entre dos carbonos; los hidrógenos se alejan lo más posible.</div></div>
+        <div class="card"><h3>Etanol, CH₃–CH₂OH</h3><svg id="d" width="180" height="170"></svg>
+            <div class="t">Un hidrógeno del etano se sustituye por un grupo –OH (oxígeno en rojo).</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script src="mol.js"></script>
+<script>
+    drawMolecule(svgAdder('a'), MOL.metano(), 90, 88, { scale: 52, yaw: 20, pitch: 20 });
+    drawMolecule(svgAdder('b'), MOL.clorometano(), 90, 82, { scale: 38, yaw: 25, pitch: 15 });
+    drawMolecule(svgAdder('c'), MOL.alcano(2), 90, 88, { scale: 46, yaw: 30, pitch: 20 });
+    drawMolecule(svgAdder('d'), MOL.etanol(), 86, 88, { scale: 35, yaw: 25, pitch: 15 });
+</script>
+</body>
+</html>

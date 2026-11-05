@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tabla periódica por bloques</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1100px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="1050" height="530"></svg>
+</div>
+<script src="tabla.js"></script>
+<script src="fig.js"></script>
+<script>
+    const A = svgAdder('s');
+    const W = 54, H = 50, X0 = 50, Y0 = 40;
+    const COL = { s: '#F5B7B1', p: '#D2B4DE', d: '#AED6F1', f: '#ABEBC6' }, EDGE = { s: '#C0392B', p: '#7D3C98', d: '#2471A3', f: '#1E8449' };
+    // números de grupo y de periodo
+    for (let g = 1; g <= 18; g++) label(A, X0 + (g - 0.5) * W, Y0 - 10, g, { 'font-size': 13, fill: '#525252' });
+    for (let p = 1; p <= 7; p++) label(A, X0 - 16, Y0 + (p - 0.5) * H + 5, p, { 'font-size': 13, fill: '#525252' });
+    label(A, X0 + 9 * W, Y0 - 28, 'Grupo', { 'font-size': 13 });
+    const tp = label(A, X0 - 36, Y0 + 3.5 * H, 'Periodo', { 'font-size': 13 }); tp.setAttribute('transform', `rotate(-90 ${X0 - 36} ${Y0 + 3.5 * H})`);
+    const FY = Y0 + 7 * H + 30;  // filas de lantánidos y actínidos
+    ELEMENTOS.forEach(e => {
+        let x, y;
+        if (e.f) { x = X0 + (2 + e.f) * W; y = FY + (e.p - 6) * H; }
+        else { x = X0 + (e.g - 1) * W; y = Y0 + (e.p - 1) * H; }
+        A('rect', { x: x + 1, y: y + 1, width: W - 2, height: H - 2, rx: 4, fill: COL[e.b], stroke: EDGE[e.b], 'stroke-width': 0.8 });
+        label(A, x + 5, y + 14, e.z, { 'font-size': 10, 'font-weight': 400, 'text-anchor': 'start', fill: '#424949' });
+        label(A, x + W / 2, y + 37, e.s, { 'font-size': 17 });
+    });
+    // rótulos de bloque
+    const lab = (x, y, t, sub, col) => { label(A, x, y, t, { 'font-size': 15, fill: col }); const u = label(A, x, y + 18, '', { 'font-size': 13, fill: col, 'font-weight': 400 }); u.innerHTML = sub; };
+    const sup = s => `<tspan baseline-shift="super" font-size="70%">${s}</tspan>`;
+    label(A, X0 + 6 * W, Y0 + 2 * H - 18, 'Bloque d · elementos de transición', { 'font-size': 14, fill: EDGE.d });
+    const ud = label(A, X0 + 6 * W, Y0 + 2 * H + 2, '', { 'font-size': 13, fill: EDGE.d, 'font-weight': 400 }); ud.innerHTML = `ns${sup(2)} (n−1)d${sup('1-10')}`;
+    label(A, X0 + 15 * W, Y0 + 0.5 * H - 6, 'Bloque p', { 'font-size': 14, fill: EDGE.p });
+    const up = label(A, X0 + 15 * W, Y0 + 0.5 * H + 12, '', { 'font-size': 13, fill: EDGE.p, 'font-weight': 400 }); up.innerHTML = `ns${sup(2)} np${sup('1-6')}`;
+    label(A, X0 + 3.6 * W, Y0 + 0.5 * H - 6, 'Bloque s', { 'font-size': 14, fill: EDGE.s });
+    const us = label(A, X0 + 3.6 * W, Y0 + 0.5 * H + 12, '', { 'font-size': 13, fill: EDGE.s, 'font-weight': 400 }); us.innerHTML = `ns${sup('1-2')}`;
+    arrow(A, X0 + 2.7 * W, Y0 + 0.5 * H, X0 + 2.05 * W, Y0 + 1.3 * H, EDGE.s, 1.5, 8);
+    label(A, X0 + 1.2 * W, FY + 0.6 * H, 'Bloque f', { 'font-size': 14, fill: EDGE.f });
+    label(A, X0 + 1.2 * W, FY + 0.6 * H + 17, 'transición interna', { 'font-size': 12, fill: EDGE.f, 'font-weight': 400 });
+    const uf = label(A, X0 + 1.2 * W, FY + 1.6 * H + 4, '', { 'font-size': 13, fill: EDGE.f, 'font-weight': 400 }); uf.innerHTML = `ns${sup(2)} (n−2)f${sup('1-14')}`;
+</script>
+</body>
+</html>

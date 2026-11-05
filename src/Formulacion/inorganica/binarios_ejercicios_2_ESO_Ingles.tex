@@ -1,0 +1,142 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[english,spanish,es-tabla ]{babel}
+\usepackage[top=0.5cm, left=0.5cm, right=0.5cm, bottom=0.5cm]{geometry}
+\usepackage{mystyle_2}
+\usepackage{mycolours}
+\usepackage{mytcolorbox}
+\usepackage{mycommands}
+\usepackage{microtype}
+\usepackage[all]{chemmacros}
+
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{tabularray}
+\UseTblrLibrary{siunitx}
+\newcommand{\acu}{{(aq)}}
+
+
+\newcounter{numeroformula}
+\setcounter{numeroformula}{0}
+
+% \newcommand{\myorder}[1]{\textbf{\addtocounter{numeroformula}{1}\arabic{numeroformula} #1}}
+\newcommand{\myorder}{\textbf{\addtocounter{numeroformula}{1}\arabic{numeroformula}}}
+
+\begin{document}
+
+\DefTblrTemplate{contfoot-text}{normal}{Continúa en la siguiente página}
+\SetTblrTemplate{contfoot-text}{normal}
+\DefTblrTemplate{conthead-text}{normal}{(Continuación)}
+\SetTblrTemplate{conthead-text}{normal}
+
+\begin{landscape}
+
+    \begin{longtblr}[caption=Compuestos binarios]{hlines,vlines, colspec={Q[c,m] Q[c,m, 2cm] Q[c,m,10cm] Q[c,m,10cm] }, rowsep=5pt, rowhead=1}
+        \setcounter{numeroformula}{0}
+        \SetRow{gray!50} nº & Fórmula      & Español                   & Inglés  \\
+        \SetCell[c=4]{c} \textbf{Óxidos / Oxides}                                \\
+        \myorder{}          & \ch{Na2O}    &                           & \rojo{} \\
+        \myorder{}          & \ch{Co2O3}   &                           & \rojo{} \\
+        \myorder{}          & \ch{CuO}     &                           & \rojo{} \\
+        \myorder{}          & \ch{Ag2O}    &                           & \rojo{} \\
+        \myorder{}          & \ch{CdO}     &                           & \rojo{} \\
+        \myorder{}          & \ch{NO}      &                           & \rojo{} \\
+        \myorder{}          & \ch{CO2}     &                           & \rojo{} \\
+        \myorder{}          & \ch{As2O5}   &                           & \rojo{} \\
+        \myorder{}          & \ch{SO3}     &                           & \rojo{} \\
+        \myorder{}          & \ch{O5I2}    &                           & \rojo{} \\
+        \myorder{}          & \ch{O7Br2}   &                           & \rojo{} \\
+        \myorder{}          & \rojo{}      & Óxido de dilitio          & \rojo{} \\
+        \myorder{}          & \rojo{}      & Dióxido de plomo          & \rojo{} \\
+        \myorder{}          & \rojo{}      & trióxido de dialuminio    & \rojo{} \\
+        \myorder{}          & \rojo{}      & tetraóxido de dinitrógeno & \rojo{} \\
+        \myorder{}          & \rojo{}      & Pentaóxido de dinitrógeno & \rojo{} \\
+        \myorder{}          & \rojo{}      & trióxido de azufre        & \rojo{} \\
+        \myorder{}          & \rojo{}      & trióxido de dicromo       & \rojo{} \\
+        \myorder{}          & \rojo{}      & monóxido de dinitrógeno   & \rojo{} \\
+        \myorder{}          & \rojo{}      & dibromuro de trioxígeno   & \rojo{} \\
+        \SetCell[c=4]{c} \textbf{Hidruros / Hydrides}                            \\
+        \myorder{}          & \ch{NaH}     & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{CaH2}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{CoH2}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{CuH2}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{AgH}     & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{CdH2}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{BeH2}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{CsH}     & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{SnH4}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{NH3}     & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{NiH2}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{SiH4}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{SbH3}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{H2S}     & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{HCl}     & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{HBr}     & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{PH3}     & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{CH4}     & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{AsH3}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{HI}      & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & dihidruro de magnesio     & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & dihidruro de plomo        & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & hexahidruro de cromo      & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & dihidruro de cinc         & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & tetrahidruro de platino   & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & trihidruro de aluminio    & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & trihidruro de cromo       & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & trihidruro de boro        & \rojo{} \\
+        \SetCell[c=4]{c} \textbf{Binarios / Binaries (sin oxígeno o hidrógeno)}  \\
+        \myorder{}          & \ch{NaF}     & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{CoCl3}   & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{CuSe}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{AgCl}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{CdF2}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{MnF2}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{CsCl}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{Ni2S3}   & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{PbCl2}   & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{FeI3}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{PCl5}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{SI2}     & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{NCl3}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{N2S5}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{SiS2}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{TeI4}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{As2S3}   & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{CI4}     & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{NF3}     & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{SeBr4}   & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{SeCl6}   & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{AsF5}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{CCl4}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{SiF4}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & diyoduro de magnesio      & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & sulfuro de dipotasio      & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & tetracloruro de plomo     & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & dibromuro de cinc         & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & trisulfuro de dialuminio  & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & trisulfuro de dicromo     & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & teluro de disodio       & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & sulfuro de diplata        & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & trifluoruro de bromo      & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & hexafluoruro de azufre    & \rojo{} \\
+        \SetCell[c=4]{c} \textbf{Hidróxidos / Hydroxides}                        \\
+        \myorder{}          & \ch{CsOH}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{KOH} & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{Be(OH)2} & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{Fe(OH)3} & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{AgOH}    & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{Al(OH)3} & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{NH4OH}   & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{Cd(OH)2} & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{Au(OH)3} & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{Mn(OH)3} & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \ch{Pt(OH)2} & \rojo{}                   & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & dihidróxido de níquel     & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & dihidróxido de magnesio   & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & dihidróxido de hierro     & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & dihidróxido de cobre      & \rojo{} \\
+        \myorder{}          & \rojo{\ch{}} & trihidróxido de cromo     & \rojo{} \\
+        \hline
+    \end{longtblr}
+
+\end{landscape}
+\end{document}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_17 · Repulsiones electrónicas en la molécula de agua</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/moleculas.js"></script>
+</head>
+<body>
+<script>
+// Si solo contáramos los enlaces, el H2O sería lineal (180°). Los dos pares no
+// enlazantes del O repelen a los pares enlazantes y "cierran" el ángulo hasta 104,5°.
+const svg = crearFigura(760, 330);
+const cam = [1, 0, 0.12];
+// Izquierda: hipotética lineal
+const m1 = molAB("O", "H", GEOM.lineal, 1.15, { letraCentral: false });
+m1.atomos.forEach(a => a.etiqueta = false);
+m1.pares = [{ en: 0, dir: [0, -0.5, 1] }, { en: 0, dir: [0, 0.5, 1] }];
+m1.angulos = [{ a: 1, c: 0, b: 2, texto: "180°", radio: 0.55, plano: [0, 0, -1], dy: 14 }];
+dibujarMolecula(svg, m1, { cx: 190, cy: 180, escala: 115, camara: cam });
+// flechas de repulsión (rojas, curvas) entre pares y enlaces
+const rep = (x1, y1, x2, y2, c) => el("path", { d: `M${x1},${y1} Q${c[0]},${c[1]} ${x2},${y2}`, fill: "none", stroke: "#D32F2F",
+    "stroke-width": 1.8, "marker-start": puntaFlecha(svg, "pr", "#D32F2F", 9), "marker-end": puntaFlecha(svg, "pr", "#D32F2F", 9) }, svg);
+rep(122, 150, 158, 118, [128, 120]);
+rep(222, 118, 258, 150, [252, 120]);
+rep(172, 100, 208, 100, [190, 84]);
+texto(svg, 190, 40, "Repulsiones", { "text-anchor": "middle", "font-size": 20, fill: COLORES.texto });
+texto(svg, 190, 64, "electrónicas", { "text-anchor": "middle", "font-size": 20, fill: COLORES.texto });
+flecha(svg, 350, 180, 420, 180, { punta: 12, ancho: 2 });
+// Derecha: real, 104,5°
+const m2 = molAB("O", "H", angular(104.5), 1.15, { letraCentral: false });
+m2.atomos.forEach(a => a.etiqueta = false);
+m2.pares = [{ en: 0, dir: [0, -0.6, 1] }, { en: 0, dir: [0, 0.6, 1] }];
+m2.angulos = [{ a: 1, c: 0, b: 2, texto: "104,5°", radio: 0.5, dy: 22 }];
+dibujarMolecula(svg, m2, { cx: 590, cy: 130, escala: 115, camara: cam });
+texto(svg, 590, 40, "Se cierra el ángulo", { "text-anchor": "middle", "font-size": 20, fill: COLORES.texto });
+</script>
+</body>
+</html>

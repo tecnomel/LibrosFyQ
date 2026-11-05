@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Factores de la presión hidrostática</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 860px; }
+    .row { margin-bottom: 12px; }
+    .card h3 { font-size: 16px; color: var(--blue); margin-bottom: 4px; }
+    .card .t { font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3>1. Profundidad</h3><svg id="a" width="370" height="220"></svg>
+            <div class="t">Cuanto más profundo está el orificio, con más fuerza sale el chorro: <b>la presión aumenta con la profundidad</b>.</div></div>
+        <div class="card"><h3>2. Forma del recipiente</h3><svg id="b" width="370" height="220"></svg>
+            <div class="t">Con la misma altura de líquido, la presión en el fondo es la misma: <b>no depende de la forma ni de la cantidad de líquido</b>.</div></div>
+    </div>
+    <div class="row">
+        <div class="card"><h3>3. Dirección</h3><svg id="c" width="370" height="220"></svg>
+            <div class="t">En un punto del líquido, la presión es la misma en todas las direcciones y las fuerzas son <b>perpendiculares</b> a las superficies.</div></div>
+        <div class="card"><h3>4. Densidad del líquido</h3><svg id="d" width="370" height="220"></svg>
+            <div class="t">A la misma profundidad, la presión es mayor en el líquido más denso: <b>aumenta con la densidad</b>.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // 1. Profundidad: chorros que salen por orificios a distinta profundidad (depósito sobre un soporte)
+    {
+        const add = svgAdder('a');
+        const ground = 205;
+        add('rect', { x: 10, y: ground, width: 350, height: 10, fill: '#D7BDA0' });
+        add('rect', { x: 45, y: 120, width: 80, height: ground - 120, fill: '#B3B6B7', stroke: '#7F8C8D', 'stroke-width': 1.5 });
+        const x0 = 40, w = 90, ys = tank(add, x0, 6, w, 114, 100);
+        [[20, 'débil'], [50, ''], [80, 'fuerte']].forEach(([d, t]) => {
+            const y = ys + d, fall = ground - y, reach = 2 * Math.sqrt(d * fall);
+            add('path', { d: `M${x0 + w} ${y} Q ${x0 + w + reach * 0.5} ${y} ${x0 + w + reach} ${ground}`, fill: 'none', stroke: '#2E86C1', 'stroke-width': 4, 'stroke-linecap': 'round' });
+            add('circle', { cx: x0 + w, cy: y, r: 3, fill: '#1B4F72' });
+        });
+        label(add, 140, 26, 'poca profundidad: chorro débil', { 'font-size': 13, fill: '#525252', 'text-anchor': 'start' });
+        label(add, 140, 180, 'más profundo:', { 'font-size': 13, fill: '#525252', 'font-weight': 400, 'text-anchor': 'start' });
+        label(add, 140, 196, 'chorro fuerte', { 'font-size': 13, fill: '#525252', 'text-anchor': 'start' });
+    }
+    // 2. Forma del recipiente: misma altura de líquido
+    {
+        const add = svgAdder('b');
+        const bot = 195, lvl = 120, ys = bot - lvl;
+        // cilindro
+        tank(add, 25, 50, 70, bot - 50, lvl);
+        // vaso ancho arriba (paredes de (135,50) a (175,bot) y de (255,50) a (215,bot))
+        const xl = 135 + (ys - 50) / (bot - 50) * 40, xr = 255 - (ys - 50) / (bot - 50) * 40;
+        add('path', { d: `M${xl} ${ys} L${xr} ${ys} L215 ${bot} L175 ${bot} Z`, fill: '#AED6F1', opacity: 0.9 });
+        add('line', { x1: xl, y1: ys, x2: xr, y2: ys, stroke: '#2E86C1', 'stroke-width': 1.5 });
+        add('path', { d: `M135 50 L175 ${bot} L215 ${bot} L255 50`, fill: 'none', stroke: '#5D6D7E', 'stroke-width': 3, 'stroke-linejoin': 'round' });
+        // matraz: cono ancho abajo y cuello estrecho; el líquido llega al cuello
+        const yn = 115;
+        add('path', { d: `M313 ${ys} L327 ${ys} L327 ${yn} L350 ${bot} L290 ${bot} L313 ${yn} Z`, fill: '#AED6F1', opacity: 0.9 });
+        add('line', { x1: 313, y1: ys, x2: 327, y2: ys, stroke: '#2E86C1', 'stroke-width': 1.5 });
+        add('path', { d: `M313 50 L313 ${yn} L290 ${bot} L350 ${bot} L327 ${yn} L327 50`, fill: 'none', stroke: '#5D6D7E', 'stroke-width': 3, 'stroke-linejoin': 'round' });
+        add('line', { x1: 10, y1: ys, x2: 362, y2: ys, stroke: '#C0392B', 'stroke-width': 1.2, 'stroke-dasharray': '5 4' });
+        vdim(add, 18, ys, bot, 'h', '#C0392B');
+        [60, 195, 320].forEach(x => { add('circle', { cx: x, cy: bot - 8, r: 4, fill: '#C0392B' }); });
+        label(add, 185, 214, 'misma presión en el fondo de los tres', { 'font-size': 13, fill: '#C0392B', 'font-weight': 600 });
+    }
+    // 3. Dirección: flechas iguales en todas las direcciones en un punto; fuerzas perpendiculares a las paredes
+    {
+        const add = svgAdder('c');
+        tank(add, 40, 20, 290, 180, 165);
+        const cx = 120, cy = 120;
+        for (let a = 0; a < 360; a += 45) {
+            const [x1, y1] = pol(cx, cy, 10, a), [x2, y2] = pol(cx, cy, 44, a);
+            arrow(add, x1, y1, x2, y2, '#000070', 2, 8);
+        }
+        add('circle', { cx, cy, r: 4, fill: '#C0392B' });
+        // cuerpo sumergido con fuerzas perpendiculares
+        const bx = 250, by = 125;
+        add('rect', { x: bx - 28, y: by - 22, width: 56, height: 44, fill: '#A04000', stroke: '#6E2C00', 'stroke-width': 2 });
+        [[-1, 0], [1, 0]].forEach(([sx]) => [-10, 10].forEach(dy => arrow(add, bx + sx * 58, by + dy, bx + sx * 30, by + dy, '#000070', 2, 8)));
+        [-14, 0, 14].forEach(dx => { arrow(add, bx + dx, by - 52, bx + dx, by - 24, '#000070', 2, 8); arrow(add, bx + dx, by + 58, bx + dx, by + 24, '#000070', 2, 8); });
+        // paredes
+        [60, 110, 160].forEach(y => { arrow(add, 300, y, 326, y, '#000070', 2, 8); arrow(add, 70, y, 44, y, '#000070', 2, 8); });
+    }
+    // 4. Densidad: misma profundidad, distinto líquido
+    {
+        const add = svgAdder('d');
+        const pairs = [[30, '#AED6F1', 'agua', 'ρ₁', 28], [200, '#F5B7B1', 'líquido más denso', 'ρ₂ > ρ₁', 46]];
+        pairs.forEach(([x, col, name, rho, L]) => {
+            const ys = tank(add, x, 30, 140, 160, 140, col);
+            const py = ys + 80;
+            vdim(add, x + 20, ys, py, 'h', '#C0392B', true);
+            add('circle', { cx: x + 85, cy: py, r: 4, fill: '#C0392B' });
+            arrow(add, x + 85, py, x + 85, py - L, '#000070', 2.5, 9);
+            arrow(add, x + 85, py, x + 85 + L, py, '#000070', 2.5, 9);
+            arrow(add, x + 85, py, x + 85 - L, py, '#000070', 2.5, 9);
+            label(add, x + 70, 18, name, { 'font-size': 14 });
+            label(add, x + 110, 182, rho, { 'font-size': 15, 'font-style': 'italic' });
+        });
+    }
+</script>
+</body>
+</html>

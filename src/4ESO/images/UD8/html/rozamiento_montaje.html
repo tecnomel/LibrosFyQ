@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Montaje para estudiar la fuerza de rozamiento</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="780" height="300"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    // mesa
+    add('rect', { x: 20, y: 150, width: 560, height: 18, fill: '#D4AC6E', stroke: '#A04000', 'stroke-width': 2 });
+    add('rect', { x: 40, y: 168, width: 14, height: 120, fill: '#A04000' }); add('rect', { x: 540, y: 168, width: 14, height: 120, fill: '#A04000' });
+    // polea en el borde
+    add('rect', { x: 572, y: 140, width: 24, height: 18, fill: '#7F8C8D' });
+    add('circle', { cx: 600, cy: 128, r: 20, fill: '#BFC9CA', stroke: '#5D6D7E', 'stroke-width': 2 }); add('circle', { cx: 600, cy: 128, r: 4, fill: '#5D6D7E' });
+    // bloque
+    block(add, 230, 125, 110, 50, 0, '#E5C07B');
+    // hilo
+    add('line', { x1: 285, y1: 110, x2: 600, y2: 108, stroke: '#23373B', 'stroke-width': 1.6 });
+    add('line', { x1: 620, y1: 128, x2: 620, y2: 220, stroke: '#23373B', 'stroke-width': 1.6 });
+    // portapesas
+    add('rect', { x: 606, y: 220, width: 28, height: 10, fill: '#5D6D7E' }); add('rect', { x: 612, y: 230, width: 16, height: 24, fill: '#5D6D7E' }); add('rect', { x: 600, y: 254, width: 40, height: 8, fill: '#5D6D7E' });
+    label(add, 660, 245, 'portapesas', { 'font-size': 14, 'text-anchor': 'start', fill: '#525252' });
+    // fuerzas
+    arrow(add, 230, 125, 380, 125, '#C0392B', 3.5, 12); vlabel(add, 345, 92, 'F', '#C0392B', 'aplicada');
+    arrow(add, 230, 125, 90, 125, '#2471A3', 3.5, 12); vlabel(add, 115, 115, 'F', '#2471A3', 'roz');
+    arrow(add, 230, 125, 230, 50, '#1E8449', 3, 11); vlabel(add, 250, 64, 'N', '#1E8449');
+    arrow(add, 230, 125, 230, 215, '#7D3C98', 3, 11); vlabel(add, 250, 210, 'P', '#7D3C98');
+    label(add, 390, 22, 'Cuando el bloque empieza a moverse, F aplicada = F rozamiento = peso del portapesas', { 'font-size': 14, fill: '#000070' });
+</script>
+</body>
+</html>

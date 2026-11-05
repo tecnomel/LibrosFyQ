@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Disolución del cloruro de sodio en agua</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="950" height="420"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const NA = '#AF7AC5', CL = '#58D68D';
+    // Fondo de agua
+    add('rect', { x: 0, y: 0, width: 950, height: 420, rx: 18, fill: '#EBF5FB' });
+    // ---------- cristal de NaCl (esquina inferior izquierda) ----------
+    const s = 40;
+    for (let i = 0; i < 5; i++) for (let j = 0; j < 5; j++) {
+        if (i + j < 2) continue;            // esquina «rota»: de ahí salen los iones
+        const x = 40 + j * s, y = 180 + i * s, na = (i + j) % 2 === 0;
+        na ? ion(add, x, y, 13, NA, '+') : ion(add, x, y, 19, CL, '−');
+    }
+    label(add, 130, 410, 'cristal de NaCl(s)', { 'font-size': 16, fill: '#525252' });
+    // Moléculas de agua sueltas
+    const r = rng(21);
+    for (let k = 0; k < 16; k++) {
+        const x = 260 + r() * 140, y = 30 + r() * 360;
+        water(add, x, y, 8, r() * 6.28);
+    }
+    for (let k = 0; k < 8; k++) water(add, 30 + r() * 200, 25 + r() * 120, 8, r() * 6.28);
+    // ---------- ion Na+ hidratado ----------
+    function hidrata(cx, cy, col, rad, q, haciaFuera) {
+        const n = 6, d = rad + 20;
+        for (let k = 0; k < n; k++) {
+            const a = k * 2 * Math.PI / n + 0.3;
+            const x = cx + d * Math.cos(a), y = cy + d * Math.sin(a);
+            // el O mira al catión (H hacia fuera); los H miran al anión
+            water(add, x, y, 9, haciaFuera ? a : a + Math.PI);
+        }
+        ion(add, cx, cy, rad, col, q);
+    }
+    hidrata(560, 110, NA, 14, '+', true);
+    label(add, 560, 185, 'catión sodio hidratado', { 'font-size': 16 });
+    label(add, 560, 205, 'el O (δ−) mira hacia el Na⁺', { 'font-size': 14, 'font-weight': 400, fill: '#525252' });
+    hidrata(810, 270, CL, 20, '−', false);
+    label(add, 810, 375, 'anión cloruro hidratado', { 'font-size': 16 });
+    label(add, 810, 395, 'los H (δ+) miran hacia el Cl⁻', { 'font-size': 14, 'font-weight': 400, fill: '#525252' });
+    // Flechas: los iones salen de la red
+    arrow(add, 95, 160, 505, 110, '#7D3C98', 3, 13);
+    arrow(add, 215, 300, 755, 285, '#1E8449', 3, 13);
+    // Leyenda
+    water(add, 650, 365, 9, -Math.PI / 2);
+    label(add, 650, 400, 'H₂O', { 'font-size': 15 });
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_55 · Fuerzas de dispersión de London (I2)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Fuerzas de London: la nube electrónica de una molécula apolar (I2) se deforma un instante
+// (dipolo instantáneo) e induce otro dipolo en la molécula vecina.
+const svg = crearFigura(760, 170);
+const gi = degradadoEsfera(svg, "I", "#4B2A7B");
+const halo = el("radialGradient", { id: "halo" }, defs(svg));
+[["0%", "#6EC6F0"], ["60%", "#6EC6F0AA"], ["100%", "#6EC6F000"]].forEach(([o, c]) => el("stop", { offset: o, "stop-color": c }, halo));
+function I2(x) {
+    el("ellipse", { cx: x + 55, cy: 90, rx: 150, ry: 75, fill: "url(#halo)" }, svg);
+    el("circle", { cx: x, cy: 90, r: 34, fill: gi }, svg);
+    el("circle", { cx: x + 110, cy: 90, r: 34, fill: gi }, svg);
+    [x, x + 110].forEach(cx => texto(svg, cx, 100, "I", { "text-anchor": "middle", "font-size": 28, "font-family": "Times New Roman, serif", fill: "#fff" }));
+    texto(svg, x, 36, [{ t: "δ" }, { t: "+", sup: true }], { "text-anchor": "middle", "font-size": 22, "font-family": "Times New Roman, serif", fill: COLORES.texto });
+    texto(svg, x + 110, 36, [{ t: "δ" }, { t: "−", sup: true }], { "text-anchor": "middle", "font-size": 22, "font-family": "Times New Roman, serif", fill: COLORES.texto });
+}
+I2(110); I2(510);
+for (const dy of [-8, 0, 8]) el("path", { d: `M345,${90 + dy} q 5,-6 10,0 t 10,0 t 10,0 t 10,0 t 10,0 t 10,0`, fill: "none", stroke: "#F39C12", "stroke-width": 2 }, svg);
+texto(svg, 380, 160, "dipolo instantáneo ··· dipolo inducido", { "text-anchor": "middle", "font-size": 14, fill: COLORES.gris });
+</script>
+</body>
+</html>

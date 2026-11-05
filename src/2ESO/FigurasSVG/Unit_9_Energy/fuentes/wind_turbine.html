@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>How a wind turbine works</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 20px; align-items: center; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .side { flex: 1; }
+    .st { display: flex; gap: 10px; align-items: center; border-radius: 12px; padding: 8px 12px; margin-bottom: 8px; background: #F4F6F7; font-size: 17px; }
+    .st .n { width: 32px; height: 32px; border-radius: 50%; background: var(--ocre); color: #fff; text-align: center; line-height: 32px; font-weight: 800; flex: none; }
+    .clm { border-radius: 12px; padding: 10px 14px; background: var(--green-soft); border: 2px solid var(--green); font-size: 16px; margin-top: 10px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>How does a wind turbine work?</h1>
+    <div class="row">
+        <svg width="460" height="500" viewBox="0 0 460 500">
+            <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D6EAF8"/><stop offset="1" stop-color="#FDFEFE"/></linearGradient></defs>
+            <rect width="460" height="500" fill="url(#sky)"/>
+            <rect x="0" y="440" width="460" height="60" fill="#A9DFBF"/>
+            <polygon points="225,180 235,180 250,450 210,450" fill="#ECF0F1" stroke="#95A5A6" stroke-width="2"/>
+            <rect x="215" y="160" width="70" height="36" rx="10" fill="#D5D8DC" stroke="#95A5A6" stroke-width="2"/>
+            <g transform="translate(220 178)">
+                <path d="M0 0 L-12 -150 L12 -150 Z" fill="#FDFEFE" stroke="#95A5A6" stroke-width="2" transform="rotate(10)"/>
+                <path d="M0 0 L-12 -150 L12 -150 Z" fill="#FDFEFE" stroke="#95A5A6" stroke-width="2" transform="rotate(130)"/>
+                <path d="M0 0 L-12 -150 L12 -150 Z" fill="#FDFEFE" stroke="#95A5A6" stroke-width="2" transform="rotate(250)"/>
+                <circle r="12" fill="#7F8C8D"/>
+            </g>
+            <g stroke="#5DADE2" stroke-width="4" fill="none" stroke-linecap="round"><path d="M20 120 q30 -10 60 0 t60 0"/><path d="M10 200 q30 -10 60 0 t60 0"/><path d="M30 280 q30 -10 60 0 t60 0"/></g>
+            <text x="20" y="100" font-size="17" font-weight="800" fill="#2471A3">wind 🌬️</text>
+            <text x="300" y="185" font-size="15" font-weight="700" fill="#525252">generator</text>
+        </svg>
+        <div class="side">
+            <div class="st"><span class="n">1</span><span>The wind has <b>kinetic energy</b>.</span></div>
+            <div class="st"><span class="n">2</span><span>It pushes the blades, which turn: <b>mechanical energy</b>.</span></div>
+            <div class="st"><span class="n">3</span><span>The rotating shaft moves a <b>generator</b>.</span></div>
+            <div class="st"><span class="n">4</span><span>The generator produces <b>electrical energy</b> ⚡.</span></div>
+            <div class="clm">📍 <b>Castilla-La Mancha</b> is one of the Spanish regions that produce the most wind energy, thanks to its flat land and steady winds. It produces no CO₂, but wind farms change the landscape and can affect birds.</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

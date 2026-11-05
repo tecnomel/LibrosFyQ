@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Calor y trabajo</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 20px; }
+    .c { flex: 1; border-radius: 16px; padding: 12px; text-align: center; border: 3px solid; }
+    .h { border-color: var(--red); background: var(--red-soft); } .h h2 { color: var(--red); }
+    .w { border-color: #2471A3; background: #EAF2F8; } .w h2 { color: #2471A3; }
+    h2 { font-size: 23px; }
+    .t { font-size: 16px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Dos formas de intercambiar energía</h1>
+    <div class="row">
+        <div class="c h"><h2>Calor 🌡️</h2>
+            <svg width="480" height="215" viewBox="0 0 480 215">
+                <defs><marker id="m" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#C0392B"/></marker></defs>
+                <rect x="40" y="50" width="160" height="110" rx="10" fill="#E74C3C"/><text x="120" y="115" text-anchor="middle" font-size="28" font-weight="800" fill="#fff">80 °C</text>
+                <rect x="280" y="50" width="160" height="110" rx="10" fill="#5DADE2"/><text x="360" y="115" text-anchor="middle" font-size="28" font-weight="800" fill="#fff">20 °C</text>
+                <line x1="205" y1="105" x2="272" y2="105" stroke="#C0392B" stroke-width="4" marker-end="url(#m)"/>
+                <text x="240" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#C0392B">calor</text>
+                <text x="240" y="185" text-anchor="middle" font-size="16" fill="#23373B">hasta que los dos alcanzan la misma temperatura</text>
+                <text x="240" y="206" text-anchor="middle" font-size="16" fill="#23373B">(equilibrio térmico)</text>
+            </svg>
+            <div class="t">Entre cuerpos a <b>distinta temperatura</b>: siempre del <b>más caliente</b> al <b>más frío</b>.</div></div>
+        <div class="c w"><h2>Trabajo 💪</h2>
+            <div style="font-size:90px; line-height:215px">🛒💨</div>
+            <div class="t">Cuando una <b>fuerza</b> hace que un cuerpo se <b>mueva</b>: empujar un carro, levantar una caja, tensar un arco.</div></div>
+    </div>
+</div>
+</body>
+</html>

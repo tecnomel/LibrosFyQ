@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Glóbulos rojos en medios de distinta concentración</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } .card .t { font-size: 14px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Medio hipertónico</h2><svg id="a" width="250" height="220"></svg><div class="t">El agua sale de la célula, que se arruga (crenación).</div></div>
+        <div class="card"><h2>Medio isotónico</h2><svg id="b" width="250" height="220"></svg><div class="t">Entra tanta agua como sale: la célula no cambia.</div></div>
+        <div class="card"><h2>Medio hipotónico</h2><svg id="c" width="250" height="220"></svg><div class="t">El agua entra, la célula se hincha y puede romperse (hemólisis).</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const ROJO = '#C0392B';
+    function celula(id, k, fondo, nSal, flechas) {
+        const add = svgAdder(id);
+        add('rect', { x: 5, y: 5, width: 240, height: 210, rx: 16, fill: fondo });
+        const cx = 125, cy = 110, R = 62 * k;
+        // contorno: arrugado si k < 1
+        let d = '';
+        for (let i = 0; i <= 72; i++) {
+            const a = i * Math.PI / 36, rr = R * (k < 1 ? 1 + 0.12 * Math.sin(9 * a) : 1);
+            d += (i ? 'L' : 'M') + (cx + rr * Math.cos(a)).toFixed(1) + ' ' + (cy + rr * Math.sin(a)).toFixed(1);
+        }
+        add('path', { d: d + 'Z', fill: '#E6B0AA', stroke: ROJO, 'stroke-width': 3 });
+        add('ellipse', { cx, cy, rx: R * 0.45, ry: R * 0.4, fill: '#D98880', opacity: 0.7 });
+        // partículas de sal en el medio
+        const r = rng(nSal + 3); let c = 0;
+        for (let t = 0; t < 3000 && c < nSal; t++) {
+            const x = 15 + r() * 220, y = 15 + r() * 190;
+            if (Math.hypot(x - cx, y - cy) > R * 1.2 + 12) { add('circle', { cx: x, cy: y, r: 3.2, fill: '#7D3C98' }); c++; }
+        }
+        // flechas del agua
+        flechas.forEach(([a, sentido]) => {
+            const x1 = cx + (R - 14) * Math.cos(a), y1 = cy + (R - 14) * Math.sin(a);
+            const x2 = cx + (R + 26) * Math.cos(a), y2 = cy + (R + 26) * Math.sin(a);
+            sentido > 0 ? arrow(add, x1, y1, x2, y2, '#1F618D', 3, 11) : arrow(add, x2, y2, x1, y1, '#1F618D', 3, 11);
+        });
+        label(add, 125, 205, 'H₂O', { 'font-size': 13, fill: '#1F618D' });
+    }
+    celula('a', 0.72, '#FDEBD0', 40, [[0, 1], [2.1, 1], [4.2, 1]]);
+    celula('b', 0.9, '#FEF9E7', 18, [[0.3, 1], [0.75, -1], [3.4, 1], [3.85, -1]]);
+    celula('c', 1.15, '#EBF5FB', 4, [[0, -1], [2.1, -1], [4.2, -1]]);
+</script>
+</body>
+</html>

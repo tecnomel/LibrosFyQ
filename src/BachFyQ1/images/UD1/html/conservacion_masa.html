@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Experimento de Lavoisier: conservación de la masa</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="910" height="360"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const R = rng(11);
+
+    // balanza electrónica con un matraz cerrado encima
+    function escena(cx, titulo, estado) {
+        label(add, cx, 26, titulo, { 'font-size': 19, fill: '#000070' });
+        // matraz esférico cerrado (retorta simplificada)
+        const fy = 178, fr = 70;
+        add('circle', { cx, cy: fy, r: fr, fill: '#EBF5FB', stroke: '#5D6D7E', 'stroke-width': 3 });
+        add('rect', { x: cx - 14, y: fy - fr - 40, width: 28, height: 44, fill: '#EBF5FB', stroke: '#5D6D7E', 'stroke-width': 3 });
+        add('rect', { x: cx - 19, y: fy - fr - 52, width: 38, height: 16, rx: 3, fill: '#A04000' });   // tapón
+        add('circle', { cx, cy: fy, r: fr - 1.5, fill: '#EBF5FB' });
+        // aire: moléculas de O2 y N2 repartidas
+        const nO2 = estado === 'antes' ? 5 : 2;
+        for (let i = 0; i < 9; i++) {
+            const a = R() * 2 * Math.PI, d = 18 + R() * 38;
+            molecule(add, cx + d * Math.cos(a), fy - 12 + d * Math.sin(a) * 0.75, i < nO2 ? MOL.O2 : MOL.N2, 6.5);
+        }
+        // metal en el fondo: estaño (gris brillante) u óxido (polvo blanquecino)
+        if (estado === 'antes') {
+            add('path', { d: `M${cx - 38} ${fy + 52} Q${cx} ${fy + 40} ${cx + 38} ${fy + 52} Q${cx} ${fy + 66} ${cx - 38} ${fy + 52} Z`, fill: '#AAB7B8', stroke: '#717D7E', 'stroke-width': 1.5 });
+        } else {
+            for (let i = 0; i < 40; i++) add('circle', { cx: cx - 40 + R() * 80, cy: fy + 46 + R() * 14, r: 2.5 + R() * 2, fill: '#F2F3F4', stroke: '#B3B6B7', 'stroke-width': 0.8 });
+        }
+        // balanza
+        add('rect', { x: cx - 120, y: 250, width: 240, height: 22, rx: 4, fill: '#7F8C8D' });   // plato
+        add('rect', { x: cx - 135, y: 272, width: 270, height: 50, rx: 8, fill: '#34495E' });
+        add('rect', { x: cx - 60, y: 281, width: 120, height: 32, rx: 4, fill: '#D5F5E3', stroke: '#1E8449', 'stroke-width': 1.5 });
+        label(add, cx, 304, '125,40 g', { 'font-size': 19, fill: '#145A32', 'font-family': 'Consolas, monospace' });
+        label(add, cx, 350, estado === 'antes' ? 'estaño + aire' : 'óxido de estaño + aire que queda', { 'font-size': 16, fill: '#525252', 'font-weight': 600 });
+    }
+    escena(170, 'Antes de calentar', 'antes');
+    escena(720, 'Después de calentar', 'despues');
+
+    // flecha central con llama
+    arrow(add, 330, 175, 560, 175, '#C0392B', 4, 16);
+    label(add, 445, 160, 'calcinación', { 'font-size': 17, fill: '#C0392B' });
+    label(add, 445, 205, 'recipiente cerrado', { 'font-size': 15, fill: '#525252', 'font-weight': 600 });
+    add('path', { d: 'M445 268 Q425 245 438 222 Q442 238 450 232 Q446 214 458 200 Q470 236 462 252 Q472 246 470 232 Q482 256 464 268 Z', fill: '#F39C12', stroke: '#D35400', 'stroke-width': 1.5 });
+    add('path', { d: 'M450 268 Q442 255 450 243 Q456 252 460 246 Q466 258 460 268 Z', fill: '#F7DC6F' });
+    label(add, 445, 300, 'la masa total no cambia', { 'font-size': 17, fill: '#1E8449' });
+</script>
+</body>
+</html>

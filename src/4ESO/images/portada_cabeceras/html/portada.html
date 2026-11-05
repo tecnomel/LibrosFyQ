@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- Portada del libro de 4.º ESO (A4). render.sh la imprime a PDF vectorial (portada_4ESO.pdf). -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Portada 4.º ESO</title>
+<style>
+    @page { size: 210mm 297mm; margin: 0; }
+    html, body { margin: 0; padding: 0; width: 210mm; height: 297mm; overflow: hidden; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    svg { display: block; }
+</style>
+<script src="dibujos.js"></script>
+</head>
+<body>
+<svg id="s" xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 2100 2970"></svg>
+<script>
+    const svg = document.getElementById('s');
+    semilla(404);
+    iniciar(svg, PALETAS.azul);
+    portada(svg, {
+        titulo: ['Física', 'y Química'],
+        curso: '4.º ESO',
+        lema: 'Del átomo al universo',
+        centro: 'IES José Conde García',
+        pie: 'Almansa · Curso 2026/2027',
+        arte(p) {
+            // átomo central, rodeado de química (izquierda) y física (derecha)
+            atomoBohr(p, 1150, 1900, 1.75, 19);
+            benceno(p, 330, 1650, 130, 1.15);
+            planetaOrbita(p, 1740, 1150, 140, 270, 70, -15, 2.4, 24);
+            agua(p, 1860, 1560, 1.2, 15);
+            erlenmeyer(p, 330, 2480, 440, 340, P.acc3, .5);
+            prisma(p, 1690, 2290, 1.15, 1180, 2400, 2100, [-40, 190]);
+            ondaSeno(p, 80, 2020, 2585, 28, 260, P.glow, 3);
+            ondaSeno(p, 80, 2020, 2585, 18, 140, P.acc, 2.5, 1);
+            texto(p, 560, 2140, 'E = m · c^2', { size: 64, italic: true, fill: P.line, op: .9 });
+            texto(p, 1870, 1900, 'F = m · a', { size: 58, italic: true, fill: P.line, op: .9 });
+        }
+    });
+</script>
+</body>
+</html>

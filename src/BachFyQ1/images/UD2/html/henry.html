@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ley de Henry</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } .card .t { font-size: 14px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>1. Equilibrio</h2><svg id="a" width="240" height="260"></svg><div class="t">Tantas moléculas de gas entran en el líquido como salen de él.</div></div>
+        <div class="card"><h2>2. Se aumenta la presión</h2><svg id="b" width="240" height="260"></svg><div class="t">Las moléculas de gas chocan más con la superficie: entran más de las que salen.</div></div>
+        <div class="card"><h2>3. Nuevo equilibrio</h2><svg id="c" width="240" height="260"></svg><div class="t">Hay más gas disuelto: la solubilidad es proporcional a la presión.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const GAS = '#E74C3C';
+    // recipiente con émbolo a la altura yp; ng moléculas en el gas, nd disueltas
+    function caja(id, yp, ng, nd, seed, flecha) {
+        const add = svgAdder(id);
+        const x0 = 30, x1 = 210, yl = 150, yb = 245;
+        add('rect', { x: x0, y: yl, width: x1 - x0, height: yb - yl, fill: '#AED6F1', opacity: 0.85 });
+        add('path', { d: `M${x0} 20 L${x0} ${yb} L${x1} ${yb} L${x1} 20`, fill: 'none', stroke: '#5D6D7E', 'stroke-width': 3 });
+        add('rect', { x: x0 + 3, y: yp - 14, width: x1 - x0 - 6, height: 14, fill: '#85929E' });
+        add('rect', { x: (x0 + x1) / 2 - 6, y: 0, width: 12, height: yp - 14, fill: '#85929E' });
+        const r = rng(seed); const P = [];
+        const coloca = (n, ya, yb2) => {
+            let c = 0;
+            for (let k = 0; k < 4000 && c < n; k++) {
+                const x = x0 + 14 + r() * (x1 - x0 - 28), y = ya + r() * (yb2 - ya);
+                if (P.every(([a, b]) => Math.hypot(a - x, b - y) > 17)) { P.push([x, y]); bead(add, x, y, 6.5, GAS); c++; }
+            }
+        };
+        coloca(ng, yp + 10, yl - 10);
+        coloca(nd, yl + 12, yb - 10);
+        if (flecha) {
+            add('path', { d: 'M120 -2 L120 4', stroke: 'none' });
+            arrow(add, 175, 25, 175, yp - 22, '#C0392B', 6, 18);
+        }
+    }
+    caja('a', 40, 14, 5, 3, false);
+    caja('b', 90, 14, 5, 3, true);
+    caja('c', 90, 7, 12, 9, false);
+    // flechas de intercambio en el equilibrio
+    const a = svgAdder('a');
+    arrow(a, 70, 135, 70, 165, '#1F618D', 2, 9); arrow(a, 90, 165, 90, 135, '#1F618D', 2, 9);
+    const b = svgAdder('b');
+    arrow(b, 70, 130, 70, 168, '#1F618D', 2.5, 10); arrow(b, 95, 130, 95, 168, '#1F618D', 2.5, 10); arrow(b, 120, 168, 120, 138, '#1F618D', 1.5, 8);
+</script>
+</body>
+</html>

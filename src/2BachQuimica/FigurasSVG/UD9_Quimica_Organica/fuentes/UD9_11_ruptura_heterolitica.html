@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_11 · Ruptura heterolítica: carbocationes y carbaniones</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+</head>
+<body>
+<script>
+// Ruptura heterolítica: el átomo más electronegativo se queda con los dos electrones del enlace.
+const svg = crearFigura(640, 260);
+function carbono(x, y, sust, carga) {
+    const at = [{ s: "C", id: "C", x: 0, y: 0, carga, angCarga: 45, cargaCirculo: false }, { s: "", id: "a", x: -0.8, y: 0 }, { s: "", id: "b", x: -0.3, y: 0.75 }, { s: "", id: "c", x: -0.3, y: -0.75 }];
+    const en = [{ a: "C", b: "a" }, { a: "C", b: "b" }, { a: "C", b: "c" }];
+    if (sust) { at.push({ s: sust, id: "X", x: 1, y: 0 }); en.push({ a: "C", b: "X" }); }
+    dibujarLewis(svg, x, y, { atomos: at, enlaces: en }, { L: 36, tamLetra: 19, fuente: TNR });
+}
+const d = (x, y, t) => texto(svg, x, y, [{ t: "δ" }, { t: t, sup: true }], { "text-anchor": "middle", "font-size": 16, fill: COLORES.texto, "font-family": TNR });
+carbono(70, 70, "X"); d(70, 40, "+"); d(106, 40, "−");
+flechaR(svg, 150, 70, 230);
+carbono(300, 70, null, "+"); mas(svg, 345, 70); fq(svg, 380, 76, ["X^-"]);
+texto(svg, 300, 118, "carbocatión", { "text-anchor": "middle", "font-size": 16, fill: COLORES.texto, "font-family": TNR });
+texto(svg, 520, 76, "X = halógeno", { "text-anchor": "middle", "font-size": 16, fill: COLORES.texto, "font-family": TNR });
+carbono(70, 190, "M"); d(70, 160, "−"); d(106, 160, "+");
+flechaR(svg, 150, 190, 230);
+carbono(300, 190, null, "−"); mas(svg, 345, 190); fq(svg, 380, 196, ["M^+"]);
+texto(svg, 300, 238, "carbanión", { "text-anchor": "middle", "font-size": 16, fill: COLORES.texto, "font-family": TNR });
+texto(svg, 520, 196, "M = metal", { "text-anchor": "middle", "font-size": 16, fill: COLORES.texto, "font-family": TNR });
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Preparación de una disolución a partir de un soluto sólido</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1060px; } .card h2 { font-size: 17px; } .card .t { font-size: 13px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>1. Pesar</h2><svg id="a" width="170" height="260"></svg><div class="t">Se tara el vidrio de reloj y se pesa el soluto.</div></div>
+        <div class="card"><h2>2. Disolver</h2><svg id="b" width="170" height="260"></svg><div class="t">En un vaso con poca agua destilada, agitando con la varilla.</div></div>
+        <div class="card"><h2>3. Trasvasar</h2><svg id="c" width="170" height="260"></svg><div class="t">Al matraz aforado con un embudo; se enjuaga el vaso.</div></div>
+        <div class="card"><h2>4. Enrasar</h2><svg id="d" width="170" height="260"></svg><div class="t">Agua hasta el aforo: la base del menisco toca la marca.</div></div>
+        <div class="card"><h2>5. Etiquetar</h2><svg id="e" width="170" height="260"></svg><div class="t">Se tapa, se agita y se etiqueta.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const AZ = '#5DADE2';
+    // 1. balanza con vidrio de reloj
+    let add = svgAdder('a');
+    add('rect', { x: 15, y: 170, width: 140, height: 60, rx: 10, fill: '#D5D8DC', stroke: '#5D6D7E', 'stroke-width': 2 });
+    add('rect', { x: 40, y: 195, width: 90, height: 24, rx: 4, fill: '#1C2833' });
+    add('text', { x: 85, y: 213, 'text-anchor': 'middle', 'font-size': 16, fill: '#58D68D', 'font-family': 'Consolas, monospace' }, '0,40 g');
+    add('rect', { x: 30, y: 158, width: 110, height: 12, rx: 3, fill: '#AEB6BF' });
+    add('path', { d: 'M40 152 Q85 166 130 152', fill: '#EAF2F8', stroke: '#5D6D7E', 'stroke-width': 2 });
+    add('path', { d: 'M68 154 Q85 140 102 154 Z', fill: AZ });
+    // espátula
+    add('line', { x1: 110, y1: 70, x2: 150, y2: 20, stroke: '#7F8C8D', 'stroke-width': 4 });
+    add('ellipse', { cx: 104, cy: 78, rx: 12, ry: 6, fill: '#7F8C8D', transform: 'rotate(-50 104 78)' });
+    // 2. vaso con varilla
+    add = svgAdder('b');
+    beaker(add, 30, 90, 110, 140, { fill: 0.45, color: '#AED6F1' });
+    add('line', { x1: 60, y1: 50, x2: 115, y2: 222, stroke: '#85929E', 'stroke-width': 5, 'stroke-linecap': 'round' });
+    add('path', { d: 'M48 175 q10 -8 20 0 M95 190 q10 -8 20 0', stroke: '#1F618D', fill: 'none', 'stroke-width': 2 });
+    // 3. embudo y matraz
+    add = svgAdder('c');
+    flask(add, 85, 80, 40, { level: 0.35, color: '#AED6F1' });
+    add('path', { d: 'M55 48 L115 48 L92 82 L92 112 L78 112 L78 82 Z', fill: '#FBFCFC', stroke: '#5D6D7E', 'stroke-width': 2.5, 'stroke-linejoin': 'round' });
+    add('path', { d: 'M30 10 L60 32', stroke: AZ, 'stroke-width': 6, 'stroke-linecap': 'round' });
+    add('path', { d: 'M8 0 L44 26 L34 36 L0 12 Z', fill: '#FBFCFC', stroke: '#5D6D7E', 'stroke-width': 2 });
+    // 4. enrasar: matraz con el líquido en el aforo, cuentagotas y ojo
+    add = svgAdder('d');
+    const f = flask(add, 75, 60, 40, { level: 'aforo', color: '#AED6F1' });
+    add('rect', { x: 68, y: 10, width: 14, height: 40, rx: 3, fill: '#FBFCFC', stroke: '#5D6D7E', 'stroke-width': 2 });
+    add('rect', { x: 66, y: 0, width: 18, height: 14, rx: 6, fill: '#C0392B' });
+    add('circle', { cx: 75, cy: 58, r: 3, fill: AZ });
+    add('line', { x1: 98, y1: f.mark, x2: 124, y2: f.mark, stroke: '#525252', 'stroke-width': 1.5, 'stroke-dasharray': '4 3' });
+    add('path', { d: `M128 ${f.mark} Q144 ${f.mark - 13} 160 ${f.mark} Q144 ${f.mark + 13} 128 ${f.mark} Z`, fill: '#FBFCFC', stroke: '#23373B', 'stroke-width': 2 });
+    add('circle', { cx: 138, cy: f.mark, r: 4.5, fill: '#23373B' });
+    // 5. matraz tapado con etiqueta
+    add = svgAdder('e');
+    const g = flask(add, 85, 60, 40, { level: 'aforo', color: '#AED6F1', stopper: true });
+    add('rect', { x: 52, y: g.cy - 14, width: 66, height: 40, rx: 4, fill: '#FFFFFF', stroke: '#5D6D7E', 'stroke-width': 1.5 });
+    chemText(add, 85, g.cy + 2, 'CuSO_4', { 'font-size': 13 });
+    label(add, 85, g.cy + 19, '1 g/L', { 'font-size': 12, 'font-weight': 400 });
+</script>
+</body>
+</html>

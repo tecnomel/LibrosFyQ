@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Pictogramas de peligro</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="810" height="360"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const K = '#1C2833';
+    // Rombo rojo de los pictogramas SGA (GHS) centrado en (x, y)
+    function diamond(x, y, r = 58) {
+        add('path', { d: `M${x} ${y - r} L${x + r} ${y} L${x} ${y + r} L${x - r} ${y} Z`, fill: '#fff', stroke: '#E31B23', 'stroke-width': 8, 'stroke-linejoin': 'round' });
+    }
+    const P = {
+        explosivo(x, y) {   // bomba que estalla
+            add('circle', { cx: x + 4, cy: y + 10, r: 13, fill: K });
+            for (let a = 0; a < 360; a += 30) {
+                const [x1, y1] = pol(x + 4, y + 10, 16, a), [x2, y2] = pol(x + 4, y + 10, a % 60 ? 24 : 30, a);
+                add('line', { x1, y1, x2, y2, stroke: K, 'stroke-width': 3 });
+            }
+            [[-18, -14], [16, -18], [-22, 14]].forEach(([dx, dy]) => add('rect', { x: x + dx, y: y + dy, width: 6, height: 6, fill: K, transform: `rotate(30 ${x + dx} ${y + dy})` }));
+        },
+        llama(x, y) {
+            add('path', { d: `M${x} ${y - 28} C ${x + 18} ${y - 8}, ${x + 20} ${y + 8}, ${x + 12} ${y + 18} C ${x + 14} ${y + 4}, ${x + 6} ${y}, ${x + 4} ${y - 4} C ${x + 6} ${y + 10}, ${x - 2} ${y + 14}, ${x - 4} ${y + 18} C ${x - 18} ${y + 10}, ${x - 16} ${y - 10}, ${x} ${y - 28} Z`, fill: K });
+            add('rect', { x: x - 22, y: y + 22, width: 44, height: 6, fill: K });
+        },
+        gas(x, y) {   // botella de gas
+            add('rect', { x: x - 26, y: y - 6, width: 52, height: 18, rx: 9, fill: K, transform: `rotate(-20 ${x} ${y})` });
+            add('rect', { x: x + 24, y: y - 18, width: 10, height: 10, fill: K, transform: `rotate(-20 ${x} ${y})` });
+        },
+        corrosivo(x, y) {
+            add('path', { d: `M${x - 30} ${y - 22} L${x - 14} ${y - 22} L${x - 14} ${y - 8} L${x - 30} ${y - 8} Z`, fill: K, transform: `rotate(-25 ${x - 22} ${y - 15})` });
+            add('path', { d: `M${x + 8} ${y - 24} L${x + 24} ${y - 24} L${x + 24} ${y - 10} L${x + 8} ${y - 10} Z`, fill: K, transform: `rotate(25 ${x + 16} ${y - 17})` });
+            [[x - 22, y - 2], [x - 22, y + 6], [x + 16, y - 4], [x + 16, y + 4]].forEach(([a, b]) => add('circle', { cx: a, cy: b, r: 2.5, fill: K }));
+            add('rect', { x: x - 32, y: y + 12, width: 20, height: 8, fill: K });
+            add('path', { d: `M${x + 4} ${y + 12} L${x + 32} ${y + 12} L${x + 32} ${y + 22} L${x + 4} ${y + 22} Z`, fill: K });
+            add('path', { d: `M${x + 8} ${y + 12} q 4 -6 8 0 q 4 -6 8 0`, fill: '#fff' });
+        },
+        toxico(x, y) {   // calavera
+            add('circle', { cx: x, cy: y - 8, r: 15, fill: K });
+            add('rect', { x: x - 9, y: y + 2, width: 18, height: 10, rx: 3, fill: K });
+            add('circle', { cx: x - 6, cy: y - 8, r: 4.5, fill: '#fff' }); add('circle', { cx: x + 6, cy: y - 8, r: 4.5, fill: '#fff' });
+            add('line', { x1: x - 26, y1: y + 14, x2: x + 26, y2: y + 30, stroke: K, 'stroke-width': 6, 'stroke-linecap': 'round' });
+            add('line', { x1: x + 26, y1: y + 14, x2: x - 26, y2: y + 30, stroke: K, 'stroke-width': 6, 'stroke-linecap': 'round' });
+        },
+        exclamacion(x, y) {
+            add('path', { d: `M${x - 6} ${y - 28} L${x + 6} ${y - 28} L${x + 3} ${y + 10} L${x - 3} ${y + 10} Z`, fill: K });
+            add('circle', { cx: x, cy: y + 22, r: 6, fill: K });
+        },
+        ambiente(x, y) {   // árbol seco y pez
+            add('line', { x1: x - 14, y1: y + 20, x2: x - 14, y2: y - 22, stroke: K, 'stroke-width': 5 });
+            [[-14, -10, -30, -24], [-14, -2, 4, -18], [-14, 6, -28, -2]].forEach(([a, b, c, d]) => add('line', { x1: x + a, y1: y + b, x2: x + c, y2: y + d, stroke: K, 'stroke-width': 3 }));
+            add('ellipse', { cx: x + 14, cy: y + 18, rx: 13, ry: 6, fill: K });
+            add('path', { d: `M${x + 26} ${y + 18} L${x + 34} ${y + 12} L${x + 34} ${y + 24} Z`, fill: K });
+            add('line', { x1: x - 34, y1: y + 28, x2: x + 34, y2: y + 28, stroke: K, 'stroke-width': 3 });
+        },
+        salud(x, y) {   // silueta con estrella en el pecho
+            add('circle', { cx: x, cy: y - 20, r: 9, fill: K });
+            add('path', { d: `M${x - 22} ${y + 30} L${x - 22} ${y + 2} Q ${x - 20} ${y - 8} ${x} ${y - 8} Q ${x + 20} ${y - 8} ${x + 22} ${y + 2} L${x + 22} ${y + 30} Z`, fill: K });
+            let d = ''; for (let k = 0; k < 16; k++) { const [px, py] = pol(x, y + 10, k % 2 ? 4 : 11, k * 22.5); d += (k ? 'L' : 'M') + px + ' ' + py; }
+            add('path', { d: d + 'Z', fill: '#fff' });
+        },
+    };
+    const items = [['explosivo', 'Explosivo'], ['llama', 'Inflamable'], ['gas', 'Gas a presión'], ['corrosivo', 'Corrosivo'],
+                   ['toxico', 'Toxicidad aguda'], ['exclamacion', 'Nocivo o irritante'], ['ambiente', 'Peligro para el'], ['salud', 'Peligro grave']];
+    const sub = { ambiente: 'medio ambiente', salud: 'para la salud' };
+    items.forEach(([k, t], i) => {
+        const x = 100 + (i % 4) * 205, y = 75 + Math.floor(i / 4) * 165;
+        diamond(x, y);
+        P[k](x, y);
+        label(add, x, y + 82, t, { 'font-size': 14 });
+        if (sub[k]) label(add, x, y + 99, sub[k], { 'font-size': 14 });
+    });
+</script>
+</body>
+</html>

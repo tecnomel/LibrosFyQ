@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_39 · Esterificación: ácido + alcohol</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Ácido carboxílico + alcohol → éster + agua.
+const svg = crearFigura(640, 110);
+const R = { Xe: { t: "R", color: "#222" }, Kr: { t: "R'", color: "#222" } };
+molecula(svg, "[Xe]C(=O)O", 60, 55, { grupos: R });
+mas(svg, 125, 55); molecula(svg, "[Kr]O", 175, 55, { grupos: R });
+flechaR(svg, 230, 55, 340, "condensación");
+molecula(svg, "[Xe]C(=O)O[Kr]", 430, 55, { grupos: R });
+mas(svg, 520, 55); fq(svg, 570, 61, ["H2O"]);
+</script>
+</body>
+</html>

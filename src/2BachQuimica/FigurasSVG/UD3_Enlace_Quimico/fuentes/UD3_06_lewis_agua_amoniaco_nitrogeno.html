@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_06 · Lewis: agua, amoniaco y nitrógeno</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+</head>
+<body>
+<script>
+// Electrones compartidos en H2O, NH3 y N2. Cada círculo encierra la capa de valencia
+// de un átomo: todos completan su octeto (el H, su dueto).
+// Rojo: electrones del átomo central; azul (aspas): electrones del otro átomo.
+const svg = crearFigura(760, 200);
+const ROJO = "#D32F2F", AZUL = "#1E6FC0";
+const circ = (cx, cy, r) => el("circle", { cx, cy, r, fill: "none", stroke: "#555", "stroke-width": 1.4 }, svg);
+const sim = (x, y, s) => texto(svg, x, y + 9, s, { "text-anchor": "middle", "font-size": 24, fill: "#1A1A1A", "font-family": LEWIS.fuente });
+const dot = (x, y, c, f) => punto1(svg, x, y, c, f);
+
+// H2O
+let cx = 120, cy = 110;
+circ(cx, cy, 36); circ(cx - 62, cy, 26); circ(cx + 62, cy, 26);
+sim(cx, cy, "O"); sim(cx - 66, cy, "H"); sim(cx + 66, cy, "H");
+[[-7, -24], [7, -24], [-7, 24], [7, 24]].forEach(([dx, dy]) => dot(cx + dx, cy + dy, ROJO));
+dot(cx - 34, cy - 6, ROJO); dot(cx - 34, cy + 6, AZUL, "aspa");
+dot(cx + 34, cy - 6, ROJO); dot(cx + 34, cy + 6, AZUL, "aspa");
+texto(svg, cx, 190, [{ t: "H" }, { t: "2", sub: true }, { t: "O" }], { "text-anchor": "middle", "font-size": 16, fill: COLORES.gris });
+
+// NH3
+cx = 380; cy = 110;
+circ(cx, cy, 36); circ(cx - 62, cy, 26); circ(cx + 62, cy, 26); circ(cx, cy - 62, 26);
+sim(cx, cy, "N"); sim(cx - 66, cy, "H"); sim(cx + 66, cy, "H"); sim(cx, cy - 66, "H");
+[[-7, 24], [7, 24]].forEach(([dx, dy]) => dot(cx + dx, cy + dy, ROJO));
+dot(cx - 34, cy - 6, ROJO); dot(cx - 34, cy + 6, AZUL, "aspa");
+dot(cx + 34, cy - 6, ROJO); dot(cx + 34, cy + 6, AZUL, "aspa");
+dot(cx - 6, cy - 34, ROJO); dot(cx + 6, cy - 34, AZUL, "aspa");
+texto(svg, cx, 190, [{ t: "NH" }, { t: "3", sub: true }], { "text-anchor": "middle", "font-size": 16, fill: COLORES.gris });
+
+// N2 (triple enlace)
+cx = 640; cy = 110;
+circ(cx - 32, cy, 42); circ(cx + 32, cy, 42);
+sim(cx - 46, cy, "N"); sim(cx + 46, cy, "N");
+dot(cx - 72, cy - 6, AZUL, "aspa"); dot(cx - 72, cy + 6, AZUL, "aspa");
+dot(cx + 72, cy - 6, ROJO); dot(cx + 72, cy + 6, ROJO);
+[-14, 0, 14].forEach(dy => { dot(cx - 6, cy + dy, AZUL, "aspa"); dot(cx + 6, cy + dy, ROJO); });
+texto(svg, cx, 190, [{ t: "N" }, { t: "2", sub: true }], { "text-anchor": "middle", "font-size": 16, fill: COLORES.gris });
+</script>
+</body>
+</html>

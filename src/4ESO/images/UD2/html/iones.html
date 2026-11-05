@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Formación de iones</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1180px; }
+    .row { display: flex; gap: 16px; }
+    .card { flex: 1; text-align: center; }
+    .t { font-size: 15px; color: var(--grey); }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>El sodio pierde un electrón → catión</h2><svg id="a" width="540" height="270"></svg></div>
+        <div class="card"><h2>El cloro gana un electrón → anión</h2><svg id="b" width="540" height="270"></svg></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // Átomo con capas (2, 8, ...) electrones: shells = [n1, n2, n3]
+    function atom(add, cx, cy, Z, shells, label, sub, color) {
+        shells.forEach((n, i) => {
+            const R = 30 + i * 22;
+            add('circle', { cx, cy, r: R, fill: 'none', stroke: '#AAB7B8', 'stroke-width': 1.5 });
+            for (let k = 0; k < n; k++) { const a = -Math.PI / 2 + k * 2 * Math.PI / n; particle(add, cx + R * Math.cos(a), cy + R * Math.sin(a), 'e', 6); }
+        });
+        add('circle', { cx, cy, r: 17, fill: '#C0392B' });
+        add('text', { x: cx, y: cy + 5, 'text-anchor': 'middle', 'font-size': 13, 'font-weight': 800, fill: '#fff' }, Z + '+');
+        add('text', { x: cx, y: cy + 118, 'text-anchor': 'middle', 'font-size': 20, 'font-weight': 800, fill: color }, label);
+        add('text', { x: cx, y: cy + 138, 'text-anchor': 'middle', 'font-size': 14, fill: '#525252' }, sub);
+    }
+    const arrow = (add, x1, x2, y, txt, col) => {
+        add('line', { x1, y1: y, x2: x2 - 12, y2: y, stroke: col, 'stroke-width': 4 });
+        add('path', { d: `M${x2 - 14} ${y - 9} L${x2} ${y} L${x2 - 14} ${y + 9} Z`, fill: col });
+        add('text', { x: (x1 + x2) / 2, y: y - 12, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 800, fill: col }, txt);
+    };
+    let add = svgAdder('a');
+    atom(add, 120, 115, 11, [2, 8, 1], 'Na', '11 p⁺ · 11 e⁻ · neutro', '#23373B');
+    arrow(add, 222, 318, 115, '− 1 e⁻', '#2471A3');
+    particle(add, 270, 150, 'e', 8);
+    atom(add, 420, 115, 11, [2, 8], 'Na⁺', '11 p⁺ · 10 e⁻ · carga +1', '#C0392B');
+    add = svgAdder('b');
+    atom(add, 120, 115, 17, [2, 8, 7], 'Cl', '17 p⁺ · 17 e⁻ · neutro', '#23373B');
+    arrow(add, 222, 318, 115, '+ 1 e⁻', '#2471A3');
+    particle(add, 270, 150, 'e', 8);
+    atom(add, 420, 115, 17, [2, 8, 8], 'Cl⁻', '17 p⁺ · 18 e⁻ · carga −1', '#2471A3');
+</script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+%! Unidad 2 — Movimiento ondulatorio: ejercicios finales (adaptados de la fuente, con datos cambiados y resueltos)
+
+\section{Ejercicios}\label{sec:ond-ejercicios}
+
+\subsection{Ecuación de una onda}
+
+\begin{exercise}
+    Una onda armónica de \qty{50}{\hertz} y \qty{0.4}{\m} de amplitud se propaga a \qty{20}{\m\per\second} en el sentido
+    positivo del eje \(X\). En el instante inicial, la elongación del origen es máxima y positiva. Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La ecuación de la onda.
+        \item La diferencia de fase entre dos puntos separados \qty{0.3}{\m}.
+        \item La velocidad y la aceleración máximas de un punto del medio.
+    \end{enumerate}
+    \begin{solu}
+        \textcolor{blue}{\(\omega = 2\pi\nu = 100\pi\ \unit{\radian\per\second}\); \(k = \omega/v = 5\pi\ \unit{\per\m}\).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \textcolor{blue}{En \(x = 0\), \(t = 0\): \(0{,}4 = 0{,}4\sen\varphi_0 \Rightarrow \varphi_0 = \pi/2\).}
+            \(\textcolor{red}{y = 0{,}4\sen\!\left(100\pi t - 5\pi x + \dfrac{\pi}{2}\right)\ \text{(SI)}}\)
+            \item \(\Delta\varphi = k\,\Delta x = 5\pi\cdot 0{,}3 = \textcolor{red}{1{,}5\pi\ \unit{\radian}}\).
+            \item \(v_{\text{máx}} = A\omega = 40\pi = \textcolor{red}{\qty{126}{\m\per\second}}\);
+            \(a_{\text{máx}} = A\omega^2 = 0{,}4\,(100\pi)^2 = \textcolor{red}{\qty{3.95e4}{\m\per\second\squared}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un foco \(F\) vibra con un m.a.s. de \qty{6}{\cm} de amplitud y \qty{25}{\hertz}, y la perturbación se propaga a
+    \qty{5}{\m\per\second}. En \(t = 0\) el foco está en su posición de equilibrio.
+    \begin{enumerate}[label=\letraminuscula]
+        \item Escribe la ecuación de la onda con la función seno y con la función coseno.
+        \item Calcula la velocidad de vibración de un punto situado a \qty{2}{\m} del foco \qty{8}{\second} después de empezar.
+    \end{enumerate}
+    \begin{solu}
+        \textcolor{blue}{\(\omega = 50\pi\ \unit{\radian\per\second}\); \(k = \omega/v = 10\pi\ \unit{\per\m}\); \(A = \qty{0.06}{\m}\).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(\textcolor{red}{y = 0{,}06\sen(50\pi t - 10\pi x)}\) \(\;=\; \textcolor{red}{0{,}06\cos\!\left(50\pi t - 10\pi x - \dfrac{\pi}{2}\right)}\) (SI).
+            \item \textcolor{blue}{La onda llega a \(x = \qty{2}{\m}\) en \(2/5 = \qty{0.4}{\second}\), así que en \(t = \qty{8}{\second}\) ese punto ya vibra.}
+            \(v_y = 0{,}06\cdot 50\pi\cos(400\pi - 20\pi) = 3\pi\cos(380\pi) = \textcolor{red}{3\pi \approx \qty{9.42}{\m\per\second}}\)
+            \textcolor{blue}{(pasa por el equilibrio con la velocidad máxima).}
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Por una cuerda se propaga la onda \(y = 15\sen(8x + 120t)\), con \(x\) e \(y\) en centímetros y \(t\) en segundos.
+    Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La velocidad de propagación y su sentido.
+        \item La velocidad transversal de un punto situado en \(x = \qty{20}{\cm}\) en \(t = \qty{4}{\second}\).
+        \item La diferencia de fase, en un instante dado, entre dos puntos separados \qty{0.5}{\cm}.
+        \item La distancia entre dos puntos cuya diferencia de fase es de \ang{45}.
+    \end{enumerate}
+    \begin{solu}
+        \textcolor{blue}{\(k = \qty{8}{\per\cm}\), \(\omega = \qty{120}{\radian\per\second}\).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(v = \dfrac{\omega}{k} = \textcolor{red}{\qty{15}{\cm\per\second}}\), \textcolor{red}{hacia las \(x\) negativas} \textcolor{blue}{(\(kx\) y \(\omega t\) tienen el mismo signo).}
+            \item \(v_y = 15\cdot 120\cos(8\cdot 20 + 120\cdot 4) = 1800\cos(640) = \textcolor{red}{\qty{1140}{\cm\per\second} = \qty{11.4}{\m\per\second}}\).
+            \item \(\Delta\varphi = k\,\Delta x = 8\cdot 0{,}5 = \textcolor{red}{\qty{4}{\radian}}\).
+            \item \(\Delta x = \dfrac{\Delta\varphi}{k} = \dfrac{\pi/4}{8} = \textcolor{red}{\qty{0.098}{\cm}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una onda de \qty{400}{\hertz} se propaga a \qty{320}{\m\per\second}. ¿Qué distancia separa dos puntos con una diferencia de
+    fase de \ang{60}? ¿Qué diferencia de fase hay entre dos elongaciones de un mismo punto separadas \qty{2}{\ms}?
+    \begin{solu}
+        \textcolor{blue}{\(\lambda = v/\nu = \qty{0.8}{\m}\).}
+        \(\Delta x = \dfrac{\pi/3}{2\pi}\,\lambda = \dfrac{\lambda}{6} = \textcolor{red}{\qty{0.133}{\m}}\).
+
+        \(\Delta\varphi = \omega\,\Delta t = 2\pi\cdot 400\cdot 0{,}002 = \textcolor{red}{1{,}6\pi\ \unit{\radian}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La ecuación de una onda es \(y = 20\sen(0{,}5t - \pi x)\) (SI). ¿Cuándo tiene velocidad máxima por primera vez un punto
+    situado a \qty{4}{\m} del foco?
+    \begin{solu}
+        \textcolor{blue}{\(v = \omega/k = 0{,}5/\pi\ \unit{\m\per\second}\): la onda tarda \(t = x/v = 4\pi/0{,}5 = 8\pi\ \unit{\second}\) en llegar.
+        La velocidad de vibración, \(v_y = A\omega\cos(0{,}5t - \pi x)\), es máxima cuando la fase es \(0\) (o \(n\pi\)):}
+        \[ 0{,}5t - 4\pi = 0 \;\Rightarrow\; \textcolor{red}{t = 8\pi \approx \qty{25.1}{\second}} \]
+        \textcolor{blue}{Justo al llegarle la onda, pasa por el equilibrio con velocidad máxima. Se repite cada medio período, \(T/2 = 2\pi\ \unit{\second}\).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Dada la onda \(y = 0{,}04\sen 2\pi(5t - 0{,}25x)\) (SI), calcula el período, la frecuencia, la longitud de onda, la
+    velocidad de propagación y la velocidad máxima de vibración de un punto.
+    \begin{solu}
+        \textcolor{blue}{Comparando con \(y = A\sen 2\pi\left(\dfrac{t}{T} - \dfrac{x}{\lambda}\right)\):}
+        \(\nu = \textcolor{red}{\qty{5}{\hertz}}\); \(T = \textcolor{red}{\qty{0.2}{\second}}\); \(\lambda = 1/0{,}25 = \textcolor{red}{\qty{4}{\m}}\);
+        \(v = \lambda\nu = \textcolor{red}{\qty{20}{\m\per\second}}\); \(v_{y,\text{máx}} = A\omega = 0{,}04\cdot 10\pi = \textcolor{red}{\qty{1.26}{\m\per\second}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una onda armónica de \qty{200}{\hertz}, \qty{400}{\m\per\second} y \qty{10}{\cm} de amplitud avanza en el sentido positivo
+    del eje \(X\). En el instante inicial, la partícula del origen está en su elongación máxima positiva.
+    \begin{enumerate}[label=\letraminuscula]
+        \item Escribe la ecuación de la onda.
+        \item Calcula la diferencia de fase entre dos puntos separados \qty{3}{\m}.
+        \item ¿Cuál es la velocidad máxima de vibración?
+    \end{enumerate}
+    \begin{solu}
+        \textcolor{blue}{\(\omega = 400\pi\ \unit{\radian\per\second}\); \(k = \omega/v = \pi\ \unit{\per\m}\); \(\varphi_0 = \pi/2\).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(\textcolor{red}{y = 0{,}1\sen\!\left(400\pi t - \pi x + \dfrac{\pi}{2}\right)\ \text{(SI)}}\)
+            \item \(\Delta\varphi = \pi\cdot 3 = \textcolor{red}{3\pi\ \unit{\radian}}\): \textcolor{blue}{están en oposición de fase (\(\lambda = \qty{2}{\m}\) y los separa \(1{,}5\lambda\)).}
+            \item \(v_{\text{máx}} = A\omega = 0{,}1\cdot 400\pi = \textcolor{red}{\qty{126}{\m\per\second}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Escribe la ecuación de una onda de \qty{20}{\cm} de amplitud y \qty{5}{\hertz} que avanza hacia la derecha a
+    \qty{10}{\m\per\second}, sabiendo que en \(t = \qty{1}{\second}\) la partícula situada a \qty{1}{\m} del origen alcanza
+    su elongación máxima positiva. ¿En qué instantes tiene esa partícula aceleración máxima?
+    \begin{solu}
+        \textcolor{blue}{\(\omega = 10\pi\ \unit{\radian\per\second}\); \(k = \omega/v = \pi\ \unit{\per\m}\). En \(x = 1\), \(t = 1\) la fase debe valer \(\pi/2 + 2n\pi\):}
+        \[ 10\pi - \pi + \varphi_0 = \dfrac{\pi}{2} + 2n\pi \;\Rightarrow\; \varphi_0 = \dfrac{3\pi}{2}\ \text{(tomando } n = 5\text{)} \]
+        \(\textcolor{red}{y = 0{,}2\sen\!\left(10\pi t - \pi x + \dfrac{3\pi}{2}\right)\ \text{(SI)}}\)
+
+        \textcolor{blue}{La aceleración es máxima en los extremos, cuando \(10\pi t - \pi + \dfrac{3\pi}{2} = \dfrac{\pi}{2} + n\pi\), es decir, \(10\pi t = n\pi\):}
+        \(\textcolor{red}{t = 0{,}1\,n\ \unit{\second}}\) \textcolor{blue}{(cada medio período, a partir de \(t = \qty{0.1}{\second}\), que es cuando le llega la onda).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una piedra cae en un estanque y produce una onda que tarda \qty{4}{\second} en recorrer \qty{8}{\m}. Si la distancia
+    entre dos crestas consecutivas es de \qty{40}{\cm}, calcula la velocidad de propagación, la frecuencia y la pulsación.
+    \begin{solu}
+        \(v = \dfrac{8}{4} = \textcolor{red}{\qty{2}{\m\per\second}}\); \(\nu = \dfrac{v}{\lambda} = \dfrac{2}{0{,}4} = \textcolor{red}{\qty{5}{\hertz}}\);
+        \(\omega = 2\pi\nu = \textcolor{red}{10\pi\ \unit{\radian\per\second}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Si se triplica la longitud de onda de una onda sin cambiar su frecuencia, ¿cómo varía su velocidad de propagación? ¿Y la
+    velocidad máxima de vibración de las partículas del medio?
+    \begin{solu}
+        \(v = \lambda\nu\): \textcolor{red}{la velocidad de propagación se triplica} \textcolor{blue}{(para eso habría que cambiar de medio)}.
+        \(v_{y,\text{máx}} = A\omega = 2\pi\nu A\) \textcolor{red}{no cambia}: \textcolor{blue}{solo depende de la amplitud y de la frecuencia.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una onda en la superficie del agua tiene \qty{8}{\hertz}, \qty{4}{\cm} de longitud de onda, \qty{2}{\cm} de amplitud y
+    fase inicial nula.
+    \begin{enumerate}[label=\letraminuscula]
+        \item Escribe su ecuación.
+        \item Calcula la distancia mínima entre dos puntos cuyas fases difieren \(\pi/3\) rad.
+        \item ¿A qué altura está un corcho situado a \qty{15}{\cm} del foco en \(t = \qty{1.5}{\second}\)?
+    \end{enumerate}
+    \begin{solu}
+        \textcolor{blue}{\(\omega = 16\pi\ \unit{\radian\per\second}\); \(k = 2\pi/4 = \pi/2\ \unit{\per\cm}\).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(\textcolor{red}{y = 2\sen\!\left(16\pi t - \dfrac{\pi}{2}x\right)}\) (\(x\), \(y\) en cm; \(t\) en s).
+            \item \(\Delta x = \dfrac{\lambda}{6} = \textcolor{red}{\qty{0.67}{\cm}}\).
+            \item \(y = 2\sen(24\pi - 7{,}5\pi) = 2\sen(16{,}5\pi) = \textcolor{red}{\qty{2}{\cm}}\): \textcolor{blue}{está en una cresta.}
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Dada la onda \(y = 0{,}5\sen 2\pi(4t - 0{,}5x)\) (SI), halla el período, la frecuencia, la longitud de onda, la velocidad de
+    propagación y la amplitud. Escribe la ecuación de una onda igual que se propague en sentido contrario.
+    \begin{solu}
+        \(T = \textcolor{red}{\qty{0.25}{\second}}\); \(\nu = \textcolor{red}{\qty{4}{\hertz}}\); \(\lambda = \textcolor{red}{\qty{2}{\m}}\);
+        \(v = \lambda\nu = \textcolor{red}{\qty{8}{\m\per\second}}\); \(A = \textcolor{red}{\qty{0.5}{\m}}\).
+
+        \textcolor{red}{\(y = 0{,}5\sen 2\pi(4t + 0{,}5x)\)}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    El período de una onda transversal en una cuerda es de \qty{4}{\ms}. Dos puntos consecutivos cuya diferencia de fase es
+    \(\pi/2\) rad están separados \qty{15}{\cm}. Calcula la longitud de onda y la velocidad de propagación.
+    \begin{solu}
+        \textcolor{blue}{Una diferencia de fase de \(\pi/2\) corresponde a \(\lambda/4\):} \(\lambda = 4\cdot 0{,}15 = \textcolor{red}{\qty{0.6}{\m}}\);
+        \(v = \dfrac{\lambda}{T} = \dfrac{0{,}6}{0{,}004} = \textcolor{red}{\qty{150}{\m\per\second}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Energía, intensidad y sonido}
+
+\begin{exercise}
+    Un altavoz emite con una potencia de \qty{300}{\watt}. ¿Qué nivel de intensidad sonora hay a \qty{5}{\m}? ¿Y a \qty{10}{\m}?
+    \begin{solu}
+        \(I_5 = \dfrac{300}{4\pi\cdot 25} = \qty{0.955}{\watt\per\square\m} \Rightarrow \beta = 10\log\dfrac{0{,}955}{10^{-12}} = \textcolor{red}{\qty{119.8}{\deci\bel}}\).
+
+        \(I_{10} = \dfrac{I_5}{4} = \qty{0.239}{\watt\per\square\m} \Rightarrow \beta = \textcolor{red}{\qty{113.8}{\deci\bel}}\)
+        \textcolor{blue}{(al doblar la distancia el nivel baja \qty{6}{\deci\bel}).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    En un partido, un espectador canta un gol con un nivel de \qty{45}{\deci\bel}. ¿Qué nivel se alcanzaría si lo cantaran a la
+    vez y con la misma intensidad 2000 espectadores? ¿Cuántos harían falta para llegar a \qty{80}{\deci\bel}?
+    \begin{solu}
+        \textcolor{blue}{Las intensidades se suman: \(I = N I_1\), así que \(\beta = \beta_1 + 10\log N\).}
+
+        \(\beta = 45 + 10\log 2000 = \textcolor{red}{\qty{78}{\deci\bel}}\).
+        \textcolor{blue}{Para \qty{80}{\deci\bel}:} \(10\log N = 35 \Rightarrow N = 10^{3{,}5} \approx \textcolor{red}{3162}\) espectadores.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una ventana de \qty{2}{\square\m} da a una calle con un nivel de ruido de \qty{70}{\deci\bel}. ¿Qué potencia sonora entra
+    por la ventana abierta?
+    \begin{solu}
+        \(I = 10^{-12}\cdot 10^{7} = \qty{e-5}{\watt\per\square\m}\); \(P = I S = \textcolor{red}{\qty{2e-5}{\watt}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Se duplica la frecuencia de una onda sonora y se triplica su amplitud. ¿Por cuánto se multiplica su intensidad? ¿Cuánto
+    aumenta su nivel de intensidad sonora?
+    \begin{solu}
+        \textcolor{blue}{\(I \propto \nu^2 A^2\):} \(\dfrac{I'}{I} = 2^2\cdot 3^2 = \textcolor{red}{36}\).
+        \(\Delta\beta = 10\log 36 = \textcolor{red}{\qty{15.6}{\deci\bel}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un foco puntual de \qty{20}{\watt} emite sonido por igual en todas direcciones. Calcula la intensidad y el nivel de
+    intensidad sonora a \qty{5}{\m} del foco.
+    \begin{solu}
+        \(I = \dfrac{20}{4\pi\cdot 25} = \textcolor{red}{\qty{0.0637}{\watt\per\square\m}}\);
+        \(\beta = 10\log\dfrac{0{,}0637}{10^{-12}} = \textcolor{red}{\qty{108}{\deci\bel}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La intensidad de un sonido es cuatro veces la de otro. ¿Qué diferencia hay entre sus niveles de intensidad sonora?
+    \begin{solu}
+        \(\Delta\beta = 10\log\dfrac{I_1}{I_2} = 10\log 4 = \textcolor{red}{\qty{6.0}{\deci\bel}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una fuente sonora puntual emite con una potencia de \qty{50}{\watt}. Calcula la intensidad a \qty{10}{\m}. ¿A qué
+    distancia el nivel de intensidad sonora es de \qty{110}{\deci\bel}?
+    \begin{solu}
+        \(I_{10} = \dfrac{50}{4\pi\cdot 100} = \textcolor{red}{\qty{0.0398}{\watt\per\square\m}}\).
+
+        \textcolor{blue}{Con \qty{110}{\deci\bel}: \(I = 10^{-12}\cdot 10^{11} = \qty{0.1}{\watt\per\square\m}\).}
+        \(r = \sqrt{\dfrac{P}{4\pi I}} = \sqrt{\dfrac{50}{4\pi\cdot 0{,}1}} = \textcolor{red}{\qty{6.3}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Ondas estacionarias y armónicos}
+
+\begin{exercise}
+    La ecuación de una onda estacionaria es \(y = 0{,}6\sen\left(\dfrac{\pi}{5}x\right)\cos(30\pi t)\), con \(x\) e \(y\) en
+    centímetros y \(t\) en segundos. Determina:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La frecuencia de las ondas que la forman.
+        \item La distancia entre dos nodos consecutivos y entre un nodo y el vientre siguiente.
+        \item La velocidad de vibración del punto \(x = \qty{2.5}{\cm}\) en \(t = \dfrac{1}{60}\ \unit{\second}\).
+    \end{enumerate}
+    \begin{solu}
+        \textcolor{blue}{\(k = \pi/5\ \unit{\per\cm} \Rightarrow \lambda = \qty{10}{\cm}\); \(\omega = 30\pi\ \unit{\radian\per\second}\).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(\nu = \dfrac{\omega}{2\pi} = \textcolor{red}{\qty{15}{\hertz}}\).
+            \item Entre nodos: \(\lambda/2 = \textcolor{red}{\qty{5}{\cm}}\); nodo-vientre: \(\lambda/4 = \textcolor{red}{\qty{2.5}{\cm}}\).
+            \item \(v_y = -0{,}6\cdot 30\pi\sen\left(\dfrac{\pi}{5}\cdot 2{,}5\right)\sen\left(\dfrac{30\pi}{60}\right) = -18\pi\cdot 1\cdot 1 = \textcolor{red}{\qty{-56.5}{\cm\per\second}}\)
+            \textcolor{blue}{(es un vientre y pasa por el equilibrio).}
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    En un sistema de ondas estacionarias, dos nodos consecutivos están separados \qty{30}{\cm}. Si las ondas se propagan a
+    \qty{240}{\m\per\second}, ¿cuál es su frecuencia?
+    \begin{solu}
+        \(\lambda = 2\cdot 0{,}30 = \qty{0.6}{\m}\); \(\nu = \dfrac{v}{\lambda} = \textcolor{red}{\qty{400}{\hertz}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    En una cuerda se forma la onda estacionaria \(y = 6\sen\left(\dfrac{\pi}{4}x\right)\cos(50\pi t)\), con \(x\) e \(y\) en
+    centímetros y \(t\) en segundos. Calcula la amplitud y la velocidad de las ondas que la forman.
+    \begin{solu}
+        \(A = \dfrac{6}{2} = \textcolor{red}{\qty{3}{\cm}}\). \textcolor{blue}{\(\lambda = 2\pi/k = \qty{8}{\cm}\), \(\nu = \qty{25}{\hertz}\):}
+        \(v = \lambda\nu = \textcolor{red}{\qty{200}{\cm\per\second} = \qty{2}{\m\per\second}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La ecuación de una onda estacionaria en una cuerda es \(y = 0{,}3\sen\left(\dfrac{\pi}{2}x\right)\cos(2\pi t)\) (SI). Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La velocidad de las ondas que la forman.
+        \item La distancia entre un nodo y el vientre siguiente.
+        \item La velocidad del punto \(x = \qty{1.5}{\m}\) en \(t = \qty{1.125}{\second}\).
+        \item La aceleración máxima de ese punto.
+    \end{enumerate}
+    \begin{solu}
+        \textcolor{blue}{\(k = \pi/2 \Rightarrow \lambda = \qty{4}{\m}\); \(\omega = 2\pi \Rightarrow \nu = \qty{1}{\hertz}\).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(v = \lambda\nu = \textcolor{red}{\qty{4}{\m\per\second}}\).
+            \item \(\lambda/4 = \textcolor{red}{\qty{1}{\m}}\).
+            \item \(v_y = -0{,}3\cdot 2\pi\sen(0{,}75\pi)\sen(2{,}25\pi) = -0{,}6\pi\cdot 0{,}707\cdot 0{,}707 = \textcolor{red}{\qty{-0.94}{\m\per\second}}\).
+            \item \textcolor{blue}{Su amplitud es \(A_r = 0{,}3\sen(0{,}75\pi) = \qty{0.212}{\m}\):} \(a_{\text{máx}} = A_r\omega^2 = 0{,}212\cdot 4\pi^2 = \textcolor{red}{\qty{8.37}{\m\per\second\squared}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una cuerda con los extremos fijos vibra según \(y = 0{,}02\sen(10\pi x)\sen(60\pi t)\) (SI). Calcula la velocidad de las
+    ondas que la forman, la distancia entre dos nodos consecutivos y la velocidad del punto \(x = \qty{0.25}{\m}\) en
+    \(t = \qty{0.5}{\second}\).
+    \begin{solu}
+        \textcolor{blue}{\(\lambda = 2\pi/10\pi = \qty{0.2}{\m}\); \(\nu = 60\pi/2\pi = \qty{30}{\hertz}\).}
+        \(v = \lambda\nu = \textcolor{red}{\qty{6}{\m\per\second}}\); entre nodos: \(\lambda/2 = \textcolor{red}{\qty{0.1}{\m}}\).
+
+        \(v_y = 0{,}02\cdot 60\pi\sen(2{,}5\pi)\cos(30\pi) = 1{,}2\pi\cdot 1\cdot 1 = \textcolor{red}{\qty{3.77}{\m\per\second}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una cuerda con un extremo fijo en \(x = 0\) vibra formando una onda estacionaria. La distancia entre el segundo vientre y
+    el cuarto nodo (contando el extremo fijo como primer nodo) es de \qty{45}{\cm}. Halla la longitud de onda.
+    \begin{solu}
+        \textcolor{blue}{Nodos en \(0, \lambda/2, \lambda, 3\lambda/2\ldots\): el cuarto está en \(3\lambda/2\). Vientres en \(\lambda/4, 3\lambda/4\ldots\): el segundo está en \(3\lambda/4\).}
+        \[ \dfrac{3\lambda}{2} - \dfrac{3\lambda}{4} = \dfrac{3\lambda}{4} = 45 \;\Rightarrow\; \textcolor{red}{\lambda = \qty{60}{\cm}} \]
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una cuerda fija por sus dos extremos vibra según \(y = 4\sen\left(\dfrac{\pi}{3}x\right)\cos(40\pi t)\), con \(x\) e \(y\)
+    en centímetros y \(t\) en segundos.
+    \begin{enumerate}[label=\letraminuscula]
+        \item Halla la distancia entre dos vientres consecutivos.
+        \item Calcula la amplitud y la frecuencia de las ondas que la forman.
+        \item Halla la elongación del punto \(x = \qty{4.5}{\cm}\) en \(t = \qty{0.1}{\second}\).
+    \end{enumerate}
+    \begin{solu}
+        \textcolor{blue}{\(\lambda = 2\pi/(\pi/3) = \qty{6}{\cm}\).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(\lambda/2 = \textcolor{red}{\qty{3}{\cm}}\).
+            \item \(A = \textcolor{red}{\qty{2}{\cm}}\); \(\nu = 40\pi/2\pi = \textcolor{red}{\qty{20}{\hertz}}\).
+            \item \(y = 4\sen(1{,}5\pi)\cos(4\pi) = 4\cdot(-1)\cdot 1 = \textcolor{red}{\qty{-4}{\cm}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Por una cuerda de \qty{3}{\m}, fija por sus dos extremos, las ondas viajan a \qty{60}{\m\per\second}. Se forma el cuarto
+    armónico, de ecuación \(y = 0{,}1\sen(kx)\cos(\omega t)\) (SI).
+    \begin{enumerate}[label=\letraminuscula]
+        \item Calcula \(k\), \(\omega\) y la frecuencia.
+        \item ¿Cuál es la amplitud de un punto situado a \qty{0.5}{\m} de un extremo?
+        \item ¿Qué frecuencia habría que usar para formar el segundo armónico?
+        \item Escribe las ecuaciones de las dos ondas que forman la onda estacionaria.
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \textcolor{blue}{\(\lambda_4 = 2L/4 = \qty{1.5}{\m}\).} \(k = \dfrac{2\pi}{1{,}5} = \textcolor{red}{\dfrac{4\pi}{3}\ \unit{\per\m}}\);
+            \(\nu = \dfrac{60}{1{,}5} = \textcolor{red}{\qty{40}{\hertz}}\); \(\omega = \textcolor{red}{80\pi\ \unit{\radian\per\second}}\).
+            \item \(A_r = 0{,}1\left|\sen\left(\dfrac{4\pi}{3}\cdot 0{,}5\right)\right| = 0{,}1\sen\dfrac{2\pi}{3} = \textcolor{red}{\qty{0.087}{\m}}\).
+            \item \(\nu_2 = 2\,\dfrac{v}{2L} = \textcolor{red}{\qty{20}{\hertz}}\).
+            \item \textcolor{blue}{Como \(\sen(a + b) + \sen(a - b) = 2\sen a\cos b\), con \(a = kx\), \(b = \omega t\):}
+            \[ \textcolor{red}{y_1 = 0{,}05\sen\!\left(\dfrac{4\pi}{3}x + 80\pi t\right)} \qquad \textcolor{red}{y_2 = 0{,}05\sen\!\left(\dfrac{4\pi}{3}x - 80\pi t\right)} \]
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una cuerda de piano mide \qty{50}{\cm}, está fija por sus dos extremos y las ondas viajan en ella a \qty{220}{\m\per\second}.
+    Calcula su frecuencia fundamental y las de su segundo y tercer armónicos.
+    \begin{solu}
+        \(\nu_1 = \dfrac{v}{2L} = \dfrac{220}{1} = \textcolor{red}{\qty{220}{\hertz}}\); \(\nu_2 = \textcolor{red}{\qty{440}{\hertz}}\); \(\nu_3 = \textcolor{red}{\qty{660}{\hertz}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un tubo de \qty{34}{\cm} está cerrado por un extremo y abierto por el otro. Calcula las tres frecuencias más bajas en
+    las que resuena (\(v = \qty{340}{\m\per\second}\)).
+    \begin{solu}
+        \textcolor{blue}{Como una cuerda con un extremo fijo y otro libre: \(\nu = (2n - 1)\dfrac{v}{4L}\), con \(\dfrac{v}{4L} = \dfrac{340}{1{,}36} = \qty{250}{\hertz}\).}
+        \(\textcolor{red}{\qty{250}{\hertz}}\), \(\textcolor{red}{\qty{750}{\hertz}}\) y \(\textcolor{red}{\qty{1250}{\hertz}}\) \textcolor{blue}{(solo armónicos impares).}
+    \end{solu}
+\end{exercise}
+
+\subsection{Interferencias, refracción y efecto Doppler}
+
+\begin{exercise}
+    Dos focos coherentes vibran en fase y emiten ondas de \qty{8}{\cm} de longitud de onda en la superficie de un estanque.
+    Un punto \(P\) está a \qty{30}{\cm} de un foco y a \qty{42}{\cm} del otro; otro punto \(Q\), a \qty{30}{\cm} y \qty{46}{\cm}.
+    ¿Qué ocurre en cada uno?
+    \begin{solu}
+        \textcolor{blue}{En \(P\): \(\Delta x = \qty{12}{\cm} = 1{,}5\lambda = 3\cdot\dfrac{\lambda}{2}\)}, \textcolor{red}{interferencia destructiva} (no vibra).
+
+        \textcolor{blue}{En \(Q\): \(\Delta x = \qty{16}{\cm} = 2\lambda\)}, \textcolor{red}{interferencia constructiva} (vibra con amplitud doble).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una onda que viaja por la superficie del agua a \qty{30}{\cm\per\second} pasa a una zona menos profunda donde su velocidad
+    es \qty{20}{\cm\per\second}. Si llega con un ángulo de incidencia de \ang{40}, ¿con qué ángulo se refracta? Si su
+    frecuencia es \qty{5}{\hertz}, ¿cuánto vale su longitud de onda en cada zona?
+    \begin{solu}
+        \(\sen\hat r = \dfrac{20}{30}\sen\ang{40} = 0{,}429 \Rightarrow \textcolor{red}{\hat r = \ang{25.4}}\) \textcolor{blue}{(se acerca a la normal).}
+
+        \textcolor{blue}{La frecuencia no cambia:} \(\lambda_1 = \dfrac{30}{5} = \textcolor{red}{\qty{6}{\cm}}\); \(\lambda_2 = \dfrac{20}{5} = \textcolor{red}{\qty{4}{\cm}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un tren que se acerca a una estación a \qty{90}{\km\per\hour} emite un pitido continuo de \qty{500}{\hertz}. ¿Qué
+    frecuencia percibe una persona parada en el andén? (\(v = \qty{340}{\m\per\second}\)).
+    \begin{solu}
+        \(\nu' = \nu\,\dfrac{v}{v - v_F} = 500\cdot\dfrac{340}{340 - 25} = \textcolor{red}{\qty{540}{\hertz}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un conductor se acerca a \qty{108}{\km\per\hour} a una fábrica cuya sirena emite a \qty{400}{\hertz}. ¿Qué frecuencia oye?
+    ¿Y cuando ya ha pasado y se aleja? (\(v = \qty{340}{\m\per\second}\)).
+    \begin{solu}
+        \textcolor{blue}{\(v_O = \qty{30}{\m\per\second}\), foco quieto.}
+        Se acerca: \(\nu' = 400\cdot\dfrac{340 + 30}{340} = \textcolor{red}{\qty{435}{\hertz}}\).
+        Se aleja: \(\nu' = 400\cdot\dfrac{340 - 30}{340} = \textcolor{red}{\qty{365}{\hertz}}\).
+    \end{solu}
+\end{exercise}

@@ -1,0 +1,48 @@
+/* Estilo común de las figuras de la Unidad 2 (se exportan a PDF/SVG con render.sh) */
+:root {
+    --ocre: #F36619;
+    --ocre-soft: #FDE3D3;
+    --blue: #000070;
+    --blue-soft: #E3E6F7;
+    --teal: #23373B;
+    --green: #1E8449;
+    --green-soft: #DFF3E6;
+    --red: #C0392B;
+    --red-soft: #F9E0DD;
+    --grey: #525252;
+    --line: #C9CCD6;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+    background: #FFFFFF;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+body {
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    color: var(--teal);
+}
+
+.canvas { padding: 18px 22px; display: inline-block; }
+
+h2 { font-size: 20px; color: var(--blue); }
+
+.note { font-size: 16px; color: var(--grey); }
+
+svg text { font-family: "Segoe UI", Arial, sans-serif; }
+
+.row { display: flex; gap: 12px; }
+
+.card {
+    flex: 1;
+    text-align: center;
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    background: #FBFCFC;
+    padding: 10px 12px;
+}
+
+.card .t { font-size: 14px; color: var(--grey); margin-top: 4px; }

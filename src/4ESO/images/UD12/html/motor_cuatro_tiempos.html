@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Motor de explosión de cuatro tiempos</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card { padding: 8px 6px; } .card .t { font-size: 13px; } .card h3 { font-size: 15px; color: var(--blue); } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3>1. Admisión</h3><svg id="a" width="180" height="340"></svg>
+            <div class="t">Se abre la válvula de admisión; el pistón baja y entra la mezcla de aire y combustible.</div></div>
+        <div class="card"><h3>2. Compresión</h3><svg id="b" width="180" height="340"></svg>
+            <div class="t">Válvulas cerradas; el pistón sube y comprime la mezcla.</div></div>
+        <div class="card"><h3>3. Explosión</h3><svg id="c" width="180" height="340"></svg>
+            <div class="t">Salta la chispa, la mezcla arde y los gases empujan el pistón hacia abajo: <b>se realiza trabajo</b>.</div></div>
+        <div class="card"><h3>4. Escape</h3><svg id="d" width="180" height="340"></svg>
+            <div class="t">Se abre la válvula de escape; el pistón sube y expulsa los gases quemados.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const CX = 90, CY = 290, R = 28, L = 110, TOP = 70, BOT = 232, PH = 40;
+    // theta: ángulo del cigüeñal desde el punto muerto superior (sentido horario)
+    function engine(id, theta, o) {
+        const add = svgAdder(id), t = theta * Math.PI / 180;
+        const kx = CX + R * Math.sin(t), ky = CY - R * Math.cos(t);
+        const pinY = ky - Math.sqrt(L * L - (kx - CX) ** 2), pt = pinY - PH / 2;
+        // conductos de admisión (izq.) y escape (dcha.)
+        add('path', { d: 'M5 34 L62 34 L62 52', fill: 'none', stroke: '#5D6D7E', 'stroke-width': 16 });
+        add('path', { d: 'M175 34 L118 34 L118 52', fill: 'none', stroke: '#5D6D7E', 'stroke-width': 16 });
+        add('path', { d: 'M5 34 L62 34 L62 52', fill: 'none', stroke: o.inFlow ? '#AED6F1' : '#EAEDED', 'stroke-width': 10 });
+        add('path', { d: 'M175 34 L118 34 L118 52', fill: 'none', stroke: o.outFlow ? '#ABB2B9' : '#EAEDED', 'stroke-width': 10 });
+        // gas en la cámara
+        add('rect', { x: 50, y: TOP, width: 80, height: pt - TOP, fill: o.gas });
+        // culata y cilindro
+        add('path', { d: `M40 ${TOP} L40 52 L52 52 M72 52 L108 52 M128 52 L140 52 L140 ${TOP}`, fill: 'none', stroke: '#424949', 'stroke-width': 5 });
+        add('line', { x1: 47, y1: TOP, x2: 47, y2: BOT, stroke: '#424949', 'stroke-width': 6 });
+        add('line', { x1: 133, y1: TOP, x2: 133, y2: BOT, stroke: '#424949', 'stroke-width': 6 });
+        // válvulas (abierta = desplazada hacia abajo)
+        [[62, o.inOpen], [118, o.outOpen]].forEach(([x, op]) => {
+            const y = op ? 64 : 54;
+            add('line', { x1: x, y1: 8, x2: x, y2: y, stroke: '#7F8C8D', 'stroke-width': 3 });
+            add('path', { d: `M${x - 11} ${y + 4} L${x + 11} ${y + 4} L${x + 4} ${y - 2} L${x - 4} ${y - 2} Z`, fill: '#7F8C8D' });
+        });
+        // bujía
+        add('rect', { x: 86, y: 18, width: 8, height: 34, fill: '#F2F3F4', stroke: '#424949', 'stroke-width': 1.5 });
+        add('line', { x1: 90, y1: 52, x2: 90, y2: 60, stroke: '#424949', 'stroke-width': 2 });
+        if (o.spark) for (let a = 0; a < 360; a += 45) { const [x1, y1] = pol(90, 64, 5, a), [x2, y2] = pol(90, 64, 13, a); add('line', { x1, y1, x2, y2, stroke: '#F1C40F', 'stroke-width': 2.5 }); }
+        // pistón
+        add('rect', { x: 50, y: pt, width: 80, height: PH, rx: 3, fill: '#D4AC0D', stroke: '#7D6608', 'stroke-width': 2 });
+        [6, 12].forEach(dy => add('line', { x1: 50, y1: pt + dy, x2: 130, y2: pt + dy, stroke: '#7D6608', 'stroke-width': 1 }));
+        // biela, cigüeñal y cárter
+        add('circle', { cx: CX, cy: CY, r: R + 12, fill: '#E5E8E8', stroke: '#AAB7B8', 'stroke-width': 2 });
+        add('line', { x1: CX, y1: pinY, x2: kx, y2: ky, stroke: '#5D6D7E', 'stroke-width': 10, 'stroke-linecap': 'round' });
+        add('line', { x1: CX, y1: CY, x2: kx, y2: ky, stroke: '#2C3E50', 'stroke-width': 8, 'stroke-linecap': 'round' });
+        add('circle', { cx: CX, cy: CY, r: 5, fill: '#fff' });
+        add('circle', { cx: CX, cy: pinY, r: 4, fill: '#fff' });
+        // sentido del pistón y giro del cigüeñal
+        arrow(add, 155, o.down ? 120 : 190, 155, o.down ? 190 : 120, '#C0392B', 3, 11);
+        arcArrow(add, CX, CY, R + 20, 150, 30, '#1E8449', 2, 8);
+        if (o.inFlow) arrow(add, 8, 20, 40, 20, '#2471A3', 2, 8);
+        if (o.outFlow) arrow(add, 140, 20, 172, 20, '#525252', 2, 8);
+    }
+    engine('a', 100, { gas: '#D6EAF8', inOpen: true, inFlow: true, down: true });
+    engine('b', 280, { gas: '#AED6F1', down: false });
+    engine('c', 60, { gas: '#F5B041', spark: true, down: true });
+    engine('d', 290, { gas: '#D5D8DC', outOpen: true, outFlow: true, down: false });
+</script>
+</body>
+</html>

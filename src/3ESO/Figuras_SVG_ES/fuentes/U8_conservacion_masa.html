@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>U8 - Ley de conservación de la masa</title>
+<!-- Unidad 8 · fig:conservacion_masa · sustituye a
+     Images/reacciones_quimicas/conservacion_masa_EN.png (en el libro en español también se usaba esa imagen)
+     Combustión del metano: CH4 + 2 O2 -> CO2 + 2 H2O  (16 g + 64 g = 44 g + 36 g) -->
+<script src="../lib/smiles-drawer.min.js"></script>
+<script src="../lib/comun.js"></script>
+</head>
+<body>
+<script>
+const { svg, defs } = crearLienzo(1000, 610);
+
+/* Título */
+texto(svg, 500, 42, 'LEY DE CONSERVACIÓN DE LA MASA', { size: 32, weight: 800 });
+texto(svg, 500, 76, 'La materia no se crea ni se destruye, solo se transforma', { size: 20, fill: '#444' });
+
+/* Balanza digital centrada en cx, con la masa total en la pantalla */
+const PLATO = degradadoLineal(defs, 'plato', [['0%', '#eef1f4'], ['100%', '#b9c1c9']]);
+const CUERPO = degradadoLineal(defs, 'cuerpo', [['0%', '#6f9bd1'], ['100%', '#3c6aa6']]);
+function bascula(cx, total, rotulo) {
+  el('path', { d: `M${cx - 190},352 L${cx - 160},312 L${cx + 160},312 L${cx + 190},352 Z`,
+    fill: PLATO, stroke: '#6b7782', 'stroke-width': 2, 'stroke-linejoin': 'round' }, svg);
+  el('rect', { x: cx - 192, y: 352, width: 384, height: 12, rx: 3, fill: '#aab3bc', stroke: '#6b7782', 'stroke-width': 1.5 }, svg);
+  el('path', { d: `M${cx - 170},364 L${cx + 170},364 L${cx + 185},436 L${cx - 185},436 Z`,
+    fill: CUERPO, stroke: '#2d4f7c', 'stroke-width': 2, 'stroke-linejoin': 'round' }, svg);
+  el('rect', { x: cx - 70, y: 380, width: 140, height: 40, rx: 5, fill: '#c9dcb0', stroke: '#2d4f7c', 'stroke-width': 2 }, svg);
+  texto(svg, cx, 410, total, { size: 26, weight: 700, fill: '#1d2a12', family: "'Consolas', 'Courier New', monospace" });
+  texto(svg, cx, 470, rotulo, { size: 22, weight: 700 });
+}
+bascula(230, '80 g', 'Total reactivos');
+bascula(770, '80 g', 'Total productos');
+
+/* Moléculas (modelo de bolas) */
+function metano(x, y) {
+  for (const [dx, dy] of [[-40, -22], [40, -22], [-26, 34], [26, 34]]) {
+    el('line', { x1: x, y1: y, x2: x + dx, y2: y + dy, stroke: '#9aa5b1', 'stroke-width': 7 }, svg);
+    atomo(svg, defs, x + dx, y + dy, 16, 'H');
+  }
+  atomo(svg, defs, x, y, 32, 'C');
+}
+function oxigeno(x, y) { atomo(svg, defs, x - 18, y, 26, 'O'); atomo(svg, defs, x + 18, y, 26, 'O'); }
+function dioxidoCarbono(x, y) { atomo(svg, defs, x - 44, y, 28, 'O'); atomo(svg, defs, x + 44, y, 28, 'O'); atomo(svg, defs, x, y, 32, 'C'); }
+function agua(x, y) {
+  const a = (104.5 / 2) * Math.PI / 180, d = 32;
+  atomo(svg, defs, x - d * Math.sin(a), y + d * Math.cos(a), 17, 'H');
+  atomo(svg, defs, x + d * Math.sin(a), y + d * Math.cos(a), 17, 'H');
+  atomo(svg, defs, x, y, 25, 'O');
+}
+
+metano(150, 250);
+oxigeno(290, 206); oxigeno(318, 272);
+dioxidoCarbono(690, 262);
+agua(830, 196); agua(884, 262);
+
+/* Fórmulas y masas */
+const F = { size: 24, weight: 700 }, M = { size: 22, weight: 700, fill: '#2d4f7c' };
+texto(svg, 150, 188, 'CH_4', F);   texto(svg, 150, 340, '16 g', M);
+texto(svg, 305, 164, '2 O_2', F);  texto(svg, 305, 340, '64 g', M);
+texto(svg, 690, 212, 'CO_2', F);   texto(svg, 690, 340, '44 g', M);
+texto(svg, 860, 150, '2 H_2O', F); texto(svg, 860, 340, '36 g', M);
+
+/* Flecha de reacción con llama (combustión) */
+flechaReaccion(svg, defs, 432, 300, 138, 30, ['#f9d648', '#e4572e']);
+const LLAMA = degradadoLineal(defs, 'llama', [['0%', '#ffe66d'], ['60%', '#f7931e'], ['100%', '#e4572e']], 0, 1, 0, 0);
+el('path', { d: 'M500,266 C466,262 460,228 478,206 C482,222 490,226 494,220 C488,200 500,180 516,170 C512,192 530,202 532,222 C540,216 540,206 538,200 C556,222 548,262 500,266 Z',
+  fill: LLAMA, stroke: '#c8471d', 'stroke-width': 1.5 }, svg);
+texto(svg, 500, 352, 'combustión', { size: 17, fill: '#c8471d', weight: 600 });
+
+/* Ecuación con fórmulas desarrolladas (SMILES) */
+el('line', { x1: 60, y1: 500, x2: 940, y2: 500, stroke: '#ddd', 'stroke-width': 1.5 }, svg);
+const S = { enlace: 30, tam: 18 }, O = { size: 22, weight: 700 };
+estructuraSMILES(svg, '[H]C([H])([H])[H]', 150, 552, S);
+texto(svg, 215, 560, '+', O); texto(svg, 262, 560, '2', O);
+estructuraSMILES(svg, 'O=O', 305, 552, S);
+texto(svg, 420, 562, '→', { size: 40, weight: 700, fill: '#c8471d' });
+estructuraSMILES(svg, 'O=C=O', 540, 552, S);
+texto(svg, 625, 560, '+', O); texto(svg, 672, 560, '2', O);
+estructuraSMILES(svg, '[H]O[H]', 725, 552, S);
+texto(svg, 870, 548, '80 g = 80 g', { size: 20, weight: 800, fill: '#2d4f7c' });
+texto(svg, 870, 574, 'la masa se conserva', { size: 15, fill: '#2d4f7c' });
+
+finalizar();
+</script>
+</body>
+</html>

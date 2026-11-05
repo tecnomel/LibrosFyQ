@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>U8 - Collision theory: H2 + Cl2 -> 2 HCl</title>
+<!-- Unit 8 · fig:reaccion_quimica_proceso · sustituye a
+     Images/reacciones_quimicas/reaccion_quimica_proceso_gemini.png
+     Modelos de bolas (CPK) + fórmulas estructurales generadas desde SMILES. -->
+<script src="../lib/smiles-drawer.min.js"></script>
+<script src="../lib/comun.js"></script>
+</head>
+<body>
+<script>
+const { svg, defs } = crearLienzo(1000, 420);
+
+/* Reactivos: Cl2 y H2 */
+atomo(svg, defs, 130, 92, 46, 'Cl'); atomo(svg, defs, 196, 124, 46, 'Cl');
+atomo(svg, defs, 92, 212, 28, 'H');  atomo(svg, defs, 134, 236, 28, 'H');
+
+flechaReaccion(svg, defs, 262, 165, 110, 26);
+
+/* Choque eficaz: se rompen los enlaces H–H y Cl–Cl */
+estallido(svg, defs, 500, 165, 118, 44, 18);
+atomo(svg, defs, 446, 128, 28, 'H');  atomo(svg, defs, 458, 206, 28, 'H');
+atomo(svg, defs, 548, 108, 42, 'Cl'); atomo(svg, defs, 566, 214, 42, 'Cl');
+
+flechaReaccion(svg, defs, 640, 165, 110, 26);
+
+/* Productos: 2 HCl */
+atomo(svg, defs, 792, 116, 28, 'H'); atomo(svg, defs, 852, 92, 46, 'Cl');
+atomo(svg, defs, 858, 206, 28, 'H'); atomo(svg, defs, 922, 236, 46, 'Cl');
+
+/* Fórmulas estructurales desde SMILES */
+estructuraSMILES(svg, '[H][H]', 95, 296);
+texto(svg, 150, 302, '+', { size: 20 });
+estructuraSMILES(svg, 'ClCl', 205, 296);
+estructuraSMILES(svg, '[H]Cl', 820, 296, { espejo: true });
+texto(svg, 875, 302, '+', { size: 20 });
+estructuraSMILES(svg, '[H]Cl', 930, 296, { espejo: true });
+texto(svg, 500, 301, 'H–H and Cl–Cl bonds break', { size: 15, fill: '#555' });
+
+/* Rótulos */
+const R = { size: 24, weight: 700, fill: '#222' };
+texto(svg, 150, 356, 'Reactants', R);
+texto(svg, 500, 356, 'Effective collision', R);
+texto(svg, 865, 356, 'Products', R);
+texto(svg, 500, 402, 'H_2 + Cl_2 → 2 HCl', { size: 28, weight: 700, fill: '#b5541b' });
+
+finalizar();
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD0_E03 · Análisis elemental por combustión</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// La muestra (C, H y quizá O) se quema en corriente de O2. El H2O queda retenido en el primer
+// tubo y el CO2 en el segundo; el aumento de masa de cada tubo da la masa de C y de H.
+// El oxígeno de la muestra se obtiene por diferencia.
+const svg = crearFigura(840, 330);
+const T = (x, y, t, a = {}) => texto(svg, x, y, t, { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto, ...a });
+const VID = "#6E9FB3";
+
+// Tubo de combustión con horno
+el("rect", { x: 40, y: 80, width: 330, height: 40, rx: 18, fill: "#fff", stroke: VID, "stroke-width": 3 }, svg);
+el("rect", { x: 150, y: 60, width: 190, height: 80, rx: 8, fill: "#F4A261", "fill-opacity": 0.35, stroke: "#E76F51", "stroke-width": 2 }, svg);
+for (let i = 0; i < 6; i++) el("path", { d: `M${170 + i * 30},150 q-6,10 0,18 q6,8 0,16`, fill: "none", stroke: "#E76F51", "stroke-width": 2 }, svg);
+el("path", { d: "M190,112 L230,112 L226,104 L194,104 Z", fill: "#6D6D6D" }, svg);
+T(210, 52, "horno", { "font-size": 13, fill: "#C0502F" });
+T(210, 98, "muestra", { "font-size": 12 });
+flecha(svg, 0, 100, 45, 100, { ancho: 2.5, punta: 11, color: COLORES.myBlue });
+texto(svg, 2, 88, [...quim("O2")], { "font-size": 15, fill: COLORES.myBlue, "font-weight": "bold" });
+
+// Tubos absorbentes
+function tubo(x, color, rot1, rot2, rot3) {
+    el("path", { d: `M${x},100 L${x},210 Q${x},240 ${x + 30},240 Q${x + 60},240 ${x + 60},210 L${x + 60},100`, fill: color, "fill-opacity": 0.35, stroke: VID, "stroke-width": 3 }, svg);
+    for (let i = 0; i < 18; i++) el("circle", { cx: x + 10 + (i % 4) * 13, cy: 140 + Math.floor(i / 4) * 18, r: 4, fill: color }, svg);
+    T(x + 30, 265, rot1, { "font-weight": "bold" });
+    T(x + 30, 283, rot2, { "font-size": 12, fill: COLORES.gris });
+    T(x + 30, 300, rot3, { "font-size": 12, fill: COLORES.gris });
+}
+el("line", { x1: 370, y1: 100, x2: 460, y2: 100, stroke: "#8A9AA2", "stroke-width": 6 }, svg);
+el("line", { x1: 520, y1: 100, x2: 610, y2: 100, stroke: "#8A9AA2", "stroke-width": 6 }, svg);
+tubo(460, "#4FA3D1", quim("retiene H2O"), "(absorbente de agua)", "");
+tubo(610, "#8E7CC3", quim("retiene CO2"), "(NaOH sólido)", "");
+flecha(svg, 670, 100, 730, 100, { ancho: 2.5, punta: 11, color: COLORES.gris });
+texto(svg, 736, 105, "O₂ sobrante", { "font-size": 13, fill: COLORES.gris });
+T(415, 90, quim("CO2 + H2O"), { "font-size": 12, fill: COLORES.gris });
+T(565, 90, quim("CO2"), { "font-size": 12, fill: COLORES.gris });
+
+// Cálculos
+el("rect", { x: 30, y: 188, width: 360, height: 136, rx: 10, fill: "#FFF3EA", stroke: COLORES.ocre }, svg);
+const L = (y, partes) => texto(svg, 48, y, partes, { "font-size": 15, fill: COLORES.texto });
+L(214, [{ t: "m" }, { t: "C", sub: true }, { t: " = m" }, { t: "CO₂", sub: true }, { t: " · 12/44" }]);
+L(244, [{ t: "m" }, { t: "H", sub: true }, { t: " = m" }, { t: "H₂O", sub: true }, { t: " · 2/18" }]);
+L(274, [{ t: "m" }, { t: "O", sub: true }, { t: " = m" }, { t: "muestra", sub: true }, { t: " − m" }, { t: "C", sub: true }, { t: " − m" }, { t: "H", sub: true }]);
+texto(svg, 48, 308, "→ moles de cada elemento → fórmula empírica", { "font-size": 13, fill: COLORES.ocre, "font-weight": "bold" });
+</script>
+</body>
+</html>

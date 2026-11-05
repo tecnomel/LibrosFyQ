@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD10_06 · Formación del PET (poliéster)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Poliéster PET: ácido tereftálico + etilenglicol (etano-1,2-diol) → PET + agua.
+// Cada unión éster se forma por esterificación con pérdida de H2O.
+const svg = crearFigura(860, 330);
+molecula(svg, "OC(=O)C1=CC=C(C=C1)C(=O)O", 140, 95, { etiqueta: "ácido tereftálico", yEtq: 170, colores: { O: ROJO } });
+mas(svg, 285, 95);
+molecula(svg, "OCCO", 360, 95, { etiqueta: "etilenglicol", yEtq: 170, colores: { O: ROJO } });
+texto(svg, 40, 101, "n", { "font-size": 18, "font-style": "italic", fill: COLORES.texto, "font-family": TNR });
+texto(svg, 318, 101, "n", { "font-size": 18, "font-style": "italic", fill: COLORES.texto, "font-family": TNR });
+flechaR(svg, 440, 95, 530, "condensación");
+fq(svg, 600, 101, ["+ (2n−1) H2O"]);
+const b = molecula(svg, "[Xe]OC(=O)C1=CC=C(C=C1)C(=O)OCC[Kr]", 430, 245, { grupos: { Xe: { t: "" }, Kr: { t: "" } }, colores: { O: ROJO } });
+corchetesPolimero(svg, b.x + 18, b.x + b.w - 18, 245, 42);
+texto(svg, 430, 322, "PET (polietilentereftalato)", { "text-anchor": "middle", "font-size": 15, "font-weight": "bold", fill: COLORES.texto, "font-family": TNR });
+</script>
+</body>
+</html>

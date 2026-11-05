@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!-- Cabecera de capítulo (\chapterimage). Se elige la escena con ?escena=atomo
+     (ver ESCENAS en dibujos.js). render.sh la imprime a PDF vectorial. -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cabecera</title>
+<style>
+    @page { size: 1520px 704px; margin: 0; }
+    html, body { margin: 0; padding: 0; width: 1520px; height: 704px; overflow: hidden; background: #000; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    svg { display: block; }
+</style>
+<script src="dibujos.js"></script>
+</head>
+<body>
+<svg id="s" xmlns="http://www.w3.org/2000/svg" width="1520" height="704" viewBox="0 0 1520 704"></svg>
+<script>
+    const PALETA = 'ocre';   // 3.º ESO: ocre
+    const q = new URLSearchParams(location.search);
+    const escena = q.get('escena') || 'general';
+    const svg = document.getElementById('s');
+    semilla([...escena].reduce((a, c) => a * 31 + c.charCodeAt(0), 7) % 100000 + 1);
+    iniciar(svg, PALETAS[q.get('paleta') || PALETA]);
+    fondo(svg, 1520, 704);
+    ESCENAS[escena](G(svg));
+</script>
+</body>
+</html>

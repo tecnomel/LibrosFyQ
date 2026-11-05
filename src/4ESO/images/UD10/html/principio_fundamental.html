@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Principio fundamental de la hidrostática</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card .t { font-size: 14px; } .card h3 { font-size: 16px; color: var(--blue); margin-bottom: 4px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3>Diferencia de presión entre dos puntos</h3><svg id="a" width="330" height="250"></svg>
+            <div class="t"><i>p</i><sub>A</sub> − <i>p</i><sub>B</sub> = <i>ρ · g ·</i> (<i>h</i><sub>A</sub> − <i>h</i><sub>B</sub>)</div></div>
+        <div class="card"><h3>Vasos comunicantes</h3><svg id="b" width="410" height="250"></svg>
+            <div class="t">El líquido alcanza la <b>misma altura</b> en todos los recipientes, y los puntos A, B y C, a la misma profundidad, soportan la misma presión.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    {
+        const add = svgAdder('a');
+        const ys = tank(add, 40, 20, 250, 220, 200);
+        const pB = [110, ys + 70], pA = [190, ys + 160];
+        [[pB, 'B'], [pA, 'A']].forEach(([p, n]) => {
+            add('line', { x1: 42, y1: p[1], x2: 288, y2: p[1], stroke: '#5D6D7E', 'stroke-width': 1, 'stroke-dasharray': '4 4' });
+            add('circle', { cx: p[0], cy: p[1], r: 5, fill: '#C0392B' });
+            label(add, p[0] - 16, p[1] - 8, n, { 'font-size': 16 });
+        });
+        vdim(add, 140, ys, pB[1], 'h_B', '#C0392B', true);
+        vdim(add, 230, ys, pA[1], 'h_A', '#C0392B', true);
+    }
+    {
+        const add = svgAdder('b');
+        const base = 215, top = 40, lvl = 95, liquid = '#AED6F1', wall = '#5D6D7E', yt = base - 30;
+        // líquido: tubo de unión y recipientes (cilindro, cono y tubo inclinado)
+        add('rect', { x: 40, y: yt, width: 350, height: 30, fill: liquid });
+        add('rect', { x: 40, y: lvl, width: 40, height: yt - lvl, fill: liquid });
+        const fx = y => (y - top) / (yt - top) * 55;
+        add('path', { d: `M${185 - fx(lvl)} ${lvl} L${195 + fx(lvl)} ${lvl} L250 ${yt} L130 ${yt} Z`, fill: liquid });
+        // tubo inclinado: eje de (338, yt) a (378, top), 22 de ancho
+        const tx = y => 338 + (yt - y) / (yt - top) * 40;
+        add('path', { d: `M${tx(yt) - 11} ${yt} L${tx(lvl) - 11} ${lvl} L${tx(lvl) + 11} ${lvl} L${tx(yt) + 11} ${yt} Z`, fill: liquid });
+        // paredes
+        add('path', { d: `M40 ${top} L40 ${base} L390 ${base} L390 ${yt} L${tx(yt) + 11} ${yt} L${tx(top) + 11} ${top}`, fill: 'none', stroke: wall, 'stroke-width': 3, 'stroke-linejoin': 'round' });
+        add('path', { d: `M80 ${top} L80 ${yt} L130 ${yt} L185 ${top} M195 ${top} L250 ${yt} L${tx(yt) - 11} ${yt} L${tx(top) - 11} ${top}`, fill: 'none', stroke: wall, 'stroke-width': 3, 'stroke-linejoin': 'round' });
+        add('line', { x1: 20, y1: lvl, x2: 400, y2: lvl, stroke: '#C0392B', 'stroke-width': 1.3, 'stroke-dasharray': '6 4' });
+        label(add, 262, lvl - 8, 'mismo nivel', { 'font-size': 13, fill: '#C0392B' });
+        [[60, 'A'], [190, 'B'], [340, 'C']].forEach(([x, n]) => {
+            add('circle', { cx: x, cy: base - 12, r: 4.5, fill: '#C0392B' });
+            label(add, x + 14, base - 6, n, { 'font-size': 15 });
+        });
+    }
+</script>
+</body>
+</html>

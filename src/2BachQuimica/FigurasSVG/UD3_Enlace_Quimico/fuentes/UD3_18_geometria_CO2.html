@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_18 · Geometría lineal del CO2</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/moleculas.js"></script>
+</head>
+<body>
+<script>
+// AB2: lineal, 180°.
+const svg = crearFigura(600, 250);
+esquemaGeometria(svg, 10, 10, 180, 90, [{ p: [0, -1, 0], t: "B" }, { p: [0, 1, 0], t: "B" }], { camara: [1, 0, 0.1], escala: 60, angulo: "180°" });
+const m = molAB("C", "O", GEOM.lineal, 1.25, { angEtq: [180, 0] });
+m.angulos = [{ a: 1, c: 0, b: 2, texto: "180°", radio: 0.62, plano: [0, 0, 1] }];
+dibujarMolecula(svg, m, { cx: 380, cy: 170, escala: 95, camara: [1, 0, 0.1] });
+</script>
+</body>
+</html>

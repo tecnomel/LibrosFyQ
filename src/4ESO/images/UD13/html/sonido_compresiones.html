@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El sonido, una onda longitudinal</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="780" height="345"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const x0 = 110, x1 = 740, lam = 150, ya = 150, yb = 250;
+    // curva de presión sobre las partículas
+    label(add, 60, 64, 'presión', { 'font-size': 14, fill: '#C0392B' });
+    dashed(add, x0, 70, x1, 70, '#BDC3C7', 1);
+    add('path', { d: waveD(x0, 70, x1 - x0, 38, lam, Math.PI / 2), fill: 'none', stroke: '#C0392B', 'stroke-width': 3 });
+    label(add, x0 + 2 * lam, 24, 'mayor presión', { 'font-size': 13, fill: '#C0392B' });
+    label(add, x0 + 2.5 * lam, 128, 'menor presión', { 'font-size': 13, fill: '#C0392B' });
+    // capas de aire
+    speaker(add, 80, 200, 1.1);
+    airParticles(add, x0, x1, ya, yb, lam, 1100, 11, '#2E86C1');
+    // rótulos
+    callout(add, x0 + 2 * lam, yb + 4, x0 + 2 * lam - 40, 288, 'compresión', 'end');
+    callout(add, x0 + 2.5 * lam, yb + 4, x0 + 2.5 * lam + 30, 288, 'dilatación');
+    arrow(add, 175, 312, 115, 312, '#C0392B', 2.2, 9); arrow(add, 175, 312, 235, 312, '#C0392B', 2.2, 9);
+    label(add, 175, 330, 'vibración de las moléculas de aire', { 'font-size': 13, fill: '#C0392B' });
+    arrow(add, 560, 312, 730, 312, '#1E8449', 3.5);
+    label(add, 645, 330, 'propagación del sonido', { 'font-size': 13, fill: '#1E8449' });
+    label(add, 60, 280, 'altavoz', { 'font-size': 13, fill: '#525252' });
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_35 · Oxidación de alcoholes primarios</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Alcohol primario → aldehído → ácido carboxílico (oxidación); la reducción es el proceso inverso.
+const svg = crearFigura(640, 140);
+const R = { Xe: { t: "R", color: "#222" } };
+molecula(svg, "[Xe]CO", 70, 55, { grupos: R, etiqueta: "alcohol primario", yEtq: 120, colorEtq: AZUL });
+flechaEq(svg, 140, 55, 230, "oxidación", "reducción");
+molecula(svg, "[Xe]C=O", 300, 55, { grupos: R, etiqueta: "aldehído", yEtq: 120, colorEtq: AZUL, hidrogenos: false });
+flechaEq(svg, 360, 55, 450, "oxidación", "reducción");
+molecula(svg, "[Xe]C(=O)O", 540, 55, { grupos: R, etiqueta: "ácido carboxílico", yEtq: 120, colorEtq: AZUL });
+</script>
+</body>
+</html>

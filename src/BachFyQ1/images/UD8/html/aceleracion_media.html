@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Aceleración media: el vector Δv</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>La velocidad cambia a lo largo del camino</h2><svg id="a" width="400" height="260"></svg></div>
+        <div class="card"><h2>Llevadas a un origen común</h2><svg id="b" width="330" height="260"></svg></div>
+    </div>
+    <div class="note" style="text-align:center; margin-top:8px">El cambio de velocidad es Δv = v − v₀; la aceleración media, Δv / Δt, tiene su misma dirección y sentido<br>y apunta hacia la parte cóncava de la trayectoria.</div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const A = svgAdder('a');
+    axes(A, 30, 232, 360, 222);
+    const f = t => [70 + 270 * t, 200 - 330 * t + 260 * t * t], df = t => [270, -330 + 520 * t];
+    curve(A, f, 0, 1, '#1E8449', 3);
+    const ta = 0.1, tb = 0.85, Pa = f(ta), Pb = f(tb);
+    const u = t => { const d = df(t), l = Math.hypot(...d); return [d[0] / l, d[1] / l]; };
+    const ua = u(ta), ub = u(tb), la = 85, lb = 105;
+    arrow(A, Pa[0], Pa[1], Pa[0] + la * ua[0], Pa[1] + la * ua[1], '#2471A3', 3.5, 13);
+    arrow(A, Pb[0], Pb[1], Pb[0] + lb * ub[0], Pb[1] + lb * ub[1], '#C0392B', 3.5, 13);
+    dot(A, Pa[0], Pa[1]); dot(A, Pb[0], Pb[1]);
+    label(A, Pa[0] + 18, Pa[1] + 20, 'P₀', { 'font-size': 14 }); label(A, Pb[0] + 4, Pb[1] + 24, 'P', { 'font-size': 14 });
+    vlab(A, Pa[0] + 0.6 * la * ua[0] - 26, Pa[1] + 0.6 * la * ua[1] - 4, 'v', '0', '#2471A3'); vlab(A, Pb[0] + 0.6 * lb * ub[0] + 6, Pb[1] + 0.6 * lb * ub[1] + 30, 'v', '', '#C0392B');
+    label(A, 150, 40, 'trayectoria', { 'font-size': 14, fill: '#1E8449' });
+    const B = svgAdder('b');
+    const O = [80, 190], s = 1.35;
+    const V0 = [O[0] + s * la * ua[0], O[1] + s * la * ua[1]], V = [O[0] + s * lb * ub[0], O[1] + s * lb * ub[1]];
+    arrow(B, O[0], O[1], V0[0], V0[1], '#2471A3', 3.5, 13); arrow(B, O[0], O[1], V[0], V[1], '#C0392B', 3.5, 13);
+    arrow(B, V0[0], V0[1], V[0], V[1], '#E67E22', 3.5, 13);
+    dot(B, O[0], O[1]);
+    vlab(B, (O[0] + V0[0]) / 2 - 24, (O[1] + V0[1]) / 2, 'v', '0', '#2471A3'); vlab(B, (O[0] + V[0]) / 2 + 4, (O[1] + V[1]) / 2 + 30, 'v', '', '#C0392B');
+    vlab(B, (V0[0] + V[0]) / 2 + 30, (V0[1] + V[1]) / 2 - 4, 'Δv', '', '#E67E22');
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The prefix staircase</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1080px; height: 1160px; }
+    .stairs { position: relative; height: 1000px; }
+    .step {
+        position: absolute; left: 170px; width: 250px; height: 44px; border-radius: 10px;
+        display: flex; align-items: center; justify-content: space-between; padding: 0 18px;
+        color: #fff; box-shadow: 0 3px 0 rgba(0,0,0,.18);
+    }
+    .step b { font-size: 24px; }
+    .step small { font-size: 15px; opacity: .9; }
+    .mult { background: var(--blue); }
+    .base { background: var(--ocre); }
+    .sub { background: var(--green); }
+    .arr { position: absolute; height: 26px; display: flex; align-items: center; gap: 6px;
+            font-size: 17px; font-weight: 700; white-space: nowrap; }
+    .arr span { font-size: 24px; }
+    .arr i { font-weight: 400; font-style: italic; }
+    .arr b { font-weight: 700; }
+    .arr.up { right: calc(100% - 160px); color: var(--blue); }
+    .arr.down { left: 430px; color: var(--green); }
+    .arr.k1000 { background: var(--ocre-soft); border-radius: 6px; padding: 0 8px; font-size: 16px; }
+    .brace { position: absolute; left: 600px; width: 16px; border: 4px solid; border-left: none;
+              border-radius: 0 12px 12px 0; }
+    .rtext { position: absolute; left: 636px; width: 380px; transform: translateY(-50%);
+              font-size: 16px; line-height: 1.45; }
+    .rtext h2 { font-size: 19px; margin-bottom: 4px; }
+    .r1000 { border-color: var(--ocre); }
+    .r1000 h2 { color: var(--ocre); }
+    .r10 { border-color: var(--teal); }
+    .r10 h2 { color: var(--teal); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>The prefix staircase (length, mass and capacity)</h1>
+    <div class="stairs">
+        <div class="step mult" style="top:0px"><b>Tm</b><small>tera · 10<sup>12</sup></small></div>
+        <div class="step mult" style="top:78px"><b>Gm</b><small>giga · 10<sup>9</sup></small></div>
+        <div class="step mult" style="top:156px"><b>Mm</b><small>mega · 10<sup>6</sup></small></div>
+        <div class="step mult" style="top:234px"><b>km</b><small>kilo · 10<sup>3</sup></small></div>
+        <div class="step mult" style="top:312px"><b>hm</b><small>hecto · 10<sup>2</sup></small></div>
+        <div class="step mult" style="top:390px"><b>dam</b><small>deca · 10<sup>1</sup></small></div>
+        <div class="step base" style="top:468px"><b>m · g · L</b><small>base unit</small></div>
+        <div class="step sub" style="top:546px"><b>dm</b><small>deci · 10<sup>-1</sup></small></div>
+        <div class="step sub" style="top:624px"><b>cm</b><small>centi · 10<sup>-2</sup></small></div>
+        <div class="step sub" style="top:702px"><b>mm</b><small>milli · 10<sup>-3</sup></small></div>
+        <div class="step sub" style="top:780px"><b>µm</b><small>micro · 10<sup>-6</sup></small></div>
+        <div class="step sub" style="top:858px"><b>nm</b><small>nano · 10<sup>-9</sup></small></div>
+        <div class="step sub" style="top:936px"><b>pm</b><small>pico · 10<sup>-12</sup></small></div>
+        <div class="arr up k1000" style="top:48px">1000 <i>or</i> <b>10<sup>3</sup></b> <span>↑</span></div>
+        <div class="arr down k1000" style="top:48px"><span>↓</span> 1000 <i>or</i> <b>10<sup>3</sup></b></div>
+        <div class="arr up k1000" style="top:126px">1000 <i>or</i> <b>10<sup>3</sup></b> <span>↑</span></div>
+        <div class="arr down k1000" style="top:126px"><span>↓</span> 1000 <i>or</i> <b>10<sup>3</sup></b></div>
+        <div class="arr up k1000" style="top:204px">1000 <i>or</i> <b>10<sup>3</sup></b> <span>↑</span></div>
+        <div class="arr down k1000" style="top:204px"><span>↓</span> 1000 <i>or</i> <b>10<sup>3</sup></b></div>
+        <div class="arr up" style="top:282px">10 <span>↑</span></div>
+        <div class="arr down" style="top:282px"><span>↓</span> 10</div>
+        <div class="arr up" style="top:360px">10 <span>↑</span></div>
+        <div class="arr down" style="top:360px"><span>↓</span> 10</div>
+        <div class="arr up" style="top:438px">10 <span>↑</span></div>
+        <div class="arr down" style="top:438px"><span>↓</span> 10</div>
+        <div class="arr up" style="top:516px">10 <span>↑</span></div>
+        <div class="arr down" style="top:516px"><span>↓</span> 10</div>
+        <div class="arr up" style="top:594px">10 <span>↑</span></div>
+        <div class="arr down" style="top:594px"><span>↓</span> 10</div>
+        <div class="arr up" style="top:672px">10 <span>↑</span></div>
+        <div class="arr down" style="top:672px"><span>↓</span> 10</div>
+        <div class="arr up k1000" style="top:750px">1000 <i>or</i> <b>10<sup>3</sup></b> <span>↑</span></div>
+        <div class="arr down k1000" style="top:750px"><span>↓</span> 1000 <i>or</i> <b>10<sup>3</sup></b></div>
+        <div class="arr up k1000" style="top:828px">1000 <i>or</i> <b>10<sup>3</sup></b> <span>↑</span></div>
+        <div class="arr down k1000" style="top:828px"><span>↓</span> 1000 <i>or</i> <b>10<sup>3</sup></b></div>
+        <div class="arr up k1000" style="top:906px">1000 <i>or</i> <b>10<sup>3</sup></b> <span>↑</span></div>
+        <div class="arr down k1000" style="top:906px"><span>↓</span> 1000 <i>or</i> <b>10<sup>3</sup></b></div>
+
+        <div class="brace r1000" style="top:22px; height:234px"></div>
+        <div class="rtext r1000" style="top:139px"><h2>From tera to kilo: jumps of 1000</h2>Going <b>DOWN</b> one jump: the number gets <u>1000 times bigger</u>.<br>Going <b>UP</b> one jump: the number gets <u>1000 times smaller</u>.</div>
+        <div class="brace r10" style="top:256px; height:468px"></div>
+        <div class="rtext r10" style="top:490px"><h2>From kilo to milli: steps of 10</h2>Going <b>DOWN</b> one step: the number gets <u>10 times bigger</u>.<br>Going <b>UP</b> one step: the number gets <u>10 times smaller</u>.</div>
+        <div class="brace r1000" style="top:724px; height:234px"></div>
+        <div class="rtext r1000" style="top:841px"><h2>From milli to pico: jumps of 1000</h2>Going <b>DOWN</b> one jump: the number gets <u>1000 times bigger</u>.<br>Going <b>UP</b> one jump: the number gets <u>1000 times smaller</u>.</div>
+    </div>
+    <div class="note">Examples: 1 km = 10<sup>5</sup> cm (5 steps of 10) · 1 mm = 1000 µm (1 jump of 1000) · 1 Gm = 10<sup>6</sup> km (2 jumps of 1000).</div>
+</div>
+</body>
+</html>

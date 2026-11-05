@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>URM graphs</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 16px; }
+    .c { flex: 1; text-align: center; border: 2px solid var(--line); border-radius: 16px; padding: 8px; }
+    .c h2 { font-size: 19px; color: var(--blue); }
+    .t { font-size: 15px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Graphs of uniform rectilinear motion (URM)</h1>
+    <div class="row">
+        <div class="c"><h2>Moving away</h2><svg id="a" width="250" height="220"></svg><div class="t">x increases: line goes <b>up</b><br>v &gt; 0</div></div>
+        <div class="c"><h2>Coming back</h2><svg id="b" width="250" height="220"></svg><div class="t">x decreases: line goes <b>down</b><br>v &lt; 0</div></div>
+        <div class="c"><h2>At rest</h2><svg id="c" width="250" height="220"></svg><div class="t">x does not change: <b>horizontal</b><br>v = 0</div></div>
+        <div class="c" style="background:var(--ocre-soft); border-color:var(--ocre)"><h2>Speed–time</h2><svg id="d" width="250" height="220"></svg><div class="t">v is constant: <b>horizontal</b><br>area = distance = v · t</div></div>
+    </div>
+    <div class="note" style="text-align:center; margin-top:10px">Steeper line in the x–t graph ⇒ greater speed.</div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg';
+    function g(id, yl, lines, area) {
+        const s = document.getElementById(id);
+        const add = (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; s.appendChild(e); };
+        if (area) add('rect', { x: 40, y: 90, width: 160, height: 100, fill: '#F5CBA7' });
+        add('line', { x1: 40, y1: 190, x2: 235, y2: 190, stroke: '#23373B', 'stroke-width': 2.5 });
+        add('line', { x1: 40, y1: 190, x2: 40, y2: 15, stroke: '#23373B', 'stroke-width': 2.5 });
+        add('text', { x: 230, y: 210, 'text-anchor': 'end', 'font-size': 17, 'font-weight': 700, fill: '#23373B' }, 't');
+        add('text', { x: 18, y: 25, 'font-size': 17, 'font-weight': 700, fill: '#23373B' }, yl);
+        lines.forEach(([x1, y1, x2, y2, c]) => add('line', { x1, y1, x2, y2, stroke: c, 'stroke-width': 5, 'stroke-linecap': 'round' }));
+        if (area) add('text', { x: 120, y: 145, 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 800, fill: '#A04000' }, 'distance');
+    }
+    g('a', 'x', [[40, 170, 220, 40, '#2471A3'], [40, 170, 220, 120, '#85C1E9']]);
+    g('b', 'x', [[40, 40, 220, 170, '#C0392B']]);
+    g('c', 'x', [[40, 100, 220, 100, '#7F8C8D']]);
+    g('d', 'v', [[40, 90, 200, 90, '#E67E22']], true);
+</script>
+</body>
+</html>

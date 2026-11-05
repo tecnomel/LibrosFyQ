@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ondas longitudinales y transversales</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="720" height="420"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const wall = (x, y1, y2) => {
+        add('rect', { x: x - 14, y: y1, width: 14, height: y2 - y1, fill: '#D5D8DC', stroke: '#7F8C8D', 'stroke-width': 1.5 });
+        for (let y = y1 + 6; y < y2; y += 12) add('line', { x1: x - 14, y1: y + 6, x2: x, y2: y - 2, stroke: '#7F8C8D', 'stroke-width': 1 });
+    };
+    // ---------- muelle: onda longitudinal ----------
+    label(add, 360, 26, 'Onda longitudinal: compresiones en un muelle', { fill: '#000070', 'font-size': 18 });
+    wall(50, 60, 150);
+    const g = (u, c) => Math.exp(-Math.pow((u - c) / 0.05, 2));
+    spring(add, 50, 640, 105, 14, 46, u => Math.max(0.35, 1 + 2.4 * g(u, 0.55) - 0.6 * g(u, 0.43) - 0.6 * g(u, 0.67)), '#5D6D7E');
+    add('rect', { x: 640, y: 92, width: 30, height: 26, rx: 5, fill: '#F5CBA7', stroke: '#A04000', 'stroke-width': 1.5 });
+    label(add, 655, 140, 'foco', { 'font-size': 13, fill: '#A04000' });
+    callout(add, 50 + 0.55 * 590, 88, 360, 60, 'compresión');
+    callout(add, 50 + 0.43 * 590, 122, 250, 150, 'dilatación', 'end');
+    callout(add, 50 + 0.67 * 590, 122, 470, 150, 'dilatación');
+    arrow(add, 120, 182, 60, 182, '#C0392B', 2.5); arrow(add, 120, 182, 180, 182, '#C0392B', 2.5);
+    label(add, 120, 204, 'vibración de las espiras', { 'font-size': 14, fill: '#C0392B' });
+    arrow(add, 600, 182, 420, 182, '#1E8449', 3.5);
+    label(add, 510, 204, 'propagación de la onda', { 'font-size': 14, fill: '#1E8449' });
+
+    // ---------- cuerda: onda transversal ----------
+    label(add, 360, 250, 'Onda transversal: una cuerda que se agita', { fill: '#000070', 'font-size': 18 });
+    wall(50, 270, 400);
+    add('line', { x1: 50, y1: 335, x2: 200, y2: 335, stroke: '#A04000', 'stroke-width': 4 });
+    wave(add, 200, 335, 440, 36, 220, { col: '#A04000', w: 4, phase: Math.PI });
+    add('rect', { x: 640, y: 322, width: 30, height: 26, rx: 5, fill: '#F5CBA7', stroke: '#A04000', 'stroke-width': 1.5 });
+    label(add, 655, 370, 'foco', { 'font-size': 13, fill: '#A04000' });
+    // un punto marcado de la cuerda, que sube y baja
+    const xp = 365, yp = 335 - 36 * Math.sin(2 * Math.PI * (xp - 200) / 220 + Math.PI);
+    add('circle', { cx: xp, cy: yp, r: 6, fill: '#C0392B' });
+    arrow(add, xp, 335, xp, 280, '#C0392B', 2.5); arrow(add, xp, 335, xp, 390, '#C0392B', 2.5);
+    label(add, xp + 10, 284, 'vibración de cada punto', { 'font-size': 14, fill: '#C0392B', 'text-anchor': 'start' });
+    arrow(add, 300, 412, 120, 412, '#1E8449', 3.5);
+    label(add, 210, 402, 'propagación de la onda', { 'font-size': 14, fill: '#1E8449' });
+    label(add, 125, 322, 'aún en reposo', { 'font-size': 13, fill: '#525252' });
+</script>
+</body>
+</html>

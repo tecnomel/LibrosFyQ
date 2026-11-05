@@ -1,0 +1,1430 @@
+% ============================================================
+% SOLUCIONES EJERCICIOS EVAU — EQUILIBRIO QUÍMICO Y SOLUBILIDAD
+% ============================================================
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: NOCl 2024
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    \textbf{2024}. A una temperatura de \SI{460}{\celsius} se introdujeron \num{2,5} moles de \ch{NOCl} en un recipiente cerrado de volumen \SI{1}{\litre}.
+    Una vez alcanzado el equilibrio se determinó que se habían formado \num{0,78} moles de \ch{NO}.
+    \begin{reaction*}
+        2 NOCl \gas{} <=> Cl2 \gas{} + 2 NO \gas{}
+    \end{reaction*}
+    \begin{enumerate}[label=\letraminuscula]
+        \item Calcule la constante de equilibrio Kc.
+        \item Calcule la constante de equilibrio Kp.
+        \item Calcule la presión total de la mezcla en equilibrio a esa temperatura.
+    \end{enumerate}
+    \datos{}: \ctegases{}
+
+    \begin{solu}
+
+    Planteamos la tabla de equilibrio. Como se forman \num{0,78} mol de \ch{NO} y según la estequiometría cada 2 mol de \ch{NOCl} que reaccionan producen 2 mol de \ch{NO}, tenemos que \(x = 0{,}39\) mol (moles de \ch{NOCl} que reaccionan por cada mol de paso estequiométrico, pero como los coeficientes son iguales, \(n_{\ch{NO}} = 2x \Rightarrow x = 0{,}39\) mol).
+
+        \begin{table}[H]
+            % --- tabla antigua ---
+            % \begin{tblr}{%
+                % colspec = {X[c]X[c]X[c]X[c]},
+                % vline{2} = {1}{ text = \clap{:} },
+                % vline{3} = {1}{ text = \clap{\ch{->}} },
+                % vline{4} = {1}{ text = \clap{\ch{+}} },
+            % }
+                % \textbf{Ecuación}              & \ch{2 NOCl \gas{}}                                                     & \ch{Cl2 \gas{}}                                                    & \ch{2 NO \gas{}}                                                        \\
+                % \(\bm{n_0}\)                   & \(2{,}5\)                                                              & \(0\)                                                              & \(0\)                                                                   \\
+                % \(\bm{n_{\text{reaccionan}}}\) & \(-2x\)                                                                & \(-\)                                                              & \(-\)                                                                   \\
+                % \(\bm{n_{\text{forman}}}\)     & \(-\)                                                                  & \(+x\)                                                             & \(+2x\)                                                                 \\
+                % \(\bm{n_{\text{eq}}}\)         & \(\underbrace{2{,}5-2x}_{{\color{red}1{,}72}}\)                        & \(\underbrace{x}_{{\color{red}0{,}39}}\)                           & \(\underbrace{2x}_{{\color{red}0{,}78}}\)                               \\
+                % \(\conc{\ \ }_{eq}\)           & \({\color{blue}\dfrac{1{,}72}{1} = \qty{1{,}72}{\M}}\)                 & \({\color{blue}\dfrac{0{,}39}{1} = \qty{0{,}39}{\M}}\)             & \({\color{blue}\dfrac{0{,}78}{1} = \qty{0{,}78}{\M}}\)                  \\
+            % \end{tblr}
+            % --- tabla nueva ---
+            \begin{tabular}{@{}C{0.21\linewidth} @{\,}c@{\,} C{0.21\linewidth} @{\,}c@{\,} C{0.21\linewidth} @{\,}c@{\,} C{0.21\linewidth}@{}}
+                \toprule
+                \textbf{Ecuación} & : & \textbf{\ch{2 NOCl \gas{}}} & \ch{->} & \textbf{\ch{Cl2 \gas{}}} & \ch{+} & \textbf{\ch{2 NO \gas{}}} \\
+                \midrule
+                \(\bm{n_0}\) &  & \(2{,}5\) &  & \(0\) &  & \(0\) \\[3pt]
+                \(\bm{n_{\text{reaccionan}}}\) &  & \(-2x\) &  & \(-\) &  & \(-\) \\[3pt]
+                \(\bm{n_{\text{forman}}}\) &  & \(-\) &  & \(+x\) &  & \(+2x\) \\[3pt]
+                \(\bm{n_{\text{eq}}}\) &  & \(\underbrace{2{,}5-2x}_{{\color{red}1{,}72}}\) &  & \(\underbrace{x}_{{\color{red}0{,}39}}\) &  & \(\underbrace{2x}_{{\color{red}0{,}78}}\) \\[3pt]
+                \(\conc{\ \ }_{eq}\) &  & \({\color{blue}\dfrac{1{,}72}{1} = \qty{1{,}72}{\M}}\) &  & \({\color{blue}\dfrac{0{,}39}{1} = \qty{0{,}39}{\M}}\) &  & \({\color{blue}\dfrac{0{,}78}{1} = \qty{0{,}78}{\M}}\) \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+
+    \textcolor{blue}{Sabemos que se forman \(2x = 0{,}78\) mol de \ch{NO}, por tanto:}
+    \[
+        x = \frac{0{,}78}{2} = 0{,}39 \text{ mol}
+    \]
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item \textcolor{blue}{Calculamos \Kc{} con la expresión del cociente de equilibrio:}
+        \[
+            \boxed{K_c = \frac{\conc{Cl_2}\cdot\conc{NO}^2}{\conc{NOCl}^2}}
+        \]
+        Sustituimos las concentraciones calculadas:
+        \[
+            K_c = \frac{0{,}39 \cdot (0{,}78)^2}{(1{,}72)^2} = \frac{0{,}39 \cdot 0{,}6084}{2{,}9584} = \textcolor{red}{\num{8,02e-2}\ \unit{\M}}
+        \]
+
+        \item \textcolor{blue}{Calculamos \Kp{} a partir de \Kc{}. La variación de moles gaseosos es:}
+        \[
+            \Delta n = (1+2) - 2 = 1
+        \]
+        \[
+            \boxed{K_p = K_c\,(R\,T)^{\Delta n}}
+        \]
+        La temperatura en kelvin es \(T = 460 + 273 = \qty{733}{\K}\):
+        \[
+            K_p = 0{,}0802 \cdot (0{,}082 \cdot 733)^{1} = 0{,}0802 \cdot 60{,}1 = \textcolor{red}{\num{4,82}\ \unit{\atmospher}}
+        \]
+
+        \item \textcolor{blue}{Para la presión total usamos la ley del gas ideal \(p\,V = n\,R\,T\).}
+        El número total de moles en el equilibrio es:
+        \[
+            n_T = 1{,}72 + 0{,}39 + 0{,}78 = 2{,}89 \text{ mol}
+        \]
+        \[
+            p_T = \frac{n_T\,R\,T}{V} = \frac{2{,}89 \cdot 0{,}082 \cdot 733}{1} = \textcolor{red}{\qty{173,7}{\atmospher}}
+        \]
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: CaF₂ — Kps 2024
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    \textbf{2024}. Sabiendo que el producto de solubilidad de \ch{CaF2} es \( \Kps = \num{3.4e-11} \) a \SI{25}{\celsius}, calcule la solubilidad molar de \ch{CaF2} a esa temperatura.
+
+    \begin{solu}
+
+    \textcolor{blue}{Escribimos el equilibrio de solubilidad del \ch{CaF2}:}
+    \begin{reaction*}
+        CaF2 \sld{} <=> Ca^{2+} \aq{} + 2 F^{-} \aq{}
+    \end{reaction*}
+
+    \textcolor{blue}{Si llamamos \(s\) a la solubilidad molar (en \unit{\M}), en el equilibrio tendremos:}
+    \[
+        [\ch{Ca^{2+}}] = s \qquad [\ch{F^-}] = 2s
+    \]
+
+    \textcolor{blue}{La expresión del producto de solubilidad es:}
+    \[
+        \boxed{K_{ps} = [\ch{Ca^{2+}}]\cdot[\ch{F^-}]^2 = s\cdot(2s)^2 = 4s^3}
+    \]
+
+    \textcolor{blue}{Despejamos \(s\):}
+    \[
+        4s^3 = \num{3.4e-11} \implies s^3 = \frac{\num{3.4e-11}}{4} = \num{8.5e-12}
+    \]
+    \[
+        s = \sqrt[3]{\num{8.5e-12}} = \textcolor{red}{\qty{2.04e-4}{\M}}
+    \]
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: CO₂ + H₂ 2023
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    \textbf{2023}.
+    En un recipiente de 2L se introducen \SI{92,4}{\g} de \ch{CO2} y \SI{3,2}{\g} de \ch{H2}, calentándose la mezcla a 1800 ºC. Una vez alcanzado el siguiente equilibrio: \ch{CO2 \gas{} + H2 \gas{} <=> CO \gas{} + H2O \gas{}} se analiza la mezcla, encontrándose que quedan \num{0,9} moles de \ch{CO2}.
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item Calcule la concentración de cada especie en el equilibrio.
+        \item Calcule \Kc{} y \Kp{} a \SI{1800}{\celsius}.
+        \item Justifique si una disminución del volumen del recipiente afectaría al equilibrio.
+    \end{enumerate}
+
+    \datos{}: Masas atómicas (u): C = 12, O = 16, H = 1; \(R = \ctegases\)
+
+    \begin{solu}
+
+    \textcolor{blue}{Primero calculamos los moles iniciales de cada reactivo:}
+    \begin{itemize}
+        \item \ch{CO2}: \(M = 12 + 2\cdot16 = \qty{44}{\g\per\mol}\) \(\Rightarrow n_0 = \dfrac{92{,}4}{44} = \num{2{,}1}\) mol
+        \item \ch{H2}: \(M = 2\cdot1 = \qty{2}{\g\per\mol}\) \(\Rightarrow n_0 = \dfrac{3{,}2}{2} = \num{1{,}6}\) mol
+    \end{itemize}
+
+    \textcolor{blue}{Planteamos la tabla de equilibrio:}
+
+        \begin{table}[H]
+            % --- tabla antigua ---
+            % \begin{tblr}{%
+                % colspec = {X[c]X[c]X[c]X[c]X[c]},
+                % vline{2} = {1}{ text = \clap{:} },
+                % vline{3} = {1}{ text = \clap{\ch{+}} },
+                % vline{4} = {1}{ text = \clap{\ch{->}} },
+                % vline{5} = {1}{ text = \clap{\ch{+}} },
+            % }
+                % \textbf{Ecuación}              & \ch{CO2 \gas{}}                                        & \ch{H2 \gas{}}                                         & \ch{CO \gas{}}                                & \ch{H2O \gas{}}                               \\
+                % \(\bm{n_0}\)                   & \(2{,}1\)                                              & \(1{,}6\)                                              & \(0\)                                         & \(0\)                                         \\
+                % \(\bm{n_{\text{reaccionan}}}\) & \(-x\)                                                 & \(-x\)                                                 & \(-\)                                         & \(-\)                                         \\
+                % \(\bm{n_{\text{forman}}}\)     & \(-\)                                                  & \(-\)                                                  & \(+x\)                                        & \(+x\)                                        \\
+                % \(\bm{n_{\text{eq}}}\)         & \(\underbrace{2{,}1-x}_{{\color{red}0{,}9}}\)          & \(\underbrace{1{,}6-x}_{{\color{red}0{,}4}}\)          & \(\underbrace{x}_{{\color{red}1{,}2}}\)       & \(\underbrace{x}_{{\color{red}1{,}2}}\)       \\
+                % \(\conc{\ \ }_{eq}\)           & \({\color{blue}\qty{0{,}45}{\M}}\)                     & \({\color{blue}\qty{0{,}20}{\M}}\)                     & \({\color{blue}\qty{0{,}60}{\M}}\)            & \({\color{blue}\qty{0{,}60}{\M}}\)            \\
+            % \end{tblr}
+            % --- tabla nueva ---
+            \begin{tabular}{@{}C{0.16\linewidth} @{\,}c@{\,} C{0.16\linewidth} @{\,}c@{\,} C{0.16\linewidth} @{\,}c@{\,} C{0.16\linewidth} @{\,}c@{\,} C{0.16\linewidth}@{}}
+                \toprule
+                \textbf{Ecuación} & : & \textbf{\ch{CO2 \gas{}}} & \ch{+} & \textbf{\ch{H2 \gas{}}} & \ch{->} & \textbf{\ch{CO \gas{}}} & \ch{+} & \textbf{\ch{H2O \gas{}}} \\
+                \midrule
+                \(\bm{n_0}\) &  & \(2{,}1\) &  & \(1{,}6\) &  & \(0\) &  & \(0\) \\[3pt]
+                \(\bm{n_{\text{reaccionan}}}\) &  & \(-x\) &  & \(-x\) &  & \(-\) &  & \(-\) \\[3pt]
+                \(\bm{n_{\text{forman}}}\) &  & \(-\) &  & \(-\) &  & \(+x\) &  & \(+x\) \\[3pt]
+                \(\bm{n_{\text{eq}}}\) &  & \(\underbrace{2{,}1-x}_{{\color{red}0{,}9}}\) &  & \(\underbrace{1{,}6-x}_{{\color{red}0{,}4}}\) &  & \(\underbrace{x}_{{\color{red}1{,}2}}\) &  & \(\underbrace{x}_{{\color{red}1{,}2}}\) \\[3pt]
+                \(\conc{\ \ }_{eq}\) &  & \({\color{blue}\qty{0{,}45}{\M}}\) &  & \({\color{blue}\qty{0{,}20}{\M}}\) &  & \({\color{blue}\qty{0{,}60}{\M}}\) &  & \({\color{blue}\qty{0{,}60}{\M}}\) \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+
+    \textcolor{blue}{De \(2{,}1 - x = 0{,}9\) obtenemos \(x = 1{,}2\) mol.}
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item Las concentraciones en el equilibrio (\(V = \qty{2}{\L}\)):
+        \begin{multicols}{2}
+            \begin{itemize}
+                \item \([\ch{CO2}] = \dfrac{0{,}9}{2} = \textcolor{red}{\qty{0{,}45}{\M}}\)
+                \item \([\ch{H2}] = \dfrac{0{,}4}{2} = \textcolor{red}{\qty{0{,}20}{\M}}\)
+                \item \([\ch{CO}] = \dfrac{1{,}2}{2} = \textcolor{red}{\qty{0{,}60}{\M}}\)
+                \item \([\ch{H2O}] = \dfrac{1{,}2}{2} = \textcolor{red}{\qty{0{,}60}{\M}}\)
+            \end{itemize}
+        \end{multicols}
+
+        \item \textcolor{blue}{Calculamos \Kc{}:}
+        \[
+            K_c = \frac{[\ch{CO}]\cdot[\ch{H2O}]}{[\ch{CO2}]\cdot[\ch{H2}]} = \frac{0{,}60 \cdot 0{,}60}{0{,}45 \cdot 0{,}20} = \textcolor{red}{\num{4{,}0}}
+        \]
+        \textcolor{blue}{Para \Kp{}, como \(\Delta n = (1+1)-(1+1) = 0\):}
+        \[
+            K_p = K_c\,(R\,T)^{\Delta n} = K_c\,(R\,T)^0 = \textcolor{red}{\num{4{,}0}}
+        \]
+
+        \item \textcolor{blue}{Al disminuir el volumen aumenta la presión. Según el Principio de Le Chatelier, el equilibrio se desplazará hacia donde haya menos moles gaseosos.} Como \(\Delta n = 0\), el número de moles gaseosos es igual en reactivos y productos, por tanto \textcolor{red}{una disminución del volumen \emph{no afecta} a la posición del equilibrio} (las concentraciones aumentarán proporcionalmente en ambos lados, pero el cociente de reacción sigue siendo igual a \Kc{}).
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: CaBr₂ — Kps y efecto ión común 2023
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    \textbf{2023} Sabiendo que a \SI{298}{\kelvin}, la solubilidad del \ch{CaBr2} en agua es \SI{2}{\mole\per\litre}:
+    \begin{enumerate}[label=\letraminuscula]
+        \item Calcule la constante del producto de solubilidad (\Kps{}) de dicha sal.
+        \item Calcule la solubilidad del CaBr2 en presencia de una disolución \SI{0.2}{\M} de \ch{NaBr}.
+    \end{enumerate}
+    \begin{solu}
+
+    \textcolor{blue}{Escribimos el equilibrio de solubilidad del \ch{CaBr2}:}
+    \begin{reaction*}
+        CaBr2 \sld{} <=> Ca^{2+} \aq{} + 2 Br^{-} \aq{}
+    \end{reaction*}
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item \textcolor{blue}{Si la solubilidad es \(s = \qty{2}{\M}\), en el equilibrio:}
+        \[
+            [\ch{Ca^{2+}}] = s = 2\text{ M} \qquad [\ch{Br^-}] = 2s = 4\text{ M}
+        \]
+        \[
+            \boxed{K_{ps} = [\ch{Ca^{2+}}]\cdot[\ch{Br^-}]^2 = s\cdot(2s)^2 = 4s^3}
+        \]
+        \[
+            K_{ps} = 4\cdot(2)^3 = 4\cdot 8 = \textcolor{red}{\num{32}}
+        \]
+
+        \item \textcolor{blue}{En presencia de \ch{NaBr} \qty{0.2}{\M}, el \ch{NaBr} se disocia completamente aportando \qty{0.2}{\M} de \ch{Br^-} (efecto del ión común). Si \(s'\) es la nueva solubilidad:}
+        \[
+            [\ch{Ca^{2+}}] = s' \qquad [\ch{Br^-}] = 2s' + 0{,}2
+        \]
+        \textcolor{blue}{Planteamos la expresión de \Kps{}:}
+        \[
+            s'\cdot(2s'+0{,}2)^2 = 32
+        \]
+        \textcolor{blue}{Como \Kps{} es grande (sal bastante soluble), \(s'\) será del mismo orden que sin el ión común, por lo que hay que resolver la ecuación cúbica. Expandiendo:}
+        \[
+            s'(4s'^2 + 0{,}8s' + 0{,}04) = 32
+        \]
+        \[
+            4s'^3 + 0{,}8s'^2 + 0{,}04s' - 32 = 0
+        \]
+        \textcolor{blue}{Resolviendo numéricamente (por iteración o calculadora):}
+        \[
+            s' \approx \textcolor{red}{\qty{1{,}83}{\M}}
+        \]
+        \textcolor{blue}{Como era de esperar, el efecto del ión común \emph{disminuye} la solubilidad del \ch{CaBr2} (de \qty{2}{\M} a \qty{1{,}83}{\M}).}
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: HF — Cociente de reacción 2023
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    \textbf{2023}. A una temperatura determinada, la \Kc{} para la descomposición del fluoruro de hidrógeno según la reacción:
+    \begin{reaction*}
+        2 HF \gas{} <-> H2 \gas{} + F2 \gas{}
+    \end{reaction*}
+    tiene un valor de \num{1.0e-13}.
+    Al cabo de cierto tiempo se encuentran las siguientes concentraciones: [\ch{HF}] = \qty{0.5}{\M}; [\ch{H2}] = \qty{e-3}{\M}; [\ch{F2}] = \qty{4e-3}{\M}.
+    \begin{enumerate}[label=\letraminuscula]
+        \item Justifique por qué el sistema no se encuentra en equilibrio.
+        \item ¿Cómo ha de evolucionar el sistema para alcanzar el equilibrio?
+    \end{enumerate}
+    \begin{solu}
+
+    \textcolor{blue}{Para determinar el estado del sistema calculamos el cociente de reacción \(Q_c\) con las concentraciones dadas:}
+    \[
+        \boxed{Q_c = \frac{[\ch{H2}]\cdot[\ch{F2}]}{[\ch{HF}]^2}}
+    \]
+    \[
+        Q_c = \frac{(\num{e-3})\cdot(\num{4e-3})}{(0{,}5)^2} = \frac{\num{4e-6}}{0{,}25} = \num{1.6e-5}
+    \]
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item \textcolor{blue}{Comparamos \(Q_c\) con \Kc{}:}
+        \[
+            Q_c = \num{1.6e-5} \gg K_c = \num{1.0e-13}
+        \]
+        Como \(Q_c > K_c\), \textcolor{red}{el sistema \emph{no} se encuentra en equilibrio}, pues la concentración de productos (\ch{H2} y \ch{F2}) es excesivamente elevada en relación a la de reactivos (\ch{HF}) para las condiciones de equilibrio.
+
+        \item \textcolor{blue}{Dado que \(Q_c > K_c\), el sistema tiene un exceso de productos respecto al equilibrio.} Para alcanzar el equilibrio, \textcolor{red}{la reacción debe desplazarse hacia la izquierda} (hacia los reactivos): la concentración de \ch{H2} y \ch{F2} disminuirá y la de \ch{HF} aumentará hasta que \(Q_c = K_c\).
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: Br₂ + I₂ 2023
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    \textbf{2023}. En un recipiente cerrado de \qty{400}{\mL}, se añaden \qty{1.280}{\g} de bromo (\ch{Br2}) y \qty{2.032}{\g} de yodo (\ch{I2}). Se eleva la temperatura a \qty{150}{\celsius} y se alcanza el siguiente equilibrio:
+    \begin{reaction*}
+        Br2 \gas{} + I2 \gas{} -> 2 BrI \gas{}
+    \end{reaction*}
+    En estas condiciones el valor de \Kc{} es 280.
+    \begin{enumerate}[label=\letraminuscula]
+        \item Calcule el valor del grado de disociación (expresado en \%)
+        \item Calcule el valor de Kp para este equilibrio a \qty{150}{\celsius}.
+        \item Calcule los gramos de yodo en el equilibrio.
+    \end{enumerate}
+    \datos{}: Masas atómicas (u): Br = 80, I = 127; R = \ctegases{}
+    \begin{solu}
+
+    \textcolor{blue}{Calculamos los moles iniciales:}
+    \begin{itemize}
+        \item \ch{Br2}: \(M = 2\cdot80 = \qty{160}{\g\per\mol}\) \(\Rightarrow n_0 = \dfrac{1{,}280}{160} = \num{8{,}0e-3}\) mol
+        \item \ch{I2}: \(M = 2\cdot127 = \qty{254}{\g\per\mol}\) \(\Rightarrow n_0 = \dfrac{2{,}032}{254} = \num{8{,}0e-3}\) mol
+    \end{itemize}
+
+    \textcolor{blue}{Las concentraciones iniciales (\(V = \qty{0.4}{\L}\)):}
+    \[
+        [\ch{Br2}]_0 = [\ch{I2}]_0 = \frac{\num{8{,}0e-3}}{0{,}4} = \qty{0{,}020}{\M}
+    \]
+
+    \textcolor{blue}{Planteamos la tabla de equilibrio:}
+
+        \begin{table}[H]
+            % --- tabla antigua ---
+            % \begin{tblr}{%
+                % colspec = {X[c]X[c]X[c]X[c]},
+                % vline{2} = {1}{ text = \clap{:} },
+                % vline{3} = {1}{ text = \clap{\ch{+}} },
+                % vline{4} = {1}{ text = \clap{\ch{->}} },
+            % }
+                % \textbf{Ecuación}              & \ch{Br2 \gas{}}                                           & \ch{I2 \gas{}}                                            & \ch{2 BrI \gas{}}                    \\
+                % \(\bm{[\,]_0}\)                & \(0{,}020\)                                               & \(0{,}020\)                                               & \(0\)                                \\
+                % \(\bm{\Delta[\,]}\)            & \(-x\)                                                    & \(-x\)                                                    & \(+2x\)                              \\
+                % \(\bm{[\,]_{eq}}\)             & \(0{,}020-x\)                                             & \(0{,}020-x\)                                             & \(2x\)                               \\
+            % \end{tblr}
+            % --- tabla nueva ---
+            \begin{tabular}{@{}c @{\,}c@{\,} c @{\,}c@{\,} c @{\,}c@{\,} c@{}}
+                \toprule
+                \textbf{Ecuación} & : & \textbf{\ch{Br2 \gas{}}} & \ch{+} & \textbf{\ch{I2 \gas{}}} & \ch{->} & \textbf{\ch{2 BrI \gas{}}} \\
+                \midrule
+                \(\bm{[\,]_0}\) &  & \(0{,}020\) &  & \(0{,}020\) &  & \(0\) \\[3pt]
+                \(\bm{\Delta[\,]}\) &  & \(-x\) &  & \(-x\) &  & \(+2x\) \\[3pt]
+                \(\bm{[\,]_{eq}}\) &  & \(0{,}020-x\) &  & \(0{,}020-x\) &  & \(2x\) \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+
+    \textcolor{blue}{Expresión de \Kc{}:}
+    \[
+        K_c = \frac{[\ch{BrI}]^2}{[\ch{Br2}]\cdot[\ch{I2}]} = \frac{(2x)^2}{(0{,}020-x)^2} = \left(\frac{2x}{0{,}020-x}\right)^2 = 280
+    \]
+    \[
+        \frac{2x}{0{,}020-x} = \sqrt{280} = 16{,}73
+    \]
+    \[
+        2x = 16{,}73\,(0{,}020 - x) \implies 2x = 0{,}3346 - 16{,}73x \implies 18{,}73x = 0{,}3346
+    \]
+    \[
+        x = \frac{0{,}3346}{18{,}73} = \qty{0{,}01786}{\M}
+    \]
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item \textcolor{blue}{El grado de disociación es la fracción de reactivo (limitante) consumido. Como \ch{Br2} e \ch{I2} tienen las mismas concentraciones iniciales, tomamos cualquiera:}
+        \[
+            \alpha = \frac{x}{[\ch{Br2}]_0} = \frac{0{,}01786}{0{,}020} = 0{,}893 \implies \textcolor{red}{\alpha = 89{,}3\%}
+        \]
+
+        \item \textcolor{blue}{Como \(\Delta n = 2 - (1+1) = 0\):}
+        \[
+            K_p = K_c\,(R\,T)^{\Delta n} = K_c\,(R\,T)^0 = \textcolor{red}{280}
+        \]
+        \(\Delta n = 0\), por lo que \Kp{} = \Kc{} = \textcolor{red}{280} (adimensional).
+
+        \item \textcolor{blue}{Moles de \ch{I2} en el equilibrio:}
+        \[
+            [\ch{I2}]_{eq} = 0{,}020 - 0{,}01786 = \qty{2{,}14e-3}{\M}
+        \]
+        \[
+            n_{\ch{I2}} = 2{,}14\times10^{-3} \cdot 0{,}4 = \num{8{,}56e-4} \text{ mol}
+        \]
+        \[
+            m_{\ch{I2}} = \num{8{,}56e-4} \cdot 254 = \textcolor{red}{\qty{0{,}218}{\g}}
+        \]
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: NO + H₂ (sin año)
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    En un recipiente de 1 litro de capacidad, en el que previamente se ha hecho el vacío, se introducen 0,1 mol de \ch{NO}; \moles{0,05} de \ch{H2} y \moles{0,1} de agua.
+    Se calienta el matraz y se establece el equilibrio:
+    \begin{center}
+        \formula{2 NO\ (g) + 2 H2\ (g) <=> N2\ (g) + 2 H2O\ (g)}
+    \end{center}
+    Sabiendo que cuando se establece el equilibrio la concentración de NO es 0,062 M, calcule:
+    \begin{enumerate}[label=\letraminuscula]
+        \item Las concentraciones de todas las especies en el equilibrio.
+        \item El valor de la constante \(K_c\) a esa temperatura.
+    \end{enumerate}
+    \begin{solu}
+
+    \textcolor{blue}{Las concentraciones iniciales en \qty{1}{\L}:}
+    \[
+        [\ch{NO}]_0 = \qty{0{,}1}{\M},\quad [\ch{H2}]_0 = \qty{0{,}05}{\M},\quad [\ch{N2}]_0 = \qty{0}{\M},\quad [\ch{H2O}]_0 = \qty{0{,}1}{\M}
+    \]
+
+        \begin{table}[H]
+            % --- tabla antigua ---
+            % \begin{tblr}{%
+                % colspec = {X[c]X[c]X[c]X[c]X[c]},
+                % vline{2} = {1}{ text = \clap{:} },
+                % vline{3} = {1}{ text = \clap{\ch{+}} },
+                % vline{4} = {1}{ text = \clap{\ch{->}} },
+                % vline{5} = {1}{ text = \clap{\ch{+}} },
+            % }
+                % \textbf{Ecuación}  & \ch{2 NO}                                           & \ch{2 H2}                                           & \ch{N2}                              & \ch{2 H2O}                              \\
+                % \(\bm{[\,]_0}\)    & \(0{,}1\)                                           & \(0{,}05\)                                          & \(0\)                                & \(0{,}1\)                               \\
+                % \(\bm{\Delta[\,]}\)& \(-2x\)                                             & \(-2x\)                                             & \(+x\)                               & \(+2x\)                                 \\
+                % \(\bm{[\,]_{eq}}\) & \(\underbrace{0{,}1-2x}_{{\color{red}0{,}062}}\)   & \(0{,}05-2x\)                                       & \(x\)                                & \(0{,}1+2x\)                            \\
+            % \end{tblr}
+            % --- tabla nueva ---
+            \begin{tabular}{@{}c @{\,}c@{\,} C{0.3\linewidth} @{\,}c@{\,} c @{\,}c@{\,} c @{\,}c@{\,} c@{}}
+                \toprule
+                \textbf{Ecuación} & : & \textbf{\ch{2 NO}} & \ch{+} & \textbf{\ch{2 H2}} & \ch{->} & \textbf{\ch{N2}} & \ch{+} & \textbf{\ch{2 H2O}} \\
+                \midrule
+                \(\bm{[\,]_0}\) &  & \(0{,}1\) &  & \(0{,}05\) &  & \(0\) &  & \(0{,}1\) \\[3pt]
+                \(\bm{\Delta[\,]}\) &  & \(-2x\) &  & \(-2x\) &  & \(+x\) &  & \(+2x\) \\[3pt]
+                \(\bm{[\,]_{eq}}\) &  & \(\underbrace{0{,}1-2x}_{{\color{red}0{,}062}}\) &  & \(0{,}05-2x\) &  & \(x\) &  & \(0{,}1+2x\) \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item \textcolor{blue}{De \(0{,}1 - 2x = 0{,}062\):}
+        \[
+            x = \frac{0{,}1 - 0{,}062}{2} = 0{,}019 \text{ mol/L}
+        \]
+        Las concentraciones en el equilibrio son:
+        \begin{multicols}{2}
+            \begin{itemize}
+                \item \([\ch{NO}] = \textcolor{red}{\qty{0{,}062}{\M}}\)
+                \item \([\ch{H2}] = 0{,}05 - 2\cdot0{,}019 = \textcolor{red}{\qty{0{,}012}{\M}}\)
+                \item \([\ch{N2}] = 0{,}019 = \textcolor{red}{\qty{0{,}019}{\M}}\)
+                \item \([\ch{H2O}] = 0{,}1 + 2\cdot0{,}019 = \textcolor{red}{\qty{0{,}138}{\M}}\)
+            \end{itemize}
+        \end{multicols}
+
+        \item \textcolor{blue}{La expresión de \(K_c\) para este equilibrio es:}
+        \[
+            K_c = \frac{[\ch{N2}]\cdot[\ch{H2O}]^2}{[\ch{NO}]^2\cdot[\ch{H2}]^2}
+        \]
+        Sustituimos:
+        \[
+            K_c = \frac{0{,}019\cdot(0{,}138)^2}{(0{,}062)^2\cdot(0{,}012)^2} = \frac{0{,}019\cdot\num{1{,}904e-2}}{\num{3{,}844e-3}\cdot\num{1{,}44e-4}} = \frac{\num{3{,}617e-4}}{\num{5{,}535e-7}} = \textcolor{red}{\num{653}\ \unit{\per\square\M}}
+        \]
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: Mn(OH)₂ — Solubilidad
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    La solubilidad del hidróxido de manganeso (II) en agua es de \concentracion[mgl]{1,96}.
+    Calcule la constante del producto de solubilidad de dicha sustancia.
+
+    \datos{}: masas atómicas: Mn = 54,94; O = 16; H = 1
+
+    \begin{solu}
+
+    \textcolor{blue}{Calculamos la masa molar del \ch{Mn(OH)2}:}
+    \[
+        M = 54{,}94 + 2\cdot(16+1) = 54{,}94 + 34 = \qty{88{,}94}{\g\per\mol}
+    \]
+
+    \textcolor{blue}{Convertimos la solubilidad de \unit{\mg\per\L} a \unit{\M}:}
+    \[
+        s = \frac{1{,}96\ \unit{\mg\per\L}}{88{,}94\ \unit{\g\per\mol}} = \frac{\num{1{,}96e-3}\ \unit{\g\per\L}}{88{,}94\ \unit{\g\per\mol}} = \qty{2{,}204e-5}{\M}
+    \]
+
+    \textcolor{blue}{Escribimos el equilibrio de solubilidad:}
+    \begin{reaction*}
+        Mn(OH)2 \sld{} <=> Mn^{2+} \aq{} + 2 OH^{-} \aq{}
+    \end{reaction*}
+
+    \textcolor{blue}{Con \(s = \qty{2{,}204e-5}{\M}\):}
+    \[
+        [\ch{Mn^{2+}}] = s \qquad [\ch{OH^-}] = 2s
+    \]
+
+    \[
+        \boxed{K_{ps} = [\ch{Mn^{2+}}]\cdot[\ch{OH^-}]^2 = s\cdot(2s)^2 = 4s^3}
+    \]
+
+    \[
+        K_{ps} = 4\cdot(\num{2{,}204e-5})^3 = 4\cdot\num{1{,}069e-14} = \textcolor{red}{\num{4{,}28e-14}}
+    \]
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: SO₃ — Disociación
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    Se coloca cierta cantidad de \ch{SO3} en un matraz de \volumen[l]{0,80}.
+    A cierta temperatura se establece el equilibrio de disociación:
+    \begin{center}
+        \formula{2 SO3\ (g) <=> 2 SO2\ (g) + O2\ (g)}
+    \end{center}
+    Se comprueba que en el equilibrio hay 2 moles de \ch{O2}.
+    Si \(k_c\) es \concentracion[m]{0,22} a la temperatura de la experiencia,
+    \begin{enumerate}[label=\letraminuscula]
+        \item Calcule las concentraciones de las sustancias presentes en el equilibrio.
+        \item Calcule el grado de disociación del \ch{SO3}.
+    \end{enumerate}
+    \begin{solu}
+
+    \textcolor{blue}{En el equilibrio hay \qty{2}{\mol} de \ch{O2} en \qty{0.80}{\L}, por tanto:}
+    \[
+        [\ch{O2}]_{eq} = \frac{2}{0{,}80} = \qty{2{,}5}{\M}
+    \]
+
+    \textcolor{blue}{Por estequiometría, por cada mol de \ch{O2} formado se forman 2 mol de \ch{SO2}, luego si \([\ch{O2}] = 2{,}5\) M entonces \([\ch{SO2}] = 2\cdot2{,}5 = \qty{5{,}0}{\M}\).}
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item \textcolor{blue}{Planteamos la expresión de \(K_c\):}
+        \[
+            K_c = \frac{[\ch{SO2}]^2\cdot[\ch{O2}]}{[\ch{SO3}]^2} = 0{,}22
+        \]
+        \textcolor{blue}{Despejamos \([\ch{SO3}]\):}
+        \[
+            [\ch{SO3}]^2 = \frac{[\ch{SO2}]^2\cdot[\ch{O2}]}{K_c} = \frac{(5{,}0)^2\cdot 2{,}5}{0{,}22} = \frac{62{,}5}{0{,}22} = 284{,}1
+        \]
+        \[
+            [\ch{SO3}] = \sqrt{284{,}1} = \textcolor{red}{\qty{16{,}86}{\M}}
+        \]
+
+        Concentraciones en el equilibrio:
+        \begin{itemize}
+            \item \([\ch{SO3}] = \textcolor{red}{\qty{16{,}86}{\M}}\)
+            \item \([\ch{SO2}] = \textcolor{red}{\qty{5{,}0}{\M}}\)
+            \item \([\ch{O2}] = \textcolor{red}{\qty{2{,}5}{\M}}\)
+        \end{itemize}
+
+        \item \textcolor{blue}{Los moles iniciales de \ch{SO3} (antes de reaccionar) se obtienen sumando los presentes en el equilibrio con los que se han disociado. Por estequiometría, 2 mol de \ch{SO3} producen 1 mol de \ch{O2}, por tanto los moles de \ch{SO3} disociados son \(2\cdot n_{\ch{O2}} = 2\cdot2 = 4\) mol, es decir \(\dfrac{4}{0{,}80} = \qty{5{,}0}{\M}\) en concentración.}
+
+        Los moles iniciales de \ch{SO3} (en concentración):
+        \[
+            [\ch{SO3}]_0 = [\ch{SO3}]_{eq} + [\ch{SO3}]_{\text{disociado}} = 16{,}86 + 5{,}0 = \qty{21{,}86}{\M}
+        \]
+
+        \textcolor{blue}{El grado de disociación:}
+        \[
+            \alpha = \frac{[\ch{SO3}]_{\text{disociado}}}{[\ch{SO3}]_0} = \frac{5{,}0}{21{,}86} = \textcolor{red}{0{,}229 \approx 22{,}9\%}
+        \]
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: Cd(OH)₂ — Kps (primera aparición)
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    Calcule el producto de solubilidad del \ch{Cd(OH)2} sabiendo que la solubilidad de esta sal en agua es \concentracion[m]{1,4e-5}.
+    \begin{solu}
+
+    \textcolor{blue}{Escribimos el equilibrio de solubilidad:}
+    \begin{reaction*}
+        Cd(OH)2 \sld{} <=> Cd^{2+} \aq{} + 2 OH^{-} \aq{}
+    \end{reaction*}
+
+    \textcolor{blue}{Con \(s = \qty{1{,}4e-5}{\M}\):}
+    \[
+        [\ch{Cd^{2+}}] = s = \num{1{,}4e-5}\ \unit{\M} \qquad [\ch{OH^-}] = 2s = \num{2{,}8e-5}\ \unit{\M}
+    \]
+
+    \[
+        \boxed{K_{ps} = [\ch{Cd^{2+}}]\cdot[\ch{OH^-}]^2 = s\cdot(2s)^2 = 4s^3}
+    \]
+
+    \[
+        K_{ps} = 4\cdot(\num{1{,}4e-5})^3 = 4\cdot\num{2{,}744e-15} = \textcolor{red}{\num{1{,}098e-14} \approx \num{1{,}1e-14}}
+    \]
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: COCl₂ en 2 L
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    En un recipiente de \volumen[l]{2} se introducen \moles{0,40} de \ch{COCl2} y se calienta a \temperatura[k]{900}, con lo que se establece el equilibrio:
+    \begin{center}
+        \ch{COCl2\ (g) <=> CO\ (g) + Cl2\ (g)}
+    \end{center}
+    Sabiendo que en ese momento la concentración de \ch{Cl2} es \concentracion[molar]{0,094}:
+    \begin{enumerate}[label=\letraminuscula]
+        \item Calcule el valor del grado de disociación del \ch{COCl2}.
+        \item Calcule el valor de \(kc\) y \(kp\).
+        \item Explique cómo afectaría a la concentración de \ch{COCl2} en la mezcla gaseosa en equilibrio la adición de \moles{0,2} de \ch{Cl2} manteniendo constante la temperatura.
+    \end{enumerate}
+    \datos{} R = \ctegases{}
+    \begin{solu}
+
+    \textcolor{blue}{La concentración inicial de \ch{COCl2} es:}
+    \[
+        [\ch{COCl2}]_0 = \frac{0{,}40}{2} = \qty{0{,}20}{\M}
+    \]
+
+        \begin{table}[H]
+            % --- tabla antigua ---
+            % \begin{tblr}{%
+                % colspec = {X[c]X[c]X[c]X[c]},
+                % vline{2} = {1}{ text = \clap{:} },
+                % vline{3} = {1}{ text = \clap{\ch{->}} },
+                % vline{4} = {1}{ text = \clap{\ch{+}} },
+            % }
+                % \textbf{Ecuación}   & \ch{COCl2}                                              & \ch{CO}                                 & \ch{Cl2}                                         \\
+                % \(\bm{[\,]_0}\)     & \(0{,}20\)                                              & \(0\)                                   & \(0\)                                            \\
+                % \(\bm{\Delta[\,]}\) & \(-x\)                                                  & \(+x\)                                  & \(+x\)                                           \\
+                % \(\bm{[\,]_{eq}}\)  & \(\underbrace{0{,}20-x}_{}\)                            & \(x\)                                   & \(\underbrace{x}_{{\color{red}0{,}094}}\)        \\
+            % \end{tblr}
+            % --- tabla nueva ---
+            \begin{tabular}{@{}c @{\,}c@{\,} c @{\,}c@{\,} c @{\,}c@{\,} C{0.46\linewidth}@{}}
+                \toprule
+                \textbf{Ecuación} & : & \textbf{\ch{COCl2}} & \ch{->} & \textbf{\ch{CO}} & \ch{+} & \textbf{\ch{Cl2}} \\
+                \midrule
+                \(\bm{[\,]_0}\) &  & \(0{,}20\) &  & \(0\) &  & \(0\) \\[3pt]
+                \(\bm{\Delta[\,]}\) &  & \(-x\) &  & \(+x\) &  & \(+x\) \\[3pt]
+                \(\bm{[\,]_{eq}}\) &  & \(\underbrace{0{,}20-x}_{}\) &  & \(x\) &  & \(\underbrace{x}_{{\color{red}0{,}094}}\) \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+
+    \textcolor{blue}{Como \([\ch{Cl2}]_{eq} = x = \qty{0{,}094}{\M}\):}
+    \[
+        [\ch{CO}]_{eq} = \qty{0{,}094}{\M} \qquad [\ch{COCl2}]_{eq} = 0{,}20 - 0{,}094 = \qty{0{,}106}{\M}
+    \]
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item \textcolor{blue}{El grado de disociación:}
+        \[
+            \alpha = \frac{x}{[\ch{COCl2}]_0} = \frac{0{,}094}{0{,}20} = \textcolor{red}{0{,}47 \ (47\%)}
+        \]
+
+        \item \textcolor{blue}{Calculamos \(k_c\):}
+        \[
+            k_c = \frac{[\ch{CO}]\cdot[\ch{Cl2}]}{[\ch{COCl2}]} = \frac{0{,}094\cdot0{,}094}{0{,}106} = \frac{0{,}008836}{0{,}106} = \textcolor{red}{\qty{0{,}083}{\M}}
+        \]
+
+        \textcolor{blue}{Para \(k_p\) con \(\Delta n = 2 - 1 = 1\):}
+        \[
+            k_p = k_c\,(R\,T)^{\Delta n} = 0{,}083\cdot(0{,}082\cdot900)^1 = 0{,}083\cdot73{,}8 = \textcolor{red}{\qty{6{,}13}{\atmospher}}
+        \]
+
+        \item \textcolor{blue}{Al añadir \ch{Cl2}, el sistema se aleja del equilibrio con \(Q_c > k_c\) (exceso de productos). Por el Principio de Le Chatelier, el equilibrio se desplaza hacia la izquierda (hacia los reactivos).} Por tanto, \textcolor{red}{la concentración de \ch{COCl2} \emph{aumenta}} hasta alcanzar el nuevo equilibrio.
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: Ag₂CrO₄ — Kps
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    La solubilidad del \ch{Ag2CrO4} en agua a \temperatura[c]{25} es \concentracion[molar]{1e-4}, calcule el producto de solubilidad de esta sal.
+    \begin{solu}
+
+    \textcolor{blue}{Escribimos el equilibrio de solubilidad:}
+    \begin{reaction*}
+        Ag2CrO4 \sld{} <=> 2 Ag^{+} \aq{} + CrO4^{2-} \aq{}
+    \end{reaction*}
+
+    \textcolor{blue}{Con \(s = \qty{e-4}{\M}\):}
+    \[
+        [\ch{Ag^+}] = 2s = \num{2e-4}\ \unit{\M} \qquad [\ch{CrO4^{2-}}] = s = \num{e-4}\ \unit{\M}
+    \]
+
+    \[
+        \boxed{K_{ps} = [\ch{Ag^+}]^2\cdot[\ch{CrO4^{2-}}] = (2s)^2\cdot s = 4s^3}
+    \]
+
+    \[
+        K_{ps} = 4\cdot(\num{e-4})^3 = 4\cdot\num{e-12} = \textcolor{red}{\num{4e-12}}
+    \]
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: BaCl₂ + Na₂SO₄ — Precipitación
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    Se mezclan \volumen[ml]{10} de \ch{BaCl2} \concentracion[m]{0,1} con \volumen[ml]{40} de \ch{Na2SO4} \concentracion[m]{0,1}.
+
+    \datos{} \(K_{ps} \ch{BaSO4} = \num{1,1e-10}\)
+    \begin{enumerate}[label=\letraminuscula]
+        \item ¿Precipitará \ch{BaSO4}?
+        \item Escriba el equilibrio de solubilidad del \ch{BaSO4}
+    \end{enumerate}
+
+    \begin{solu}
+
+    \textcolor{blue}{Al mezclar las disoluciones, el volumen total es \(V_T = 10 + 40 = \qty{50}{\mL} = \qty{0{,}05}{\L}\).}
+
+    \textcolor{blue}{Calculamos las concentraciones de los iones \ch{Ba^{2+}} y \ch{SO4^{2-}} tras la mezcla:}
+    \[
+        [\ch{Ba^{2+}}] = \frac{C_1 V_1}{V_T} = \frac{0{,}1\cdot0{,}010}{0{,}050} = \qty{0{,}020}{\M}
+    \]
+    \[
+        [\ch{SO4^{2-}}] = \frac{C_2 V_2}{V_T} = \frac{0{,}1\cdot0{,}040}{0{,}050} = \qty{0{,}080}{\M}
+    \]
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item \textcolor{blue}{Calculamos el producto iónico \(Q_s\) y comparamos con \(K_{ps}\):}
+        \[
+            Q_s = [\ch{Ba^{2+}}]\cdot[\ch{SO4^{2-}}] = 0{,}020\cdot0{,}080 = \num{1{,}6e-3}
+        \]
+        \[
+            Q_s = \num{1{,}6e-3} \gg K_{ps} = \num{1{,}1e-10}
+        \]
+        \textcolor{red}{Sí precipitará el \ch{BaSO4}}, ya que \(Q_s > K_{ps}\): la disolución está sobresaturada respecto al \ch{BaSO4}.
+
+        \item El equilibrio de solubilidad del \ch{BaSO4} es:
+        \begin{reaction*}
+            BaSO4 \sld{} <=> Ba^{2+} \aq{} + SO4^{2-} \aq{}
+        \end{reaction*}
+        \[
+            K_{ps} = [\ch{Ba^{2+}}]\cdot[\ch{SO4^{2-}}] = \num{1{,}1e-10}
+        \]
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: SO₂Cl₂
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    En un recipiente de \volumen[l]{2,0} de capacidad se introduce una mezcla gaseosa que contiene \moles{0,1} de \ch{SO2} y \num{0,5} de \ch{SO2Cl2} (cloruro de sulfonilo). A \temperatura[c]{150} se establece el equilibrio :
+    \begin{center}
+        \ch{SO2Cl2\ (g) <=> SO2\ (g) + Cl2\ (g)}
+    \end{center}
+    cuya constante \(Kc\) vale \num{0,011}.
+    \begin{enumerate}[label=\letraminuscula]
+        \item Calcular la concentración de todas las sustancias en equilibrio.
+        \item Calcular la presión total en el equilibrio a \temperatura[c]{150}
+        \item Calcular Kp y los valores de las presiones parciales de los componentes de la mezcla en equilibrio.
+    \end{enumerate}
+    \datos{}: R = \ctegases
+
+    \begin{solu}
+
+    \textcolor{blue}{Las concentraciones iniciales en \qty{2{,}0}{\L}:}
+    \[
+        [\ch{SO2Cl2}]_0 = \frac{0{,}5}{2{,}0} = \qty{0{,}25}{\M} \qquad [\ch{SO2}]_0 = \frac{0{,}1}{2{,}0} = \qty{0{,}05}{\M} \qquad [\ch{Cl2}]_0 = \qty{0}{\M}
+    \]
+
+        \begin{table}[H]
+            % --- tabla antigua ---
+            % \begin{tblr}{%
+                % colspec = {X[c]X[c]X[c]X[c]},
+                % vline{2} = {1}{ text = \clap{:} },
+                % vline{3} = {1}{ text = \clap{\ch{->}} },
+                % vline{4} = {1}{ text = \clap{\ch{+}} },
+            % }
+                % \textbf{Ecuación}   & \ch{SO2Cl2}                  & \ch{SO2}                     & \ch{Cl2}    \\
+                % \(\bm{[\,]_0}\)     & \(0{,}25\)                   & \(0{,}05\)                   & \(0\)       \\
+                % \(\bm{\Delta[\,]}\) & \(-x\)                       & \(+x\)                       & \(+x\)      \\
+                % \(\bm{[\,]_{eq}}\)  & \(0{,}25-x\)                 & \(0{,}05+x\)                 & \(x\)       \\
+            % \end{tblr}
+            % --- tabla nueva ---
+            \begin{tabular}{@{}c @{\,}c@{\,} c @{\,}c@{\,} c @{\,}c@{\,} c@{}}
+                \toprule
+                \textbf{Ecuación} & : & \textbf{\ch{SO2Cl2}} & \ch{->} & \textbf{\ch{SO2}} & \ch{+} & \textbf{\ch{Cl2}} \\
+                \midrule
+                \(\bm{[\,]_0}\) &  & \(0{,}25\) &  & \(0{,}05\) &  & \(0\) \\[3pt]
+                \(\bm{\Delta[\,]}\) &  & \(-x\) &  & \(+x\) &  & \(+x\) \\[3pt]
+                \(\bm{[\,]_{eq}}\) &  & \(0{,}25-x\) &  & \(0{,}05+x\) &  & \(x\) \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+
+    \textcolor{blue}{Planteamos la expresión de \(K_c\):}
+    \[
+        K_c = \frac{[\ch{SO2}]\cdot[\ch{Cl2}]}{[\ch{SO2Cl2}]} = \frac{(0{,}05+x)\cdot x}{0{,}25-x} = 0{,}011
+    \]
+    \[
+        x^2 + 0{,}05x = 0{,}011\,(0{,}25-x) = 0{,}00275 - 0{,}011x
+    \]
+    \[
+        x^2 + 0{,}061x - 0{,}00275 = 0
+    \]
+    \textcolor{blue}{Resolvemos la ecuación de segundo grado:}
+    \[
+        x = \frac{-0{,}061 + \sqrt{(0{,}061)^2 + 4\cdot0{,}00275}}{2} = \frac{-0{,}061 + \sqrt{0{,}003721+0{,}011}}{2} = \frac{-0{,}061 + \sqrt{0{,}014721}}{2}
+    \]
+    \[
+        x = \frac{-0{,}061 + 0{,}1213}{2} = \frac{0{,}0603}{2} = \qty{0{,}0302}{\M}
+    \]
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item Concentraciones en el equilibrio:
+        \begin{itemize}
+            \item \([\ch{SO2Cl2}] = 0{,}25 - 0{,}0302 = \textcolor{red}{\qty{0{,}220}{\M}}\)
+            \item \([\ch{SO2}] = 0{,}05 + 0{,}0302 = \textcolor{red}{\qty{0{,}0802}{\M}}\)
+            \item \([\ch{Cl2}] = \textcolor{red}{\qty{0{,}0302}{\M}}\)
+        \end{itemize}
+
+        \item \textcolor{blue}{El número total de moles en el equilibrio:}
+        \[
+            n_T = (0{,}220 + 0{,}0802 + 0{,}0302)\cdot2{,}0 = 0{,}3304\cdot2 = 0{,}661 \text{ mol}
+        \]
+        \textcolor{blue}{Con \(T = 150 + 273 = \qty{423}{\K}\):}
+        \[
+            p_T = \frac{n_T\,R\,T}{V} = \frac{0{,}661\cdot0{,}082\cdot423}{2{,}0} = \textcolor{red}{\qty{11{,}47}{\atmospher}}
+        \]
+
+        \item \textcolor{blue}{Con \(\Delta n = (1+1)-1 = 1\):}
+        \[
+            K_p = K_c\,(R\,T)^{\Delta n} = 0{,}011\cdot(0{,}082\cdot423)^1 = 0{,}011\cdot34{,}69 = \textcolor{red}{\qty{0{,}381}{\atmospher}}
+        \]
+        \textcolor{blue}{Las presiones parciales (usando la fracción molar de cada especie):}
+        \begin{itemize}
+            \item \(p_{\ch{SO2Cl2}} = \dfrac{0{,}220}{0{,}3304}\cdot11{,}47 = \textcolor{red}{\qty{7{,}64}{\atmospher}}\)
+            \item \(p_{\ch{SO2}} = \dfrac{0{,}0802}{0{,}3304}\cdot11{,}47 = \textcolor{red}{\qty{2{,}79}{\atmospher}}\)
+            \item \(p_{\ch{Cl2}} = \dfrac{0{,}0302}{0{,}3304}\cdot11{,}47 = \textcolor{red}{\qty{1{,}05}{\atmospher}}\)
+        \end{itemize}
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: Al(OH)₃
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    El \ch{Al(OH)3} es una sustancia muy poco soluble en agua (\(Ks=\num{3,7e-15}\)).
+    \begin{enumerate}[label=\letraminuscula]
+        \item Escribir el equilibrio de solubilidad y la expresión del producto de solubilidad.
+        \item ¿Cuál es su solubilidad en agua pura, expresada en \si{\g\per\litre}?
+        \item ¿Cómo afectaría a la solubilidad del \ch{Al(OH)3} una disminución del \(pH\) de la disolución? Razone en términos del principio de Le Chatelier-Braun.
+    \end{enumerate}
+    \datos{}: Masas atómicas Al = 27,0; O = 16,0.
+
+    \begin{solu}
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item El equilibrio de solubilidad del \ch{Al(OH)3} es:
+        \begin{reaction*}
+            Al(OH)3 \sld{} <=> Al^{3+} \aq{} + 3 OH^{-} \aq{}
+        \end{reaction*}
+        La expresión del producto de solubilidad:
+        \[
+            \boxed{K_s = [\ch{Al^{3+}}]\cdot[\ch{OH^-}]^3}
+        \]
+        Si llamamos \(s\) a la solubilidad molar: \([\ch{Al^{3+}}] = s\), \([\ch{OH^-}] = 3s\), por tanto:
+        \[
+            K_s = s\cdot(3s)^3 = 27s^4
+        \]
+
+        \item \textcolor{blue}{Despejamos \(s\):}
+        \[
+            s^4 = \frac{K_s}{27} = \frac{\num{3{,}7e-15}}{27} = \num{1{,}370e-16}
+        \]
+        \[
+            s = \sqrt[4]{\num{1{,}370e-16}} = \qty{1{,}082e-4}{\M}
+        \]
+        \textcolor{blue}{Convertimos a \unit{\g\per\L}. Masa molar del \ch{Al(OH)3}:}
+        \[
+            M = 27{,}0 + 3\cdot(16{,}0+1{,}0) = 27{,}0 + 51{,}0 = \qty{78{,}0}{\g\per\mol}
+        \]
+        \[
+            s = \num{1{,}082e-4}\ \unit{\mol\per\L} \cdot \qty{78{,}0}{\g\per\mol} = \textcolor{red}{\qty{8{,}44e-3}{\g\per\L}}
+        \]
+
+        \item \textcolor{blue}{Una disminución del pH implica un aumento de la concentración de \ch{H+}. Los iones \ch{H+} reaccionan con los \ch{OH^-} del equilibrio de solubilidad formando agua:}
+        \[
+            \ch{H^+ + OH^- -> H2O}
+        \]
+        \textcolor{blue}{Al consumirse \ch{OH^-}, por el Principio de Le Chatelier-Braun, el equilibrio de solubilidad se desplaza hacia la derecha (hacia los productos) para reponer los iones \ch{OH^-} consumidos.} En consecuencia, \textcolor{red}{la solubilidad del \ch{Al(OH)3} \emph{aumenta} al disminuir el pH}: se disuelve más \ch{Al(OH)3} a medida que el medio se vuelve más ácido.
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: Termoquímica A + B → 2C
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    Para la reacción química \ch{A + B -> 2 C}, se conoce el valor absoluto de la variación de entalpía, \(|\Delta H| = \energia[kj]{68}\) y la variación de entropía, \(\Delta S = \SI{2}{\joule\per\kelvin}\).
+    \begin{enumerate}[label=\letraminuscula]
+        \item Comente razonadamente si la reacción es espontánea a \temperatura[c]{25}.
+        \item Si la ecuación de velocidad de reacción tiene la forma \(v = k\ \conc{A}^2\ \conc{B}\), ¿cómo afecta a la velocidad reducir a la mitad la concentración de A al tiempo que se duplica la de B?
+    \end{enumerate}
+
+    \begin{solu}
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item \textcolor{blue}{Para determinar la espontaneidad usamos la energía libre de Gibbs:}
+        \[
+            \boxed{\Delta G = \Delta H - T\,\Delta S}
+        \]
+        \textcolor{blue}{Necesitamos conocer el signo de \(\Delta H\). Dado que solo se nos indica \(|\Delta H| = \qty{68}{\kJ}\), debemos analizar ambos casos:}
+
+        \textbf{Caso 1: reacción exotérmica (\(\Delta H = -68\) kJ)}
+        \[
+            T = 25 + 273 = \qty{298}{\K}
+        \]
+        \[
+            \Delta G = -68\,000\ \unit{\J} - 298\cdot 2\ \unit{\J} = -68\,000 - 596 = \qty{-68\,596}{\J} < 0
+        \]
+        \textcolor{red}{La reacción es espontánea a \qty{25}{\celsius}} porque \(\Delta G < 0\).
+
+        \textbf{Caso 2: reacción endotérmica (\(\Delta H = +68\) kJ)}
+        \[
+            \Delta G = +68\,000 - 298\cdot2 = 68\,000 - 596 = \qty{+67\,404}{\J} > 0
+        \]
+        \textcolor{red}{La reacción \emph{no} sería espontánea a \qty{25}{\celsius}} porque \(\Delta G > 0\).
+
+        \item \textcolor{blue}{Partimos de la ecuación de velocidad \(v_0 = k\,[\ch{A}]^2\,[\ch{B}]\). Aplicamos los cambios:}
+        \[
+            [\ch{A}]' = \frac{[\ch{A}]}{2} \qquad [\ch{B}]' = 2\,[\ch{B}]
+        \]
+        \[
+            v' = k\left(\frac{[\ch{A}]}{2}\right)^2\cdot 2[\ch{B}] = k\cdot\frac{[\ch{A}]^2}{4}\cdot 2[\ch{B}] = \frac{2}{4}\,k\,[\ch{A}]^2\,[\ch{B}] = \frac{1}{2}\,v_0
+        \]
+        \textcolor{red}{La nueva velocidad es la mitad de la velocidad inicial}: al reducir \([\ch{A}]\) a la mitad (efecto cuadrático: divide por 4) y doblar \([\ch{B}]\) (multiplica por 2), el resultado neto es un factor \(\tfrac{1}{2}\).
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: N₂O₄ ⇌ 2 NO₂
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    A \temperatura[c]{25}, la constante de equilibrio \(K_c\) de la reacción:
+    \begin{equation*}
+        \ch{N2O4\ (g) <=> 2 NO2\ (g)}
+    \end{equation*}
+    vale \num{4,63e-3}.
+    En un recipiente de \volumen[l]{2} se introducen \moles{1,6} de \ch{N2O4} a dicha temperatura.
+    \begin{enumerate}[label=\letraminuscula]
+        \item ¿Cuáles serán las concentraciones de ambos gases en el equilibrio?
+        \item Calcula el valor de Kp y la presión total.
+        \item ¿Cómo afectaría a las concentraciones de los gases en el equilibrio una reducción del volumen del recipiente sin variar la temperatura? ¿Y la adición de un catalizador?
+    \end{enumerate}
+
+    \begin{solu}
+
+    \textcolor{blue}{La concentración inicial de \ch{N2O4}:}
+    \[
+        [\ch{N2O4}]_0 = \frac{1{,}6}{2} = \qty{0{,}80}{\M}
+    \]
+
+        \begin{table}[H]
+            % --- tabla antigua ---
+            % \begin{tblr}{%
+                % colspec = {X[c]X[c]X[c]},
+                % vline{2} = {1}{ text = \clap{:} },
+                % vline{3} = {1}{ text = \clap{\ch{->}} },
+            % }
+                % \textbf{Ecuación}   & \ch{N2O4}               & \ch{2 NO2}          \\
+                % \(\bm{[\,]_0}\)     & \(0{,}80\)              & \(0\)               \\
+                % \(\bm{\Delta[\,]}\) & \(-x\)                  & \(+2x\)             \\
+                % \(\bm{[\,]_{eq}}\)  & \(0{,}80-x\)            & \(2x\)              \\
+            % \end{tblr}
+            % --- tabla nueva ---
+            \begin{tabular}{@{}c @{\,}c@{\,} c @{\,}c@{\,} c@{}}
+                \toprule
+                \textbf{Ecuación} & : & \textbf{\ch{N2O4}} & \ch{->} & \textbf{\ch{2 NO2}} \\
+                \midrule
+                \(\bm{[\,]_0}\) &  & \(0{,}80\) &  & \(0\) \\[3pt]
+                \(\bm{\Delta[\,]}\) &  & \(-x\) &  & \(+2x\) \\[3pt]
+                \(\bm{[\,]_{eq}}\) &  & \(0{,}80-x\) &  & \(2x\) \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item \textcolor{blue}{Expresión de \(K_c\):}
+        \[
+            K_c = \frac{[\ch{NO2}]^2}{[\ch{N2O4}]} = \frac{(2x)^2}{0{,}80-x} = \frac{4x^2}{0{,}80-x} = \num{4{,}63e-3}
+        \]
+        \[
+            4x^2 = \num{4{,}63e-3}\cdot(0{,}80-x) = \num{3{,}704e-3} - \num{4{,}63e-3}x
+        \]
+        \[
+            4x^2 + \num{4{,}63e-3}x - \num{3{,}704e-3} = 0
+        \]
+        \textcolor{blue}{Resolvemos con la fórmula cuadrática:}
+        \[
+            x = \frac{-\num{4{,}63e-3} + \sqrt{(\num{4{,}63e-3})^2 + 4\cdot4\cdot\num{3{,}704e-3}}}{2\cdot4}
+        \]
+        \[
+            x = \frac{-\num{4{,}63e-3} + \sqrt{\num{2{,}144e-5} + \num{5{,}927e-2}}}{8} = \frac{-\num{4{,}63e-3} + \sqrt{0{,}05929}}{8}
+        \]
+        \[
+            x = \frac{-\num{4{,}63e-3} + 0{,}2435}{8} = \frac{0{,}2388}{8} = 0{,}02985
+        \]
+        Las concentraciones en el equilibrio:
+        \[
+            [\ch{NO2}] = 2x = 2\cdot0{,}02985 = \textcolor{red}{\qty{0{,}0597}{\M}}
+        \]
+        \[
+            [\ch{N2O4}] = 0{,}80 - 0{,}02985 = \textcolor{red}{\qty{0{,}770}{\M}}
+        \]
+
+        \item \textcolor{blue}{Con \(\Delta n = 2 - 1 = 1\) y \(T = 298\) K:}
+        \[
+            K_p = K_c\,(R\,T)^{\Delta n} = \num{4{,}63e-3}\cdot(0{,}082\cdot298)^1 = \num{4{,}63e-3}\cdot24{,}436 = \textcolor{red}{\num{0{,}1131}\ \unit{\atmospher}}
+        \]
+        \textcolor{blue}{El número total de moles en el equilibrio:}
+        \[
+            n_T = (0{,}770 + 0{,}0597)\cdot2 = 0{,}8297\cdot2 = 1{,}659 \text{ mol}
+        \]
+        \[
+            p_T = \frac{n_T\,R\,T}{V} = \frac{1{,}659\cdot0{,}082\cdot298}{2} = \textcolor{red}{\qty{20{,}29}{\atmospher}}
+        \]
+
+        \item \textbf{Reducción del volumen:} \textcolor{blue}{Al reducir el volumen aumenta la presión. Por Le Chatelier, el equilibrio se desplaza hacia donde hay menos moles gaseosos, es decir hacia la izquierda (reactivos, \(\Delta n < 0\) en esa dirección).} \textcolor{red}{La concentración de \ch{N2O4} aumentará y la de \ch{NO2} disminuirá} respecto al equilibrio inicial.
+
+        \textbf{Adición de catalizador:} \textcolor{blue}{Un catalizador aumenta la velocidad de reacción tanto directa como inversa por igual, pero \emph{no} modifica las concentraciones de equilibrio ni la constante de equilibrio.} \textcolor{red}{Las concentraciones no varían}, solo se alcanza el equilibrio en menor tiempo.
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: COCl₂ fosgeno 2.3e-2 mol
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    \moles{2.3e-2} moles de gas fosgeno (\ch{COCl2}) puro se introdujeron en un reactor de \volumen[l]{1,50}, calentándose entonces éste hasta alcanzar los \temperatura[k]{800} de temperatura. Alcanzado el equilibrio, la presión parcial de \ch{CO} fue \presion[atm]{0,497}. Para el equilibrio
+    \begin{equation*}
+        \ch{COCl2\ (g) <=> CO\ (g) + Cl2\ (g)}
+    \end{equation*}
+    calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La constante de presiones \(K_p\).
+        \item El número total de moles en el equilibrio.
+        \item El grado de disociación del gas fosgeno
+    \end{enumerate}
+    \datos{}: R = \ctegases
+
+    \begin{solu}
+
+    \textcolor{blue}{La presión parcial de \ch{CO} nos da directamente \(p_{\ch{CO}} = \qty{0{,}497}{\atmospher}\). Como la estequiometría es 1:1:1, \(p_{\ch{Cl2}} = p_{\ch{CO}} = \qty{0{,}497}{\atmospher}\).}
+
+    \textcolor{blue}{Para hallar la presión parcial de \ch{COCl2} usamos la presión inicial total. Antes de la reacción, todos los moles son de \ch{COCl2}:}
+    \[
+        p_0(\ch{COCl2}) = \frac{n_0\,R\,T}{V} = \frac{\num{2{,}3e-2}\cdot0{,}082\cdot800}{1{,}50} = \frac{1{,}509}{1{,}50} = \qty{1{,}006}{\atmospher}
+    \]
+    \textcolor{blue}{Si llamamos \(x\) a la presión parcial de \ch{CO} formado (igual a la de \ch{Cl2}), la presión de \ch{COCl2} en el equilibrio es:}
+    \[
+        p_{\ch{COCl2}} = p_0 - x = 1{,}006 - 0{,}497 = \qty{0{,}509}{\atmospher}
+    \]
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item \textcolor{blue}{Calculamos \(K_p\):}
+        \[
+            K_p = \frac{p_{\ch{CO}}\cdot p_{\ch{Cl2}}}{p_{\ch{COCl2}}} = \frac{0{,}497\cdot0{,}497}{0{,}509} = \frac{0{,}2470}{0{,}509} = \textcolor{red}{\qty{0{,}485}{\atmospher}}
+        \]
+
+        \item \textcolor{blue}{La presión total en el equilibrio:}
+        \[
+            p_T = p_{\ch{COCl2}} + p_{\ch{CO}} + p_{\ch{Cl2}} = 0{,}509 + 0{,}497 + 0{,}497 = \qty{1{,}503}{\atmospher}
+        \]
+        \textcolor{blue}{El número total de moles a partir de \(pV = nRT\):}
+        \[
+            n_T = \frac{p_T\,V}{R\,T} = \frac{1{,}503\cdot1{,}50}{0{,}082\cdot800} = \frac{2{,}2545}{65{,}6} = \textcolor{red}{\qty{0{,}0344}{\mol}}
+        \]
+
+        \item \textcolor{blue}{Los moles de \ch{CO} formados:}
+        \[
+            n_{\ch{CO}} = \frac{p_{\ch{CO}}\,V}{R\,T} = \frac{0{,}497\cdot1{,}50}{0{,}082\cdot800} = \frac{0{,}7455}{65{,}6} = \num{0{,}01136} \text{ mol}
+        \]
+        \textcolor{blue}{Esto es igual a los moles de \ch{COCl2} disociados. El grado de disociación:}
+        \[
+            \alpha = \frac{n_{\text{disociado}}}{n_0} = \frac{0{,}01136}{\num{2{,}3e-2}} = \textcolor{red}{0{,}494 \approx 49{,}4\%}
+        \]
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: NOCl 2.50 mol, 28% disociado
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    \moles{2,50} de \ch{NOCl} puro se introdujeron en un reactor de \volumen[l]{1,50} a \temperatura[c]{400}. Una vez alcanzado el equilibrio, se comprobó que el 28.0\% del \ch{NOCl} inicial se había disociado según la reacción:
+    \begin{equation*}
+        \ch{2 NOCl\ (g) <=> 2 NO\ (g) + Cl2\ (g)}
+    \end{equation*}
+    Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La constante de concentraciones \(K_c\) para este equilibrio.
+        \item La presión total en el equilibrio.
+        \item La constante de presiones \(K_p\) para este equilibrio.
+    \end{enumerate}
+    \datos{}: R = \ctegases
+
+    \begin{solu}
+
+    \textcolor{blue}{El 28\% del \ch{NOCl} se disocia, por tanto los moles disociados son:}
+    \[
+        n_{\text{disociado}} = 0{,}28\cdot2{,}50 = 0{,}70 \text{ mol de \ch{NOCl}}
+    \]
+
+        \begin{table}[H]
+            % --- tabla antigua ---
+            % \begin{tblr}{%
+                % colspec = {X[c]X[c]X[c]X[c]},
+                % vline{2} = {1}{ text = \clap{:} },
+                % vline{3} = {1}{ text = \clap{\ch{->}} },
+                % vline{4} = {1}{ text = \clap{\ch{+}} },
+            % }
+                % \textbf{Ecuación}              & \ch{2 NOCl}                                               & \ch{2 NO}                                & \ch{Cl2}                                 \\
+                % \(\bm{n_0}\)                   & \(2{,}50\)                                                & \(0\)                                    & \(0\)                                    \\
+                % \(\bm{n_{\text{reaccionan}}}\) & \(-2x = -0{,}70\)                                         & \(-\)                                    & \(-\)                                    \\
+                % \(\bm{n_{\text{forman}}}\)     & \(-\)                                                     & \(+2x = +0{,}70\)                        & \(+x = +0{,}35\)                         \\
+                % \(\bm{n_{\text{eq}}}\)         & \({\color{red}1{,}80}\)                                   & \({\color{red}0{,}70}\)                  & \({\color{red}0{,}35}\)                  \\
+                % \(\conc{\ \ }_{eq}\)           & \({\color{blue}\qty{1{,}20}{\M}}\)                        & \({\color{blue}\qty{0{,}467}{\M}}\)      & \({\color{blue}\qty{0{,}233}{\M}}\)      \\
+            % \end{tblr}
+            % --- tabla nueva ---
+            \begin{tabular}{@{}C{0.21\linewidth} @{\,}c@{\,} C{0.21\linewidth} @{\,}c@{\,} C{0.21\linewidth} @{\,}c@{\,} C{0.21\linewidth}@{}}
+                \toprule
+                \textbf{Ecuación} & : & \textbf{\ch{2 NOCl}} & \ch{->} & \textbf{\ch{2 NO}} & \ch{+} & \textbf{\ch{Cl2}} \\
+                \midrule
+                \(\bm{n_0}\) &  & \(2{,}50\) &  & \(0\) &  & \(0\) \\[3pt]
+                \(\bm{n_{\text{reaccionan}}}\) &  & \(-2x = -0{,}70\) &  & \(-\) &  & \(-\) \\[3pt]
+                \(\bm{n_{\text{forman}}}\) &  & \(-\) &  & \(+2x = +0{,}70\) &  & \(+x = +0{,}35\) \\[3pt]
+                \(\bm{n_{\text{eq}}}\) &  & \({\color{red}1{,}80}\) &  & \({\color{red}0{,}70}\) &  & \({\color{red}0{,}35}\) \\[3pt]
+                \(\conc{\ \ }_{eq}\) &  & \({\color{blue}\qty{1{,}20}{\M}}\) &  & \({\color{blue}\qty{0{,}467}{\M}}\) &  & \({\color{blue}\qty{0{,}233}{\M}}\) \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+
+    \textcolor{blue}{Las concentraciones en el equilibrio (\(V = \qty{1{,}50}{\L}\)):}
+    \[
+        [\ch{NOCl}] = \frac{1{,}80}{1{,}50} = \qty{1{,}20}{\M},\quad [\ch{NO}] = \frac{0{,}70}{1{,}50} = \qty{0{,}467}{\M},\quad [\ch{Cl2}] = \frac{0{,}35}{1{,}50} = \qty{0{,}233}{\M}
+    \]
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item \textcolor{blue}{Expresión y cálculo de \(K_c\):}
+        \[
+            K_c = \frac{[\ch{NO}]^2\cdot[\ch{Cl2}]}{[\ch{NOCl}]^2} = \frac{(0{,}467)^2\cdot 0{,}233}{(1{,}20)^2} = \frac{0{,}2181\cdot0{,}233}{1{,}44} = \frac{0{,}05082}{1{,}44} = \textcolor{red}{\qty{0{,}0353}{\M}}
+        \]
+
+        \item \textcolor{blue}{El número total de moles en el equilibrio:}
+        \[
+            n_T = 1{,}80 + 0{,}70 + 0{,}35 = 2{,}85 \text{ mol}
+        \]
+        \textcolor{blue}{Con \(T = 400 + 273 = \qty{673}{\K}\):}
+        \[
+            p_T = \frac{n_T\,R\,T}{V} = \frac{2{,}85\cdot0{,}082\cdot673}{1{,}50} = \frac{157{,}1}{1{,}50} = \textcolor{red}{\qty{104{,}7}{\atmospher}}
+        \]
+
+        \item \textcolor{blue}{Con \(\Delta n = (2+1) - 2 = 1\):}
+        \[
+            K_p = K_c\,(R\,T)^{\Delta n} = 0{,}0353\cdot(0{,}082\cdot673)^1 = 0{,}0353\cdot55{,}19 = \textcolor{red}{\num{1{,}948}\ \unit{\atmospher}}
+        \]
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: PCl₅ — Le Chatelier
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    En el equilibrio:
+    \begin{equation*}
+        \ch{PCl5\ (g) <=> PCl3\ (g) + Cl2\ (g)},\; \Delta H^0 = \energia[kjmol]{92,5}
+    \end{equation*}
+    predice razonadamente el cambio que se producirá cuando:
+    \begin{enumerate}[label=\letraminuscula]
+        \item Se eleva la temperatura.
+        \item Se añade más gas cloro a la mezcla de reacción.
+        \item Se extrae \ch{PCl3} de la mezcla de reacción.
+        \item Se incrementa la presión total del sistema
+    \end{enumerate}
+
+    \begin{solu}
+
+    \textcolor{blue}{La reacción es \emph{endotérmica} (\(\Delta H^0 = +\qty{92{,}5}{\kJ\per\mol} > 0\)): el calor actúa como reactivo. Analizamos cada perturbación aplicando el Principio de Le Chatelier-Braun: el sistema se desplaza para contrarrestar la perturbación.}
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item \textbf{Aumento de temperatura:} Al aportar calor a un sistema endotérmico, el equilibrio se desplaza hacia la derecha (hacia los productos) para absorber el exceso de energía. \textcolor{red}{Aumenta la concentración de \ch{PCl3} y \ch{Cl2}, y disminuye la de \ch{PCl5}. La constante \(K_c\) aumenta.}
+
+        \item \textbf{Adición de \ch{Cl2}:} Al aumentar la concentración de \ch{Cl2} (producto), \(Q_c > K_c\) y el sistema se desplaza hacia la izquierda para restablecer el equilibrio. \textcolor{red}{Aumenta la concentración de \ch{PCl5} y disminuye la de \ch{PCl3} y \ch{Cl2} (parcialmente).}
+
+        \item \textbf{Extracción de \ch{PCl3}:} Al disminuir la concentración de \ch{PCl3} (producto), \(Q_c < K_c\) y el sistema se desplaza hacia la derecha para reponerlo. \textcolor{red}{Aumentan las concentraciones de \ch{PCl3} y \ch{Cl2}, y disminuye la de \ch{PCl5}.}
+
+        \item \textbf{Aumento de presión:} Al aumentar la presión, el equilibrio se desplaza hacia donde hay menos moles gaseosos: \(\Delta n = (1+1)-1 = +1\) (la reacción directa produce más moles). El sistema se desplaza hacia la izquierda (hacia donde hay menos moles, es decir hacia los reactivos). \textcolor{red}{Aumenta la concentración de \ch{PCl5} y disminuyen las de \ch{PCl3} y \ch{Cl2}.}
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: Fe(OH)₃
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    El \ch{Fe(OH)3} es un compuesto poco soluble en agua.
+    \begin{enumerate}[label=\letraminuscula]
+        \item Escribe el equilibrio de solubilidad del \ch{Fe(OH)3}.
+        \item ¿Cómo afecta a la solubilidad de este compuesto un aumento del \(pH\)? Justifica la respuesta.
+    \end{enumerate}
+
+    \begin{solu}
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item El equilibrio de solubilidad del \ch{Fe(OH)3} es:
+        \begin{reaction*}
+            Fe(OH)3 \sld{} <=> Fe^{3+} \aq{} + 3 OH^{-} \aq{}
+        \end{reaction*}
+        La expresión del producto de solubilidad:
+        \[
+            K_{ps} = [\ch{Fe^{3+}}]\cdot[\ch{OH^-}]^3
+        \]
+
+        \item \textcolor{blue}{Un aumento del pH implica una disminución de la concentración de \ch{H+} y, consecuentemente, un \emph{aumento} de la concentración de \ch{OH^-} (ya que \(K_w = [\ch{H+}][\ch{OH^-}]\) es constante a temperatura fija).}
+
+        \textcolor{blue}{Al aumentar \([\ch{OH^-}]\), el cociente de reacción \(Q_s > K_{ps}\) y el equilibrio se desplaza hacia la izquierda (hacia el sólido) para disminuir \([\ch{OH^-}]\) hasta alcanzar el equilibrio.}
+
+        \textcolor{red}{En consecuencia, la solubilidad del \ch{Fe(OH)3} \emph{disminuye} al aumentar el pH}: cuanto más básico es el medio, menos \ch{Fe(OH)3} se disuelve (efecto del ión común \ch{OH^-}).
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: Cd(OH)₂ Kps = 7.2e-15
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    El \ch{Cd(OH)2} es una sustancia cuyo producto de solubilidad en agua a \temperatura[c]{25} es \num{7,2e-15}.
+    \begin{enumerate}[label=\letraminuscula]
+        \item Escribe el equilibrio de solubilidad del \ch{Cd(OH)2}.
+        \item Calcula su solubilidad en \si{\g\per\litre} a \temperatura[c]{25}.
+        \item Razona cómo afectará a la solubilidad de esta sustancia una reducción del pH del medio.
+    \end{enumerate}
+    \datos{} Masas atómicas: H = 1,0; O = 16,0; Cd = 112,4
+
+    \begin{solu}
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item El equilibrio de solubilidad del \ch{Cd(OH)2}:
+        \begin{reaction*}
+            Cd(OH)2 \sld{} <=> Cd^{2+} \aq{} + 2 OH^{-} \aq{}
+        \end{reaction*}
+        \[
+            K_{ps} = [\ch{Cd^{2+}}]\cdot[\ch{OH^-}]^2 = \num{7{,}2e-15}
+        \]
+
+        \item \textcolor{blue}{Con \(s = [\ch{Cd^{2+}}]\) y \([\ch{OH^-}] = 2s\):}
+        \[
+            s\cdot(2s)^2 = 4s^3 = \num{7{,}2e-15}
+        \]
+        \[
+            s^3 = \frac{\num{7{,}2e-15}}{4} = \num{1{,}8e-15} \implies s = \sqrt[3]{\num{1{,}8e-15}} = \qty{1{,}216e-5}{\M}
+        \]
+        \textcolor{blue}{Masa molar del \ch{Cd(OH)2}:}
+        \[
+            M = 112{,}4 + 2\cdot(16{,}0+1{,}0) = 112{,}4 + 34{,}0 = \qty{146{,}4}{\g\per\mol}
+        \]
+        \[
+            s = \num{1{,}216e-5}\ \unit{\mol\per\L} \cdot \qty{146{,}4}{\g\per\mol} = \textcolor{red}{\qty{1{,}780e-3}{\g\per\L}}
+        \]
+
+        \item \textcolor{blue}{Una reducción del pH implica un aumento de \([\ch{H+}]\) y una disminución de \([\ch{OH^-}]\). Al disminuir \([\ch{OH^-}]\), el cociente \(Q_s < K_{ps}\) y el equilibrio se desplaza hacia la derecha (hacia los iones): se disuelve más \ch{Cd(OH)2}.}
+
+        \textcolor{red}{La solubilidad del \ch{Cd(OH)2} \emph{aumenta} al disminuir el pH}: en medio ácido, los iones \ch{H+} neutralizan los \ch{OH^-} producidos, desplazando el equilibrio hacia la disolución del precipitado.
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: N₂ + 3 H₂ ⇌ 2 NH₃
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    En un recipiente de \volumen[l]{10,0} se introduce una mezcla de \moles{4,0} de nitrógeno y \moles{12,0} moles de hidrógeno. Se eleva la temperatura hasta \temperatura[k]{1000} estableciéndose el equilibrio:
+    \begin{equation*}
+        \ch{N2\ (g) + 3 H2\ (g) <=> 2 NH3\ (g)}
+    \end{equation*}
+    En ese instante, se observa que hay \moles{0,8} de amoniaco en la mezcla gaseosa.
+    Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La constante de concentraciones \(K_c\)
+        \item La constante de presiones \(K_p\) y la presión total de la mezcla gaseosa en equilibrio.
+        \item Las presiones parciales de los componentes en el equilibrio.
+    \end{enumerate}
+    \datos{}: R = \ctegases
+
+    \begin{solu}
+
+    \textcolor{blue}{Se forman \(2x\) mol de \ch{NH3}, por tanto \(2x = 0{,}8\) mol \(\Rightarrow x = 0{,}4\) mol.}
+
+        \begin{table}[H]
+            % --- tabla antigua ---
+            % \begin{tblr}{%
+                % colspec = {X[c]X[c]X[c]X[c]},
+                % vline{2} = {1}{ text = \clap{:} },
+                % vline{3} = {1}{ text = \clap{\ch{+}} },
+                % vline{4} = {1}{ text = \clap{\ch{->}} },
+            % }
+                % \textbf{Ecuación}              & \ch{N2}                                              & \ch{3 H2}                                             & \ch{2 NH3}                                   \\
+                % \(\bm{n_0}\)                   & \(4{,}0\)                                            & \(12{,}0\)                                            & \(0\)                                        \\
+                % \(\bm{n_{\text{reaccionan}}}\) & \(-x = -0{,}4\)                                      & \(-3x = -1{,}2\)                                      & \(-\)                                        \\
+                % \(\bm{n_{\text{forman}}}\)     & \(-\)                                                & \(-\)                                                 & \(+2x = +0{,}8\)                             \\
+                % \(\bm{n_{\text{eq}}}\)         & \({\color{red}3{,}6}\)                               & \({\color{red}10{,}8}\)                               & \({\color{red}0{,}8}\)                       \\
+                % \(\conc{\ \ }_{eq}\)           & \({\color{blue}\qty{0{,}36}{\M}}\)                   & \({\color{blue}\qty{1{,}08}{\M}}\)                    & \({\color{blue}\qty{0{,}08}{\M}}\)           \\
+            % \end{tblr}
+            % --- tabla nueva ---
+            \begin{tabular}{@{}C{0.21\linewidth} @{\,}c@{\,} C{0.21\linewidth} @{\,}c@{\,} C{0.21\linewidth} @{\,}c@{\,} C{0.21\linewidth}@{}}
+                \toprule
+                \textbf{Ecuación} & : & \textbf{\ch{N2}} & \ch{+} & \textbf{\ch{3 H2}} & \ch{->} & \textbf{\ch{2 NH3}} \\
+                \midrule
+                \(\bm{n_0}\) &  & \(4{,}0\) &  & \(12{,}0\) &  & \(0\) \\[3pt]
+                \(\bm{n_{\text{reaccionan}}}\) &  & \(-x = -0{,}4\) &  & \(-3x = -1{,}2\) &  & \(-\) \\[3pt]
+                \(\bm{n_{\text{forman}}}\) &  & \(-\) &  & \(-\) &  & \(+2x = +0{,}8\) \\[3pt]
+                \(\bm{n_{\text{eq}}}\) &  & \({\color{red}3{,}6}\) &  & \({\color{red}10{,}8}\) &  & \({\color{red}0{,}8}\) \\[3pt]
+                \(\conc{\ \ }_{eq}\) &  & \({\color{blue}\qty{0{,}36}{\M}}\) &  & \({\color{blue}\qty{1{,}08}{\M}}\) &  & \({\color{blue}\qty{0{,}08}{\M}}\) \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item \textcolor{blue}{Expresión y cálculo de \(K_c\):}
+        \[
+            K_c = \frac{[\ch{NH3}]^2}{[\ch{N2}]\cdot[\ch{H2}]^3} = \frac{(0{,}08)^2}{0{,}36\cdot(1{,}08)^3} = \frac{0{,}0064}{0{,}36\cdot1{,}2597} = \frac{0{,}0064}{0{,}4535} = \textcolor{red}{\qty{1{,}411e-2}{\per\square\M}}
+        \]
+
+        \item \textcolor{blue}{Con \(\Delta n = 2 - (1+3) = -2\) y \(T = \qty{1000}{\K}\):}
+        \[
+            K_p = K_c\,(R\,T)^{\Delta n} = \num{1{,}411e-2}\cdot(0{,}082\cdot1000)^{-2} = \num{1{,}411e-2}\cdot\frac{1}{(82)^2} = \frac{\num{1{,}411e-2}}{6724} = \textcolor{red}{\num{2{,}099e-6}\ \unit{\per\square\atmospher}}
+        \]
+        \textcolor{blue}{El número total de moles y la presión total:}
+        \[
+            n_T = 3{,}6 + 10{,}8 + 0{,}8 = 15{,}2 \text{ mol}
+        \]
+        \[
+            p_T = \frac{n_T\,R\,T}{V} = \frac{15{,}2\cdot0{,}082\cdot1000}{10{,}0} = \textcolor{red}{\qty{124{,}6}{\atmospher}}
+        \]
+
+        \item \textcolor{blue}{Las presiones parciales usando la fracción molar:}
+        \[
+            p_{\ch{N2}} = \frac{3{,}6}{15{,}2}\cdot124{,}6 = \textcolor{red}{\qty{29{,}5}{\atmospher}}
+        \]
+        \[
+            p_{\ch{H2}} = \frac{10{,}8}{15{,}2}\cdot124{,}6 = \textcolor{red}{\qty{88{,}5}{\atmospher}}
+        \]
+        \[
+            p_{\ch{NH3}} = \frac{0{,}8}{15{,}2}\cdot124{,}6 = \textcolor{red}{\qty{6{,}56}{\atmospher}}
+        \]
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}
+
+
+% ─────────────────────────────────────────────────────────────
+% EJERCICIO: Diyoduro de plomo — Solubilidad
+% ─────────────────────────────────────────────────────────────
+\begin{exerciseEVAU}
+    El diyoduro de plomo es un compuesto muy poco soluble en agua.
+    \begin{enumerate}[label=\letraminuscula]
+        \item Escribe el equilibrio de solubilidad del diyoduro de plomo.
+        \item ¿Dónde será más soluble el diyoduro de plomo: en agua pura o en una disolución 0,1 M de yoduro de potasio? Justifica la respuesta en términos del principio de Le Chatelier.
+    \end{enumerate}
+    \begin{solu}
+
+    \begin{enumerate}[label=\letraminuscula]
+        \item El diyoduro de plomo es \ch{PbI2}. Su equilibrio de solubilidad es:
+        \begin{reaction*}
+            PbI2 \sld{} <=> Pb^{2+} \aq{} + 2 I^{-} \aq{}
+        \end{reaction*}
+        La expresión del producto de solubilidad:
+        \[
+            K_{ps} = [\ch{Pb^{2+}}]\cdot[\ch{I^-}]^2
+        \]
+
+        \item \textcolor{blue}{El \ch{KI} es una sal soluble que se disocia completamente en agua:}
+        \begin{reaction*}
+            KI \sld{} -> K^{+} \aq{} + I^{-} \aq{}
+        \end{reaction*}
+        \textcolor{blue}{En la disolución \qty{0{,}1}{\M} de \ch{KI} ya existe una concentración de \([\ch{I^-}] = \qty{0{,}1}{\M}\) antes de añadir el \ch{PbI2}. Al intentar disolver \ch{PbI2} en este medio, los \ch{I^-} aportados por el \ch{KI} aumentan el producto iónico \(Q_s > K_{ps}\), desplazando el equilibrio hacia la izquierda (hacia el sólido) según el Principio de Le Chatelier-Braun.}
+
+        \textcolor{red}{El \ch{PbI2} es \emph{más soluble en agua pura} que en la disolución de \ch{KI}}: la presencia del ión común \ch{I^-} reduce la solubilidad del \ch{PbI2} (efecto del ión común).
+    \end{enumerate}
+
+    \end{solu}
+\end{exerciseEVAU}

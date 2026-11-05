@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD10_02 · Polimerización por adición: iniciación</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+</head>
+<body>
+<script>
+// Iniciación: un iniciador (p. ej. un peróxido) se rompe homolíticamente dando radicales
+// libres, que atacan al doble enlace del monómero.
+const svg = crearFigura(640, 150);
+fq(svg, 70, 42, ["R−O−O−R"]);
+flechaR(svg, 130, 36, 230, "calor o luz");
+fq(svg, 300, 42, ["2 R−O·"]);
+texto(svg, 460, 42, "(ruptura homolítica)", { "text-anchor": "middle", "font-size": 14, fill: COLORES.gris, "font-family": TNR });
+fq(svg, 50, 118, ["R−O·"]); mas(svg, 100, 112);
+fq(svg, 170, 118, [["CH2=CH2", AZUL]]);
+flechaR(svg, 225, 112, 305);
+fq(svg, 420, 118, ["R−O−", ["CH2−CH2", AZUL], ["·", ROJO]]);
+texto(svg, 420, 145, "nuevo radical", { "text-anchor": "middle", "font-size": 14, fill: ROJO, "font-family": TNR });
+</script>
+</body>
+</html>

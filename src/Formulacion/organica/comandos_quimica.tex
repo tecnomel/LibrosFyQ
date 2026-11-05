@@ -1,0 +1,204 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MIS Comandos FÍSICA Y QUÍMICA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\kcoulomb}{\dfrac{1}{4\pi\varepsilon_0}}
+
+%\newcommand{\electron}{$e^-$}
+
+\newcommand\elec{\ch{e^-}}
+\newcommand{\electron}{\ce{e-}}
+\newcommand\prot{\ch{p^+}}
+\newcommand\neut{\ch{n^0}}
+
+\newcommand{\carga}[2][c]{
+    \IfEqCase {#1}{
+        {c}{\SI{#2}{\coulomb}\;}
+        {mc}{\SI{#2}{\milli\coulomb}\;}
+        {microc}{\SI{#2}{\micro\coulomb}\;}
+        {nc}{\SI{#2}{\nano\coulomb}\;}
+        {pc}{\SI{#2}{\pico\coulomb}\;}
+    }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Química
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\velocidad}[2][ms]{
+    \IfEqCase {#1}{
+        {ms}{\SI{#2}{\metre\per\s}\;}
+        {kmh}{\SI{#2}{\kilo\metre\per\s}\;}
+        {kms}{\SI{#2}{\kilo\metre\per\s}\;}
+    }
+}
+
+\newcommand{\distancia}[2][m]{
+    \IfEqCase {#1}{
+        {m}{\SI{#2}{\m}\;}
+        {km}{\SI{#2}{\kilo\m}\;}
+        {cm}{\SI{#2}{\centi\m}\;}
+        {mm}{\SI{#2}{\milli\m}\;}
+        {dm}{\SI{#2}{\deci\m}\;}
+        {nm}{\SI{#2}{\nano\m}\;}
+        {microm}{\SI{#2}{\micro\m}\;}
+    }
+}
+
+\newcommand{\masa}[2][g]{
+    \IfEqCase {#1}{
+        {g}{\SI{#2}{\g}\;}
+        {mg}{\SI{#2}{\milli\g}\;}
+        {kg}{\SI{#2}{\kilo\g}\;}
+    }
+}
+\newcommand{\densidad}[2][gl]{
+    \IfEqCase {#1}{
+        {gl}{\SI{#2}{\g\per\liter}\;}
+        {gml}{\SI{#2}{\g\per\milli\liter}\;}
+    }
+}
+
+\newcommand{\energia}[2][j]{
+    \IfEqCase {#1}{
+        {j}{\SI{#2}{\joule}\;}
+        {kj}{\SI{#2}{\kilo\joule}\;}
+        {kcal}{\SI{#2}{\kilo\calorie}\;}
+        {cal}{\SI{#2}{\calorie}\;}
+        {jmol}{\SI{#2}{\joule\per\mole}\;}
+        {kjmol}{\SI{#2}{\kilo\joule\per\mole}\;}
+        {kcalmol}{\SI{#2}{\kilo\calorie\per\mole}\;}
+        {calmol}{\SI{#2}{\calorie\per\mole}\;}
+        {ev}{\SI{#2}{\electronvolt}\;}
+    }
+}
+
+\newcommand{\temperatura}[2][c]{
+    \IfEqCase {#1}{
+        {c}{\SI{#2}{\celsius}\;}
+        {k}{\SI{#2}{\kelvin}\;}
+    }
+}
+
+
+\newcommand{\volumen}[2][l]{
+    \IfEqCase {#1}{
+        {l}{\SI{#2}{\liter}\;}
+        {ml}{\SI{#2}{\milli\liter}\;}
+        {metroscubicos}{\SI{#2}{\cubic\metre}\;}
+        {decimetroscubicos}{\SI{#2}{\cubic\deci\metre}\;}
+        {centimetroscubicos}{\SI{#2}{\cubic\centi\metre}\;}
+    }
+}
+
+\newcommand{\presion}[2][atm]{
+    \IfEqCase {#1}{
+        {atm}{\SI{#2}{\atmospher}\;}
+        {mmhg}{\SI{#2}{\mmhg}\;}
+    }
+}
+
+\newcommand{\concentracion}[2][molar]{
+    \IfEqCase {#1}{
+        {molar}{\SI{#2}{\mole\per\litre}\;}
+        {m}{\SI{#2}{\m\;}}
+        {gl}{\SI{#2}{\g\per\litre}\;}
+        {mgl}{\SI{#2}{\milli\g\per\litre}\;}
+    }
+}
+
+\newcommand{\resistencia}[2][o]{
+    \IfEqCase {#1}{
+        {o}{\SI{#2}{\ohm\;}}
+        {mo}{\SI{#2}{\milli\ohm}\;}
+    }
+}
+
+\newcommand{\eo}[3]{$\overset{^{\color{#1}#2}}{\text{\ch{#3}}}$}
+\newcommand{\eob}[2]{$\overset{^{\color{blue}#1}}{\text{\ch{#2}}}$}
+\newcommand{\eor}[2]{$\overset{^{\color{red}#1}}{\text{\ch{#2}}}$}
+
+
+\newcommand{\entalpia}[1]{\Delta H_{#1}}
+
+\newcommand{\formula}[1]{\ch{#1}}
+
+\newcommand{\conc}[1]{[\ch{#1}]}
+
+\newcommand{\prima}{^\prime}
+
+\newcommand{\moles}[1]{\SI{#1}{\mole}}
+
+\newcommand{\ctegases}{\SI{0.082}{\atmospher\litre\per\kelvin\per\mole}}
+
+\newcommand{\ph}[1]{\pH = \num{#1}} %? Requiere chemmacros
+\newcommand{\poh}[1]{\pOH = \num{#1}} %? Requiere chemmacros
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Energy and Fources
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\fuerza}[1]{\SI{#1}{\newton}}
+%\newcommand{\energia}[1]{\SI{#1}{\joule}}
+\newcommand{\trabajo}[1]{\SI{#1}{\joule}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Time
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\segundos}[1]{\SI{#1}{\s}}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%
+% Comandos negrita símbolo
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\boldsym}[1]{\(\bm{#1}\)}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\providecommand{\abs}[1]{\lvert#1\rvert} % para el valor absoluto
+\providecommand{\norm}[1]{\lVert#1\rVert} % la norma de un vector
+
+\newcommand{\ui}{\;\vec{i}\;} % Vector unitario
+\newcommand{\uj}{\;\vec{j}\;} % Vector unitario
+\newcommand{\uk}{\;\vec{k}\;} % Vector unitario
+
+\newcommand{\magnetico}[2][t]{
+    \IfEqCase {#1}{
+        {t}{\SI{#2}{\tesla}\;}
+        {mt}{\SI{#2}{\milli\tesla}\;}
+        {g}{\SI{#2}{\gauss}\;}
+    }
+}
+
+\newcommand{\intensidad}[2][a]{
+    \IfEqCase {#1}{
+        {a}{\SI{#2}{\ampere}\;}
+        {ma}{\SI{#2}{\milli\ampere}\;}
+    }
+}
+
+
+
+
+\newcommand{\gravitacion}{\SI{6.67e-11}{\newton\square\metre\per\square\kilogram}}
+
+\newcommand{\epgravitatoria}{-G\cdot \dfrac{M\cdot m}{r}}
+
+\newcommand{\potencialgravitatorio}{-G\cdot \dfrac{M}{r}}
+
+\newcommand{\aceleracion}[1]{\SI{#1}{\m\per\square\s}}
+
+\newcommand{\ctecoulomb}{K = \SI{9e9}{\newton\square\metre\per\square\coulomb}}
+
+\newcommand{\velocidadangular}[2][rads]{
+    \IfEqCase {#1}{
+        {rads}{\SI{#2}{\radian\per\second}\;}
+    }
+}
+
+\newcommand{\permeabilidad}{$\mu\;=\mu_0\;\mu_r$}
+
+\newcommand{\permeabilidadrelativa}{$\mu_r$}
+
+\newcommand{\permeabilidadvacio}{\mu_0 = 4\pi\cdot 10^{-7}\; \si{\tesla\metre\per\ampere}}
+
+\newcommand{\ctelorentz}{\sqrt{1-\dfrac{v^2}{c^2}}}

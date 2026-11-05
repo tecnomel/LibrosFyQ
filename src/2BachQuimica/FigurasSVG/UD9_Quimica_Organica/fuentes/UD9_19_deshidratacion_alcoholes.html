@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_19 · Deshidratación de alcoholes</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Deshidratación de alcoholes (H+, calor): se eliminan H y OH de carbonos contiguos.
+// Si hay varias posibilidades, predomina el alqueno más sustituido (regla de Saytzev).
+const svg = crearFigura(640, 330);
+alcanoGen(svg, 70, 50, { b1: ["H", AZUL], b2: ["OH", ROJO] });
+flechaR(svg, 170, 50, 250, [{ t: "H" }, { t: "+", sup: true }], null, { colorTexto: MAGENTA });
+alquenoGen(svg, 290, 50);
+mas(svg, 380, 50); fq(svg, 430, 56, [["H", AZUL], "−", ["OH", ROJO]]);
+const H = [{ t: "H" }, { t: "+", sup: true }];
+molecula(svg, "CC(O)CC", 80, 160, { colores: { O: ROJO } });
+flechaR(svg, 150, 160, 240, H, "calor", { colorTexto: MAGENTA });
+molecula(svg, "C/C=C/C", 310, 160, { etiqueta: "but-2-eno (mayoritario)", yEtq: 200 });
+mas(svg, 400, 160); fq(svg, 450, 166, ["H2O"]);
+flechaCurva(svg, 40, 190, 50, 270, { color: AZUL });
+molecula(svg, "CC(O)CC", 80, 275, { colores: { O: ROJO } });
+flechaR(svg, 150, 275, 240, H, "calor", { colorTexto: MAGENTA });
+molecula(svg, "C=CCC", 310, 275, { etiqueta: "but-1-eno (minoritario)", yEtq: 315 });
+mas(svg, 400, 275); fq(svg, 450, 281, ["H2O"]);
+</script>
+</body>
+</html>

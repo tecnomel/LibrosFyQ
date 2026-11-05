@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Aerodeslizador casero</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 700px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="660" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const cx = 230, yS = 300;
+    // suelo
+    add('rect', { x: 20, y: yS, width: 430, height: 10, fill: '#D5D8DC' });
+    // CD (sección)
+    add('rect', { x: cx - 150, y: yS - 22, width: 300, height: 8, rx: 3, fill: '#AEB6BF', stroke: '#566573', 'stroke-width': 1.5 });
+    // cartón con agujeritos
+    add('rect', { x: cx - 120, y: yS - 32, width: 240, height: 10, rx: 2, fill: '#D4AC6E', stroke: '#9C6B30', 'stroke-width': 1.5 });
+    // boca de botella (cono) con tapón
+    add('path', { d: `M${cx - 40} ${yS - 32} L${cx - 16} ${yS - 92} L${cx + 16} ${yS - 92} L${cx + 40} ${yS - 32} Z`, fill: '#D6EAF8', stroke: '#2471A3', 'stroke-width': 2 });
+    add('rect', { x: cx - 19, y: yS - 106, width: 38, height: 16, rx: 3, fill: '#2E86C1' });
+    // globo
+    add('path', { d: `M${cx - 8} ${yS - 106} C ${cx - 130} ${yS - 180}, ${cx - 90} ${yS - 300}, ${cx} ${yS - 300} C ${cx + 90} ${yS - 300}, ${cx + 130} ${yS - 180}, ${cx + 8} ${yS - 106} Z`, fill: '#58D68D', stroke: '#1E8449', 'stroke-width': 2, opacity: 0.9 });
+    // aire: hacia abajo por la botella y saliendo por debajo del CD
+    arrow(add, cx, yS - 150, cx, yS - 40, '#C0392B', 3, 11);
+    [-1, 1].forEach(s => {
+        arrow(add, cx + s * 30, yS - 9, cx + s * 175, yS - 9, '#C0392B', 2.5, 10);
+    });
+    add('rect', { x: cx - 150, y: yS - 14, width: 300, height: 14, fill: '#FADBD8', opacity: 0.6 });
+    // rótulos
+    const L = (y, x2, y2, t) => { add('line', { x1: 460, y1: y, x2, y2, stroke: '#7F8C8D', 'stroke-width': 1 }); label(add, 466, y + 5, t, { 'font-size': 14, 'text-anchor': 'start', 'font-weight': 600 }); };
+    L(70, cx + 60, yS - 240, 'globo inflado');
+    L(140, cx + 19, yS - 98, 'tapón de rosca con un agujero');
+    L(185, cx + 32, yS - 55, 'boca de botella cortada');
+    L(225, cx + 110, yS - 28, 'cartón con agujeritos');
+    L(262, cx + 145, yS - 18, 'CD o DVD');
+    L(300, cx + 165, yS - 6, 'colchón de aire');
+</script>
+</body>
+</html>

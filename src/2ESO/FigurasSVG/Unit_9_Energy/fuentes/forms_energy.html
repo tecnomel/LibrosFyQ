@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Forms of energy</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .c { border-radius: 14px; padding: 10px; text-align: center; border: 2px solid; }
+    .c .ic { font-size: 44px; line-height: 1.2; }
+    .c h2 { font-size: 19px; margin: 2px 0; }
+    .c .t { font-size: 14px; }
+    .c .ex { font-size: 13px; color: var(--grey); margin-top: 4px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Forms of energy</h1>
+    <div class="grid" id="g"></div>
+</div>
+<script>
+    const F = [
+        ['🏃', 'Kinetic', 'a body has it because it MOVES; more mass and more speed → more energy', 'a moving car', '#2471A3', '#EAF2F8'],
+        ['🎢', 'Gravitational potential', 'because of its HEIGHT; more mass and more height → more energy', 'a roller coaster at the top', '#1E8449', '#E9F7EF'],
+        ['🏹', 'Elastic potential', 'stored in something stretched or squashed', 'a bow, a spring', '#117A65', '#E8F8F5'],
+        ['🔥', 'Thermal', 'movement of the particles inside a body; related to temperature', 'a hot cup of tea', '#C0392B', '#FDEDEC'],
+        ['⚡', 'Electrical', 'electric charges in motion (electric current)', 'a phone charging', '#B7950B', '#FEF9E7'],
+        ['☀️', 'Radiant', 'carried by light and other waves (radio, microwaves, X-rays)', 'sunlight', '#D68910', '#FEF5E7'],
+        ['🔋', 'Chemical', 'stored in the bonds between atoms; released in reactions', 'food, fuels, batteries', '#8E44AD', '#F5EEF8'],
+        ['⚛️', 'Nuclear', 'stored in the nucleus of atoms', 'the Sun, nuclear power stations', '#424949', '#F4F6F7']
+    ];
+    const g = document.getElementById('g');
+    F.forEach(([ic, n, t, ex, c, bg]) => g.insertAdjacentHTML('beforeend', `<div class="c" style="border-color:${c};background:${bg}"><div class="ic">${ic}</div><h2 style="color:${c}">${n}</h2><div class="t">${t}</div><div class="ex">e.g. ${ex}</div></div>`));
+    g.insertAdjacentHTML('afterend', '<div class="note" style="text-align:center;margin-top:12px"><b>Mechanical energy</b> = kinetic energy + potential energy</div>');
+</script>
+</body>
+</html>

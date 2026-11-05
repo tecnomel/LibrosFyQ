@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>¿Cuándo se encuentran?</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1100px; } svg text { font-family: "Segoe UI", Arial, sans-serif; } </style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Dos objetos en la misma gráfica: ¿dónde se encuentran?</h1>
+    <svg id="s" width="1040" height="460"></svg>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg', s = document.getElementById('s');
+    const add = (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; s.appendChild(e); };
+    // ejes: t 0..10 s -> 90..690 ; x 0..20 m -> 400..40
+    const X = t => 90 + t * 60, Y = x => 400 - x * 18;
+    for (let t = 0; t <= 10; t += 2) { add('line', { x1: X(t), x2: X(t), y1: 40, y2: 400, stroke: '#EAECEE' }); add('text', { x: X(t), y: 425, 'text-anchor': 'middle', 'font-size': 16 }, t); }
+    for (let x = 0; x <= 20; x += 5) { add('line', { x1: 90, x2: 690, y1: Y(x), y2: Y(x), stroke: '#EAECEE' }); add('text', { x: 78, y: Y(x) + 6, 'text-anchor': 'end', 'font-size': 16 }, x); }
+    add('line', { x1: 90, y1: 400, x2: 700, y2: 400, stroke: '#23373B', 'stroke-width': 2.5 });
+    add('line', { x1: 90, y1: 400, x2: 90, y2: 30, stroke: '#23373B', 'stroke-width': 2.5 });
+    add('text', { x: 700, y: 450, 'text-anchor': 'end', 'font-size': 18, 'font-weight': 700 }, 'tiempo (s)');
+    add('text', { x: 20, y: 25, 'font-size': 18, 'font-weight': 700 }, 'posición (m)');
+    add('line', { x1: X(0), y1: Y(0), x2: X(10), y2: Y(20), stroke: '#2471A3', 'stroke-width': 5 });
+    add('line', { x1: X(0), y1: Y(20), x2: X(10), y2: Y(5), stroke: '#C0392B', 'stroke-width': 5 });
+    const tm = 20 / 3.5, xm = 2 * tm;
+    add('line', { x1: X(tm), y1: Y(xm), x2: X(tm), y2: 400, stroke: '#7F8C8D', 'stroke-dasharray': '6 5', 'stroke-width': 2 });
+    add('line', { x1: 90, y1: Y(xm), x2: X(tm), y2: Y(xm), stroke: '#7F8C8D', 'stroke-dasharray': '6 5', 'stroke-width': 2 });
+    add('circle', { cx: X(tm), cy: Y(xm), r: 10, fill: '#F1C40F', stroke: '#23373B', 'stroke-width': 2 });
+    // texto lateral
+    const T = (y, txt, c, w) => add('text', { x: 720, y, 'font-size': 18, 'font-weight': w || 400, fill: c || '#23373B' }, txt);
+    T(70, '🔵 Objeto A: sale de x = 0', '#2471A3', 700); T(95, 'se aleja a 2 m/s');
+    T(150, '🔴 Objeto B: sale de x = 20 m', '#C0392B', 700); T(175, 'vuelve a 1,5 m/s');
+    T(240, '⭐ Las rectas se CORTAN:', '#9A7D0A', 800); T(265, 'los dos objetos están en el'); T(290, 'mismo lugar a la vez.');
+    T(330, 'Se encuentran en t ≈ 5,7 s,', '#23373B', 700); T(355, 'en x ≈ 11,4 m', '#23373B', 700);
+</script>
+</body>
+</html>

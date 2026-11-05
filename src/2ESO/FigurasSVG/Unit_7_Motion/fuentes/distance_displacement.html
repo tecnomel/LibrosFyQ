@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Distance and displacement</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .row { display: flex; gap: 20px; }
+    .c { flex: 1; text-align: center; border: 2px solid var(--line); border-radius: 16px; padding: 10px; }
+    .c h2 { font-size: 21px; color: var(--blue); }
+    .t { font-size: 16px; }
+    .o { color: var(--ocre); font-weight: 800; } .b { color: #2471A3; font-weight: 800; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Distance travelled or displacement?</h1>
+    <div class="row">
+        <div class="c"><h2>From home to school</h2>
+            <svg width="500" height="300" viewBox="0 0 500 300">
+                <defs><marker id="b" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2471A3"/></marker></defs>
+                <path d="M60 240 C120 120 180 260 240 170 S360 40 430 80" fill="none" stroke="#F36619" stroke-width="7" stroke-dasharray="14 8"/>
+                <line x1="60" y1="240" x2="420" y2="88" stroke="#2471A3" stroke-width="5" marker-end="url(#b)"/>
+                <text x="30" y="285" font-size="40">🏠</text><text x="415" y="70" font-size="40">🏫</text>
+                <text x="250" y="230" font-size="17" font-weight="800" fill="#F36619">trajectory</text>
+                <text x="180" y="140" font-size="17" font-weight="800" fill="#2471A3" transform="rotate(-23 180 140)">displacement</text>
+            </svg>
+            <div class="t"><span class="o">Distance travelled</span>: length of the whole path (orange).<br><span class="b">Displacement</span>: straight line from start to finish (blue).</div></div>
+        <div class="c"><h2>One lap of a running track</h2>
+            <svg width="500" height="300" viewBox="0 0 500 300">
+                <rect x="70" y="60" width="360" height="180" rx="90" fill="#FADBD8" stroke="#C0392B" stroke-width="8"/>
+                <rect x="110" y="100" width="280" height="100" rx="50" fill="#ABEBC6"/>
+                <path d="M300 60 A0 0 0 0 1 300 60" />
+                <circle cx="250" cy="240" r="12" fill="#2471A3"/><text x="215" y="285" font-size="17" font-weight="800" fill="#2471A3">start = finish</text>
+                <text x="250" y="160" text-anchor="middle" font-size="40">🏃</text>
+            </svg>
+            <div class="t"><span class="o">Distance travelled = 400 m</span><br><span class="b">Displacement = 0 m</span> (you end where you started)</div></div>
+    </div>
+</div>
+</body>
+</html>

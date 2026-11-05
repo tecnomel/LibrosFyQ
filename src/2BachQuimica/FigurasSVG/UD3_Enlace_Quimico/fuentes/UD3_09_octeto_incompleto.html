@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_09 · Octeto incompleto: BCl3, BF3 y AlCl3</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+</head>
+<body>
+<script>
+// El átomo central (B, Al) queda rodeado solo de 6 electrones.
+const svg = crearFigura(620, 175);
+const trig = (x0, c, X) => dibujarLewis(svg, x0, 90, { atomos: [
+    { s: c, id: "c", x: 0, y: 0 },
+    { s: X, id: "a", x: 0, y: 1, libres: 3 },
+    { s: X, id: "b", x: -0.87, y: -0.5, libres: 3 },
+    { s: X, id: "d", x: 0.87, y: -0.5, libres: 3 }],
+    enlaces: [{ a: "c", b: "a" }, { a: "c", b: "b" }, { a: "c", b: "d" }] }, { L: 52 });
+trig(100, "B", "Cl"); trig(310, "B", "F"); trig(520, "Al", "Cl");
+[["BCl₃", 100], ["BF₃", 310], ["AlCl₃", 520]].forEach(([t, x]) => texto(svg, x, 170, t, { "text-anchor": "middle", "font-size": 14, fill: COLORES.gris }));
+</script>
+</body>
+</html>

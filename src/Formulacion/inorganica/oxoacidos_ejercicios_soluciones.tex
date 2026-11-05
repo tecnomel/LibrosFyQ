@@ -1,0 +1,123 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[english,spanish,es-tabla ]{babel}
+\usepackage[top=0.5cm, left=0.5cm, right=0.5cm, bottom=0.5cm]{geometry}
+\usepackage{mystyle_2}
+\usepackage{mycolours}
+\usepackage{mytcolorbox}
+\usepackage{mycommands}
+\usepackage{microtype}
+\usepackage[all]{chemmacros}
+
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{tabularray}
+\UseTblrLibrary{siunitx}
+\newcommand{\acu}{{(aq)}}
+
+\begin{document}
+
+\DefTblrTemplate{contfoot-text}{normal}{Continúa en la siguiente página}
+\SetTblrTemplate{contfoot-text}{normal}
+\DefTblrTemplate{conthead-text}{normal}{(Continuación)}
+\SetTblrTemplate{conthead-text}{normal}
+
+\begin{landscape}
+
+    \begin{longtblr}[caption=Compuestos binarios]{hlines,vlines, colspec={Q[c,m] Q[c,m, 2cm] Q[c,m,7cm] Q[c,m,7cm]}, rowsep=5pt, rowhead=1}
+        \SetRow{gray!50} nº  & Fórmula  & Tradicional  & Hidrógeno  \\
+        1 & \ch{HBrO}  & \color{red} ácido hipobromoso &\color{red} hidrogeno(oxidobromato)\\
+        2 & \ch{HBrO2}  & \color{red}ácido bromoso  &\color{red}  hidrogeno(dioxidobromato)\\
+        3 & \ch{HBrO3}  & \color{red} ácido brómico &\color{red} hidrogeno(trioxidobromato) \\
+        4 & \ch{HBrO4}  & \color{red} ácido perbrómico &\color{red} hidrogeno(tetraoxidobromato)\\
+        5 & \ch{HIO}  & \color{red} ácido hipoyodoso  &\color{red} hidrogeno(oxidoyodato)\\
+        6 & \ch{HIO2}  & \color{red} ácido yodoso &\color{red} hidrogeno(dioxidoyodato) \\
+        7 & \ch{HIO3}  & \color{red} ácido yódico &\color{red} hidrogeno(trioxidoyodato)\\
+        8 & \ch{HIO4}  &\color{red} ácido peryódico  &\color{red} hidrogeno(tetraoxidoyodato)\\
+        9 & \ch{HNO2}  &\color{red} ácido nitroso  &\color{red} hidrogeno(dioxidonitrato)\\
+        10 & \ch{H2SeO2}  & \color{red} ácido hiposelenoso &\color{red} dihidrogeno(dioxidoselenato)\\
+        11 & \ch{H2SO3}  & \color{red} ácido sulfuroso &\color{red} dihidrogeno(trioxidosulfato) \\
+        12 & \ch{H2TeO2}  &\color{red}  ácido hipoteluroso  &\color{red} dihidrogeno(dioxidotelurato) \\
+        13 & \ch{H2SO4}  & \color{red} ácido sulfúrico & \color{red} dihidrogeno(tetraoxidosulfato)\\
+        14 & \ch{H2TeO3}  & \color{red} ácido teluroso & \color{red}dihidrogeno(trixodiotelurato)\\
+        15 & \ch{HClO}  & \color{red} ácido hipocloroso & \color{red} hidrogeno(oxidoclorato)\\
+        16 & \ch{HClO2}  &  \color{red} ácido cloroso & \color{red}hidrogeno(dioxidoclorato)\\
+        17 & \ch{HClO3}  & \color{red} ácido clórico &\color{red} hidrogeno(trioxidoclorato) \\
+        18 & \ch{HClO4}  & \color{red} ácido hiperclórico &\color{red} hidrogeno(tetraoxidoclorato)\\
+        19 & \ch{HNO3}  & \color{red} ácido nítrico & \color{red} hidrogeno(trioxidonitrato)\\
+        20 & \ch{HNO2}  & \color{red} ácido nitroso & \color{red} hidrogeno(dioxidonitrato)\\
+        21 & \ch{H2SO2}  & \color{red} ácido hiposulfuroso  &\color{red} dihidrogeno(dioxidosulfato)\\
+        22 & \ch{H2SO3}  & \color{red} ácido sulfuroso &\color{red} dihidrogeno(trioxidosulfato)\\
+        23 & \ch{H2SO4}  &\color{red} ácido sulfúrico  & \color{red} dihidrogeno(tetraoxidosulfato)\\
+        24 & \ch{HMnO4}  & \color{red}  ácido permangánico &\color{red} hidrogeno(tetraoxidomanganato)\\
+        25 & \ch{H3PO3}  & \color{red} ácido fosforoso & \color{red} trihidrogeno(trioxidofosfato)\\
+        26 & \ch{H2CrO3}  & \color{red} ácido crómico &\color{red} hidrogeno(trioxidocromato)\\
+        27 & \ch{H3PO4}  & \color{red} ácido fosfórico &\color{red} trihidrogeno(tetraoxidofosfato)\\
+        28 & \ch{H3AsO4}  & \color{red} ácido arsénico & \color{red} trihidrogeno(tetraoxidoarsenato)\\
+        29 & \ch{HSbO2}  & \color{red} ácido metaantimonioso & \color{red} hidrogeno(dioxidoantimoniato)\\
+        30 & \ch{H3SbO3}  &\color{red} ácido antimonioso ácido &\color{red} trihidrogeno(trioxidoantimoniato)\\
+        31 & \ch{HSbO3}  &\color{red}  ácido metaantimónico  &\color{red} hidrogeno(trioxidoantimoniato)\\
+        32 & \ch{H3SbO4}  & \color{red}  ácido antimónico&\color{red} trihidrogeno(tetraoxidoantimoniato)\\
+        33 & \ch{HNO}  &\color{red} ácido hiponitroso  &\color{red} hidrogeno(oxidonitrato)\\
+        34 & \ch{H2CO3}  &\color{red}  ácido carbónico &\color{red} dihidrogeno(trioxidocarbonato)\\
+        35 & \ch{H2CO2}  & \color{red} ácido carbonoso & \color{red} dihidrogeno(dioxidocarbonato)\\
+        36 & \ch{H2SeO4}  &\color{red} ácido selénico &\color{red} dihidrogeno(tetraoxidoselenato)\\
+        37 & \ch{HMnO4}  &\color{red}  ácido permangánico &\color{red} hidrogeno(tetraoxidomaganato)\\
+        38 & \ch{H2MnO4}  &\rojo{ácido mangánico}   &\rojo{dihidrogeno(tetraoxidomanganato)} \\
+        39 & \ch{H2MnO3}  &\rojo{ácido manganoso}   & \rojo{dihidrogeno(trioxidomanganato)}\\
+        40 & \color{red} \ch{HClO}  & ácido hipocloroso  &\color{red} hidrogeno(oxidoclorato)\\
+        41 & \color{red} \ch{HIO}  & ácido hipyodoso  &\color{red} hidrogeno(oxidoyodato)\\
+        42 & \color{red} \ch{HNO3}  & ácido nítrico  &\color{red} hidrogeno(trioxidonitrato)\\
+        43 & \color{red} \ch{H2SeO4}  &  ácido selénico &\color{red} dihidrogeno(tetraoxidoselenato)\\
+        44 & \color{red} \ch{H2SO4}  &  ácido sulfúrico &\color{red} dihidrogeno(tetraoxidosulfato)\\
+        45 & \color{red} \ch{H2TeO4}  &  ácido telúrico &\color{red} dihidrogeno(tetraoxidotelurato)\\
+        46 & \color{red} \ch{HClO2}  & ácido cloroso  &\color{red} hidrogeno(dioxidoclorato)\\
+        47 & \color{red} \ch{HClO4}  & ácido perclórico  &\color{red} hidrogeno(tetraoxidoclorato)\\
+        48 & \color{red} \ch{HClO}  & ácido hipocloroso  &\color{red} hidrogeno(oxidoclorato)\\
+        49 & \color{red} \ch{HClO3}  &  ácido clórico &\color{red} hidrogeno(trioxidoclorato)\\
+        50 & \color{red} \ch{HBrO}  &  ácido hipobromoso  &\color{red} hidrogeno(oxidobromato)\\
+        51 & \color{red} \ch{HBrO2}  &  ácido bromoso  &\color{red} hidrogeno(dioxidobromato)\\
+        52 & \color{red} \ch{HBrO3}  &  ácido brómico &\color{red} hidrogeno(trioxidobromato)\\
+        53 & \color{red} \ch{HBrO4}  & ácido perbrómico   &\color{red} hidrogeno(tetraoxidobromato) \\
+        54 & \color{red} \ch{H2MnO4}  &  ácido mangánico  &\color{red} dihidrogeno(tetraoxidomanganato)\\
+        55 & \color{red} \ch{HMnO4}  &  ácido permangánico  &\color{red} hidrogeno(tetraoxidomanganato)\\
+        56 & \color{red} \ch{H2CrO4}  &  ácido crómico  &\color{red} dihidrogeno(tetraoxidocromato)\\
+        57 & \color{red} \ch{H2SO2}  &  ácido hiposulfuroso  &\color{red} dihidrogeno(dioxidosulfato)\\
+        58 & \color{red} \ch{H2SO4}  &  ácido sulfúrico   &\color{red} dihidrogeno(tetraoxidosulfato)\\
+        59 & \color{red} \ch{H2TeO4}  &  ácido telúrico  &\color{red} dihidrogeno(tetraoxidotelurato)\\
+        60 & \color{red} \ch{HNO2}  & ácido nitroso   &\color{red} hidrogeno(dioxidonitrato)\\
+        61 & \color{red} \ch{H3PO4}  &  ácido fosfórico  &\color{red} trihidrogeno(tetraoxidofosfato)\\
+        62 & \color{red} \ch{HNO3}  &   ácido nítrico &\color{red} hidrogeno(trioxidonitrato)\\
+        63 & \color{red} \ch{H2SO3}  &  ácido sulfuroso  &\color{red} dihidrogeno(trioxidosulfato)\\
+        64 & \color{red} \ch{H2TeO3}  &  ácido teluroso  &\color{red} dihidrogeno(trioxidotelurato)\\
+        65 & \color{red} \ch{H2SeO4}  &  ácido selénico  &\color{red} dihidrogeno(tetraoxidoselenato)\\
+        66 & \color{red} \ch{H2CO3}  &  ácido carbónico  &\color{red} dihidrogeno(trioxidocarbonato)\\
+        67 & \color{red} \ch{H2CO2}  &  ácido carbonoso  &\color{red} dihidrogeno(dioxidocarbonato)\\
+        68 & \color{red} \ch{H4SiO4}  &  ácido silícico  &\color{red} tetrahidrogeno(tetraoxidosilicato)\\
+        69 & \color{red} \ch{H3AsO3}  &   ácido arsenicoso &\color{red} trihidrogeno(trioxidoarsenato)\\
+        70 & \color{red} \ch{HBrO2}  &  \color{red} ácido bromoso & Hidrogeno(dioxidobromato)\\
+        71 & \color{red} \ch{HBrO}  & \color{red} ácido hipobromoso  & Hidrogeno(oxidobromato) \\
+        72 & \color{red} \ch{HBrO3}  &  \color{red} ácido brómico &  Hidrogeno(trioxidobromato) \\
+        73 & \color{red} \ch{HBrO4}  &  \color{red} ácido perbrómico & Hidrogeno(tetraoxidobromato) \\
+        74 & \color{red} \ch{HIO}  &  \color{red}  ácido hipoyodoso & Hidrogeno(oxidoyodato)\\
+        75 & \color{red} \ch{HIO2}  &  \color{red} ácido yodoso & Hidrogeno(dioxidoyoadato)\\
+        76 & \color{red} \ch{HIO3}  &  \color{red} ácido yódico  &  Hidrogeno(trioxidoyodato)\\
+        77 & \color{red} \ch{HIO4}  &  \color{red} ácido peryódico & Hidrogeno(tetraoxidoyodato)\\
+        78 & \color{red} \ch{HNO2}  &  \color{red} ácido nitroso & Hidrogeno(dioxidonitrato)\\
+        79 & \color{red} \ch{H2SeO2}  & \color{red} ácido hiposelenoso  &Dihidrogeno(dioxidoselenato) \\
+        80 & \color{red} \ch{H2SO3}  &  \color{red}  ácido sulfuroso &Dihidrogeno(trioxidosulfato)\\
+        81 & \color{red} \ch{H2SO4}  &  \color{red} ácido sulfúrico &Dihidrogeno(tetraoxidosulfato) \\
+        82 & \color{red} \ch{H2TeO3}  &  \color{red} ácido teluroso &Dihidrogeno(trioxidotelurato) \\
+        83 & \color{red} \ch{H2TeO4}  &  \color{red} ácido telúrico &Dihidrogeno(tetraoxidotelurato) \\
+        84 & \color{red} \ch{HClO}  &  \color{red} ácido hipocloroso &Hidrogeno(oxidoclorato) \\
+        85 & \color{red} \ch{HClO2}  &  \color{red} ácido clororo &Hidrogeno(dioxidoclorato) \\
+        86 & \color{red} \ch{HClO3}  &  \color{red}  ácido clórico &Hidrogeno(trioxidoclorato) \\
+        87 & \color{red} \ch{HBrO4}  &  \color{red} ácido brómico &Hidrogeno(tetraoxidobromato) \\
+        88 & \color{red} \ch{HBrO}  &  \color{red} ácido hipobromoso &Hidrogeno(oxidobromato) \\
+        89 & \color{red} \ch{HBrO2}  &  \color{red} ácido bromoso  &Hidrogeno(dioxidobromato) \\
+        90 & \color{red} \ch{H2SeO4}  &  \color{red} ácido selénico &Dihidrogeno(tetraoxidoselenato) \\
+        91 & \color{red} \ch{H2SO4}  &  \color{red} ácido sulfúrico &Dihidrogeno(tetraoxidosulfato)\\
+        92 & \color{red} \ch{H2TeO4}  &  \color{red} ácido telúrico &Dihidrogeno(tetraoxidotelurato) \\
+    \end{longtblr}
+
+\end{landscape}
+\end{document}

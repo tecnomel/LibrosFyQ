@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_29 · Formación del F2 según la TEV (orbitales)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/orbitales.js"></script>
+    <script src="../../comun/cajas.js"></script>
+</head>
+<body>
+<script>
+// Cada F aporta un orbital 2p semiocupado; al solaparse frontalmente se forma un enlace σ
+// con los dos electrones apareados (espines opuestos).
+const svg = crearFigura(820, 170);
+const RO = "#E0463A", AZ = "#4F7FE0";
+const claro = c => mezclar(c, "#ffffff", 0.45);
+const cam = [1, 0, 0.15];
+const pF1 = OA.p([0, 0, 0], [0, 1, 0]), pF2 = OA.p([0, 0, 0], [0, -1, 0]);
+escenaOrbital(svg, 110, 80, pF1, { escala: 45, caja: [2.2, 1.4, 1.4], colorPos: RO, colorNeg: claro(RO), camara: cam, nucleos: [[0, 0, 0]] });
+flechaEspin(svg, 140, 80, 22, true, "#fff");
+texto(svg, 110, 150, [{ t: "2" }, { t: "p", attrs: { "font-style": "italic" } }, { t: " (F)" }], { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+texto(svg, 235, 88, "+", { "text-anchor": "middle", "font-size": 24, fill: COLORES.texto });
+escenaOrbital(svg, 360, 80, pF2, { escala: 45, caja: [2.2, 1.4, 1.4], colorPos: AZ, colorNeg: claro(AZ), camara: cam, nucleos: [[0, 0, 0]] });
+flechaEspin(svg, 330, 80, 22, false, "#fff");
+texto(svg, 360, 150, [{ t: "2" }, { t: "p", attrs: { "font-style": "italic" } }, { t: " (F)" }], { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+flecha(svg, 470, 80, 530, 80, { punta: 11, ancho: 1.8 });
+const d = 0.9;
+escenaOrbital(svg, 680, 80, OA.p([0, -d, 0], [0, 1, 0]), { escala: 45, caja: [3.2, 1.4, 1.4], colorPos: RO, colorNeg: claro(RO), camara: cam,
+    otros: [{ fn: OA.p([0, d, 0], [0, -1, 0]), colorPos: AZ, colorNeg: claro(AZ) }], nucleos: [[0, -d, 0], [0, d, 0]] });
+flechaEspin(svg, 674, 80, 22, true, "#fff");
+flechaEspin(svg, 686, 80, 22, false, "#fff");
+texto(svg, 638, 140, "F", { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+texto(svg, 722, 140, "F", { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+texto(svg, 680, 162, [{ t: "F" }, { t: "2", sub: true }, { t: " (enlace σ)" }], { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+</script>
+</body>
+</html>

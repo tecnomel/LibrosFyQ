@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Aceleración y fuerza centrípetas</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>La velocidad cambia de dirección</h2><svg id="a" width="400" height="300"></svg>
+            <div class="t">El módulo de <i>v</i> es siempre el mismo, pero su dirección cambia en cada punto.<br>La aceleración y la fuerza centrípetas apuntan hacia el centro.</div></div>
+        <div class="card"><h2>¿Hacia dónde apunta el cambio Δ<i>v</i>?</h2><svg id="b" width="400" height="300"></svg>
+            <div class="t">Si trasladamos <i>v</i>₁ y <i>v</i>₂ a un mismo origen, el cambio Δ<i>v</i> = <i>v</i>₂ − <i>v</i>₁<br>apunta hacia el centro de la circunferencia.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // a) vectores velocidad tangentes y fuerza centrípeta
+    {
+        const add = svgAdder('a'), cx = 200, cy = 150, R = 110, L = 62;
+        add('circle', { cx, cy, r: R, fill: '#F4F6F7', stroke: '#23373B', 'stroke-width': 2 });
+        for (let k = 0; k < 8; k++) {
+            const a = k * 45 + 22.5, [x, y] = pol(cx, cy, R, a), [tx, ty] = pol(0, 0, 1, a + 90);
+            arrow(add, x, y, x + L * tx, y + L * ty, '#2471A3', 2.8, 11);
+            add('circle', { cx: x, cy: y, r: 3.5, fill: '#23373B' });
+        }
+        const a = 67.5, [x, y] = pol(cx, cy, R, a), [tx, ty] = pol(0, 0, 1, a + 90);
+        vlabel(add, x + L * tx + 8, y + L * ty - 6, 'v', '#2471A3');
+        const [fx, fy] = pol(cx, cy, 20, a);
+        arrow(add, x, y, fx, fy, '#C0392B', 3.5, 13);
+        vlabel(add, (x + fx) / 2 + 22, (y + fy) / 2 + 2, 'F', '#C0392B', 'c');
+        vlabel(add, (x + fx) / 2 - 22, (y + fy) / 2 + 10, 'a', '#B9770E', 'c');
+        add('circle', { cx, cy, r: 4, fill: '#23373B' });
+        label(add, cx + 2, cy + 22, 'centro', { 'font-size': 12, fill: '#525252', 'font-weight': 600 });
+    }
+    // b) diferencia de vectores
+    {
+        const add = svgAdder('b'), cx = 95, cy = 220, R = 140, A1 = 0, A2 = 50, L = 95;
+        add('path', { d: arcD(cx, cy, R, -12, 70), fill: 'none', stroke: '#AAB7B8', 'stroke-width': 2 });
+        add('circle', { cx, cy, r: 4, fill: '#23373B' });
+        label(add, cx - 4, cy + 22, 'centro', { 'font-size': 12, fill: '#525252', 'font-weight': 600 });
+        const P = a => pol(cx, cy, R, a), T = a => pol(0, 0, L, a + 90);
+        const [x1, y1] = P(A1), [u1, w1] = T(A1), [x2, y2] = P(A2), [u2, w2] = T(A2);
+        arrow(add, x1, y1, x1 + u1, y1 + w1, '#2471A3', 3, 11); vlabel(add, x1 + u1 + 18, y1 + w1 / 2 + 6, 'v', '#2471A3', '1');
+        arrow(add, x2, y2, x2 + u2, y2 + w2, '#1E8449', 3, 11); vlabel(add, x2 + u2 / 2 - 8, y2 + w2 / 2 - 20, 'v', '#1E8449', '2');
+        add('circle', { cx: x1, cy: y1, r: 4, fill: '#23373B' }); add('circle', { cx: x2, cy: y2, r: 4, fill: '#23373B' });
+        // construcción a la derecha
+        const ox = 345, oy = 230;
+        arrow(add, ox, oy, ox + u1, oy + w1, '#2471A3', 3, 11);
+        arrow(add, ox, oy, ox + u2, oy + w2, '#1E8449', 3, 11);
+        arrow(add, ox + u1, oy + w1, ox + u2, oy + w2, '#C0392B', 3, 11);
+        vlabel(add, ox + u1 + 16, oy + w1 / 2 + 6, 'v', '#2471A3', '1');
+        vlabel(add, ox + u2 / 2 - 22, oy + w2 / 2 + 4, 'v', '#1E8449', '2');
+        add('text', { x: (2 * ox + u1 + u2) / 2 - 8, y: (2 * oy + w1 + w2) / 2 - 12, 'font-size': 16, 'font-weight': 700, fill: '#C0392B', 'text-anchor': 'middle' }, 'Δv');
+        add('circle', { cx: ox, cy: oy, r: 3, fill: '#23373B' });
+        label(add, 320, 270, 'mismo origen', { 'font-size': 13, fill: '#525252' });
+    }
+</script>
+</body>
+</html>

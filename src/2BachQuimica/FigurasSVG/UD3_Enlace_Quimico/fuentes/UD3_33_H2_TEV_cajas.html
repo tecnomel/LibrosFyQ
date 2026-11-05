@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_33 · Formación del H2 según la TEV (cajas)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/cajas.js"></script>
+</head>
+<body>
+<script>
+// TEV: cada H aporta un electrón desapareado de su orbital 1s; al solaparse los
+// orbitales se forma un enlace con los dos electrones apareados.
+const svg = crearFigura(560, 190);
+const t = (x, y, p, a = {}) => texto(svg, x, y, p, { "font-size": 20, fill: COLORES.texto, ...a });
+t(20, 62, "átomo de H");
+dibujarCajas(svg, 150, 40, [{ etq: "1s", e: [1] }], { caja: 30 });
+t(20, 152, "átomo de H");
+dibujarCajas(svg, 150, 130, [{ etq: "1s", e: [{ n: 1, colores: ["#B5651D"] }], color: CAJA_OTRO }], { caja: 30 });
+llave(svg, 205, 25, 170, { ancho: 12 });
+dibujarCajas(svg, 280, 88, [{ etq: "1s", e: [{ n: 2, colores: ["#1A1A2A", "#B5651D"] }], solapada: true }], { caja: 30 });
+t(330, 112, [{ t: "molécula de H" }, { t: "2", sub: true }]);
+</script>
+</body>
+</html>

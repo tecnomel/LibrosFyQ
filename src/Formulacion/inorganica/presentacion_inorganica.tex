@@ -1,0 +1,1121 @@
+\documentclass{beamer}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CONFIGURACIÓN DEL TEMA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usetheme{metropolis}
+%\usetheme[progressbar=frametitle]{metropolis}
+%\definecolor{greenbeamer}{rgb}{0.125,0.5,0.25}
+%\setbeamertemplate{frame numbering}[fraction] % para que diga las 
+%\useoutertheme{metropolis}
+%\useinnertheme{metropolis}
+%\usefonttheme{metropolis}
+%\usecolortheme{spruce}
+%\setbeamercolor{background canvas}{bg=white}
+%\usecolortheme[named=greenbeamer]{structure}
+
+
+\usepackage[spanish, es-noquoting]{babel} %necesario para el idioma
+%\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{tikz} % necesario para tikz
+\usepackage{chemmacros}
+%\usepackage{chemformula} % necesario para fórmulas
+\usepackage{enumitem} % necesario para personalizar las etiquetas de la enumeración
+\usepackage{mycommands} % aquí tengo mis comandos
+\usepackage{mycolours} % Aquí tengo mis colores.
+\usepackage{mystyle_beamer_inorganica}
+
+\usepackage{worldflags}
+
+\setbeamercovered{transparent}
+
+
+\definecolor{mDarkBrown}{HTML}{604c38}
+\definecolor{mDarkTeal}{HTML}{23373b}
+\definecolor{mLightBrown}{HTML}{EB811B}
+\definecolor{mLightGreen}{HTML}{14B03D}
+
+\newcommand*{\numberballmDarkTeal}{\protect\cnumero{\arabic*}{mDarkTeal}}
+\newcommand*{\numberballmDarkBrown}{\protect\cnumero{\arabic*}{mDarkBrown}}
+\newcommand*{\numberballmLightBrown}{\protect\cnumero{\arabic*}{mLightBrown}}
+\newcommand*{\numberballmLightGreen}{\protect\cnumero{\arabic*}{mLightGreen}}
+
+\newcommand{\examplebeamer}[1]{{\color{mLightGreen}\textbf{#1}}}
+\newcommand{\alertbeamer}[1]{\alert{\textbf{#1}}}
+\newcommand{\blockbeamer}[1]{{\color{mDarkTeal}\textbf{#1}}}
+
+\newcommand{\numeromDarkTeal}[1]{\tikz[baseline=(myanchor.base)]
+\node[minimum size=0.2cm,circle,
+inner sep=1pt,draw, mDarkTeal,thick,fill=mDarkTeal] (myanchor)
+{\color{white}\bfseries\fontsize{8}{8}#1};}
+
+
+
+\newcommand{\ies}{IES Escultor José Luís Sánchez}
+
+\newcommand{\eo}[3]{$\overset{^{\color{#1}#2}}{\text{\ch{#3}}}$}
+\newcommand{\eob}[2]{$\overset{^{\color{blue}#1}}{\text{\ch{#2}}}$}
+\newcommand{\eor}[2]{$\overset{^{\color{red}#1}}{\text{\ch{#2}}}$}
+
+\newcommand{\molde}[2]{#1\text{ mol de }\ch{#2}}
+\newcommand{\gde}[2]{#1\ \unit{\g} \text{ de }\ch{#2}}
+\newcommand{\nline}[1][6pt]{\\[#1]}
+\newcommand{\gasesideal}{P\ V = n\ R\ T}
+
+
+\title{Formulación Química Inorgánica}
+\subtitle{Normas IUPAC 2005}
+\author{}
+\institute{\textbf{Tipos de compuestos} Compuestos binarios: Óxidos, Hidruros, Peróxidos, Hidróxidos. Oxoácidos. Oxosales}
+\date{}
+
+\begin{document}
+
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \tableofcontents
+\end{frame}
+
+
+\section{Compuestos Binarios}
+
+\subsection{Compuestos con oxígeno}
+
+\begin{frame}[t]{Compuestos binarios con oxígeno: óxidos}\vspace{10pt}
+    \begin{block}{\Large Características}
+        \begin{enumerate}[label=\numberballmDarkTeal]
+            \item Formados por \ch{O} y un elemento metálico o no metálico a excepción de los \alert{halógenos}.
+            \item En este tipo de compuestos el oxígeno tiene un \azul{estado de oxidación ($-2$)}.
+            \item Fórmula General: \ch{M_{x}O_{y}}
+        \end{enumerate}
+    \end{block}
+
+
+    % \begin{alertblock}{\Large Nomenclatura}
+    %     \vspace*{2mm}
+    %     \begin{enumerate}[label=\numberballmDarkTeal]
+    %         \item \textbf{\uline{N. Multiplicadores}}
+    %               \begin{center}
+    %                   \textcolor{blue}{prefijo\subin{1}} \textcolor{blue}{óxido} + de + \textcolor{red}{prefijo\subin{2}} \textcolor{red}{nombre del elemento}
+    %               \end{center}
+
+    %               \begin{enumerate}[label=\textcolor{red}{$\bullet$}]
+    %                   \item \textcolor{blue}{Prefijo\subin{1}}: Indica el número de oxígenos.
+    %                   \item \textcolor{red}{Prefijo\subin{2}}: Indica el número de elementos distintos al oxígeno.
+    %               \end{enumerate}
+    %     \end{enumerate}
+    % \end{alertblock}
+\end{frame}
+
+\begin{frame}[t]{Óxidos}
+    \begin{alertblock}{\Large Nomenclatura}
+        \vspace*{2mm}
+        \begin{enumerate}[label=\numberballmDarkTeal]
+            \item \textbf{\uline{Nomenclarura de Multiplicadores}}
+                  \begin{center}
+                      \textcolor{blue}{prefijo\subin{1}} \textcolor{blue}{óxido} + de + \textcolor{red}{prefijo\subin{2}} \textcolor{red}{nombre del elemento}
+                  \end{center}
+
+                  \begin{enumerate}[label=\textcolor{red}{$\bullet$}]
+                      \item \textcolor{blue}{Prefijo\subin{1}}: Indica el número de oxígenos.
+                      \item \textcolor{red}{Prefijo\subin{2}}: Indica el número de elementos distintos al oxígeno.
+                  \end{enumerate}
+        \end{enumerate}
+        \textbf{\uline{Ejemplos}}:\nline
+
+        \ballnumber{1} : \ch{Na2O}: \textcolor{blue}{monóxido de disodio} \ch{->} \textcolor{red}{óxido de disodio}\nline
+
+        \ballnumber{2} : \ch{Ni2O3}: \textcolor{blue}{trióxido de diníquel}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[t]{\worldflag[width=3.9mm,stretch=1]{GB} Oxides}
+    \begin{alertblock}{\Large Nomenclature}
+        \vspace*{2mm}
+        \begin{enumerate}[label=\numberballmDarkTeal]
+            \item \textbf{\uline{Nomenclature with multipliers}}
+                  \begin{center}
+                    \textcolor{red}{prefix\subin{2}} \textcolor{red}{name of the element} 
+                    \textcolor{blue}{prefix\subin{1}} \textcolor{blue}{oxide} 
+                  \end{center}
+
+                  \begin{enumerate}[label=\textcolor{red}{$\bullet$}]
+                      \item \textcolor{blue}{Prefix\subin{1}}: Number of oxygen atoms.
+                      \item \textcolor{red}{Prefix\subin{2}}: number of atoms of the element other than oxygen.
+                  \end{enumerate}
+        \end{enumerate}
+        \textbf{\uline{Examples}}:\nline
+
+        \ballnumber{1} : \ch{Na2O}: \textcolor{blue}{disodium monoxide} \ch{->} \textcolor{red}{disodium oxide}\nline
+
+        \ballnumber{2} : \ch{Ni2O3}: \textcolor{blue}{diniquel trioxide}
+    \end{alertblock}
+\end{frame}
+
+% \begin{frame}[t]{Óxidos}
+
+%     \begin{alertblock}{\Large Nomenclatura}
+%         \begin{enumerate}[label=\numberballmDarkTeal]
+%             \item \textbf{\uline{Nomenclatura Multiplicadores}}\nline
+%         \end{enumerate}
+%         \textbf{\uline{Ejemplos}}:\nline
+
+%         \ballnumber{1} : \ch{Na2O}: \textcolor{blue}{monóxido de disodio} \ch{->} \textcolor{red}{óxido de disodio}\nline
+
+%         \ballnumber{2} : \ch{Ni2O3}: \textcolor{blue}{trióxido de diníquel}
+
+%     \end{alertblock}
+
+% \end{frame}
+
+\begin{frame}[t]{Óxidos}
+    \begin{alertblock}{\Large Nomenclatura}
+
+        \begin{enumerate}[start=2,label=\numberballmDarkTeal]
+            \item \textbf{\uline{Nomenclatura con Estados de Oxidación}}:
+                  \begin{center}
+                      \textcolor{blue}{óxido} + de + \textcolor{red}{nombre del elemento} + $\Bigl($ \textcolor{green!50!black}{estado de oxidación del elemento en números romanos}$\Bigr)$
+                  \end{center}
+                  Cuando el elemento tiene tan solo un único estado de oxidación, el estado de oxidación puede omitirse.
+        \end{enumerate}
+
+        \textbf{Ejemplos}:
+
+        \ballnumber{1} : \ch{NiO}: \textcolor{blue}{óxido de níquel (II)}
+
+        \ballnumber{2} : \ch{Na2O}: \textcolor{blue}{óxido de sodio (I)} \ch{->} \textcolor{red}{óxido de sodio}, omitimos (I).
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[t]{\worldflag[width=3.9mm,stretch=1]{GB} Oxides}
+    \begin{alertblock}{\Large Nomenclature} 
+
+        \begin{enumerate}[start=2,label=\numberballmDarkTeal]
+            \item \textbf{\uline{Oxidation State Nomenclature}}:
+                  \begin{center}
+                    \textcolor{red}{name of the element} $\Bigl($\textcolor{green!50!black}{oxidation state of the element in Roman numerals}$\Bigr)$ \textcolor{blue}{oxide} 
+                  \end{center}
+                  When the element has only one oxidation state, the oxidation state can be omitted
+        \end{enumerate}
+
+        \textbf{Examples}:
+
+        \ballnumber{1} : \ch{NiO}: \textcolor{blue}{Niquel oxide (II)}
+
+        \ballnumber{2} : \ch{Na2O}: \textcolor{blue}{sodium oxide (I)} \ch{->} \textcolor{red}{sodium oxide}, we omit the (I).
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[t]{Óxidos}
+    \begin{exampleblock}{\Large Formulación}
+        \begin{enumerate}[label=\numberballmDarkTeal]
+            \item Escribimos el oxígeno a la derecha.
+            \item Escribimos el elemento a la izquierda.
+            \item Ponemos encima de cada elemento su correspondiente estado de oxidación.
+            \item Intercambiamos los estados de oxidación como subíndices en valor absoluto.
+            \item Simplificamos la fórmula si es posible.
+        \end{enumerate}
+        \textbf{\uline{Ejemplos}:}\nline
+        \ballnumber{1} : Óxido de sodio \ch{->}  \eo{blue}{+1}{Na} \eo{red}{-2}{O}  \ch{->} \ch{Na2O}
+
+        \ballnumber{2} : Óxido de calcio \ch{->} \eo{blue}{+2}{Ca} \eo{red}{-2}{O}  \ch{->} \ch{Ca2O2} \ch{->} \ch{CaO}
+    \end{exampleblock}
+\end{frame}
+
+
+
+\begin{frame}[t]{Oxígeno con halógenos}\vspace{10pt}
+    \begin{block}{\Large Características}
+        \begin{enumerate}[label=\numberballmDarkTeal]
+            \item Formados por \ch{O} y un elemento del grupo 17 (\alert{halógenos}).
+            \item Fórmula General: \ch{O_{m}X_{n}}
+        \end{enumerate}
+    \end{block}
+    \begin{alertblock}{\Large Nomenclatura}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item \textbf{\uline{Nomenclatura con multiplicadores.}}
+                  \begin{center}
+                      \textcolor{blue}{prefijo\subin{1}} \textcolor{azulF}{raíz del nombre del halógeno} terminado en \textcolor{green!50!black}{uro} + de + \textcolor{red}{prefijo\subin{2}} \textcolor{red}{oxígeno}
+                  \end{center}
+
+                  \begin{enumerate}[label=\textcolor{red}{$\bullet$}]
+                      \item \textcolor{blue}{Prefijo\subin{1}}: Indica el número de halógenos.
+                      \item \rojo{Prefijo\subin{2}}: Indica el número de oxígenos.
+                  \end{enumerate}
+
+                  \textbf{\uline{Ejemplos}}: \ballnumber{1} : \ch{OCl2}: dicloruro de oxígeno.
+                  \ballnumber{2} : \ch{O3Br2} dibromuro de trioxígeno
+        \end{enumerate}
+    \end{alertblock}
+\end{frame}
+
+
+\begin{frame}[t]{\worldflag[width=3.9mm,stretch=1]{GB} Oxygen with halogens}\vspace{10pt}
+    
+    \begin{alertblock}{\Large Nomenclature}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item \textbf{\uline{Nomenclature with multipliers}}
+                  \begin{center}
+                      \textcolor{red}{prefix\subin{2}} \textcolor{red}{oxygen} + \textcolor{blue}{prefix\subin{1}}  \textcolor{azulF}{name of the halogen ending in}  \textcolor{green!50!black}{ide}   
+                  \end{center}
+
+                  \begin{enumerate}[label=\textcolor{red}{$\bullet$}]
+                      \item \textcolor{blue}{Prefijo\subin{1}}: number of halogen atoms.
+                      \item \rojo{Prefijo\subin{2}}: number of oxygen atoms.
+                  \end{enumerate}
+
+                  \textbf{\uline{Examples}}: \ballnumber{1} : \ch{OCl2}: oxygen dichloride.
+                  \ballnumber{2} : \ch{O3Br2} trioxygen dibromide
+        \end{enumerate}
+    \end{alertblock}
+\end{frame}
+
+
+
+
+\begin{frame}[t]{Oxígeno con halógenos}
+    \begin{exampleblock}{\Large Formulación}\vspace*{5pt}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item Escribimos el oxígeno a la izquierda
+            \item Escribimos el halógeno a la derecha.
+            \item Ponemos encima de cada elemento su correspondiente estado de oxidación.
+            \item Intercambiamos los estados de oxidación como subíndices en valor absoluto.
+            \item Simplificamos la fórmula si es posible.
+        \end{enumerate}
+    \end{exampleblock}
+    \textbf{\uline{Ejemplos}}
+
+    \ballnumber{1} : Dibromuro de oxígeno: \eob{-2}{O} \eor{+1}{Br}  \ch{-> OBr2}
+
+    \ballnumber{2} : \ch{O7Br2}: \eor{-2}{O}\eob{+7}{Br} \ch{-> O7Br2}
+\end{frame}
+
+
+\subsection{Compuestos con hidrógeno}
+
+\begin{frame}[c]{Compuestos binarios con hidrógeno: hidruros}
+    \begin{block}{\Large  Características}\vspace*{5pt}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item Son compuestos que contienen hidrógeno y un metal o un no metal a \rojo{excepción de los elementos del grupo 16 y 17.}
+
+            \item En este tipo de compuestos el hidrógeno tiene un \azul{estado de oxidación ($-1$)}.
+
+            \item Fórmula general: \ch{M_xH_y}
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+\begin{frame}[t]{Hidruros metálicos / no metálicos (excepto 16 y 17)}
+    \begin{alertblock}{\Large Nomenclatura}\vspace*{5pt}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item \textbf{\uline{Nomenclatura multiplicadores}}:
+                  \begin{center}
+                      \textcolor{blue}{prefijo\subin{1}} \textcolor{blue}{hidruro}  + de + \textcolor{red}{nombre del elemento}
+                  \end{center}
+
+                  \begin{enumerate}[label=\textcolor{red}{$\bullet$}]
+                      \item \azul{Prefijo\subin{1}}: Indica el número de hidrógenos.
+                    %   \item \rojo{Prefijo\subin{2}}: Indica el número de elementos distintos al hidrógeno.
+                  \end{enumerate}
+
+                  \textbf{\uline{Ejemplos}}:\nline
+
+                  \ballnumber{1} : Trihidruro de aluminio: \ch{AlH3}
+
+                  \ballnumber{2} : Dihidruro de hierro: \ch{FeH2}
+        \end{enumerate}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[t]{\worldflag[width=3.9mm,stretch=1]{GB} Metal hydrides / non metal hydrides (except  elements of the grupos 16 y 17)}
+    \begin{alertblock}{\Large Nomenclature}\vspace*{5pt}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item \textbf{\uline{Nomenclature with multipliers}}:
+                  \begin{center}
+                    \textcolor{red}{prefix\subin{2} name of the element} \textcolor{blue}{prefix\subin{1}} \textcolor{blue}{hydride}
+
+                      \textcolor{blue}{prefix\subin{1}} \textcolor{blue}{hidruro}  + de + \textcolor{red}{prefix\subin{2} nombre del elemento}
+                  \end{center}
+
+                  \begin{enumerate}[label=\textcolor{red}{$\bullet$}]
+                      \item \azul{Prefijo\subin{1}}: number of hydrogen atoms.
+                      \item \rojo{Prefijo\subin{2}}: number of atoms of the element other than oxygen.
+                  \end{enumerate}
+
+                  \textbf{\uline{Ejemplos}}:\nline
+
+                  \ballnumber{1} : Aluminium trihydride: \ch{AlH3}
+
+                  \ballnumber{2} : Iron dihydride: \ch{FeH2}
+        \end{enumerate}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[t]{Hidros metálicos / no metálicos (excepto 16 y 17)}
+    \begin{alertblock}{\Large
+            Nomenclatura}\vspace*{5pt}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \addtocounter{enumi}{1}
+            \item \textbf{\uline{Nomenclatura estados de oxidación}}
+                  \begin{center}
+                      \textcolor{blue}{hidruro} + de + \textcolor{red}{nombre del elemento} + $\Bigl($\textcolor{green!50!black}{estado de oxidación del elemento en números romanos}$\Bigr)$
+                  \end{center}
+        \end{enumerate}
+
+
+        \textbf{\uline{Ejemplos}}:
+
+        \ballnumber{1} : Hidruro de niquel (II): \ch{NiH2}.
+
+        \ballnumber{2} : Hidruro de plomo (IV): \ch{PbH4}
+
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[t]{\worldflag[width=3.9mm,stretch=1]{GB} Metal hydrides / non metal hydrides (except  elements of the grupos 16 y 17)}
+    \begin{alertblock}{\Large Nomenclature} 
+
+        \begin{enumerate}[start=2,label=\numberballmDarkTeal]
+            \item \textbf{\uline{Oxidation State Nomenclature}}:
+                  \begin{center}
+                    \textcolor{red}{name of the element} $\Bigl($\textcolor{green!50!black}{oxidation state of the element in Roman numerals}$\Bigr)$ \textcolor{blue}{hydride} 
+                  \end{center}
+                  When the element has only one oxidation state, the oxidation state can be omitted
+        \end{enumerate}
+
+        \textbf{Examples}:
+
+        \ballnumber{1} : \ch{NiO}: \textcolor{blue}{Niquel (II) hydride (II)}
+
+        \ballnumber{2} : \ch{Na2O}: \textcolor{blue}{sodium (I) hydride} \ch{->} \textcolor{red}{sodium oxide}, we omit the (I).
+    \end{alertblock}
+\end{frame}
+
+
+
+\begin{frame}[t]{Hidros metálicos / no metálicos (excepto 16 y 17)}
+    \begin{exampleblock}{\Large{Formulación}}\vspace*{5pt}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item Ponemos el metal/no metal a la izquierda.
+            \item Ponemos el hidrógeno a la derecha.
+            \item Ponemos encima de cada elementos los correspondientes estados de oxidación.
+            \item Intercambiamos los estados de oxidación en valor absoluto.
+            \item Simplificamos la fórmula si es necesario.
+        \end{enumerate}
+
+        \textbf{\uline{Ejemplos:}}
+
+        \ballnumber{1} : Hidruro de sodio \ch{->} \eo{blue}{+1}{Na} \eor{-1}{H}  \ch{->} \ch{NaH}
+
+        \ballnumber{2} : Hidruro de calcio \ch{->} \eob{+2}{Ca} \eor{-1}{H}  \ch{->} \ch{CaH2}
+    \end{exampleblock}
+\end{frame}
+
+
+
+\begin{frame}[t]{Hidruros con elementos de los grupos 16 y 17}
+    \begin{block}{\Large Características}\vspace*{5pt}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item En este caso, tendremos compuestos que contienen hidrógeno y elementos de los grupos 16 y 17.
+            \item El hidrógeno actúa con estado de oxidación (\rojo{$+1$}). Normalmente los elementos de los grupos 16 y 17 actúan con el \azul{estado de oxidación negativo más bajo}, \rojo{\(-2\)} para los elementos del grupo 16 y \rojo{\(-1\)} para los elementos del grupo 17.
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+\begin{frame}[t]{Hidruros con elementos de los grupos 16 y 17}
+    \begin{alertblock}{\Large Nomenclatura}\vspace*{5pt}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item \textbf{\uline{Nomenclatura de multiplicadores}}:
+                  \begin{center}
+                      \textcolor{blue}{prefijo\subin{1}} \textcolor{blue}{raiz del elemento} + \textcolor{mygreen}{uro} + de + \textcolor{red}{prefijo\subin{2}} \textcolor{red}{hidrógeno}
+                  \end{center}
+                  \begin{enumerate}[label=\textcolor{red}{$\bullet$}]
+                      \item \azul{Prefijo\subin{1}}: Indica el número de elementos.
+                      \item \rojo{Prefijo\subin{2}}: Indica el número de hidrógenos.
+                  \end{enumerate}
+
+                  \textbf{\uline{Ejemplos}}:\nline
+
+                  \ballnumber{1} : \ch{HCl}: cloruro de hidrógeno
+
+                  \ballnumber{2} : \ch{H2Se}: selenuro de dihidrógeno
+        \end{enumerate}
+    \end{alertblock}
+    \textbf{\rojo{\uline{Nota importante}}}: No se suele nombrar con estados de oxidación porque ya conocemos ambos estados de oxidación. Por eso en muchos casos se omiten los prefijos numerales.
+\end{frame}
+
+\begin{frame}[t]{\worldflag[width=3.9mm,stretch=1]{GB} Hydrides with elements of the grupos 16 and 17}\vspace{10pt}
+    
+    \begin{alertblock}{\Large Nomenclature}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item \textbf{\uline{Nomenclature with multipliers}}
+                  \begin{center}
+
+                      \textcolor{red}{prefix\subin{2}} \textcolor{red}{hydrogen} + \textcolor{blue}{prefix\subin{1}}  \textcolor{azulF}{name of the element  ending in}  \textcolor{green!50!black}{ide}   
+                  \end{center}
+
+                  \begin{enumerate}[label=\textcolor{red}{$\bullet$}]
+                      \item \textcolor{blue}{Prefix\subin{1}}: number of element (non hydrogen) atoms.
+                      \item \rojo{Prefix\subin{2}}: number of hydrogen atoms.
+                  \end{enumerate}
+
+                  \textbf{\uline{Examples}}:
+
+                  \ballnumber{1} : \ch{HCl}: hydrogen chloride
+
+                  \ballnumber{2} : \ch{H2Se}: dihydrogen selenide
+        \end{enumerate}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[t]{Hidruros con elementos de los grupos 16 y 17}
+    \begin{exampleblock}{\Large Formulación}\vspace*{5pt}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item Ponemos el hidrógeno a la izquierda.
+            \item Ponemos el elemento del grupo 16 o 17 a la derecha.
+            \item Ponemos encima de cada elementos los correspondientes estados de oxidación.
+            \item Intercambiamos los estados de oxidación en valor absoluto.
+            \item Simplificamos la fórmula si es necesario.
+        \end{enumerate}
+        \textbf{\uline{Ejemplos}}:
+
+        \ballnumber{1} : Fluoruro de hidrógeno: \ch{HF}
+
+        \ballnumber{2} : Sulfuro de dihidrógeno: \ch{H2S}
+    \end{exampleblock}
+\end{frame}
+
+
+
+\begin{frame}[t]{Hidruros con elementos de los grupos 16 y 17: En disolución acuosa}
+    \begin{block}{\Large Ácidos hídricos}\vspace*{5pt}
+
+        \textbf{\coloruwave{red}{En disolución acuosa}}: Los hidruros de los elementos de los grupos 16 y 17 se nombran como ácidos siguiendo la siguiente regla:
+        \begin{center}
+            \textcolor{blue}{ácido} + \textcolor{red}{raíz del elemento} + \textcolor{green!50!black}{hídrico}
+        \end{center}
+
+        \textbf{\uline{Ejemplos}}:
+
+        \ballnumber{1} : \ch{HCl}: ácido clorhídrico
+
+        \ballnumber{2} : \ch{H2S}: ácido sulfhídrico
+    \end{block}
+\end{frame}
+
+\begin{frame}[t]{\worldflag[width=3.9mm,stretch=1]{GB} Hydrides with elements of the grupos 16 and 17 in water}\vspace{10pt}
+    
+    \begin{alertblock}{\Large Nomenclature}\vspace*{6pt}
+            \textbf{\coloruwave{red}{Aqueous solution}}: the hydrides of the elements in groups 16 and 17 are named following the following rule:
+                  \begin{center}
+                    \textcolor{green!50!black}{hydro} \textcolor{blue}{prefix\subin{1}}  \textcolor{azulF}{name of the element ending in idic} \textcolor{green!50!black}{ide}  acid 
+                  \end{center}
+
+
+                  \textbf{\uline{Examples}}:
+
+                  \ballnumber{1} : \ch{HCl}: hydrochloridic acid
+
+                  \ballnumber{2} : \ch{H2S}: hydrosulfidic acid
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[t]{Hidruos no metálicos}
+    \begin{block}{\Large Características}\vspace*{5pt}
+        \begin{enumerate}
+            \item Combinaciones de hidrógeno con elementos no metálicos de los grupos 13, 14 y 15.
+            \item Actuará con \rojo{($-1$)} con los elementos de los grupos 13, 14, y 15.
+            \item Nomenclatura de multiplicadores como hidruros metálicos.
+            \item Nomenclatura tradicional.
+        \end{enumerate}
+        Ambas nomenclaturas están resumidas en la siguiente tabla.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \begin{tblr}[caption={Hidruros}]
+        {colspec={Q[c,m] Q[c,m] Q[c,m]},
+            row{1} = {bg=myOrange3!90!white, fg = white, font=\sffamily}
+        }
+        \hline
+        Compuesto & N. Multiplicadores \TblrNote{a} & N. Tradicional \TblrNote{b} \\
+        \hline
+        \ch{BH3}  & trihidruro de boro              & borano                      \\
+        \ch{CH4}  & tetrahidruro de carbono         & metano                      \\
+        \ch{SiH4} & tetrahidruro de sicilio         & silano                      \\
+        \ch{NH3}  & trihiruro de nitrógeno          & amoniaco o azano            \\
+        \ch{PH3}  & trihidruro de fósforo           & fosfano                     \\
+        \ch{AsH3} & trihidruro de arsénico          & arsano                      \\
+        \ch{SbH3} & trihidruro de antimonio         & estibano                    \\
+        \hline
+    \end{tblr}
+\end{frame}
+
+
+
+\subsection{Combinaciones Metal + no Metal}
+
+\begin{frame}[c]{Metal + no Metal}
+    \begin{block}{\Large Características}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item Metal + no metal
+            \item El no metal suele actuar con el estado de oxidación más bajo, es decir el más negativo. Se pondrá a la derecha.
+            \item El metal se pondrá a la izquierda y tendrá el estado de oxidación positivo.
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+\begin{frame}[t]{Metal + no Metal}
+    \begin{alertblock}{\Large Nomenclatura}\vspace*{5pt}
+
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item \textbf{\uline{Nomenclatura de multiplicadores}}:
+                  \begin{center}
+                      \textcolor{blue}{prefijo\subin{1}} \textcolor{blue}{raiz del no metal} \textcolor{mygreen}{uro} + de + \textcolor{red}{prefijo\subin{2}} \textcolor{red}{nombre del metal}
+                  \end{center}
+                  \begin{enumerate}[label=\textcolor{red}{$\bullet$}]
+                      \item \azul{Prefijo\subin{1}}: Indica el número de elementos no metálicos.
+                      \item \rojo{Prefijo\subin{2}}: Indica el número de elementos metálicos.
+                  \end{enumerate}
+        \end{enumerate}
+        \textbf{\uline{Ejemplos}}
+
+        \ballnumber{1} : \ch{Al4C3}: tricarburo de tetraaluminio
+
+        \ballnumber{2} : \ch{SnTe2}: diteluro de estaño
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[t]{Metal + no Metal}
+    \begin{alertblock}{\Large Nomenclatura}\vspace*{5pt}
+
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \addtocounter{enumi}{1}
+            \item \textbf{\uline{Nomenclatura de Estados de Oxidación}}:
+                  \begin{center}
+                      \textcolor{blue}{raiz del no metal} \textcolor{mygreen}{uro}  + \textcolor{red}{nombre del metal} + $\Bigl($\textcolor{green!50!black}{estado de oxidación del metal en números romanos}$\Bigr)$
+                  \end{center}
+
+        \end{enumerate}
+        \textbf{\uline{Ejemplos}}
+
+        \ballnumber{1} : \ch{Al4C3}: carburo de aluminio (III) \ch{->} carburo de alumnio
+
+        \ballnumber{2} : \ch{SnTe2}: teluro  de estaño (IV)
+    \end{alertblock}
+\end{frame}
+
+
+\begin{frame}[t]{Metal + no Metal}
+    \begin{exampleblock}{\Large Formulación}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item Ponemos el metal a la izquierda.
+            \item Ponemos el no metal a la derecha.
+            \item Ponemos encima de cada elementos los correspondientes estados de oxidación.
+            \item Intercambiamos los estados de oxidación en valor absoluto.
+            \item Simplificamos la fórmula si es necesario.
+        \end{enumerate}
+    \end{exampleblock}
+    \textbf{\uline{Ejemplos}}\nline{}
+    \ballnumber{1} : Cloruro de sodio \ch{->} \eob{+1}{Na} \eor{-1}{Cl} \ch{->} \ch{NaCl}
+
+    \ballnumber{2} : \ch{->} \eob{+2}{Sn} \eor{-2}{S}  \ch{->} \ch{Sn2S2} \ch{->} \ch{SnS}
+\end{frame}
+
+
+
+\subsection{Peróxidos}
+
+\begin{frame}[t]{Peróxidos}
+    \begin{block}{\Large Características}\vspace*{5pt}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item Formados por un ión peróxido (\ch{O2^{2-}}) y un catión (un elemento normalmente metálico)
+            \item En el ión peróxido el oxígeno tiene estado de oxidación ($-1$)
+            \item Esto es útil porque si no se está seguro si es un peróxido o un óxido contamos las cargas y si el oxígeno está con ($-1$) es un peróxido y si está con ($-2$) es un óxido.
+            \item Si se simplifica tiene que ser de manera que \blueremark{no} queden menos de dos átomos de oxígeno (un grupo peróxido completo).
+        \end{enumerate}
+
+    \end{block}
+\end{frame}
+
+
+\begin{frame}[t]{Peróxidos}
+    \begin{alertblock}{\Large Nomenclatura}\vspace*{5pt}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item \textbf{\uline{Nomenclatura multiplicadores}}: Se nombran siguiendo las reglas de los óxidos.
+
+                  \textbf{\uline{Ejemplos}}:\nline{}
+
+                  \ballnumber{1} : \ch{Li2O2}: dióxido de dilitio
+            \item \textbf{\uline{Nomenclatura de peróxidos}}:
+                  \begin{center}
+                      \textcolor{blue}{peróxido} + de + \textcolor{red}{nombre del elemento}
+                  \end{center}
+
+                  \textbf{\uline{Ejemplos}}:\nline{}
+
+                  \ballnumber{1} : \ch{Na2O2}: peróxido de sodio
+        \end{enumerate}
+
+    \end{alertblock}
+\end{frame}
+
+
+\begin{frame}[t]{Peróxidos}
+    \begin{exampleblock}{\Large Formulación}\vspace*{5pt}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item Ponemos el metal a la izquierda.
+            \item Ponemos el grupo peróxido \ch{O2^{-2}} a la derecha.
+            \item Ponemos encima de cada elementos los correspondientes estados de oxidación.
+            \item Intercambiamos los estados de oxidación en valor absoluto.
+            \item Simplificamos la fórmula si es necesario.
+        \end{enumerate}
+
+        \textbf{\uline{Ejemplos}}
+
+        \ballnumber{1} : Peróxido de sodio \ch{->} \eob{+1}{Na} \eor{-2}{O2}  \ch{->} \ch{Na2O2}
+
+        \ballnumber{2}: Peróxido de aluminio: \ch{->} \eob{+3}{Al} \eor{-2}{O2}  \ch{->} \ch{Al2(O2)3}
+
+
+    \end{exampleblock}
+\end{frame}
+
+
+
+\subsection{Hidróxidos}
+
+\begin{frame}[t]{Hidróxidos}
+    \begin{block}{\Large Características}\vspace*{5pt}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item Compuestos ternarios con tres elementos.
+            \item Formados por un metal (o catión) y el anión hidróxido  \ch{OH-}
+            \item El grupo  \ch{OH-} lo debemos considerar como un grupo indivisible teniendo como estado de oxidación $-1$.
+            \item La fórmula general para los hidróxidos será \ch{M(OH)_n}. Siendo M, el metal y $n$ estado de oxidación intercambiado por el metal.
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+\begin{frame}[t]{Hidróxidos}
+    \begin{alertblock}{\Large Nomenclatura}\vspace*{5pt}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item \textbf{\uline{Nomenclatura multiplicadores}}:
+                  \begin{center}
+                      \textcolor{blue}{prefijo\subin{1} hidróxido} + de + \textcolor{red}{nombre del elemento distinto al OH}
+                  \end{center}
+
+                  \begin{enumerate}[label=\textcolor{red}{$\bullet$}]
+                      \item \azul{Prefijo\subin{1}}: Indica el número de grupos \ch{OH}.
+                    %   \item \rojo{Prefijo\subin{2}}: Indica el número de elementos metálicos.
+                  \end{enumerate}
+        \end{enumerate}
+
+        \textbf{\uline{Ejemplos}}:
+
+        \ballnumber{1} : \ch{LiOH}: hidróxido de litio
+
+        \ballnumber{2} : \ch{Mg(OH)2}: dihidróxido de magnesio
+    \end{alertblock}
+
+\end{frame}
+
+\begin{frame}[t]{Hidróxidos}
+    \begin{alertblock}{\Large Nomenclatura}\vspace*{5pt}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \addtocounter{enumi}{1}
+            \item \textbf{\uline{Nomenclatura Estados de oxidación}}:
+                  \begin{center}
+                      \textcolor{blue}{hidróxido} + de + \textcolor{red}{nombre del elemento} + $\Bigl($\textcolor{green!50!black}{estado de oxidación en números romanos del elemento}$\Bigr)$
+                  \end{center}
+        \end{enumerate}
+        \textbf{\uline{Ejemplos}}:
+
+        \ballnumber{1} : \ch{Fe(OH)2}: \azul{Hidróxido de hierro (II)}
+
+        \ballnumber{2} : \ch{CuOH}: \azul{Hidróxido de cobre (I)}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}[c]{Hidróxidos}
+    \begin{exampleblock}{\Large Formulación}\vspace*{5pt}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item Ponemos el metal a la izquierda.
+            \item Ponemos el grupo hidróxido \ch{OH-} a la derecha.
+            \item Ponemos encima de cada elementos los correspondientes estados de oxidación.
+            \item Intercambiamos los estados de oxidación en valor absoluto.
+            \item Ponemos entre paréntesis el grupo \ch{OH} y a continuación el estado de oxidación intercambiado. El paréntesis se omite si el estado de oxidación intercambiando es $1$.
+            \item Simplificamos la fórmula si es necesario.
+        \end{enumerate}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[c]{Hidróxidos}
+    \begin{exampleblock}{\Large Formulación}\vspace*{5pt}
+
+        \textbf{\uline{Ejemplos}}:
+
+        \ballnumber{1}: Hidróxido de sodio: \eob{+1}{Na} \eor{-1}{OH}  \ch{->} \ch{NaOH}
+
+        \ballnumber{2}: Hidróxido de calcio: \eob{+2}{Ca} \eor{-1}{OH}  \ch{->} \ch{Ca(OH)2}
+    \end{exampleblock}
+\end{frame}
+
+\section{Compuestos terciarios}
+\subsection{Oxoácidos}
+
+\begin{frame}[c]{Oxoácidos}
+    \begin{block}{\Large Características}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item Son compuestos ternarios,son generalmente el hidrógeno, un no metal (o un metal de transición como el Cr o el Mn) y oxígeno.
+            \item Tienen como fórmula general \ch{H_iX_jO_k}, siendo X el no metal o metal de transición.
+            \item El hidrógeno siempre tendrá un estado de oxidación ($+1$) y el oxígeno ($-2$)
+        \end{enumerate}
+
+    \end{block}
+\end{frame}
+
+\begin{frame}[c]{Oxoácidos}
+    \begin{exampleblock}{\Large Formulación}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item Ponemos el hidrógeno a la izquierda.
+            \item Ponemos el elemento no metálico o metal de transición en la parte central.
+            \item Ponemos el oxígeno en la parte derecha.
+        \end{enumerate}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[t]{Oxoácidos}
+    \begin{exampleblock}{\Large Formulación}
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \addtocounter{enumi}{3} % para continuar en la numeración de donde quiero
+            \item Los oxoácidos provinene de la reacción entre un óxido y el agua como por ejemplo:
+                  \begin{center}
+                      \ch{SO + H2O -> H2SO2}\\
+                      \ch{SO2 + H2O -> H2SO3}\\
+                      \ch{SO3 + H2O -> H2SO4}\\
+                      \ch{N2O5 + H2O -> 2 HNO3}\\
+                      \ch{OCl2 + H2O -> H2Cl2O2 -> 2 HClO}\\
+                      \ch{O3Cl2 + H2O -> H2Cl2O4 -> 2 HClO2}\\
+                      \ch{O5Cl2 + H2O -> H2Cl2O6 -> 2 HClO3}\\
+                      \ch{O7Cl2 + H2O -> H2Cl2O8 -> 2 HClO4}
+                  \end{center}
+        \end{enumerate}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[t]{Oxoácidos}
+    \begin{exampleblock}{\Large Formulación}
+        \vspace*{6pt}
+        Podemos estimar la fórmula general de cada oxoácido según se muestra en la siguiente tabla, (siendo X el elemento no metálico o metal de transición):
+        \begin{center}
+            \begin{figure}[H]
+                \centering
+                \SetTblrInner{rowsep=4pt}
+                \begin{tblr}[note{a}= {Estado de oxidación impar},
+                        note{b}= {Estado de oxidación par}]{colspec={Q[c,m,2cm] Q[c,m, 2cm] | Q[c,m, 2cm] Q[c,m, 2cm]},
+                        row{1} = {bg=myOrange3!90!white, fg = white, font=\sffamily}
+                    }
+                    \hline
+                    E.O impar \TblrNote{a} & Fórmula General & E.O par \TblrNote{b} & Fórmula General \\
+                    \hline
+                    +1                     & \ch{HXO}        & +2                   & \ch{H2XO2}      \\
+                    +3                     & \ch{HXO2}       & +4                   & \ch{H2XO3}      \\
+                    +5                     & \ch{HXO3}       & +6                   & \ch{H2XO4}      \\
+                    +7                     & \ch{HXO4}       &                      &                 \\
+                    \hline
+                \end{tblr}
+            \end{figure}
+        \end{center}
+    \end{exampleblock}
+\end{frame}
+
+
+\begin{frame}[c]{Oxoácidos}
+    \begin{exampleblock}{\Large Formulación}
+        \vspace*{6pt}
+        \textbf{\uline{\textcolor{red}{Nota Importante}}}:
+        \begin{enumerate}[label=\itembolascolor{\arabic*}{mDarkTeal}]
+            \item Los elementos con estados de oxidación impares, tienen un número impar de átomos de hidrógeno. (\rojo{normalmente 1}).
+            \item Los elementos con estado de oxidación pares tienen un número par de átomos de hidrógeno (\rojo{normalmente 2}).
+        \end{enumerate}
+    \end{exampleblock}
+\end{frame}
+
+
+\begin{frame}[t]{Oxoácidos}
+    \examplebeamer{\Large Formulación}
+    \begin{enumerate}[label=\numberballmDarkTeal]
+        \item El \negrita{\rojo{boro, fósforo, arsénico y silicio}} dan, además de esos compuestos otros ácidos que se forman añadiendo una molécula de agua a los anteriores (al correspondiente ácido formado a partir del óxido y $1$ molécula de agua).
+        \item Estos son más estables y se pueden considear los verdaderos ácidos del boro, fósforo, arsénico y silicio.
+    \end{enumerate}
+
+    \begin{center}
+        \ch{HPO2 + H2O -> H3PO3}\nline{}
+        \ch{HPO3 + H2O -> H3PO4}\nline{}
+        \ch{HBO2 + H2O -> H3BO3}\nline{}
+        \ch{H2SiO3 +  H2O -> H4SiO4}
+    \end{center}
+\end{frame}
+
+\begin{frame}[t]{Oxoácidos}
+    La tabla anterior por tanto la podemos sinterizar en la siguiente:
+    \begin{center}
+        \begin{figure}[H]
+            \centering
+            \SetTblrInner{rowsep=4pt}
+            \begin{tblr}[note{a} = {Estado de oxidación},
+                    note{b} = {Fórmula general}]
+                {colspec={Q[c,m] Q[c,m] Q[c,m] Q[c,m] Q[c,m] Q[c,m]},
+                    row{1} = {bg=myOrange3!90!white, fg = white, font=\sffamily}
+                }
+                \hline
+                E.O \TblrNote{a} & F. General & Para B, P, As & E.O & F. General & Para Si     \\
+                \hline
+                +1               & \ch{HXO}   & ---           & +2  & \ch{H2XO2} & ---         \\
+                +3               & \ch{HXO2}  & \ch{H3XO3}    & +4  & \ch{H2XO3} & \ch{H4SiO4} \\
+                +5               & \ch{HXO3}  & \ch{H3XO4}    & +6  & \ch{H2XO4} & ---         \\
+                +7               & \ch{HXO4}  & ---           &     &            &             \\
+                \hline
+            \end{tblr}
+        \end{figure}
+    \end{center}
+\end{frame}
+
+
+
+\begin{frame}[t]{Oxoácidos}
+    \alertbeamer{\Large Nomenclatura}
+    \begin{enumerate}[label=\numberballmDarkTeal]
+        \item \textbf{\uline{Nomcenclatura Tradicional}} Es la más utilizada y admitida por la IUPAC. Se nombran según la siguiente regla general haciendo uso de los prefijos \blueremark{hipo} o \blueremark{per} y los sufijos \blueremark{oso} y \blueremark{ico}.
+              \begin{center}
+                  \textcolor{blue}{ácido} + \textcolor{mygreen}{raíz del elemento} + \textcolor{red}{oso/ico}\par
+                  o también\par
+                  \textcolor{blue}{ácido} + \textcolor{red}{hipo/per} + \textcolor{mygreen}{raíz del elemento} + \textcolor{red}{oso/ico}
+              \end{center}
+    \end{enumerate}
+    El uso de estos sufijos y prefijos sirven para indicar el estado de oxidación con el que actúa el elemento central según la siguiente tabla.
+
+\end{frame}
+
+\begin{frame}[t]{Oxoácidos}
+    \alertbeamer{\Large Nomenclatura}.
+    \begin{enumerate}[label=\numberballmDarkTeal]
+        \item\textbf{\uline{Nomcenclatura Tradicional}}
+    \end{enumerate}
+    \begin{center}
+        \begin{figure}[H]
+            \centering
+            \begin{tblr}{colspec={Q[c,m] Q[c,m] Q[c,m] Q[c,m] Q[c,m]}}
+                \hline
+                Elementos                & hipo \dots oso & oso & ico & per \dots ico \\
+                \hline
+                Grupo 14 (C, Si)        & ---            & +2  & +4  & ---           \\
+                Grupo 15 (N, P, As, Sb) & +1             & +3  & +5  & ---           \\
+                Grupo 16 (S, Se, Te)    & +2             & +4  & +6  & ---           \\
+                Grupo 17 (F, Cl, Br, I) & +1             & +3  & +5  & +7            \\
+                Mn                      & ---            & +4  & +6  & +7            \\
+                Cr, Mo, W               & ---            & --- & +6  & ---           \\
+                V                       & ---            & --- & +5  & ---           \\
+                \hline
+            \end{tblr}
+        \end{figure}
+    \end{center}
+
+\end{frame}
+
+\begin{frame}[t]{Oxoácidos}
+    \alertbeamer{\Large Nomenclatura}\nline{}
+    \blockbeamer{\uline{Reglas a tener en cuenta}}
+    \begin{enumerate}[label=\numberballmDarkTeal]
+        \item Asignamos el sufijo \blueremark{-ico} al estado de oxidación que coincida con el último número del grupo al que pertenezca el elemento.
+        \item En el caso del carbono, como pertenece algrupo $14$, le asignaremos el prefijo \blueremark{-ico} cuando el carbono tenga un estado de oxidación de $+4$.
+              En el caso del nitrógeno que pertenece al grupo $15$ le asignaremos el prefijo \blueremark{-ico} cuando se encuentre en el estado de oxidación $+5$.
+        \item Para los del grupo 16, es decir azufre, selenio \dots se le asignará el sufijo \blueremark{-ico} cuando se encuentre con estado de oxidación $+6$.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[t]{Oxoácidos}
+    \alertbeamer{\Large Nomenclatura}\nline{}
+    \blockbeamer{\uline{Reglas a tener en cuenta}}
+    \begin{enumerate}[label=\numberballmDarkTeal]
+        \addtocounter{enumi}{3}
+        \item La excepción la tendremos cuando tengamos elementos del grupo 17 (F, Cl, Br, I) en el que en este caso se le asignará el sufijo \blueremark{-ico} cuando se encuentre con estado de oxidación $+5$.
+        \item Tomamos como referencia el sufijo \blueremark{-ico} y a partir de este asignaremos el resto de sufijos con el correspondiente estado de oxidación.
+        \item Si el estado de oxidación es un número menor al tomado como referencia, se le asigna el sufijo \blueremark{-oso}.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[t]{Oxoácidos}
+    \alertbeamer{\Large Nomenclatura}\nline{}
+    \blockbeamer{\uline{Reglas a tener en cuenta}}
+    \begin{enumerate}[label=\numberballmDarkTeal]
+        \addtocounter{enumi}{6}
+        \item Si el estado de oxidación son dos  números menor al tomado como referencia, se le asigna el prefijo \blueremark{hipo-} + el sufijo \blueremark{-oso}.
+        \item Si el estado de oxidación es un número por encima del estado de oxidación tomado como referencia se le asigna el prefijo \blueremark{per-} y el sufijo \blueremark{-ico}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[t]{Oxoácidos}
+    \alertbeamer{\Large Nomenclatura}\nline{}
+    \numeromDarkTeal{2} \textbf{\uline{Nomenclatura del Hidrógeno}}:
+    Esta nomenclatura es muy recomendada por la IUPAC e indica la composición del ácido Sigue la siguiente regla general:
+    \begin{center}
+        \textcolor{blue}{prefijo\textsubscript{1}} \textcolor{red}{hidrogeno} $\Bigl($ \textcolor{mygreen}{prefijo\textsubscript{2}} \textcolor{blue}{oxido} \textcolor{myBlue}{prefijo\textsubscript{3}} \textcolor{red}{raiz del nombre del elemento central} \textcolor{mygreen}{ato}$\Bigr)$
+    \end{center}
+    \begin{enumerate}[label=\textcolor{red}{$\bullet$}]
+        \item \azul{Prefijo\textsubscript{1}}: Indica el número de hidrógenos.
+        \item \textcolor{mygreen}{Prefijo\textsubscript{2}}: Indica el número de oxígenos.
+        \item \textcolor{myBlue}{Prefijo\textsubscript{3}}: Indica el número de átomos del elemento central.
+    \end{enumerate}
+    Normalmente el número del átomo central es $1$ y por tanto se suele omitir (el prefijo mono se omite si no hay ambigüedad)
+\end{frame}
+
+\begin{frame}[t]{Oxoácidos}
+    \alertbeamer{\Large Nomenclatura}\nline{}
+    \numeromDarkTeal{2} \textbf{\uline{Nomenclatura del Hidrógeno}}:\nline{}
+    \textbf{\uline{Ejemplos:}}
+
+    \ballnumber{1} : \ch{H2CO3}: dihidrogeno(trioxidocarbonato)
+
+    \ballnumber{2} : \ch{H2CrO4}: dihidrogeno(tetraoxidocromato)
+
+    \ballnumber{3} : \ch{HNO2}: hidrogeno(dioxidonitrato)
+
+    \textbf{\textcolor{red}{\uline{Nota Importante}}}: Los nombres siempre terminan en \blueremark{-ato}, en este caso no se utiliza -ico, -oso, hipo-, per-. Los términos \blueremark{hidrogeno} y \blueremark{oxido} van sin acento al ser utilizados como prefijos.
+\end{frame}
+
+
+\begin{frame}[t]{Oxoácidos}
+    \alertbeamer{\Large Consejos prácticos}\nline{}
+    \examplebeamer{\uline{Determinar la fórmula de los oxoácidos a partir del nombre tradicional}}\nline{}
+    \blockbeamer{Elementos con estado de oxidación par}. \rojo{Ácido sulfuroso}
+    \begin{enumerate}[label=\numberballmDarkTeal]
+        \item Primero determinaremos los posibles estados de oxidación del azufre: $+2\ +4\ +6$.
+        \item Nos fijamos en el sufijo del elemento central, \blueremark{-oso} indica que es un número menor (ver arriba) al estado de oxidación que tomamos como referencia, en este caso el estado oxidación de referencia sería el $+6$ ya que el azufre se encuentra en el grupo $16$ por lo que el azufre tendrá un estado de oxidación de $+4$.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[t]{Oxoácidos}
+    \alertbeamer{\Large Consejos prácticos}\nline{}
+    \examplebeamer{\uline{Determinar la fórmula de los oxoácidos a partir del nombre tradicional}}\nline{}
+    \blockbeamer{Elementos con estado de oxidación par}. \rojo{Ácido sulfuroso}
+    \begin{enumerate}[label=\numberballmDarkTeal]
+        \addtocounter{enumi}{2}
+        \item Como el estado de oxidación del elemento central es \textit{par} entonces tendremos \textcolor{red}{\uline{2 hidrógenos}} pudiendo escribir: \ch{H2SO_x}.
+        \item Para determinar el valor de $x$ se puede hacer de una forma muy sencilla: al estado de oxidación del elemento central se le suma $2$ (\textit{cuando el estado de oxidación es par siempre se suma 2}). En este caso tendríamos que $4 + 2 = 6$.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[t]{Oxoácidos}
+    \alertbeamer{\Large Consejos prácticos}\nline{}
+    \examplebeamer{\uline{Determinar la fórmula de los oxoácidos a partir del nombre tradicional}}\nline{}
+    \blockbeamer{Elementos con estado de oxidación par}. \rojo{Ácido sulfuroso}
+    \begin{enumerate}[label=\numberballmDarkTeal]
+        \addtocounter{enumi}{4}
+        \item Ahora, dividimos entre $2$ el número obtenido en el paso anterior obteniendo que:
+              \[\frac{6}{2} = 3\]
+              siendo $3$ el valor de $x$.
+        \item La formula final quedará entonces como: \ch{H2SO3}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[t]{Oxoácidos}
+    \alertbeamer{\Large Consejos prácticos}\nline{}
+    \examplebeamer{\uline{Determinar la fórmula de los oxoácidos a partir del nombre tradicional}}\nline{}
+    \blockbeamer{Elementos con estado de oxidación impar}. \rojo{Ácido nítrico}
+    \begin{enumerate}[label=\numberballmDarkTeal]
+        \item Primero determinaremos los posibles estados de oxidación del nitrógeno: $+1\ +3\ +5$.
+        \item Nos fijamos en el sufijo del elemento central, \blueremark{-ico} indica que es el número del estado de oxidación que tomamos como referencia, en este caso el estado oxidación de referencia sería el $+5$ ya que el nitrógeno se encuentra en el grupo $15$.
+        \item Como el estado de oxidación del elemento central es \textit{impar} entonces tendremos \textcolor{red}{\uline{1 hidrógeno}} pudiendo escribir: \alert{\ch{HNO_x}}.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[t]{Oxoácidos}
+    \alertbeamer{\Large Consejos prácticos}\nline{}
+    \examplebeamer{\uline{Determinar la fórmula de los oxoácidos a partir del nombre tradicional}}\nline{}
+    \blockbeamer{Elementos con estado de oxidación impar}. \rojo{Ácido nítrico}
+    \begin{enumerate}[label=\numberballmDarkTeal]
+        \addtocounter{enumi}{3}
+        \item Para determinar el valor de $x$ se puede hacer de una forma muy sencilla: al estado de oxidación del elemento central se le suma $1$ (\textit{cuando el estado de oxidación es impar siempre se suma 1}). En este caso tendríamos que $5 + 1 = 6$.
+        \item Ahora, dividimos entre $2$ el número obtenido en el paso anterior obteniendo que:
+              \(\dfrac{6}{2} = 3\) siendo $3$ el valor de $x$.
+        \item La formula final quedará entonces como: \ch{HNO3}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[c]{Oxoácidos}
+    \alertbeamer{\Large Consejos prácticos}\nline{}
+    \examplebeamer{\uline{Determinar la fórmula de los oxoácidos a partir del nombre tradicional}}\nline{}
+    \textbf{\textcolor{red}{\uline{Nota Importante}}}: Anteriormente se ha indicado que los elementos B, P, As o Si, forman oxoácidos más estables cuando se añade una molécula más de \ch{H2O} por lo que si aplicamos las reglas anteriores tendremos que sumar una molécula de \ch{H2O} a la fórmula obtenida. Si lo que queremos obtener es el compuesto \blueremark{meta-} entonces si dejaríamos el compuesto tal y como nos sale aplicando el procedimiento descrito.
+\end{frame}
+
+\begin{frame}[c]{Oxoácidos}
+    \alertbeamer{\Large Consejos prácticos}\nline{}
+    \examplebeamer{\uline{Determinar el nombre de los oxoácidos a partir de la fórmula}}. \rojo{\ch{HIO4}}\nline{}
+    \begin{enumerate}[label=\numberballmDarkTeal]
+        \item Determinar el estado de oxidación del átomo central (I). La suma de todos los estados de oxidación debe ser cero (compuesto neutro).
+              \begin{equation*}
+                  \underbrace{1\cdot(+1)}_{\text{H}} + \overbrace{4\cdot(-2)}^{\text{O}} + x = 0
+              \end{equation*}
+              \begin{equation*}
+                  x = 6+1 = +7
+              \end{equation*}
+              Quedando finalmente el estado de oxidación del yodo como ($+7$).
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[c]{Oxoácidos}
+    \alertbeamer{\Large Consejos prácticos}\nline{}
+    \examplebeamer{\uline{Determinar el nombre de los oxoácidos a partir de la fórmula}}. \rojo{\ch{HIO4}}\nline{}
+    \begin{enumerate}[label=\numberballmDarkTeal]
+        \addtocounter{enumi}{1}
+        \item Como el estado de oxidación obtenido ($+7$) es un valor superior al estado de oxidación de referencia que vimos anteriormente para los elementos del grupo 17, entonces tendremos que aplicar los prefijos y sufijos: \blueremark{per-} \dots \blueremark{-ico}.
+        \item El nombre por tanto quedaría como: \textcolor{blue}{ácido peryódico}
+    \end{enumerate}
+\end{frame}
+
+
+\subsection{Oxosales}
+
+\begin{frame}[t]{Oxosales}
+    Son derivados de compuestos ternarios derivados de sustituir todos o algunos de los hidrógenos de los oxoácidos por cationes metálicos como el \ch{Na+} o no metálicos como el ión amonio \ch{NH4+}
+    \begin{center}
+        \ch{H2SO4 -> 2 H+ + SO4^2-}
+
+        \ch{2 Na+ -> Na2SO4}
+    \end{center}
+
+    Para su formación se siguen las mismas reglas que para los ácidos de los que proviene, pero cambiando la terminación \blueremark{-ico} por \blueremark{-ato} y la terminación \blueremark{-oso} por \blueremark{-ito}
+
+\end{frame}
+
+\begin{frame}[t]{Oxosales}
+    \examplebeamer{\Large Nomenclatura}
+
+    Utilizaremos como ejemplo \textcolor{blue}{\ch{NaClO4}}
+    \begin{enumerate}[label=\numberballmDarkTeal]
+        \item Disociamos la sal en sus iones: \ch{Na+} y \ch{ClO4-}
+              La carga del anión se puede deducir a partir de la carga del catión, o teniendo en cuenta los hidrógenos que tiene el ácido del que procede.
+        \item Formulamos el oxoácido del que procede el oxoanión y lo nombramos:
+              \ch{HClO4 -> } ácido perclórico (el cloro actúa con el estado de oxidación mayor ($+7$).
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[t]{Oxosales}
+    \examplebeamer{\Large Nomenclatura}
+
+    Utilizaremos como ejemplo \textcolor{blue}{\ch{NaClO4}}
+    \begin{enumerate}[label=\numberballmDarkTeal]
+        \addtocounter{enumi}{2}
+        \item Nombramos el oxoanión cambiando el sufijo como hemos dicho anteriormente:
+              \ch{ClO4 \mch -> }anión perclorato.
+        \item Nombramos la oxosal de derecha a izquierda. Si el metal puede tener otros números de oxidación se indica entre paréntesis el que tiene el compuesto.
+              \ch{NaClO4 -> }perclorato de sodio
+    \end{enumerate}
+\end{frame}
+
+\end{document}

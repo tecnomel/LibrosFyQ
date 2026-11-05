@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The structure of the atom</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 30px; align-items: center; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .side { flex: 1; }
+    table { width: 100%; border-collapse: collapse; font-size: 18px; margin-bottom: 18px; }
+    th { background: var(--ocre-soft); padding: 8px; }
+    td { padding: 8px; border-top: 1px solid var(--line); text-align: center; }
+    .dot { display: inline-block; width: 18px; height: 18px; border-radius: 50%; vertical-align: middle; margin-right: 6px; }
+    .not { display: flex; gap: 18px; align-items: center; border-radius: 14px; padding: 12px 16px; background: var(--blue-soft); border: 2px solid var(--blue); }
+    .sym { font-size: 70px; font-weight: 800; color: var(--blue); position: relative; width: 120px; height: 100px; font-family: "Times New Roman", serif; }
+    .sym .A { position: absolute; left: 0; top: 0; font-size: 28px; color: var(--red); }
+    .sym .Z { position: absolute; left: 0; bottom: 0; font-size: 28px; color: var(--green); }
+    .sym .X { position: absolute; left: 34px; top: 4px; }
+    .not div { font-size: 18px; line-height: 1.6; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Inside the atom</h1>
+    <div class="row">
+        <svg width="460" height="460" viewBox="0 0 460 460" id="at"></svg>
+        <div class="side">
+            <table>
+                <tr><th>Particle</th><th>Charge</th><th>Mass</th><th>Where?</th></tr>
+                <tr><td><span class="dot" style="background:#C0392B"></span>Proton</td><td>+1</td><td>1</td><td>nucleus</td></tr>
+                <tr><td><span class="dot" style="background:#95A5A6"></span>Neutron</td><td>0</td><td>1</td><td>nucleus</td></tr>
+                <tr><td><span class="dot" style="background:#2471A3"></span>Electron</td><td>−1</td><td>≈ 0</td><td>shells</td></tr>
+            </table>
+            <div class="not">
+                <div style="display:flex;align-items:center;font-weight:800;color:var(--blue)"><div style="display:flex;flex-direction:column;text-align:right;font-size:26px;line-height:1.5"><span style="color:var(--red)">23</span><span style="color:var(--green)">11</span></div><span style="font-size:66px;margin-left:4px">Na</span></div>
+                <div><b style="color:var(--green)">Z = atomic number</b> = number of protons<br>
+                    <b style="color:var(--red)">A = mass number</b> = protons + neutrons<br>
+                    <b>N = A − Z</b> = neutrons → 23 − 11 = <b>12</b><br>
+                    Neutral atom: electrons = protons = <b>11</b></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg', s = document.getElementById('at');
+    const add = (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; s.appendChild(e); return e; };
+    const c = 230;
+    [100, 160, 215].forEach(r => add('circle', { cx: c, cy: c, r, fill: 'none', stroke: '#AAB7B8', 'stroke-width': 2.5, 'stroke-dasharray': '6 5' }));
+    // nucleus: 11 protons + 12 neutrons
+    let seed = 3; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+    const nuc = [];
+    for (let i = 0; i < 23; i++) { const a = rnd() * 6.283, r = Math.sqrt(rnd()) * 34; nuc.push([c + r * Math.cos(a), c + r * Math.sin(a), i % 2 === 0 && i < 22]); }
+    nuc.forEach(([x, y, p]) => add('circle', { cx: x, cy: y, r: 12, fill: p ? '#C0392B' : '#95A5A6', stroke: '#fff', 'stroke-width': 1.5 }));
+    // electrons 2, 8, 1
+    [[100, 2], [160, 8], [215, 1]].forEach(([r, n]) => {
+        for (let i = 0; i < n; i++) { const a = i * 2 * Math.PI / n - 0.5; const x = c + r * Math.cos(a), y = c + r * Math.sin(a);
+            add('circle', { cx: x, cy: y, r: 11, fill: '#2471A3' }); add('text', { x, y: y + 6, 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 800, fill: '#fff' }, '−'); }
+    });
+    add('text', { x: c, y: 22, 'text-anchor': 'middle', 'font-size': 17, 'font-weight': 700, fill: '#23373B' }, 'sodium atom (Na)');
+    add('text', { x: c, y: c + 62, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 700, fill: '#C0392B' }, 'nucleus');
+</script>
+</body>
+</html>

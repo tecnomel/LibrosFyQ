@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Frentes de onda y rayos</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="720" height="380"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const fx = 70, fy = 185, xe = 700;
+    // frentes esféricos cerca del foco
+    for (let k = 1; k <= 4; k++) add('circle', { cx: fx, cy: fy, r: 20 * k, fill: 'none', stroke: '#2E86C1', 'stroke-width': 2, opacity: 1 - k * 0.12 });
+    add('circle', { cx: fx, cy: fy, r: 6, fill: '#C0392B' });
+    label(add, fx, fy + 108, 'foco', { 'font-size': 14, fill: '#C0392B' });
+    // rayos radiales
+    [-14, -7, 0, 7, 14].forEach(a => {
+        const t = a * Math.PI / 180, L = (xe - fx) / Math.cos(t);
+        ray(add, fx, fy, xe, fy - L * Math.sin(t), '#C0392B', 1.6, 0.9);
+    });
+    // frentes lejanos: arcos cada vez más planos
+    [180, 290, 410, 540].forEach(r => add('path', { d: arcD(fx, fy, r, -16, 16), fill: 'none', stroke: '#2E86C1', 'stroke-width': 3 }));
+    label(add, 120, 30, 'frentes esféricos', { 'font-size': 14, fill: '#2E86C1' });
+    label(add, 520, 30, 'lejos del foco, frentes casi planos', { 'font-size': 14, fill: '#2E86C1' });
+    label(add, 700, 175, 'rayo', { 'font-size': 14, fill: '#C0392B', 'text-anchor': 'end' });
+    label(add, 380, 372, 'Los rayos son perpendiculares a los frentes de onda e indican hacia dónde se propaga la onda.', { 'font-size': 14, 'font-weight': 600, fill: '#525252' });
+</script>
+</body>
+</html>

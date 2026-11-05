@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_47 · BeF2: berilio excitado</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/cajas.js"></script>
+</head>
+<body>
+<script>
+const svg = crearFigura(640, 90);
+const F = "#F4C2C2";
+texto(svg, 30, 50, "F:", { "text-anchor": "end", "font-size": 18, fill: COLORES.texto });
+dibujarCajas(svg, 40, 32, [{ e: [2], color: F, abajo: "2s²" }, { salto: 14 }, { e: [2, 2, 1], color: F, abajo: "2p⁵" }], { caja: 26 });
+texto(svg, 370, 50, "Be*:", { "text-anchor": "end", "font-size": 18, fill: COLORES.texto });
+dibujarCajas(svg, 380, 32, [{ e: [1], color: CAJA_HIBRIDO, abajo: "2s¹" }, { salto: 14 }, { e: [1, 0, 0], color: [CAJA_HIBRIDO, CAJA_COLOR, CAJA_COLOR], abajo: "2p¹" }], { caja: 26 });
+</script>
+</body>
+</html>

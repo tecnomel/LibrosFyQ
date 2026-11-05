@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_06 · Isomería geométrica E/Z (cis/trans)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Isomería geométrica: los sustituyentes de mayor prioridad (CIP) de cada carbono del doble
+// enlace quedan en lados opuestos (E, trans) o en el mismo lado (Z, cis).
+const svg = crearFigura(560, 170);
+molecula(svg, "C/C=C(/CC)C", 120, 70, { escala: 1.15 });
+flechaIso(svg, 240, 70, 320);
+molecula(svg, "C/C=C(\\CC)C", 440, 70, { escala: 1.15 });
+const et = (x, l, t) => texto(svg, x, 160, [{ t: l, attrs: { "font-style": "italic" } }, { t: " (" + t + "-)", attrs: { "font-style": "italic" } }], { "text-anchor": "middle", "font-size": 17, fill: COLORES.texto, "font-family": TNR });
+et(120, "E", "trans"); et(440, "Z", "cis");
+</script>
+</body>
+</html>

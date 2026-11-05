@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD2_01 · Apantallamiento de electrones</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Efecto pantalla: el núcleo (Z) atrae a los electrones externos, y los
+// electrones internos los repelen, "apantallando" parte de la carga nuclear.
+const W = 600, H = 400;
+const svg = crearFigura(W, H);
+
+const N = { x: 115, y: 200, r: 34 };          // núcleo
+const R_INT = 150, R_EXT = 285;                // radios de las capas
+const R_E = 11;                                // radio de cada electrón
+const AZUL = COLORES.myBlue, ROJO = "#C0184A";
+
+const pol = (r, gr) => ({ x: N.x + r * Math.cos(gr * Math.PI / 180), y: N.y + r * Math.sin(gr * Math.PI / 180) });
+
+// Recorta un segmento a y b para que no pise los círculos
+function recortar(a, b, da, db) {
+    const dx = b.x - a.x, dy = b.y - a.y, L = Math.hypot(dx, dy);
+    return [{ x: a.x + dx * da / L, y: a.y + dy * da / L }, { x: b.x - dx * db / L, y: b.y - dy * db / L }];
+}
+
+// --- Capas (arcos) --------------------------------------------------------
+function arco(r, desde, hasta) {
+    const a = pol(r, desde), b = pol(r, hasta);
+    el("path", { d: `M${a.x},${a.y} A${r},${r} 0 0 1 ${b.x},${b.y}`,
+        fill: "none", stroke: COLORES.texto, "stroke-width": 1.6 }, svg);
+}
+arco(R_INT, -48, 48);
+arco(R_EXT, -40, 40);
+
+// --- Electrones ------------------------------------------------------------
+const internos = [-34, 0, 34].map(g => pol(R_INT, g));
+const externos = [-24, 24].map(g => pol(R_EXT, g));
+
+// --- Repulsiones (flechas dobles rojas) -----------------------------------
+const pRoja = puntaFlecha(svg, "puntaRoja", ROJO, 11);
+const repulsiones = [[internos[0], externos[0]], [internos[1], externos[0]],
+                     [internos[1], externos[1]], [internos[2], externos[1]]];
+for (const [a, b] of repulsiones) {
+    const [p, q] = recortar(a, b, R_E + 3, R_E + 3);
+    el("line", { x1: p.x, y1: p.y, x2: q.x, y2: q.y, stroke: ROJO, "stroke-width": 2,
+        "marker-start": pRoja, "marker-end": pRoja }, svg);
+}
+
+// --- Atracciones (flechas azules gruesas hacia el núcleo) -----------------
+const pAzul = puntaFlecha(svg, "puntaAzul", AZUL, 22);
+for (const e of externos) {
+    const [p, q] = recortar(e, N, R_E + 4, N.r + 10);
+    el("line", { x1: p.x, y1: p.y, x2: q.x, y2: q.y, stroke: AZUL, "stroke-width": 6,
+        "stroke-linecap": "round", "marker-end": pAzul }, svg);
+}
+
+// Dibujamos los electrones encima de las flechas
+const gE = degradadoEsfera(svg, "esferaElectron", "#5B9BD5");
+for (const e of [...internos, ...externos]) {
+    el("circle", { cx: e.x, cy: e.y, r: R_E, fill: gE, stroke: "#2F5F8A", "stroke-width": 0.8 }, svg);
+}
+
+// --- Núcleo -----------------------------------------------------------------
+el("circle", { cx: N.x, cy: N.y, r: N.r, fill: degradadoEsfera(svg, "esferaNucleo", "#C0504D"),
+    stroke: "#7A2E2C", "stroke-width": 1 }, svg);
+texto(svg, N.x, N.y + 8, "Z", { "text-anchor": "middle", "font-size": 24, "font-style": "italic",
+    "font-family": "Times New Roman, serif", fill: "#3A1010" });
+texto(svg, N.x, N.y + N.r + 26, "Núcleo", { "text-anchor": "middle", "font-size": 18, fill: COLORES.texto });
+
+// --- Etiquetas ---------------------------------------------------------------
+const flechaFina = puntaFlecha(svg, "puntaNegra", COLORES.texto, 8);
+function etiqueta(txt, tx, ty, hacia, attrs = {}) {
+    texto(svg, tx, ty, txt, { "font-size": 17, fill: COLORES.texto, ...attrs });
+    if (hacia) {
+        el("path", { d: `M${hacia.desde.x},${hacia.desde.y} Q${hacia.c.x},${hacia.c.y} ${hacia.a.x},${hacia.a.y}`,
+            fill: "none", stroke: COLORES.texto, "stroke-width": 1.2, "marker-end": flechaFina }, svg);
+    }
+}
+
+// Repulsión -> flecha superior roja
+const midRep = { x: (internos[0].x + externos[0].x) / 2, y: (internos[0].y + externos[0].y) / 2 };
+etiqueta("Repulsión", 250, 36, { desde: { x: 330, y: 44 }, c: { x: 345, y: 70 }, a: { x: midRep.x + 4, y: midRep.y - 8 } },
+    { "font-style": "italic", fill: ROJO });
+
+// Atracción -> flecha azul superior
+const tA = 0.22;   // punto de la flecha azul superior al que señala la etiqueta
+const midAtr = { x: N.x + tA * (externos[0].x - N.x), y: N.y + tA * (externos[0].y - N.y) };
+etiqueta("Atracción", 40, 92, { desde: { x: 95, y: 100 }, c: { x: 100, y: 150 }, a: { x: midAtr.x - 6, y: midAtr.y - 7 } },
+    { "font-style": "italic", fill: AZUL });
+
+// Electrones externos / internos
+texto(svg, externos[0].x + 22, externos[0].y - 4, "Electrones", { "font-size": 17, fill: COLORES.texto });
+texto(svg, externos[0].x + 22, externos[0].y + 16, "externos", { "font-size": 17, fill: COLORES.texto });
+texto(svg, internos[2].x - 18, internos[2].y + 44, "Electrones internos", { "font-size": 15,
+    fill: COLORES.gris, "text-anchor": "middle" });
+
+// Recuadro con la idea clave
+const bx = 410, by = 322;
+el("rect", { x: bx, y: by, width: 170, height: 58, rx: 8, fill: "#FFF3EA", stroke: COLORES.ocre, "stroke-width": 1.4 }, svg);
+texto(svg, bx + 85, by + 24, [
+    { t: "Z", attrs: { "font-style": "italic", "font-family": "Times New Roman, serif" } },
+    { t: "ef", sub: true },
+    { t: " = " },
+    { t: "Z", attrs: { "font-style": "italic", "font-family": "Times New Roman, serif" } },
+    { t: " − " },
+    { t: "σ", attrs: { "font-style": "italic", "font-family": "Times New Roman, serif" } },
+], { "text-anchor": "middle", "font-size": 20, fill: COLORES.texto });
+texto(svg, bx + 85, by + 46, "σ: apantallamiento", { "text-anchor": "middle", "font-size": 13, fill: COLORES.gris });
+</script>
+</body>
+</html>

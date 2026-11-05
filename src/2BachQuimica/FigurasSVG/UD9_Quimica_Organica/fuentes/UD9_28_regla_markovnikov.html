@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_28 · Regla de Markovnikov</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Regla de Markovnikov: al adicionar HX a un alqueno asimétrico, el H se une al carbono del
+// doble enlace que tiene más hidrógenos y el X al que tiene menos (el más sustituido).
+const svg = crearFigura(640, 190);
+molecula(svg, "CC(C)=CC", 110, 80, { escala: 1.15, etiqueta: "2-metilbut-2-eno", yEtq: 140 });
+mas(svg, 215, 80); fq(svg, 260, 86, [["H", ROJO], ["Cl", AZUL]]);
+flechaR(svg, 305, 80, 385);
+molecula(svg, "CC(C)([Xe])C([He])C", 500, 80, { escala: 1.15, grupos: { He: { t: "H", color: ROJO }, Xe: { t: "Cl", color: AZUL } },
+    etiqueta: "2-cloro-2-metilbutano", yEtq: 140 });
+fq(svg, 320, 172, [["H", ROJO], " → C del doble enlace con más H;  ", ["Cl", AZUL], " → C más sustituido"], { tam: 15 });
+</script>
+</body>
+</html>

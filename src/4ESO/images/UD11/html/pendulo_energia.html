@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Péndulo y conservación de la energía</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="720" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    // soporte
+    add('rect', { x: 40, y: 305, width: 330, height: 14, rx: 3, fill: '#909497' });
+    add('rect', { x: 60, y: 30, width: 10, height: 275, fill: '#5D6D7E' });
+    add('rect', { x: 60, y: 40, width: 170, height: 9, fill: '#5D6D7E' });
+    add('rect', { x: 52, y: 34, width: 26, height: 20, rx: 3, fill: '#2C3E50' });
+    const ox = 215, oy = 49, L = 210, amp = 38;
+    add('rect', { x: ox - 8, y: oy - 2, width: 16, height: 10, fill: '#2C3E50' });
+    // regla vertical
+    const rx = 350;
+    add('rect', { x: rx, y: 120, width: 22, height: 185, fill: '#F9E79F', stroke: '#B7950B', 'stroke-width': 1.2 });
+    for (let k = 0; k <= 18; k++) add('line', { x1: rx, y1: 300 - k * 10, x2: rx + (k % 5 ? 7 : 13), y2: 300 - k * 10, stroke: '#7D6608', 'stroke-width': 1 });
+    // posición de equilibrio (punto más bajo) y posición inicial
+    const yeq = oy + L;
+    add('line', { x1: ox, y1: oy, x2: ox, y2: yeq, stroke: '#AAB7B8', 'stroke-dasharray': '5 4' });
+    add('circle', { cx: ox, cy: yeq, r: 13, fill: 'none', stroke: '#AAB7B8', 'stroke-dasharray': '3 3' });
+    const [bx, by] = pol(ox, oy, L, -90 + amp);
+    add('line', { x1: ox, y1: oy, x2: bx, y2: by, stroke: '#23373B', 'stroke-width': 1.8 });
+    bead(add, bx, by, 13, '#C0392B');
+    const [gx, gy] = pol(ox, oy, L, -90 - amp);
+    add('line', { x1: ox, y1: oy, x2: gx, y2: gy, stroke: '#D5D8DC', 'stroke-width': 1.5 });
+    add('circle', { cx: gx, cy: gy, r: 13, fill: 'none', stroke: '#E6B0AA', 'stroke-width': 1.5, 'stroke-dasharray': '3 3' });
+    add('path', { d: arcD(ox, oy, L, -90 - amp, -90 + amp), fill: 'none', stroke: '#C0392B', 'stroke-width': 1.5, 'stroke-dasharray': '6 4' });
+    // altura h
+    add('line', { x1: bx, y1: by, x2: rx, y2: by, stroke: '#525252', 'stroke-dasharray': '3 3' });
+    add('line', { x1: ox, y1: yeq, x2: rx, y2: yeq, stroke: '#525252', 'stroke-dasharray': '3 3' });
+    vdim(add, rx - 14, by, yeq, 'h', '#2471A3');
+    label(add, ox, yeq + 34, 'equilibrio (h = 0)', { 'font-size': 12, fill: '#525252', 'font-weight': 400 });
+    label(add, bx - 20, by - 14, 'se suelta aquí', { 'font-size': 12, fill: '#525252', 'font-weight': 400, 'text-anchor': 'end' });
+    // texto con las energías
+    const tx = 405;
+    [['#000070', 'Conservación de la energía mecánica', 17], ['', '', 6],
+     ['#23373B', 'Posición inicial (altura h, en reposo):', 14], ['#2471A3', 'Ep = m · g · h ;  Ec = 0', 15], ['', '', 4],
+     ['#23373B', 'Posición de equilibrio (h = 0):', 14], ['#C0392B', 'Ep = 0 ;  Ec = ½ · m · v²', 15], ['', '', 4],
+     ['#23373B', 'Sin rozamiento, Em se conserva:', 14], ['#1E8449', 'm · g · h = ½ · m · v²', 15], ['#1E8449', 'v = √(2 · g · h)', 15], ['', '', 4],
+     ['#525252', 'La velocidad no depende de la masa.', 13], ['#525252', 'La bola vuelve casi a la misma altura.', 13]]
+        .reduce((y, [c, s, f]) => { label(add, tx, y, s, { 'font-size': f, fill: c || '#000', 'text-anchor': 'start' }); return y + f + 9; }, 50);
+</script>
+</body>
+</html>

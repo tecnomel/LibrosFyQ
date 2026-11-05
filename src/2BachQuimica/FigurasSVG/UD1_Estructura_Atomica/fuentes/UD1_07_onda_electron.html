@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD1_07 · Electrón como onda estacionaria</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// El electrón como onda estacionaria alrededor del núcleo: solo son posibles
+// las órbitas en las que cabe un número entero de longitudes de onda (2πr = nλ).
+const svg = crearFigura(560, 250);
+const C = { x: 280, y: 118 }, RX = 250, RY = 52, A = 34, N = 7;
+const orbita = t => [C.x + RX * Math.cos(t), C.y + RY * Math.sin(t)];
+const onda = t => { const [x, y] = orbita(t); return [x, y - A * Math.sin(N * t)]; };
+const pts = (f, t0, t1, n = 400) => Array.from({ length: n + 1 }, (_, k) => f(t0 + (t1 - t0) * k / n));
+const d = arr => "M" + arr.map(p => p.map(v => v.toFixed(1)).join(",")).join(" L");
+
+// Relleno entre la onda y la órbita, primero la mitad trasera y luego la delantera
+function mitad(t0, t1, opacidad) {
+    const w = pts(onda, t0, t1), o = pts(orbita, t1, t0);
+    el("path", { d: d(w) + " L" + o.map(p => p.map(v => v.toFixed(1)).join(",")).join(" L") + " Z",
+        fill: "#F5B820", "fill-opacity": opacidad, stroke: "none" }, svg);
+    el("path", { d: d(w), fill: "none", stroke: "#3A3000", "stroke-width": 1.6 }, svg);
+}
+mitad(Math.PI, 2 * Math.PI, 0.55);
+el("path", { d: d(pts(orbita, Math.PI, 2 * Math.PI)), fill: "none", stroke: "#F07A10", "stroke-width": 4, opacity: 0.6 }, svg);
+// Núcleo
+el("circle", { cx: C.x - 20, cy: C.y, r: 9, fill: degradadoEsfera(svg, "p", "#1E8FD8") }, svg);
+texto(svg, C.x - 4, C.y + 6, "núcleo", { "font-size": 17, fill: COLORES.texto });
+mitad(0, Math.PI, 0.85);
+el("path", { d: d(pts(orbita, 0, Math.PI)), fill: "none", stroke: "#F07A10", "stroke-width": 4 }, svg);
+
+texto(svg, C.x, 236, [{ t: "2π" }, { t: "r", attrs: { "font-style": "italic" } }, { t: " = " },
+    { t: "n", attrs: { "font-style": "italic" } }, { t: "λ" }, { t: "     (aquí " }, { t: "n", attrs: { "font-style": "italic" } }, { t: " = 7)" }],
+    { "text-anchor": "middle", "font-size": 17, "font-family": "Times New Roman, serif", fill: COLORES.texto });
+</script>
+</body>
+</html>

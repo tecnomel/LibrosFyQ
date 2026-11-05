@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_42 · AlCl3: capas de valencia del Cl y del Al</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/cajas.js"></script>
+</head>
+<body>
+<script>
+// Capas de valencia del Cl (un electrón desapareado) y del Al en estado fundamental.
+const svg = crearFigura(640, 90);
+const CL = "#F4C2C2";
+texto(svg, 30, 50, "Cl:", { "text-anchor": "end", "font-size": 18, fill: COLORES.texto });
+dibujarCajas(svg, 40, 32, [{ e: [2], color: CL, abajo: "3s²" }, { salto: 14 }, { e: [2, 2, 1], color: CL, abajo: "3p⁵" }], { caja: 26 });
+texto(svg, 360, 50, "Al:", { "text-anchor": "end", "font-size": 18, fill: COLORES.texto });
+dibujarCajas(svg, 370, 32, [{ e: [2], abajo: "3s²" }, { salto: 14 }, { e: [1, 0, 0], abajo: "3p¹" }], { caja: 26 });
+</script>
+</body>
+</html>

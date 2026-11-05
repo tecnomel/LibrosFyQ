@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Efecto Tyndall</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1100px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>El efecto Tyndall: cómo reconocer un coloide 🔦</h1>
+    <svg width="1040" height="440" viewBox="0 0 1040 440">
+        <defs>
+            <linearGradient id="beam" x1="0" x2="1"><stop offset="0" stop-color="#E74C3C" stop-opacity=".95"/><stop offset="1" stop-color="#E74C3C" stop-opacity=".6"/></linearGradient>
+        </defs>
+        <rect x="0" y="0" width="1040" height="440" rx="16" fill="#1B2631"/>
+        <!-- láser -->
+        <rect x="20" y="190" width="90" height="34" rx="6" fill="#7F8C8D"/><rect x="108" y="199" width="14" height="16" fill="#C0392B"/>
+        <text x="65" y="250" text-anchor="middle" font-size="15" fill="#FDFEFE">láser</text>
+        <!-- vaso 1: disolución -->
+        <rect x="250" y="110" width="220" height="230" rx="10" fill="#A9CCE3" fill-opacity=".35" stroke="#D5D8DC" stroke-width="4"/>
+        <!-- vaso 2: coloide -->
+        <rect x="640" y="110" width="220" height="230" rx="10" fill="#F9E79F" fill-opacity=".45" stroke="#D5D8DC" stroke-width="4"/>
+        <!-- haz fuera (discontinuo tenue: invisible en aire/disolución) -->
+        <line x1="122" y1="207" x2="250" y2="207" stroke="#E74C3C" stroke-width="2" stroke-dasharray="4 8" opacity=".5"/>
+        <line x1="470" y1="207" x2="640" y2="207" stroke="#E74C3C" stroke-width="2" stroke-dasharray="4 8" opacity=".5"/>
+        <line x1="250" y1="207" x2="470" y2="207" stroke="#E74C3C" stroke-width="2" stroke-dasharray="4 8" opacity=".5"/>
+        <!-- haz visible en el coloide -->
+        <rect x="642" y="197" width="216" height="20" fill="url(#beam)"/>
+        <g fill="#FDEBD0"><circle cx="680" cy="203" r="3"/><circle cx="720" cy="212" r="3"/><circle cx="760" cy="200" r="3"/><circle cx="800" cy="210" r="3"/><circle cx="840" cy="204" r="3"/></g>
+        <line x1="860" y1="207" x2="1010" y2="207" stroke="#E74C3C" stroke-width="2" stroke-dasharray="4 8" opacity=".5"/>
+        <!-- rótulos -->
+        <text x="360" y="85" text-anchor="middle" font-size="22" font-weight="800" fill="#AED6F1">DISOLUCIÓN</text>
+        <text x="360" y="375" text-anchor="middle" font-size="17" fill="#FDFEFE">agua salada, manzanilla</text>
+        <text x="360" y="405" text-anchor="middle" font-size="17" font-weight="700" fill="#F1948A">✘ el haz no se ve</text>
+        <text x="750" y="85" text-anchor="middle" font-size="22" font-weight="800" fill="#F9E79F">COLOIDE</text>
+        <text x="750" y="375" text-anchor="middle" font-size="17" fill="#FDFEFE">gelatina, leche, niebla</text>
+        <text x="750" y="405" text-anchor="middle" font-size="17" font-weight="700" fill="#82E0AA">✔ el haz se ve</text>
+    </svg>
+    <div class="note" style="text-align:center;margin-top:10px">Las partículas de un coloide son lo bastante grandes para <b>dispersar la luz</b>; las de una disolución son demasiado pequeñas.</div>
+</div>
+</body>
+</html>

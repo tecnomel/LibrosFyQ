@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Superficie de contacto y velocidad de reacción</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="710" height="270"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const G = '#EBF5FB', E = '#5D6D7E';
+    function flask(x, powder) {
+        const B = 210;
+        add('path', { d: `M${x - 12} ${B - 140} L${x - 12} ${B - 95} L${x - 55} ${B} L${x + 55} ${B} L${x + 12} ${B - 95} L${x + 12} ${B - 140}`, fill: G, stroke: E, 'stroke-width': 2.5, 'stroke-linejoin': 'round' });
+        add('path', { d: `M${x - 40} ${B - 35} L${x + 40} ${B - 35} L${x + 53} ${B - 2} L${x - 53} ${B - 2} Z`, fill: '#AED6F1' });
+        const r = rng(powder ? 3 : 9);
+        if (powder) for (let i = 0; i < 80; i++) add('circle', { cx: x - 40 + r() * 80, cy: B - 8 - r() * 8, r: 1.8, fill: '#FDFEFE', stroke: '#AAB7B8', 'stroke-width': 0.5 });
+        else [[-25, -10], [-5, -12], [18, -9], [34, -8]].forEach(([dx, dy]) => add('path', { d: `M${x + dx - 8} ${B + dy} L${x + dx - 3} ${B + dy - 10} L${x + dx + 7} ${B + dy - 7} L${x + dx + 8} ${B + dy + 2} Z`, fill: '#FDFEFE', stroke: '#7F8C8D', 'stroke-width': 1 }));
+        // burbujas de CO2: muchas más con el sólido pulverizado
+        const n = powder ? 28 : 7;
+        for (let i = 0; i < n; i++) add('circle', { cx: x - 30 + r() * 60, cy: B - 40 - r() * (powder ? 90 : 40), r: 2 + r() * 2.5, fill: 'none', stroke: '#2E86C1', 'stroke-width': 1.2 });
+        label(add, x, B + 24, powder ? 'CaCO₃ pulverizado' : 'CaCO₃ en fragmentos', { 'font-size': 13 });
+        label(add, x + 70, B - 40, 'HCl', { 'font-size': 12, 'font-weight': 400, 'text-anchor': 'start' });
+        // cronómetro
+        add('circle', { cx: x - 75, cy: 40, r: 16, fill: '#fff', stroke: E, 'stroke-width': 2 });
+        add('rect', { x: x - 79, y: 18, width: 8, height: 6, fill: E });
+        add('line', { x1: x - 75, y1: 40, x2: x - 75 + (powder ? 0 : 11), y2: 40 - (powder ? 12 : 4), stroke: '#C0392B', 'stroke-width': 2 });
+        label(add, x - 75, 74, powder ? 'tarda poco' : 'tarda mucho', { 'font-size': 12, fill: '#C0392B' });
+    }
+    flask(190, false);
+    flask(520, true);
+    add('line', { x1: 355, y1: 10, x2: 355, y2: 240, stroke: '#AAB7B8', 'stroke-dasharray': '6 5' });
+    label(add, 355, 264, 'CaCO₃ + 2 HCl → CaCl₂ + CO₂ + H₂O', { 'font-size': 13, fill: '#000070' });
+</script>
+</body>
+</html>

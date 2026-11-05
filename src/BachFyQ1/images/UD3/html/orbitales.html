@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Forma de los orbitales</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1120px; } .card h2 { font-size: 17px; } .lab { font-size: 14px; font-weight: 700; color: #23373B; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card" style="flex:0.9"><h2>Orbital s (l = 0)</h2><svg id="s" width="170" height="170"></svg><div class="t">1 orbital, esférico</div></div>
+        <div class="card" style="flex:2.4"><h2>Orbitales p (l = 1)</h2><svg id="p" width="480" height="170"></svg><div class="t">3 orbitales, en forma de dos lóbulos sobre cada eje</div></div>
+    </div>
+    <div class="row" style="margin-top:12px">
+        <div class="card"><h2>Orbitales d (l = 2)</h2><svg id="d" width="1020" height="180"></svg><div class="t">5 orbitales: cuatro con cuatro lóbulos y uno con dos lóbulos y un anillo</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // ejes en perspectiva: x hacia el observador (abajo-izquierda), y a la derecha, z arriba
+    const AX = { x: [-0.55, 0.45], y: [1, 0], z: [0, -1] };
+    function axes(A, cx, cy, L, names = true) {
+        Object.entries(AX).forEach(([k, [ux, uy]]) => {
+            A('line', { x1: cx - ux * L, y1: cy - uy * L, x2: cx + ux * L, y2: cy + uy * L, stroke: '#7F8C8D', 'stroke-width': 1.2 });
+            if (names) label(A, cx + ux * (L + 9), cy + uy * (L + 9) + 4, k, { 'font-size': 12, fill: '#7F8C8D', 'font-style': 'italic' });
+        });
+    }
+    let gid = 0;
+    function grad(A, col) {
+        const id = 'lg' + (gid++), d = A('defs', {});
+        d.innerHTML = `<radialGradient id="${id}" cx=".4" cy=".35" r=".75"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="${col}"/><stop offset="1" stop-color="${shade(col)}"/></radialGradient>`;
+        return `url(#${id})`;
+    }
+    // lóbulo en forma de gota desde (cx, cy) en la dirección (ux, uy), longitud L y anchura W
+    function lobe(A, cx, cy, ux, uy, L, W, col) {
+        const n = Math.hypot(ux, uy); ux /= n; uy /= n;
+        const px = -uy, py = ux;
+        const tip = [cx + ux * L, cy + uy * L];
+        const c1 = [cx + ux * L * 0.35 + px * W, cy + uy * L * 0.35 + py * W], c2 = [cx + ux * L * 1.15 + px * W * 0.9, cy + uy * L * 1.15 + py * W * 0.9];
+        const c3 = [cx + ux * L * 1.15 - px * W * 0.9, cy + uy * L * 1.15 - py * W * 0.9], c4 = [cx + ux * L * 0.35 - px * W, cy + uy * L * 0.35 - py * W];
+        A('path', { d: `M${cx} ${cy} C${c1} ${c2} ${tip} C${c3} ${c4} ${cx} ${cy} Z`, fill: grad(A, col), stroke: shade(col), 'stroke-width': 0.6, opacity: 0.95 });
+    }
+    function pair(A, cx, cy, dir, L, W, col) { const [ux, uy] = dir; lobe(A, cx, cy, ux, uy, L, W, col); lobe(A, cx, cy, -ux, -uy, L, W, col); }
+    // s
+    let A = svgAdder('s'); axes(A, 85, 85, 70); bead(A, 85, 85, 48, '#E67E22'); axes(A, 85, 85, 70, false);
+    // p
+    A = svgAdder('p');
+    const P = [['x', 80], ['y', 240], ['z', 400]];
+    P.forEach(([k, cx]) => {
+        const cy = 85;
+        axes(A, cx, cy, 70);
+        // el lóbulo del fondo primero
+        const [ux, uy] = AX[k];
+        lobe(A, cx, cy, -ux, -uy, 62, 22, '#27AE60');
+        A('circle', { cx, cy, r: 2, fill: '#555' });
+        lobe(A, cx, cy, ux, uy, 62, 22, '#27AE60');
+        label(A, cx + 52, cy + 78, 'p' + k, { 'font-size': 14 }).innerHTML = `p<tspan baseline-shift="sub" font-size="75%">${k}</tspan>`;
+    });
+    // d
+    A = svgAdder('d');
+    const D = [
+        ['xy', [[1, 0.45], [-1, -0.45], [0.45, -0.45], [-0.45, 0.45]].map(([a, b]) => [a, b])],
+        ['xz', null], ['yz', null], ['x²−y²', null], ['z²', null]
+    ];
+    const comb = (u, v, s) => [u[0] + s * v[0], u[1] + s * v[1]];
+    const DIRS = {
+        'xy': [comb(AX.x, AX.y, 1), comb(AX.x, AX.y, -1)],
+        'xz': [comb(AX.x, AX.z, 1), comb(AX.x, AX.z, -1)],
+        'yz': [comb(AX.y, AX.z, 1), comb(AX.y, AX.z, -1)],
+        'x²−y²': [AX.x, AX.y],
+    };
+    const NAMES = ['xy', 'xz', 'yz', 'x²−y²', 'z²'];
+    NAMES.forEach((k, i) => {
+        const cx = 100 + i * 205, cy = 88;
+        axes(A, cx, cy, 72);
+        if (k === 'z²') {
+            pair(A, cx, cy, AX.z, 64, 22, '#2E86C1');
+            A('ellipse', { cx, cy, rx: 34, ry: 11, fill: grad(A, '#5DADE2'), stroke: '#1F618D', 'stroke-width': 0.6 });
+        } else {
+            DIRS[k].forEach(dv => pair(A, cx, cy, dv, 50, 17, '#2E86C1'));
+        }
+        const t = label(A, cx + 60, cy + 82, '', { 'font-size': 14 });
+        t.innerHTML = `d<tspan baseline-shift="sub" font-size="75%">${k}</tspan>`;
+    });
+</script>
+</body>
+</html>

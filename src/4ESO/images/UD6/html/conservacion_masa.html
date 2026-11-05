@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Conservación de la masa: reordenación de átomos</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="920" height="270"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const H = '#ECF0F1', O = '#E74C3C';
+    // reactivos: 2 H2 + O2
+    dimer(add, 70, 90, 0, 16, H, 16, H, 30); dimer(add, 70, 150, 0, 16, H, 16, H, 30);
+    label(add, 140, 128, '+', { 'font-size': 32 });
+    dimer(add, 210, 120, 0, 22, O, 22, O, 40);
+    // enlaces rotos
+    arrow(add, 280, 120, 360, 120, '#23373B', 4, 15);
+    label(add, 320, 100, 'se rompen', { 'font-size': 13, fill: '#525252' }); label(add, 320, 150, 'los enlaces', { 'font-size': 13, fill: '#525252' });
+    bead(add, 400, 70, 16, H); bead(add, 450, 70, 16, H); bead(add, 400, 170, 16, H); bead(add, 450, 170, 16, H);
+    bead(add, 410, 120, 22, O); bead(add, 455, 120, 22, O);
+    arrow(add, 500, 120, 580, 120, '#23373B', 4, 15);
+    label(add, 540, 100, 'se forman', { 'font-size': 13, fill: '#525252' }); label(add, 540, 150, 'enlaces nuevos', { 'font-size': 13, fill: '#525252' });
+    // productos: 2 H2O
+    function water(x, y) { bead(add, x - 22, y + 16, 15, H); bead(add, x + 22, y + 16, 15, H); bead(add, x, y, 22, O); }
+    water(650, 95); water(760, 145);
+    // fórmulas y recuento
+    label(add, 140, 215, '2 H₂ + O₂', { 'font-size': 20, fill: '#000070' });
+    label(add, 700, 215, '2 H₂O', { 'font-size': 20, fill: '#000070' });
+    label(add, 140, 245, '4 átomos de H y 2 de O', { 'font-size': 14, fill: '#525252' });
+    label(add, 700, 245, '4 átomos de H y 2 de O', { 'font-size': 14, fill: '#525252' });
+    label(add, 425, 245, 'mismos átomos ⇒ misma masa', { 'font-size': 16, fill: '#1E8449' });
+</script>
+</body>
+</html>

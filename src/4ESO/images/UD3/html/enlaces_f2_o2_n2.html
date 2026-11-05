@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Enlaces covalentes sencillo, doble y triple</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="940" height="430"></svg>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    const add = svgAdder('s');
+    const rows = [
+        ['F', 7, 'Flúor, F₂', 'enlace sencillo', 1, '1s² 2s² 2p⁵'],
+        ['O', 6, 'Oxígeno, O₂', 'enlace doble', 2, '1s² 2s² 2p⁴'],
+        ['N', 5, 'Nitrógeno, N₂', 'enlace triple', 3, '1s² 2s² 2p³']];
+    label(add, 150, 26, 'Átomos', { fill: '#000070', 'font-size': 17 });
+    label(add, 470, 26, 'Diagrama de Lewis', { fill: '#000070', 'font-size': 17 });
+    label(add, 645, 26, 'Fórmula', { fill: '#000070', 'font-size': 17 });
+    label(add, 825, 26, 'Modelo', { fill: '#000070', 'font-size': 17 });
+    rows.forEach(([el, n, name, tipo, ord, conf], i) => {
+        const y = 85 + i * 125;
+        if (i) add('line', { x1: 10, y1: y - 62, x2: 930, y2: y - 62, stroke: '#E5E8E8', 'stroke-width': 1.5 });
+        // dos átomos por separado
+        const lone = { 7: [2, 2, 2, 1], 6: [2, 1, 2, 1], 5: [2, 1, 1, 1] }[n];
+        lewis(add, 90, y, el, n, { pairs: [lone[0], lone[1], lone[2], lone[3]] });
+        label(add, 150, y + 10, '+', { 'font-size': 26 });
+        lewis(add, 210, y, el, n, { pairs: [lone[0], lone[3], lone[2], lone[1]], cross: [1, 1, 1, 1] });
+        label(add, 150, y + 50, conf, { 'font-size': 14, fill: '#525252', 'font-weight': 600 });
+        arrow(add, 265, y, 330, y, '#5D6D7E');
+        // molécula: pares compartidos en el centro, pares solitarios hacia fuera
+        const xa = 432, xb = 508, mid = (xa + xb) / 2;
+        const keep = { 1: [2, 0, 2, 2], 2: [2, 0, 2, 0], 3: [0, 0, 0, 2] }[ord];
+        lewis(add, xa, y, el, 0, { pairs: [keep[0], 0, keep[2], keep[3]] });
+        lewis(add, xb, y, el, 0, { pairs: [keep[0], keep[3], keep[2], 0], cross: [1, 1, 1, 1] });
+        for (let k = 0; k < ord; k++) {
+            const yy = y + (k - (ord - 1) / 2) * 13;
+            add('circle', { cx: mid - 6, cy: yy, r: 3.4, fill: '#C0392B' });
+            add('path', { d: `M${mid + 3} ${yy - 3.4} L${mid + 10} ${yy + 3.4} M${mid + 3} ${yy + 3.4} L${mid + 10} ${yy - 3.4}`, stroke: '#2471A3', 'stroke-width': 2 });
+        }
+        // fórmula desarrollada
+        label(add, 612, y + 9, el, { 'font-size': 26, 'font-weight': 800 });
+        label(add, 682, y + 9, el, { 'font-size': 26, 'font-weight': 800 });
+        for (let k = 0; k < ord; k++) { const yy = y + (k - (ord - 1) / 2) * 8; add('line', { x1: 626, y1: yy, x2: 667, y2: yy, stroke: '#23373B', 'stroke-width': 2.5 }); }
+        // modelo de bolas
+        bond(add, 790, y, 860, y, ord);
+        ball(add, 790, y, el, 24); ball(add, 860, y, el, 24);
+        label(add, 470, y + 50, `${name}: ${tipo}`, { 'font-size': 15, fill: '#C0392B' });
+    });
+    add('circle', { cx: 290, cy: 415, r: 3.4, fill: '#C0392B' });
+    label(add, 300, 420, 'electrones de un átomo', { 'font-size': 14, fill: '#525252', 'font-weight': 600, 'text-anchor': 'start' });
+    add('path', { d: 'M520 411 L527 418 M520 418 L527 411', stroke: '#2471A3', 'stroke-width': 2 });
+    label(add, 536, 420, 'electrones del otro átomo', { 'font-size': 14, fill: '#525252', 'font-weight': 600, 'text-anchor': 'start' });
+</script>
+</body>
+</html>

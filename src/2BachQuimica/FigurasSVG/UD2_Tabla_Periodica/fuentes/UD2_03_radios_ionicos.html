@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD2_03 · Radios iónicos</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Radios iónicos (pm) colocados según su posición en la tabla periódica.
+// Los círculos están a escala: radio del círculo proporcional al radio iónico.
+// Datos: los de la figura original del libro.
+
+// [símbolo, carga, radio (pm), grupo, periodo, categoría, radio2?, carga2?]
+const IONES = [
+    ["Li", "+", 78, 1, 2, "alc"], ["Na", "+", 98, 1, 3, "alc"], ["K", "+", 133, 1, 4, "alc"],
+    ["Rb", "+", 148, 1, 5, "alc"], ["Cs", "+", 165, 1, 6, "alc"],
+    ["Be", "2+", 34, 2, 2, "atr"], ["Mg", "2+", 78, 2, 3, "atr"], ["Ca", "2+", 106, 2, 4, "atr"],
+    ["Sr", "2+", 127, 2, 5, "atr"], ["Ba", "2+", 143, 2, 6, "atr"],
+    ["Sc", "3+", 83, 3, 4, "tr"], ["Ti", "3+", 68, 4, 4, "tr"], ["V", "5+", 59, 5, 4, "tr"],
+    ["Cr", "3+", 64, 6, 4, "tr"], ["Mn", "2+", 91, 7, 4, "tr"], ["Fe", "2+", 82, 8, 4, "tr", 67, "3+"],
+    ["Co", "2+", 82, 9, 4, "tr"], ["Ni", "2+", 78, 10, 4, "tr"], ["Cu", "+", 96, 11, 4, "tr", 72, "2+"],
+    ["Zn", "2+", 83, 12, 4, "tr"],
+    ["Ag", "+", 113, 11, 5, "tr"], ["Cd", "2+", 103, 12, 5, "tr"],
+    ["Au", "+", 137, 11, 6, "tr"], ["Hg", "2+", 112, 12, 6, "tr"],
+    ["Al", "3+", 57, 13, 3, "p"], ["Ga", "3+", 62, 13, 4, "p"], ["In", "3+", 92, 13, 5, "p"], ["Tl", "3+", 105, 13, 6, "p"],
+    ["Sn", "4+", 74, 14, 5, "p14"], ["Pb", "4+", 84, 14, 6, "p14"],
+    ["N", "3−", 171, 15, 2, "n"], ["Sb", "5+", 62, 15, 5, "sb"],
+    ["O", "2−", 140, 16, 2, "anf"], ["S", "2−", 184, 16, 3, "anf"], ["Se", "2−", 198, 16, 4, "anf"], ["Te", "2−", 211, 16, 5, "anf"],
+    ["F", "−", 133, 17, 2, "hal"], ["Cl", "−", 181, 17, 3, "hal"], ["Br", "−", 195, 17, 4, "hal"], ["I", "−", 220, 17, 5, "hal"],
+];
+
+const CATEGORIAS = {
+    alc: { color: "#E3B505", nombre: "Alcalinos" },
+    atr: { color: "#6B5FC7", nombre: "Alcalinotérreos" },
+    tr:  { color: "#3F7D52", nombre: "Transición" },
+    p:   { color: "#9A9A9A", nombre: "Grupo 13" },
+    p14: { color: "#E07B00", nombre: "Grupo 14" },
+    sb:  { color: "#2A9FC0", nombre: "" },
+    n:   { color: "#2A86C9", nombre: "" },
+    anf: { color: "#D32F2F", nombre: "Anfígenos" },
+    hal: { color: "#43A047", nombre: "Halógenos" },
+};
+
+const K = 0.13;                              // px de radio por pm
+// Anchura de cada columna (grupo) según el ion más grande que contiene
+const grupos = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+const ancho = {};
+for (const g of grupos) {
+    const rmax = Math.max(...IONES.filter(i => i[3] === g).map(i => i[2]));
+    ancho[g] = Math.max(46, 2 * rmax * K + 16);
+}
+const X0 = 20, Y0 = 70, FILA = 104;
+const xCentro = {};
+let x = X0;
+for (const g of grupos) {
+    if (g === 3 || g === 13) x += 16;        // separación entre bloques s | d | p
+    xCentro[g] = x + ancho[g] / 2;
+    x += ancho[g];
+}
+const W = x + 20, H = Y0 + 5 * FILA + 50;
+const svg = crearFigura(W, H);
+const yCentro = p => Y0 + (p - 2) * FILA + 40;
+
+// Números de grupo y de periodo
+for (const g of grupos) {
+    texto(svg, xCentro[g], 24, String(g), { "text-anchor": "middle", "font-size": 11, fill: "#8A8A8A" });
+}
+for (let p = 2; p <= 6; p++) {
+    texto(svg, 8, yCentro(p) + 4, String(p), { "text-anchor": "middle", "font-size": 11, fill: "#8A8A8A" });
+}
+// Rótulos de bloque
+const rotulo = (g1, g2, t) => {
+    const xa = xCentro[g1] - ancho[g1] / 2 + 4, xb = xCentro[g2] + ancho[g2] / 2 - 4;
+    el("line", { x1: xa, y1: 36, x2: xb, y2: 36, stroke: "#C8C8C8", "stroke-width": 1 }, svg);
+    texto(svg, (xa + xb) / 2, 50, t, { "text-anchor": "middle", "font-size": 12, fill: COLORES.gris });
+};
+rotulo(1, 2, "Bloque s");
+rotulo(3, 12, "Metales de transición");
+rotulo(13, 17, "Bloque p");
+
+// Etiqueta de un ion con la carga en superíndice
+function ion(xx, yy, sim, carga, attrs = {}) {
+    return texto(svg, xx, yy, [{ t: sim }, { t: carga, sup: true }],
+        { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto, ...attrs });
+}
+const valor = (xx, yy, v, attrs = {}) =>
+    texto(svg, xx, yy, String(v), { "text-anchor": "middle", "font-size": 13, "font-weight": "bold",
+        fill: COLORES.ocre, ...attrs });
+
+for (const [sim, carga, r, g, p, cat, r2, carga2] of IONES) {
+    const cx = xCentro[g], cy = yCentro(p), R = r * K;
+    const col = CATEGORIAS[cat].color;
+    el("circle", { cx, cy, r: R, fill: degradadoEsfera(svg, "esf_" + cat, col),
+        stroke: mezclar(col, "#000000", 0.3), "stroke-width": 0.6 }, svg);
+    if (r2) {
+        // Segundo estado de oxidación: círculo discontinuo concéntrico
+        el("circle", { cx, cy, r: r2 * K, fill: "none", stroke: "#ffffff", "stroke-width": 1.2,
+            "stroke-dasharray": "2.5 2" }, svg);
+        ion(cx, cy - R - 7, sim, `${carga}/${carga2}`);
+        valor(cx, cy + 30, r);
+        valor(cx, cy + 44, r2, { fill: COLORES.gris, "font-weight": "normal", "font-size": 12 });
+    } else {
+        ion(cx, cy - R - 7, sim, carga);
+        valor(cx, cy + R + 16, r);
+    }
+}
+
+// Leyenda / notas
+const yL = H - 18;
+texto(svg, X0, yL, [{ t: "Radios iónicos en pm (1 pm = 10" }, { t: "−12", sup: true },
+    { t: " m).   Círculo discontinuo: segundo ion del mismo elemento." }],
+    { "font-size": 13, fill: COLORES.gris });
+</script>
+</body>
+</html>

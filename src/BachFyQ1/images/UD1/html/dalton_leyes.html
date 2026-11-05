@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>La teoría de Dalton explica las leyes ponderales</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 980px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="930" height="300"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    function panel(x, w, titulo, pie) {
+        add('rect', { x, y: 8, width: w, height: 250, rx: 14, fill: '#F8F9F9', stroke: '#C9CCD6', 'stroke-width': 2 });
+        label(add, x + w / 2, 36, titulo, { 'font-size': 17, fill: '#000070' });
+        pie.forEach((t, i) => label(add, x + w / 2, 222 + i * 20, t, { 'font-size': 14, fill: '#525252', 'font-weight': 600 }));
+    }
+    // 1) conservación de la masa: 2 S + C -> CS2
+    panel(5, 300, 'Conservación de la masa', ['los átomos solo se recombinan:', 'mismos átomos antes y después']);
+    molecule(add, 45, 115, [['S', 0, 0]], 15);
+    molecule(add, 45, 160, [['S', 0, 0]], 15);
+    label(add, 85, 145, '+', { 'font-size': 26 });
+    molecule(add, 120, 138, [['C', 0, 0]], 15);
+    arrow(add, 150, 138, 192, 138, '#23373B', 3, 11);
+    molecule(add, 250, 138, MOL.CS2, 15);
+    chemText(add, 45, 198, '2 S', { 'font-size': 16 }); chemText(add, 120, 198, 'C', { 'font-size': 16 }); chemText(add, 250, 198, 'CS_2', { 'font-size': 16 });
+
+    // 2) proporciones definidas: muestras de CO
+    panel(315, 300, 'Proporciones definidas', ['en cualquier muestra hay 1 C por 1 O:', 'la relación de masas es fija']);
+    molecule(add, 370, 135, MOL.CO, 15);
+    chemText(add, 370, 198, '1 CO', { 'font-size': 16 });
+    [[460, 110], [540, 110], [460, 160], [540, 160]].forEach(([x, y]) => molecule(add, x, y, MOL.CO, 13));
+    chemText(add, 500, 198, '4 CO', { 'font-size': 16 });
+    add('line', { x1: 410, y1: 70, x2: 410, y2: 190, stroke: '#C9CCD6', 'stroke-width': 1.5, 'stroke-dasharray': '5 4' });
+
+    // 3) proporciones múltiples: SO, SO2, SO3
+    panel(625, 300, 'Proporciones múltiples', ['con la misma masa de S, las masas', 'de O están en relación 1 : 2 : 3']);
+    molecule(add, 680, 138, MOL.SO, 15);
+    molecule(add, 775, 132, MOL.SO2, 15);
+    molecule(add, 870, 140, MOL.SO3, 15);
+    chemText(add, 680, 198, 'SO', { 'font-size': 16 }); chemText(add, 775, 198, 'SO_2', { 'font-size': 16 }); chemText(add, 870, 198, 'SO_3', { 'font-size': 16 });
+
+    // leyenda de colores
+    [['S', 'azufre'], ['C', 'carbono'], ['O', 'oxígeno']].forEach(([e, t], i) => {
+        molecule(add, 330 + i * 120, 285, [[e, 0, 0]], 8);
+        label(add, 345 + i * 120, 290, t, { 'font-size': 14, 'text-anchor': 'start', 'font-weight': 600, fill: '#525252' });
+    });
+</script>
+</body>
+</html>

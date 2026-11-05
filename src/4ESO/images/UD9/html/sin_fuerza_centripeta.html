@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cuando deja de actuar la fuerza centrípeta</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Bola atada a una cuerda</h2><svg id="a" width="270" height="240"></svg>
+            <div class="t">La tensión de la cuerda es la fuerza centrípeta. Si la cuerda se rompe en X, la bola sale en línea recta, tangente a la circunferencia.</div></div>
+        <div class="card"><h2>Coche en una curva</h2><svg id="b" width="270" height="240"></svg>
+            <div class="t">El rozamiento de los neumáticos es la fuerza centrípeta. Si no basta (hielo, aceite, ruedas gastadas), el coche sigue recto: derrapa.</div></div>
+        <div class="card"><h2>Centrifugado</h2><svg id="c" width="270" height="240"></svg>
+            <div class="t">Las paredes del tambor empujan la ropa hacia el centro. En los agujeros no hay pared y el agua escapa en línea recta.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // a) bola con cuerda
+    {
+        const add = svgAdder('a'), cx = 115, cy = 140, R = 80, a = 60;
+        add('circle', { cx, cy, r: R, fill: 'none', stroke: '#AAB7B8', 'stroke-width': 2, 'stroke-dasharray': '6 5' });
+        const [x, y] = pol(cx, cy, R, a), [tx, ty] = pol(0, 0, 1, a + 90);
+        add('line', { x1: cx, y1: cy, x2: x, y2: y, stroke: '#7E5109', 'stroke-width': 2.5 });
+        add('circle', { cx, cy, r: 6, fill: '#E59866', stroke: '#7E5109' });
+        label(add, cx - 2, cy + 24, 'mano', { 'font-size': 12, fill: '#525252', 'font-weight': 600 });
+        add('line', { x1: x, y1: y, x2: x + 110 * tx, y2: y + 110 * ty, stroke: '#C0392B', 'stroke-width': 2, 'stroke-dasharray': '6 4' });
+        for (let k = 1; k <= 2; k++) add('circle', { cx: x + 42 * k * tx, cy: y + 42 * k * ty, r: 9, fill: '#F5CBA7', stroke: '#C0392B', 'stroke-dasharray': '3 2' });
+        bead(add, x, y, 11, '#F39C12');
+        label(add, x + 14, y - 12, 'X', { 'font-size': 16 });
+        const [fx, fy] = pol(cx, cy, R - 48, a);
+        arrow(add, x, y, fx, fy, '#1E8449', 3, 11);
+        vlabel(add, fx + 26, fy + 6, 'F', '#1E8449', 'c');
+        arcArrow(add, cx, cy, R + 14, 200, 250, '#7F8C8D', 2, 9);
+    }
+    // b) coche en una curva (vista desde arriba)
+    {
+        const add = svgAdder('b'), cx = 20, cy = 230, R1 = 120, R2 = 190;
+        add('path', { d: arcD(cx, cy, R2, 0, 90) + ` L${cx} ${cy - R1} ` + arcD(cx, cy, R1, 90, 0).replace('M', 'L') + ' Z', fill: '#AEB6BF' });
+        add('path', { d: arcD(cx, cy, (R1 + R2) / 2, 0, 90), fill: 'none', stroke: '#FFFFFF', 'stroke-width': 3, 'stroke-dasharray': '12 10' });
+        add('rect', { x: 0, y: 0, width: 270, height: 240, fill: 'none' });
+        // coche en la curva a 45°
+        const a = 45, Rm = (R1 + R2) / 2, [x, y] = pol(cx, cy, Rm, a), [tx, ty] = pol(0, 0, 1, a - 90);
+        add('line', { x1: x, y1: y, x2: x + 110 * tx, y2: y + 110 * ty, stroke: '#C0392B', 'stroke-width': 2, 'stroke-dasharray': '6 4' });
+        arrow(add, x + 110 * tx, y + 110 * ty, x + 150 * tx, y + 150 * ty, '#C0392B', 2, 11);
+        const g = add('g', { transform: `translate(${x} ${y}) rotate(135)` });
+        g.innerHTML = '<rect x="-14" y="-24" width="28" height="48" rx="7" fill="#C0392B" stroke="#641E16" stroke-width="1.5"/>' +
+            '<rect x="-10" y="6" width="20" height="10" rx="2" fill="#D6EAF8"/><rect x="-10" y="-16" width="20" height="8" rx="2" fill="#D6EAF8"/>';
+        const [fx, fy] = pol(cx, cy, Rm - 52, a);
+        arrow(add, x, y, fx, fy, '#1E8449', 3, 11);
+        vlabel(add, fx - 4, fy + 26, 'F', '#1E8449', 'c');
+        label(add, 236, 175, 'derrape', { 'font-size': 13, fill: '#C0392B' });
+    }
+    // c) tambor de la lavadora
+    {
+        const add = svgAdder('c'), cx = 135, cy = 120, R = 80;
+        add('circle', { cx, cy, r: R + 8, fill: '#D5D8DC', stroke: '#5D6D7E', 'stroke-width': 2 });
+        add('circle', { cx, cy, r: R, fill: '#FDFEFE', stroke: '#5D6D7E', 'stroke-width': 2 });
+        for (let k = 0; k < 16; k++) { const [x, y] = pol(cx, cy, R + 4, k * 22.5); add('circle', { cx: x, cy: y, r: 3, fill: '#5D6D7E' }); }
+        // ropa
+        const r = rng(4);
+        for (let k = 0; k < 9; k++) { const [x, y] = pol(cx, cy, R - 14 - 6 * r(), 20 + k * 37); add('ellipse', { cx: x, cy: y, rx: 14, ry: 9, fill: ['#AF7AC5', '#5DADE2', '#F5B041'][k % 3], transform: `rotate(${-(20 + k * 37) + 90} ${x} ${y})` }); }
+        // gotas que salen tangentes
+        [45, 165, 285].forEach(a => {
+            const [x, y] = pol(cx, cy, R + 4, a), [tx, ty] = pol(0, 0, 1, a + 90);
+            arrow(add, x, y, x + 55 * tx, y + 55 * ty, '#2E86C1', 2.5, 10);
+            add('path', { d: `M${x + 62 * tx} ${y + 62 * ty - 6} q 4 6 0 9 q -4 -3 0 -9 Z`, fill: '#2E86C1' });
+        });
+        arcArrow(add, cx, cy, 34, 20, 130, '#7F8C8D', 2.2, 9);
+        label(add, cx, cy + 5, 'giro', { 'font-size': 12, fill: '#7F8C8D', 'font-weight': 600 });
+    }
+</script>
+</body>
+</html>

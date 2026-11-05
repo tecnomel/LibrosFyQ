@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Decantación</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="steps.css">
+<script src="lab_es.js"></script>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1></h1>
+    <div class="prop" id="prop"></div>
+    <div class="row" id="row"></div>
+</div>
+<script>
+buildSteps('Cómo separar por decantación (embudo de decantación)', 'la <b>densidad</b> de líquidos que no se mezclan', 'aceite + agua', [
+  [sepFunnel(130,30,C.oil,C.water,0,0,false) + `<g transform="rotate(-35 205 40)">${beaker(180,0,50,60,[[35,'#D4E6A5']])}</g>` + arrowD(185,55,160,70) +
+   T(130,200,'llave cerrada',{c:C.red,fs:13}),
+   'Vierte la mezcla en el embudo de decantación con la <b>llave cerrada</b>.'],
+  [sepFunnel(110,30,C.oil,C.water,40,62,false) + T(205,70,'aceite',{c:'#B7950B'}) + T(205,120,'agua',{c:C.blue}) +
+   T(205,88,'menos denso ↑',{fs:12,fw:400}) + T(205,138,'más densa ↓',{fs:12,fw:400}),
+   'Espera: los líquidos forman <b>dos capas</b>. El menos denso (aceite) flota encima.'],
+  [sepFunnel(110,20,C.oil,C.water,40,24,true) + `<ellipse cx="110" cy="174" rx="4" ry="7" fill="#5DADE2"/>` + beaker(70,160,80,45,[[25,C.water]]) +
+   tag(205,185,'keep','✔ agua'),
+   'Abre la llave: sale el líquido de <b>abajo</b> (agua). Ciérrala cuando el aceite llegue a la llave.'],
+  [sepFunnel(110,20,C.oil,C.water,40,0,false) + tag(205,70,'keep','✔ aceite') + beaker(70,160,80,45,[]),
+   'El <b>aceite</b> se queda en el embudo. Viértelo por arriba en otro vaso.'],
+]);
+</script>
+</body>
+</html>

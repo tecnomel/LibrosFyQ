@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Evaporación y cristalización</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="steps.css">
+<script src="lab_es.js"></script>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1></h1>
+    <div class="prop" id="prop"></div>
+    <div class="row" id="row"></div>
+</div>
+<script>
+buildSteps('Cómo separar por evaporación y cristalización', 'la <b>temperatura de ebullición</b>: el agua se evapora y la sal no', 'sal disuelta en agua', [
+  [`<g transform="rotate(-35 205 40)">${beaker(180,0,50,60,[[35,C.water]])}</g>` + arrowD(185,55,160,75) + dish(120,90,150,C.water) + T(120,160,'cristalizador',{fs:13,fw:400}),
+   'Vierte el agua salada en un <b>cristalizador</b> o cápsula de porcelana.'],
+  [dish(130,80,150,C.water2) + vapour(100,70) + tripod(130,110) + burner(130,150),
+   '<b>Calienta</b> suavemente (o déjalo al sol): el agua se <b>evapora</b>.'],
+  [dish(130,80,150,'none', `<g fill="#fff" stroke="#7F8C8D" stroke-width="2"><rect x="100" y="92" width="14" height="14" transform="rotate(15 107 99)"/><rect x="125" y="98" width="14" height="14"/><rect x="150" y="92" width="14" height="14" transform="rotate(-20 157 99)"/></g>`) +
+   tag(130,60,'keep','✔ cristales de sal') + tag(130,170,'out','✘ el agua se pierde'),
+   'Los <b>cristales de sal</b> quedan en el recipiente. Si se evapora despacio, salen cristales más grandes.'],
+]);
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD1_08 · Función de onda del orbital 1s</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+</head>
+<body>
+<script>
+// Orbital 1s del hidrógeno (r en unidades del radio de Bohr a0):
+//   ψ(r) ∝ e^(−r)          P(r) = 4πr²ψ² ∝ r² e^(−2r)  (máximo en r = a0)
+const svg = crearFigura(1000, 250);
+const ROSA = "#D81B7A";
+const serif = { "font-family": "Times New Roman, serif", "font-style": "italic" };
+
+function ejesGrafica(x0, y0, w, h, etqY) {
+    flecha(svg, x0, y0, x0 + w, y0, { ancho: 1.4, punta: 9 });
+    flecha(svg, x0, y0, x0, y0 - h, { ancho: 1.4, punta: 9 });
+    texto(svg, x0 + w - 6, y0 + 20, "r", { ...serif, "font-size": 18, fill: COLORES.texto });
+    texto(svg, x0 - 10, y0 - h + 12, etqY, { ...serif, "font-size": 17, fill: COLORES.texto, "text-anchor": "end" });
+}
+function curva(x0, y0, w, h, f, rmax) {
+    let max = 0; for (let k = 0; k <= 200; k++) max = Math.max(max, f(rmax * k / 200));
+    const p = Array.from({ length: 201 }, (_, k) => {
+        const r = rmax * k / 200;
+        return `${(x0 + w * 0.92 * k / 200).toFixed(1)},${(y0 - (h - 18) * f(r) / max).toFixed(1)}`;
+    });
+    el("path", { d: "M" + p.join(" L"), fill: "none", stroke: ROSA, "stroke-width": 2.6 }, svg);
+}
+function numero(x, y, n) {
+    el("rect", { x: x - 14, y: y - 14, width: 28, height: 28, rx: 4, fill: "#7C97B8" }, svg);
+    texto(svg, x, y + 7, String(n), { "text-anchor": "middle", "font-size": 18, "font-weight": "bold", fill: "#fff" });
+}
+
+// 1) ψ frente a r
+ejesGrafica(40, 190, 190, 170, "ψ");
+curva(40, 190, 190, 170, r => Math.exp(-r), 6);
+numero(135, 228, 1);
+
+// 2) Probabilidad radial
+ejesGrafica(300, 190, 190, 170, "4πr²ψ²");
+curva(300, 190, 190, 170, r => r * r * Math.exp(-2 * r), 6);
+el("line", { x1: 300 + 190 * 0.92 / 6, y1: 190, x2: 300 + 190 * 0.92 / 6, y2: 40, stroke: "#999", "stroke-dasharray": "3 3" }, svg);
+texto(svg, 300 + 190 * 0.92 / 6, 206, [{ t: "a", attrs: serif }, { t: "0", sub: true }], { "text-anchor": "middle", "font-size": 15, fill: COLORES.gris });
+numero(395, 228, 2);
+
+// 3) Nube de probabilidad (corte por un plano): radios distribuidos según P(r)
+const rnd = aleatorio(7);
+const cx3 = 640, cy3 = 110, E3 = 52;
+function muestraR() {   // muestreo por rechazo de una distribución con máximo en r = a0 (ilustrativa)
+    for (;;) { const r = rnd() * 3.5, y = rnd() * 0.02; if (y < r ** 4 * Math.exp(-4 * r)) return r; }
+}
+for (let k = 0; k < 2600; k++) {
+    const r = muestraR(), t = rnd() * 2 * Math.PI;
+    el("circle", { cx: (cx3 + E3 * r * Math.cos(t)).toFixed(1), cy: (cy3 + E3 * r * Math.sin(t)).toFixed(1),
+        r: (0.8 + rnd() * 1.1).toFixed(2), fill: ROSA, opacity: 0.75 }, svg);
+}
+numero(640, 228, 3);
+
+// 4) Esfera con un corte que muestra la zona de máxima probabilidad
+const cx4 = 880, cy4 = 110, R4 = 88;
+const gs = el("radialGradient", { id: "esf4", cx: "40%", cy: "35%", r: "70%" }, defs(svg));
+[["0%", "#FBFAF2"], ["70%", "#E4E1CF"], ["100%", "#B9B59C"]].forEach(([o, c]) => el("stop", { offset: o, "stop-color": c }, gs));
+el("circle", { cx: cx4, cy: cy4, r: R4, fill: "url(#esf4)", stroke: "#A8A48A" }, svg);
+const gc = el("radialGradient", { id: "corte" }, defs(svg));
+[["0%", "#F4C7A0"], ["30%", "#F2A061"], ["42%", "#D8550E"], ["55%", "#F5B684"], ["100%", "#FBEAD8"]]
+    .forEach(([o, c]) => el("stop", { offset: o, "stop-color": c }, gc));
+// Semicírculo de corte (plano vertical visto de frente-lado)
+el("path", { d: `M${cx4},${cy4 - R4} A${R4 * 0.45},${R4} 0 0 1 ${cx4},${cy4 + R4} Z`, fill: "url(#corte)",
+    stroke: "#A8A48A" }, svg);
+el("path", { d: `M${cx4},${cy4 - R4} A${R4 * 0.45},${R4} 0 0 0 ${cx4},${cy4 + R4}`, fill: "none", stroke: "#fff", "stroke-width": 1.2, opacity: 0.8 }, svg);
+numero(880, 228, 4);
+</script>
+</body>
+</html>

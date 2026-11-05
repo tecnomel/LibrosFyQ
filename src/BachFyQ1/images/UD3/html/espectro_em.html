@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Espectro electromagnético</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1100px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="1050" height="400"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const A = svgAdder('s');
+    const X0 = 40, X1 = 1010;               // escala log de frecuencia: 10^4 .. 10^22 Hz
+    const fx = e => X0 + (e - 4) / 18 * (X1 - X0);
+    // onda de frecuencia creciente
+    let d = '', ph = 0;
+    for (let x = X0; x <= X1; x += 1) { const k = 0.02 * Math.pow(18, (x - X0) / (X1 - X0)); ph += k; d += (x === X0 ? 'M' : 'L') + x + ' ' + (50 - 22 * Math.sin(ph)).toFixed(1); }
+    A('path', { d, fill: 'none', stroke: '#2E86C1', 'stroke-width': 2 });
+    // bandas
+    const B = [[4, 9, 'Ondas de radio', '#D6EAF8'], [9, 11.6, 'Microondas', '#D1F2EB'], [11.6, 14.6, 'Infrarrojo', '#FADBD8'], [14.6, 14.9, '', ''], [14.9, 16.8, 'Ultravioleta', '#E8DAEF'], [16.8, 19.5, 'Rayos X', '#D5D8DC'], [19.5, 22, 'Rayos γ', '#F9E79F']];
+    const yb = 110, hb = 60;
+    B.forEach(([a, b, t, col]) => {
+        if (!t) return;
+        A('rect', { x: fx(a), y: yb, width: fx(b) - fx(a), height: hb, fill: col, stroke: '#fff', 'stroke-width': 1 });
+        label(A, (fx(a) + fx(b)) / 2, yb + 36, t, { 'font-size': 14 });
+    });
+    const gv = spectrumGrad(A, 'vis', 750, 380);  // de rojo (izq., menor frecuencia) a violeta
+    A('rect', { x: fx(14.6), y: yb, width: fx(14.9) - fx(14.6), height: hb, fill: gv });
+    // ampliación del visible
+    const v0 = 330, v1 = 720, yv = 245;
+    A('path', { d: `M${fx(14.6)} ${yb + hb} L${v0} ${yv} M${fx(14.9)} ${yb + hb} L${v1} ${yv}`, stroke: '#7F8C8D', 'stroke-width': 1.2, 'stroke-dasharray': '4 3' });
+    A('rect', { x: v0, y: yv, width: v1 - v0, height: 36, fill: spectrumGrad(A, 'vis2', 750, 380) });
+    label(A, v0 - 8, yv + 24, '750 nm', { 'font-size': 13, 'text-anchor': 'end' }); label(A, v1 + 8, yv + 24, '380 nm', { 'font-size': 13, 'text-anchor': 'start' });
+    label(A, (v0 + v1) / 2, yv + 56, 'Luz visible', { 'font-size': 15 });
+    // escalas
+    const ys = 200;
+    A('line', { x1: X0, y1: ys, x2: X1, y2: ys, stroke: '#23373B', 'stroke-width': 1.5 });
+    for (let e = 4; e <= 22; e += 2) {
+        A('line', { x1: fx(e), y1: ys - 5, x2: fx(e), y2: ys + 5, stroke: '#23373B', 'stroke-width': 1.5 });
+        const t = label(A, fx(e), ys - 10, '', { 'font-size': 12, 'font-weight': 400 }); t.innerHTML = `10<tspan baseline-shift="super" font-size="70%">${e}</tspan>`;
+        const lw = Math.round(Math.log10(3e8) - e);
+        const u = label(A, fx(e), ys + 22, '', { 'font-size': 12, 'font-weight': 400 }); u.innerHTML = `10<tspan baseline-shift="super" font-size="70%">${lw}</tspan>`;
+    }
+    label(A, X0, ys - 28, 'Frecuencia (Hz)', { 'font-size': 13, 'text-anchor': 'start' });
+    label(A, X0, ys + 40, 'Longitud de onda (m)', { 'font-size': 13, 'text-anchor': 'start' });
+    // energía
+    const ye = 350;
+    A('line', { x1: X0 + 10, y1: ye, x2: X1 - 10, y2: ye, stroke: '#7F8C8D', 'stroke-width': 3 });
+    arrow(A, X1 - 30, ye, X1, ye, '#C0392B', 3, 14); arrow(A, X0 + 30, ye, X0, ye, '#1F618D', 3, 14);
+    label(A, X0 + 10, ye + 30, 'Menor frecuencia y energía · mayor λ', { 'font-size': 14, fill: '#1F618D', 'text-anchor': 'start' });
+    label(A, X1 - 10, ye + 30, 'Mayor frecuencia y energía · menor λ', { 'font-size': 14, fill: '#C0392B', 'text-anchor': 'end' });
+    label(A, fx(18.5), ye - 12, 'radiación ionizante', { 'font-size': 13, fill: '#922B21' });
+    label(A, fx(9), ye - 12, 'radiación no ionizante', { 'font-size': 13, fill: '#1A5276' });
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Masa y peso</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 14px; }
+    .c { flex: 1; border-radius: 16px; padding: 12px; text-align: center; border: 2px solid var(--line); background: #FBFCFC; }
+    .c .ic { font-size: 54px; line-height: 1.2; }
+    .c h2 { font-size: 21px; color: var(--blue); }
+    .c .g { font-size: 15px; color: var(--grey); }
+    .c .m { font-size: 17px; margin-top: 6px; }
+    .c .w { font-size: 26px; font-weight: 800; color: var(--red); }
+    .bar { height: 14px; border-radius: 7px; background: var(--red); margin: 6px auto 0; }
+    .bottom { margin-top: 14px; display: flex; gap: 20px; font-size: 18px; }
+    .bottom div { flex: 1; border-radius: 12px; padding: 10px 14px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Una astronauta de 80 kg: la misma masa, distinto peso</h1>
+    <div class="row">
+        <div class="c"><div class="ic">🌍</div><h2>Tierra</h2><div class="g">g = 9,8 m/s²</div><div class="m">m = <b>80 kg</b></div><div class="w">P = 784 N</div><div class="bar" style="width:79%"></div></div>
+        <div class="c"><div class="ic">🌙</div><h2>Luna</h2><div class="g">g = 1,6 m/s²</div><div class="m">m = <b>80 kg</b></div><div class="w">P = 128 N</div><div class="bar" style="width:13%"></div></div>
+        <div class="c"><div class="ic">🔴</div><h2>Marte</h2><div class="g">g = 3,7 m/s²</div><div class="m">m = <b>80 kg</b></div><div class="w">P = 296 N</div><div class="bar" style="width:30%"></div></div>
+        <div class="c"><div class="ic">🪐</div><h2>Júpiter</h2><div class="g">g = 24,8 m/s²</div><div class="m">m = <b>80 kg</b></div><div class="w">P = 1984 N</div><div class="bar" style="width:100%"></div></div>
+    </div>
+    <div class="bottom">
+        <div style="background:var(--blue-soft)"><b>Masa (m)</b>: cantidad de materia, en <b>kg</b>. Es la misma en todas partes.</div>
+        <div style="background:var(--red-soft)"><b>Peso (P = m · g)</b>: es una fuerza, en <b>N</b>. Depende del planeta.</div>
+    </div>
+</div>
+</body>
+</html>

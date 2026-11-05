@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD0_04 · Leyes de Boyle-Mariotte, Charles y Gay-Lussac</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/graficas.js"></script>
+</head>
+<body>
+<script>
+// Curvas CALCULADAS con pV = nRT para n = 1 mol (R = 0,082 atm·L/(mol·K)).
+// Boyle: isotermas p = nRT/V. Charles: isóbaras V = nRT/p. Gay-Lussac: isócoras p = nRT/V.
+// Las rectas de Charles y Gay-Lussac se prolongan (a trazos) hasta 0 K.
+const svg = crearFigura(900, 360);
+const R = 0.082, n = 1;
+const T = (x, y, t, a = {}) => texto(svg, x, y, t, { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto, ...a });
+const C1 = COLORES.myBlue, C2 = COLORES.myRed;
+// Leyenda: trazo corto del color de la curva + texto
+const etq = (g, x, y, t, col) => {
+    el("line", { x1: g.px(x), y1: g.py(y) - 4, x2: g.px(x) + 22, y2: g.py(y) - 4, stroke: col, "stroke-width": 2.5 }, svg);
+    texto(svg, g.px(x) + 28, g.py(y), t, { "font-size": 13, fill: col, "font-weight": "bold" });
+};
+
+// --- Boyle-Mariotte (T constante)
+const g1 = grafica(svg, { x: 75, y: 60, w: 210, h: 200, xmin: 0, xmax: 50, ymin: 0, ymax: 3.3,
+    etqX: "V (L)", etqY: "p (atm)", ticksX: [0, 10, 20, 30, 40, 50], ticksY: [0, 1, 2, 3], tam: 12 });
+g1.curva(V => n * R * 300 / V, { color: C1, desde: 300 * R / 3, hasta: 50 });
+g1.curva(V => n * R * 600 / V, { color: C2, desde: 600 * R / 3, hasta: 50 });
+etq(g1, 24, 3.05, "T = 300 K", C1);
+etq(g1, 24, 2.75, "T = 600 K", C2);
+T(180, 22, "Boyle-Mariotte", { "font-weight": "bold", "font-size": 17 });
+T(180, 42, "T constante:  p · V = cte", { "font-size": 13, fill: COLORES.gris });
+
+// --- Charles (p constante)
+const g2 = grafica(svg, { x: 375, y: 60, w: 210, h: 200, xmin: 0, xmax: 600, ymin: 0, ymax: 55,
+    etqX: "T (K)", etqY: "V (L)", ticksX: [0, 200, 400, 600], ticksY: [0, 10, 20, 30, 40, 50], tam: 12 });
+for (const [p, col] of [[1, C1], [2, C2]]) {
+    g2.curva(t => n * R * t / p, { color: col, hasta: 200, trazo: "6 5", ancho: 1.8 });
+    g2.curva(t => n * R * t / p, { color: col, desde: 200 });
+}
+etq(g2, 30, 51, "p = 1 atm", C1);
+etq(g2, 30, 46, "p = 2 atm", C2);
+T(480, 22, "Charles", { "font-weight": "bold", "font-size": 17 });
+T(480, 42, "p constante:  V / T = cte", { "font-size": 13, fill: COLORES.gris });
+
+// --- Gay-Lussac (V constante)
+const g3 = grafica(svg, { x: 675, y: 60, w: 210, h: 200, xmin: 0, xmax: 600, ymin: 0, ymax: 5.5,
+    etqX: "T (K)", etqY: "p (atm)", ticksX: [0, 200, 400, 600], ticksY: [0, 1, 2, 3, 4, 5], tam: 12 });
+for (const [V, col] of [[10, C1], [20, C2]]) {
+    g3.curva(t => n * R * t / V, { color: col, hasta: 200, trazo: "6 5", ancho: 1.8 });
+    g3.curva(t => n * R * t / V, { color: col, desde: 200 });
+}
+etq(g3, 30, 5.1, "V = 10 L", C1);
+etq(g3, 30, 4.6, "V = 20 L", C2);
+T(780, 22, "Gay-Lussac", { "font-weight": "bold", "font-size": 17 });
+T(780, 42, "V constante:  p / T = cte", { "font-size": 13, fill: COLORES.gris });
+
+// Ecuación que las reúne
+el("rect", { x: 300, y: 312, width: 300, height: 38, rx: 8, fill: "#FFF3EA", stroke: COLORES.ocre }, svg);
+T(450, 337, [{ t: "p · V = n · R · T", attrs: { "font-weight": "bold" } }, { t: "   (n = 1 mol)" }], { "font-size": 16 });
+</script>
+</body>
+</html>

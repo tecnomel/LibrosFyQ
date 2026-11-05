@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Measuring very small thicknesses</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1100px; }
+    .row { display: flex; gap: 40px; align-items: center; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .side { flex: 1; font-size: 20px; }
+    .box { border-radius: 14px; padding: 12px 16px; margin-bottom: 14px; }
+    .bad { background: var(--red-soft); border: 2px solid var(--red); }
+    .good { background: var(--green-soft); border: 2px solid var(--green); }
+    .eq { font-size: 26px; font-weight: 800; color: var(--blue); text-align: center; margin: 6px 0; }
+    .r { color: var(--red); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Too thin to measure? Measure many and divide!</h1>
+    <div class="row">
+        <svg width="530" height="400" viewBox="0 0 530 400" id="s"></svg>
+        <div class="side">
+            <div class="box bad">✘ One sheet is about 0.1 mm thick: a ruler (sensitivity 1 mm) cannot measure it.</div>
+            <div class="box good">✔ Stack <b>N</b> identical sheets, measure the whole pile <b>L</b> and divide:
+                <div class="eq">e = <span class="frac"><span>L</span><span>N</span></span> = <span class="frac"><span>5.0 cm</span><span>500</span></span> </div><div class="eq"><span class="r">e = 0.01 cm = 0.1 mm</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg', svg = document.getElementById('s');
+    const add = (tag, a, txt) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (txt) e.textContent = txt; svg.appendChild(e); return e; };
+    // pile of sheets (drawn as many thin layers)
+    for (let i = 0; i < 50; i++) {
+        const y = 350 - i * 5.6;
+        add('polygon', { points: `90,${y} 290,${y} 330,${y - 30} 130,${y - 30}`, fill: i % 2 ? '#FDFEFE' : '#F2F3F4', stroke: '#B2BABB', 'stroke-width': 0.8 });
+    }
+    add('rect', { x: 90, y: 350 - 49 * 5.6, width: 200, height: 49 * 5.6, fill: 'none', stroke: '#7F8C8D', 'stroke-width': 1.5 });
+    // ruler at the right
+    add('rect', { x: 345, y: 64, width: 34, height: 292, rx: 4, fill: '#FEF9E7', stroke: '#7D6608', 'stroke-width': 2 });
+    for (let i = 0; i <= 50; i++) {
+        const y = 350 - i * 5.6;
+        add('line', { x1: 345, x2: 345 + (i % 10 === 0 ? 18 : i % 5 === 0 ? 12 : 7), y1: y, y2: y, stroke: '#23373B', 'stroke-width': i % 10 === 0 ? 2 : 1 });
+        if (i % 10 === 0) add('text', { x: 367, y: y + 5, 'font-size': 12, fill: '#23373B' }, i / 10);
+    }
+    add('text', { x: 400, y: 215, 'font-size': 20, 'font-weight': 800, fill: '#C0392B' }, 'L = 5.0 cm');
+    add('text', { x: 190, y: 385, 'text-anchor': 'middle', 'font-size': 18, 'font-weight': 700, fill: '#000070' }, 'N = 500 sheets');
+</script>
+</body>
+</html>

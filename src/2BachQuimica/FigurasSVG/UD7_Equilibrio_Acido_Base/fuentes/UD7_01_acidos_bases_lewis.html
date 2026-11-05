@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD7_01 · Ácidos y bases de Lewis</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+</head>
+<body>
+<script>
+// Ácido de Lewis: acepta un par de electrones. Base de Lewis: lo cede.
+const svg = crearFigura(640, 330);
+function equilibrio(x1, y, x2) {
+    el("path", { d: "M" + x1 + "," + (y - 4) + " L" + x2 + "," + (y - 4) + " l-9,-6", fill: "none", stroke: "#222", "stroke-width": 1.6 }, svg);
+    el("path", { d: "M" + x2 + "," + (y + 4) + " L" + x1 + "," + (y + 4) + " l9,6", fill: "none", stroke: "#222", "stroke-width": 1.6 }, svg);
+}
+const pie = (x, y, t1) => { texto(svg, x, y, t1, { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto }); texto(svg, x, y + 17, "de Lewis", { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto }); };
+const AZ = "#1E4FC0";
+// H+ + H2O ⇌ H3O+
+texto(svg, 40, 88, [{ t: "H" }, { t: "+", sup: true }], { "text-anchor": "middle", "font-size": 22, fill: COLORES.texto, "font-family": LEWIS.fuente });
+texto(svg, 95, 88, "+", { "text-anchor": "middle", "font-size": 20, fill: COLORES.texto });
+dibujarLewis(svg, 170, 80, { atomos: [{ s: "O", x: 0, y: 0, pares: [0, { a: 180, color: AZ }] }, { s: "H", id: "a", x: 0, y: 1 }, { s: "H", id: "b", x: 0, y: -1 }],
+    enlaces: [{ a: "O", b: "a" }, { a: "O", b: "b" }] }, { L: 42 });
+equilibrio(230, 80, 300);
+dibujarLewis(svg, 400, 80, { atomos: [{ s: "O", x: 0, y: 0, pares: [180] }, { s: "H", id: "a", x: 0, y: 1 }, { s: "H", id: "b", x: 0, y: -1 }, { s: "H", id: "c", x: 1, y: 0 }],
+    enlaces: [{ a: "O", b: "a" }, { a: "O", b: "b" }, { a: "O", b: "c", color: AZ, ancho: 2.4 }] }, { L: 42 });
+corchetes(svg, 345, 25, 470, 135, "+");
+pie(40, 130, "ácido"); pie(170, 150, "base");
+// BF3 + F− ⇌ BF4−
+dibujarLewis(svg, 60, 250, { atomos: [{ s: "B", x: 0, y: 0 }, { s: "F", id: "a", x: 0, y: 1, libres: 3 }, { s: "F", id: "b", x: -1, y: 0, libres: 3 }, { s: "F", id: "c", x: 0, y: -1, libres: 3 }],
+    enlaces: [{ a: "B", b: "a" }, { a: "B", b: "b" }, { a: "B", b: "c" }] }, { L: 40 });
+texto(svg, 130, 258, "+", { "text-anchor": "middle", "font-size": 20, fill: COLORES.texto });
+dibujarLewis(svg, 175, 250, { atomos: [{ s: "F", x: 0, y: 0, pares: [90, 0, 270, { a: 180, color: AZ }], carga: "−", angCarga: 45, cargaCirculo: false }] });
+equilibrio(230, 250, 300);
+dibujarLewis(svg, 400, 250, { atomos: [{ s: "B", x: 0, y: 0 }, { s: "F", id: "a", x: 0, y: 1, libres: 3 }, { s: "F", id: "b", x: -1, y: 0, libres: 3 }, { s: "F", id: "c", x: 0, y: -1, libres: 3 }, { s: "F", id: "d", x: 1, y: 0, libres: 3, colorPares: "#222" }],
+    enlaces: [{ a: "B", b: "a" }, { a: "B", b: "b" }, { a: "B", b: "c" }, { a: "B", b: "d", color: AZ, ancho: 2.4 }] }, { L: 40 });
+corchetes(svg, 325, 190, 480, 310, "−");
+pie(60, 300 + 10, "ácido"); pie(175, 300 + 10, "base");
+texto(svg, 630, 160, "par cedido", { "text-anchor": "end", "font-size": 13, fill: AZ });
+</script>
+</body>
+</html>

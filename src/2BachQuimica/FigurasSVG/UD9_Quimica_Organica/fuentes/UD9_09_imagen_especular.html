@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_09 · Enantiómeros: imágenes especulares</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/moleculas.js"></script>
+</head>
+<body>
+<script>
+// Una molécula con un carbono quiral (CHFClBr) y su imagen especular: no son superponibles.
+const svg = crearFigura(620, 360);
+const e3 = new Escena3D({ cx: 310, cy: 185, escala: 80, camara: [1, -0.28, 0.3] });
+const T = rotarZ(GEOM.tetraedrica, 20);
+const colores = ["#7AC943", "#E8E8E8", "#A0391E", "#C020C0"];     // F, H, Br, I
+const radios = [0.26, 0.18, 0.3, 0.32];
+function mol(c, espejo) {
+    const s = espejo ? -1 : 1;
+    const pts = T.map(d => [c[0] + d[0], c[1] + s * d[1], c[2] + d[2]]);
+    pts.forEach((p, i) => {
+        const u = norm(resta(p, c));
+        e3.segmento(suma(c, esc(u, 0.2)), resta(p, esc(u, radios[i] * 0.8)), { color: "#8E959C", ancho: 7, sesgo: -0.02, trozos: 6 });
+        e3.bola(p, radios[i], colores[i], svg);
+    });
+    e3.bola(c, 0.24, "#8C8C8C", svg);
+}
+mol([0, -1.7, 0], false);
+mol([0, 1.7, 0], true);
+e3.plano([0, 0, 0], [1.6, 0, 0], [0, 0, 1.6], { color: "#9CB8E8", borde: "#5B7FC8", opacidad: 0.35, teselas: 8 });
+e3.dibujar(svg);
+texto(svg, 310, 350, "espejo", { "text-anchor": "middle", "font-size": 15, fill: "#5B7FC8" });
+</script>
+</body>
+</html>

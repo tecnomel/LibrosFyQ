@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Capas de la atmósfera y capa de ozono</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="780" height="360"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const Y = km => 330 - km * 3;           // 0 km abajo, 100 km arriba
+    const d = add('defs', {});
+    d.innerHTML = '<linearGradient id="sky" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#AED6F1"/><stop offset=".5" stop-color="#5D6D9E"/><stop offset="1" stop-color="#1B2631"/></linearGradient>';
+    add('rect', { x: 80, y: Y(105), width: 420, height: Y(0) - Y(105), fill: 'url(#sky)' });
+    // capa de ozono (15-50 km, máximo hacia 25 km)
+    add('rect', { x: 80, y: Y(50), width: 420, height: Y(15) - Y(50), fill: '#58D68D', opacity: 0.35 });
+    add('rect', { x: 80, y: Y(32), width: 420, height: Y(20) - Y(32), fill: '#28B463', opacity: 0.45 });
+    // límites de las capas
+    [[12, 'troposfera', 6], [50, 'estratosfera', 31], [85, 'mesosfera', 68], [100, 'línea de Kármán (100 km)', 103]].forEach(([km, t, ly]) => {
+        add('line', { x1: 80, y1: Y(km), x2: 500, y2: Y(km), stroke: '#FDFEFE', 'stroke-width': km === 100 ? 2.5 : 1.5, 'stroke-dasharray': km === 100 ? '8 5' : '' });
+        label(add, 90, Y(ly) + 5, t, { 'font-size': 15, fill: '#FDFEFE', 'text-anchor': 'start' });
+    });
+    // Tierra
+    add('path', { d: `M60 ${Y(0)} L520 ${Y(0)} L520 ${Y(0) + 22} L60 ${Y(0) + 22} Z`, fill: '#7DCEA0' });
+    // eje de altura
+    add('line', { x1: 60, y1: Y(0), x2: 60, y2: Y(105), stroke: '#23373B', 'stroke-width': 2 });
+    [0, 20, 40, 60, 80, 100].forEach(km => { add('line', { x1: 55, y1: Y(km), x2: 60, y2: Y(km), stroke: '#23373B', 'stroke-width': 2 }); label(add, 50, Y(km) + 5, km, { 'font-size': 13, 'text-anchor': 'end' }); });
+    label(add, 22, 180, 'altitud (km)', { 'font-size': 14, transform: 'rotate(-90 22 180)' });
+    // radiación UV
+    [[150, true], [270, true], [390, false]].forEach(([x, stop]) => {
+        const yEnd = stop ? Y(30) : Y(1);
+        add('path', { d: `M${x} ${Y(104)} ` + Array.from({ length: 14 }, (_, k) => `L${x + (k % 2 ? 8 : -8)} ${Y(104) + (k + 1) * (yEnd - Y(104)) / 14}`).join(' '), fill: 'none', stroke: '#BB8FCE', 'stroke-width': 2.5 });
+        if (!stop) arrow(add, x, Y(6), x, Y(1), '#BB8FCE', 2.5, 10);
+    });
+    label(add, 330, Y(90), 'radiación ultravioleta del Sol', { 'font-size': 14, fill: '#E8DAEF' });
+    // rótulos a la derecha
+    add('line', { x1: 500, y1: Y(26), x2: 535, y2: Y(26), stroke: '#1E8449', 'stroke-width': 2 });
+    label(add, 545, Y(26) - 4, 'capa de ozono (15-50 km)', { 'font-size': 15, fill: '#1E8449', 'text-anchor': 'start' });
+    label(add, 545, Y(26) + 15, 'absorbe el 98 % de la', { 'font-size': 13, fill: '#525252', 'text-anchor': 'start' });
+    label(add, 545, Y(26) + 31, 'radiación UV más energética', { 'font-size': 13, fill: '#525252', 'text-anchor': 'start' });
+    add('line', { x1: 500, y1: Y(5), x2: 535, y2: Y(5), stroke: '#2471A3', 'stroke-width': 2 });
+    label(add, 545, Y(5) - 4, 'troposfera: aire que respiramos,', { 'font-size': 13, fill: '#525252', 'text-anchor': 'start' });
+    label(add, 545, Y(5) + 12, 'nubes y ciclo del agua', { 'font-size': 13, fill: '#525252', 'text-anchor': 'start' });
+</script>
+</body>
+</html>

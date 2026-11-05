@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Dilatación lineal de una barra</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 720px; } .note { font-size: 14px; text-align: center; margin-top: 2px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="660" height="210"></svg>
+    <div class="note">Δ<i>l</i> = <i>l</i><sub><i>T</i></sub> − <i>l</i><sub>0</sub> = <i>l</i><sub>0</sub> · λ · Δ<i>T</i> &nbsp; (el alargamiento está exagerado en el dibujo)</div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const d = add('defs', {});
+    d.innerHTML = '<linearGradient id="bar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EAEDED"/><stop offset=".45" stop-color="#ABB2B9"/><stop offset="1" stop-color="#5D6D7E"/></linearGradient>';
+    const x0 = 110, L0 = 380, dL = 90;
+    function bar(y, L, col) {
+        add('rect', { x: x0, y, width: L, height: 26, rx: 13, fill: 'url(#bar)', stroke: '#424949', 'stroke-width': 1.5 });
+        if (col) add('rect', { x: x0, y, width: L, height: 26, rx: 13, fill: col, opacity: 0.25 });
+    }
+    bar(40, L0);
+    bar(130, L0 + dL, '#E74C3C');
+    sub(add, 60, 58, 'T_0 = 0 °C', { 'font-size': 15, 'font-weight': 600 });
+    label(add, 60, 148, 'T', { 'font-size': 15, 'font-style': 'italic', fill: '#C0392B' });
+    // cotas
+    function hdim(x1, x2, y, t, col = '#23373B') {
+        arrow(add, (x1 + x2) / 2, y, x1, y, col, 1.5, 8); arrow(add, (x1 + x2) / 2, y, x2, y, col, 1.5, 8);
+        sub(add, (x1 + x2) / 2, y - 7, t, { 'font-size': 16, fill: col, 'font-style': 'italic' });
+    }
+    hdim(x0, x0 + L0, 28, 'l_0');
+    hdim(x0, x0 + L0 + dL, 185, 'l_T', '#C0392B');
+    add('line', { x1: x0 + L0, y1: 66, x2: x0 + L0, y2: 165, stroke: '#525252', 'stroke-dasharray': '5 4' });
+    add('line', { x1: x0 + L0 + dL, y1: 120, x2: x0 + L0 + dL, y2: 165, stroke: '#525252', 'stroke-dasharray': '5 4' });
+    hdim(x0 + L0, x0 + L0 + dL, 112, 'Δl', '#1E8449');
+</script>
+</body>
+</html>

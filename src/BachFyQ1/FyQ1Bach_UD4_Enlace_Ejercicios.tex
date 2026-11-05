@@ -1,0 +1,730 @@
+%! Unidad 4 — El enlace químico: ejercicios resueltos y ejercicios finales
+%! Fuente: Fuentes/Quimica/Unidad 4 («Ejercicios resueltos», «Practica y calcula», «Piensa y resuelve»).
+%! Enunciados adaptados con sustancias y datos cambiados; soluciones rehechas. Dificultad: \(\star\) baja, \(\star\star\) media, \(\star\star\star\) alta.
+%! Electronegatividades de Pauling de la tabla tab:ud3-en (salvo donde el enunciado da otras).
+
+\section{Ejercicios resueltos}\label{sec:ud4-resueltos}
+
+Salvo que se indique otra cosa, usa las electronegatividades de la tabla~\ref{tab:ud3-en} y el criterio de la
+tabla~\ref{tab:ud4-den}.
+
+\begin{example}
+    \textbf{Lewis, geometría y polaridad.} Determina la estructura de Lewis y la geometría del \ch{PCl3}, el \ch{CS2} y el
+    \ch{CH2Cl2}. Usa la configuración electrónica de cada elemento para hallar su valencia covalente. ¿Cuáles son polares?
+
+    \textbf{Solución.} \textbf{1. Datos}: P: \conf{[Ne]\,3s^2\,3p^3} (5 electrones de valencia, covalencia 3); Cl:
+    \conf{[Ne]\,3s^2\,3p^5} (7, covalencia 1); C: \conf{[He]\,2s^2\,2p^2} (4, covalencia 4); S: \conf{[Ne]\,3s^2\,3p^4} (6,
+    covalencia 2); H: \conf{1s^1} (1, covalencia 1).
+
+    \textbf{2. \ch{PCl3}}: \(D = 5 + 3 \cdot 7 = 26\); \(N = 4 \cdot 8 = 32\); \(C = 6\): \textbf{3 enlaces}. Quedan
+    \(26 - 6 = 20\) electrones: tres pares en cada Cl y \textbf{un par solitario en el P}. Con tres pares enlazantes y uno
+    solitario, la molécula es una \textbf{pirámide trigonal}; los momentos de los enlaces P--Cl (\(\Delta\mathrm{EN} = 1{,}0\)) no
+    se anulan: es \textbf{polar}.
+    \[ \chemfig{\charge{90=\:,180=\:,270=\:}{Cl}-\charge{90=\:}{P}(-[6]\charge{0=\:,180=\:,270=\:}{Cl})-\charge{0=\:,90=\:,270=\:}{Cl}} \]
+
+    \textbf{3. \ch{CS2}}: \(D = 4 + 2 \cdot 6 = 16\); \(N = 24\); \(C = 8\): \textbf{4 enlaces}, dos dobles. Quedan 8 electrones,
+    dos pares en cada S. Sin pares solitarios en el C, la molécula es \textbf{lineal} y \textbf{apolar} (además,
+    \(\Delta\mathrm{EN} = 0\)).
+    \[ \chemfig{\charge{90=\:,270=\:}{S}=C=\charge{90=\:,270=\:}{S}} \]
+
+    \textbf{4. \ch{CH2Cl2}}: \(D = 4 + 2 + 14 = 20\); \(N = 8 + 2 \cdot 2 + 2 \cdot 8 = 28\); \(C = 8\): \textbf{4 enlaces}
+    simples. Quedan 12 electrones, tres pares en cada Cl. La molécula es \textbf{tetraédrica}, pero los enlaces C--H y C--Cl son
+    distintos y sus momentos no se anulan: es \textbf{polar}.
+    \[ \chemfig{C(-[2]H)(-[6]H)(-[4]\charge{90=\:,180=\:,270=\:}{Cl})-\charge{0=\:,90=\:,270=\:}{Cl}} \]
+\end{example}
+
+\begin{example}
+    \textbf{Energía reticular.} Calcula la energía reticular del bromuro de sodio sabiendo que en su formación a partir de sus
+    elementos se desprenden \qty{361}{\kilo\joule\per\mol}, y que (en \unit{\kilo\joule\per\mol}): sublimación del Na, \(+108\);
+    vaporización y disociación de medio mol de \ch{Br2(l)}, \(+112\); energía de ionización del Na, \(+496\); afinidad electrónica
+    del Br, \(-325\). ¿Es mayor o menor que la del \ch{NaCl} (\(\qty{-787}{\kilo\joule\per\mol}\))? ¿Por qué?
+
+    \textbf{Solución.} \textbf{1. Planteamiento}: según el ciclo de Born-Haber, la energía del proceso global es la suma de las de
+    todas las etapas:
+    \[ E_{\text{formación}} = E_{\text{sub}} + \tfrac{1}{2} E_{\text{dis}} + EI + AE + U \]
+    \textbf{2. Cálculo}:
+    \[ -361 = 108 + 112 + 496 - 325 + U \;\Rightarrow\; U = -361 - 391 = \qty{-752}{\kilo\joule\per\mol} \]
+    \textbf{3. Comparación}: es \textbf{menor} en valor absoluto que la del \ch{NaCl}. Los dos tienen el mismo catión y aniones de
+    la misma carga, pero el \ch{Br-} es más grande que el \ch{Cl-}: los iones quedan más lejos y se atraen menos.
+\end{example}
+
+\begin{example}
+    \textbf{Identificar sustancias por sus propiedades.} Cuatro sólidos, A, B, C y D, tienen estas propiedades:
+    \begin{center}
+        \begin{tabular}{@{}lcccc@{}}
+            \toprule
+            & \textbf{Fusión (\unit{\degreeCelsius})} & \textbf{Solubilidad en agua} & \textbf{Conduce en sólido} &
+            \textbf{Conduce disuelto o fundido} \\
+            \midrule
+            A & 1083 & No & Sí & Sí (fundido) \\[3pt]
+            B & 113 & No (sí en \ch{CS2}) & No & No \\[3pt]
+            C & 1713 & No & No & No \\[3pt]
+            D & 714 & Sí & No & Sí \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+    Indica qué tipo de sustancia es cada una.
+
+    \textbf{Solución.} \textbf{A} conduce en estado sólido: es un \textbf{metal} (son los datos del cobre). \textbf{B} funde a baja
+    temperatura, no conduce y se disuelve en un disolvente apolar: es una \textbf{sustancia molecular apolar} (el azufre,
+    \ch{S8}). \textbf{C} tiene un punto de fusión muy alto, no conduce de ninguna forma y es insoluble: es un \textbf{cristal
+    covalente} (el cuarzo, \ch{SiO2}). \textbf{D} funde a temperatura alta, se disuelve en agua y solo conduce cuando sus iones
+    quedan libres: es un \textbf{compuesto iónico} (el \ch{MgCl2}).
+\end{example}
+
+\begin{example}
+    \textbf{Ordenar por punto de ebullición.} Ordena de menor a mayor punto de ebullición estas sustancias: \ch{H2O},
+    \ch{CH4}, \ch{C3H8} (propano) y \ch{CH3OH} (metanol).
+
+    \textbf{Solución.} Las cuatro son sustancias moleculares; su punto de ebullición depende de las fuerzas intermoleculares.
+    \begin{itemize}
+        \item \ch{CH4} y \ch{C3H8} son apolares: solo tienen fuerzas de dispersión, mayores en el propano, cuya molécula es más
+        grande.
+        \item \ch{CH3OH} y \ch{H2O} tienen grupos O--H y forman enlaces de hidrógeno, mucho más intensos. El agua forma más
+        enlaces de hidrógeno por molécula (dos H y dos pares solitarios) que el metanol (un solo H unido a O).
+    \end{itemize}
+    El orden es \(\ch{CH4} < \ch{C3H8} < \ch{CH3OH} < \ch{H2O}\). Los valores reales son \(-161\), \(-42\), 65 y
+    \qty{100}{\degreeCelsius}.
+\end{example}
+
+\begin{example}
+    \textbf{Del número atómico a las propiedades.} Los elementos X (\(Z = 6\)) e Y (\(Z = 17\)) se combinan entre sí.
+    a) ¿Qué compuesto forman? Dibuja su estructura de Lewis. b) ¿Cuál es su geometría? ¿Es polar? c) ¿Qué fuerzas hay entre sus
+    moléculas? ¿Será soluble en agua?
+
+    \textbf{Solución.} a) X: \conf{1s^2\,2s^2\,2p^2} es el carbono (covalencia 4) e Y: \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^5}, el cloro
+    (covalencia 1). Los dos son no metales: forman un compuesto covalente, el \ch{CCl4}:
+    \[ \chemfig{C(-[2]\charge{0=\:,90=\:,180=\:}{Cl})(-[4]\charge{90=\:,180=\:,270=\:}{Cl})(-[6]\charge{0=\:,180=\:,270=\:}{Cl})-\charge{0=\:,90=\:,270=\:}{Cl}} \]
+    b) El C tiene cuatro pares enlazantes y ninguno solitario: geometría \textbf{tetraédrica}. Los enlaces C--Cl son polares
+    (\(\Delta\mathrm{EN} = \num{0.6}\)), pero los cuatro momentos, iguales y dirigidos hacia los vértices de un tetraedro, se
+    anulan: la molécula es \textbf{apolar}. c) Entre sus moléculas solo hay \textbf{fuerzas de dispersión}, bastante intensas por su
+    tamaño (es un líquido que hierve a \qty{77}{\degreeCelsius}). Al ser apolar, \textbf{no es soluble en agua}; de hecho, es un
+    disolvente de sustancias apolares.
+\end{example}
+
+%========================================================================================
+\section{Ejercicios de aplicación}\label{sec:ud4-aplicacion}
+%========================================================================================
+
+\subsection{Enlace iónico}
+
+\begin{exercise}
+    \(\star\star\) Predice el ion más probable que formarán el oxígeno, el litio, el estroncio y el yodo. Usa la regla del octeto
+    y sus configuraciones electrónicas.
+    \begin{solu}
+        O: \conf{[He]\,2s^2\,2p^4}, gana 2: \textcolor{red}{\ch{O^2-}}. Li: \conf{[He]\,2s^1}, pierde 1: \textcolor{red}{\ch{Li+}}.
+        Sr: \conf{[Kr]\,5s^2}, pierde 2: \textcolor{red}{\ch{Sr^2+}}. I: \conf{[Kr]\,4d^{10}\,5s^2\,5p^5}, gana 1:
+        \textcolor{red}{\ch{I-}}. Todos quedan con la configuración de un gas noble.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) De los compuestos \ch{KCl}, \ch{ClF3} y \ch{HI}, ¿cuál tiene enlace iónico? Justifica la respuesta.
+    \begin{solu}
+        \textcolor{red}{El \ch{KCl}}: está formado por un metal y un no metal (\(\Delta\mathrm{EN} = 3{,}2 - 0{,}8 = 2{,}4\)). El
+        \ch{ClF3} y el \ch{HI} están formados solo por no metales y son covalentes.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) De estas afirmaciones sobre el enlace iónico, solo una es falsa. ¿Cuál? a) Se da entre un metal y un no metal.
+    b) Los compuestos iónicos conducen la electricidad en estado sólido. c) Se forma entre elementos con mucha diferencia de
+    electronegatividad. d) Muchos compuestos iónicos son solubles en disolventes polares.
+    \begin{solu}
+        \textcolor{red}{La b}: en estado sólido los iones ocupan posiciones fijas en la red y no pueden moverse. Solo conducen
+        fundidos o disueltos.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) De estas afirmaciones sobre los sólidos iónicos, solo una es verdadera. ¿Cuál? a) Tienen puntos de fusión bajos.
+    b) Son más solubles en disolventes apolares que en agua. c) Conducen la electricidad fundidos. d) Son dúctiles y maleables.
+    \begin{solu}
+        \textcolor{red}{La c}. Tienen puntos de fusión altos, se disuelven en disolventes polares y son frágiles.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Si combinamos un elemento X con tres electrones en su capa de valencia con un elemento Y con seis, ¿cuál será la
+    fórmula del compuesto iónico que forman?
+    \begin{solu}
+        X pierde 3 electrones (\ch{X^3+}) e Y gana 2 (\ch{Y^2-}). Para que el compuesto sea neutro, 2 \ch{X^3+} (6 cargas
+        positivas) por cada 3 \ch{Y^2-} (6 negativas): \textcolor{red}{\ch{X2Y3}}, como el \ch{Al2O3}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Investiga y explica a tus compañeros qué son la energía reticular y el índice de coordinación de un cristal
+    iónico. ¿De qué depende cada uno?
+    \begin{solu}
+        \textcolor{red}{Energía reticular: la que se desprende al formarse un mol de cristal a partir de sus iones gaseosos}; aumenta
+        con la carga de los iones y al disminuir su tamaño. \textcolor{red}{Índice de coordinación: el número de iones de signo
+        contrario que rodean a cada ion}; depende de la relación entre los tamaños del catión y el anión y de la proporción entre
+        ellos (6 en el \ch{NaCl}, 8 en el \ch{CsCl}, cuyo catión es mayor).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Explica cómo se forma el enlace iónico en: a) \ch{Li2O}; b) \ch{BaF2}; c) \ch{AlF3}.
+    \begin{solu}
+        a) Cada Li pierde un electrón y el O gana dos: \textcolor{red}{dos \ch{Li+} por cada \ch{O^2-}}. b) El Ba pierde dos
+        electrones y cada F gana uno: \textcolor{red}{un \ch{Ba^2+} por cada dos \ch{F-}}. c) El Al pierde tres electrones:
+        \textcolor{red}{un \ch{Al^3+} por cada tres \ch{F-}}. Todos los iones quedan con configuración de gas noble y se atraen
+        formando una red cristalina.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Explica por qué los elementos de los grupos 1 y 2, al unirse con los de los grupos 16 y 17, forman sin
+    dificultad enlaces iónicos. Pon ejemplos de las uniones posibles.
+    \begin{solu}
+        \textcolor{red}{Los de los grupos 1 y 2 tienen energías de ionización bajas} y pierden fácilmente 1 o 2 electrones;
+        \textcolor{red}{los de los grupos 16 y 17 son muy electronegativos} y ganan 2 o 1. La diferencia de electronegatividad es
+        muy grande. Ejemplos: \ch{NaCl}, \ch{KBr}, \ch{Na2O}, \ch{K2S}, \ch{MgF2}, \ch{CaCl2}, \ch{MgO}, \ch{BaS}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Una de las características de los cristales iónicos es que son muy frágiles. ¿A qué se debe? Justifica la respuesta
+    con un ejemplo.
+    \begin{solu}
+        \textcolor{red}{Al golpear el cristal, una capa de iones se desplaza respecto de otra y quedan enfrentados iones del mismo
+        signo, que se repelen}: el cristal se parte. Por ejemplo, un cristal de sal gema se rompe en fragmentos de caras planas al
+        golpearlo con un martillo (figura~\ref{fig:ud4-deformacion}).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Qué compuestos formarán estas parejas de elementos? a) Ca y Cl; b) Na y O; c) Rb e I; d) Mg y S. Representa
+    la formación de los iones con diagramas de Lewis.
+    \begin{solu}
+        a) \textcolor{red}{\ch{CaCl2}}: \(\ch{Ca^2+}\) y dos \(\ch{Cl-}\). b) \textcolor{red}{\ch{Na2O}}: dos \ch{Na+} y un
+        \ch{O^2-}. c) \textcolor{red}{\ch{RbI}}: \ch{Rb+} y \ch{I-}. d) \textcolor{red}{\ch{MgS}}: \ch{Mg^2+} y \ch{S^2-}. En los
+        diagramas, el metal pierde sus puntos y el no metal queda con ocho, entre corchetes y con su carga; por ejemplo, para el
+        \ch{MgS}: \(\ch{Mg^2+}\;[\chemfig{\charge{0=\:,90=\:,180=\:,270=\:}{S}}]^{2-}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Calcula la energía que se desprende al formarse un mol de cloruro de cesio a partir de sus elementos, con estos
+    datos (en \unit{\kilo\joule\per\mol}): sublimación del Cs, \(+76\); disociación de medio mol de \ch{Cl2}, \(+121\); ionización
+    del Cs, \(+376\); afinidad electrónica del Cl, \(-349\); energía reticular del \ch{CsCl}, \(-659\).
+    \begin{solu}
+        \(E = 76 + 121 + 376 - 349 - 659 = \textcolor{red}{\qty{-435}{\kilo\joule\per\mol}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Ordena de mayor a menor energía reticular (en valor absoluto): \ch{KF}, \ch{CaO}, \ch{KI} y \ch{LiF}.
+    \begin{solu}
+        El \ch{CaO} tiene iones de carga \(\pm 2\): es el mayor. Entre los demás, con cargas \(\pm 1\), cuanto más pequeños los
+        iones, mayor la energía: \textcolor{red}{\(\ch{CaO} > \ch{LiF} > \ch{KF} > \ch{KI}\)} (\num{3414}, \num{1037}, 821 y
+        \qty{649}{\kilo\joule\per\mol}).
+    \end{solu}
+\end{exercise}
+
+\subsection{Enlace metálico}
+
+\begin{exercise}
+    \(\star\star\) Teniendo en cuenta las configuraciones electrónicas del estroncio y del indio, determina cuántos electrones
+    cede cada uno a la nube electrónica.
+    \begin{solu}
+        Sr: \conf{[Kr]\,5s^2} \(\rightarrow\) \textcolor{red}{cede 2} y queda como \ch{Sr^2+}. In: \conf{[Kr]\,4d^{10}\,5s^2\,5p^1}
+        \(\rightarrow\) \textcolor{red}{cede 3} y queda como \ch{In^3+} (\conf{[Kr]\,4d^{10}}, con el subnivel \(d\) lleno).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El enlace metálico une fuertemente a los átomos. ¿Cómo se explica entonces que los metales sean dúctiles y
+    maleables sin romperse?
+    \begin{solu}
+        \textcolor{red}{El enlace metálico no tiene direcciones fijas}: los cationes están unidos a la nube de electrones en su
+        conjunto, no a unos vecinos concretos. Cuando una capa se desliza sobre otra, los electrones se redistribuyen y siguen
+        uniendo a los cationes, sin que aparezcan repulsiones entre iones del mismo signo.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Por qué los cables eléctricos son de cobre, pero van recubiertos de plástico?
+    \begin{solu}
+        \textcolor{red}{El cobre conduce muy bien la electricidad, gracias a sus electrones deslocalizados; el plástico es una
+        sustancia covalente cuyos electrones están localizados en los enlaces}, así que es aislante y evita descargas y
+        cortocircuitos.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) A excepción del mercurio, todos los metales son sólidos a temperatura ambiente. Investiga por qué el mercurio es
+    líquido.
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta.} \textcolor{blue}{El mercurio tiene completos los subniveles \conf{5d^{10}} y
+        \conf{6s^2}, y sus electrones 6s, por ser un átomo tan pesado, están muy atraídos por el núcleo (un efecto que se explica con
+        la teoría de la relatividad): los cede con dificultad a la nube electrónica, el enlace metálico es muy débil y funde a
+        \qty{-39}{\degreeCelsius}.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Por qué los metales son buenos conductores de la electricidad y del calor?
+    \begin{solu}
+        \textcolor{red}{Porque tienen electrones deslocalizados que se mueven libremente por toda la red}: al aplicar una diferencia
+        de potencial se desplazan de forma ordenada (corriente eléctrica), y al calentar una zona transmiten rápidamente la energía
+        al resto.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Para explicar el enlace metálico hemos usado el modelo de la nube electrónica. Buscad información sobre la
+    teoría de bandas y preparad un breve trabajo que explique por qué unos materiales son conductores, otros semiconductores y
+    otros aislantes.
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta.} Debe incluir que en un sólido los orbitales de todos los átomos forman
+        \textcolor{red}{bandas de energía}; la conducción exige que los electrones puedan pasar a una banda con niveles vacíos
+        (\textcolor{red}{banda de conducción}). En los metales la banda de valencia está semillena o solapada con la de
+        conducción; en los semiconductores las separa un salto pequeño, y en los aislantes, uno grande
+        (figura~\ref{fig:ud4-bandas}).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Investiga: ¿por qué los metales alcalinos no cumplen las propiedades típicas de los metales en cuanto a densidad,
+    dureza y brillo?
+    \begin{solu}
+        \textcolor{red}{Cada átomo aporta un solo electrón a la nube y sus átomos son muy grandes}: el enlace metálico es débil,
+        así que son blandos (se cortan con un cuchillo) y funden a temperaturas bajas, y su densidad es pequeña (el litio, el sodio
+        y el potasio flotan en el agua). \textcolor{red}{Su brillo dura muy poco porque reaccionan enseguida con el oxígeno y la
+        humedad del aire}; por eso se guardan en aceite.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) De estas afirmaciones sobre los metales, solo una es falsa. ¿Cuál? a) Son buenos conductores del calor y la
+    electricidad. b) Son frágiles. c) Forman aleaciones. d) Tienen brillo característico.
+    \begin{solu}
+        \textcolor{red}{La b}: son tenaces, dúctiles y maleables, porque las capas de cationes se pueden deslizar sin que el metal
+        se rompa.
+    \end{solu}
+\end{exercise}
+
+\subsection{Enlace covalente}
+
+\begin{exercise}
+    \(\star\star\) Dibuja la estructura de Lewis del \ch{C2H4}, el \ch{SiH4}, el \ch{CH3OH}, el \ch{PBr3} y el \ch{H2S}.
+    Justifica en cada caso la valencia covalente de los átomos con su configuración electrónica.
+    \begin{solu}
+        C y Si (\conf{ns^2\,np^2}): covalencia 4. O y S (\conf{ns^2\,np^4}): 2. P (\conf{3s^2\,3p^3}): 3. Br
+        (\conf{4s^2\,4p^5}) y H (\conf{1s^1}): 1.
+        \begin{center}
+            \textcolor{red}{\chemfig{C(-[:150]H)(-[:210]H)=C(-[:30]H)-[:-30]H}} \quad
+            \textcolor{red}{\chemfig{Si(-[2]H)(-[4]H)(-[6]H)-H}} \quad
+            \textcolor{red}{\chemfig{C(-[2]H)(-[4]H)(-[6]H)-\charge{90=\:,270=\:}{O}-H}} \\[6pt]
+            \textcolor{red}{\chemfig{\charge{90=\:,180=\:,270=\:}{Br}-\charge{90=\:}{P}(-[6]\charge{0=\:,180=\:,270=\:}{Br})-\charge{0=\:,90=\:,270=\:}{Br}}} \quad
+            \textcolor{red}{\chemfig{H-\charge{90=\:,270=\:}{S}-H}}
+        \end{center}
+        En el \ch{C2H4} los carbonos se unen con un enlace doble.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Cuál es la valencia covalente de los átomos en las moléculas \ch{HF}, \ch{O2} y \ch{N2}? Ayúdate de sus
+    estructuras de Lewis.
+    \begin{solu}
+        \textcolor{red}{H y F: 1} (enlace simple, \chemfig{H-\charge{0=\:,90=\:,270=\:}{F}}). \textcolor{red}{O: 2} (enlace doble,
+        \chemfig{\charge{90=\:,270=\:}{O}=\charge{90=\:,270=\:}{O}}). \textcolor{red}{N: 3} (enlace triple,
+        \chemfig{\charge{180=\:}{N}~\charge{0=\:}{N}}).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Explica las diferencias entre el enlace covalente, el iónico y el metálico: qué elementos se unen, qué hacen
+    con sus electrones y qué tipo de estructura forman.
+    \begin{solu}
+        \textcolor{red}{Iónico}: metal y no metal; el metal cede electrones al no metal; red de iones. \textcolor{red}{Covalente}:
+        no metales; comparten pares de electrones, localizados entre los átomos; moléculas o redes de átomos.
+        \textcolor{red}{Metálico}: átomos de metales; ceden sus electrones de valencia a una nube común, deslocalizada; red de
+        cationes inmersa en los electrones.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El carbono y el oxígeno forman dos óxidos, el \ch{CO} y el \ch{CO2}. Dibuja sus estructuras de Lewis. ¿Qué
+    tiene de particular uno de los enlaces del \ch{CO}?
+    \begin{solu}
+        \ch{CO2}: \textcolor{red}{\chemfig{\charge{90=\:,270=\:}{O}=C=\charge{90=\:,270=\:}{O}}}.
+        \ch{CO}: \(D = 10\), \(N = 16\), \(C = 6\): \textcolor{red}{3 enlaces, un triple}, con un par solitario en cada átomo:
+        \textcolor{red}{\chemfig{\charge{180=\:}{C}~\charge{0=\:}{O}}}. Como el C solo tiene 4 electrones de valencia,
+        \textcolor{red}{uno de los tres pares lo aporta solo el oxígeno: es un enlace dativo}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) De estas afirmaciones sobre el enlace covalente, solo una es falsa. ¿Cuál? a) Puede dar lugar a moléculas o a
+    redes de átomos. b) Los átomos se ceden electrones. c) Puede formar sustancias simples. d) Los electrones del enlace están
+    localizados entre los átomos que se unen.
+    \begin{solu}
+        \textcolor{red}{La b}: en el enlace covalente los átomos comparten electrones; cederlos es propio del enlace iónico (y del
+        metálico).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Los elementos X (\(Z = 14\)) e Y (\(Z = 9\)) se combinan. ¿Qué compuesto forman? Dibuja su estructura de Lewis.
+    \begin{solu}
+        X: \conf{1s^2\,2s^2\,2p^6\,3s^2\,3p^2} (silicio, covalencia 4); Y: \conf{1s^2\,2s^2\,2p^5} (flúor, covalencia 1). Forman
+        \textcolor{red}{\ch{SiF4}}, con el Si en el centro unido a cuatro F por enlaces simples y tres pares solitarios en cada F:
+        \textcolor{red}{\chemfig{Si(-[2]\charge{0=\:,90=\:,180=\:}{F})(-[4]\charge{90=\:,180=\:,270=\:}{F})(-[6]\charge{0=\:,180=\:,270=\:}{F})-\charge{0=\:,90=\:,270=\:}{F}}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Un compañero ha dibujado así varias estructuras de Lewis: a) \ch{Cl2}, con un enlace doble y dos pares
+    solitarios en cada Cl; b) \ch{O2}, con un enlace simple y tres pares solitarios en cada O; c) \ch{HBr}, con un enlace simple,
+    un par solitario en el H y tres en el Br; d) \ch{CH4}, con cuatro enlaces simples y sin pares solitarios. ¿Cuáles son
+    incorrectas? Corrígelas.
+    \begin{solu}
+        \textcolor{red}{Solo la d es correcta.} a) Cada Cl tendría 8 electrones, pero se han usado 12 en total y el Cl tiene
+        covalencia 1: \chemfig{\charge{90=\:,180=\:,270=\:}{Cl}-\charge{0=\:,90=\:,270=\:}{Cl}}. b) Así cada O solo tendría 7
+        electrones: hace falta un enlace doble, \chemfig{\charge{90=\:,270=\:}{O}=\charge{90=\:,270=\:}{O}}. c) El H solo puede
+        tener 2 electrones (el del enlace): \chemfig{H-\charge{0=\:,90=\:,270=\:}{Br}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El hidrógeno forma compuestos con casi todos los elementos. Si se une con O, Cl, Br, C y Si, ¿cuál de los
+    compuestos tendrá enlaces más polares? ¿Y menos polares?
+    \begin{solu}
+        \(\Delta\mathrm{EN}\): O--H 1,2; Cl--H 1,0; Br--H 0,8; C--H 0,4; Si--H 0,3. \textcolor{red}{Más polares: los O--H del
+        \ch{H2O}}. \textcolor{red}{Menos polares: los Si--H del \ch{SiH4}}, en los que además el polo negativo está en el H.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Ordena de menor a mayor polaridad de enlace: \ch{O2}, \ch{NH3} y \ch{HF}.
+    \begin{solu}
+        \(\Delta\mathrm{EN}\): 0; 0,8; 1,8: \textcolor{red}{\(\ch{O2} < \ch{NH3} < \ch{HF}\)}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Cuál de estas afirmaciones sobre los enlaces polares es verdadera? a) Los electrones se reparten por igual.
+    b) Los dos átomos son iguales. c) Los dos átomos tienen distinta electronegatividad. d) Todas son verdaderas.
+    \begin{solu}
+        \textcolor{red}{La c}: el átomo más electronegativo atrae más los electrones compartidos, que no se reparten por igual.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Ordena de menor a mayor polaridad los enlaces H--Na, H--O, H--Cl y H--P, con estas electronegatividades:
+    H 2,2; Na 0,9; O 3,4; Cl 3,2; P 2,2. ¿En cuál de ellos tiene el hidrógeno carga parcial negativa?
+    \begin{solu}
+        \(\Delta\mathrm{EN}\): H--P 0; H--Cl 1,0; H--O 1,2; H--Na 1,3. \textcolor{red}{\(\text{H--P} < \text{H--Cl} < \text{H--O} <
+        \text{H--Na}\)}. \textcolor{red}{En el H--Na}: el H es más electronegativo que el sodio, y en el hidruro de sodio, \ch{NaH},
+        el hidrógeno está como ion \ch{H-}.
+    \end{solu}
+\end{exercise}
+
+\subsection{Sustancias covalentes moleculares}
+
+\begin{exercise}
+    \(\star\star\) Con la configuración electrónica, la valencia covalente y la estructura de Lewis, determina si estas sustancias
+    tienen geometría tetraédrica, de pirámide trigonal o triangular plana: \ch{CF4}, \ch{PCl3}, \ch{BBr3} y \ch{H3O+}.
+    \begin{solu}
+        \ch{CF4}: 4 pares enlazantes, \textcolor{red}{tetraédrica}. \ch{PCl3}: 3 enlazantes y 1 solitario, \textcolor{red}{pirámide
+        trigonal}. \ch{BBr3}: 3 enlazantes (octeto incompleto), \textcolor{red}{triangular plana}. \ch{H3O+}: 3 enlazantes y 1
+        solitario, \textcolor{red}{pirámide trigonal}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Si el enlace Si--F es polar, ¿por qué la molécula de \ch{SiF4} no tiene momento dipolar?
+    \begin{solu}
+        \textcolor{red}{Porque es tetraédrica}: los cuatro momentos de enlace son iguales y apuntan hacia los vértices de un
+        tetraedro regular, así que su suma vectorial es cero.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Dibuja la estructura de Lewis del \ch{GeCl4}, el \ch{H2S}, el \ch{PH3}, el \ch{N2H4} (hidracina) y el
+    \ch{CaCl2}, y predice su geometría. ¿Hay alguno al que no se le pueda aplicar la TRPECV?
+    \begin{solu}
+        \ch{GeCl4}: \textcolor{red}{tetraédrica}. \ch{H2S}: dos pares enlazantes y dos solitarios, \textcolor{red}{angular}.
+        \ch{PH3}: \textcolor{red}{pirámide trigonal}. \ch{N2H4}: \chemfig{H-\charge{90=\:}{N}(-[6]H)-\charge{90=\:}{N}(-[6]H)-H};
+        \textcolor{red}{cada N es el vértice de una pirámide trigonal}. \textcolor{red}{El \ch{CaCl2} es iónico}: no forma
+        moléculas, sino una red de iones \ch{Ca^2+} y \ch{Cl-}, y la TRPECV no se le aplica.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Dibuja la estructura de Lewis del \ch{AlCl3} y del \ch{PF3}. ¿Qué diferencia hay entre ellas? ¿Tienen la
+    misma geometría?
+    \begin{solu}
+        \textcolor{red}{En el \ch{AlCl3} el aluminio forma tres enlaces y se queda con 6 electrones (octeto incompleto); en el
+        \ch{PF3} el fósforo forma tres enlaces y le queda un par solitario}, así que cumple el octeto.
+        \textcolor{red}{No}: el \ch{AlCl3} es triangular plano (en estado gaseoso) y el \ch{PF3}, una pirámide trigonal.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Cuáles de estas sustancias están formadas por moléculas con momento dipolar? a) \ch{PF3}; b) \ch{CCl4};
+    c) \ch{MgCl2}; d) \ch{CH3Cl}; e) \ch{H2O}. Dibuja sus estructuras de Lewis para justificarlo.
+    \begin{solu}
+        \textcolor{red}{a) \ch{PF3} (piramidal), d) \ch{CH3Cl} (tetraédrica con un átomo distinto) y e) \ch{H2O} (angular)}. El
+        \ch{CCl4} es tetraédrico y simétrico: \(\vec{\mu} = 0\). El \ch{MgCl2} es iónico: no forma moléculas.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Pueden formar enlaces de hidrógeno las sustancias \ch{CH3OH}, \ch{H2S}, \ch{NH3}, \ch{HCl} y \ch{HF}? Razona
+    la respuesta.
+    \begin{solu}
+        \textcolor{red}{Sí el \ch{CH3OH}, el \ch{NH3} y el \ch{HF}}, que tienen H unidos a O, N o F. \textcolor{red}{No el \ch{H2S}
+        ni el \ch{HCl}}: el S y el Cl no son lo bastante electronegativos y pequeños (entre sus moléculas hay fuerzas
+        dipolo-dipolo).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Tienen dipolos permanentes las moléculas de \ch{HBr}, \ch{H2S} y \ch{N2}?
+    \begin{solu}
+        \textcolor{red}{Sí el \ch{HBr} y el \ch{H2S}}: tienen enlaces polares y no son simétricas (el \ch{H2S} es angular).
+        \textcolor{red}{El \ch{N2} no}: su enlace es apolar.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El ADN está formado por dos cadenas de nucleótidos enrolladas en una doble hélice. Investiga qué fuerzas
+    mantienen unidas las dos cadenas y por qué es importante que sean relativamente débiles.
+    \begin{solu}
+        \textcolor{red}{Enlaces de hidrógeno entre las bases nitrogenadas} (dos entre adenina y timina, tres entre guanina y
+        citosina), además de fuerzas de dispersión entre las bases apiladas. \textcolor{red}{Al ser débiles, las dos hebras se
+        pueden separar sin romper enlaces covalentes} cuando la célula copia el ADN o lee sus genes, y volver a unirse después.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El carbono y el silicio están en el mismo grupo. Al unirse con oxígeno forman \ch{CO2}, un gas, y \ch{SiO2},
+    un sólido que funde a más de \qty{1700}{\degreeCelsius}. ¿A qué se debe esta diferencia?
+    \begin{solu}
+        \textcolor{red}{El \ch{CO2} es una sustancia molecular}: el C forma dobles enlaces con dos O y la molécula, apolar, solo se
+        une a las demás por fuerzas de dispersión. \textcolor{red}{El \ch{SiO2} es un cristal covalente}: cada Si se une con
+        enlaces simples a cuatro O, y cada O a dos Si, formando una red gigante; para fundirlo hay que romper enlaces covalentes.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Haz un resumen de todas las fuerzas intermoleculares: entre qué moléculas actúan, a qué se deben y cuál es su
+    intensidad relativa.
+    \begin{solu}
+        \textcolor{red}{Dispersión}: entre todas las moléculas; dipolos instantáneos e inducidos; débiles, crecen con el tamaño de
+        la molécula. \textcolor{red}{Dipolo-dipolo}: entre moléculas polares; atracción entre dipolos permanentes; algo más
+        intensas. \textcolor{red}{Enlace de hidrógeno}: entre moléculas con H unido a F, O o N; las más intensas, aunque unas diez
+        veces más débiles que un enlace covalente.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) La sílice (\ch{SiO2}) es el componente principal del cuarzo y del vidrio. Aunque su composición es la misma,
+    sus estructuras son muy diferentes. Investiga las estructuras, los usos y las propiedades de estos dos materiales.
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta.} \textcolor{blue}{El cuarzo es un cristal covalente: tetraedros \ch{SiO4} ordenados que se
+        repiten; es muy duro (7 en la escala de Mohs), funde a \qty{1713}{\degreeCelsius} y es piezoeléctrico (se usa en relojes y
+        circuitos). El vidrio tiene los mismos tetraedros, pero unidos al azar (estructura amorfa); se reblandece en un intervalo
+        de temperaturas, lo que permite moldearlo, y se le añaden óxidos de sodio y calcio para bajar su temperatura de trabajo.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Para fabricar móviles, tabletas y ordenadores es imprescindible el coltán, un mineral escaso. Investiga qué
+    se obtiene de él y para qué se usa, dónde están sus principales reservas y qué consecuencias tiene su extracción para las
+    personas que trabajan en las minas y para el medio ambiente.
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta.} \textcolor{blue}{Del coltán se extraen el tántalo y el niobio. El tántalo se usa en
+        condensadores muy pequeños y estables de los aparatos electrónicos. Gran parte procede de la República Democrática del
+        Congo y de Ruanda; su extracción ha financiado a grupos armados, se ha hecho con trabajo infantil y en condiciones muy
+        peligrosas, y ha provocado deforestación y daños en los hábitats del gorila. Hoy existen sistemas de certificación de
+        «minerales libres de conflicto».}
+    \end{solu}
+\end{exercise}
+
+%========================================================================================
+\section{Ejercicios de ampliación}\label{sec:ud4-ampliacion}
+%========================================================================================
+
+\subsection{El enlace químico}
+
+\begin{exercise}
+    \(\star\star\star\) Determina qué tipo de enlace tienen el \ch{F2}, el \ch{NH3}, el \ch{MgCl2} y el \ch{Ni}. Dibuja la estructura
+    de Lewis de los dos primeros. a) ¿Cuál de ellos es polar? b) ¿Cuál es apolar? c) ¿Cuáles son solubles en agua? d) ¿Conducirá
+    alguno la electricidad? ¿En qué condiciones?
+    \begin{solu}
+        \ch{F2}: \textcolor{red}{covalente} (\chemfig{\charge{90=\:,180=\:,270=\:}{F}-\charge{0=\:,90=\:,270=\:}{F}});
+        \ch{NH3}: \textcolor{red}{covalente} (\chemfig{H-\charge{90=\:}{N}(-[6]H)-H}); \ch{MgCl2}: \textcolor{red}{iónico}; \ch{Ni}:
+        \textcolor{red}{metálico}. a) \textcolor{red}{\ch{NH3}}. b) \textcolor{red}{\ch{F2}}. c) \textcolor{red}{\ch{NH3}} (forma
+        enlaces de hidrógeno con el agua) \textcolor{red}{y \ch{MgCl2}}. d) \textcolor{red}{El níquel, siempre; el \ch{MgCl2},
+        fundido o disuelto.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Representa la estructura de Lewis del \ch{C2H4}, el \ch{HCN}, el \ch{H2O2} y el \ch{N2}, e indica cuáles
+    tienen algún enlace doble y cuáles alguno triple.
+    \begin{solu}
+        \textcolor{red}{Doble: \ch{C2H4}} (C=C). \textcolor{red}{Triple: \ch{HCN}} (C\(\equiv\)N) \textcolor{red}{y \ch{N2}}.
+        \textcolor{red}{El \ch{H2O2} solo tiene enlaces simples}:
+        \chemfig{H-\charge{90=\:,270=\:}{O}-\charge{90=\:,270=\:}{O}-H}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) En el \ch{H2O}, el \ch{NH4+}, el \ch{BCl3} y el \ch{PCl3}, ¿en cuáles tiene el átomo central algún par de
+    electrones no enlazante? ¿Cómo influye en su geometría?
+    \begin{solu}
+        \textcolor{red}{En el \ch{H2O} (dos pares) y en el \ch{PCl3} (uno)}. En el \ch{NH4+} el par solitario del N se ha usado
+        en el enlace dativo con el \ch{H+}, y el B del \ch{BCl3} solo tiene 3 electrones. Los pares solitarios hacen que el agua
+        sea angular y el \ch{PCl3}, piramidal; los otros dos son tetraédrico (\ch{NH4+}) y triangular plano (\ch{BCl3}).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) ¿Cuál de estos compuestos cumple la regla del octeto? a) \ch{PCl5}; b) \ch{XeF4}; c) \ch{CF4}; d) \ch{BF3}.
+    \begin{solu}
+        \textcolor{red}{Solo el \ch{CF4}}. El P del \ch{PCl5} tiene 10 electrones y el Xe del \ch{XeF4}, 12 (octetos expandidos); el
+        B del \ch{BF3} tiene 6 (octeto incompleto).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) ¿Cuál de estas especies no cumple la regla del octeto? a) \ch{CHCl3}; b) \ch{NH4+}; c) \ch{BeH2};
+    d) \ch{CO2}.
+    \begin{solu}
+        \textcolor{red}{El \ch{BeH2}}: el Be forma dos enlaces y queda con 4 electrones.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Cuatro elementos, A, B, C y D, tienen electronegatividades 4,0; 3,2; 2,6 y 1,0, respectivamente. Forman
+    los compuestos BA, CA, DA y DC. a) ¿Cuál tendrá mayor carácter covalente? b) ¿Cuál será más polar? c) ¿Serán todos solubles en
+    agua? d) ¿Cuál tendrá mayor punto de fusión?
+    \begin{solu}
+        \(\Delta\mathrm{EN}\): BA 0,8; CA 1,4; DA 3,0; DC 1,6. a) \textcolor{red}{BA}, el de menor diferencia. b)
+        \textcolor{red}{DA}, que es prácticamente iónico. c) \textcolor{red}{No tienen por qué}: DA (iónico) y los compuestos
+        covalentes polares pueden serlo, pero depende de la geometría de las moléculas y de la energía reticular. d)
+        \textcolor{red}{DA}: es el compuesto iónico, con una red de iones fuertemente unidos.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Razona si estas afirmaciones son ciertas: a) El \ch{CH4} es polar y el \ch{NH3}, apolar. b) El \ch{CH4} es
+    soluble en agua y el \ch{KCl}, insoluble. c) El \ch{KCl} tiene un punto de fusión mayor que el \ch{CH4}.
+    \begin{solu}
+        a) \textcolor{red}{Falsa}: al revés; el \ch{CH4} es tetraédrico y simétrico, y el \ch{NH3}, piramidal y polar.
+        b) \textcolor{red}{Falsa}: al revés; el \ch{CH4} es apolar y el \ch{KCl}, iónico. c) \textcolor{red}{Verdadera}: hay que
+        romper una red de iones frente a débiles fuerzas de dispersión (\qty{770}{\degreeCelsius} frente a
+        \qty{-182}{\degreeCelsius}).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Responde: a) ¿Por qué el \ch{NH3} es muy soluble en agua, pero el \ch{N2} y el \ch{H2} casi no?
+    b) Si el enlace B--Cl es polar, ¿por qué la molécula de \ch{BCl3} no lo es? c) ¿Todos los metales son sólidos a temperatura
+    ambiente y buenos conductores?
+    \begin{solu}
+        a) \textcolor{red}{El \ch{NH3} es polar y forma enlaces de hidrógeno con el agua}; el \ch{N2} y el \ch{H2} son apolares.
+        b) \textcolor{red}{Porque es triangular plana}: los tres momentos de enlace, a \ang{120}, se anulan. c)
+        \textcolor{red}{Todos conducen bien, pero no todos son sólidos}: el mercurio es líquido, y el galio y el cesio funden con
+        el calor de la mano (\(\approx \qty{29}{\degreeCelsius}\)).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) ¿Conduce la electricidad un hilo de plata? ¿Y el \ch{HBr} disuelto en agua? ¿Y un cristal de \ch{KNO3}?
+    ¿Y una disolución de \ch{KNO3}? ¿Y el \ch{KNO3} fundido?
+    \begin{solu}
+        \textcolor{red}{El hilo de plata, sí} (metal). \textcolor{red}{El \ch{HBr} en agua, sí}: aunque es covalente, en agua se
+        disocia en iones \ch{H+} y \ch{Br-}. \textcolor{red}{El cristal de \ch{KNO3}, no}: sus iones no se mueven.
+        \textcolor{red}{La disolución y el \ch{KNO3} fundido, sí}: los iones quedan libres.
+    \end{solu}
+\end{exercise}
+
+\subsection{Sustancias moleculares y fuerzas intermoleculares}
+
+\begin{exercise}
+    \(\star\star\star\) Dibuja las estructuras de Lewis del \ch{CBr4}, el \ch{SiH4} y el \ch{SF4}, y determina cuál de ellos no
+    tiene geometría tetraédrica.
+    \begin{solu}
+        \textcolor{red}{El \ch{SF4}}: el S forma cuatro enlaces y le queda un par solitario (octeto expandido, 10 electrones): tiene
+        cinco pares alrededor y su forma es de «balancín». El \ch{CBr4} y el \ch{SiH4} tienen cuatro pares enlazantes y son
+        tetraédricos.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Dibuja las estructuras de Lewis del \ch{H2S}, el \ch{CO2}, el \ch{Cl2} y el \ch{HCN}, y determina cuál de
+    ellos no es lineal.
+    \begin{solu}
+        \textcolor{red}{El \ch{H2S}}, angular por sus dos pares solitarios. El \ch{CO2} y el \ch{HCN} (sin pares solitarios en el
+        C) son lineales, y el \ch{Cl2}, como toda molécula diatómica, también.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) ¿Cuál de estas parejas compuesto/geometría es incorrecta? a) \ch{Br2}, lineal. b) \ch{CH2O}, triangular
+    plana. c) \ch{O3}, angular. d) \ch{NH4+}, tetraédrica. e) \ch{H2S}, piramidal.
+    \begin{solu}
+        \textcolor{red}{La e}: el \ch{H2S} tiene dos pares enlazantes y dos solitarios: es angular.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Dibuja las estructuras de Lewis del \ch{BCl3}, el \ch{PCl3} y el \ch{CH2O}, y determina cuál de ellos no
+    tiene geometría triangular plana.
+    \begin{solu}
+        \textcolor{red}{El \ch{PCl3}}: tiene un par solitario y es una pirámide trigonal. El \ch{BCl3} (tres enlaces simples) y el
+        \ch{CH2O} (dos simples y un doble, que cuenta como una dirección) son triangulares planos.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) A partir del \ch{NH3} y del \ch{NH4+}, determina: a) sus estructuras de Lewis; b) su geometría; c) si la
+    molécula de \ch{NH3} es polar; d) por qué las sales de amonio, como el \ch{NH4Cl}, son solubles en agua.
+    \begin{solu}
+        a) \ch{NH3}: \chemfig{H-\charge{90=\:}{N}(-[6]H)-H}; \ch{NH4+}: el par solitario del N forma un enlace dativo con un
+        \ch{H+} (figura~\ref{fig:ud4-dativo}). b) \textcolor{red}{\ch{NH3}, pirámide trigonal; \ch{NH4+}, tetraédrica}. c)
+        \textcolor{red}{Sí}, porque es piramidal. d) \textcolor{red}{Son compuestos iónicos}, formados por iones \ch{NH4+} y
+        aniones, que el agua hidrata como a los de cualquier sal.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) ¿Cuáles de estas parejas de moléculas tienen la misma geometría? Razona la respuesta. a) \ch{GeH4} y
+    \ch{CCl4}; b) \ch{AsH3} y \ch{NH3}; c) \ch{Br2} y \ch{F2}; d) \ch{H2S} y \ch{CO2}.
+    \begin{solu}
+        \textcolor{red}{a), b) y c)}. a) Las dos son tetraédricas (átomo central del grupo 14, cuatro enlaces). b) Las dos son
+        pirámides trigonales (grupo 15, tres enlaces y un par solitario). c) Las dos son lineales (diatómicas). d)
+        \textcolor{red}{No}: el \ch{H2S} es angular y el \ch{CO2}, lineal.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Teniendo en cuenta sus fuerzas intermoleculares, ordena de menor a mayor punto de ebullición: \ch{Cl2},
+    \ch{HF}, \ch{F2} y \ch{HCl}. ¿Te sorprende la posición del \ch{Cl2}?
+    \begin{solu}
+        \textcolor{red}{\(\ch{F2} < \ch{HCl} < \ch{Cl2} < \ch{HF}\)} (\(-188\), \(-85\), \(-34\) y \qty{20}{\degreeCelsius}). El
+        \ch{F2} solo tiene fuerzas de dispersión débiles (molécula pequeña); el \ch{HF}, enlaces de hidrógeno. Puede sorprender que
+        el \ch{Cl2}, apolar, hierva por encima del \ch{HCl}, polar: \textcolor{red}{su molécula tiene muchos más electrones
+        (34 frente a 18) y sus fuerzas de dispersión superan a las dipolo-dipolo del \ch{HCl}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Razona si son correctas estas afirmaciones: a) La energía de las fuerzas de dispersión es menor que la de
+    los enlaces de hidrógeno. b) Las fuerzas de dispersión aparecen entre todas las moléculas. c) Al fundir hielo se rompen enlaces
+    O--H. d) Los compuestos con enlaces de hidrógeno tienen siempre puntos de ebullición más altos que los que no los tienen.
+    \begin{solu}
+        a) \textcolor{red}{Correcta en general} para moléculas de tamaño parecido. b) \textcolor{red}{Correcta}: toda molécula
+        puede formar dipolos instantáneos. c) \textcolor{red}{Incorrecta}: se rompen parte de los enlaces de hidrógeno entre
+        moléculas; los enlaces covalentes O--H siguen intactos. d) \textcolor{red}{Incorrecta}: en moléculas muy grandes las fuerzas
+        de dispersión pueden ser más intensas; por ejemplo, el octano (\ch{C8H18}, apolar) hierve a \qty{126}{\degreeCelsius}, más
+        que el agua.
+    \end{solu}
+\end{exercise}

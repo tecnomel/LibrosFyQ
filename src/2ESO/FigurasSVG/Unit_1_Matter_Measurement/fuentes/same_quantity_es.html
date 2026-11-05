@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cambio de unidades: solo dentro de la misma magnitud</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 24px; }
+    .box { flex: 1; border-radius: 18px; padding: 12px 18px 16px; }
+    .ok { background: var(--green-soft); border: 3px solid var(--green); }
+    .no { background: var(--red-soft); border: 3px solid var(--red); }
+    .box h2 { font-size: 24px; margin-bottom: 10px; text-align: center; }
+    .ok h2 { color: var(--green); } .no h2 { color: var(--red); }
+    .fam { background: #fff; border-radius: 12px; padding: 8px 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+    .fam .q { width: 110px; font-size: 16px; font-weight: 800; color: var(--blue); flex-shrink: 0; }
+    .u { display: inline-block; min-width: 50px; text-align: center; font-size: 20px; font-weight: 800; color: #fff;
+        background: var(--blue); border-radius: 8px; padding: 3px 8px; }
+    .u.g { background: var(--green); } .u.o { background: var(--ocre); } .u.t { background: var(--teal); }
+    .arr { font-size: 22px; color: var(--grey); font-weight: 800; }
+    .why { font-size: 16px; color: var(--grey); margin-left: auto; text-align: right; }
+    .bad { background: #fff; border-radius: 12px; padding: 8px 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+    .x { font-size: 28px; color: var(--red); font-weight: 900; }
+    .tip { margin-top: 16px; font-size: 19px; text-align: center; background: var(--ocre-soft); border: 2px solid var(--ocre); border-radius: 12px; padding: 8px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Solo podemos cambiar entre unidades de la MISMA magnitud</h1>
+    <div class="row">
+        <div class="box ok">
+            <h2>✔ SÍ: misma magnitud</h2>
+            <div class="fam"><div class="q">Longitud</div><span class="u">km</span><span class="arr">⇄</span><span class="u">m</span><span class="arr">⇄</span><span class="u">cm</span><div class="why">múltiplos y<br>submúltiplos</div></div>
+            <div class="fam"><div class="q">Masa</div><span class="u g">kg</span><span class="arr">⇄</span><span class="u g">g</span><span class="arr">⇄</span><span class="u g">mg</span><div class="why">múltiplos y<br>submúltiplos</div></div>
+            <div class="fam"><div class="q">Tiempo</div><span class="u t">h</span><span class="arr">⇄</span><span class="u t">min</span><span class="arr">⇄</span><span class="u t">s</span><div class="why">unidades distintas,<br>misma magnitud</div></div>
+            <div class="fam"><div class="q">Volumen</div><span class="u o">dm³</span><span class="arr">⇄</span><span class="u o">L</span><span class="arr">⇄</span><span class="u o">mL</span><div class="why">unidades distintas,<br>misma magnitud</div></div>
+        </div>
+        <div class="box no">
+            <h2>✘ NO: magnitudes distintas</h2>
+            <div class="bad"><span class="u">km</span><span class="x">✘</span><span class="u g">kg</span><div class="why">longitud ≠ masa</div></div>
+            <div class="bad"><span class="u t">s</span><span class="x">✘</span><span class="u">m</span><div class="why">tiempo ≠ longitud</div></div>
+            <div class="bad"><span class="u o">L</span><span class="x">✘</span><span class="u g">g</span><div class="why">capacidad ≠ masa</div></div>
+            <div class="bad"><span class="u">m²</span><span class="x">✘</span><span class="u o">m³</span><div class="why">superficie ≠ volumen</div></div>
+        </div>
+    </div>
+    <div class="tip">Antes de cambiar una unidad, pregúntate: <b>«¿Las dos unidades miden la misma magnitud?»</b> Si la respuesta es <b>no</b>, el cambio es <b>imposible</b>.</div>
+</div>
+</body>
+</html>

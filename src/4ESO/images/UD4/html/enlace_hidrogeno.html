@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Enlaces de hidrógeno en alcoholes y con el agua</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card h3 { font-size: 14px; color: var(--blue); } .card .t { font-size: 12.5px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3>Entre moléculas de alcohol</h3><svg id="a" width="370" height="200"></svg>
+            <div class="t">El enlace O–H está polarizado: el H (δ+) de una molécula se atrae con el O (δ−) de otra. Por eso los alcoholes hierven a más temperatura que los hidrocarburos.</div></div>
+        <div class="card"><h3>Entre el agua y un aldehído o una cetona</h3><svg id="b" width="370" height="200"></svg>
+            <div class="t">El grupo carbonilo no tiene H unido al O, pero su O (δ−) se une con los H del agua. Por eso los aldehídos y cetonas pequeños son solubles en agua.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const RED = '#C0392B', BLUE = '#2471A3';
+    const t = (add, x, y, s, o = {}) => label(add, x, y, s, Object.assign({ 'font-size': 18 }, o));
+    const d = (add, x, y, s) => label(add, x, y, s, { 'font-size': 12, fill: s.includes('+') ? BLUE : RED });
+    const hb = (add, x1, y1, x2, y2) => add('line', { x1, y1, x2, y2, stroke: '#7D3C98', 'stroke-width': 2.5, 'stroke-dasharray': '4 4' });
+    const ln = (add, x1, y1, x2, y2) => add('line', { x1, y1, x2, y2, stroke: '#23373B', 'stroke-width': 2 });
+    {
+        const add = svgAdder('a');
+        // tres moléculas R–O–H en cadena
+        const mols = [[60, 50], [190, 110], [320, 50]];
+        mols.forEach(([x, y]) => {
+            t(add, x - 34, y + 6, 'R'); ln(add, x - 24, y, x - 10, y);
+            t(add, x, y + 6, 'O', { fill: RED }); d(add, x, y - 14, 'δ−');
+            ln(add, x + 10, y + 6, x + 22, y + 20);
+            t(add, x + 30, y + 32, 'H', { fill: BLUE }); d(add, x + 30, y + 52, 'δ+');
+        });
+        hb(add, 98, 78, 182, 100);
+        hb(add, 232, 138, 304, 64);
+        label(add, 150, 180, 'enlaces de hidrógeno', { 'font-size': 13, fill: '#7D3C98' });
+    }
+    {
+        const add = svgAdder('b');
+        // grupo carbonilo
+        t(add, 70, 130, 'C'); ln(add, 58, 136, 30, 160); ln(add, 82, 136, 110, 160);
+        t(add, 24, 178, 'R'); t(add, 118, 178, 'R′');
+        add('line', { x1: 66, y1: 112, x2: 66, y2: 88, stroke: '#23373B', 'stroke-width': 2 });
+        add('line', { x1: 74, y1: 112, x2: 74, y2: 88, stroke: '#23373B', 'stroke-width': 2 });
+        t(add, 70, 80, 'O', { fill: RED }); d(add, 50, 66, 'δ−');
+        // molécula de agua
+        const ox = 250, oy = 60;
+        t(add, ox, oy + 6, 'O', { fill: RED }); d(add, ox, oy - 14, 'δ−');
+        ln(add, ox - 10, oy + 8, ox - 34, oy + 30); ln(add, ox + 10, oy + 8, ox + 34, oy + 30);
+        t(add, ox - 42, oy + 44, 'H', { fill: BLUE }); d(add, ox - 42, oy + 64, 'δ+');
+        t(add, ox + 42, oy + 44, 'H', { fill: BLUE }); d(add, ox + 42, oy + 64, 'δ+');
+        hb(add, 84, 76, ox - 50, oy + 38);
+        label(add, 145, 70, 'enlace de hidrógeno', { 'font-size': 13, fill: '#7D3C98' });
+        label(add, 250, 140, 'agua', { 'font-size': 13, fill: '#525252', 'font-weight': 400 });
+    }
+</script>
+</body>
+</html>

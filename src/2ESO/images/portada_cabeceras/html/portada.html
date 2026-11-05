@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- Portada del libro de 2.º ESO (A4). ?lang=en -> versión inglesa.
+     render.sh la imprime a PDF vectorial (portada_2ESO_ES.pdf y portada_2ESO_ENG.pdf). -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Portada 2.º ESO</title>
+<style>
+    @page { size: 210mm 297mm; margin: 0; }
+    html, body { margin: 0; padding: 0; width: 210mm; height: 297mm; overflow: hidden; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    svg { display: block; }
+</style>
+<script src="dibujos.js"></script>
+</head>
+<body>
+<svg id="s" xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 2100 2970"></svg>
+<script>
+    const en = new URLSearchParams(location.search).get('lang') === 'en';
+    const svg = document.getElementById('s');
+    semilla(202);
+    iniciar(svg, PALETAS.verde);
+    portada(svg, {
+        titulo: en ? ['Physics', 'and Chemistry'] : ['Física', 'y Química'],
+        tamTitulo: en ? 215 : 250,
+        curso: en ? '2nd ESO' : '2.º ESO',
+        lema: en ? 'Discover matter and energy' : 'Descubre la materia y la energía',
+        centro: 'IES José Conde García',
+        pie: en ? 'Almansa · School year 2026/2027' : 'Almansa · Curso 2026/2027',
+        arte(p) {
+            atomoBohr(p, 1720, 1130, .55, 9);
+            // estados de la materia (escena de la unidad 2, ampliada)
+            ESCENAS.estados(G(p, { transform: 'translate(-60 1230) scale(1.3)' }));
+            sol(p, 300, 2230, 85);
+            aerogenerador(p, 720, 2560, 330, 1.3, 25);
+            bombilla(p, 1160, 2250, 1.15);
+            erlenmeyer(p, 1720, 2530, 420, 330, P.liq, .5);
+            ondaSeno(p, 80, 2020, 2600, 22, 260, P.glow, 3);
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Unidades cúbicas y capacidad</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; height: 640px; }
+    .row { display: flex; gap: 30px; align-items: center; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .steps { font-size: 21px; line-height: 1.55; flex: 1; }
+    .box { border: 2px solid var(--ocre); background: var(--ocre-soft); border-radius: 12px; padding: 10px 16px; margin-bottom: 12px; }
+    .eq { border-color: var(--blue); background: var(--blue-soft); }
+    .key { color: var(--red); font-weight: 800; }
+    table { border-collapse: collapse; font-size: 21px; margin-top: 4px; }
+    td { padding: 4px 14px; border-bottom: 1px solid var(--line); }
+    td.v { font-weight: 700; color: var(--blue); }
+    td.c { font-weight: 700; color: var(--ocre); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Unidades cúbicas: por qué el factor se eleva al cubo (y qué es un litro)</h1>
+    <div class="row">
+        <svg id="cube" width="630" height="500" viewBox="0 0 630 500"></svg>
+        <div class="steps">
+            <div class="box">El cubo grande tiene <b>1 dm = 10 cm</b> de arista.<br>Su volumen es <b>1 dm<sup>3</sup></b>: exactamente <b>1 litro</b>.</div>
+            <div class="box">Caben 10 × 10 × 10 cubitos de <b>1 cm<sup>3</sup></b>:<br>1 dm<sup>3</sup> = (10 cm)<sup>3</sup> = <span class="key">10<sup>3</sup> cm<sup>3</sup></span> = 1000 cm<sup>3</sup></div>
+            <div class="box eq">
+                <table>
+                    <tr><td class="v">1 m<sup>3</sup></td><td>=</td><td class="c">1 kL</td><td>= 1000 L</td></tr>
+                    <tr><td class="v">1 dm<sup>3</sup></td><td>=</td><td class="c">1 L</td><td>= 1000 mL</td></tr>
+                    <tr><td class="v">1 cm<sup>3</sup></td><td>=</td><td class="c">1 mL</td><td></td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Isometric 10×10×10 cube; the small orange cube (1 cm³) sits at the front-top corner
+    const svg = document.getElementById('cube');
+    const NS = 'http://www.w3.org/2000/svg';
+    const s = 22, ox = 280, oy = 250;              // cell size and origin
+    const ix = [Math.cos(Math.PI/6), Math.sin(Math.PI/6)];
+    const P = (x, y, z) => [ox + (x - y) * s * ix[0], oy + (x + y) * s * ix[1] - z * s];
+    const poly = (pts, fill, stroke, w) => {
+        const p = document.createElementNS(NS, 'polygon');
+        p.setAttribute('points', pts.map(q => q.join(',')).join(' '));
+        p.setAttribute('fill', fill); p.setAttribute('stroke', stroke); p.setAttribute('stroke-width', w);
+        svg.appendChild(p);
+    };
+    const line = (a, b, c, w) => {
+        const l = document.createElementNS(NS, 'line');
+        l.setAttribute('x1', a[0]); l.setAttribute('y1', a[1]); l.setAttribute('x2', b[0]); l.setAttribute('y2', b[1]);
+        l.setAttribute('stroke', c); l.setAttribute('stroke-width', w); svg.appendChild(l);
+    };
+    const N = 10;
+    // faces of the big cube
+    poly([P(0,0,N),P(N,0,N),P(N,N,N),P(0,N,N)], '#E3E6F7', '#000070', 3);   // top
+    poly([P(N,0,0),P(N,N,0),P(N,N,N),P(N,0,N)], '#C7CDEE', '#000070', 3);   // right
+    poly([P(0,N,0),P(N,N,0),P(N,N,N),P(0,N,N)], '#D5DAF2', '#000070', 3);   // left
+    for (let i = 1; i < N; i++) {
+        line(P(i,0,N), P(i,N,N), '#8E98D0', 1); line(P(0,i,N), P(N,i,N), '#8E98D0', 1);
+        line(P(N,i,0), P(N,i,N), '#8E98D0', 1); line(P(N,0,i), P(N,N,i), '#8E98D0', 1);
+        line(P(i,N,0), P(i,N,N), '#8E98D0', 1); line(P(0,N,i), P(N,N,i), '#8E98D0', 1);
+    }
+    // highlighted 1 cm³ cube at corner (N-1..N, N-1..N, N-1..N)
+    const a = N - 1;
+    poly([P(a,a,N),P(N,a,N),P(N,N,N),P(a,N,N)], '#F36619', '#A3400B', 2);
+    poly([P(N,a,a),P(N,N,a),P(N,N,N),P(N,a,N)], '#D9530D', '#A3400B', 2);
+    poly([P(a,N,a),P(N,N,a),P(N,N,N),P(a,N,N)], '#F78A4F', '#A3400B', 2);
+    const txt = (x, y, t, c, size, anchor) => {
+        const e = document.createElementNS(NS, 'text');
+        e.setAttribute('x', x); e.setAttribute('y', y); e.setAttribute('fill', c);
+        e.setAttribute('font-size', size); e.setAttribute('font-weight', 700);
+        e.setAttribute('text-anchor', anchor || 'middle'); e.textContent = t; svg.appendChild(e);
+    };
+    const b1 = P(N, N, 0), b2 = P(0, N, 0), b3 = P(N, 0, 0);
+    txt((b1[0]+b2[0])/2 - 20, (b1[1]+b2[1])/2 + 34, '10 cm', '#000070', 22);
+    txt((b1[0]+b3[0])/2 + 30, (b1[1]+b3[1])/2 + 34, '10 cm', '#000070', 22);
+    const h = P(0, N, N/2);
+    txt(h[0] - 14, h[1], '10 cm', '#000070', 22, 'end');
+    const c = P(N, N, N);
+    txt(c[0] + 175, c[1] - 150, '1 cm³ = 1 mL', '#C0392B', 20, 'start');
+    line([c[0] + 4, c[1] - 14], [c[0] + 172, c[1] - 145], '#C0392B', 2);
+</script>
+</body>
+</html>

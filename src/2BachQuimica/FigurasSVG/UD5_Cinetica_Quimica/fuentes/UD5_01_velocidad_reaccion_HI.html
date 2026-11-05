@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD5_01 · Concentraciones frente al tiempo: H2 + I2 ⇌ 2 HI</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/graficas.js"></script>
+</head>
+<body>
+<script>
+// H2(g) + I2(g) ⇌ 2 HI(g). Las curvas se obtienen integrando numéricamente
+// d[HI]/dt = 2 (k1[H2][I2] − k2[HI]²); al llegar al equilibrio las concentraciones no cambian.
+const k1 = 1, k2 = 1 / 54;                 // Kc ≈ 54 (≈ 700 K)
+let H2 = 1, I2 = 1.1, HI = 0;
+const dt = 0.002, datos = [];
+for (let t = 0; t <= 5; t += dt) {
+    datos.push([t, H2, I2, HI]);
+    const v = k1 * H2 * I2 - k2 * HI * HI;
+    H2 -= v * dt; I2 -= v * dt; HI += 2 * v * dt;
+}
+const svg = crearFigura(420, 320);
+const g = grafica(svg, { x: 45, y: 20, w: 340, h: 250, xmin: 0, xmax: 5, ymin: 0, ymax: 1.8, etqX: "t" });
+texto(svg, 22, 150, "Concentración", { "text-anchor": "middle", "font-size": 16, fill: COLORES.texto, transform: "rotate(-90 22 150)" });
+const fin = datos[datos.length - 1];
+[fin[3], fin[1]].forEach(v => el("line", { x1: g.px(0), y1: g.py(v), x2: g.px(5), y2: g.py(v), stroke: "#555", "stroke-dasharray": "6 5" }, svg));
+const C = { HI: "#1FA3D8", I2: "#1E9E6A", H2: "#F29A2E" };
+g.puntos(datos.map(d => [d[0], d[3]]), { color: C.HI, ancho: 2.6 });
+g.puntos(datos.map(d => [d[0], d[2]]), { color: C.I2, ancho: 2.6 });
+g.puntos(datos.map(d => [d[0], d[1]]), { color: C.H2, ancho: 2.6 });
+texto(svg, g.px(0.8), g.py(1.25), "[HI]", { "font-size": 17, fill: C.HI });
+texto(svg, g.px(1.3), g.py(0.52), [{ t: "[I" }, { t: "2", sub: true }, { t: "]" }], { "font-size": 17, fill: C.I2 });
+texto(svg, g.px(0.62), g.py(0.28), [{ t: "[H" }, { t: "2", sub: true }, { t: "]" }], { "font-size": 17, fill: C.H2 });
+texto(svg, g.px(3.6), g.py(fin[3]) - 8, "equilibrio", { "font-size": 13, fill: COLORES.gris });
+</script>
+</body>
+</html>

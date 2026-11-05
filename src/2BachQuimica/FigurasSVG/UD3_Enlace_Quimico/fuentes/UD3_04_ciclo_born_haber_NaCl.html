@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_04 · Ciclo de Born-Haber del NaCl</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Ciclo de Born-Haber: la entalpía de formación del NaCl(s) es igual a la suma de las
+// etapas del camino indirecto (ley de Hess):  ΔHf = ΔHsub + ½ΔHdis + EI + AE + U
+const svg = crearFigura(640, 400);
+const T = (x, y, partes, a = {}) => texto(svg, x, y, partes, { "text-anchor": "middle", "font-size": 19, fill: COLORES.texto, "font-family": "Times New Roman, serif", ...a });
+const DH = (sub) => [{ t: "Δ" }, { t: "H", attrs: { "font-style": "italic" } }, { t: sub, sub: true }];
+const AZ = "#1E4FC0", RO = "#C62828";
+// Recuadro de la reacción de formación
+el("rect", { x: 20, y: 20, width: 600, height: 62, rx: 10, fill: "#FFF5EE", stroke: RO, "stroke-width": 2 }, svg);
+T(90, 58, "Na (s)");
+T(170, 58, "+");
+T(250, 58, [{ t: "½ Cl" }, { t: "2", sub: true }, { t: " (g)" }]);
+flecha(svg, 330, 52, 470, 52, { punta: 11, ancho: 1.8 });
+T(400, 42, DH("f"), { fill: RO });
+T(550, 58, "NaCl (s)", { fill: AZ, "font-weight": "bold" });
+// Etapas
+flecha(svg, 90, 90, 90, 175, { punta: 11, ancho: 1.8 });
+T(45, 138, DH("sub"), { "text-anchor": "middle" });
+flecha(svg, 250, 90, 250, 175, { punta: 11, ancho: 1.8 });
+T(320, 138, [{ t: "½ " }, ...DH("dis")], { fill: RO });
+T(90, 205, "Na (g)");
+T(250, 205, "Cl (g)");
+flecha(svg, 90, 220, 90, 320, { punta: 11, ancho: 1.8 });
+T(55, 275, "EI");
+flecha(svg, 250, 220, 250, 320, { punta: 11, ancho: 1.8 });
+T(285, 275, "AE");
+T(90, 355, [{ t: "Na" }, { t: "+", sup: true }, { t: " (g)" }], { fill: AZ });
+T(170, 355, "+", { fill: AZ });
+T(250, 355, [{ t: "Cl" }, { t: "−", sup: true }, { t: " (g)" }], { fill: AZ });
+flecha(svg, 310, 340, 540, 92, { punta: 12, ancho: 2 });
+T(455, 240, [{ t: "U", attrs: { "font-style": "italic" } }, { t: " (energía reticular)", attrs: { "font-size": 15 } }], { fill: RO });
+T(320, 395, [...DH("f"), { t: " = " }, ...DH("sub"), { t: " + ½" }, ...DH("dis"), { t: " + EI + AE + " }, { t: "U", attrs: { "font-style": "italic" } }],
+    { "font-size": 17 });
+</script>
+</body>
+</html>

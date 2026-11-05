@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_37 · Los alcoholes terciarios no se oxidan</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Alcohol terciario: el C del OH no tiene H, por lo que no se oxida en condiciones normales.
+const svg = crearFigura(560, 140);
+const R = { Xe: { t: "R", color: "#222" }, Kr: { t: "R'", color: "#222" }, Rn: { t: "R''", color: "#222" } };
+molecula(svg, "[Xe]C([Kr])([Rn])O", 80, 60, { grupos: R, etiqueta: "alcohol terciario", yEtq: 128, colorEtq: AZUL });
+flechaR(svg, 160, 55, 250, "oxidación");
+texto(svg, 205, 60, "×", { "text-anchor": "middle", "font-size": 22, fill: ROJO });
+texto(svg, 260, 60, "no hay reacción, salvo en condiciones específicas", { "font-size": 15, fill: COLORES.texto, "font-family": TNR });
+</script>
+</body>
+</html>

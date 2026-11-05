@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>A simple circuit</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 24px; align-items: center; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .side { flex: 1; }
+    table { width: 100%; border-collapse: collapse; font-size: 16px; }
+    th { background: var(--ocre-soft); padding: 6px; }
+    td { padding: 6px; border-top: 1px solid var(--line); text-align: center; }
+    .an { margin-top: 12px; border-radius: 12px; padding: 10px 14px; background: var(--blue-soft); border: 2px solid var(--blue); font-size: 15px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>A simple electric circuit</h1>
+    <div class="row">
+        <svg width="500" height="420" viewBox="0 0 500 420">
+            <defs><marker id="m" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#E67E22"/></marker></defs>
+            <g stroke="#23373B" stroke-width="4" fill="none">
+                <path d="M80 60 L420 60 L420 170"/><path d="M420 250 L420 360 L290 360"/><path d="M210 360 L80 360 L80 230"/><path d="M80 190 L80 60"/>
+            </g>
+            <!-- battery -->
+            <line x1="50" y1="190" x2="110" y2="190" stroke="#23373B" stroke-width="4"/><line x1="62" y1="230" x2="98" y2="230" stroke="#23373B" stroke-width="9"/>
+            <text x="120" y="198" font-size="22" font-weight="800" fill="#C0392B">+</text><text x="120" y="240" font-size="26" font-weight="800" fill="#2471A3">−</text>
+            <text x="145" y="205" font-size="17" font-weight="800" fill="#23373B">Battery</text><text x="145" y="225" font-size="14" fill="#525252">(generator)</text>
+            <!-- bulb -->
+            <circle cx="420" cy="210" r="40" fill="#FEF9E7" stroke="#23373B" stroke-width="4"/>
+            <line x1="392" y1="182" x2="448" y2="238" stroke="#23373B" stroke-width="3"/><line x1="448" y1="182" x2="392" y2="238" stroke="#23373B" stroke-width="3"/>
+            <text x="350" y="215" text-anchor="end" font-size="17" font-weight="800" fill="#23373B">Bulb</text><text x="350" y="235" text-anchor="end" font-size="14" fill="#525252">(receiver)</text>
+            <!-- switch -->
+            <circle cx="210" cy="360" r="6" fill="#23373B"/><circle cx="290" cy="360" r="6" fill="#23373B"/>
+            <line x1="210" y1="360" x2="282" y2="352" stroke="#23373B" stroke-width="4"/>
+            <text x="250" y="395" text-anchor="middle" font-size="17" font-weight="800" fill="#23373B">Switch (closed)</text>
+            <text x="250" y="45" text-anchor="middle" font-size="17" font-weight="800" fill="#23373B">Wires (copper)</text>
+            <!-- current arrows -->
+            <line x1="200" y1="80" x2="300" y2="80" stroke="#E67E22" stroke-width="4" marker-end="url(#m)"/>
+            <text x="250" y="105" text-anchor="middle" font-size="15" font-weight="700" fill="#E67E22">current I</text>
+        </svg>
+        <div class="side">
+            <table>
+                <tr><th>Quantity</th><th>Symbol</th><th>Unit</th><th>Measured with</th></tr>
+                <tr><td>Current intensity</td><td>I</td><td>ampere (A)</td><td>ammeter</td></tr>
+                <tr><td>Potential difference (voltage)</td><td>ΔV</td><td>volt (V)</td><td>voltmeter</td></tr>
+                <tr><td>Resistance</td><td>R</td><td>ohm (Ω)</td><td>ohmmeter</td></tr>
+            </table>
+            <div class="an">💧 <b>Water analogy</b>: the battery is like a pump (voltage), the current is like the flow of water, and the resistance is like a narrow pipe that makes the water flow harder.</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

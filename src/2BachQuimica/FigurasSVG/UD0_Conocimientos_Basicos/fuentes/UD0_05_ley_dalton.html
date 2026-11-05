@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD0_05 · Ley de Dalton de las presiones parciales</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/particulas.js"></script>
+</head>
+<body>
+<script>
+// Cuatro recipientes iguales (mismo V y T) con 3 CO2, 4 CO, 5 H2 y la mezcla de todos.
+// La presión es proporcional al número de moléculas, así que la mezcla (12 moléculas)
+// ejerce la suma de las presiones parciales.
+const svg = crearFigura(880, 320);
+const T = (x, y, t, a = {}) => texto(svg, x, y, t, { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto, ...a });
+const W = 170, H = 170, Y = 36;
+const p1 = 0.10;                       // atm por molécula (escala del dibujo)
+
+function recipiente(x, gases, semilla) {
+    el("rect", { x, y: Y, width: W, height: H, rx: 10, fill: "#F4F8FA", stroke: "#6E9FB3", "stroke-width": 3 }, svg);
+    const lista = gases.flatMap(([m, k]) => Array(k).fill(m));
+    const pts = rejilla(lista.length, x + 8, Y + 8, W - 16, H - 16, 3, 4, semilla, 0.1);
+    lista.forEach((m, i) => moleculaPlana(svg, pts[i][0], pts[i][1], MOL[m], 0.75));
+}
+function rotulo(x, cab, n, color) {
+    T(x + W / 2, Y - 10, cab, { "font-weight": "bold", fill: color });
+    T(x + W / 2, Y + H + 24, `${n} moléculas`, { "font-size": 14 });
+    T(x + W / 2, Y + H + 44, `p = ${(n * p1).toFixed(1).replace(".", ",")} atm`, { "font-size": 15, "font-weight": "bold", fill: color });
+}
+
+const xs = [5, 215, 425, 700];
+recipiente(xs[0], [["CO2", 3]], 3);  rotulo(xs[0], quim("CO2"), 3, COLORES.texto);
+T(200, Y + H / 2 + 10, "+", { "font-size": 30, "font-weight": "bold" });
+recipiente(xs[1], [["CO", 4]], 5);   rotulo(xs[1], quim("CO"), 4, COLORES.texto);
+T(410, Y + H / 2 + 10, "+", { "font-size": 30, "font-weight": "bold" });
+recipiente(xs[2], [["H2", 5]], 11);  rotulo(xs[2], quim("H2"), 5, COLORES.texto);
+flecha(svg, 610, Y + H / 2, 685, Y + H / 2, { ancho: 3, punta: 14 });
+recipiente(xs[3], [["CO2", 3], ["CO", 4], ["H2", 5]], 17);
+rotulo(xs[3], "Mezcla", 12, COLORES.ocre);
+
+el("rect", { x: 140, y: 280, width: 600, height: 34, rx: 8, fill: "#FFF3EA", stroke: COLORES.ocre }, svg);
+T(300, 303, [{ t: "p" }, { t: "T", sub: true }, { t: " = 0,3 + 0,4 + 0,5 = 1,2 atm" }], { "font-size": 14, "font-weight": "bold" });
+T(580, 303, [{ t: "p" }, { t: "i", sub: true }, { t: " = χ" }, { t: "i", sub: true }, { t: " · p" }, { t: "T", sub: true },
+    { t: "  →  p(H" }, { t: "2", sub: true }, { t: ") = (5/12) · 1,2 = 0,5 atm" }], { "font-size": 14 });
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Nomenclatura de adición: del ácido sulfúrico al ion sulfato</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1080px; }
+    .card h2 { font-size: 19px; }
+    .card .n { font-size: 18px; font-weight: 700; margin-top: 4px; }
+    .oh { color: #1F77B4; } .ox { color: #C0392B; } .ce { color: #23373B; } .ch { color: #1E8449; }
+    .arrowbox { display: flex; align-items: center; font-size: 15px; color: var(--grey); text-align: center; width: 70px; }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>H₂SO₄ = SO₂(OH)₂</h2><svg id="a" width="270" height="200"></svg>
+            <div class="n"><span class="oh">dihidroxido</span><span class="ox">dioxido</span><span class="ce">azufre</span></div>
+            <div class="t">ácido sulfúrico (nombre tradicional)</div></div>
+        <div class="arrowbox"><svg id="f1" width="70" height="80"></svg></div>
+        <div class="card"><h2>HSO₄⁻ = SO₃(OH)⁻</h2><svg id="b" width="270" height="200"></svg>
+            <div class="n"><span class="oh">hidroxido</span><span class="ox">trioxido</span><span class="ce">sulfato</span><span class="ch">(1−)</span></div>
+            <div class="t">hidrogenosulfato</div></div>
+        <div class="arrowbox"><svg id="f2" width="70" height="80"></svg></div>
+        <div class="card"><h2>SO₄²⁻</h2><svg id="c" width="270" height="200"></svg>
+            <div class="n"><span class="ox">tetraoxido</span><span class="ce">sulfato</span><span class="ch">(2−)</span></div>
+            <div class="t">sulfato</div></div>
+    </div>
+    <div class="note" style="margin-top:10px; text-align:center">
+        Átomo central: S. Ligandos <span class="oh"><b>hidróxido</b> (−OH)</span> y <span class="ox"><b>óxido</b> (=O)</span>, en orden alfabético y con prefijos.
+        Cada H⁺ que pierde el ácido deja un ligando óxido con carga negativa; en los aniones, el átomo central acaba en <b>-ato</b> y se añade la carga.
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const CX = 135, CY = 100, L = 62;
+    // pos: ángulo (grados) de cada ligando; tipo 'oh' u 'ox'
+    function draw(id, ligs) {
+        const S = svgAdder(id);
+        ligs.forEach(([ang, t]) => {
+            const a = ang * Math.PI / 180, x = CX + L * Math.cos(a), y = CY - L * Math.sin(a);
+            const nx = -Math.sin(a) * 4, ny = -Math.cos(a) * 4;
+            if (t === 'ox') {
+                S('line', { x1: CX + nx, y1: CY + ny, x2: x + nx, y2: y + ny, stroke: '#555', 'stroke-width': 3 });
+                S('line', { x1: CX - nx, y1: CY - ny, x2: x - nx, y2: y - ny, stroke: '#555', 'stroke-width': 3 });
+            } else {
+                S('line', { x1: CX, y1: CY, x2: x, y2: y, stroke: '#555', 'stroke-width': 3 });
+            }
+            if (t === 'oh') {
+                const hx = CX + (L + 38) * Math.cos(a), hy = CY - (L + 38) * Math.sin(a);
+                S('line', { x1: x, y1: y, x2: hx, y2: hy, stroke: '#555', 'stroke-width': 3 });
+                S('circle', { cx: hx, cy: hy, r: 15, fill: '#AED6F1', stroke: '#1F77B4', 'stroke-width': 2 });
+                label(S, hx, hy + 6, 'H', { 'font-size': 16 });
+            }
+            S('circle', { cx: x, cy: y, r: 20, fill: t === 'oh' ? '#D6EAF8' : '#FADBD8', stroke: t === 'oh' ? '#1F77B4' : '#C0392B', 'stroke-width': 2.5 });
+            label(S, x, y + 6, 'O', { 'font-size': 18 });
+            if (t === 'om') {}
+        });
+        S('circle', { cx: CX, cy: CY, r: 24, fill: '#F9E79F', stroke: '#B7950B', 'stroke-width': 2.5 });
+        label(S, CX, CY + 7, 'S', { 'font-size': 21 });
+    }
+    // ox- : óxido con carga negativa (enlace sencillo y signo −)
+    function drawIon(id, ligs) {
+        draw(id, ligs.map(([a, t]) => [a, t === 'oxm' ? 'om' : t]));
+        const S = svgAdder(id);
+        ligs.forEach(([ang, t]) => {
+            if (t !== 'oxm') return;
+            const a = ang * Math.PI / 180, x = CX + L * Math.cos(a), y = CY - L * Math.sin(a);
+            S('line', { x1: CX + 24 * Math.cos(a), y1: CY - 24 * Math.sin(a), x2: x - 20 * Math.cos(a), y2: y + 20 * Math.sin(a), stroke: '#555', 'stroke-width': 3 });
+            S('circle', { cx: x, cy: y, r: 20, fill: '#FADBD8', stroke: '#C0392B', 'stroke-width': 2.5 });
+            label(S, x, y + 6, 'O', { 'font-size': 18 });
+            label(S, x + 20, y - 12, '−', { 'font-size': 20, fill: '#1E8449' });
+        });
+    }
+    draw('a', [[90, 'ox'], [270, 'ox'], [180, 'oh'], [0, 'oh']]);
+    drawIon('b', [[90, 'ox'], [270, 'ox'], [180, 'oh'], [0, 'oxm']]);
+    drawIon('c', [[90, 'ox'], [270, 'ox'], [180, 'oxm'], [0, 'oxm']]);
+    [['f1'], ['f2']].forEach(([id]) => {
+        const S = svgAdder(id);
+        arrow(S, 6, 40, 64, 40, '#1E8449', 3, 12);
+        label(S, 35, 26, '− H⁺', { 'font-size': 15, fill: '#1E8449' });
+    });
+</script>
+</body>
+</html>

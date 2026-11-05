@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Espectrómetro de masas</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="850" height="400"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const A = svgAdder('s');
+    // zona del campo magnético (semicírculo)
+    A('path', { d: 'M420 330 L420 20 A250 250 0 0 1 420 330', fill: 'none' });
+    A('rect', { x: 400, y: 20, width: 420, height: 320, rx: 14, fill: '#EAF2F8', stroke: '#AED6F1', 'stroke-width': 2 });
+    for (let x = 440; x < 810; x += 40) for (let y = 45; y < 330; y += 40) { A('circle', { cx: x, cy: y, r: 6, fill: 'none', stroke: '#5DADE2', 'stroke-width': 1.3 }); A('circle', { cx: x, cy: y, r: 1.6, fill: '#5DADE2' }); }
+    label(A, 760, 40, 'Campo magnético', { 'font-size': 14, fill: '#1F618D' });
+    // fuente de iones
+    A('rect', { x: 20, y: 300, width: 120, height: 60, rx: 8, fill: '#FDEBD0', stroke: '#E59866', 'stroke-width': 2 });
+    label(A, 80, 325, 'Fuente', { 'font-size': 14 }); label(A, 80, 343, 'de iones', { 'font-size': 14 });
+    arrow(A, 0, 330, 20, 330, '#7F8C8D', 3, 10);
+    label(A, 30, 290, 'muestra gaseosa', { 'font-size': 12, 'font-weight': 400, 'text-anchor': 'start' });
+    // placas aceleradoras
+    [200, 260].forEach(x => { A('rect', { x, y: 290, width: 8, height: 30, fill: '#7F8C8D' }); A('rect', { x, y: 340, width: 8, height: 30, fill: '#7F8C8D' }); });
+    label(A, 234, 390, 'Aceleración', { 'font-size': 14 });
+    // haz y trayectorias
+    A('path', { d: 'M140 330 L420 330', stroke: '#8E44AD', 'stroke-width': 4 });
+    const paths = [[95, '#E74C3C', 'más ligero'], [125, '#8E44AD', 'intermedio'], [150, '#1F618D', 'más pesado']];
+    paths.forEach(([r, col, t]) => {
+        A('path', { d: `M420 330 A${r} ${r} 0 0 0 ${420 + r} ${330 - r} A${r} ${r} 0 0 0 420 ${330 - 2 * r}`, fill: 'none', stroke: col, 'stroke-width': 3 });
+    });
+    // detector
+    A('rect', { x: 395, y: 20, width: 18, height: 160, fill: '#239B56' });
+    label(A, 404, 200, 'Detector', { 'font-size': 15, fill: '#196F3D' });
+    paths.forEach(([r, col, t]) => { arrow(A, 440, 330 - 2 * r, 414, 330 - 2 * r, col, 3, 11); label(A, 330, 330 - 2 * r + 5, 'ion ' + t, { 'font-size': 13, fill: col }); });
+    label(A, 640, 365, 'Cuanto mayor es la masa del ion,', { 'font-size': 14, 'font-weight': 400 });
+    label(A, 640, 385, 'mayor es el radio de su trayectoria', { 'font-size': 14, 'font-weight': 400 });
+</script>
+</body>
+</html>

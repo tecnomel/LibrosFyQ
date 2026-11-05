@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Dispersión de la luz en un prisma</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 740px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="700" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    add('rect', { x: 0, y: 0, width: 700, height: 330, rx: 14, fill: '#1C2833' });
+    // prisma
+    const A = [330, 40], B = [200, 280], C = [460, 280];
+    add('path', { d: `M${A} L${B} L${C} Z`, fill: '#D6EAF8', 'fill-opacity': 0.25, stroke: '#EAF2F8', 'stroke-width': 2.5 });
+    // rayo de luz blanca que entra por la cara AB
+    const E = [255, 180], X = [400, 170];
+    add('line', { x1: 30, y1: 225, x2: E[0], y2: E[1], stroke: '#FDFEFE', 'stroke-width': 5 });
+    label(add, 90, 250, 'luz blanca', { 'font-size': 15, fill: '#FDFEFE' });
+    // dentro del prisma: abanico estrecho
+    const cols = [700, 640, 590, 560, 520, 470, 420];
+    cols.forEach((wl, k) => add('line', { x1: E[0], y1: E[1], x2: X[0] - 4 + k * 1.5, y2: X[1] + k * 3.5, stroke: wl2rgb(wl), 'stroke-width': 1.6, opacity: 0.85 }));
+    // a la salida: el abanico se abre (el violeta es el que más se desvía)
+    cols.forEach((wl, k) => {
+        const x0 = X[0] - 4 + k * 1.5, y0 = X[1] + k * 3.5;
+        add('line', { x1: x0, y1: y0, x2: 680, y2: 190 + k * 18, stroke: wl2rgb(wl), 'stroke-width': 5 });
+    });
+    ['rojo', 'naranja', 'amarillo', 'verde', 'azul', 'añil', 'violeta'].forEach((t, k) =>
+        label(add, 676, 196 + k * 18 - 2, t, { 'font-size': 12, fill: '#FDFEFE', 'text-anchor': 'end', 'font-weight': 600 }));
+    // normal en la cara de entrada
+    const n = [-(B[1] - A[1]), B[0] - A[0]], L = Math.hypot(...n);
+    dashed(add, E[0] - n[0] / L * 70, E[1] - n[1] / L * 70, E[0] + n[0] / L * 60, E[1] + n[1] / L * 60, '#AEB6BF', 1.3);
+    label(add, E[0] - n[0] / L * 70 - 4, E[1] - n[1] / L * 70 - 4, 'normal', { 'font-size': 12, fill: '#AEB6BF', 'text-anchor': 'end' });
+    label(add, 330, 310, 'prisma óptico', { 'font-size': 14, fill: '#EAF2F8' });
+</script>
+</body>
+</html>

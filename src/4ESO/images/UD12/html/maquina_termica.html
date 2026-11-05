@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Esquema de una máquina térmica</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 600px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="540" height="345"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const d = add('defs', {});
+    d.innerHTML = '<linearGradient id="hot" x1="0" x2="1"><stop offset="0" stop-color="#E74C3C"/><stop offset="1" stop-color="#F5B041"/></linearGradient>' +
+        '<linearGradient id="cold" x1="0" x2="1"><stop offset="0" stop-color="#2E86C1"/><stop offset="1" stop-color="#85C1E9"/></linearGradient>';
+    add('rect', { x: 40, y: 10, width: 320, height: 56, rx: 10, fill: 'url(#hot)' });
+    sub(add, 200, 45, 'Foco caliente (caldera), T_1', { 'font-size': 17, fill: '#fff' });
+    add('rect', { x: 40, y: 284, width: 320, height: 56, rx: 10, fill: 'url(#cold)' });
+    sub(add, 200, 319, 'Foco frío (condensador), T_2', { 'font-size': 17, fill: '#fff' });
+    // máquina
+    add('circle', { cx: 200, cy: 175, r: 58, fill: '#F2F3F4', stroke: '#424949', 'stroke-width': 3 });
+    label(add, 200, 181, 'Máquina', { 'font-size': 17 });
+    fatArrow(add, 200, 70, 200, 115, 34, '#E74C3C');
+    sub(add, 245, 100, 'Q_1', { 'font-size': 18, fill: '#C0392B', 'font-style': 'italic' });
+    fatArrow(add, 200, 235, 200, 280, 20, '#5DADE2');
+    sub(add, 240, 265, 'Q_2', { 'font-size': 18, fill: '#2471A3', 'font-style': 'italic' });
+    fatArrow(add, 260, 175, 400, 175, 26, '#1E8449');
+    label(add, 340, 160, 'W', { 'font-size': 20, fill: '#1E8449', 'font-style': 'italic' });
+    label(add, 470, 168, 'trabajo', { 'font-size': 15, fill: '#1E8449' });
+    label(add, 470, 188, 'útil', { 'font-size': 15, fill: '#1E8449' });
+    sub(add, 470, 240, 'W = Q_1 − Q_2', { 'font-size': 16, fill: '#23373B', 'font-style': 'italic' });
+    sub(add, 470, 262, 'T_2 < T_1', { 'font-size': 14, fill: '#525252', 'font-weight': 400 });
+</script>
+</body>
+</html>

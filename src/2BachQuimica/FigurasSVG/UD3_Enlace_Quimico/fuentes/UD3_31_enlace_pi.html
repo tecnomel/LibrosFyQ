@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_31 · Enlace pi (π): solapamiento lateral</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/orbitales.js"></script>
+</head>
+<body>
+<script>
+// Enlace π: dos orbitales p paralelos se solapan LATERALMENTE. La densidad electrónica
+// queda por encima y por debajo del eje internuclear; en el eje hay un plano nodal.
+const svg = crearFigura(760, 330);
+const RO = "#E0463A";
+const cam = [1, -0.25, 0.3];
+const A = [0, -0.85, 0], B = [0, 0.85, 0];
+escenaOrbital(svg, 170, 160, OA.p(A, [0, 0, 1]), { escala: 55, caja: [2.6, 1.6, 2.4], colorPos: RO, colorNeg: RO, camara: cam,
+    otros: [{ fn: OA.p(B, [0, 0, 1]), colorPos: RO, colorNeg: RO }], nucleos: [A, B] });
+texto(svg, 170, 40, "p + p", { "text-anchor": "middle", "font-size": 22, "font-style": "italic", fill: COLORES.texto });
+flecha(svg, 310, 160, 370, 160, { punta: 11, ancho: 1.8 });
+const pi = combinar([1, OA.p(A, [0, 0, 1])], [1, OA.p(B, [0, 0, 1])]);
+escenaOrbital(svg, 560, 160, pi, { escala: 55, caja: [2.6, 1.6, 2.4], colorPos: RO, colorNeg: RO, camara: cam, nucleos: [A, B],
+    extra: e3 => e3.plano([0, 0, 0], [0, 2.3, 0], [1.1, 0, 0], { color: "#555", borde: "#222", opacidad: 0.18, teselas: 8 }) });
+texto(svg, 560, 40, "Orbital π", { "text-anchor": "middle", "font-size": 22, fill: COLORES.texto });
+texto(svg, 745, 190, "plano", { "text-anchor": "end", "font-size": 15, fill: COLORES.texto });
+texto(svg, 745, 208, "nodal", { "text-anchor": "end", "font-size": 15, fill: COLORES.texto });
+</script>
+</body>
+</html>

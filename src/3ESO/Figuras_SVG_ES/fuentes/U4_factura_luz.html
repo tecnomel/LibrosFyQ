@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>U4 - Factura de la luz</title>
+<!-- Unidad 4 · fig:factura_luz · sustituye a Images/energia/factura_luz.jpg
+     Datos de la factura original (10/01/2023 – 09/02/2023), rótulos en español. -->
+<script src="../lib/comun.js"></script>
+</head>
+<body>
+<script>
+const W = 900, H = 540;
+const { svg, defs } = crearLienzo(W, H);
+
+const AZUL = '#1b2b5c', GRANATE = '#8c1d40', GRIS = '#555', CLARO = '#8a8a8a';
+const t = (x, y, s, o = {}) => texto(svg, x, y, s, { size: 13, fill: '#222', anchor: 'start', ...o });
+const tr = (x, y, s, o = {}) => t(x, y, s, { anchor: 'end', ...o });
+const linea = (x1, y1, x2, y2, c = '#bbb', w = 1) =>
+  el('line', { x1, y1, x2, y2, stroke: c, 'stroke-width': w }, svg);
+
+// Marco y pestaña de cabecera
+el('rect', { x: 30, y: 38, width: W - 45, height: H - 50, fill: '#fff', stroke: GRANATE, 'stroke-width': 1.5 }, svg);
+el('path', { d: `M20,10 H470 Q500,10 505,24 L512,48 H20 Z`, fill: AZUL }, svg);
+t(36, 39, 'CONSUMO Y FACTURACIÓN', { size: 24, fill: '#fff', weight: 700 });
+
+/* ---------- Columna izquierda: consumo ---------- */
+t(52, 92, 'Consumo', { size: 18, weight: 700 });
+t(52, 124, 'Periodo de facturación');
+t(52, 144, '10/01/2023 – 09/02/2023');
+
+t(52, 170, 'Potencia');
+t(52, 188, 'contratada (kW)');
+t(222, 168, 'P1', { weight: 700 }); t(282, 168, 'P2', { weight: 700 });
+linea(200, 176, 330, 176, '#333');
+t(220, 192, '3,45'); t(280, 192, '3,45');
+t(52, 222, '* Cargos fijados por el Real Decreto-ley 6/2022.', { size: 9.5, fill: GRIS });
+
+// Separador vertical de columnas (discreto)
+linea(355, 70, 355, 510, '#eee');
+
+/* ---------- Columna derecha: concepto / importe ---------- */
+const X0 = 380, XI = 870, XP = 780;
+t(X0, 92, 'Concepto', { size: 18, weight: 700 });
+tr(XI, 92, 'Importe', { size: 18, weight: 700 });
+
+let y = 124;
+const fila = (etq, importe, { neg = true, pct = '', dy = 22, size = 13 } = {}) => {
+  t(X0, y, etq, { weight: neg ? 700 : 400, size });
+  if (pct) tr(XP, y, pct, { size });
+  if (importe) tr(XI, y, importe, { weight: neg ? 700 : 400, size });
+  y += dy;
+};
+const detalle = (s, importe = '', dy = 17) => {
+  t(X0 + 34, y, s, { size: 11.5, fill: '#333' });
+  if (importe) tr(XI, y, importe, { size: 11.5, fill: '#333' });
+  y += dy;
+};
+const nota = (s, importe) => {
+  t(X0 + 44, y, s, { size: 9.5, fill: CLARO });
+  tr(XI, y, importe, { size: 9.5, fill: CLARO });
+  y += 13;
+};
+
+fila('Potencia', '*9,00 €', { dy: 18 });
+detalle('3,45 kW × 0,084180 €/kW día × 31 día(s)');
+detalle('3,45 kW × 0,084180 €/kW día × 31 día(s)');
+nota('* de los cuales peajes', '6,90 €');
+nota('* de los cuales cargos', '0,94 €');
+y += 6;
+fila('Energía', '*11,53 €', { dy: 18 });
+detalle('(10/01/2023 – 31/01/2023) 43 kWh × 0,183002 €/kWh');
+detalle('(01/02/2023 – 09/02/2023) 20 kWh × 0,183002 €/kWh');
+nota('* de los cuales peajes', '0,44 €');
+nota('* de los cuales cargos', '0,52 €');
+y += 26;
+linea(X0, y - 17, XI, y - 17, '#ddd');
+fila('Coste de la energía del mecanismo ibérico', '0,16 €', { dy: 17 });
+fila('(Real Decreto-ley 10/2022, de 13 de mayo)', '', { dy: 17 });
+detalle('63,00 kWh × 0,002539 €/kWh (*)', '', 22);
+fila('Descuento en energía', '1,53 €', { pct: '10 %' });
+fila('Impuesto sobre la electricidad', '0,057 €', { neg: false, pct: '0,5 %' });
+fila('Alquiler del contador', '0,82 €', { neg: false });
+fila('Base imponible del IVA', '20,03 €');
+fila('IVA', '1,00 €', { neg: false, pct: '5 %' });
+linea(X0, y - 10, XI, y - 10, GRANATE, 2);
+y += 8;
+fila('TOTAL', '21,03 €', { size: 16 });
+
+// Resaltado didáctico de los dos conceptos que se comentan en el texto
+const marco = (x, yy, w, h, c) =>
+  el('rect', { x, y: yy, width: w, height: h, rx: 6, fill: 'none', stroke: c, 'stroke-width': 2, 'stroke-dasharray': '6 4' }, svg);
+marco(X0 - 8, 108, XI - X0 + 16, 86, '#e07b00');
+marco(X0 - 8, 197, XI - X0 + 16, 94, '#0a84c6');
+texto(svg, 205, 300, 'Potencia contratada', { size: 13, fill: '#e07b00', weight: 700, anchor: 'start' });
+texto(svg, 205, 318, '→ unidad: kW (potencia)', { size: 12, fill: '#e07b00', anchor: 'start' });
+texto(svg, 205, 350, 'Energía consumida', { size: 13, fill: '#0a84c6', weight: 700, anchor: 'start' });
+texto(svg, 205, 368, '→ unidad: kWh (energía)', { size: 12, fill: '#0a84c6', anchor: 'start' });
+flecha(svg, defs, 330, 296, X0 - 12, 150, { color: '#e07b00', ancho: 1.5, tam: 10 });
+flecha(svg, defs, 330, 346, X0 - 12, 245, { color: '#0a84c6', ancho: 1.5, tam: 10 });
+
+finalizar();
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_E01 · Datos del ejercicio de Born-Haber del ZnS</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Datos energéticos del ejercicio (kJ/mol).
+const svg = crearFigura(620, 120);
+const DH = (sub) => [{ t: "Δ" }, { t: "H", attrs: { "font-style": "italic" } }, { t: sub, sub: true }];
+const f = { "font-size": 19, fill: COLORES.texto, "font-family": "Times New Roman, serif" };
+texto(svg, 10, 30, [...DH("f, ZnS (s)"), { t: " = −182 kJ/mol" }], f);
+texto(svg, 10, 65, [...DH("(1.ª EI + 2.ª EI) Zn"), { t: " = 2 680 kJ/mol" }], f);
+texto(svg, 10, 100, [...DH("S, S"), { t: " = 264 kJ/mol" }], f);
+texto(svg, 330, 30, [...DH("(1.ª AE + 2.ª AE) S"), { t: " = 246 kJ/mol" }], f);
+texto(svg, 330, 65, [...DH("U, ZnS"), { t: " = −3 488 kJ/mol" }], f);
+</script>
+</body>
+</html>

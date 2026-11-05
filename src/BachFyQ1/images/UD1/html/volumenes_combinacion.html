@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Volúmenes de combinación e hipótesis de Avogadro</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="950" height="420"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const S = 70;   // lado de cada recipiente de 1 L
+    // un recipiente de 1 L con 2 moléculas dentro (misma p y T -> mismo número de moléculas)
+    function litro(x, y, col, mol) {
+        add('rect', { x, y, width: S, height: S, rx: 6, fill: col, 'fill-opacity': 0.18, stroke: col, 'stroke-width': 2 });
+        molecule(add, x + S * 0.32, y + S * 0.32, mol, 11);
+        molecule(add, x + S * 0.66, y + S * 0.7, mol, 11);
+    }
+    function grupo(x, y, n, col, mol, txt) {
+        for (let i = 0; i < n; i++) litro(x + i * (S + 6), y, col, mol);
+        const w = n * S + (n - 1) * 6;
+        chemText(add, x + w / 2, y + S + 24, txt, { 'font-size': 16 });
+        return x + w;
+    }
+    function fila(y, partes, rotulo) {
+        let x = 20;
+        partes.forEach((p, i) => {
+            if (i) { label(add, x + 20, y + S / 2 + 9, i === partes.length - 1 ? '→' : '+', { 'font-size': 30 }); x += 40; }
+            x = grupo(x, y, ...p) + 10;
+        });
+        label(add, 640, y + S / 2 + 6, rotulo, { 'font-size': 17, 'text-anchor': 'start', fill: '#000070' });
+    }
+    fila(15, [[1, '#7F8C8D', MOL.H2, '1 L de H_2'], [1, '#27AE60', MOL.Cl2, '1 L de Cl_2'], [2, '#16A085', MOL.HCl, '2 L de HCl']], 'relación 1 : 1 : 2');
+    fila(150, [[2, '#7F8C8D', MOL.H2, '2 L de H_2'], [1, '#C0392B', MOL.O2, '1 L de O_2'], [2, '#E67E22', MOL.H2O, '2 L de H_2O (g)']], 'relación 2 : 1 : 2');
+    fila(285, [[3, '#7F8C8D', MOL.H2, '3 L de H_2'], [1, '#2E86C1', MOL.N2, '1 L de N_2'], [2, '#8E44AD', MOL.NH3, '2 L de NH_3']], 'relación 3 : 1 : 2');
+    label(add, 475, 412, 'Misma presión y temperatura: en cada litro hay el mismo número de moléculas (aquí, 2).', { 'font-size': 15, fill: '#525252', 'font-weight': 600 });
+</script>
+</body>
+</html>

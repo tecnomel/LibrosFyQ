@@ -1,0 +1,294 @@
+%! Unidad 5 — Campo eléctrico: ejercicios finales (adaptados de la fuente, con datos cambiados y resueltos)
+
+\section{Ejercicios}\label{sec:ele-ejercicios}
+
+Salvo que se indique otra cosa, usa \(k = \qty{9e9}{\newton\m\squared\per\coulomb\squared}\), \(e = \qty{1.6e-19}{\coulomb}\),
+\(m_p = \qty{1.67e-27}{\kg}\), \(m_e = \qty{9.11e-31}{\kg}\) y \(g = \qty{9.8}{\m\per\second\squared}\).
+
+\subsection{Cuestiones}
+
+\begin{exercise}
+    Si en un punto entre dos cargas el campo eléctrico es nulo, ¿qué puedes decir de los signos de las cargas? ¿Y si el punto
+    está fuera del segmento que las une?
+    \begin{solu}
+        \textcolor{blue}{Entre las cargas, el campo de cada una apunta en sentidos opuestos solo si tienen el mismo signo.}
+        \textcolor{red}{Si el punto está entre ellas, son del mismo signo; si está fuera del segmento, son de signo contrario}
+        \textcolor{blue}{(y el punto está más cerca de la de menor valor absoluto).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿En qué punto (aparte del infinito) no experimentaría fuerza una tercera carga colocada cerca de dos cargas iguales?
+    \begin{solu}
+        \textcolor{red}{En el punto medio del segmento que las une}: \textcolor{blue}{allí los campos de las dos son iguales y opuestos.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿Cuánto trabajo cuesta llevar una carga de un punto a otro de la misma superficie equipotencial?
+    \begin{solu}
+        \textcolor{red}{Ninguno}: \(W = q(V_A - V_B) = 0\) \textcolor{blue}{porque \(V_A = V_B\). El campo es perpendicular al desplazamiento.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Se libera un protón en reposo en un campo eléctrico uniforme. ¿Aumenta o disminuye su energía potencial? ¿Y si fuera un electrón?
+    \begin{solu}
+        \textcolor{red}{En los dos casos disminuye}: \textcolor{blue}{todo movimiento espontáneo desde el reposo convierte energía
+        potencial en cinética. El protón va hacia potenciales menores y el electrón, hacia potenciales mayores.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una partícula se mueve en el sentido de un campo eléctrico y su energía potencial aumenta. ¿Qué signo tiene su carga?
+    \begin{solu}
+        \textcolor{blue}{En el sentido del campo el potencial disminuye (\(\Delta V < 0\)). Como \(\Delta E_p = q\,\Delta V > 0\):}
+        \textcolor{red}{\(q < 0\)}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    En un punto \(A\) el potencial es \qty{25}{\volt} y en otro \(B\), \qty{10}{\volt}. ¿Hacia dónde se moverá espontáneamente una
+    carga positiva? Si es de \qty{3}{\coulomb} y parte del reposo, ¿qué energía cinética tendrá al llegar?
+    \begin{solu}
+        \textcolor{red}{De \(A\) a \(B\)}, \textcolor{blue}{hacia potenciales menores.}
+        \(E_c = W = q(V_A - V_B) = 3\cdot 15 = \textcolor{red}{\qty{45}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Fuerzas y campos}
+
+\begin{exercise}
+    Una carga de \qty{4}{\micro\coulomb} está en el origen y otra de \qty{-6}{\micro\coulomb} en \((12, 0)\) cm. Calcula el campo
+    en el punto \(B\) situado en la vertical de la segunda carga, de forma que la recta que lo une con la primera forma \ang{30}
+    con el eje \(X\).
+    \begin{solu}
+        \textcolor{blue}{\(B = (12;\ 12\tg\ang{30}) = (12;\ 6{,}93)\) cm. Distancias: \(r_1 = \qty{13.9}{\cm}\), \(r_2 = \qty{6.93}{\cm}\).}
+
+        \(E_1 = k\,\dfrac{4\cdot 10^{-6}}{0{,}1386^2} = \qty{1.88e6}{\newton\per\coulomb}\), \textcolor{blue}{alejándose del origen a \ang{30}};
+        \(E_2 = k\,\dfrac{6\cdot 10^{-6}}{0{,}0693^2} = \qty{1.13e7}{\newton\per\coulomb}\), \textcolor{blue}{hacia abajo.}
+        \[ \textcolor{red}{\vec E = (1{,}62\,\vec{i} - 10{,}3\,\vec{j})\cdot 10^6\ \unit{\newton\per\coulomb}};\quad E = \textcolor{red}{\qty{1.04e7}{\newton\per\coulomb}} \]
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una carga de \qty{3}{\micro\coulomb} está en \((2, 0)\) y otra de \qty{-2}{\micro\coulomb} en \((0, 1)\), con las coordenadas en
+    centímetros. Calcula el campo y el potencial en el punto \((1, 2)\).
+    \begin{solu}
+        \textcolor{blue}{Distancias: \(r_1 = \sqrt 5\ \unit{\cm}\), \(r_2 = \sqrt 2\ \unit{\cm}\). Con \(\vec E_i = k q_i\,\vec r_i/r_i^3\):}
+        \[ \textcolor{red}{\vec E = (-8{,}78\,\vec{i} - 1{,}53\,\vec{j})\cdot 10^7\ \unit{\newton\per\coulomb}} \qquad
+           V = 9\cdot 10^9\left(\dfrac{3\cdot 10^{-6}}{0{,}02236} - \dfrac{2\cdot 10^{-6}}{0{,}01414}\right) = \textcolor{red}{\qty{-6.5e4}{\volt}} \]
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Tres cargas de \qty{2e-6}{\coulomb} están en los puntos \((-1, 0)\), \((1, 1)\) y \((0, 1)\) (en metros). Calcula el campo en el
+    origen y la energía potencial del sistema.
+    \begin{solu}
+        \[ \textcolor{red}{\vec E = (1{,}16\,\vec{i} - 2{,}44\,\vec{j})\cdot 10^4\ \unit{\newton\per\coulomb}};\quad E = \textcolor{red}{\qty{2.70e4}{\newton\per\coulomb}} \]
+        \(E_p = k q^2\left(\dfrac{1}{\sqrt 5} + \dfrac{1}{\sqrt 2} + 1\right) = \textcolor{red}{\qty{7.76e-2}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Tres cargas de \qty{2}{\micro\coulomb} están en \((0, 0)\), \((0, 40)\) y \((30, 0)\) cm. Calcula la fuerza sobre otra carga igual
+    situada en \((30, 40)\) cm.
+    \begin{solu}
+        \textcolor{blue}{Las tres repelen. La de \((0, 40)\), a \qty{0.3}{\m}, empuja hacia \(+X\): \qty{0.40}{\newton}; la de \((30, 0)\), a \qty{0.4}{\m},
+        hacia \(+Y\): \qty{0.225}{\newton}; la del origen, a \qty{0.5}{\m}, \qty{0.144}{\newton} en la dirección \((0{,}6;\,0{,}8)\).}
+        \[ \textcolor{red}{\vec F = 0{,}486\,\vec{i} + 0{,}340\,\vec{j}\ \unit{\newton}};\quad F = \textcolor{red}{\qty{0.594}{\newton}} \]
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Dos bolitas de \qty{0.4}{\g} cuelgan de un mismo punto con hilos de \qty{40}{\cm}. Tienen la misma carga y en el equilibrio
+    los hilos forman entre sí \ang{30}. Calcula la carga de cada una.
+    \begin{solu}
+        \textcolor{blue}{Cada hilo forma \ang{15} con la vertical; las bolitas están a \(r = 2\cdot 0{,}4\sen\ang{15} = \qty{0.207}{\m}\).
+        En el equilibrio \(F_e = mg\tg\ang{15} = \qty{1.05e-3}{\newton}\).}
+        \(q = r\sqrt{\dfrac{F_e}{k}} = \textcolor{red}{\qty{7.1e-8}{\coulomb}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Representa las líneas de campo de dos cargas \(+3q\) y \(-q\).
+    \begin{solu}
+        \textcolor{blue}{Como en la figura~\ref{fig:ele-lineas}e:} \textcolor{red}{salen de \(+3q\) el triple de líneas de las que llegan a \(-q\); la tercera
+        parte termina en \(-q\) y el resto se va al infinito.} \textcolor{blue}{Lejos de las dos, el campo es como el de una carga \(+2q\).}
+    \end{solu}
+\end{exercise}
+
+\subsection{Potencial y energía}
+
+\begin{exercise}
+    Una carga de \qty{5}{\micro\coulomb} está en el origen.
+    \begin{enumerate}[label=\letraminuscula]
+        \item ¿Cuánto vale el potencial a \qty{2}{\m}?
+        \item ¿Qué trabajo hay que hacer para traer desde el infinito hasta allí una carga de \qty{3}{\micro\coulomb}?
+        \item ¿Qué energía potencial tiene esa carga en esa posición?
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(V = k\,\dfrac{Q}{r} = \textcolor{red}{\qty{2.25e4}{\volt}}\).
+            \item \(W_{\text{ext}} = q\,(V - 0) = \textcolor{red}{\qty{6.75e-2}{\joule}}\).
+            \item \(E_p = qV = \textcolor{red}{\qty{6.75e-2}{\joule}}\) \textcolor{blue}{(coincide con el trabajo exterior).}
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Tres cargas \(q_1 = \qty{3}{\micro\coulomb}\), \(q_2 = \qty{5}{\micro\coulomb}\) y \(q_3 = \qty{-6}{\micro\coulomb}\) están en
+    \((0, 0)\), \((6, 0)\) y \((3, 0)\) (en metros). Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item El campo en \(A(3, 3)\).
+        \item El potencial en \(A\) y en \(B(0, 3)\) y el trabajo del campo al llevar una carga de \qty{2}{\micro\coulomb} de \(A\) a \(B\).
+        \item El trabajo exterior para llevarla de \(B\) a \(A\).
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(\textcolor{red}{\vec E = -707\,\vec{i} - 3172\,\vec{j}\ \unit{\newton\per\coulomb}}\).
+            \item \(V_A = k\left(\dfrac{3}{\sqrt{18}} + \dfrac{5}{\sqrt{18}} - \dfrac{6}{3}\right)\cdot 10^{-6} = \textcolor{red}{\qty{-1029}{\volt}}\);
+            \(V_B = k\left(\dfrac{3}{3} + \dfrac{5}{\sqrt{45}} - \dfrac{6}{\sqrt{18}}\right)\cdot 10^{-6} = \textcolor{red}{\qty{2980}{\volt}}\).
+
+            \(W_{A\to B} = q(V_A - V_B) = \textcolor{red}{\qty{-8.0e-3}{\joule}}\).
+            \item \(W_{\text{ext},B\to A} = q(V_A - V_B) = \textcolor{red}{\qty{-8.0e-3}{\joule}}\): \textcolor{blue}{de \(B\) a \(A\) la carga va sola y el agente externo tiene que frenarla.}
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Dos esferas conductoras de \qty{4}{\cm} y \qty{12}{\cm} de radio están a potenciales de \qty{900}{\volt} y \qty{-900}{\volt}, con
+    sus centros separados \qty{1.5}{\m}. Calcula la fuerza entre ellas y la carga y el potencial de cada una después de unirlas
+    con un hilo conductor.
+    \begin{solu}
+        \textcolor{blue}{\(q = Vr/k\):} \(q_1 = \qty{4e-9}{\coulomb}\), \(q_2 = \qty{-1.2e-8}{\coulomb}\);
+        \(F = k\,\dfrac{|q_1 q_2|}{r^2} = \textcolor{red}{\qty{1.92e-7}{\newton}}\) \textcolor{red}{(atractiva)}.
+
+        \textcolor{blue}{Carga total \qty{-8e-9}{\coulomb}, repartida en proporción a los radios (1:3):}
+        \(q'_1 = \textcolor{red}{\qty{-2e-9}{\coulomb}}\), \(q'_2 = \textcolor{red}{\qty{-6e-9}{\coulomb}}\); \(V' = \textcolor{red}{\qty{-450}{\volt}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Dos esferas metálicas de \qty{5}{\cm} y \qty{10}{\cm} de radio se cargan con \qty{2e-6}{\coulomb} cada una y luego se unen con un
+    hilo conductor. Calcula el potencial y la carga de cada una después de unirlas.
+    \begin{solu}
+        \(q'_1 = 4\cdot 10^{-6}\,\dfrac{5}{15} = \textcolor{red}{\qty{1.33e-6}{\coulomb}}\); \(q'_2 = \textcolor{red}{\qty{2.67e-6}{\coulomb}}\);
+        \(V = k\,\dfrac{q'_1}{r_1} = \textcolor{red}{\qty{2.4e5}{\volt}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Campos uniformes y movimiento de cargas}
+
+\begin{exercise}
+    En un campo uniforme de \qty{8000}{\newton\per\coulomb} se libera un protón junto a la placa positiva. ¿Con qué velocidad llega a
+    la negativa, situada a \qty{25}{\cm}?
+    \begin{solu}
+        \(\tfrac{1}{2}m v^2 = qEd \Rightarrow v = \sqrt{\dfrac{2\cdot 1{,}6\cdot 10^{-19}\cdot 8000\cdot 0{,}25}{1{,}67\cdot 10^{-27}}} = \textcolor{red}{\qty{6.19e5}{\m\per\second}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Se conectan a una batería de \qty{300}{\volt} dos láminas paralelas separadas \qty{1.5}{\cm}. ¿Cuánto vale el campo entre ellas?
+    ¿Qué fuerza ejerce sobre un electrón?
+    \begin{solu}
+        \(E = \dfrac{300}{0{,}015} = \textcolor{red}{\qty{2e4}{\newton\per\coulomb}}\); \(F = eE = \textcolor{red}{\qty{3.2e-15}{\newton}}\),
+        \textcolor{blue}{hacia la placa positiva.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un electrón entra con velocidad horizontal \(v_0\) en un campo uniforme vertical dirigido hacia arriba. Halla la ecuación de su trayectoria.
+    \begin{solu}
+        \textcolor{blue}{La fuerza \(-eE\) va hacia abajo; aceleración \(a = eE/m\). Con el origen en el punto de entrada:}
+        \(x = v_0 t\); \(y = -\dfrac{1}{2}\,\dfrac{eE}{m}\,t^2\) \(\Rightarrow\)
+        \[ \textcolor{red}{y = -\dfrac{eE}{2 m v_0^2}\,x^2} \]
+        \textcolor{red}{Es una parábola} \textcolor{blue}{(figura~\ref{fig:ele-desviacion}).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una esfera de \qty{4}{\g} tiene una carga de \qty{-3}{\micro\coulomb}. ¿Qué campo hay que aplicar para que se mantenga en reposo sin caer?
+    \begin{solu}
+        \(|q|E = mg \Rightarrow E = \dfrac{0{,}004\cdot 9{,}8}{3\cdot 10^{-6}} = \textcolor{red}{\qty{1.31e4}{\newton\per\coulomb}}\),
+        \textcolor{red}{vertical y hacia abajo} \textcolor{blue}{(la carga es negativa: la fuerza va en sentido contrario al campo).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una esfera de \qty{5}{\mg} colgada de un hilo está en un campo de \(5000\,\vec{i}\ \unit{\newton\per\coulomb}\) y en el equilibrio
+    el hilo forma \ang{30} con la vertical. ¿Cuánto vale su carga?
+    \begin{solu}
+        \(qE = mg\tg\ang{30} \Rightarrow q = \dfrac{5\cdot 10^{-6}\cdot 9{,}8\cdot 0{,}577}{5000} = \textcolor{red}{\qty{5.7e-9}{\coulomb}}\) \textcolor{red}{(positiva)}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una esfera de \qty{0.4}{\g} con una carga de \qty{0.2}{\micro\coulomb} cuelga de un hilo de \qty{10}{\cm} dentro de un campo
+    uniforme de \(6000\,\vec{i}\ \unit{\newton\per\coulomb}\). ¿Qué ángulo forma el hilo con la vertical y cuál es su tensión?
+    \begin{solu}
+        \(\tg\alpha = \dfrac{qE}{mg} = \dfrac{1{,}2\cdot 10^{-3}}{3{,}92\cdot 10^{-3}} \Rightarrow \textcolor{red}{\alpha = \ang{17.0}}\);
+        \(T = \sqrt{(qE)^2 + (mg)^2} = \textcolor{red}{\qty{4.1e-3}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una esfera de \qty{40}{\g} sujeta de un hilo está en un campo \(\vec E = (6\,\vec{i} + 8\,\vec{j})\cdot 10^5\ \unit{\newton\per\coulomb}\).
+    En el equilibrio el hilo se separa \ang{25} de la vertical. Calcula la carga y la tensión del hilo.
+    \begin{solu}
+        \textcolor{blue}{Horizontal: \(qE_x = T\sen\alpha\). Vertical: \(qE_y + T\cos\alpha = mg\). Eliminando \(T\):}
+        \[ q = \dfrac{mg\tg\alpha}{E_x + E_y\tg\alpha} = \textcolor{red}{\qty{1.88e-7}{\coulomb}} \qquad T = \dfrac{qE_x}{\sen\alpha} = \textcolor{red}{\qty{0.267}{\newton}} \]
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una esfera de \qty{0.5}{\g} con una carga de \qty{6}{\micro\coulomb} cuelga entre dos láminas verticales separadas \qty{12}{\cm}.
+    En el equilibrio el hilo forma \ang{30} con la vertical (\(g = \qty{9.81}{\m\per\second\squared}\)).
+    \begin{enumerate}[label=\letraminuscula]
+        \item Dibuja las fuerzas e indica el signo de las placas.
+        \item Calcula la tensión del hilo y el campo.
+        \item ¿Qué diferencia de potencial hay entre las placas?
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \textcolor{blue}{Peso, tensión y fuerza eléctrica (figura~\ref{fig:ele-pendulo}). La carga es positiva y se desvía hacia la placa
+            negativa}: \textcolor{red}{la placa de la que se aleja es la positiva.}
+            \item \(T = \dfrac{mg}{\cos\ang{30}} = \textcolor{red}{\qty{5.66e-3}{\newton}}\); \(E = \dfrac{mg\tg\ang{30}}{q} = \textcolor{red}{\qty{472}{\newton\per\coulomb}}\).
+            \item \(\Delta V = E d = \textcolor{red}{\qty{56.6}{\volt}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Entre dos placas horizontales separadas \qty{2}{\cm} hay una diferencia de potencial de \qty{4000}{\volt}, con la positiva abajo.
+    \begin{enumerate}[label=\letraminuscula]
+        \item ¿Cuánto vale el campo?
+        \item Se introduce una bolita con una carga de \qty{3e-7}{\coulomb} colgada de un hilo y la tensión del hilo resulta nula. ¿Qué masa tiene?
+        \item Si se invierte la polaridad de las placas, ¿cuánto vale la tensión?
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(E = \dfrac{4000}{0{,}02} = \textcolor{red}{\qty{2e5}{\newton\per\coulomb}}\), \textcolor{blue}{hacia arriba.}
+            \item \textcolor{blue}{La fuerza eléctrica (hacia arriba) equilibra el peso:} \(m = \dfrac{qE}{g} = \textcolor{red}{\qty{6.1e-3}{\kg} = \qty{6.1}{\g}}\).
+            \item \textcolor{blue}{Ahora las dos fuerzas van hacia abajo:} \(T = mg + qE = \textcolor{red}{\qty{0.12}{\newton}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Entre dos placas horizontales separadas \qty{20}{\cm} hay un muelle de constante \qty{50}{\newton\per\m} del que cuelga una bolita
+    cargada. Al aplicar \qty{800}{\volt}, con la placa superior positiva, el muelle se alarga \qty{8}{\cm} más.
+    \begin{enumerate}[label=\letraminuscula]
+        \item Explica el alargamiento y dibuja las fuerzas.
+        \item Calcula la carga de la bolita y su signo.
+        \item La bolita pierde carga poco a poco: a los \qty{25}{\minute} el alargamiento extra es de \qty{5}{\cm}. ¿A qué ritmo se pierde la carga?
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \textcolor{blue}{El campo va hacia abajo (de la placa positiva a la negativa). Si el muelle se alarga, la fuerza eléctrica va hacia abajo,
+            igual que el campo}: \textcolor{red}{la carga es positiva}.
+            \item \(E = \dfrac{800}{0{,}2} = \qty{4000}{\newton\per\coulomb}\); \(qE = k\,\Delta x \Rightarrow q = \dfrac{50\cdot 0{,}08}{4000} = \textcolor{red}{\qty{1e-3}{\coulomb}}\).
+            \item \(q' = \dfrac{50\cdot 0{,}05}{4000} = \qty{6.25e-4}{\coulomb}\); \(\dfrac{\Delta q}{\Delta t} = \dfrac{3{,}75\cdot 10^{-4}}{25} = \textcolor{red}{\qty{1.5e-5}{\coulomb\per\minute}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}

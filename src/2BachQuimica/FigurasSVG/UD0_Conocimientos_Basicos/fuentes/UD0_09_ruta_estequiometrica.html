@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD0_09 · Ruta de un cálculo estequiométrico</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Para la reacción  a A + b B -> ... : de la muestra de A (con su riqueza) se pasa a moles de A,
+// los coeficientes dan los moles de B, el rendimiento corrige lo que realmente se obtiene,
+// y por último se expresa B en la magnitud pedida (masa, volumen de gas, partículas…).
+const svg = crearFigura(820, 380);
+const T = (x, y, t, a = {}) => texto(svg, x, y, t, { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto, ...a });
+const BW = 140, BH = 58;
+const caja = (cx, cy, l1, l2, color, fondo) => {
+    el("rect", { x: cx - BW / 2, y: cy - BH / 2, width: BW, height: BH, rx: 10, fill: fondo, stroke: color, "stroke-width": 2 }, svg);
+    T(cx, cy - 4, l1, { "font-weight": "bold", fill: color, "font-size": 15 });
+    T(cx, cy + 16, l2, { "font-size": 13 });
+};
+const paso = (x1, y1, x2, y2, etq, dy = -10, ancla = "middle") => {
+    flecha(svg, x1, y1, x2, y2, { ancho: 2, punta: 11, color: COLORES.ocre });
+    T((x1 + x2) / 2, (y1 + y2) / 2 + dy, etq, { "font-size": 13, fill: COLORES.ocre, "font-weight": "bold", "text-anchor": ancla });
+};
+const cx = [75, 295, 515, 735], y1 = 90, y2 = 205, y3 = 330;
+const AZ = COLORES.myBlue, VE = COLORES.myGreen, VI = "#7B4FA0";
+
+T(410, 18, [{ t: "a A + b B → c C + d D" }], { "font-size": 16, "font-weight": "bold" });
+
+caja(cx[0], y1, "Muestra de A", "m (g), impura", COLORES.gris, "#F2F2F2");
+caja(cx[1], y1, "A puro", "m (g)", AZ, "#EEF3FC");
+caja(cx[2], y1, [{ t: "n" }, { t: "A", sub: true }], "(mol)", AZ, "#EEF3FC");
+caja(cx[3], y1, [{ t: "n" }, { t: "C", sub: true }, { t: " teórico" }], "(mol)", VE, "#EAF7F1");
+paso(cx[0] + BW / 2, y1, cx[1] - BW / 2, y1, "× riqueza/100", -BH / 2 - 8);
+paso(cx[1] + BW / 2, y1, cx[2] - BW / 2, y1, [{ t: "÷ M" }, { t: "m", sub: true }, { t: "(A)" }], -BH / 2 - 8);
+paso(cx[2] + BW / 2, y1, cx[3] - BW / 2, y1, "× c / a", -BH / 2 - 8);
+T((cx[2] + cx[3]) / 2, y1 + BH / 2 + 14, "coeficientes", { "font-size": 11, fill: COLORES.gris });
+
+caja(cx[3], y2, [{ t: "n" }, { t: "C", sub: true }, { t: " obtenido" }], "(mol)", VE, "#EAF7F1");
+paso(cx[3], y1 + BH / 2, cx[3], y2 - BH / 2, "× rendimiento/100", 5, "end");
+
+caja(cx[0] + 30, y3, "Masa de C", [{ t: "m = n · M" }, { t: "m", sub: true }], VI, "#F3EEF8");
+caja(cx[1] + 30, y3, "Gas C", "V = nRT / p", VI, "#F3EEF8");
+caja(cx[2] + 30, y3, "Disolución de C", "V = n / M", VI, "#F3EEF8");
+caja(cx[3], y3, "Partículas de C", [{ t: "N = n · N" }, { t: "A", sub: true }], VI, "#F3EEF8");
+for (const x of [cx[0] + 30, cx[1] + 30, cx[2] + 30])
+    flecha(svg, cx[3] - BW / 2 + 10, y2 + BH / 2 - 4, x + 20, y3 - BH / 2 - 2, { ancho: 1.6, punta: 10, color: VI });
+flecha(svg, cx[3], y2 + BH / 2, cx[3], y3 - BH / 2, { ancho: 1.6, punta: 10, color: VI });
+
+// Reactivo limitante: recordatorio
+el("rect", { x: 20, y: 180, width: 470, height: 52, rx: 8, fill: "#FFF8E1", stroke: "#E0A800", "stroke-dasharray": "5 4" }, svg);
+T(255, 201, "Si hay datos de dos reactivos, se calcula primero cuál es el", { "font-size": 13 });
+T(255, 221, "reactivo limitante y los cálculos se hacen con él", { "font-size": 13, "font-weight": "bold" });
+</script>
+</body>
+</html>

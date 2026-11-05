@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El plasma, el cuarto estado</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .top { display: flex; gap: 20px; align-items: stretch; margin-bottom: 16px; }
+    .card { flex: 1; border-radius: 16px; padding: 12px 14px; text-align: center; }
+    .card .ic { font-size: 54px; line-height: 1.15; }
+    .card b { display: block; font-size: 19px; margin: 4px 0; }
+    .card span { font-size: 15px; color: var(--grey); }
+    .u { background: #FFF4E0; border: 3px solid #F39C12; }
+    .u b { color: #B9770E; }
+    .e { background: var(--blue-soft); border: 3px solid var(--blue); }
+    .e b { color: var(--blue); }
+    .bars { display: flex; gap: 24px; }
+    .bar { flex: 1; border: 2px solid var(--line); border-radius: 14px; padding: 10px 14px; }
+    .bar h2 { font-size: 19px; margin-bottom: 8px; }
+    .track { height: 34px; border-radius: 10px; background: #EEF0F5; overflow: hidden; display: flex; }
+    .fill { height: 100%; display: flex; align-items: center; padding-left: 10px; color: #fff; font-weight: 800; font-size: 16px; white-space: nowrap; }
+    .bar p { font-size: 15px; margin-top: 6px; color: var(--grey); }
+    .particles { display: flex; justify-content: center; gap: 30px; margin-top: 16px; align-items: center; font-size: 17px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>El plasma: el cuarto estado de la materia</h1>
+    <div class="top">
+        <div class="card u"><div class="ic">☀️</div><b>El Sol</b><span>una enorme bola de plasma</span></div>
+        <div class="card u"><div class="ic">✨</div><b>Las estrellas</b><span>todas son plasma</span></div>
+        <div class="card e"><div class="ic">⚡</div><b>Los rayos</b><span>plasma durante una fracción de segundo</span></div>
+        <div class="card e"><div class="ic">🌌</div><b>Las auroras</b><span>boreales y australes</span></div>
+        <div class="card e"><div class="ic">💡</div><b>Los letreros de neón</b><span>y los tubos fluorescentes</span></div>
+    </div>
+    <div class="bars">
+        <div class="bar">
+            <h2 style="color:#B9770E">En el universo 🌌</h2>
+            <div class="track"><div class="fill" style="width:99%; background:#F39C12">plasma ≈ 99 % de la materia visible</div></div>
+            <p>El plasma es el estado <b>más abundante</b> del universo.</p>
+        </div>
+        <div class="bar">
+            <h2 style="color:var(--blue)">En la Tierra 🌍</h2>
+            <div class="track"><div class="fill" style="width:6%; background:var(--blue)"></div><div style="padding-left:10px; display:flex; align-items:center; font-weight:800; color:var(--blue)">el plasma es muy escaso</div></div>
+            <p>Aquí casi todo es <b>sólido, líquido o gas</b>.</p>
+        </div>
+    </div>
+    <div class="particles">
+        <svg width="560" height="120" viewBox="0 0 560 120">
+            <rect x="2" y="2" width="200" height="116" rx="14" fill="#EAF2F8" stroke="#2471A3" stroke-width="3"/>
+            <text x="102" y="24" text-anchor="middle" font-size="16" font-weight="700" fill="#2471A3" font-family="Segoe UI">gas</text>
+            <g fill="#2471A3"><circle cx="40" cy="60" r="11"/><circle cx="110" cy="90" r="11"/><circle cx="160" cy="50" r="11"/><circle cx="75" cy="100" r="11"/></g>
+            <text x="280" y="58" text-anchor="middle" font-size="16" font-weight="700" fill="#C0392B" font-family="Segoe UI">temperatura</text>
+            <text x="280" y="78" text-anchor="middle" font-size="16" font-weight="700" fill="#C0392B" font-family="Segoe UI">muy alta</text>
+            <path d="M225,95 L335,95" stroke="#C0392B" stroke-width="4"/><polygon points="335,87 350,95 335,103" fill="#C0392B"/>
+            <rect x="358" y="2" width="200" height="116" rx="14" fill="#FEF5E7" stroke="#F39C12" stroke-width="3"/>
+            <text x="458" y="24" text-anchor="middle" font-size="16" font-weight="700" fill="#B9770E" font-family="Segoe UI">plasma</text>
+            <g font-family="Segoe UI" font-weight="800" font-size="15" text-anchor="middle">
+                <circle cx="395" cy="60" r="12" fill="#C0392B"/><text x="395" y="65" fill="#fff">+</text>
+                <circle cx="470" cy="90" r="12" fill="#C0392B"/><text x="470" y="95" fill="#fff">+</text>
+                <circle cx="520" cy="52" r="12" fill="#C0392B"/><text x="520" y="57" fill="#fff">+</text>
+                <circle cx="430" cy="98" r="6" fill="#2471A3"/><circle cx="450" cy="45" r="6" fill="#2471A3"/>
+                <circle cx="505" cy="100" r="6" fill="#2471A3"/><circle cx="540" cy="85" r="6" fill="#2471A3"/>
+            </g>
+        </svg>
+        <div style="width:440px">Un plasma es un gas tan <b>caliente</b> que sus partículas se rompen y quedan <b>cargadas eléctricamente</b>. Por eso brilla y conduce la electricidad.</div>
+    </div>
+</div>
+</body>
+</html>

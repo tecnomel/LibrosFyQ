@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Desplazamiento e intervalo de tiempo</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .row { display: flex; gap: 18px; margin-top: 10px; }
+    .box { flex: 1; border-radius: 14px; padding: 10px 14px; font-size: 18px; text-align: center; line-height: 1.5; }
+    .bx { background: var(--blue-soft); border: 2px solid var(--blue); }
+    .bt { background: var(--green-soft); border: 2px solid var(--green); }
+    .big { font-size: 28px; font-weight: 800; }
+    sub { font-size: 0.6em; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Desplazamiento (Δx) e intervalo de tiempo (Δt)</h1>
+    <svg width="1090" height="270" viewBox="0 0 1090 270">
+        <defs>
+            <marker id="ax" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#23373B"/></marker>
+            <marker id="db" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#C0392B"/></marker>
+        </defs>
+        <!-- carretera / eje -->
+        <rect x="40" y="150" width="1010" height="34" fill="#D5D8DC"/>
+        <line x1="40" y1="200" x2="1060" y2="200" stroke="#23373B" stroke-width="3" marker-end="url(#ax)"/>
+        <text x="1070" y="230" font-size="22" font-weight="800" fill="#23373B" text-anchor="end">x (m)</text>
+        <g font-size="16" fill="#23373B" text-anchor="middle">
+            <line x1="80" y1="194" x2="80" y2="206" stroke="#23373B" stroke-width="3"/><text x="80" y="228">0</text>
+            <text x="80" y="248" font-size="14" fill="#525252">origen</text>
+        </g>
+        <line x1="300" y1="194" x2="300" y2="206" stroke="#000070" stroke-width="3"/>
+        <line x1="840" y1="194" x2="840" y2="206" stroke="#1E8449" stroke-width="3"/>
+        <text x="300" y="232" font-size="20" font-weight="800" fill="#000070" text-anchor="middle">x<tspan font-size="13" dy="5">i</tspan><tspan dy="-5"> = 20 m</tspan></text>
+        <text x="840" y="232" font-size="20" font-weight="800" fill="#1E8449" text-anchor="middle">x<tspan font-size="13" dy="5">f</tspan><tspan dy="-5"> = 70 m</tspan></text>
+        <!-- coches -->
+        <text x="300" y="178" font-size="44" text-anchor="middle" opacity="0.45">🚗</text>
+        <text x="840" y="178" font-size="44" text-anchor="middle">🚗</text>
+        <!-- cronómetros -->
+        <text x="300" y="48" font-size="34" text-anchor="middle">⏱️</text><text x="300" y="80" font-size="19" font-weight="800" fill="#000070" text-anchor="middle">t<tspan font-size="13" dy="5">i</tspan><tspan dy="-5"> = 2 s</tspan></text>
+        <text x="840" y="48" font-size="34" text-anchor="middle">⏱️</text><text x="840" y="80" font-size="19" font-weight="800" fill="#1E8449" text-anchor="middle">t<tspan font-size="13" dy="5">f</tspan><tspan dy="-5"> = 7 s</tspan></text>
+        <!-- flecha delta x -->
+        <line x1="310" y1="128" x2="830" y2="128" stroke="#C0392B" stroke-width="4" marker-end="url(#db)"/>
+        <text x="570" y="118" font-size="22" font-weight="800" fill="#C0392B" text-anchor="middle">Δx = x<tspan font-size="14" dy="5">f</tspan><tspan dy="-5"> − x</tspan><tspan font-size="14" dy="5">i</tspan><tspan dy="-5"> = 70 − 20 = 50 m</tspan></text>
+    </svg>
+    <div class="row">
+        <div class="box bx"><span class="big">x</span> = <b>posición</b>: dónde está el objeto, medida desde el origen.<br>Es una <b>longitud</b>, así que se mide en <b>metros (m)</b>.</div>
+        <div class="box bx"><span class="big">Δx = x<sub>f</sub> − x<sub>i</sub></span><br><b>desplazamiento</b>: posición final menos posición inicial<br>(Δ, «delta», significa «variación de»)</div>
+        <div class="box bt"><span class="big">Δt = t<sub>f</sub> − t<sub>i</sub></span><br><b>intervalo de tiempo</b>: instante final menos instante inicial<br>7 s − 2 s = <b>5 s</b></div>
+    </div>
+</div>
+</body>
+</html>

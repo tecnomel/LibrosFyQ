@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Fuerzas de acción y reacción</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1100px; } .card h2 { font-size: 16px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Dos patinadores se empujan</h2><svg id="a" width="320" height="200"></svg><div class="t">Cada uno ejerce sobre el otro una fuerza igual y opuesta: los dos se mueven en sentidos contrarios.</div></div>
+        <div class="card"><h2>Al caminar</h2><svg id="b" width="320" height="200"></svg><div class="t">El pie empuja el suelo hacia atrás y el suelo nos empuja hacia delante.</div></div>
+        <div class="card"><h2>Un calamar nada a reacción</h2><svg id="c" width="320" height="200"></svg><div class="t">Expulsa agua hacia atrás (acción) y el agua lo impulsa hacia delante (reacción).</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // ---------- patinadores ----------
+    let add = svgAdder('a');
+    add('rect', { x: 0, y: 150, width: 320, height: 50, fill: '#D6EAF8' });
+    function person(x, col, dir) {
+        add('circle', { cx: x, cy: 50, r: 13, fill: '#F5CBA7' });
+        add('rect', { x: x - 13, y: 64, width: 26, height: 46, rx: 8, fill: col });
+        add('line', { x1: x - 6, y1: 110, x2: x - 10, y2: 148, stroke: '#2C3E50', 'stroke-width': 7 });
+        add('line', { x1: x + 6, y1: 110, x2: x + 10, y2: 148, stroke: '#2C3E50', 'stroke-width': 7 });
+        add('line', { x1: x, y1: 75, x2: x + dir * 30, y2: 80, stroke: '#F5CBA7', 'stroke-width': 6, 'stroke-linecap': 'round' });
+        add('line', { x1: x - 18, y1: 150, x2: x + 18, y2: 150, stroke: '#5D6D7E', 'stroke-width': 3 });
+    }
+    person(125, '#8E44AD', 1); person(195, '#E74C3C', -1);
+    arrow(add, 160, 100, 240, 100, '#C0392B', 3.5, 12); arrow(add, 160, 125, 80, 125, '#2471A3', 3.5, 12);
+    vlabel(add, 260, 104, 'F', '#C0392B', 'AB'); vlabel(add, 55, 130, 'F', '#2471A3', 'BA');
+    label(add, 125, 30, 'A', { 'font-size': 15 }); label(add, 195, 30, 'B', { 'font-size': 15 });
+    // ---------- caminar ----------
+    add = svgAdder('b');
+    add('rect', { x: 0, y: 140, width: 320, height: 60, fill: '#D5DBDB' });
+    add('path', { d: 'M100 40 L130 40 L135 120 Q140 138 200 136 Q215 138 214 140 L100 140 Z', fill: '#F5CBA7', stroke: '#C39B77', 'stroke-width': 2 });
+    arrow(add, 170, 150, 90, 150, '#C0392B', 4, 13); label(add, 80, 175, 'pie sobre el suelo', { 'font-size': 13, fill: '#C0392B' });
+    arrow(add, 150, 128, 240, 128, '#2471A3', 4, 13); label(add, 255, 110, 'suelo sobre', { 'font-size': 13, fill: '#2471A3' }); label(add, 255, 126, 'el pie', { 'font-size': 13, fill: '#2471A3' });
+    // ---------- calamar ----------
+    add = svgAdder('c');
+    add('rect', { x: 0, y: 0, width: 320, height: 200, fill: '#1B4F72' });
+    add('path', { d: 'M150 100 Q200 60 270 90 Q285 100 270 110 Q200 140 150 100 Z', fill: '#F1948A' });
+    for (let i = 0; i < 6; i++) add('path', { d: `M155 ${92 + i * 3} Q110 ${70 + i * 12} 70 ${80 + i * 10}`, fill: 'none', stroke: '#F5B7B1', 'stroke-width': 3 });
+    for (let i = 0; i < 8; i++) add('circle', { cx: 120 - i * 10, cy: 100 + (i % 2 ? 6 : -6), r: 3, fill: '#AED6F1' });
+    arrow(add, 140, 160, 50, 160, '#F4D03F', 4, 13); label(add, 95, 185, 'acción (sobre el agua)', { 'font-size': 13, fill: '#F9E79F' });
+    arrow(add, 180, 45, 280, 45, '#5DADE2', 4, 13); label(add, 212, 30, 'reacción (sobre el calamar)', { 'font-size': 12, fill: '#D6EAF8' });
+</script>
+</body>
+</html>

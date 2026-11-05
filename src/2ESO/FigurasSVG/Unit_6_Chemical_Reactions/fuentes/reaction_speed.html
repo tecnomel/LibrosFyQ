@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Speed of a reaction</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .c { border-radius: 14px; padding: 10px; text-align: center; border: 2px solid var(--ocre); background: var(--ocre-soft); }
+    .c .ic { font-size: 44px; line-height: 1.2; }
+    .c h2 { font-size: 19px; color: #A3400B; margin: 2px 0; }
+    .c .t { font-size: 14px; }
+    .c .ex { font-size: 13px; color: var(--grey); margin-top: 4px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .g { text-align: center; margin-top: 12px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>How can we make a reaction faster?</h1>
+    <div class="grid">
+        <div class="c"><div class="ic">🌡️⬆</div><h2>Temperature</h2><div class="t">Hotter → particles move faster → more effective collisions</div><div class="ex">pressure cooker 🍲 · fridge slows food spoiling 🧊</div></div>
+        <div class="c"><div class="ic">🧪🧪</div><h2>Concentration</h2><div class="t">More particles in the same space → more collisions</div><div class="ex">vacuum packing removes oxygen</div></div>
+        <div class="c"><div class="ic">🍖➜🍔</div><h2>Contact area</h2><div class="t">Smaller pieces → more surface touching the other reactant</div><div class="ex">minced meat cooks faster</div></div>
+        <div class="c"><div class="ic">⚙️✨</div><h2>Catalysts</h2><div class="t">Speed up a reaction and are NOT used up</div><div class="ex">enzymes · car catalytic converter</div></div>
+    </div>
+    <div class="g"><svg id="g" width="720" height="330"></svg></div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg', s = document.getElementById('g');
+    const add = (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; s.appendChild(e); };
+    const X = t => 80 + t * 60, Y = v => 280 - v * 23;
+    add('line', { x1: 80, y1: 280, x2: 700, y2: 280, stroke: '#23373B', 'stroke-width': 2.5 });
+    add('line', { x1: 80, y1: 280, x2: 80, y2: 20, stroke: '#23373B', 'stroke-width': 2.5 });
+    add('text', { x: 700, y: 305, 'text-anchor': 'end', 'font-size': 17, 'font-weight': 700, fill: '#23373B' }, 'time →');
+    add('text', { x: 10, y: 16, 'font-size': 17, 'font-weight': 700, fill: '#23373B' }, 'amount of product');
+    let d1 = '', d2 = '';
+    for (let t = 0; t <= 10; t += 0.1) { d1 += (t ? 'L' : 'M') + X(t) + ' ' + Y(10 * (1 - Math.exp(-t * 1.3))); d2 += (t ? 'L' : 'M') + X(t) + ' ' + Y(10 * (1 - Math.exp(-t * 0.35))); }
+    add('path', { d: d1, fill: 'none', stroke: '#E67E22', 'stroke-width': 5 });
+    add('path', { d: d2, fill: 'none', stroke: '#2471A3', 'stroke-width': 5, 'stroke-dasharray': '10 6' });
+    add('text', { x: X(1.5), y: Y(7.6), 'font-size': 17, 'font-weight': 700, fill: '#E67E22' }, 'with catalyst / hotter: FAST');
+    add('text', { x: X(4.3), y: Y(5.2), 'font-size': 17, 'font-weight': 700, fill: '#2471A3' }, 'without catalyst: slow');
+    add('text', { x: X(7.6), y: Y(10.6), 'font-size': 14, fill: '#525252' }, 'same final amount');
+</script>
+</body>
+</html>

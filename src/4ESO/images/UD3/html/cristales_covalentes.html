@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cristales covalentes: diamante, grafito y cuarzo</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1100px; }
+    .row { display: flex; gap: 12px; }
+    .card { flex: 1; text-align: center; }
+    .t { font-size: 14px; color: var(--grey); text-align: left; line-height: 1.35; }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Diamante (C)</h2><svg id="a" width="320" height="290"></svg>
+            <div class="t">Cada C se une a <b>4</b> C formando tetraedros en las tres direcciones del espacio: muy duro, no conduce.</div></div>
+        <div class="card"><h2>Grafito (C)</h2><svg id="b" width="320" height="290"></svg>
+            <div class="t">Cada C se une a <b>3</b> C formando capas de hexágonos; las capas se unen débilmente: blando, conduce.</div></div>
+        <div class="card"><h2>Cuarzo (SiO₂)</h2><svg id="c" width="320" height="290"></svg>
+            <div class="t">Cada Si se une a <b>4</b> O y cada O a <b>2</b> Si: red tridimensional, muy duro.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    // proyección oblicua sencilla de un punto 3D
+    const proj = (p, s, cx, cy) => {
+        const [x, y, z] = p, a = 0.5, b = 0.35;
+        return [cx + s * (x - a * z * 0.9 + 0.25 * y * 0), cy - s * (y * 0.95 - b * z * 0.0) + s * z * 0.28 - s * x * 0.12];
+    };
+    // ---------- diamante: celda cúbica (fcc + desplazamiento 1/4) ----------
+    let add = svgAdder('a');
+    const T = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]];
+    let atoms = [{ p: [0, 0, 0], t: 1 }], bonds = [];
+    for (let shell = 0; shell < 3; shell++) {
+        const cur = atoms.slice();
+        cur.forEach((at, i) => T.forEach(v => {
+            const q = at.p.map((c, k) => c + at.t * v[k]);
+            if (Math.hypot(...q) > 3.4) return;
+            let j = atoms.findIndex(b => b.p.every((c, k) => Math.abs(c - q[k]) < 1e-6));
+            if (j < 0) { atoms.push({ p: q, t: -at.t }); j = atoms.length - 1; }
+            if (!bonds.some(([x, y]) => (x === i && y === j) || (x === j && y === i))) bonds.push([i, j]);
+        }));
+    }
+    const rotD = ([x, y, z]) => { const a = 0.6, b = 0.45; const x1 = x * Math.cos(a) + z * Math.sin(a), z1 = -x * Math.sin(a) + z * Math.cos(a); return [x1, y * Math.cos(b) - z1 * Math.sin(b), y * Math.sin(b) + z1 * Math.cos(b)]; };
+    const Q = atoms.map(at => rotD(at.p)), sc = 38, ox = 160, oy = 145;
+    bonds.sort((e, f) => (Q[e[0]][2] + Q[e[1]][2]) - (Q[f[0]][2] + Q[f[1]][2])).forEach(([i, j]) =>
+        add('line', { x1: ox + sc * Q[i][0], y1: oy - sc * Q[i][1], x2: ox + sc * Q[j][0], y2: oy - sc * Q[j][1], stroke: '#7F8C8D', 'stroke-width': 4 }));
+    Q.map((q, i) => i).sort((i, j) => Q[i][2] - Q[j][2]).forEach(i => ball(add, ox + sc * Q[i][0], oy - sc * Q[i][1], 'C', 9 + 1.2 * Q[i][2], false));
+    // ---------- grafito: tres capas de hexágonos en perspectiva ----------
+    add = svgAdder('b');
+    const hex = [];
+    const R = 22;
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) {
+        const cx = c * R * Math.sqrt(3) + (r % 2) * R * Math.sqrt(3) / 2, cy = r * R * 1.5;
+        for (let k = 0; k < 6; k++) hex.push([cx + R * Math.cos(Math.PI / 6 + k * Math.PI / 3), cy + R * Math.sin(Math.PI / 6 + k * Math.PI / 3)]);
+    }
+    const uniq = hex.filter((p, i) => hex.findIndex(q => Math.hypot(q[0] - p[0], q[1] - p[1]) < 1) === i);
+    const layerY = [60, 150, 240];
+    layerY.forEach((y0, L) => {
+        const off = L % 2 ? R * Math.sqrt(3) / 2 : 0;
+        const tp = uniq.map(([x, y]) => [30 + x + off + y * 0.35, y0 + y * 0.32 - 25]);
+        for (let i = 0; i < tp.length; i++) for (let j = i + 1; j < tp.length; j++) {
+            if (Math.abs(Math.hypot(uniq[i][0] - uniq[j][0], uniq[i][1] - uniq[j][1]) - R) < 1)
+                add('line', { x1: tp[i][0], y1: tp[i][1], x2: tp[j][0], y2: tp[j][1], stroke: '#C2185B', 'stroke-width': 2.5 });
+        }
+        tp.forEach(([x, y]) => ball(add, x, y, 'C', 5.5, false));
+        if (L < 2) [0, 6, 12].forEach(k => { const [x, y] = tp[k * 2 % tp.length]; add('line', { x1: x, y1: y + 6, x2: x + (L % 2 ? -off : off), y2: y + 84, stroke: '#7F8C8D', 'stroke-width': 1.5, 'stroke-dasharray': '4 4' }); });
+    });
+    label(add, 290, 120, 'capas', { 'font-size': 13, fill: '#525252', 'text-anchor': 'end' });
+    // ---------- cuarzo: red Si–O (representación plana) ----------
+    add = svgAdder('c');
+    const si = [];
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) si.push([50 + c * 72 + (r % 2) * 36, 40 + r * 70]);
+    si.forEach(([x, y], i) => {
+        [[1, 0], [0.5, 1]].forEach(([dx, dy]) => {
+            const j = si.findIndex(([a, b]) => Math.abs(a - (x + dx * 72 - (dy ? 0 : 0))) < 40 && Math.abs(b - (y + dy * 70)) < 1 && (dy ? true : a > x));
+            if (dy === 0) {
+                const n = si.find(([a, b]) => b === y && Math.abs(a - x - 72) < 1);
+                if (n) { const ox = (x + n[0]) / 2, oy = y; add('line', { x1: x, y1: y, x2: n[0], y2: y, stroke: '#7F8C8D', 'stroke-width': 3 }); ball(add, ox, oy, 'O', 9, false); }
+            }
+        });
+        si.filter(([a, b]) => b === y + 70 && Math.abs(Math.abs(a - x) - 36) < 1).forEach(([a, b]) => {
+            add('line', { x1: x, y1: y, x2: a, y2: b, stroke: '#7F8C8D', 'stroke-width': 3 }); ball(add, (x + a) / 2, (y + b) / 2, 'O', 9, false);
+        });
+    });
+    si.forEach(([x, y]) => ball(add, x, y, 'Si', 14, false));
+    ball(add, 60, 275, 'Si', 9, false); label(add, 75, 280, 'silicio', { 'font-size': 14, 'text-anchor': 'start' });
+    ball(add, 175, 275, 'O', 7, false); label(add, 188, 280, 'oxígeno', { 'font-size': 14, 'text-anchor': 'start' });
+</script>
+</body>
+</html>

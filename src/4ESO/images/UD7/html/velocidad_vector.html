@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Velocidad media e instantánea como vectores</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="720" height="300"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    arrow(add, 40, 270, 430, 270, '#23373B', 2, 10); arrow(add, 40, 270, 40, 20, '#23373B', 2, 10);
+    label(add, 425, 290, 'X', { 'font-size': 14 }); label(add, 28, 25, 'Y', { 'font-size': 14 }); label(add, 30, 288, 'O', { 'font-size': 14 });
+    // trayectoria (Bézier)
+    const P = t => { const a = [100, 150], b = [180, 30], c = [300, 220], d = [400, 110], u = 1 - t;
+        return [0, 1].map(k => u * u * u * a[k] + 3 * u * u * t * b[k] + 3 * u * t * t * c[k] + t * t * t * d[k]); };
+    const D = t => { const a = [100, 150], b = [180, 30], c = [300, 220], d = [400, 110], u = 1 - t;
+        return [0, 1].map(k => 3 * u * u * (b[k] - a[k]) + 6 * u * t * (c[k] - b[k]) + 3 * t * t * (d[k] - c[k])); };
+    const pts = []; for (let k = 0; k <= 50; k++) pts.push(P(k / 50));
+    add('polyline', { points: pts.map(p => p.join(',')).join(' '), fill: 'none', stroke: '#1E8449', 'stroke-width': 3 });
+    label(add, 175, 60, 'trayectoria', { 'font-size': 14, fill: '#1E8449' });
+    const [x1, y1] = P(0.0), [x2, y2] = P(1.0);
+    arrow(add, 40, 270, x1, y1, '#7F8C8D', 2, 10); arrow(add, 40, 270, x2, y2, '#7F8C8D', 2, 10);
+    label(add, 58, 205, 'r₁', { 'font-size': 14, fill: '#7F8C8D' }); label(add, 250, 210, 'r₂', { 'font-size': 14, fill: '#7F8C8D' });
+    arrow(add, x1, y1, x2, y2, '#23373B', 3, 12); label(add, 262, 172, 'Δr', { 'font-size': 15 });
+    // velocidad media, en la dirección de Δr, aplicada en la posición inicial
+    const L = Math.hypot(x2 - x1, y2 - y1);
+    arrow(add, x1, y1, x1 + 110 * (x2 - x1) / L, y1 + 110 * (y2 - y1) / L, '#C0392B', 4, 13);
+    label(add, x1 + 60, y1 + 30, 'v media', { 'font-size': 14, fill: '#C0392B' });
+    // velocidades instantáneas tangentes
+    [0.15, 0.55, 1].forEach(t => { const [x, y] = P(t), [dx, dy] = D(t), l = Math.hypot(dx, dy);
+        arrow(add, x, y, x + 60 * dx / l, y + 60 * dy / l, '#2471A3', 3, 11); add('circle', { cx: x, cy: y, r: 4, fill: '#2471A3' }); });
+    label(add, 440, 40, 'v instantánea', { 'font-size': 13, fill: '#2471A3' });
+    // texto explicativo
+    const t = ['La velocidad media tiene la dirección', 'y el sentido del desplazamiento Δr.', '', 'La velocidad instantánea es tangente', 'a la trayectoria en cada punto y', 'apunta en el sentido del movimiento.'];
+    t.forEach((s, i) => label(add, 470, 90 + i * 22, s, { 'font-size': 14, fill: i < 2 ? '#C0392B' : '#2471A3', 'text-anchor': 'start', 'font-weight': 600 }));
+</script>
+</body>
+</html>

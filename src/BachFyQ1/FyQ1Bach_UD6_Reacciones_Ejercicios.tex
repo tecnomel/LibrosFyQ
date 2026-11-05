@@ -1,0 +1,775 @@
+%! Unidad 6 — Reacciones químicas: ejercicios resueltos y ejercicios finales
+%! Fuente: Fuentes/Quimica/Unidad 6 («Ejercicios resueltos», «Practica y calcula», «Piensa y resuelve», «Situaciones de aprendizaje»).
+%! Enunciados adaptados con sustancias y datos cambiados; soluciones rehechas. Dificultad: \(\star\) baja, \(\star\star\) media, \(\star\star\star\) alta.
+%! Los ejercicios de termoquímica (no los trae la fuente al final) son nuevos.
+
+\section{Ejercicios resueltos}\label{sec:ud6-resueltos}
+
+Salvo que se indique otra cosa, usa las masas atómicas H = 1; C = 12; N = 14; O = 16; Na = 23; Mg = 24,3; Al = 27; S = 32;
+Cl = 35,5; K = 39,1; Ca = 40; Fe = 55,8; Cu = 63,5; Zn = 65,4; \(R = \qty{0.082}{\atm\litre\per\mole\per\kelvin}\), y las tablas
+\ref{tab:ud6-formacion} y \ref{tab:ud6-enlace}.
+
+\begin{example}
+    \textbf{Tostación de la blenda.} La blenda es un mineral de sulfuro de zinc, \ch{ZnS}, del que se obtiene el zinc. Al tostarla
+    se produce la reacción \ch{2 ZnS(s) + 3 O2(g) -> 2 ZnO(s) + 2 SO2(g)}. Se tuestan \qty{1.5}{\kilo\gram} de un mineral con
+    un 75\,\% de \ch{ZnS}. a) ¿Qué volumen de \ch{SO2} se obtiene, medido a \qty{900}{\mmHg} y \qty{500}{\degreeCelsius}? b) ¿Qué
+    volumen de aire (21\,\% de \ch{O2} en volumen), medido en condiciones normales, se necesita?
+
+    \textbf{Solución.} \textbf{1. Datos}: \(m = \qty{1500}{\gram}\) de mineral; riqueza 75\,\%; \(p = \qty{900}{\mmHg}\);
+    \(T = \qty{773}{\kelvin}\); \(M(\ch{ZnS}) = \qty{97.4}{\gram\per\mol}\). \textbf{Incógnitas}: \(V(\ch{SO2})\) y \(V(\text{aire})\).
+
+    \textbf{2. a)} Masa y moles de \ch{ZnS} puro, y moles de \ch{SO2} (proporción 2 : 2):
+    \[ \qty{1500}{\gram}\ \text{mineral} \cdot \frac{\qty{75}{\gram}\ \ch{ZnS}}{\qty{100}{\gram}\ \text{mineral}} = \qty{1125}{\gram}\ \ch{ZnS}
+    \ \rightarrow\ n = \frac{1125}{\num{97.4}} = \qty{11.55}{\mol}\ \ch{ZnS} = \qty{11.55}{\mol}\ \ch{SO2} \]
+    \[ p = \frac{900}{760} = \qty{1.184}{\atm} \qquad V = \frac{n R T}{p} = \frac{\num{11.55} \cdot \num{0.082} \cdot 773}{\num{1.184}}
+    = \qty{618}{\litre}\ \text{de}\ \ch{SO2} \]
+
+    \textbf{3. b)} Moles de oxígeno (proporción 2 : 3) y su volumen en condiciones normales:
+    \[ \qty{11.55}{\mol}\ \ch{ZnS} \cdot \frac{\qty{3}{\mol}\ \ch{O2}}{\qty{2}{\mol}\ \ch{ZnS}} = \qty{17.33}{\mol}\ \ch{O2}
+    \ \rightarrow\ V = \num{17.33} \cdot \num{22.4} = \qty{388}{\litre}\ \ch{O2} \]
+    \[ V(\text{aire}) = \qty{388}{\litre}\ \ch{O2} \cdot \frac{\qty{100}{\litre}\ \text{aire}}{\qty{21}{\litre}\ \ch{O2}} = \qty{1848}{\litre}\ \text{de aire} \]
+\end{example}
+
+\begin{example}
+    \textbf{Reactivo limitante en disolución.} Se mezclan \qty{30}{\mL} de una disolución de hidróxido de potasio
+    \qty{2}{\mol\per\litre} con \qty{6}{\mL} de ácido clorhídrico del 36\,\% en masa y densidad \qty{1.18}{\gram\per\mL}. Se forman
+    cloruro de potasio y agua. Calcula la masa de \ch{KCl} y de agua que se forma y la cantidad de reactivo en exceso.
+
+    \textbf{Solución.} \textbf{1. Ecuación}: \ch{KOH + HCl -> KCl + H2O} (proporción 1 : 1).
+
+    \textbf{2. Moles de cada reactivo}:
+    \[ n(\ch{KOH}) = \num{0.030} \cdot 2 = \qty{0.060}{\mol} \]
+    \[ \qty{6}{\mL}\ \text{dis.} \cdot \frac{\qty{1.18}{\gram}\ \text{dis.}}{\qty{1}{\mL}} \cdot \frac{\qty{36}{\gram}\ \ch{HCl}}{\qty{100}{\gram}\ \text{dis.}}
+    \cdot \frac{\qty{1}{\mol}}{\qty{36.5}{\gram}} = \qty{0.0698}{\mol}\ \ch{HCl} \]
+
+    \textbf{3. Limitante}: como reaccionan mol a mol y hay menos \ch{KOH}, \textbf{el \ch{KOH} es el limitante}.
+
+    \textbf{4. Productos y exceso}: \(m(\ch{KCl}) = \num{0.060} \cdot \num{74.6} = \qty{4.48}{\gram}\);
+    \(m(\ch{H2O}) = \num{0.060} \cdot 18 = \qty{1.08}{\gram}\). Sobran \(\num{0.0698} - \num{0.060} = \qty{0.0098}{\mol}\) de \ch{HCl}
+    (\qty{0.36}{\gram}).
+\end{example}
+
+\begin{example}
+    \textbf{Ley de Hess y energía de un combustible.} a) Calcula la entalpía de formación del etanol, \ch{C2H5OH(l)}, sabiendo
+    que las entalpías de combustión del C(grafito), del \ch{H2(g)} y del etanol son, respectivamente, \(-393{,}5\), \(-285{,}8\) y
+    \qty{-1366.8}{\kilo\joule\per\mol} (el agua se forma líquida). b) ¿Qué energía se obtiene al quemar \qty{1}{\litre} de etanol
+    (\(d = \qty{0.79}{\gram\per\mL}\))?
+
+    \textbf{Solución.} a) Buscamos \ch{2 C(grafito) + 3 H2(g) + 1/2 O2(g) -> C2H5OH(l)}. Sumamos:
+    \[ \begin{aligned}
+        &\ch{2 C + 2 O2 -> 2 CO2} && 2 \cdot (\num{-393.5}) = \qty{-787.0}{\kilo\joule} \\
+        &\ch{3 H2 + 3/2 O2 -> 3 H2O} && 3 \cdot (\num{-285.8}) = \qty{-857.4}{\kilo\joule} \\
+        &\ch{2 CO2 + 3 H2O -> C2H5OH + 3 O2} && \qty{+1366.8}{\kilo\joule} \text{ (combustión invertida)}
+    \end{aligned} \]
+    \(\Delta H_f^\circ = -787{,}0 - 857{,}4 + 1366{,}8 = \qty{-277.6}{\kilo\joule\per\mol}\) (coincide con el de la tabla).
+
+    b) \(m = 1000 \cdot \num{0.79} = \qty{790}{\gram}\); \(n = 790/46 = \qty{17.2}{\mol}\);
+    \(E = \num{17.2} \cdot \num{1366.8} = \qty{2.35e4}{\kilo\joule}\) desprendidos.
+\end{example}
+
+\begin{example}
+    \textbf{Entalpías de enlace.} Calcula, a partir de las entalpías de enlace, la entalpía de formación del amoníaco y compárala
+    con el valor de la tabla~\ref{tab:ud6-formacion}. ¿Por qué no coinciden exactamente?
+
+    \textbf{Solución.} \ch{N2(g) + 3 H2(g) -> 2 NH3(g)}. Se rompen un enlace \(\mathrm{N{\equiv}N}\) y tres H--H, y se forman
+    seis N--H:
+    \[ \Delta H = (945 + 3 \cdot 436) - 6 \cdot 391 = 2253 - 2346 = \qty{-93}{\kilo\joule} \]
+    Corresponde a 2 mol de \ch{NH3}: \(\Delta H_f \approx \qty{-46.5}{\kilo\joule\per\mol}\), muy cerca del valor tabulado
+    (\(-46{,}2\)). No coinciden exactamente porque las entalpías de enlace son \textbf{valores medios} de muchas moléculas distintas.
+\end{example}
+
+\begin{example}
+    \textbf{Fermentación.} En la fabricación del vino, las levaduras transforman la glucosa del mosto en etanol y \ch{CO2}:
+    \ch{C6H12O6 -> 2 C2H5OH + 2 CO2}. Si se fermenta \qty{1}{\kilo\gram} de glucosa con un rendimiento del 90\,\%, calcula:
+    a) la masa de etanol que se obtiene; b) el volumen de \ch{CO2} desprendido a \qty{20}{\degreeCelsius} y \qty{1}{\atm}.
+
+    \textbf{Solución.} \(M(\ch{C6H12O6}) = \qty{180}{\gram\per\mol}\); \(n = 1000/180 = \qty{5.56}{\mol}\).
+
+    a) Teórico: \(2 \cdot \num{5.56} = \qty{11.1}{\mol}\) de etanol (\(\num{11.1} \cdot 46 = \qty{511}{\gram}\)). Real:
+    \(511 \cdot \num{0.90} = \qty{460}{\gram}\) de etanol.
+
+    b) Moles reales de \ch{CO2}: \(\num{11.1} \cdot \num{0.90} = \qty{10.0}{\mol}\); \(V = \dfrac{\num{10.0} \cdot \num{0.082} \cdot 293}{1} =
+    \qty{240}{\litre}\) de \ch{CO2}.
+\end{example}
+
+%========================================================================================
+\section{Ejercicios de aplicación}\label{sec:ud6-aplicacion}
+%========================================================================================
+
+\subsection{Reacciones y ecuaciones químicas}
+
+\begin{exercise}
+    \(\star\) Ajusta: a) \ch{Cr2O3(s) + Al(s) -> Cr(s) + Al2O3(s)}; b) \ch{H2S(g) + O2(g) -> H2O(g) + SO2(g)};
+    c) \ch{NH3(g) + O2(g) -> N2(g) + H2O(g)}; d) \ch{CS2(l) + O2(g) -> CO2(g) + SO2(g)};
+    e) \ch{Al4C3(s) + H2O(l) -> Al(OH)3(s) + CH4(g)}.
+    \begin{solu}
+        a) \textcolor{red}{\ch{Cr2O3 + 2 Al -> 2 Cr + Al2O3}}; b) \textcolor{red}{\ch{2 H2S + 3 O2 -> 2 H2O + 2 SO2}};
+        c) \textcolor{red}{\ch{4 NH3 + 3 O2 -> 2 N2 + 6 H2O}}; d) \textcolor{red}{\ch{CS2 + 3 O2 -> CO2 + 2 SO2}};
+        e) \textcolor{red}{\ch{Al4C3 + 12 H2O -> 4 Al(OH)3 + 3 CH4}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Escribe y ajusta estas reacciones: a) El tricloruro de fósforo reacciona con agua para dar ácido fosforoso
+    (\ch{H3PO3}) y cloruro de hidrógeno. b) El nitrato de potasio se descompone en oxígeno y nitrito de potasio. c) El hierro
+    reacciona con el sulfato de cobre(II) para dar sulfato de hierro(II) y cobre. d) El permanganato de potasio reacciona con ácido
+    clorhídrico para dar cloruro de potasio, dicloruro de manganeso, cloro y agua.
+    \begin{solu}
+        a) \textcolor{red}{\ch{PCl3 + 3 H2O -> H3PO3 + 3 HCl}}; b) \textcolor{red}{\ch{2 KNO3 -> 2 KNO2 + O2}};
+        c) \textcolor{red}{\ch{Fe + CuSO4 -> FeSO4 + Cu}}; d) \textcolor{red}{\ch{2 KMnO4 + 16 HCl -> 2 KCl + 2 MnCl2 + 5 Cl2 + 8 H2O}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) Interpreta en moles y en gramos estas reacciones ajustadas y comprueba que se conserva la masa:
+    a) \ch{2 NaHCO3 -> Na2CO3 + CO2 + H2O}; b) \ch{4 FeS2 + 11 O2 -> 2 Fe2O3 + 8 SO2};
+    c) \ch{CO2 + Ca(OH)2 -> CaCO3 + H2O}; d) \ch{K + H2O -> KOH + 1/2 H2}.
+    \begin{solu}
+        a) \textcolor{red}{2 mol (\qty{168}{\gram}) \(\rightarrow\) 1 mol (\qty{106}{\gram}) + 1 mol (\qty{44}{\gram}) + 1 mol
+        (\qty{18}{\gram})}. b) \textcolor{red}{4 mol (\qty{479.2}{\gram}) + 11 mol (\qty{352}{\gram}) \(\rightarrow\) 2 mol
+        (\qty{319.2}{\gram}) + 8 mol (\qty{512}{\gram})}; \(\num{831.2} = \num{831.2}\). c) \textcolor{red}{\qty{44}{\gram} +
+        \qty{74}{\gram} \(\rightarrow\) \qty{100}{\gram} + \qty{18}{\gram}}. d) \textcolor{red}{1 mol (\qty{39.1}{\gram}) + 1 mol
+        (\qty{18}{\gram}) \(\rightarrow\) 1 mol (\qty{56.1}{\gram}) + \(\frac{1}{2}\) mol (\qty{1}{\gram})}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Clasifica según su mecanismo y según la partícula transferida: a) \ch{SO3 + H2O -> H2SO4};
+    b) \ch{CuCl2 -> Cu + Cl2}; c) \ch{CaO + H2O -> Ca(OH)2}; d) \ch{H2SO4 + 2 KOH -> K2SO4 + 2 H2O};
+    e) \ch{(NH4)2Cr2O7 -> Cr2O3 + N2 + 4 H2O}; f) \ch{Na2S + ZnSO4 -> Na2SO4 + ZnS v}.
+    \begin{solu}
+        a) \textcolor{red}{Síntesis}. b) \textcolor{red}{Descomposición y redox}. c) \textcolor{red}{Síntesis}. d)
+        \textcolor{red}{Doble sustitución y ácido-base (neutralización)}. e) \textcolor{red}{Descomposición y redox} (el N se oxida
+        y el Cr se reduce). f) \textcolor{red}{Doble sustitución y precipitación}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) El titanio, metal ligero y resistente, se obtiene reduciendo su cloruro con sodio:
+    \ch{TiCl4(l) + Na(s) -> Ti(s) + NaCl(s)}. Ajusta la reacción.
+    \begin{solu}
+        \textcolor{red}{\ch{TiCl4 + 4 Na -> Ti + 4 NaCl}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Razona si son verdaderas o falsas estas afirmaciones sobre la reacción \ch{TiCl4 + 2 Mg -> Ti + 2 MgCl2}:
+    a) Un mol de \ch{TiCl4} reacciona con dos moles de Mg para dar un mol de Ti y dos de \ch{MgCl2}. b) Una molécula de \ch{TiCl4}
+    reacciona con 2 g de magnesio. c) \qty{1}{\litre} de \ch{TiCl4} reacciona con \qty{2}{\litre} de Mg. d) La reacción no es
+    posible porque no se conserva el número de moles.
+    \begin{solu}
+        a) \textcolor{red}{Verdadera}. b) \textcolor{red}{Falsa}: reacciona con 2 átomos de Mg (o 1 mol con \qty{48.6}{\gram}).
+        c) \textcolor{red}{Falsa}: la proporción en volumen solo vale para gases en las mismas condiciones. d) \textcolor{red}{Falsa}:
+        se conservan los átomos y la masa, pero no tiene por qué conservarse el número de moles.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) En estas reacciones redox, indica qué sustancia se oxida, cuál se reduce, cuál es el oxidante y cuál el
+    reductor: a) \ch{Fe2O3 + 3 CO -> 2 Fe + 3 CO2}; b) \ch{Zn + CuSO4 -> ZnSO4 + Cu}; c) \ch{4 NH3 + 3 O2 -> 2 N2 + 6 H2O}.
+    \begin{solu}
+        a) \textcolor{red}{El Fe (de +3 a 0) se reduce: \ch{Fe2O3} es el oxidante; el C del CO (de +2 a +4) se oxida: CO es el
+        reductor.} b) \textcolor{red}{El Zn se oxida (reductor); el \ch{Cu^2+} se reduce (\ch{CuSO4}, oxidante).} c)
+        \textcolor{red}{El N (de \(-\)3 a 0) se oxida: \ch{NH3} es el reductor; el \ch{O2} se reduce: es el oxidante.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Algunas de estas reacciones están mal escritas o mal ajustadas. Corrígelas: a) \ch{HCl + Mg(OH)2 -> MgCl2 +
+    H2O}; b) \ch{2 SO2 + O2 -> 2 SO3}; c) \ch{3 HBr -> H2 + Br2}; d) \ch{CaO + 5 C -> CaC2 + CO};
+    e) \ch{PBr3 + H2O -> 3 HBr + H3PO3}; f) \ch{N2O5 + H2O -> 2 HNO3}.
+    \begin{solu}
+        a) \textcolor{red}{\ch{2 HCl + Mg(OH)2 -> MgCl2 + 2 H2O}}; b) \textcolor{red}{correcta}; c) \textcolor{red}{\ch{2 HBr -> H2 +
+        Br2}}; d) \textcolor{red}{\ch{CaO + 3 C -> CaC2 + CO}}; e) \textcolor{red}{\ch{PBr3 + 3 H2O -> 3 HBr + H3PO3}};
+        f) \textcolor{red}{correcta}.
+    \end{solu}
+\end{exercise}
+
+\subsection{Cálculos estequiométricos}
+
+\begin{exercise}
+    \(\star\) El ácido sulfúrico concentrado deshidrata el azúcar y lo convierte en carbono: \ch{C12H22O11(s) -> 11 H2O(g) + 12
+    C(s)}. ¿Qué masa de carbono se obtiene a partir de \qty{60}{\gram} de azúcar?
+    \begin{solu}
+        \textcolor{blue}{\(M = \qty{342}{\gram\per\mol}\); \(n = \qty{0.175}{\mol}\); \(n(\ch{C}) = 12 \cdot \num{0.175}\).}
+        \(m = \textcolor{red}{\qty{25.3}{\gram}}\) de C.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Calcula el volumen de \ch{CO2}, en condiciones normales, que se produce al tratar \qty{100}{\gram} de \ch{MgCO3}
+    con exceso de \ch{HBr}: \ch{MgCO3 + 2 HBr -> MgBr2 + H2O + CO2}.
+    \begin{solu}
+        \textcolor{blue}{\(M(\ch{MgCO3}) = \qty{84.3}{\gram\per\mol}\); \(n = \qty{1.19}{\mol} = n(\ch{CO2})\).}
+        \(V = \num{1.19} \cdot \num{22.4} = \textcolor{red}{\qty{26.6}{\litre}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) El nitrógeno y el oxígeno se combinan a alta temperatura y dan monóxido de nitrógeno. Si un recipiente contiene
+    \qty{4}{\litre} de \ch{N2} a \qty{30}{\degreeCelsius} y \qty{750}{\mmHg}, ¿cuántos moles de \ch{NO} se pueden obtener?
+    \begin{solu}
+        \textcolor{blue}{\ch{N2 + O2 -> 2 NO}; \(n(\ch{N2}) = \dfrac{(750/760) \cdot 4}{\num{0.082} \cdot 303} = \qty{0.159}{\mol}\).}
+        \(n(\ch{NO}) = \textcolor{red}{\qty{0.318}{\mol}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El etanol arde con el oxígeno del aire y forma \ch{CO2} y \ch{H2O}. a) Ajusta la reacción. b) ¿Qué volumen de
+    \ch{CO2}, medido a \qty{80}{\degreeCelsius} y \qty{1.5}{\atm}, se obtiene al quemar \qty{180}{\gram} de etanol?
+    \begin{solu}
+        a) \textcolor{red}{\ch{C2H5OH + 3 O2 -> 2 CO2 + 3 H2O}}. b) \textcolor{blue}{\(n = 180/46 = \qty{3.91}{\mol}\);
+        \(n(\ch{CO2}) = \qty{7.83}{\mol}\).} \(V = \dfrac{\num{7.83} \cdot \num{0.082} \cdot 353}{\num{1.5}} = \textcolor{red}{\qty{151}{\litre}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) En el laboratorio se obtiene sulfuro de hidrógeno con la reacción \ch{FeS(s) + HCl(aq) -> FeCl2(aq) + H2S(g)}.
+    a) Ajústala. b) ¿Qué masa de \ch{H2S} se obtiene con \qty{100}{\gram} de \ch{FeS}?
+    \begin{solu}
+        a) \textcolor{red}{\ch{FeS + 2 HCl -> FeCl2 + H2S}}. b) \textcolor{blue}{\(n = 100/\num{87.8} = \qty{1.14}{\mol}\).}
+        \(\num{1.14} \cdot 34 = \textcolor{red}{\qty{38.7}{\gram}}\) de \ch{H2S}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Qué volumen de oxígeno se necesita para quemar \qty{6}{\litre} de butano, \ch{C4H10}, si los dos gases se
+    miden en las mismas condiciones?
+    \begin{solu}
+        \textcolor{blue}{\ch{2 C4H10 + 13 O2 -> 8 CO2 + 10 H2O}: proporción en volumen 2 : 13.} \(V = 6 \cdot \frac{13}{2} =
+        \textcolor{red}{\qty{39}{\litre}}\) de \ch{O2}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El bario reacciona con el ácido sulfúrico y forma sulfato de bario e hidrógeno. a) Escribe y ajusta la reacción.
+    b) ¿Qué masa de bario se necesita para obtener \qty{5}{\litre} de hidrógeno medidos a \qty{300}{\kelvin} y \qty{750}{\mmHg}?
+    \begin{solu}
+        a) \textcolor{red}{\ch{Ba + H2SO4 -> BaSO4 + H2}}. b) \textcolor{blue}{\(n(\ch{H2}) = \dfrac{(750/760) \cdot 5}{\num{0.082} \cdot 300} =
+        \qty{0.201}{\mol} = n(\ch{Ba})\).} \(m = \num{0.201} \cdot \num{137.3} = \textcolor{red}{\qty{27.5}{\gram}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Los airbags se inflan con el nitrógeno que produce la descomposición de la azida de sodio,
+    \ch{2 NaN3(s) -> 2 Na(s) + 3 N2(g)}, al detectar un choque. Si un airbag contiene \qty{60}{\gram} de azida, ¿qué volumen de
+    nitrógeno se produce a \qty{300}{\kelvin} y \qty{1.2}{\atm}?
+    \begin{solu}
+        \textcolor{blue}{\(M(\ch{NaN3}) = \qty{65}{\gram\per\mol}\); \(n = \qty{0.923}{\mol}\); \(n(\ch{N2}) = \num{0.923} \cdot \frac{3}{2} =
+        \qty{1.38}{\mol}\).} \(V = \dfrac{\num{1.38} \cdot \num{0.082} \cdot 300}{\num{1.2}} = \textcolor{red}{\qty{28.4}{\litre}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El sodio que se forma en el airbag es muy reactivo. Para eliminarlo, el airbag lleva nitrato de potasio, que
+    reacciona con él: \ch{10 Na + 2 KNO3 -> K2O + 5 Na2O + N2}. ¿Qué masa de \ch{KNO3} se necesita para eliminar \qty{3}{\gram}
+    de sodio?
+    \begin{solu}
+        \textcolor{blue}{\(n(\ch{Na}) = 3/23 = \qty{0.130}{\mol}\); \(n(\ch{KNO3}) = \num{0.130}/5 = \qty{0.0261}{\mol}\).}
+        \(m = \num{0.0261} \cdot \num{101.1} = \textcolor{red}{\qty{2.64}{\gram}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) ¿Qué masa de oxígeno se necesita para quemar completamente \qty{4}{\litre} de propano medidos a
+    \qty{740}{\mmHg} y \qty{300}{\kelvin}?
+    \begin{solu}
+        \textcolor{blue}{\ch{C3H8 + 5 O2 -> 3 CO2 + 4 H2O}; \(n(\ch{C3H8}) = \dfrac{(740/760) \cdot 4}{\num{0.082} \cdot 300} =
+        \qty{0.158}{\mol}\); \(n(\ch{O2}) = \qty{0.792}{\mol}\).} \(m = \num{0.792} \cdot 32 = \textcolor{red}{\qty{25.3}{\gram}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Sustancias en disolución}
+
+\begin{exercise}
+    \(\star\star\) El ácido sulfúrico reacciona con el hidróxido de sodio y da sulfato de sodio y agua. a) ¿Qué masa de \ch{NaOH}
+    reacciona con \qty{40}{\mL} de ácido \qty{2}{\mol\per\litre}? b) ¿Qué volumen de ácido \qty{2}{\mol\per\litre} se necesita
+    para neutralizar \qty{30}{\gram} de \ch{NaOH}?
+    \begin{solu}
+        \textcolor{blue}{\ch{H2SO4 + 2 NaOH -> Na2SO4 + 2 H2O}.} a) \textcolor{blue}{\(n(\ch{H2SO4}) = \qty{0.08}{\mol}\);
+        \(n(\ch{NaOH}) = \qty{0.16}{\mol}\).} \textcolor{red}{\qty{6.4}{\gram}}. b) \textcolor{blue}{\(n(\ch{NaOH}) = 30/40 =
+        \qty{0.75}{\mol}\); \(n(\ch{H2SO4}) = \qty{0.375}{\mol}\).} \(V = \num{0.375}/2 = \textcolor{red}{\qty{188}{\mL}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Qué volumen de ácido bromhídrico \qty{1.2}{\mol\per\litre} se necesita para neutralizar \qty{30}{\mL} de hidróxido de
+    potasio \qty{0.8}{\mol\per\litre}?
+    \begin{solu}
+        \textcolor{blue}{\ch{HBr + KOH -> KBr + H2O}; \(n = \num{0.030} \cdot \num{0.8} = \qty{0.024}{\mol}\).}
+        \(V = \num{0.024}/\num{1.2} = \textcolor{red}{\qty{20}{\mL}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Qué volumen de ácido nítrico \qty{1.5}{\mol\per\litre} se necesita para neutralizar \qty{50}{\mL} de hidróxido de
+    bario \qty{0.6}{\mol\per\litre}?
+    \begin{solu}
+        \textcolor{blue}{\ch{Ba(OH)2 + 2 HNO3 -> Ba(NO3)2 + 2 H2O}; \(n(\ch{Ba(OH)2}) = \qty{0.03}{\mol}\); \(n(\ch{HNO3}) = \qty{0.06}{\mol}\).}
+        \(V = \num{0.06}/\num{1.5} = \textcolor{red}{\qty{40}{\mL}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El agua oxigenada se usa como desinfectante: al aplicarla en una herida, la catalasa, una enzima de la sangre, la
+    descompone en agua y oxígeno (las burbujas). Si se aplican \qty{15}{\mL} de agua oxigenada al 3\,\% en volumen, ¿qué volumen de
+    oxígeno, en condiciones normales, se desprende? Densidad del \ch{H2O2} puro: \qty{1.45}{\gram\per\mL}.
+    \begin{solu}
+        \textcolor{blue}{\ch{2 H2O2 -> 2 H2O + O2}; \(V(\ch{H2O2}) = 15 \cdot \num{0.03} = \qty{0.45}{\mL}\); \(m = \num{0.45} \cdot \num{1.45} =
+        \qty{0.653}{\gram}\); \(n = \num{0.653}/34 = \qty{0.0192}{\mol}\); \(n(\ch{O2}) = \qty{0.0096}{\mol}\).}
+        \(V = \num{0.0096} \cdot \num{22.4} = \textcolor{red}{\qty{0.215}{\litre}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Qué volumen de \ch{CO2}, en condiciones normales, se desprende al añadir carbonato de sodio en exceso a \qty{25}{\mL}
+    de ácido clorhídrico \qty{0.5}{\mol\per\litre}?
+    \begin{solu}
+        \textcolor{blue}{\ch{Na2CO3 + 2 HCl -> 2 NaCl + H2O + CO2}; \(n(\ch{HCl}) = \qty{0.0125}{\mol}\); \(n(\ch{CO2}) = \qty{0.00625}{\mol}\).}
+        \(V = \textcolor{red}{\qty{0.14}{\litre}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Reactivo limitante}
+
+\begin{exercise}
+    \(\star\) Se hacen reaccionar \qty{30}{\gram} de hierro con \qty{50}{\gram} de cloro para obtener cloruro de hierro(III).
+    a) Escribe y ajusta la reacción. b) ¿Cuál es el reactivo limitante? c) ¿Qué masa queda del reactivo en exceso? d) ¿Qué masa de
+    \ch{FeCl3} se obtiene?
+    \begin{solu}
+        a) \textcolor{red}{\ch{2 Fe + 3 Cl2 -> 2 FeCl3}}. b) \textcolor{blue}{\(n(\ch{Fe}) = \qty{0.538}{\mol}\), que necesitaría
+        \qty{0.806}{\mol} de \ch{Cl2}; hay \(50/71 = \qty{0.704}{\mol}\).} \textcolor{red}{Limitante: \ch{Cl2}}. c)
+        \textcolor{blue}{Fe que reacciona: \(\num{0.704} \cdot \frac{2}{3} = \qty{0.469}{\mol}\).} Sobran \textcolor{red}{\qty{0.068}{\mol}
+        (\qty{3.8}{\gram}) de Fe}. d) \(\num{0.469} \cdot \num{162.3} = \textcolor{red}{\qty{76.2}{\gram}}\) de \ch{FeCl3}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Al mezclar disoluciones de \ch{Na2S} y de \ch{Cd(NO3)2} precipita sulfuro de cadmio, amarillo, y queda nitrato de
+    sodio en disolución. Si se mezclan \qty{25}{\gram} de cada reactivo, ¿qué masa de precipitado se obtiene? (Cd = 112,4.)
+    \begin{solu}
+        \textcolor{blue}{\ch{Na2S + Cd(NO3)2 -> CdS v + 2 NaNO3}; \(n(\ch{Na2S}) = 25/78 = \qty{0.321}{\mol}\); \(n(\ch{Cd(NO3)2}) =
+        25/\num{236.4} = \qty{0.106}{\mol}\): limitante el \ch{Cd(NO3)2}.} \(m(\ch{CdS}) = \num{0.106} \cdot \num{144.4} =
+        \textcolor{red}{\qty{15.3}{\gram}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Se hacen reaccionar \qty{12}{\gram} de \ch{Pb(OH)2} con \qty{30}{\mL} de \ch{HCl} \qty{1}{\mol\per\litre}, y se
+    obtienen agua y dicloruro de plomo. ¿Qué masa de \ch{PbCl2} se obtiene?
+    \begin{solu}
+        \textcolor{blue}{\ch{Pb(OH)2 + 2 HCl -> PbCl2 + 2 H2O}; \(n(\ch{Pb(OH)2}) = 12/\num{241.2} = \qty{0.0498}{\mol}\), que necesitaría
+        \qty{0.0995}{\mol} de \ch{HCl}; solo hay \qty{0.030}{\mol}: limitante el \ch{HCl}. \(n(\ch{PbCl2}) = \qty{0.015}{\mol}\).}
+        \(m = \num{0.015} \cdot \num{278.2} = \textcolor{red}{\qty{4.17}{\gram}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) En un reactor se introducen \qty{120}{\litre} de \ch{SO2} y \qty{100}{\litre} de \ch{O2}, medidos en condiciones
+    normales, y se forma \ch{SO3}. a) Ajusta la reacción. b) ¿Cuál es el reactivo limitante? c) ¿Cuánto sobra del otro? d) ¿Qué masa
+    de \ch{SO3} se obtiene?
+    \begin{solu}
+        a) \textcolor{red}{\ch{2 SO2 + O2 -> 2 SO3}}. b) \textcolor{blue}{\(n(\ch{SO2}) = \qty{5.36}{\mol}\), que necesitan
+        \qty{2.68}{\mol} de \ch{O2}; hay \qty{4.46}{\mol}.} \textcolor{red}{Limitante: \ch{SO2}}. c) Sobran
+        \textcolor{red}{\qty{1.79}{\mol} de \ch{O2}}. d) \(\num{5.36} \cdot 80 = \textcolor{red}{\qty{429}{\gram}}\) de \ch{SO3}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Reaccionan \qty{4}{\litre} de monóxido de carbono con \qty{5}{\litre} de oxígeno, ambos en condiciones normales, y
+    se forma \ch{CO2}. ¿Qué masa de \ch{CO2} se obtiene?
+    \begin{solu}
+        \textcolor{blue}{\ch{2 CO + O2 -> 2 CO2}: \qty{4}{\litre} de CO solo necesitan \qty{2}{\litre} de \ch{O2}: el CO es el limitante.
+        Se forman \qty{4}{\litre} de \ch{CO2}, \(4/\num{22.4} = \qty{0.179}{\mol}\).} \(m = \textcolor{red}{\qty{7.86}{\gram}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Indica el reactivo limitante y cuánto sobra del otro: a) \ch{CaCO3 + H2SO4 -> CaSO4 + CO2 + H2O} con
+    \qty{60}{\gram} de cada reactivo. b) \ch{KClO4 + 2 S -> 2 SO2 + KCl} con \qty{80}{\gram} de cada reactivo.
+    \begin{solu}
+        a) \textcolor{blue}{\(n(\ch{CaCO3}) = \qty{0.600}{\mol}\); \(n(\ch{H2SO4}) = \qty{0.612}{\mol}\).} \textcolor{red}{Limitante:
+        \ch{CaCO3}; sobran \qty{0.012}{\mol} (\qty{1.2}{\gram}) de \ch{H2SO4}.} b) \textcolor{blue}{\(n(\ch{KClO4}) = 80/\num{138.6} =
+        \qty{0.577}{\mol}\), que necesita \qty{1.15}{\mol} de S; hay 2,5.} \textcolor{red}{Limitante: \ch{KClO4}; sobran
+        \qty{1.35}{\mol} (\qty{43}{\gram}) de S.}
+    \end{solu}
+\end{exercise}
+
+\subsection{Rendimiento}
+
+\begin{exercise}
+    \(\star\star\) El cloro reacciona con el hidrógeno y forma cloruro de hidrógeno. Si se usan \qty{20}{\litre} de cloro medidos
+    en condiciones normales y un exceso de hidrógeno, ¿qué masa de \ch{HCl} se obtiene con un rendimiento del 85\,\%?
+    \begin{solu}
+        \textcolor{blue}{\ch{H2 + Cl2 -> 2 HCl}; \(n(\ch{Cl2}) = \qty{0.893}{\mol}\); \(n(\ch{HCl}) = \qty{1.79}{\mol}\) (\qty{65.2}{\gram}).}
+        \(\num{65.2} \cdot \num{0.85} = \textcolor{red}{\qty{55.4}{\gram}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Se hacen reaccionar \qty{20}{\mL} de \ch{KOH} \qty{1.5}{\mol\per\litre} con \qty{60}{\mL} de cloro medidos
+    en condiciones normales: \ch{6 KOH + 3 Cl2 -> KClO3 + 5 KCl + 3 H2O}. a) ¿Cuál es el reactivo limitante? b) ¿Qué masa de
+    \ch{KCl} se obtiene? c) ¿Y si el rendimiento es del 75\,\%?
+    \begin{solu}
+        a) \textcolor{blue}{\(n(\ch{KOH}) = \qty{0.030}{\mol}\), que necesita \qty{0.015}{\mol} de \ch{Cl2}; hay \(\num{0.060}/\num{22.4} =
+        \qty{0.00268}{\mol}\).} \textcolor{red}{Limitante: \ch{Cl2}}. b) \textcolor{blue}{\(n(\ch{KCl}) = \num{0.00268} \cdot \frac{5}{3} =
+        \qty{0.00446}{\mol}\).} \(\textcolor{red}{\qty{0.333}{\gram}}\). c) \textcolor{red}{\qty{0.250}{\gram}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Se hacen reaccionar \qty{70}{\gram} de \ch{N2} con \qty{100}{\gram} de \ch{O2} y se obtienen \qty{80}{\gram} de
+    \ch{N2O5}. ¿Cuál es el rendimiento?
+    \begin{solu}
+        \textcolor{blue}{\ch{2 N2 + 5 O2 -> 2 N2O5}; \(n(\ch{N2}) = \qty{2.5}{\mol}\) necesitaría \qty{6.25}{\mol} de \ch{O2}; hay
+        \qty{3.125}{\mol}: limitante el \ch{O2}. \(n(\ch{N2O5}) = \num{3.125} \cdot \frac{2}{5} = \qty{1.25}{\mol}\) (\qty{135}{\gram}).}
+        Rendimiento \(= 80/135 \cdot 100 = \textcolor{red}{\qty{59}{\percent}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) El carbonato de calcio se descompone en óxido de calcio y dióxido de carbono. ¿Qué masa de \ch{CaO} se obtiene a partir
+    de \qty{400}{\gram} de \ch{CaCO3} con un rendimiento del 90\,\%?
+    \begin{solu}
+        \textcolor{blue}{\ch{CaCO3 -> CaO + CO2}; \(n = \qty{4}{\mol}\); teórico \(4 \cdot 56 = \qty{224}{\gram}\).}
+        \(224 \cdot \num{0.9} = \textcolor{red}{\qty{202}{\gram}}\) de CaO.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Se hacen reaccionar \qty{30}{\gram} de aluminio con exceso de \ch{HCl}. Calcula el volumen de hidrógeno, medido
+    a \qty{25}{\degreeCelsius} y \qty{1.2}{\atm}, que se obtiene con un rendimiento del 80\,\%.
+    \begin{solu}
+        \textcolor{blue}{\ch{2 Al + 6 HCl -> 2 AlCl3 + 3 H2}; \(n(\ch{Al}) = \qty{1.11}{\mol}\); \(n(\ch{H2}) = \num{1.11} \cdot \frac{3}{2}
+        \cdot \num{0.8} = \qty{1.33}{\mol}\).} \(V = \dfrac{\num{1.33} \cdot \num{0.082} \cdot 298}{\num{1.2}} = \textcolor{red}{\qty{27.2}{\litre}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Los freones (clorofluorocarbonos) se usaron como refrigerantes hasta que se descubrió que destruyen la capa de
+    ozono. Uno de ellos se obtiene así: \ch{CCl4 + 2 HF -> CCl2F2 + 2 HCl}. Si a partir de \qty{50}{\gram} de \ch{CCl4} y un
+    exceso de HF se obtienen \qty{25}{\gram} de \ch{CCl2F2}, ¿cuál es el rendimiento? (F = 19.)
+    \begin{solu}
+        \textcolor{blue}{\(n(\ch{CCl4}) = 50/\num{153.8} = \qty{0.325}{\mol}\); teórico: \(\num{0.325} \cdot \num{120.9} = \qty{39.3}{\gram}\).}
+        Rendimiento \(= 25/\num{39.3} \cdot 100 = \textcolor{red}{\qty{63.6}{\percent}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Riqueza}
+
+\begin{exercise}
+    \(\star\) La bauxita es un mineral de hidróxido de aluminio, que al calcinarlo da óxido de aluminio y agua; después, por
+    electrólisis, se obtiene el metal. ¿Qué masa de \ch{Al2O3} se puede obtener a partir de \qty{2}{\tonne} de bauxita con un
+    55\,\% de \ch{Al(OH)3}?
+    \begin{solu}
+        \textcolor{blue}{\ch{2 Al(OH)3 -> Al2O3 + 3 H2O}; \(m = \qty{1.1e6}{\gram}\); \(n = \num{1.1e6}/78 = \qty{1.41e4}{\mol}\);
+        \(n(\ch{Al2O3}) = \qty{7.05e3}{\mol}\).} \(m = \num{7.05e3} \cdot 102 = \textcolor{red}{\qty{7.2e5}{\gram} = \qty{0.72}{\tonne}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El cinabrio es un mineral de sulfuro de mercurio(II). Al tostarlo, \ch{HgS(s) + O2(g) -> Hg(l) + SO2(g)}.
+    Si el cinabrio tiene un 88\,\% de \ch{HgS}: a) ¿qué masa de mercurio se obtiene a partir de \qty{3}{\tonne} de mineral? b) ¿Y si
+    el rendimiento es del 70\,\%? (Hg = 200,6.)
+    \begin{solu}
+        \textcolor{blue}{\(m(\ch{HgS}) = \qty{2.64e6}{\gram}\); \(n = \num{2.64e6}/\num{232.6} = \qty{1.13e4}{\mol}\).}
+        a) \(\num{1.13e4} \cdot \num{200.6} = \textcolor{red}{\qty{2.28}{\tonne}}\). b) \textcolor{red}{\qty{1.59}{\tonne}} de Hg.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Se tuestan \qty{900}{\gram} de pirita con un 80\,\% de \ch{FeS2}: \ch{FeS2 + O2 -> Fe2O3 + SO2}. a) Ajusta la
+    reacción. b) ¿Qué masa de \ch{SO2} se obtiene? c) ¿Qué volumen de \ch{O2}, en condiciones normales, se necesita?
+    \begin{solu}
+        a) \textcolor{red}{\ch{4 FeS2 + 11 O2 -> 2 Fe2O3 + 8 SO2}}. \textcolor{blue}{\(m(\ch{FeS2}) = \qty{720}{\gram}\);
+        \(n = 720/\num{119.8} = \qty{6.01}{\mol}\).} b) \(n(\ch{SO2}) = \qty{12.0}{\mol}\): \textcolor{red}{\qty{769}{\gram}}.
+        c) \(n(\ch{O2}) = \num{6.01} \cdot \frac{11}{4} = \qty{16.5}{\mol}\): \textcolor{red}{\qty{370}{\litre}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) \qty{25}{\gram} de una caliza con un 80\,\% de \ch{CaCO3} reaccionan con exceso de \ch{HCl}, y se forman
+    agua, dicloruro de calcio y \ch{CO2}. a) Escribe y ajusta la reacción. b) Calcula la masa de \ch{CaCl2} que se obtiene. c) ¿Qué
+    volumen de \ch{CO2} se obtiene a \qty{1.2}{\atm} y \qty{25}{\degreeCelsius}? d) Si solo se recogen \qty{3.5}{\litre} de \ch{CO2},
+    ¿cuál es el rendimiento?
+    \begin{solu}
+        a) \textcolor{red}{\ch{CaCO3 + 2 HCl -> CaCl2 + H2O + CO2}}. \textcolor{blue}{\(m(\ch{CaCO3}) = \qty{20}{\gram}\); \(n = \qty{0.2}{\mol}\).}
+        b) \(\num{0.2} \cdot 111 = \textcolor{red}{\qty{22.2}{\gram}}\). c) \(V = \dfrac{\num{0.2} \cdot \num{0.082} \cdot 298}{\num{1.2}} =
+        \textcolor{red}{\qty{4.07}{\litre}}\). d) \(\num{3.5}/\num{4.07} \cdot 100 = \textcolor{red}{\qty{86}{\percent}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El ácido sulfúrico se fabrica por el método de contacto, cuya última etapa es
+    \ch{H2S2O7 + H2O -> 2 H2SO4}. ¿Qué volumen de ácido sulfúrico del 96\,\% en masa y densidad \qty{1.84}{\gram\per\mL} se
+    obtiene a partir de \qty{500}{\kilo\gram} de \ch{H2S2O7}?
+    \begin{solu}
+        \textcolor{blue}{\(n(\ch{H2S2O7}) = \num{5e5}/178 = \qty{2809}{\mol}\); \(n(\ch{H2SO4}) = \qty{5618}{\mol}\) (\qty{551}{\kilo\gram}
+        puros); disolución: \(551/\num{0.96} = \qty{574}{\kilo\gram}\).} \(V = \dfrac{\qty{574}{\kilo\gram}}{\qty{1.84}{\kilo\gram\per\litre}} =
+        \textcolor{red}{\qty{312}{\litre}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Energía de las reacciones}
+
+\begin{exercise}
+    \(\star\) Calcula, con la tabla~\ref{tab:ud6-formacion}, la entalpía de combustión del propano, \ch{C3H8(g)}, con agua líquida
+    como producto.
+    \begin{solu}
+        \textcolor{blue}{\ch{C3H8 + 5 O2 -> 3 CO2 + 4 H2O}; \(\Delta H^\circ = 3(-393{,}5) + 4(-285{,}8) - (-103{,}8)\).}
+        \(\textcolor{red}{\qty{-2219.9}{\kilo\joule\per\mol}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Calcula con las entalpías de enlace la entalpía de la hidrogenación del eteno:
+    \ch{CH2=CH2(g) + H2(g) -> CH3-CH3(g)}.
+    \begin{solu}
+        \textcolor{blue}{Se rompen un C=C y un H--H; se forman un C--C y dos C--H (los otros cuatro C--H no cambian).}
+        \(\Delta H = (614 + 436) - (347 + 2 \cdot 414) = \textcolor{red}{\qty{-125}{\kilo\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Sabiendo que \ch{S(s) + O2(g) -> SO2(g)}, \(\Delta H = \qty{-296.8}{\kilo\joule}\), y
+    \ch{SO2(g) + 1/2 O2(g) -> SO3(g)}, \(\Delta H = \qty{-98.9}{\kilo\joule}\), calcula la entalpía de formación del \ch{SO3(g)}.
+    Dibuja el diagrama entálpico.
+    \begin{solu}
+        \textcolor{blue}{Sumando las dos ecuaciones: \ch{S + 3/2 O2 -> SO3}.} \(\Delta H_f = -296{,}8 - 98{,}9 =
+        \textcolor{red}{\qty{-395.7}{\kilo\joule\per\mol}}\). \textcolor{blue}{En el diagrama, tres niveles: S + \(\frac{3}{2}\)\ch{O2}
+        arriba, \ch{SO2} + \(\frac{1}{2}\)\ch{O2} en medio y \ch{SO3} abajo.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Al disolver \qty{5}{\gram} de nitrato de amonio en \qty{100}{\gram} de agua dentro de un calorímetro, la
+    temperatura baja \qty{3.6}{\degreeCelsius}. ¿Es un proceso endotérmico o exotérmico? Calcula la entalpía de disolución por mol
+    de \ch{NH4NO3} (supón que la disolución tiene el calor específico del agua).
+    \begin{solu}
+        \textcolor{red}{Endotérmico}: el agua se enfría porque cede calor. \textcolor{blue}{\(Q = 105 \cdot \num{4.18} \cdot \num{3.6} =
+        \qty{1580}{\joule}\); \(n = 5/80 = \qty{0.0625}{\mol}\).} \(\Delta H = \dfrac{\qty{1.58}{\kilo\joule}}{\qty{0.0625}{\mol}} =
+        \textcolor{red}{\qty{+25.3}{\kilo\joule\per\mol}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) La descomposición de la caliza, \ch{CaCO3(s) -> CaO(s) + CO2(g)}, tiene \(\Delta H = \qty{+178}{\kilo\joule}\).
+    ¿Qué energía hay que aportar para obtener \qty{1}{\tonne} de cal viva (\ch{CaO})?
+    \begin{solu}
+        \textcolor{blue}{\(n(\ch{CaO}) = \num{1e6}/56 = \qty{1.79e4}{\mol}\).} \(E = \num{1.79e4} \cdot 178 =
+        \textcolor{red}{\qty{3.18e6}{\kilo\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) La entalpía de combustión del benceno líquido, \ch{C6H6}, es \qty{-3268}{\kilo\joule\per\mol} (con agua
+    líquida). Calcula su entalpía de formación con la tabla~\ref{tab:ud6-formacion}.
+    \begin{solu}
+        \textcolor{blue}{\ch{C6H6 + 15/2 O2 -> 6 CO2 + 3 H2O}: \(-3268 = 6(-393{,}5) + 3(-285{,}8) - \Delta H_f(\ch{C6H6})\).}
+        \(\Delta H_f = -2361 - 857{,}4 + 3268 = \textcolor{red}{\qty{+49.6}{\kilo\joule\per\mol}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Industria química}
+
+\begin{exercise}
+    \(\star\star\) Además del amoníaco, el ácido nítrico (\ch{HNO3}) es una sustancia de gran importancia industrial. Busca
+    información sobre sus métodos de obtención, en el laboratorio y en la industria, y sobre sus aplicaciones.
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta.} Industrialmente se obtiene por el método Ostwald (oxidación catalítica del amoníaco con
+        platino-rodio); en el laboratorio, calentando nitrato de sodio con ácido sulfúrico. Se usa para fabricar fertilizantes
+        (nitrato de amonio), explosivos, colorantes y nailon, y para tratar metales.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El «agua fuerte» o salfumán es una disolución de ácido clorhídrico de uso doméstico. Busca la etiqueta de un
+    producto de este tipo y, con sus datos (riqueza, densidad, volumen), calcula la masa y los moles de \ch{HCl} que contiene.
+    ¿Qué precauciones indica la etiqueta?
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta}. Por ejemplo, una botella de \qty{1}{\litre} al 23\,\% con \(d = \qty{1.11}{\gram\per\mL}\)
+        contiene \(1110 \cdot \num{0.23} = \qty{255}{\gram}\) de \ch{HCl}, es decir, \qty{7.0}{\mol}. Indica que es corrosivo,
+        que hay que usar guantes y no mezclarlo nunca con lejía (desprendería cloro).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\) ¿Cómo definirías la química verde? Pon un ejemplo de un proceso o un producto que siga sus principios.
+    \begin{solu}
+        \textcolor{red}{Es el diseño de productos y procesos químicos que reducen o eliminan las sustancias peligrosas y los
+        residuos.} Por ejemplo, los plásticos biodegradables de almidón o de ácido poliláctico, los detergentes que lavan en frío o
+        la síntesis actual del ibuprofeno.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) El ibuprofeno se fabricaba antiguamente en seis etapas, con una economía atómica del 40\,\%; hoy se hace en tres,
+    con una economía atómica cercana al 80\,\% (99\,\% si se aprovecha el ácido acético que se forma). Explica qué significa y qué
+    ventajas tiene el nuevo proceso.
+    \begin{solu}
+        \textcolor{red}{Antes, solo el 40\,\% de la masa de los reactivos acababa en el ibuprofeno; el resto eran residuos.} El
+        proceso nuevo genera muchos menos residuos, usa menos reactivos y energía, emplea catalizadores reutilizables y es más
+        barato: cumple varios principios de la química verde.
+    \end{solu}
+\end{exercise}
+
+%========================================================================================
+\section{Ejercicios de ampliación}\label{sec:ud6-ampliacion}
+%========================================================================================
+
+\subsection{Reacciones y cálculos estequiométricos}
+
+\begin{exercise}
+    \(\star\star\star\) Completa y ajusta estas reacciones de neutralización: a) \ch{H2S + Al(OH)3 ->};
+    b) \(\square + \ch{HBr -> NaBr} + \square\); c) \(\square + \ch{KOH -> KClO4} + \square\);
+    d) \(\ch{HNO3} + \square \ch{-> Ca(NO3)2} + \square\); e) \(\ch{H2SO4} + \square \ch{-> Na2SO4} + \square\);
+    f) \(\square + \square \ch{-> BaSO4 + H2O}\); g) \(\square + \square \ch{-> Al2(SO4)3 + H2O}\).
+    \begin{solu}
+        a) \textcolor{red}{\ch{3 H2S + 2 Al(OH)3 -> Al2S3 + 6 H2O}}; b) \textcolor{red}{\ch{NaOH + HBr -> NaBr + H2O}};
+        c) \textcolor{red}{\ch{HClO4 + KOH -> KClO4 + H2O}}; d) \textcolor{red}{\ch{2 HNO3 + Ca(OH)2 -> Ca(NO3)2 + 2 H2O}};
+        e) \textcolor{red}{\ch{H2SO4 + 2 NaOH -> Na2SO4 + 2 H2O}}; f) \textcolor{red}{\ch{H2SO4 + Ba(OH)2 -> BaSO4 + 2 H2O}};
+        g) \textcolor{red}{\ch{3 H2SO4 + 2 Al(OH)3 -> Al2(SO4)3 + 6 H2O}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) El \ch{NO2} se oxida y da \ch{N2O5}: \ch{4 NO2(g) + O2(g) -> 2 N2O5(g)}. Calcula el volumen de oxígeno,
+    medido a \qty{700}{\mmHg} y \qty{22}{\degreeCelsius}, necesario para obtener \qty{50}{\litre} de \ch{N2O5} medidos a la misma
+    presión y a \qty{28}{\degreeCelsius}.
+    \begin{solu}
+        \textcolor{blue}{\(n(\ch{N2O5}) = \dfrac{(700/760) \cdot 50}{\num{0.082} \cdot 301} = \qty{1.87}{\mol}\); \(n(\ch{O2}) = \qty{0.933}{\mol}\).}
+        \(V = \dfrac{\num{0.933} \cdot \num{0.082} \cdot 295}{700/760} = \textcolor{red}{\qty{24.5}{\litre}}\).
+        \textcolor{blue}{(También: \(25 \cdot 295/301\), pues a igual presión \(V\) es proporcional a \(nT\).)}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) El níquel reacciona con el ácido sulfúrico: \ch{Ni + H2SO4 -> Ni2(SO4)3 + H2}. a) Ajusta la ecuación.
+    b) ¿Qué masa de níquel reacciona con \qty{25}{\mL} de ácido \qty{2}{\mol\per\litre}? c) ¿Qué volumen de ácido
+    \qty{2}{\mol\per\litre} se necesita para que reaccionen \qty{30}{\gram} de níquel? d) ¿Qué volumen de hidrógeno se obtiene en
+    el apartado b a \qty{300}{\kelvin} y \qty{1.5}{\atm}? (Ni = 58,7.)
+    \begin{solu}
+        a) \textcolor{red}{\ch{2 Ni + 3 H2SO4 -> Ni2(SO4)3 + 3 H2}}. b) \textcolor{blue}{\(n(\ch{H2SO4}) = \qty{0.05}{\mol}\);
+        \(n(\ch{Ni}) = \qty{0.0333}{\mol}\).} \textcolor{red}{\qty{1.96}{\gram}}. c) \textcolor{blue}{\(n(\ch{Ni}) = \qty{0.511}{\mol}\);
+        \(n(\ch{H2SO4}) = \qty{0.767}{\mol}\).} \textcolor{red}{\qty{383}{\mL}}. d) \textcolor{blue}{\(n(\ch{H2}) = \qty{0.05}{\mol}\).}
+        \(V = \dfrac{\num{0.05} \cdot \num{0.082} \cdot 300}{\num{1.5}} = \textcolor{red}{\qty{0.82}{\litre}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Se hacen reaccionar \qty{30}{\gram} de cromo con \qty{60}{\mL} de ácido clorhídrico
+    \qty{2}{\mol\per\litre}, y se obtienen \ch{CrCl3} e hidrógeno. a) Escribe la reacción ajustada. b) ¿Qué masa de \ch{CrCl3} se
+    obtiene? c) ¿Qué volumen de hidrógeno se obtiene a \qty{35}{\degreeCelsius} y \qty{1.5}{\atm}? (Cr = 52.)
+    \begin{solu}
+        a) \textcolor{red}{\ch{2 Cr + 6 HCl -> 2 CrCl3 + 3 H2}}. \textcolor{blue}{\(n(\ch{Cr}) = \qty{0.577}{\mol}\) necesitaría
+        \qty{1.73}{\mol} de HCl; hay \qty{0.12}{\mol}: limitante el \ch{HCl}.} b) \(n(\ch{CrCl3}) = \qty{0.04}{\mol}\):
+        \textcolor{red}{\qty{6.34}{\gram}}. c) \(n(\ch{H2}) = \qty{0.06}{\mol}\); \(V = \dfrac{\num{0.06} \cdot \num{0.082} \cdot 308}{\num{1.5}}
+        = \textcolor{red}{\qty{1.01}{\litre}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) El cadmio reacciona con el cloruro de hidrógeno y da \ch{CdCl2} e hidrógeno. Si se hacen reaccionar
+    \qty{30}{\gram} de cadmio con \qty{20}{\gram} de \ch{HCl}: a) ¿hay algún reactivo en exceso? b) ¿Qué masa de \ch{CdCl2} se
+    obtiene? c) ¿Qué volumen de \ch{H2}, en condiciones normales, se forma? (Cd = 112,4.)
+    \begin{solu}
+        \textcolor{blue}{\ch{Cd + 2 HCl -> CdCl2 + H2}; \(n(\ch{Cd}) = \qty{0.267}{\mol}\), que necesita \qty{0.534}{\mol} de HCl;
+        hay \qty{0.548}{\mol}.} a) \textcolor{red}{Sí: sobran \qty{0.014}{\mol} (\qty{0.5}{\gram}) de \ch{HCl}}; el Cd es el limitante.
+        b) \(\num{0.267} \cdot \num{183.4} = \textcolor{red}{\qty{49.0}{\gram}}\). c) \(\num{0.267} \cdot \num{22.4} =
+        \textcolor{red}{\qty{5.98}{\litre}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) En un matraz se introducen hidruro de calcio, \ch{CaH2}, y agua, y se forman hidróxido de calcio e
+    hidrógeno. Si se hacen reaccionar \qty{50}{\gram} de \ch{CaH2} con exceso de agua y se obtienen \qty{70}{\gram} de
+    \ch{Ca(OH)2}: a) ¿cuál es el rendimiento? b) ¿Qué volumen de hidrógeno, en condiciones normales, se obtiene realmente?
+    \begin{solu}
+        \textcolor{blue}{\ch{CaH2 + 2 H2O -> Ca(OH)2 + 2 H2}; \(n(\ch{CaH2}) = 50/\num{42.1} = \qty{1.19}{\mol}\); teórico:
+        \(\num{1.19} \cdot \num{74.1} = \qty{88.0}{\gram}\).} a) \(70/88 \cdot 100 = \textcolor{red}{\qty{79.5}{\percent}}\).
+        b) \(n(\ch{H2}) = 2 \cdot \num{1.19} \cdot \num{0.795} = \qty{1.89}{\mol}\): \textcolor{red}{\qty{42.3}{\litre}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Una muestra de \qty{60}{\gram} de zinc impuro se trata con ácido clorhídrico del 36\,\% en masa y densidad
+    \qty{1.18}{\gram\per\mL}, y se gastan \qty{90}{\mL} de ácido para que reaccione todo el zinc. ¿Cuál es la riqueza de la
+    muestra?
+    \begin{solu}
+        \textcolor{blue}{\ch{Zn + 2 HCl -> ZnCl2 + H2}; \(m(\ch{HCl}) = 90 \cdot \num{1.18} \cdot \num{0.36} = \qty{38.2}{\gram}\);
+        \(n = \qty{1.05}{\mol}\); \(n(\ch{Zn}) = \qty{0.524}{\mol}\) (\qty{34.3}{\gram}).} Riqueza \(= \num{34.3}/60 \cdot 100 =
+        \textcolor{red}{\qty{57}{\percent}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Una muestra de \qty{100}{\gram} de carbón, formada por carbono y otras sustancias que no arden, se quema
+    completamente y se obtienen \qty{25}{\litre} de \ch{CO2} a \qty{760}{\mmHg} y \qty{27}{\degreeCelsius}. Calcula el porcentaje
+    de carbono de la muestra y el volumen de \ch{O2}, en condiciones normales, que se ha consumido.
+    \begin{solu}
+        \textcolor{blue}{\ch{C + O2 -> CO2}; \(n = \dfrac{1 \cdot 25}{\num{0.082} \cdot 300} = \qty{1.02}{\mol}\) de \ch{CO2} \(=\) mol de C
+        \(=\) mol de \ch{O2}.} \(m(\ch{C}) = \qty{12.2}{\gram}\): \textcolor{red}{12,2\,\%}; \(V(\ch{O2}) = \num{1.02} \cdot \num{22.4} =
+        \textcolor{red}{\qty{22.8}{\litre}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Se fermentan \qty{3}{\kilo\gram} de glucosa con un rendimiento del 92\,\%:
+    \ch{C6H12O6 -> 2 C2H5OH + 2 CO2}. a) ¿Qué masa de etanol se obtiene? b) ¿Qué volumen de \ch{CO2} se desprende a
+    \qty{20}{\degreeCelsius} y \qty{720}{\mmHg}? c) ¿Qué energía se obtendría al quemar el etanol obtenido
+    (\(\Delta H_c = \qty{-1366.7}{\kilo\joule\per\mol}\))?
+    \begin{solu}
+        \textcolor{blue}{\(n(\text{glucosa}) = \qty{16.7}{\mol}\); \(n(\text{etanol}) = n(\ch{CO2}) = 2 \cdot \num{16.7} \cdot \num{0.92} =
+        \qty{30.7}{\mol}\).} a) \(\num{30.7} \cdot 46 = \textcolor{red}{\qty{1.41}{\kilo\gram}}\). b) \(V = \dfrac{\num{30.7} \cdot
+        \num{0.082} \cdot 293}{720/760} = \textcolor{red}{\qty{778}{\litre}}\). c) \(\num{30.7} \cdot \num{1366.7} =
+        \textcolor{red}{\qty{4.19e4}{\kilo\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{La industria química}
+
+\begin{exercise}
+    \(\star\star\) Trabajas en una fábrica de ácido nítrico por el método Ostwald. En la primera etapa,
+    \ch{4 NH3 + 5 O2 -> 4 NO + 6 H2O}, se mezclan \qty{400}{\litre} de amoníaco con \qty{400}{\litre} de oxígeno, medidos en
+    condiciones normales. a) ¿Cuál es el reactivo limitante? b) ¿Cuánto sobra del otro? c) ¿Qué masa de NO se obtiene?
+    \begin{solu}
+        \textcolor{blue}{\(n(\ch{NH3}) = n(\ch{O2}) = \qty{17.9}{\mol}\); para todo el \ch{NH3} harían falta \qty{22.3}{\mol} de \ch{O2}.}
+        a) \textcolor{red}{Limitante: \ch{O2}}. b) Reaccionan \(\num{17.9} \cdot \frac{4}{5} = \qty{14.3}{\mol}\) de \ch{NH3}: sobran
+        \textcolor{red}{\qty{3.57}{\mol} de \ch{NH3}}. c) \(n(\ch{NO}) = \qty{14.3}{\mol}\): \textcolor{red}{\qty{429}{\gram}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) Continuando el ejercicio anterior, el NO obtenido reacciona con oxígeno en exceso, \ch{2 NO + O2 -> 2 NO2},
+    y después con agua, \ch{3 NO2 + H2O -> 2 HNO3 + NO}. a) ¿Qué volumen ocupa el \ch{NO2} a \qty{800}{\degreeCelsius} y
+    \qty{5}{\atm}? b) Si la última etapa tiene un rendimiento del 95\,\%, ¿qué masa de ácido nítrico del 60\,\% se obtiene?
+    \begin{solu}
+        a) \textcolor{blue}{\(n(\ch{NO2}) = \qty{14.3}{\mol}\).} \(V = \dfrac{\num{14.3} \cdot \num{0.082} \cdot 1073}{5} =
+        \textcolor{red}{\qty{251}{\litre}}\). b) \textcolor{blue}{\(n(\ch{HNO3}) = \num{14.3} \cdot \frac{2}{3} \cdot \num{0.95} =
+        \qty{9.05}{\mol}\) (\qty{570}{\gram} puros).} \(570/\num{0.60} = \textcolor{red}{\qty{950}{\gram}}\) de ácido del 60\,\%.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\star\) La pirita, \ch{FeS2}, el «oro de los tontos», se usó durante mucho tiempo para fabricar ácido sulfúrico. La
+    reacción neta del proceso es: \ch{FeS2 + O2 + H2O -> Fe2O3 + H2SO4}. a) Ajústala. b) ¿Qué masa de mineral con un 70\,\% de
+    \ch{FeS2} hay que extraer para obtener \qty{400}{\kilo\gram} de \ch{H2SO4}? c) Si el rendimiento es del 85\,\%, ¿qué masa de
+    ácido se obtiene a partir de \qty{100}{\kilo\gram} de \ch{FeS2} puro?
+    \begin{solu}
+        a) \textcolor{red}{\ch{4 FeS2 + 15 O2 + 8 H2O -> 2 Fe2O3 + 8 H2SO4}}. b) \textcolor{blue}{\(n(\ch{H2SO4}) = \num{4e5}/98 =
+        \qty{4082}{\mol}\); \(n(\ch{FeS2}) = \qty{2041}{\mol}\) (\qty{244.5}{\kilo\gram}).} \(\num{244.5}/\num{0.70} =
+        \textcolor{red}{\qty{349}{\kilo\gram}}\) de mineral. c) \textcolor{blue}{\(n(\ch{FeS2}) = \qty{835}{\mol}\);
+        \(n(\ch{H2SO4}) = \qty{1669}{\mol}\) (\qty{163.6}{\kilo\gram}).} \(\num{163.6} \cdot \num{0.85} = \textcolor{red}{\qty{139}{\kilo\gram}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    \(\star\star\) Hoy apenas se usa la pirita para fabricar ácido sulfúrico. Investiga por qué (problemas ambientales de su
+    extracción y tostación) y cómo se obtiene actualmente el ácido sulfúrico.
+    \begin{solu}
+        \textcolor{red}{Respuesta abierta.} La tostación de la pirita emite mucho \ch{SO2} y deja residuos con metales pesados, y las
+        minas generan drenajes ácidos que contaminan ríos (como el río Tinto). Hoy el ácido sulfúrico se obtiene sobre todo a partir
+        del azufre que se recupera al desulfurar el petróleo y el gas natural, por el método de contacto (catalizador de
+        \ch{V2O5}).
+    \end{solu}
+\end{exercise}

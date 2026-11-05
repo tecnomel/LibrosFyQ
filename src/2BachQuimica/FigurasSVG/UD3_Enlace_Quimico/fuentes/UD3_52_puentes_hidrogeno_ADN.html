@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_52 · Puentes de hidrógeno entre bases del ADN</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/moleculas.js"></script>
+</head>
+<body>
+<script>
+// Par de bases timina–adenina del ADN unidas por dos puentes de hidrógeno (N−H···O y N−H···N).
+const svg = crearFigura(720, 360);
+const COL = { C: "#555555", N: "#3F6FD6", O: "#E53935", H: "#E8E8E8" };
+const E = 44, X0 = 150, Y0 = 190;
+const P = ([x, y]) => [X0 + x * E, Y0 - y * E];
+const hex = (cx, ang) => [cx[0] + Math.cos(ang * Math.PI / 180), cx[1] + Math.sin(ang * Math.PI / 180)];
+const add = (p, ang, l = 1) => [p[0] + l * Math.cos(ang * Math.PI / 180), p[1] + l * Math.sin(ang * Math.PI / 180)];
+// Timina (anillo de 6 centrado en 0,0)
+const T = {}; [["N3", 0], ["C4", 60], ["C5", 120], ["C6", 180], ["N1", 240], ["C2", 300]].forEach(([n, a]) => T[n] = hex([0, 0], a));
+T.O4 = add(T.C4, 60); T.O2 = add(T.C2, 300); T.H3 = add(T.N3, 0, 0.8); T.CH3 = add(T.C5, 120); T.H6 = add(T.C6, 180, 0.8);
+// Adenina (anillo de 6 centrado en dx,0 + anillo de 5)
+const dx = 4.75, A = {};
+[["N1", 180], ["C6", 120], ["C5", 60], ["C4", 0], ["N3", 300], ["C2", 240]].forEach(([n, a]) => A[n] = hex([dx, 0], a));
+A.N6 = add(A.C6, 120); A.H6 = add(A.N6, 180, 0.8); A.H6b = add(A.N6, 60, 0.8); A.H2 = add(A.C2, 240, 0.8);
+A.N7 = add(A.C5, 18); A.N9 = add(A.C4, -18); A.C8 = add(A.N7, -54 - 18 + 0, 1); A.C8 = [(A.N7[0] + A.N9[0]) / 2 + 0.8, (A.N7[1] + A.N9[1]) / 2]; A.H8 = add(A.C8, 0, 0.8);
+const enlT = [["N3", "C4"], ["C4", "C5"], ["C5", "C6"], ["C6", "N1"], ["N1", "C2"], ["C2", "N3"], ["C4", "O4"], ["C2", "O2"], ["N3", "H3"], ["C5", "CH3"], ["C6", "H6"]];
+const enlA = [["N1", "C6"], ["C6", "C5"], ["C5", "C4"], ["C4", "N3"], ["N3", "C2"], ["C2", "N1"], ["C6", "N6"], ["N6", "H6"], ["N6", "H6b"], ["C2", "H2"], ["C5", "N7"], ["N7", "C8"], ["C8", "N9"], ["N9", "C4"], ["C8", "H8"]];
+const e3 = new Escena3D({ cx: 0, cy: 0, escala: 1, camara: [0, 0, 1] });   // 2D: solo para ordenar
+const g = el("g", {}, svg);
+const palo = (a, b) => { const p = P(a), q = P(b);
+    el("line", { x1: p[0], y1: p[1], x2: q[0], y2: q[1], stroke: "#555", "stroke-width": 6, "stroke-linecap": "round" }, g);
+    el("line", { x1: p[0], y1: p[1], x2: q[0], y2: q[1], stroke: "#BBB", "stroke-width": 2, "stroke-linecap": "round" }, g); };
+enlT.forEach(([a, b]) => palo(T[a], T[b]));
+enlA.forEach(([a, b]) => palo(A[a], A[b]));
+const tipo = n => n.startsWith("CH3") ? "C" : n[0];
+const bola = (p, n) => { const [x, y] = P(p); const t = tipo(n);
+    el("circle", { cx: x, cy: y, r: t === "H" ? 8 : 12, fill: COL[t], stroke: mezclar(COL[t], "#000000", 0.4), "stroke-width": 1 }, g);
+    el("circle", { cx: x - 3, cy: y - 3, r: t === "H" ? 2.5 : 4, fill: "#ffffff", opacity: 0.45 }, g); };
+Object.entries(T).forEach(([n, p]) => bola(p, n));
+Object.entries(A).forEach(([n, p]) => bola(p, n));
+// Unión al azúcar del esqueleto (líneas azules onduladas)
+const onda = (p, ang) => { const [x, y] = P(p), a = ang * Math.PI / 180; let d = `M${x},${y}`;
+    for (let k = 1; k <= 8; k++) { const t = k * 5; d += ` L${x + t * Math.cos(a) + (k % 2 ? 4 : -4) * Math.sin(a)},${y - t * Math.sin(a) + (k % 2 ? 4 : -4) * Math.cos(a)}`; }
+    el("path", { d, fill: "none", stroke: "#1E88E5", "stroke-width": 2 }, svg); };
+onda(T.N1, 240); onda(A.N9, -60);
+// Puentes de hidrógeno (líneas discontinuas)
+const ph = (a, b) => { const p = P(a), q = P(b);
+    el("line", { x1: p[0], y1: p[1], x2: q[0], y2: q[1], stroke: "#E0A800", "stroke-width": 3, "stroke-dasharray": "5 4" }, svg); };
+ph(A.H6, T.O4); ph(T.H3, A.N1);
+texto(svg, P([2.3, 3.4])[0], P([2.3, 3.4])[1], "Puentes de hidrógeno", { "text-anchor": "middle", "font-size": 19, fill: COLORES.texto });
+indicador(svg, P([2.1, 3.1])[0], P([2.1, 3.1])[1], ...P([2.0, 1.75]));
+indicador(svg, P([2.5, 3.1])[0], P([2.5, 3.1])[1], ...P([2.35, 0.02]));
+texto(svg, P([0, -2.6])[0], P([0, -2.6])[1], "Timina", { "text-anchor": "middle", "font-size": 17, "font-weight": "bold", fill: COLORES.texto });
+texto(svg, P([dx + 0.5, -2.6])[0], P([dx + 0.5, -2.6])[1], "Adenina", { "text-anchor": "middle", "font-size": 17, "font-weight": "bold", fill: COLORES.texto });
+[["C", "C"], ["N", "N"], ["O", "O"], ["H", "H"]].forEach(([t, l], i) => {
+    el("circle", { cx: 560 + i * 40, cy: 30, r: 8, fill: COL[t], stroke: "#555" }, svg);
+    texto(svg, 572 + i * 40, 35, l, { "font-size": 13, fill: COLORES.gris });
+});
+</script>
+</body>
+</html>

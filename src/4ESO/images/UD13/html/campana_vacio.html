@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Timbre en una campana de vacío</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="860" height="300"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const jar = (cx, ttl, n, note, waves) => {
+        label(add, cx, 22, ttl, { fill: '#000070', 'font-size': 15 });
+        // aire dentro de la campana
+        const R = rng(cx);
+        for (let k = 0; k < n; k++) {
+            const a = R() * Math.PI, r = 20 + R() * 75;
+            add('circle', { cx: cx + r * Math.cos(a) * 0.95, cy: 225 - r * Math.sin(a) * 1.2, r: 2, fill: '#5DADE2' });
+        }
+        // campana de vidrio y base
+        add('path', { d: `M${cx - 95} 230 L${cx - 95} 120 Q${cx - 95} 40 ${cx} 40 Q${cx + 95} 40 ${cx + 95} 120 L${cx + 95} 230`, fill: '#EBF5FB', 'fill-opacity': 0.35, stroke: '#85929E', 'stroke-width': 3 });
+        add('rect', { x: cx - 120, y: 230, width: 240, height: 16, rx: 3, fill: '#7F8C8D' });
+        // timbre
+        add('rect', { x: cx - 4, y: 175, width: 8, height: 55, fill: '#424949' });
+        add('circle', { cx, cy: 160, r: 26, fill: '#F4D03F', stroke: '#9A7D0A', 'stroke-width': 2 });
+        add('circle', { cx: cx + 24, cy: 168, r: 6, fill: '#424949' });
+        // ondas que salen (o no)
+        for (let k = 1; k <= waves; k++) add('path', { d: arcD(cx + 110, 130, 18 + 14 * k, -35, 35), fill: 'none', stroke: '#C0392B', 'stroke-width': 2.5 });
+        label(add, cx, 276, note, { 'font-size': 14, fill: '#23373B' });
+    };
+    jar(120, 'Con aire', 120, 'el timbre se oye', 3);
+    jar(410, 'Extrayendo el aire', 35, 'se oye cada vez menos', 1);
+    jar(700, 'Casi vacío', 4, 'apenas se oye', 0);
+    add('line', { x1: 820, y1: 238, x2: 850, y2: 238, stroke: '#424949', 'stroke-width': 6 });
+    label(add, 850, 262, 'a la bomba', { 'font-size': 12, fill: '#525252', 'text-anchor': 'end' });
+    label(add, 850, 276, 'de vacío', { 'font-size': 12, fill: '#525252', 'text-anchor': 'end' });
+</script>
+</body>
+</html>

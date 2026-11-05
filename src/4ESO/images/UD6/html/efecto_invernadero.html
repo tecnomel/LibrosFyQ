@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Efecto invernadero</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="860" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    // espacio, atmósfera y suelo
+    add('rect', { x: 0, y: 0, width: 860, height: 330, fill: '#1B2631' });
+    add('rect', { x: 0, y: 110, width: 860, height: 220, fill: '#5DADE2', opacity: 0.35 });
+    add('line', { x1: 0, y1: 110, x2: 860, y2: 110, stroke: '#AED6F1', 'stroke-width': 2, 'stroke-dasharray': '8 6' });
+    add('rect', { x: 0, y: 270, width: 860, height: 60, fill: '#52BE80' });
+    // Sol
+    add('circle', { cx: 60, cy: 50, r: 34, fill: '#F7DC6F' });
+    // radiación solar que llega
+    arrow(add, 95, 70, 300, 265, '#F4D03F', 6, 18);
+    label(add, 200, 120, 'radiación solar', { 'font-size': 15, fill: '#FCF3CF', transform: 'rotate(43 200 120)' });
+    // parte reflejada al espacio
+    arrow(add, 310, 265, 400, 20, '#F9E79F', 3, 12);
+    label(add, 420, 40, 'parte se refleja', { 'font-size': 14, fill: '#FCF3CF', 'text-anchor': 'start' });
+    // calor emitido por la superficie (ondulado), una parte escapa y otra vuelve
+    function wave(x1, y1, x2, y2, col) {
+        const n = 10, pts = [];
+        for (let k = 0; k <= n * 4; k++) {
+            const f = k / (n * 4), x = x1 + (x2 - x1) * f, y = y1 + (y2 - y1) * f, a = Math.atan2(y2 - y1, x2 - x1) + Math.PI / 2, s = 6 * Math.sin(f * n * 2 * Math.PI);
+            pts.push(`${x + s * Math.cos(a)},${y + s * Math.sin(a)}`);
+        }
+        add('polyline', { points: pts.join(' '), fill: 'none', stroke: col, 'stroke-width': 3 });
+        arrow(add, x2 - (x2 - x1) * 0.02, y2 - (y2 - y1) * 0.02, x2, y2, col, 3, 12);
+    }
+    wave(520, 265, 560, 15, '#E74C3C');
+    label(add, 575, 30, 'calor que escapa', { 'font-size': 14, fill: '#F5B7B1', 'text-anchor': 'start' });
+    wave(640, 265, 700, 125, '#E74C3C');
+    wave(720, 120, 780, 262, '#E74C3C');
+    label(add, 710, 305, 'calor devuelto a la superficie', { 'font-size': 14, fill: '#145A32' });
+    // gases de efecto invernadero
+    const r = rng(8);
+    for (let k = 0; k < 40; k++) { const x = 10 + r() * 840, y = 118 + r() * 140; add('circle', { cx: x, cy: y, r: 3, fill: '#FDFEFE', opacity: 0.8 }); }
+    label(add, 160, 300, 'superficie terrestre', { 'font-size': 15, fill: '#145A32' });
+    label(add, 450, 160, 'atmósfera con gases de', { 'font-size': 14, fill: '#FDFEFE' });
+    label(add, 450, 178, 'efecto invernadero', { 'font-size': 14, fill: '#FDFEFE' });
+    label(add, 450, 196, '(CO₂, CH₄, H₂O…)', { 'font-size': 14, fill: '#FDFEFE' });
+</script>
+</body>
+</html>

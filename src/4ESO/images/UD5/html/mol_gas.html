@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Relaciones del mol con la masa, las partículas y el volumen</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="860" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    function box(x, y, w, h, t1, t2, col, soft) {
+        add('rect', { x, y, width: w, height: h, rx: 14, fill: soft, stroke: col, 'stroke-width': 2.5 });
+        label(add, x + w / 2, y + h / 2 - 3, t1, { 'font-size': 18, fill: col });
+        label(add, x + w / 2, y + h / 2 + 20, t2, { 'font-size': 14, fill: '#23373B', 'font-weight': 600 });
+    }
+    // caja central alta para que las flechas sean horizontales
+    add('rect', { x: 30, y: 15, width: 190, height: 300, rx: 14, fill: '#E3E6F7', stroke: '#000070', 'stroke-width': 2.5 });
+    label(add, 125, 150, 'Cantidad de', { 'font-size': 18, fill: '#000070' });
+    label(add, 125, 174, 'sustancia', { 'font-size': 18, fill: '#000070' });
+    label(add, 125, 198, 'n (mol)', { 'font-size': 14, 'font-weight': 600 });
+    box(620, 15, 210, 70, 'Masa', 'm (g)', '#C0392B', '#F9E0DD');
+    box(620, 130, 210, 70, 'N.º de partículas', 'N', '#1E8449', '#DFF3E6');
+    box(620, 245, 210, 70, 'Volumen de gas', 'V (L), en c. e.', '#B9770E', '#FCF3CF');
+    const NA = 'N<tspan baseline-shift="sub" font-size="70%">A</tspan>';
+    [[50, '#C0392B', '× M (g/mol)', '÷ M (g/mol)'], [165, '#1E8449', '× ' + NA, '÷ ' + NA], [280, '#B9770E', '× 22,4 L/mol', '÷ 22,4 L/mol']].forEach(([y, c, a, b]) => {
+        arrow(add, 230, y - 10, 610, y - 10, c, 2.5, 12);
+        arrow(add, 610, y + 10, 230, y + 10, c, 2.5, 12);
+        chemText(add, 420, y - 18, a, { 'font-size': 15, fill: c });
+        chemText(add, 420, y + 32, b, { 'font-size': 15, fill: c });
+    });
+</script>
+</body>
+</html>

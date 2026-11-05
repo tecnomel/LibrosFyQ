@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Conservation of mass</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .row { display: flex; gap: 20px; align-items: center; }
+    .count { display: flex; justify-content: space-around; font-size: 18px; margin-top: 4px; }
+    .count div { background: #F4F6F7; border-radius: 10px; padding: 6px 14px; }
+    .law { text-align: center; font-size: 20px; margin-top: 12px; padding: 10px; border-radius: 12px; background: var(--blue-soft); border: 2px solid var(--blue); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Atoms are not created or destroyed: they are rearranged</h1>
+    <svg width="1090" height="330" viewBox="0 0 1090 330" id="s"></svg>
+    <div class="count"><div>Reactants: <b>2 N</b> + <b>6 H</b></div><div>Products: <b>2 N</b> + <b>6 H</b> ✔</div></div>
+    <div class="law">⚖️ <b>Law of conservation of mass</b> (Lavoisier): mass of reactants = mass of products &nbsp;·&nbsp; 28 g N<sub>2</sub> + 6 g H<sub>2</sub> = 34 g NH<sub>3</sub></div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg', s = document.getElementById('s');
+    const add = (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; s.appendChild(e); };
+    const N = '#2E86C1', H = '#FDFEFE';
+    const at = (x, y, c, r) => add('circle', { cx: x, cy: y, r, fill: c, stroke: '#23373B', 'stroke-width': 2 });
+    add('rect', { x: 20, y: 20, width: 440, height: 250, rx: 16, fill: '#FBFCFC', stroke: '#5D6D7E', 'stroke-width': 3 });
+    add('rect', { x: 630, y: 20, width: 440, height: 250, rx: 16, fill: '#FBFCFC', stroke: '#5D6D7E', 'stroke-width': 3 });
+    add('text', { x: 240, y: 55, 'text-anchor': 'middle', 'font-size': 22, 'font-weight': 800, fill: '#C0392B' }, 'REACTANTS');
+    add('text', { x: 850, y: 55, 'text-anchor': 'middle', 'font-size': 22, 'font-weight': 800, fill: '#1E8449' }, 'PRODUCTS');
+    // N2
+    at(90, 150, N, 26); at(130, 150, N, 26);
+    // 3 H2
+    [[260, 100], [330, 160], [260, 220]].forEach(([x, y]) => { at(x - 14, y, H, 17); at(x + 14, y, H, 17); });
+    add('text', { x: 240, y: 300, 'text-anchor': 'middle', 'font-size': 30, 'font-weight': 700, fill: '#23373B' }, 'N₂  +  3 H₂');
+    add('text', { x: 545, y: 160, 'text-anchor': 'middle', 'font-size': 60, fill: '#23373B' }, '➜');
+    // 2 NH3
+    [[760, 150], [950, 150]].forEach(([x, y]) => { at(x, y, N, 26); at(x - 34, y + 30, H, 17); at(x + 34, y + 30, H, 17); at(x, y - 40, H, 17); at(x, y, N, 26); });
+    add('text', { x: 850, y: 300, 'text-anchor': 'middle', 'font-size': 30, 'font-weight': 700, fill: '#23373B' }, '2 NH₃');
+    // legend
+    at(500, 250, N, 12); add('text', { x: 518, y: 256, 'font-size': 16, fill: '#23373B' }, 'N');
+    at(560, 250, H, 10); add('text', { x: 576, y: 256, 'font-size': 16, fill: '#23373B' }, 'H');
+</script>
+</body>
+</html>

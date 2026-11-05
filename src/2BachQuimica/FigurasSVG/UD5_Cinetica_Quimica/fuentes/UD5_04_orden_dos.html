@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD5_04 · Cinética de orden dos</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/graficas.js"></script>
+</head>
+<body>
+<script>
+// Orden dos: 1/[A] = 1/[A]0 + k·t  → recta de pendiente +k.
+const svg = crearFigura(330, 270);
+texto(svg, 175, 22, "Orden dos", { "text-anchor": "middle", "font-size": 19, fill: COLORES.texto });
+const g = grafica(svg, { x: 55, y: 40, w: 245, h: 190, xmin: 0, xmax: 10, ymin: 0, ymax: 10, etqX: "Tiempo" });
+texto(svg, 42, 30, "1", { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+el("line", { x1: 32, y1: 34, x2: 52, y2: 34, stroke: COLORES.texto }, svg);
+texto(svg, 42, 50, "[A]", { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+g.curva(t => 1.2 + 1.05 * t, { desde: 1.5, hasta: 7.5, ancho: 3 });
+texto(svg, g.px(1.2), g.py(7), "pendiente = +k", { "font-size": 13, fill: "#D32F2F" });
+</script>
+</body>
+</html>

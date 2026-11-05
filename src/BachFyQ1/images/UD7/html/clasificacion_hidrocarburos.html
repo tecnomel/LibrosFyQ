@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Clasificación de los hidrocarburos</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .box { position: absolute; border-radius: 11px; text-align: center; font-size: 16px; padding: 6px 8px; line-height: 1.25; transform: translateY(-50%); }
+    .box b { font-size: 17px; }
+    .root { background: #00838F; color: #fff; }
+    .l1 { background: #D7EEF0; border: 2px solid #00838F; color: #005E66; }
+    .l2 { background: #FDEBD9; border: 2px solid #E59866; color: #9C4A0F; }
+    .l3 { background: #F1E6F7; border: 2px solid #BB8FCE; color: #6C3483; }
+    .l4 { background: #E2F3E7; border: 2px solid #82C99A; color: #1E8449; }
+    .ej { display: block; font-size: 14px; color: #C0392B; }
+    .sm { font-size: 13px; }
+    .wrap { position: relative; width: 1100px; height: 430px; }
+</style>
+</head>
+<body>
+<div class="canvas">
+<div class="wrap">
+    <svg width="1100" height="430" style="position:absolute;left:0;top:0">
+        <g stroke="#00838F" stroke-width="2.5" fill="none">
+            <path d="M120 215 H175 M175 150 V385 M175 150 H215 M175 385 H215"/>
+            <path d="M355 150 H385 M385 75 V245 M385 75 H415 M385 245 H415"/>
+            <path d="M565 75 H595 M595 35 V120 M595 35 H625 M595 120 H625"/>
+            <path d="M565 245 H595 M595 205 V290 M595 205 H625 M595 290 H625"/>
+            <path d="M845 35 H885 M845 120 H885 M845 205 H885 M845 290 H885"/>
+            <path d="M355 385 H415"/>
+        </g>
+    </svg>
+    <div class="box root" style="left:0;top:215px;width:120px;"><b>Hidro&shy;carburos</b><br><span class="sm">solo C e H</span></div>
+
+    <div class="box l1" style="left:215px;top:150px;width:140px;"><b>Alifáticos</b><br><span class="sm">sin anillo bencénico</span></div>
+    <div class="box l1" style="left:215px;top:385px;width:140px;"><b>Aromáticos</b><br><span class="sm">con anillo bencénico</span></div>
+
+    <div class="box l2" style="left:415px;top:75px;width:150px;"><b>Cadena abierta</b><br><span class="sm">acíclicos</span></div>
+    <div class="box l2" style="left:415px;top:245px;width:150px;"><b>Cadena cerrada</b><br><span class="sm">alicíclicos</span></div>
+
+    <div class="box l3" style="left:625px;top:35px;width:220px;"><b>Saturados</b> (solo C−C)</div>
+    <div class="box l3" style="left:625px;top:120px;width:220px;"><b>Insaturados</b> (C=C o C≡C)</div>
+    <div class="box l3" style="left:625px;top:205px;width:220px;"><b>Saturados</b> (solo C−C)</div>
+    <div class="box l3" style="left:625px;top:290px;width:220px;"><b>Insaturados</b> (C=C o C≡C)</div>
+
+    <div class="box l4" style="left:885px;top:35px;width:210px;"><b>Alcanos</b> C<sub>n</sub>H<sub>2n+2</sub><span class="ej">propano</span></div>
+    <div class="box l4" style="left:885px;top:120px;width:210px;"><b>Alquenos</b> C<sub>n</sub>H<sub>2n</sub><br><b>Alquinos</b> C<sub>n</sub>H<sub>2n−2</sub><span class="ej">eteno, etino</span></div>
+    <div class="box l4" style="left:885px;top:205px;width:210px;"><b>Cicloalcanos</b> C<sub>n</sub>H<sub>2n</sub><span class="ej">ciclohexano</span></div>
+    <div class="box l4" style="left:885px;top:290px;width:210px;"><b>Cicloalquenos</b><br><b>Cicloalquinos</b><span class="ej">ciclopenteno</span></div>
+
+    <div class="box l4" style="left:415px;top:385px;width:470px;text-align:left;">
+        <b>Benceno y derivados</b>: anillo de 6 C con enlaces deslocalizados, muy estable<span class="ej">benceno C₆H₆, tolueno, naftaleno</span>
+    </div>
+</div>
+</div>
+<script src="fig.js"></script>
+</body>
+</html>

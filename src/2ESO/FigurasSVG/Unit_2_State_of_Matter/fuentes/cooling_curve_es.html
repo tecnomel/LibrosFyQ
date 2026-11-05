@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Curva de enfriamiento del agua</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Curva de enfriamiento del agua</h1>
+    <svg width="1090" height="560" viewBox="0 0 1090 560" id="h"></svg>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg', svg = document.getElementById('h');
+    const add = (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; svg.appendChild(e); return e; };
+    // axes: x 0..13 (time) -> 90..1050 ; y -30..130 °C -> 500..40 (same scale as the heating curve)
+    const X = t => 90 + t * 72, Y = c => 500 - (c + 30) * (460 / 160);
+    add('rect', { x: X(2), y: 40, width: X(5) - X(2), height: 460, fill: '#FDEDEC' });
+    add('rect', { x: X(8), y: 40, width: X(11) - X(8), height: 460, fill: '#EAF2F8' });
+    add('line', { x1: 90, y1: 500, x2: 1060, y2: 500, stroke: '#23373B', 'stroke-width': 3 });
+    add('line', { x1: 90, y1: 500, x2: 90, y2: 30, stroke: '#23373B', 'stroke-width': 3 });
+    add('text', { x: 1055, y: 530, 'text-anchor': 'end', 'font-size': 20, 'font-weight': 700, fill: '#23373B' }, 'tiempo (calor retirado) →');
+    add('text', { x: 20, y: 30, 'font-size': 20, 'font-weight': 700, fill: '#23373B' }, 'T (°C)');
+    [[-20], [0], [50], [100], [120]].forEach(([c]) => {
+        add('line', { x1: 84, x2: 96, y1: Y(c), y2: Y(c), stroke: '#23373B', 'stroke-width': 2 });
+        add('text', { x: 78, y: Y(c) + 7, 'text-anchor': 'end', 'font-size': 18, fill: '#23373B' }, c);
+    });
+    [0, 100].forEach(c => add('line', { x1: 90, x2: 1050, y1: Y(c), y2: Y(c), stroke: '#AAB7B8', 'stroke-dasharray': '6 6', 'stroke-width': 1.5 }));
+    const seg = [[0, 125, 2, 100, '#D35400'], [2, 100, 5, 100, '#C0392B'], [5, 100, 8, 0, '#1E8449'], [8, 0, 11, 0, '#8E44AD'], [11, 0, 13, -20, '#2471A3']];
+    seg.forEach(([t1, c1, t2, c2, col]) => add('line', { x1: X(t1), y1: Y(c1), x2: X(t2), y2: Y(c2), stroke: col, 'stroke-width': 7, 'stroke-linecap': 'round' }));
+    const lab = (t, c, txt, col, emoji) => {
+        add('text', { x: X(t), y: Y(c), 'text-anchor': 'middle', 'font-size': 19, 'font-weight': 800, fill: col }, txt);
+        if (emoji) add('text', { x: X(t), y: Y(c) - 28, 'text-anchor': 'middle', 'font-size': 30 }, emoji);
+    };
+    lab(1.4, 122, 'gas', '#D35400', '♨️');
+    lab(3.5, 72, 'gas + líquido', '#C0392B', '♨️💧');
+    lab(3.5, 92, 'CONDENSACIÓN', '#C0392B');
+    lab(7.1, 62, 'líquido', '#1E8449', '💧');
+    lab(9.5, 30, 'líquido + sólido', '#8E44AD', '💧🧊');
+    lab(9.5, 55, 'SOLIDIFICACIÓN', '#8E44AD');
+    lab(12.2, 18, 'sólido', '#2471A3', '🧊');
+    add('text', { x: X(3.5), y: Y(106), 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 700, fill: '#C0392B' }, 'temperatura de condensación 100 °C');
+    add('text', { x: X(3.5), y: Y(117), 'text-anchor': 'middle', 'font-size': 16, fill: '#525252' }, 'T constante: se desprende calor');
+    add('text', { x: X(9.5), y: Y(-7), 'text-anchor': 'middle', 'font-size': 16, 'font-weight': 700, fill: '#8E44AD' }, 'temperatura de solidificación 0 °C');
+    add('text', { x: X(9.5), y: Y(-16), 'text-anchor': 'middle', 'font-size': 16, fill: '#525252' }, 'T constante: las partículas se unen');
+    add('text', { x: X(9.5), y: Y(-24), 'text-anchor': 'middle', 'font-size': 16, fill: '#525252' }, 'y desprenden calor');
+</script>
+</body>
+</html>

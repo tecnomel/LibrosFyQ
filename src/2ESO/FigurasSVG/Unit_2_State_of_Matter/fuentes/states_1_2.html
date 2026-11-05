@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Initial and final states</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    sub { font-size: 0.6em; }
+    .row { display: flex; align-items: center; gap: 16px; }
+    .st { flex: 1; border-radius: 18px; padding: 12px 16px; text-align: center; }
+    .s1 { background: var(--blue-soft); border: 3px solid var(--blue); }
+    .s2 { background: var(--green-soft); border: 3px solid var(--green); }
+    .st h2 { font-size: 24px; }
+    .s1 h2 { color: var(--blue); } .s2 h2 { color: var(--green); }
+    .st .sub { font-size: 16px; color: var(--grey); margin-bottom: 6px; }
+    .vals { display: flex; justify-content: center; gap: 12px; margin-top: 8px; }
+    .v { background: #fff; border-radius: 10px; padding: 6px 10px; font-size: 20px; font-weight: 700; }
+    .s1 .v { color: var(--blue); } .s2 .v { color: var(--green); }
+    .mid { width: 220px; text-align: center; }
+    .mid .box { background: var(--ocre-soft); border: 3px solid var(--ocre); border-radius: 14px; padding: 10px; font-size: 17px; }
+    .mid .box b { color: #A3400B; font-size: 20px; display: block; }
+    .mid .arr { font-size: 46px; color: var(--ocre); line-height: 1; }
+    .key { margin-top: 18px; display: flex; gap: 16px; }
+    .key > div { flex: 1; border-radius: 12px; padding: 10px 14px; font-size: 18px; text-align: center; }
+    .k1 { background: var(--blue-soft); } .k2 { background: var(--green-soft); }
+    .big { font-size: 34px; font-weight: 800; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>What do the numbers 1 and 2 mean in the gas laws?</h1>
+    <div class="row">
+        <div class="st s1">
+            <h2>STATE 1 = BEFORE</h2>
+            <div class="sub">the gas at the beginning</div>
+            <svg width="170" height="150" viewBox="0 0 170 150">
+                <rect x="40" y="10" width="90" height="130" rx="8" fill="#fff" stroke="#000070" stroke-width="4"/>
+                <rect x="34" y="40" width="102" height="10" rx="3" fill="#525252"/>
+                <rect x="80" y="0" width="10" height="45" fill="#525252"/>
+                <g fill="#000070"><circle cx="60" cy="70" r="7"/><circle cx="100" cy="80" r="7"/><circle cx="75" cy="110" r="7"/><circle cx="110" cy="125" r="7"/><circle cx="55" cy="125" r="7"/><circle cx="95" cy="105" r="7"/></g>
+            </svg>
+            <div class="vals"><div class="v">p<sub>1</sub></div><div class="v">V<sub>1</sub></div><div class="v">T<sub>1</sub></div></div>
+        </div>
+        <div class="mid">
+            <div class="box"><b>a change</b>we heat it, cool it, compress it or let it expand</div>
+            <div class="arr">⟶</div>
+        </div>
+        <div class="st s2">
+            <h2>STATE 2 = AFTER</h2>
+            <div class="sub">the gas at the end, after the change</div>
+            <svg width="170" height="150" viewBox="0 0 170 150">
+                <rect x="40" y="10" width="90" height="130" rx="8" fill="#fff" stroke="#1E8449" stroke-width="4"/>
+                <rect x="34" y="80" width="102" height="10" rx="3" fill="#525252"/>
+                <rect x="80" y="0" width="10" height="85" fill="#525252"/>
+                <g fill="#1E8449"><circle cx="58" cy="105" r="7"/><circle cx="85" cy="100" r="7"/><circle cx="112" cy="108" r="7"/><circle cx="70" cy="127" r="7"/><circle cx="98" cy="125" r="7"/><circle cx="118" cy="128" r="7"/></g>
+            </svg>
+            <div class="vals"><div class="v">p<sub>2</sub></div><div class="v">V<sub>2</sub></div><div class="v">T<sub>2</sub></div></div>
+        </div>
+    </div>
+    <div class="key">
+        <div class="k1"><span class="big" style="color:var(--blue)">1</span><br>= <b>initial</b> value (before the change)</div>
+        <div class="k2"><span class="big" style="color:var(--green)">2</span><br>= <b>final</b> value (after the change)</div>
+        <div style="background:var(--ocre-soft)">It is the <b>same gas</b>: the small number only tells us <b>when</b> we measure it.</div>
+    </div>
+</div>
+</body>
+</html>

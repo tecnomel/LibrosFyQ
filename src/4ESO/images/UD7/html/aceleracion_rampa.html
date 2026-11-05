@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Sentido de la aceleración en una rampa</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="820" height="300"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    // rampa en U
+    add('path', { d: 'M40 60 L240 250 L580 250 L780 60 L780 290 L40 290 Z', fill: '#D6DBDF' });
+    add('path', { d: 'M40 60 L240 250 L580 250 L780 60', fill: 'none', stroke: '#A04000', 'stroke-width': 5 });
+    // patinador simplificado (bola) bajando a la izquierda y subiendo a la derecha
+    function skater(x, y, ang, down) {
+        add('circle', { cx: x, cy: y, r: 16, fill: '#5D6D7E' });
+        const c = Math.cos(ang), s = Math.sin(ang);
+        arrow(add, x, y, x + 70 * c, y + 70 * s, '#2471A3', 4, 14);                       // velocidad
+        const k = down ? 1 : -1;
+        arrow(add, x + 6 * s, y - 6 * c, x + 6 * s + k * 50 * c, y - 6 * c + k * 50 * s, '#C0392B', 4, 14);   // aceleración
+    }
+    const a1 = Math.atan2(190, 200);
+    skater(130, 110, a1, true);
+    const a2 = Math.atan2(-190, 200);
+    skater(680, 120, a2, false);
+    label(add, 205, 90, 'v', { 'font-size': 18, fill: '#2471A3' }); label(add, 100, 150, 'a', { 'font-size': 18, fill: '#C0392B' });
+    label(add, 750, 75, 'v', { 'font-size': 18, fill: '#2471A3' }); label(add, 640, 175, 'a', { 'font-size': 18, fill: '#C0392B' });
+    label(add, 200, 30, 'Bajando: a y v en el mismo sentido', { 'font-size': 15, fill: '#000070' });
+    label(add, 200, 50, '(movimiento acelerado)', { 'font-size': 14, fill: '#525252' });
+    label(add, 620, 30, 'Subiendo: a y v en sentidos opuestos', { 'font-size': 15, fill: '#000070' });
+    label(add, 620, 50, '(movimiento frenado)', { 'font-size': 14, fill: '#525252' });
+</script>
+</body>
+</html>

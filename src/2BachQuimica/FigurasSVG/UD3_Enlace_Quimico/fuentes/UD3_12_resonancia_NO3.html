@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_12 · Estructuras resonantes del ion nitrato</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+</head>
+<body>
+<script>
+// Ion nitrato NO3−: tres estructuras resonantes equivalentes (el doble enlace se
+// "reparte" entre los tres oxígenos). Cargas formales: N (+1) y dos O (−1).
+const svg = crearFigura(760, 175);
+function nitrato(x0, doble) {
+    const O = [[0, 1], [-0.87, -0.5], [0.87, -0.5]];
+    const angC = [30, 150, 30];
+    dibujarLewis(svg, x0, 100, { atomos: [
+        { s: "N", id: "n", x: 0, y: 0, carga: "+", angCarga: -90, colorCarga: "#1E4FC0" },
+        ...O.map(([x, y], i) => ({ s: "O", id: "o" + i, x, y, libres: doble === i ? 2 : 3,
+            carga: doble === i ? null : "−", angCarga: angC[i] + (i === 0 ? 0 : 0), colorCarga: "#D32F2F" }))],
+        enlaces: O.map((_, i) => ({ a: "n", b: "o" + i, orden: doble === i ? 2 : 1 })) }, { L: 50 });
+}
+nitrato(110, 0); nitrato(380, 1); nitrato(650, 2);
+flechaResonancia(svg, 205, 100, 285);
+flechaResonancia(svg, 475, 100, 555);
+</script>
+</body>
+</html>

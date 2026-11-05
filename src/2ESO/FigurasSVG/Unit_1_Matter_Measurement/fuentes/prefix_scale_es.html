@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Why we need prefixes</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1200px; height: 470px; }
+    .scale { position: relative; height: 330px; margin-top: 10px; }
+    .axis {
+        position: absolute; left: 20px; right: 20px; top: 170px; height: 8px; border-radius: 4px;
+        background: linear-gradient(90deg, var(--green), var(--blue) 50%, var(--ocre));
+    }
+    .tick { position: absolute; top: 150px; width: 0; }
+    .tick .p { position: absolute; top: 40px; transform: translateX(-50%); font-size: 18px; font-weight: 700; color: var(--blue); white-space: nowrap; }
+    .tick .dot { position: absolute; top: 14px; left: -9px; width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 4px solid var(--blue); }
+    .card {
+        position: absolute; top: 0; transform: translateX(-50%); width: 170px; text-align: center;
+        border: 2px solid var(--line); border-radius: 12px; padding: 8px; background: #fff;
+    }
+    .card .icon { font-size: 40px; line-height: 1.1; }
+    .card .txt { font-size: 15px; color: var(--grey); }
+    .card .val { font-size: 18px; font-weight: 700; color: var(--ocre); }
+    .bottom { position: absolute; top: 230px; transform: translateX(-50%); width: 190px; text-align: center; font-size: 15px; color: var(--grey); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>¿Por qué necesitamos múltiplos y submúltiplos?</h1>
+    <div class="scale">
+        <div class="axis"></div>
+
+        <div class="card" style="left:8%"><div class="icon">🦠</div><div class="txt">Bacteria</div><div class="val">2 µm</div></div>
+        <div class="tick" style="left:8%"><div class="dot"></div><div class="p">10<sup>-6</sup> m</div></div>
+        <div class="bottom" style="left:8%">0,000002 m</div>
+
+        <div class="card" style="left:26%"><div class="icon">🐜</div><div class="txt">Hormiga</div><div class="val">3 mm</div></div>
+        <div class="tick" style="left:26%"><div class="dot"></div><div class="p">10<sup>-3</sup> m</div></div>
+        <div class="bottom" style="left:26%">0,003 m</div>
+
+        <div class="card" style="left:44%"><div class="icon">✏️</div><div class="txt">Lápiz</div><div class="val">18 cm</div></div>
+        <div class="tick" style="left:44%"><div class="dot"></div><div class="p">10<sup>-2</sup> m</div></div>
+        <div class="bottom" style="left:44%">0,18 m</div>
+
+        <div class="card" style="left:60%"><div class="icon">🧍</div><div class="txt">Alumno</div><div class="val">1,55 m</div></div>
+        <div class="tick" style="left:60%"><div class="dot"></div><div class="p">1 m</div></div>
+        <div class="bottom" style="left:60%">unidad básica</div>
+
+        <div class="card" style="left:76%"><div class="icon">🏙️</div><div class="txt">Almansa – Albacete</div><div class="val">75 km</div></div>
+        <div class="tick" style="left:76%"><div class="dot"></div><div class="p">10<sup>3</sup> m</div></div>
+        <div class="bottom" style="left:76%">75 000 m</div>
+
+        <div class="card" style="left:92%"><div class="icon">🌍</div><div class="txt">Diámetro de la Tierra</div><div class="val">12,7 Mm</div></div>
+        <div class="tick" style="left:92%"><div class="dot"></div><div class="p">10<sup>6</sup> m</div></div>
+        <div class="bottom" style="left:92%">12 700 000 m</div>
+    </div>
+    <div class="note" style="text-align:center">Con un prefijo, cada medida se escribe con un <b>número pequeño y sencillo</b> en lugar de muchos ceros.</div>
+</div>
+</body>
+</html>

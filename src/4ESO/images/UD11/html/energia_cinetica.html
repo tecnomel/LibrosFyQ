@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Trabajo y energía cinética</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card .t { font-size: 13.5px; } .card h3 { font-size: 15px; color: var(--blue); margin-bottom: 4px; } .row + .row { margin-top: 12px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3>Una fuerza constante pone en movimiento un cuerpo</h3><svg id="a" width="780" height="130"></svg>
+            <div class="t">El trabajo realizado, <i>W</i> = <i>F</i> · Δ<i>x</i>, se transforma en energía cinética: <b><i>W</i> = ½ · <i>m</i> · <i>v</i>²</b>.</div></div>
+    </div>
+    <div class="row">
+        <div class="card"><h3 style="color:#1E8449">La fuerza va en el sentido del movimiento</h3><svg id="b" width="370" height="120"></svg>
+            <div class="t"><i>v</i><sub>2</sub> &gt; <i>v</i><sub>1</sub> ⇒ <i>E</i><sub>c2</sub> &gt; <i>E</i><sub>c1</sub>: el trabajo es <b>positivo</b>.</div></div>
+        <div class="card"><h3 style="color:#C0392B">La fuerza va en sentido contrario</h3><svg id="c" width="370" height="120"></svg>
+            <div class="t"><i>v</i><sub>2</sub> &lt; <i>v</i><sub>1</sub> ⇒ <i>E</i><sub>c2</sub> &lt; <i>E</i><sub>c1</sub>: el trabajo es <b>negativo</b>.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const RED = '#C0392B', BLUE = '#2471A3';
+    function crate(add, x, y, s = 60, ghost = false) {
+        add('rect', { x, y: y - s, width: s, height: s, rx: 4, fill: ghost ? 'none' : '#E59866', stroke: ghost ? '#AAB7B8' : '#A04000', 'stroke-width': 2, 'stroke-dasharray': ghost ? '5 4' : 'none' });
+        label(add, x + s / 2, y - s / 2 + 6, 'm', { 'font-style': 'italic', fill: ghost ? '#AAB7B8' : '#6E2C00' });
+    }
+    function car(add, x, y, col = '#5DADE2') {
+        add('path', { d: `M${x} ${y - 12} L${x} ${y - 28} Q${x + 4} ${y - 32} ${x + 14} ${y - 32} L${x + 24} ${y - 46} L${x + 62} ${y - 46} L${x + 76} ${y - 32} L${x + 92} ${y - 30} Q${x + 98} ${y - 28} ${x + 98} ${y - 20} L${x + 98} ${y - 12} Z`, fill: col, stroke: '#1B4F72', 'stroke-width': 1.8 });
+        add('path', { d: `M${x + 28} ${y - 42} L${x + 44} ${y - 42} L${x + 44} ${y - 32} L${x + 20} ${y - 32} Z M${x + 48} ${y - 42} L${x + 60} ${y - 42} L${x + 70} ${y - 32} L${x + 48} ${y - 32} Z`, fill: '#EBF5FB' });
+        [x + 22, x + 76].forEach(cx => { add('circle', { cx, cy: y - 10, r: 10, fill: '#2C3E50' }); add('circle', { cx, cy: y - 10, r: 4, fill: '#AAB7B8' }); });
+    }
+    {
+        const add = svgAdder('a');
+        const g = 100;
+        add('rect', { x: 0, y: g, width: 780, height: 10, fill: '#D7BDA0' });
+        crate(add, 60, g, 60, true);
+        crate(add, 600, g);
+        arrow(add, 660, g - 30, 740, g - 30, RED, 3, 12);
+        vlabel(add, 712, g - 40, 'F', RED);
+        arrow(add, 660, g - 75, 745, g - 75, BLUE, 2.5, 10);
+        vlabel(add, 712, g - 84, 'v', BLUE);
+        label(add, 90, 22, 'v₀ = 0 (reposo)', { 'font-size': 13, fill: '#525252' });
+        add('line', { x1: 90, y1: g - 64, x2: 90, y2: 30, stroke: '#AAB7B8', 'stroke-dasharray': '3 3' });
+        add('line', { x1: 630, y1: g - 64, x2: 630, y2: 30, stroke: '#AAB7B8', 'stroke-dasharray': '3 3' });
+        arrow(add, 360, 40, 90, 40, '#525252', 1.6, 8); arrow(add, 360, 40, 630, 40, '#525252', 1.6, 8);
+        label(add, 360, 32, 'Δx', { 'font-style': 'italic', fill: '#525252' });
+    }
+    function panel(id, speedUp) {
+        const add = svgAdder(id);
+        const g = 95;
+        add('rect', { x: 0, y: g, width: 370, height: 8, fill: '#AAB7B8' });
+        car(add, 20, g, '#AED6F1');
+        car(add, 230, g);
+        const L1 = speedUp ? 40 : 70, L2 = speedUp ? 70 : 40;
+        arrow(add, 120, g - 40, 120 + L1, g - 40, BLUE, 2.5, 10);
+        arrow(add, 330, g - 40, 330 + L2 * 0.5, g - 40, BLUE, 2.5, 10);
+        const t1 = label(add, 120 + L1 / 2, g - 50, '', { fill: BLUE, 'font-style': 'italic', 'font-size': 14 }); t1.innerHTML = 'v<tspan baseline-shift="sub" font-size="70%">1</tspan>';
+        const t2 = label(add, 336, g - 50, '', { fill: BLUE, 'font-style': 'italic', 'font-size': 14 }); t2.innerHTML = 'v<tspan baseline-shift="sub" font-size="70%">2</tspan>';
+        if (speedUp) arrow(add, 175, g - 22, 225, g - 22, RED, 3, 11);
+        else arrow(add, 225, g - 22, 175, g - 22, RED, 3, 11);
+        vlabel(add, 200, g - 30, 'F', RED);
+        const e1 = label(add, 70, 18, '', { 'font-size': 13 }); e1.innerHTML = 'E<tspan baseline-shift="sub" font-size="70%">c1</tspan>';
+        const e2 = label(add, 280, 18, '', { 'font-size': 13 }); e2.innerHTML = 'E<tspan baseline-shift="sub" font-size="70%">c2</tspan>';
+    }
+    panel('b', true);
+    panel('c', false);
+</script>
+</body>
+</html>

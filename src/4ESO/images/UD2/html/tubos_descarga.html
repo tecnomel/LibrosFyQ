@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tubos de descarga: electrón y protón</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1220px; }
+    .row { display: flex; gap: 16px; }
+    .card { flex: 1; text-align: center; }
+    .card h2 { margin-bottom: 4px; }
+    .t { font-size: 15px; color: var(--grey); margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Rayos catódicos (Thomson, 1897)</h2>
+            <svg id="a" width="560" height="290"></svg>
+            <div class="t">Los <b>electrones</b> salen del cátodo (−) y viajan hacia el ánodo (+).</div></div>
+        <div class="card"><h2>Rayos canales (Goldstein, 1886)</h2>
+            <svg id="b" width="560" height="290"></svg>
+            <div class="t">Las partículas <b>positivas</b> viajan hacia el cátodo (−) y lo atraviesan por sus orificios.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    function tube(add, rightWire) {
+        add('rect', { x: 60, y: 110, width: 440, height: 110, rx: 55, fill: '#EBF5FB', stroke: '#5D6D7E', 'stroke-width': 3 });
+        // circuito y generador
+        add('path', { d: 'M75 165 H40 V40 H245 ' + (rightWire || 'M315 40 H520 V165 H485'), fill: 'none', stroke: '#23373B', 'stroke-width': 2.5 });
+        add('line', { x1: 255, y1: 22, x2: 255, y2: 58, stroke: '#23373B', 'stroke-width': 3 });
+        add('line', { x1: 270, y1: 30, x2: 270, y2: 50, stroke: '#23373B', 'stroke-width': 6 });
+        add('line', { x1: 290, y1: 22, x2: 290, y2: 58, stroke: '#23373B', 'stroke-width': 3 });
+        add('line', { x1: 305, y1: 30, x2: 305, y2: 50, stroke: '#23373B', 'stroke-width': 6 });
+        add('line', { x1: 245, y1: 40, x2: 255, y2: 40, stroke: '#23373B', 'stroke-width': 2.5 });
+        add('line', { x1: 305, y1: 40, x2: 315, y2: 40, stroke: '#23373B', 'stroke-width': 2.5 });
+        add('text', { x: 280, y: 78, 'text-anchor': 'middle', 'font-size': 14, 'font-weight': 700, fill: '#525252' }, 'generador de alto voltaje');
+        add('text', { x: 280, y: 278, 'text-anchor': 'middle', 'font-size': 14, 'font-weight': 700, fill: '#525252' }, 'gas a muy baja presión');
+    }
+    // A: rayos catódicos
+    let add = svgAdder('a');
+    tube(add);
+    add('rect', { x: 75, y: 130, width: 12, height: 70, fill: '#2471A3' });
+    add('rect', { x: 473, y: 130, width: 12, height: 70, fill: '#C0392B' });
+    add('text', { x: 81, y: 244, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 800, fill: '#2471A3' }, 'cátodo (−)');
+    add('text', { x: 479, y: 244, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 800, fill: '#C0392B' }, 'ánodo (+)');
+    for (let i = 0; i < 4; i++) {
+        const x = 130 + i * 85, y = 150 + (i % 2) * 30;
+        add('line', { x1: x + 14, y1: y, x2: x + 52, y2: y, stroke: '#2471A3', 'stroke-width': 2.5 });
+        add('path', { d: `M${x + 52} ${y - 6} L${x + 64} ${y} L${x + 52} ${y + 6} Z`, fill: '#2471A3' });
+        particle(add, x, y, 'e', 10);
+    }
+    // B: rayos canales con cátodo perforado
+    add = svgAdder('b');
+    tube(add, 'M315 40 H336 V115');
+    add('rect', { x: 75, y: 130, width: 12, height: 70, fill: '#C0392B' });
+    add('text', { x: 81, y: 244, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 800, fill: '#C0392B' }, 'ánodo (+)');
+    // cátodo perforado en el centro
+    add('rect', { x: 330, y: 115, width: 12, height: 100, fill: '#2471A3' });
+    [135, 165, 195].forEach(y => add('rect', { x: 330, y: y - 5, width: 12, height: 10, fill: '#EBF5FB' }));
+    add('text', { x: 336, y: 244, 'text-anchor': 'middle', 'font-size': 15, 'font-weight': 800, fill: '#2471A3' }, 'cátodo perforado (−)');
+    [[140, 135], [230, 165], [400, 135], [460, 195], [180, 195], [420, 165]].forEach(([x, y]) => {
+        add('line', { x1: x + 14, y1: y, x2: x + 40, y2: y, stroke: '#C0392B', 'stroke-width': 2.5 });
+        add('path', { d: `M${x + 40} ${y - 6} L${x + 52} ${y} L${x + 40} ${y + 6} Z`, fill: '#C0392B' });
+        particle(add, x, y, 'p', 10);
+    });
+</script>
+</body>
+</html>

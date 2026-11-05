@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_40 · Hibridación sp3: formación del CH4</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/orbitales.js"></script>
+    <script src="../../comun/moleculas.js"></script>
+</head>
+<body>
+<script>
+// Los 4 orbitales híbridos sp3 del C se dirigen a los vértices de un tetraedro (109,5°)
+// y se solapan con los orbitales 1s de 4 átomos de H: 4 enlaces σ.
+const svg = crearFigura(860, 300);
+const MO = "#6B4FC8", AZ = "#2E8FD8";
+const cam = [1, -0.35, 0.28];
+const T = rotarZ(GEOM.tetraedrica, 60);
+const sp3 = union(...T.map(d => OA.hibrido([0, 0, 0], d)));
+escenaOrbital(svg, 60, 150, OA.s([0, 0, 0], 2.2), { escala: 45, caja: [1, 1, 1], colorPos: AZ, camara: cam });
+el("circle", { cx: 60, cy: 150, r: 2.6, fill: "#fff" }, svg);
+texto(svg, 60, 200, "1s¹ (H)", { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto });
+texto(svg, 120, 158, "+", { "text-anchor": "middle", "font-size": 24, fill: COLORES.texto });
+escenaOrbital(svg, 280, 150, sp3, { escala: 60, caja: [2, 2, 2], colorPos: MO, colorNeg: mezclar(MO, "#ffffff", 0.4), camara: cam, nucleos: [[0, 0, 0]] });
+texto(svg, 280, 290, "4 orbitales sp³ (C)", { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto });
+flecha(svg, 420, 150, 480, 150, { punta: 11, ancho: 1.8 });
+const e3 = escenaOrbital(svg, 680, 150, sp3, { escala: 60, caja: [2.6, 2.6, 2.6], colorPos: MO, colorNeg: mezclar(MO, "#ffffff", 0.4), camara: cam,
+    otros: T.map(d => ({ fn: OA.s(esc(d, 1.55), 2.2), colorPos: AZ })), nucleos: [[0, 0, 0]] });
+T.forEach(d => {
+    const q = e3.p(esc(d, 1.55)); el("circle", { cx: q[0], cy: q[1], r: 2.6, fill: "#fff" }, svg);
+    const q2 = e3.p(esc(d, 2.1)); texto(svg, q2[0], q2[1] + 5, "H", { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+});
+texto(svg, 680, 290, [{ t: "CH" }, { t: "4", sub: true }, { t: ": 4 enlaces σ, 109,5°" }], { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto });
+</script>
+</body>
+</html>

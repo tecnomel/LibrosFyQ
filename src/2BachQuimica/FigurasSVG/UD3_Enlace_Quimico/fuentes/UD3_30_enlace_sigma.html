@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_30 · Enlace sigma (σ): solapamiento frontal</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/orbitales.js"></script>
+</head>
+<body>
+<script>
+// Enlace σ: los orbitales se solapan de forma FRONTAL, sobre el eje internuclear.
+// La densidad electrónica tiene simetría cilíndrica alrededor de ese eje.
+const svg = crearFigura(820, 560);
+const AZ = "#4FA3E0", RO = "#E0463A", VE = "#27A383";
+const d = 1.0;                              // semidistancia internuclear
+const A = [0, -d, 0], B = [0, d, 0];
+const filas = [
+    { t: "s + s", f1: OA.s(A), f2: OA.s(B), c1: AZ, c2: AZ, iso: 0.3 },
+    { t: "s + p", f1: OA.s(A), f2: OA.p(B, [0, -1, 0]), c1: AZ, c2: RO, iso: 0.3 },
+    { t: "p + p", f1: OA.p(A, [0, 1, 0]), f2: OA.p(B, [0, -1, 0]), c1: RO, c2: RO, iso: 0.3 },
+];
+filas.forEach((fl, i) => {
+    const y = 90 + i * 172;
+    // Orbitales atómicos separados (se acercan). Fase − del p en tono más claro.
+    const sep = 0.75;
+    const g1 = (x, y2, z) => fl.f1(x, y2 + sep, z), g2 = (x, y2, z) => fl.f2(x, y2 - sep, z);
+    const claro = c => mezclar(c, "#ffffff", 0.45);
+    escenaOrbital(svg, 200, y, g1, { escala: 52, iso: fl.iso, caja: [4.2, 1.8, 1.8], eje: 4.2, colorPos: fl.c1, colorNeg: claro(fl.c1), nucleos: [[0, -d - sep, 0]] });
+    escenaOrbital(svg, 200, y, g2, { escala: 52, iso: fl.iso, caja: [4.2, 1.8, 1.8], colorPos: fl.c2, colorNeg: claro(fl.c2), nucleos: [[0, d + sep, 0]] });
+    texto(svg, 200, y + 86, fl.t, { "text-anchor": "middle", "font-size": 16, "font-style": "italic", fill: COLORES.texto });
+    flecha(svg, 400, y, 460, y, { punta: 11, ancho: 1.8 });
+    // Orbital de enlace resultante
+    escenaOrbital(svg, 640, y, combinar([1, fl.f1], [1, fl.f2]), { escala: 52, iso: fl.iso, caja: [4.2, 1.8, 1.8], eje: 3.6,
+        colorPos: VE, colorNeg: mezclar(VE, "#ffffff", 0.45), nucleos: [A, B] });
+    texto(svg, 640, y + 86, "enlace σ", { "text-anchor": "middle", "font-size": 16, fill: COLORES.texto });
+});
+texto(svg, 20, 22, "Eje internuclear (– – –)", { "font-size": 13, fill: COLORES.gris });
+</script>
+</body>
+</html>

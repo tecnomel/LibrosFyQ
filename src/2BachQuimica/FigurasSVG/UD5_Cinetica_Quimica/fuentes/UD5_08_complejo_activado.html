@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD5_08 · Formación del complejo activado</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Teoría del estado de transición: 2 AB → [A2B2]‡ → A2 + B2. El complejo activado es una
+// especie inestable de alta energía que puede evolucionar a productos o volver a reactivos.
+const svg = crearFigura(320, 370);
+const V = degradadoEsfera(svg, "v", "#3FA34D"), R = degradadoEsfera(svg, "r", "#E8483C");
+const bola = (x, y, r, f) => el("circle", { cx: x, cy: y, r, fill: f }, svg);
+texto(svg, 160, 22, "Complejo activado", { "text-anchor": "middle", "font-size": 18, fill: COLORES.texto });
+// complejo (arriba)
+bola(128, 60, 14, R); bola(128, 104, 14, R); bola(168, 60, 26, V); bola(168, 106, 26, V);
+el("rect", { x: 96, y: 30, width: 106, height: 106, fill: "none", stroke: "#999", "stroke-dasharray": "4 3", rx: 8 }, svg);
+// reactivos (abajo izquierda): dos moléculas AB
+bola(28, 282, 13, R); bola(58, 262, 25, V); bola(70, 350, 13, R); bola(96, 325, 25, V);
+texto(svg, 40, 318, "+", { "text-anchor": "middle", "font-size": 24, fill: COLORES.texto });
+texto(svg, 70, 366 + 0, "", {});
+// productos (abajo derecha): A2 + B2
+bola(212, 285, 13, R); bola(212, 311, 13, R); bola(276, 270, 25, V); bola(276, 320, 25, V);
+texto(svg, 245, 300, "+", { "text-anchor": "middle", "font-size": 24, fill: COLORES.texto });
+const A = "#1FA3D8", B = "#E0463A";
+flecha(svg, 100, 150, 50, 225, { color: A, ancho: 5, punta: 14 });
+flecha(svg, 80, 235, 130, 160, { color: B, ancho: 5, punta: 14 });
+flecha(svg, 190, 150, 240, 225, { color: A, ancho: 5, punta: 14 });
+flecha(svg, 220, 235, 170, 160, { color: B, ancho: 5, punta: 14 });
+texto(svg, 70, 368, "Reactivos", { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+texto(svg, 250, 368, "Productos", { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto });
+</script>
+</body>
+</html>

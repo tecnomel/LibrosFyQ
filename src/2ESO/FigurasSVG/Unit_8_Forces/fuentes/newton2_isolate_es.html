@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Despejar m y a</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="isolate.css">
+<script src="isolate_es.js"></script>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1></h1>
+    <div class="grid" id="grid"></div>
+    <div class="tip" id="tip"></div>
+</div>
+<script>
+buildIsolate('Segunda ley de Newton: cómo despejar m y a en F = m · a', [
+    { goal: 'm', steps: [
+        ['Escribe la ley.', `F = ${g('m')} · a`],
+        [`<b>a</b> está <b>multiplicando</b> a ${g('m')}: divide <b>los dos lados</b> entre a.`, `${f('F', o('a'))} = ${f(`${g('m')} · ${c('a')}`, o(c('a')))}`]],
+      result: `${g('m')} = ${f('F', 'a')}` },
+    { goal: 'a', steps: [
+        ['Escribe la ley.', `F = m · ${g('a')}`],
+        [`<b>m</b> está <b>multiplicando</b> a ${g('a')}: divide <b>los dos lados</b> entre m.`, `${f('F', o('m'))} = ${f(`${c('m')} · ${g('a')}`, o(c('m')))}`]],
+      result: `${g('a')} = ${f('F', 'm')}` },
+], '<b>Truco:</b> lo que está <b>multiplicando</b> en un lado pasa al otro lado <b>dividiendo</b>.');
+</script>
+</body>
+</html>

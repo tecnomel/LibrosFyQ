@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Formación del cloruro de sodio</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="940" height="360"></svg>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    const add = svgAdder('s');
+    function shells(cx, cy, Z, sh, nuc, col) {
+        sh.forEach((n, i) => {
+            const R = 26 + i * 20;
+            add('circle', { cx, cy, r: R, fill: 'none', stroke: '#AAB7B8', 'stroke-width': 1.5 });
+            for (let k = 0; k < n; k++) { const a = -Math.PI / 2 + k * 2 * Math.PI / n + (i === 2 ? 0.0 : 0); particle(add, cx + R * Math.cos(a), cy + R * Math.sin(a), 'e', 6); }
+        });
+        add('circle', { cx, cy, r: 16, fill: col });
+        label(add, cx, cy + 6, nuc, { 'font-size': 15, fill: '#fff', 'font-weight': 800 });
+    }
+    // fila superior: modelos de capas
+    shells(100, 120, 11, [2, 8, 1], 'Na', '#8E44AD');
+    shells(330, 120, 17, [2, 8, 7], 'Cl', '#27AE60');
+    // electrón que pasa
+    add('path', { d: 'M100 54 C 170 24 260 28 312 52', fill: 'none', stroke: '#2471A3', 'stroke-width': 2.5, 'stroke-dasharray': '6 4' });
+    arrow(add, 300, 44, 316, 56, '#2471A3', 2.5, 11);
+    label(add, 210, 16, 'el Na cede 1 e⁻ al Cl', { 'font-size': 15, fill: '#2471A3' });
+    arrow(add, 440, 120, 520, 120, '#23373B', 4, 15);
+    shells(600, 120, 11, [2, 8], 'Na⁺', '#8E44AD');
+    shells(800, 120, 17, [2, 8, 8], 'Cl⁻', '#27AE60');
+    label(add, 100, 215, 'Na: 2, 8, 1 (11 e⁻)', { 'font-size': 14 }); label(add, 330, 215, 'Cl: 2, 8, 7 (17 e⁻)', { 'font-size': 14 });
+    label(add, 600, 215, 'Na⁺: 2, 8 (10 e⁻)', { 'font-size': 14, fill: '#8E44AD' }); label(add, 800, 215, 'Cl⁻: 2, 8, 8 (18 e⁻)', { 'font-size': 14, fill: '#27AE60' });
+    // fila inferior: Lewis
+    add('line', { x1: 20, y1: 240, x2: 920, y2: 240, stroke: '#E5E8E8', 'stroke-width': 2 });
+    lewis(add, 150, 300, 'Na', 1, { pairs: [0, 1, 0, 0], cross: [0, 1, 0, 0] });
+    label(add, 220, 310, '+', { 'font-size': 28 });
+    lewis(add, 290, 300, 'Cl', 7, { pairs: [2, 2, 2, 1] });
+    arrow(add, 350, 300, 430, 300, '#23373B', 4, 15);
+    chemText(add, 500, 312, 'Na^+', { 'font-size': 30, 'font-weight': 800 });
+    label(add, 570, 312, '[', { 'font-size': 52, 'font-weight': 400 });
+    lewis(add, 618, 300, 'Cl', 0, { pairs: [2, 2, 2, 0] });
+    add('path', { d: 'M592 296 L599 303 M592 303 L599 296', stroke: '#2471A3', 'stroke-width': 2 });
+    add('circle', { cx: 593, cy: 309, r: 3.4, fill: '#C0392B' });
+    label(add, 668, 312, ']', { 'font-size': 52, 'font-weight': 400 });
+    label(add, 684, 290, '−', { 'font-size': 24, 'font-weight': 800 });
+    label(add, 820, 296, 'ambos iones tienen', { 'font-size': 15, fill: '#C0392B' });
+    label(add, 820, 316, '8 e⁻ en su última capa', { 'font-size': 15, fill: '#C0392B' });
+</script>
+</body>
+</html>

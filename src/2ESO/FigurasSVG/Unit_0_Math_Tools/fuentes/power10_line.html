@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Powers of 10</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .line { display: flex; align-items: stretch; justify-content: center; gap: 6px; margin-top: 6px; }
+    .p { width: 126px; border-radius: 12px; text-align: center; padding: 8px 4px; color: #fff; }
+    .p b { display: block; font-size: 28px; }
+    .p span { font-size: 15px; display: block; margin-top: 4px; }
+    .p small { font-size: 13px; opacity: .9; }
+    .neg { background: var(--green); } .zero { background: var(--ocre); } .pos { background: var(--blue); }
+    .arrows { display: flex; justify-content: space-between; margin: 14px 40px 0; font-size: 17px; font-weight: 700; }
+    .rules { display: flex; gap: 16px; margin-top: 16px; }
+    .rules > div { flex: 1; border-radius: 12px; padding: 10px 14px; font-size: 17px; line-height: 1.45; }
+    .r1 { background: var(--blue-soft); border: 2px solid var(--blue); }
+    .r2 { background: var(--green-soft); border: 2px solid var(--green); }
+    .r3 { background: var(--ocre-soft); border: 2px solid var(--ocre); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Powers of 10: the exponent counts the places</h1>
+    <div class="line">
+        <div class="p neg"><b>10<sup>-3</sup></b><span>0,001</span><small>3 places after the comma</small></div>
+        <div class="p neg"><b>10<sup>-2</sup></b><span>0,01</span><small>2 places</small></div>
+        <div class="p neg"><b>10<sup>-1</sup></b><span>0,1</span><small>1 place</small></div>
+        <div class="p zero"><b>10<sup>0</sup></b><span>1</span><small>no zeros</small></div>
+        <div class="p pos"><b>10<sup>1</sup></b><span>10</span><small>1 zero</small></div>
+        <div class="p pos"><b>10<sup>2</sup></b><span>100</span><small>2 zeros</small></div>
+        <div class="p pos"><b>10<sup>3</sup></b><span>1000</span><small>3 zeros</small></div>
+        <div class="p pos"><b>10<sup>6</sup></b><span>1 000 000</span><small>6 zeros</small></div>
+    </div>
+    <div class="arrows"><span style="color:var(--green)">⟵ smaller than 1: negative exponent</span><span style="color:var(--blue)">bigger than 1: positive exponent ⟶</span></div>
+    <div class="rules">
+        <div class="r1"><b>Positive exponent</b> 10<sup>n</sup>: a <b>1</b> followed by <b>n zeros</b>.<br>10<sup>4</sup> = 10 000</div>
+        <div class="r3"><b>Exponent zero</b>: 10<sup>0</sup> = <b>1</b><br>(any number to the power of 0 is 1)</div>
+        <div class="r2"><b>Negative exponent</b> 10<sup>-n</sup>: the <b>1</b> is in the <b>n-th</b> place after the comma.<br>10<sup>-4</sup> = 0,0001</div>
+    </div>
+</div>
+</body>
+</html>

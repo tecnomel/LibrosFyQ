@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Figuras nomenclatura orgánica</title>
+<!--
+  Figuras para organica_apuntes_nuevo.tex (criterios IUPAC 2013, Guía Breve 2021).
+  Cada figura es un <section class="fig" id="...">; ?solo=<id> muestra solo esa figura.
+  Las estructuras (<div class="mol" data-mol="...">) salen de moleculas.js,
+  que genera generar_moleculas.py a partir del SMILES de cada molécula.
+  exportar_figuras.py guarda cada figura en ../pdf/<id>.pdf (LaTeX) y ../svg/<id>.svg.
+  Colores coherentes con estilocrispropio.sty:
+     darkblue #000070 · mygreen #007F00 · myBlue #027FDF · myOrange3 #DD3A12
+-->
+<style>
+  :root{
+    --azul:#000070; --azul2:#027FDF; --verde:#007F00; --naranja:#DD3A12;
+    --rojo:#C00000; --gris:#6b7280; --fondo:#ffffff; --suave:#f4f6fb;
+    --hl-rojo:#ffc7c7; --hl-azul:#bfdeff; --hl-verde:#ccf0c2; --hl-naranja:#ffd9b3;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:24px;background:#e9edf3;font-family:"Segoe UI",Calibri,Arial,sans-serif;color:#1d2433}
+  .fig{background:var(--fondo);width:1000px;margin:0 auto 32px;padding:24px 30px;border-radius:14px;
+       border:2px solid var(--azul)}
+  h2{margin:0 0 6px;color:var(--azul);font-size:26px}
+  .sub{margin:0 0 16px;color:var(--gris);font-size:16px}
+  sub,sup{font-size:70%}
+  .f{font-family:"Cambria Math",Cambria,"Times New Roman",serif}
+  .hr{background:var(--hl-rojo);border-radius:4px;padding:0 3px}
+  .ha{background:var(--hl-azul);border-radius:4px;padding:0 3px}
+  .hv{background:var(--hl-verde);border-radius:4px;padding:0 3px}
+  .hn{background:var(--hl-naranja);border-radius:4px;padding:0 3px}
+
+  /* ---------- Ficha de cada familia ---------- */
+  .cab{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;margin-bottom:16px}
+  .gf{border:3px solid var(--naranja);border-radius:12px;padding:12px 16px;text-align:center;background:#fff8f4;
+      display:flex;flex-direction:column;justify-content:center}
+  .gf .t{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--naranja)}
+  .gf .formula{font-family:"Cambria Math",Cambria,serif;font-size:36px;margin:6px 0 2px}
+  .gf .formula small{font-size:20px;color:var(--gris)}
+  .gf .cl{font-size:15px;color:var(--gris)}
+  .nom{display:flex;flex-direction:column;gap:8px}
+  .nom div{border-radius:10px;padding:8px 14px;font-size:18px;border-left:7px solid}
+  .nom .suf{border-color:var(--rojo);background:#fff1f1}
+  .nom .pre{border-color:var(--azul2);background:#eef6ff}
+  .nom .otro{border-color:var(--verde);background:#eff9ec}
+  .nom b{font-size:20px}
+  .ejs{display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));gap:10px}
+  .ej{background:var(--suave);border-radius:12px;padding:8px 8px 10px;text-align:center;display:flex;flex-direction:column;
+      align-items:center;justify-content:flex-start;border:1px solid #0001}
+  .ej .mol{display:flex;align-items:center;justify-content:center;min-height:110px;flex:1}
+  .ej .mol svg{max-width:100%;height:auto}
+  .ej .n{font-size:18px;font-weight:800;color:var(--azul);margin-top:4px;line-height:1.2}
+  .ejs.estrecho .n{font-size:16px}
+  .ej .s{font-size:16px;color:#333;font-family:"Cambria Math",Cambria,serif}
+  .ej .v{font-size:14px;color:var(--gris)}
+  .ej .mal{font-size:14px;color:var(--rojo)}
+  .ej .mal s{text-decoration-thickness:2px}
+  .reglas{display:grid;grid-template-columns:repeat(var(--r,3),1fr);gap:10px;margin-top:14px}
+  .reglas div{background:var(--suave);border-left:6px solid var(--naranja);border-radius:8px;padding:8px 12px;font-size:16px}
+  .reglas b{color:var(--naranja)}
+  .nota{margin-top:12px;padding:9px 14px;border-left:6px solid var(--azul2);background:#eef6ff;font-size:16px}
+  .nota.ojo{border-color:var(--rojo);background:#fff3f3}
+
+  /* ---------- Componentes del nombre ---------- */
+  .partes{display:flex;justify-content:center;align-items:flex-end;gap:2px;font-family:"Cambria Math",Cambria,serif;font-size:40px;margin:6px 0 4px}
+  .partes span{padding:2px 4px;border-radius:6px;border-bottom:5px solid}
+  .p-loc{border-color:#7a2bb5!important;color:#7a2bb5}
+  .p-mul{border-color:#b48a00!important;color:#8a6a00}
+  .p-sus{border-color:var(--azul2)!important;color:var(--azul2)}
+  .p-raiz{border-color:#555!important;color:#222}
+  .p-ins{border-color:var(--verde)!important;color:var(--verde)}
+  .p-suf{border-color:var(--rojo)!important;color:var(--rojo)}
+  .leyenda{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+  .leyenda div{font-size:16px;border-radius:8px;padding:6px 10px;background:var(--suave);border-left:6px solid}
+  .orden{display:flex;align-items:stretch;justify-content:center;gap:6px;margin-top:6px}
+  .orden div{border:3px solid;border-radius:10px;padding:8px 10px;text-align:center;font-size:16px;flex:1}
+  .orden div b{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+  .orden .fl{border:0;flex:0 0 18px;font-size:26px;color:var(--gris);display:flex;align-items:center;padding:0}
+
+  /* ---------- Jerarquía ---------- */
+  .jer{display:grid;grid-template-columns:44px 1.25fr 1.15fr 1.25fr 1.1fr;gap:4px;font-size:17px}
+  .jer>div{padding:6px 8px;border-radius:6px;background:var(--suave)}
+  .jer .h{background:var(--azul);color:#fff;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.4px}
+  .jer .k{text-align:center;font-weight:800;color:#fff}
+  .jer .fm{font-family:"Cambria Math",Cambria,serif;font-size:19px}
+  .jer .sf{color:var(--rojo);font-weight:700}
+  .jer .pf{color:var(--azul2);font-weight:700}
+  .flecha{display:flex;align-items:center;gap:10px;margin:10px 0 0;font-size:15px;color:var(--gris)}
+  .flecha .barra{flex:1;height:12px;border-radius:6px;background:linear-gradient(90deg,#C00000,#DD3A12 30%,#f5b400 60%,#027FDF)}
+  .solopre{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;font-size:16px;align-items:center}
+  .solopre span{background:#eef6ff;border:2px solid var(--azul2);border-radius:20px;padding:3px 12px}
+
+  /* ---------- Criterios de la cadena principal ---------- */
+  .pasos{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .pasos div{border:3px solid var(--azul2);border-radius:12px;padding:8px;text-align:center;font-size:15px;background:#f4f9ff}
+  .pasos div .num{display:block;font-size:26px;font-weight:800;color:var(--azul2)}
+  .pasos div.nuevo{border-color:var(--naranja);background:#fff4ee}
+  .pasos div.nuevo .num{color:var(--naranja)}
+
+  /* ---------- Representaciones ---------- */
+  .rep{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .rep .ej .s{font-size:22px}
+  .rep .t{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--naranja)}
+
+  /* Modo exportación: ?solo=<id> muestra solo esa figura, sin márgenes */
+  body.solo{padding:0;background:#fff}
+  body.solo .fig{margin:0}
+</style>
+</head>
+<body>
+
+<!-- ===================================================== Representación -->
+<section class="fig" id="fig-representaciones">
+  <h2>Cuatro formas de escribir la misma molécula: but-1-eno</h2>
+  <p class="sub">De más a menos detalle. En la fórmula esquelética cada vértice y cada extremo de línea es un carbono con sus hidrógenos</p>
+  <div class="rep">
+    <div class="ej"><div class="t">molecular</div><div class="mol"><span class="f" style="font-size:40px">C<sub>4</sub>H<sub>8</sub></span></div><div class="v">solo dice qué átomos hay y cuántos</div></div>
+    <div class="ej"><div class="t">desarrollada</div><div class="mol" data-mol="buteno-desarrollada" data-esc="0.8"></div><div class="v">se dibujan todos los enlaces</div></div>
+    <div class="ej"><div class="t">semidesarrollada</div><div class="mol"><span class="f" style="font-size:26px">CH<sub>2</sub>=CH–CH<sub>2</sub>–CH<sub>3</sub></span></div><div class="v">solo los enlaces entre carbonos</div></div>
+    <div class="ej"><div class="t">esquelética</div><div class="mol" data-mol="buteno" data-esc="1.2"></div><div class="v">ni C ni H del esqueleto; sí los heteroátomos y sus H</div></div>
+  </div>
+  <div class="nota">Los <b>números azules</b> que acompañan a las estructuras de estas fichas son los <b>localizadores</b>: la posición de cada carbono en la cadena principal.</div>
+</section>
+
+<!-- ===================================================== Componentes del nombre -->
+<section class="fig" id="fig-nombre">
+  <h2>Las piezas de un nombre sistemático</h2>
+  <p class="sub">Ejemplo de la Guía Breve IUPAC (2021): cada parte del nombre responde a una pregunta sobre la estructura</p>
+  <div style="display:grid;grid-template-columns:300px 1fr;gap:16px;align-items:center">
+    <div class="ej"><div class="mol" data-mol="nombre" data-esc="1.25"></div></div>
+    <div>
+      <div class="partes"><span class="p-loc">4,6-</span><span class="p-mul">di</span><span class="p-sus">cloro</span><span class="p-raiz">hept</span><span class="p-loc">-5-</span><span class="p-ins">en</span><span class="p-loc">-2-</span><span class="p-suf">ona</span></div>
+      <div class="leyenda">
+        <div class="p-loc">localizadores: ¿dónde?</div>
+        <div class="p-mul">prefijo multiplicador: ¿cuántos?</div>
+        <div class="p-sus">prefijo sustituyente: ¿qué hay unido?</div>
+        <div class="p-raiz">raíz: nº de C de la cadena principal</div>
+        <div class="p-ins">insaturación: -an-, -en-, -in-</div>
+        <div class="p-suf">sufijo: grupo característico principal</div>
+      </div>
+    </div>
+  </div>
+  <div class="orden">
+    <div style="border-color:var(--azul2)"><b style="color:var(--azul2)">1. prefijos</b>sustituyentes en orden alfabético, con sus localizadores</div>
+    <div class="fl">→</div>
+    <div style="border-color:#555"><b style="color:#555">2. raíz</b>met-, et-, prop-, but-, pent-…<br>(ciclo- si es un anillo)</div>
+    <div class="fl">→</div>
+    <div style="border-color:var(--verde)"><b style="color:var(--verde)">3. insaturación</b>-ano / -eno / -ino con sus localizadores</div>
+    <div class="fl">→</div>
+    <div style="border-color:var(--rojo)"><b style="color:var(--rojo)">4. sufijo</b>-ol, -al, -ona, -oico… del grupo principal</div>
+  </div>
+  <div class="nota">Los <b>números se separan por comas</b> (2,3) y los <b>números de las letras por guiones</b> (2-metil). Los prefijos multiplicadores (di-, tri-…) <b>no cuentan</b> para el orden alfabético.</div>
+</section>
+
+<!-- ===================================================== Jerarquía -->
+<section class="fig" id="fig-jerarquia">
+  <h2>¿Qué grupo manda? Orden de jerarquía de los grupos característicos</h2>
+  <p class="sub">El grupo de mayor jerarquía es el principal y se nombra como sufijo; todos los demás se nombran como prefijos</p>
+  <div class="jer">
+    <div class="h"></div><div class="h">Familia</div><div class="h">Grupo</div><div class="h">Sufijo (principal)</div><div class="h">Prefijo</div>
+    <div class="k" style="background:#C00000">1</div><div>ácidos carboxílicos</div><div class="fm">–COOH</div><div class="sf">ácido …-oico</div><div class="pf">carboxi-</div>
+    <div class="k" style="background:#c8190a">2</div><div>ésteres</div><div class="fm">–COO–R′</div><div class="sf">…-oato de …ilo</div><div class="pf">(R′)oxicarbonil-</div>
+    <div class="k" style="background:#d12c0c">3</div><div>amidas</div><div class="fm">–CO–NH<sub>2</sub></div><div class="sf">-amida</div><div class="pf">carbamoil-</div>
+    <div class="k" style="background:#DD3A12">4</div><div>nitrilos</div><div class="fm">–C≡N</div><div class="sf">-nitrilo</div><div class="pf">ciano-</div>
+    <div class="k" style="background:#e86a0a">5</div><div>aldehídos</div><div class="fm">–CHO</div><div class="sf">-al</div><div class="pf">oxo- / formil-</div>
+    <div class="k" style="background:#f08f05">6</div><div>cetonas</div><div class="fm">–CO–</div><div class="sf">-ona</div><div class="pf">oxo-</div>
+    <div class="k" style="background:#f5b400">7</div><div>alcoholes y fenoles</div><div class="fm">–OH</div><div class="sf">-ol</div><div class="pf">hidroxi-</div>
+    <div class="k" style="background:#5b9bd6">8</div><div>aminas</div><div class="fm">–NH<sub>2</sub></div><div class="sf">-amina</div><div class="pf">amino-</div>
+  </div>
+  <div class="flecha"><span>más jerarquía</span><div class="barra"></div><span>menos jerarquía</span></div>
+  <div class="solopre"><b>Siempre como prefijo (nunca sufijo):</b>
+    <span>–F fluoro</span><span>–Cl cloro</span><span>–Br bromo</span><span>–I yodo</span><span>–NO<sub>2</sub> nitro</span><span>–O–R alcoxi (metoxi…)</span><span>radicales: metil, fenil…</span></div>
+  <div class="nota ojo">Los <b>dobles y triples enlaces no son grupos característicos</b>: no compiten por el sufijo, se indican cambiando <b>-ano</b> por <b style="white-space:nowrap">-eno</b> o <b style="white-space:nowrap">-ino</b>.</div>
+</section>
+
+<!-- ===================================================== Cadena principal -->
+<section class="fig" id="fig-cadena">
+  <h2>¿Cuál es la cadena principal? Criterios IUPAC 2013</h2>
+  <p class="sub">Se aplican en orden y se pasa al siguiente solo si hay empate</p>
+  <div class="pasos">
+    <div><span class="num">1</span>contiene el <b>grupo principal</b> (el mayor número de veces)</div>
+    <div class="nuevo"><span class="num">2</span>un <b>anillo</b> tiene preferencia sobre una cadena</div>
+    <div class="nuevo"><span class="num">3</span>la cadena <b>más larga</b></div>
+    <div><span class="num">4</span>más enlaces <b>múltiples</b>; después, más <b>dobles</b></div>
+    <div><span class="num">5</span>más <b>sustituyentes</b></div>
+  </div>
+  <div class="ejs" style="--n:3;margin-top:14px">
+    <div class="ej"><div class="mol" data-mol="etenilnonano"></div><div class="n">4-etenilnonano</div><div class="mal">antes: <s>3-propiloct-1-eno</s></div><div class="v">9 C ganan a 8 C aunque la de 8 tenga el doble enlace</div></div>
+    <div class="ej"><div class="mol" data-mol="pentilciclobutano"></div><div class="n">pentilciclobutano</div><div class="v">el anillo es el compuesto progenitor aunque la cadena sea más larga</div></div>
+    <div class="ej"><div class="mol" data-mol="but3en2ol"></div><div class="n">but-3-en-2-ol</div><div class="v">el –OH (sufijo) recibe el localizador más bajo antes que el doble enlace</div></div>
+  </div>
+  <div class="reglas" style="--r:3">
+    <div><b>Numeración 1.</b> Localizadores más bajos para el <b>grupo principal</b> (sufijo).</div>
+    <div><b>Numeración 2.</b> Después, para los enlaces <b>múltiples</b> todos juntos; si empatan, el <b>doble</b> enlace va primero.</div>
+    <div><b>Numeración 3.</b> Después, para los <b>sustituyentes</b> (prefijos); si empatan, el primero en orden alfabético.</div>
+  </div>
+  <div class="nota ojo"><b>Cambio respecto a recomendaciones anteriores:</b> antes la cadena principal era la de mayor número de insaturaciones; ahora es la <b>más larga</b> (y los anillos tienen preferencia sobre las cadenas).</div>
+</section>
+
+<!-- ===================================================== Alcanos -->
+<section class="fig" id="fig-alcanos">
+  <h2>Alcanos: solo enlaces sencillos C–C</h2>
+  <p class="sub">Hidrocarburos saturados de cadena abierta</p>
+  <div class="cab">
+    <div class="gf"><div class="t">fórmula general</div><div class="formula">C<sub>n</sub>H<sub>2n+2</sub></div><div class="cl">CH<sub>4</sub> metano · C<sub>2</sub>H<sub>6</sub> etano · C<sub>3</sub>H<sub>8</sub> propano</div></div>
+    <div class="nom">
+      <div class="suf">Terminación: <b>-ano</b> (hex<b>ano</b>)</div>
+      <div class="pre">Como sustituyente: <b>-il</b> (metil, etil…); el radical suelto: <b>-ilo</b></div>
+      <div class="otro">Prefijos de los sustituyentes en <b>orden alfabético</b></div>
+    </div>
+  </div>
+  <div class="ejs" style="--n:4">
+    <div class="ej"><div class="mol" data-mol="hexano"></div><div class="n">hexano</div><div class="s">CH<sub>3</sub>–[CH<sub>2</sub>]<sub>4</sub>–CH<sub>3</sub></div></div>
+    <div class="ej"><div class="mol" data-mol="etilmetilhexano"></div><div class="n">3-etil-2-metilhexano</div><div class="v">etil antes que metil (orden alfabético)</div></div>
+    <div class="ej"><div class="mol" data-mol="trimetilpentano"></div><div class="n">2,2,4-trimetilpentano</div><div class="v">{2,2,4} es más bajo que {2,4,4}</div></div>
+    <div class="ej"><div class="mol" data-mol="etilisopropilmetildecano" data-esc="0.85"></div><div class="n">6-etil-4-isopropil-5-metildecano</div><div class="v">o 6-etil-5-metil-4-(propan-2-il)decano</div></div>
+  </div>
+  <div class="reglas">
+    <div><b>1.</b> Cadena principal: la <b>más larga</b>. Si hay dos iguales, la que tenga <b>más sustituyentes</b>.</div>
+    <div><b>2.</b> Se numera para que los sustituyentes tengan los <b>localizadores más bajos</b>.</div>
+    <div><b>3.</b> Sustituyentes repetidos: <b>di-, tri-, tetra-</b> (2,2-dimetil), que no cuentan para el orden alfabético.</div>
+  </div>
+</section>
+
+<!-- ===================================================== Radicales -->
+<section class="fig" id="fig-radicales">
+  <h2>Radicales (grupos sustituyentes) alquilo</h2>
+  <p class="sub">Se quita un H a un alcano y se cambia -ano por -il. La línea ondulada marca por dónde se une a la cadena principal</p>
+  <div class="ejs" style="--n:4">
+    <div class="ej"><div class="mol" data-mol="r-metil"></div><div class="n">metil</div><div class="s">–CH<sub>3</sub></div></div>
+    <div class="ej"><div class="mol" data-mol="r-etil"></div><div class="n">etil</div><div class="s">–CH<sub>2</sub>–CH<sub>3</sub></div></div>
+    <div class="ej"><div class="mol" data-mol="r-propil"></div><div class="n">propil</div><div class="s">–CH<sub>2</sub>–CH<sub>2</sub>–CH<sub>3</sub></div></div>
+    <div class="ej"><div class="mol" data-mol="r-isopropil"></div><div class="n">propan-2-il</div><div class="v">isopropil o 1-metiletil</div></div>
+    <div class="ej"><div class="mol" data-mol="r-butil"></div><div class="n">butil</div><div class="s">–[CH<sub>2</sub>]<sub>3</sub>–CH<sub>3</sub></div></div>
+    <div class="ej"><div class="mol" data-mol="r-secbutil"></div><div class="n">butan-2-il</div><div class="v">sec-butil o 1-metilpropil</div></div>
+    <div class="ej"><div class="mol" data-mol="r-isobutil"></div><div class="n">2-metilpropil</div><div class="v">isobutil</div></div>
+    <div class="ej"><div class="mol" data-mol="r-tercbutil"></div><div class="n">terc-butil</div><div class="v">1,1-dimetiletil</div></div>
+  </div>
+  <div class="nota">Para el orden alfabético, <b>isopropil</b> e <b>isobutil</b> se ordenan por la «i»; los prefijos <b>sec-</b> y <b>terc-</b> se ignoran (terc-butil va por la «b»). Ya no se usa «n-» (n-butil → butil).</div>
+</section>
+
+<!-- ===================================================== Alquenos -->
+<section class="fig" id="fig-alquenos">
+  <h2>Alquenos: al menos un doble enlace C=C</h2>
+  <p class="sub">Hidrocarburos insaturados</p>
+  <div class="cab">
+    <div class="gf"><div class="t">fórmula general (un doble enlace)</div><div class="formula">C<sub>n</sub>H<sub>2n</sub></div><div class="cl">grupo: <span class="f hv" style="font-size:22px">C=C</span></div></div>
+    <div class="nom">
+      <div class="suf">Terminación: <b>-eno</b>; con dos o tres: <b>-dieno</b>, <b>-trieno</b> (hexa-2,4-dieno)</div>
+      <div class="pre">Como sustituyente: <b>-enil</b> (etenil, prop-2-en-1-il)</div>
+      <div class="otro">El localizador del doble enlace va <b>delante de -eno</b>: but-<b>1</b>-eno</div>
+    </div>
+  </div>
+  <div class="ejs estrecho" style="--n:5">
+    <div class="ej"><div class="mol" data-mol="but1eno"></div><div class="n">but-1-eno</div><div class="s">CH<sub>2</sub>=CH–CH<sub>2</sub>–CH<sub>3</sub></div></div>
+    <div class="ej"><div class="mol" data-mol="metilpent2eno"></div><div class="n">4-metilpent-2-eno</div><div class="v">el doble enlace manda en la numeración</div></div>
+    <div class="ej"><div class="mol" data-mol="butadieno"></div><div class="n">buta-1,3-dieno</div><div class="v">se añade «a»: buta-, hexa-</div></div>
+    <div class="ej"><div class="mol" data-mol="r-etenil"></div><div class="n">etenil</div><div class="v">vinil</div></div>
+    <div class="ej"><div class="mol" data-mol="r-alil"></div><div class="n">prop-2-en-1-il</div><div class="v">alil</div></div>
+  </div>
+</section>
+
+<!-- ===================================================== Alquinos -->
+<section class="fig" id="fig-alquinos">
+  <h2>Alquinos: al menos un triple enlace C≡C</h2>
+  <p class="sub">Si hay dobles y triples enlaces se nombran los dos: primero -en- y después -ino</p>
+  <div class="cab">
+    <div class="gf"><div class="t">fórmula general (un triple enlace)</div><div class="formula">C<sub>n</sub>H<sub>2n−2</sub></div><div class="cl">grupo: <span class="f hv" style="font-size:22px">C≡C</span></div></div>
+    <div class="nom">
+      <div class="suf">Terminación: <b>-ino</b>, <b>-diino</b>…; con dobles: <b>-en-…-ino</b></div>
+      <div class="pre">Como sustituyente: <b>-inil</b> (etinil)</div>
+      <div class="otro">Numeración: los más bajos para <b>dobles y triples juntos</b>; si empatan, el <b>doble</b> enlace gana</div>
+    </div>
+  </div>
+  <div class="ejs estrecho" style="--n:5">
+    <div class="ej"><div class="mol" data-mol="etino"></div><div class="n">etino</div><div class="v">acetileno</div></div>
+    <div class="ej"><div class="mol" data-mol="but1ino"></div><div class="n">but-1-ino</div><div class="s">CH≡C–CH<sub>2</sub>–CH<sub>3</sub></div></div>
+    <div class="ej"><div class="mol" data-mol="hex3en1ino"></div><div class="n">hex-3-en-1-ino</div><div class="v">{1,3} es más bajo que {3,5}</div></div>
+    <div class="ej"><div class="mol" data-mol="pent1en4ino"></div><div class="n">pent-1-en-4-ino</div><div class="v">empate {1,4}: el doble recibe el 1</div></div>
+    <div class="ej"><div class="mol" data-mol="r-etinil"></div><div class="n">etinil</div><div class="s">–C≡CH</div></div>
+  </div>
+  <div class="nota">«-eno» pierde la «o» delante de otra terminación: pent-1-<b>en</b>-4-ino, hex-3-<b>en</b>-1-ino.</div>
+</section>
+
+<!-- ===================================================== Cíclicos -->
+<section class="fig" id="fig-ciclicos">
+  <h2>Hidrocarburos cíclicos (alicíclicos)</h2>
+  <p class="sub">El prefijo ciclo- delante del nombre del hidrocarburo de cadena abierta con el mismo número de C</p>
+  <div class="cab">
+    <div class="gf"><div class="t">fórmula general (cicloalcano)</div><div class="formula">C<sub>n</sub>H<sub>2n</sub></div><div class="cl">igual que un alqueno: el anillo «gasta» un enlace</div></div>
+    <div class="nom">
+      <div class="suf"><b>ciclo</b> + alcano/alqueno: ciclohexano, ciclopenteno</div>
+      <div class="pre">Como sustituyente: <b>ciclo…il</b> (ciclohexil)</div>
+      <div class="otro">Los C del doble enlace son el <b>1 y el 2</b>; no hace falta poner «1»: ciclohexeno</div>
+    </div>
+  </div>
+  <div class="ejs" style="--n:3">
+    <div class="ej"><div class="mol" data-mol="ciclopropano"></div><div class="n">ciclopropano</div></div>
+    <div class="ej"><div class="mol" data-mol="etilmetilciclohexano"></div><div class="n">1-etil-3-metilciclohexano</div><div class="v">empate {1,3}: etil va antes</div></div>
+    <div class="ej"><div class="mol" data-mol="metilciclopenteno"></div><div class="n">3-metilciclopent-1-eno</div><div class="v">o 3-metilciclopenteno</div></div>
+    <div class="ej"><div class="mol" data-mol="ciclohexadieno"></div><div class="n">ciclohexa-1,3-dieno</div></div>
+    <div class="ej"><div class="mol" data-mol="propilciclobutano"></div><div class="n">propilciclobutano</div><div class="v">el anillo es el progenitor</div></div>
+  </div>
+</section>
+
+<!-- ===================================================== Aromáticos -->
+<section class="fig" id="fig-aromaticos">
+  <h2>Hidrocarburos aromáticos: el benceno y sus derivados</h2>
+  <p class="sub">Anillo de 6 C con 3 dobles enlaces alternos (en realidad, 6 electrones deslocalizados por todo el anillo)</p>
+  <div class="ejs" style="--n:4">
+    <div class="ej"><div class="mol" data-mol="benceno"></div><div class="n">benceno</div><div class="s">C<sub>6</sub>H<sub>6</sub></div></div>
+    <div class="ej"><div class="mol" data-mol="tolueno"></div><div class="n">metilbenceno</div><div class="v">tolueno (nombre admitido)</div></div>
+    <div class="ej"><div class="mol" data-mol="naftaleno"></div><div class="n">naftaleno</div><div class="v">dos anillos condensados</div></div>
+    <div class="ej"><div class="mol" data-mol="r-fenil"></div><div class="n">fenil</div><div class="v">C<sub>6</sub>H<sub>5</sub>– como sustituyente</div></div>
+    <div class="ej"><div class="mol" data-mol="orto"></div><div class="n">1,2-dimetilbenceno</div><div class="v"><i>orto</i>-dimetilbenceno (<i>o</i>-)</div></div>
+    <div class="ej"><div class="mol" data-mol="meta"></div><div class="n">1,3-dimetilbenceno</div><div class="v"><i>meta</i>-dimetilbenceno (<i>m</i>-)</div></div>
+    <div class="ej"><div class="mol" data-mol="para"></div><div class="n">1,4-dimetilbenceno</div><div class="v"><i>para</i>-dimetilbenceno (<i>p</i>-)</div></div>
+    <div class="ej"><div class="mol" data-mol="r-bencil"></div><div class="n">bencil</div><div class="v">fenilmetil: C<sub>6</sub>H<sub>5</sub>–CH<sub>2</sub>–</div></div>
+  </div>
+  <div class="nota">Con varios sustituyentes se numera el anillo para que tengan los <b>localizadores más bajos</b>; si hay empate, el 1 es para el primero en orden alfabético. <i>o-, m-, p-</i> solo sirven para dos sustituyentes.</div>
+</section>
+
+<!-- ===================================================== Halogenuros -->
+<section class="fig" id="fig-halogenuros">
+  <h2>Derivados halogenados</h2>
+  <p class="sub">Un halógeno (F, Cl, Br, I) sustituye a un hidrógeno</p>
+  <div class="cab">
+    <div class="gf"><div class="t">grupo</div><div class="formula">R–<span class="hv">X</span> <small>(X = F, Cl, Br, I)</small></div><div class="cl">no es grupo característico principal: nunca va como sufijo</div></div>
+    <div class="nom">
+      <div class="pre">Siempre prefijo: <b>fluoro-, cloro-, bromo-, yodo-</b></div>
+      <div class="otro">Se ordenan alfabéticamente con los radicales alquilo</div>
+      <div class="suf">Nombre de clase funcional (tradicional): cloruro de metilo</div>
+    </div>
+  </div>
+  <div class="ejs" style="--n:4">
+    <div class="ej"><div class="mol" data-mol="cloropropano"></div><div class="n">2-cloropropano</div></div>
+    <div class="ej"><div class="mol" data-mol="triclorometano"></div><div class="n">triclorometano</div><div class="v">cloroformo</div></div>
+    <div class="ej"><div class="mol" data-mol="bromopropeno"></div><div class="n">3-bromoprop-1-eno</div><div class="v">el doble enlace se numera antes</div></div>
+    <div class="ej"><div class="mol" data-mol="bromoclorobenceno"></div><div class="n">1-bromo-4-clorobenceno</div><div class="v">bromo antes que cloro: recibe el 1</div></div>
+  </div>
+</section>
+
+<!-- ===================================================== Alcoholes -->
+<section class="fig" id="fig-alcoholes">
+  <h2>Alcoholes y fenoles: grupo hidroxilo –OH</h2>
+  <p class="sub">Alcohol: –OH unido a un C de cadena o de anillo no aromático. Fenol: –OH unido al anillo de benceno</p>
+  <div class="cab">
+    <div class="gf"><div class="t">grupo</div><div class="formula">R–<span class="hr">OH</span></div><div class="cl">R = cadena o anillo</div></div>
+    <div class="nom">
+      <div class="suf">Sufijo: <b>-ol</b>, <b>-diol</b>, <b>-triol</b> (etan<b>ol</b>, propano-1,2,3-<b>triol</b>)</div>
+      <div class="pre">Prefijo (si hay un grupo de más jerarquía): <b>hidroxi-</b></div>
+      <div class="otro">El –OH recibe el localizador <b>más bajo</b>, antes que los dobles enlaces</div>
+    </div>
+  </div>
+  <div class="ejs estrecho" style="--n:6">
+    <div class="ej"><div class="mol" data-mol="etanol"></div><div class="n">etanol</div></div>
+    <div class="ej"><div class="mol" data-mol="propan2ol"></div><div class="n">propan-2-ol</div></div>
+    <div class="ej"><div class="mol" data-mol="glicerol"></div><div class="n">propano-1,2,3-triol</div><div class="v">glicerina</div></div>
+    <div class="ej"><div class="mol" data-mol="but3en2ol-b"></div><div class="n">but-3-en-2-ol</div></div>
+    <div class="ej"><div class="mol" data-mol="ciclohexanol"></div><div class="n">ciclohexanol</div></div>
+    <div class="ej"><div class="mol" data-mol="fenol"></div><div class="n">fenol</div><div class="v">bencenol</div></div>
+  </div>
+  <div class="nota">Con -diol, -triol se mantiene la «o» de -ano: butano-1,2-diol (no «butan-1,2-diol»).</div>
+</section>
+
+<!-- ===================================================== Éteres -->
+<section class="fig" id="fig-eteres">
+  <h2>Éteres: un oxígeno entre dos radicales</h2>
+  <p class="sub">R–O–R′: el grupo –O–R′ se nombra como prefijo alcoxi- (metoxi, etoxi…)</p>
+  <div class="cab">
+    <div class="gf"><div class="t">grupo</div><div class="formula">R–<span class="hr">O</span>–<span class="hn">R′</span></div><div class="cl">no tiene sufijo: siempre prefijo</div></div>
+    <div class="nom">
+      <div class="suf">Preferido (sustitutivo): <b>R′-oxi + hidrocarburo R</b>: metoxietano</div>
+      <div class="pre">R = la cadena más larga (o el anillo); R′ = el radical pequeño: met<b>oxi</b>, et<b>oxi</b>, fen<b>oxi</b></div>
+      <div class="otro">Clase funcional (admitido): <b>etil metil éter</b>, <b>dietil éter</b> (éter dietílico)</div>
+    </div>
+  </div>
+  <div class="ejs" style="--n:3">
+    <div class="ej"><div class="mol" data-mol="metoxietano"></div><div class="n">metoxietano</div><div class="v">etil metil éter</div></div>
+    <div class="ej"><div class="mol" data-mol="etoxietano"></div><div class="n">etoxietano</div><div class="v">dietil éter («éter» de farmacia)</div></div>
+    <div class="ej"><div class="mol" data-mol="metoxipropano"></div><div class="n">2-metoxipropano</div><div class="v">isopropil metil éter</div></div>
+    <div class="ej"><div class="mol" data-mol="metoxibenceno"></div><div class="n">metoxibenceno</div><div class="v">anisol</div></div>
+    <div class="ej"><div class="mol" data-mol="etoxieteno"></div><div class="n">etoxieteno</div><div class="v">etenil etil éter: el eteno gana (doble enlace)</div></div>
+    <div class="ej"><div class="mol" data-mol="fenoxibenceno"></div><div class="n">fenoxibenceno</div><div class="v">difenil éter (no «feniloxi»)</div></div>
+  </div>
+</section>
+
+<!-- ===================================================== Aldehídos -->
+<section class="fig" id="fig-aldehidos">
+  <h2>Aldehídos: grupo carbonilo en un extremo (–CHO)</h2>
+  <p class="sub">El C del grupo –CHO es siempre el carbono 1: no hace falta localizador</p>
+  <div class="cab">
+    <div class="gf"><div class="t">grupo</div><div class="formula">R–<span class="hr">CHO</span></div><div class="cl">R–C(=O)–H</div></div>
+    <div class="nom">
+      <div class="suf">Sufijo: <b>-al</b>, <b>-dial</b> (C incluido en la cadena); <b>-carbaldehído</b> si el –CHO cuelga de un anillo</div>
+      <div class="pre">Prefijo: <b>oxo-</b> (C de la cadena) o <b>formil-</b> (el –CHO como sustituyente)</div>
+      <div class="otro">Nombres admitidos: formaldehído, acetaldehído, benzaldehído</div>
+    </div>
+  </div>
+  <div class="ejs" style="--n:3">
+    <div class="ej"><div class="mol" data-mol="metanal"></div><div class="n">metanal</div><div class="v">formaldehído</div></div>
+    <div class="ej"><div class="mol" data-mol="etanal"></div><div class="n">etanal</div><div class="v">acetaldehído</div></div>
+    <div class="ej"><div class="mol" data-mol="metilbutanal"></div><div class="n">3-metilbutanal</div></div>
+    <div class="ej"><div class="mol" data-mol="butanodial"></div><div class="n">butanodial</div><div class="v">se mantiene la «o»</div></div>
+    <div class="ej"><div class="mol" data-mol="benzaldehido"></div><div class="n">benzaldehído</div><div class="v">bencenocarbaldehído</div></div>
+    <div class="ej"><div class="mol" data-mol="carbaldehido"></div><div class="n">ciclohexanocarbaldehído</div></div>
+  </div>
+</section>
+
+<!-- ===================================================== Cetonas -->
+<section class="fig" id="fig-cetonas">
+  <h2>Cetonas: grupo carbonilo entre dos carbonos</h2>
+  <p class="sub">El grupo C=O no está en un extremo: hay que indicar su posición</p>
+  <div class="cab">
+    <div class="gf"><div class="t">grupo</div><div class="formula">R–<span class="hr">CO</span>–R′</div><div class="cl">R–C(=O)–R′</div></div>
+    <div class="nom">
+      <div class="suf">Sufijo: <b>-ona</b>, <b>-diona</b> con el localizador más bajo (butan-2-ona)</div>
+      <div class="pre">Prefijo: <b>oxo-</b> (4-oxopentanal)</div>
+      <div class="otro">Clase funcional (admitido): <b>etil metil cetona</b> = butanona</div>
+    </div>
+  </div>
+  <div class="ejs" style="--n:5">
+    <div class="ej"><div class="mol" data-mol="propanona"></div><div class="n">propanona</div><div class="v">acetona</div></div>
+    <div class="ej"><div class="mol" data-mol="butanona"></div><div class="n">butanona</div><div class="v">butan-2-ona · etil metil cetona</div></div>
+    <div class="ej"><div class="mol" data-mol="pentanodiona"></div><div class="n">pentano-2,4-diona</div></div>
+    <div class="ej"><div class="mol" data-mol="ciclohexanona"></div><div class="n">ciclohexanona</div></div>
+    <div class="ej"><div class="mol" data-mol="metilhexanona"></div><div class="n">5-metilhexan-2-ona</div><div class="v">3-metilbutil metil cetona</div></div>
+  </div>
+</section>
+
+<!-- ===================================================== Ácidos -->
+<section class="fig" id="fig-acidos">
+  <h2>Ácidos carboxílicos: grupo carboxilo –COOH</h2>
+  <p class="sub">El grupo de mayor jerarquía. Su C es el carbono 1 de la cadena</p>
+  <div class="cab">
+    <div class="gf"><div class="t">grupo</div><div class="formula">R–<span class="hr">COOH</span></div><div class="cl">R–C(=O)–OH</div></div>
+    <div class="nom">
+      <div class="suf"><b>ácido …-oico</b>, <b>ácido …-dioico</b>; <b>ácido …-carboxílico</b> si cuelga de un anillo</div>
+      <div class="pre">Prefijo: <b>carboxi-</b></div>
+      <div class="otro">Admitidos: ácido fórmico, acético, benzoico, oxálico…</div>
+    </div>
+  </div>
+  <div class="ejs" style="--n:4">
+    <div class="ej"><div class="mol" data-mol="metanoico"></div><div class="n">ácido metanoico</div><div class="v">ácido fórmico</div></div>
+    <div class="ej"><div class="mol" data-mol="etanoico"></div><div class="n">ácido etanoico</div><div class="v">ácido acético</div></div>
+    <div class="ej"><div class="mol" data-mol="metilbutanoico"></div><div class="n">ácido 3-metilbutanoico</div></div>
+    <div class="ej"><div class="mol" data-mol="butanodioico"></div><div class="n">ácido butanodioico</div><div class="v">ácido succínico</div></div>
+    <div class="ej"><div class="mol" data-mol="benzoico"></div><div class="n">ácido benzoico</div></div>
+    <div class="ej"><div class="mol" data-mol="ciclohexanocarboxilico"></div><div class="n">ácido ciclohexanocarboxílico</div></div>
+    <div class="ej"><div class="mol" data-mol="butenoico"></div><div class="n">ácido but-3-enoico</div><div class="v">-ano → -eno: but<b>en</b>oico</div></div>
+    <div class="ej"><div class="mol" data-mol="metilhexanodioico"></div><div class="n">ácido 2-metilhexanodioico</div></div>
+  </div>
+</section>
+
+<!-- ===================================================== Ésteres -->
+<section class="fig" id="fig-esteres">
+  <h2>Ésteres: ácido + alcohol</h2>
+  <p class="sub">Se sustituye el H del –COOH por un radical R′. El nombre tiene dos palabras: <span class="hr">…-oato</span> de <span class="hn">…-ilo</span></p>
+  <div class="cab">
+    <div class="gf"><div class="t">grupo</div><div class="formula"><span class="hr">R–COO</span>–<span class="hn">R′</span></div><div class="cl">R–C(=O)–O–R′</div></div>
+    <div class="nom">
+      <div class="suf">Parte del ácido: ácido …-<b>oico</b> → …-<b>oato</b> (sin la palabra «ácido»)</div>
+      <div class="pre">Parte del alcohol: radical R′ acabado en <b>-ilo</b>: «de metilo», «de etilo»</div>
+      <div class="otro">El C del grupo –COO– se cuenta en la cadena del ácido y es su carbono 1</div>
+    </div>
+  </div>
+  <div class="ejs" style="--n:3">
+    <div class="ej"><div class="mol" data-mol="etanoatometilo"></div><div class="n">etanoato de metilo</div><div class="v">acetato de metilo</div></div>
+    <div class="ej"><div class="mol" data-mol="propanoatoetilo"></div><div class="n">propanoato de etilo</div></div>
+    <div class="ej"><div class="mol" data-mol="benzoatometilo"></div><div class="n">benzoato de metilo</div></div>
+    <div class="ej"><div class="mol" data-mol="butanoatometilo"></div><div class="n">butanoato de metilo</div></div>
+    <div class="ej"><div class="mol" data-mol="pentenoatoetilo"></div><div class="n">pent-4-enoato de etilo</div><div class="v">con doble enlace: -enoato</div></div>
+  </div>
+  <div class="nota">Como sustituyente, el grupo –COO–R′ se nombra <b>(R′)oxicarbonil-</b>: metoxicarbonil-, etoxicarbonil-.</div>
+</section>
+
+<!-- ===================================================== Aminas -->
+<section class="fig" id="fig-aminas">
+  <h2>Aminas: derivados del amoniaco NH<sub>3</sub></h2>
+  <p class="sub">Se sustituyen uno, dos o tres H del NH<sub>3</sub> por radicales: aminas primarias, secundarias y terciarias</p>
+  <div class="cab">
+    <div class="gf"><div class="t">grupo</div><div class="formula" style="font-size:27px">R–<span class="hr">NH<sub>2</sub></span> · R–<span class="hr">NH</span>–<span class="hn">R′</span> · R–<span class="hr">N</span>(<span class="hn">R′</span>)–<span class="hn">R″</span></div><div class="cl">primaria · secundaria · terciaria</div></div>
+    <div class="nom">
+      <div class="suf">Sufijo: <b>-amina</b> unido al hidrocarburo: propan-2-<b>amina</b></div>
+      <div class="pre">Los radicales del N llevan el localizador <b>N</b>: <b>N</b>-metiletanamina</div>
+      <div class="otro">Prefijo: <b>amino-</b>. Admitidos: metilamina, anilina…</div>
+    </div>
+  </div>
+  <div class="ejs" style="--n:3">
+    <div class="ej"><div class="mol" data-mol="metanamina"></div><div class="n">metanamina</div><div class="v">metilamina</div></div>
+    <div class="ej"><div class="mol" data-mol="propan2amina"></div><div class="n">propan-2-amina</div><div class="v">isopropilamina</div></div>
+    <div class="ej"><div class="mol" data-mol="etanodiamina"></div><div class="n">etano-1,2-diamina</div></div>
+    <div class="ej"><div class="mol" data-mol="metiletanamina"></div><div class="n"><i>N</i>-metiletanamina</div><div class="v">etil(metil)amina</div></div>
+    <div class="ej"><div class="mol" data-mol="trimetilamina"></div><div class="n"><i>N</i>,<i>N</i>-dimetilmetanamina</div><div class="v">trimetilamina</div></div>
+    <div class="ej"><div class="mol" data-mol="anilina"></div><div class="n">anilina</div><div class="v">bencenamina</div></div>
+  </div>
+  <div class="nota">El compuesto progenitor es la cadena <b>más larga</b> (o el anillo) unida al N; los otros radicales van como sustituyentes <i>N</i>-.</div>
+</section>
+
+<!-- ===================================================== Amidas -->
+<section class="fig" id="fig-amidas">
+  <h2>Amidas: el –OH del ácido se cambia por –NH<sub>2</sub></h2>
+  <p class="sub">Ácido …-oico → …-amida. El C del grupo es el carbono 1</p>
+  <div class="cab">
+    <div class="gf"><div class="t">grupo</div><div class="formula">R–<span class="hr">CO–NH<sub>2</sub></span></div><div class="cl">R–C(=O)–NH<sub>2</sub> · también R–CO–NH–R′ y R–CO–NR′R″</div></div>
+    <div class="nom">
+      <div class="suf">Sufijo: <b>-amida</b>; <b>-carboxamida</b> si cuelga de un anillo</div>
+      <div class="pre">Radicales en el N: <b>N</b>-metil, <b>N,N</b>-dimetil</div>
+      <div class="otro">Prefijo: <b>carbamoil-</b> (–CO–NH<sub>2</sub>)</div>
+    </div>
+  </div>
+  <div class="ejs" style="--n:3">
+    <div class="ej"><div class="mol" data-mol="etanamida"></div><div class="n">etanamida</div><div class="v">acetamida</div></div>
+    <div class="ej"><div class="mol" data-mol="metilpropanamida"></div><div class="n"><i>N</i>-metilpropanamida</div></div>
+    <div class="ej"><div class="mol" data-mol="dimetilmetanamida"></div><div class="n"><i>N</i>,<i>N</i>-dimetilmetanamida</div><div class="v">dimetilformamida</div></div>
+    <div class="ej"><div class="mol" data-mol="benzamida"></div><div class="n">benzamida</div><div class="v">bencenocarboxamida</div></div>
+    <div class="ej"><div class="mol" data-mol="ciclohexanocarboxamida"></div><div class="n">4-bromo-3-metilciclohexano-1-carboxamida</div></div>
+  </div>
+</section>
+
+<!-- ===================================================== Nitrilos -->
+<section class="fig" id="fig-nitrilos">
+  <h2>Nitrilos: grupo ciano –C≡N</h2>
+  <p class="sub">El C del grupo –C≡N cuenta en la cadena y es el carbono 1</p>
+  <div class="cab">
+    <div class="gf"><div class="t">grupo</div><div class="formula">R–<span class="hr">C≡N</span></div><div class="cl">más jerarquía que aldehídos y cetonas</div></div>
+    <div class="nom">
+      <div class="suf">Sufijo: <b>-nitrilo</b>, <b>-dinitrilo</b>; <b>-carbonitrilo</b> si cuelga de un anillo</div>
+      <div class="pre">Prefijo: <b>ciano-</b></div>
+      <div class="otro">Admitidos: acetonitrilo, benzonitrilo</div>
+    </div>
+  </div>
+  <div class="ejs" style="--n:4">
+    <div class="ej"><div class="mol" data-mol="etanonitrilo"></div><div class="n">etanonitrilo</div><div class="v">acetonitrilo</div></div>
+    <div class="ej"><div class="mol" data-mol="propanonitrilo"></div><div class="n">propanonitrilo</div></div>
+    <div class="ej"><div class="mol" data-mol="butanodinitrilo"></div><div class="n">butanodinitrilo</div></div>
+    <div class="ej"><div class="mol" data-mol="benzonitrilo"></div><div class="n">benzonitrilo</div><div class="v">bencenocarbonitrilo</div></div>
+  </div>
+</section>
+
+<!-- ===================================================== Nitro -->
+<section class="fig" id="fig-nitro">
+  <h2>Nitroderivados: grupo nitro –NO<sub>2</sub></h2>
+  <p class="sub">Como los halógenos, el grupo nitro solo se nombra como prefijo</p>
+  <div class="cab">
+    <div class="gf"><div class="t">grupo</div><div class="formula">R–<span class="ha">NO<sub>2</sub></span></div><div class="cl">no confundir con los nitrilos (–C≡N)</div></div>
+    <div class="nom">
+      <div class="pre">Siempre prefijo: <b>nitro-</b>, en orden alfabético con el resto</div>
+      <div class="otro">Nunca es el grupo principal</div>
+    </div>
+  </div>
+  <div class="ejs" style="--n:3">
+    <div class="ej"><div class="mol" data-mol="nitrometano"></div><div class="n">nitrometano</div></div>
+    <div class="ej"><div class="mol" data-mol="nitropropano"></div><div class="n">2-nitropropano</div></div>
+    <div class="ej"><div class="mol" data-mol="nitrobenceno"></div><div class="n">nitrobenceno</div></div>
+  </div>
+</section>
+
+<!-- ===================================================== Polifuncionales -->
+<section class="fig" id="fig-polifuncional">
+  <h2>Compuestos con varios grupos funcionales</h2>
+  <p class="sub">El de mayor jerarquía va como <span class="hr">sufijo</span>; los demás, como <span class="ha">prefijos</span> en orden alfabético</p>
+  <div class="ejs estrecho" style="--n:5">
+    <div class="ej"><div class="mol" data-mol="lactico"></div><div class="n">ácido 2-hidroxipropanoico</div><div class="v">ácido láctico</div></div>
+    <div class="ej"><div class="mol" data-mol="alanina"></div><div class="n">ácido 2-aminopropanoico</div><div class="v">alanina</div></div>
+    <div class="ej"><div class="mol" data-mol="oxobutanal"></div><div class="n">3-oxobutanal</div><div class="v">aldehído &gt; cetona</div></div>
+    <div class="ej"><div class="mol" data-mol="hidroxibutanona"></div><div class="n">4-hidroxibutan-2-ona</div><div class="v">cetona &gt; alcohol</div></div>
+    <div class="ej"><div class="mol" data-mol="aminoetanol"></div><div class="n">2-aminoetan-1-ol</div><div class="v">alcohol &gt; amina</div></div>
+  </div>
+  <div class="reglas">
+    <div><b>1.</b> Busca el grupo de <b>mayor jerarquía</b>: da el sufijo.</div>
+    <div><b>2.</b> Elige la cadena que lo contiene y <b>numera</b> para que tenga el localizador más bajo.</div>
+    <div><b>3.</b> Nombra el resto como <b>prefijos</b> (hidroxi-, oxo-, amino-…) en orden alfabético.</div>
+  </div>
+</section>
+
+<script src="moleculas.js"></script>
+<script>
+// Inserta cada estructura; data-esc cambia su tamaño (1 = tamaño de RDKit)
+for (const div of document.querySelectorAll(".mol[data-mol]")){
+  const svg = MOLECULAS[div.dataset.mol];
+  if (!svg){ div.textContent = "¿" + div.dataset.mol + "?"; div.style.color = "red"; continue; }
+  div.innerHTML = svg;
+  const s = div.querySelector("svg"), esc = parseFloat(div.dataset.esc || "1");
+  s.setAttribute("width", parseFloat(s.getAttribute("width")) * esc);
+  s.setAttribute("height", parseFloat(s.getAttribute("height")) * esc);
+}
+
+// Los nombres solo se parten por los espacios (no por un guion) y, si una palabra
+// no cabe en la tarjeta, se reduce la letra hasta que quepa
+for (const n of document.querySelectorAll(".ej .n")){
+  n.innerHTML = n.innerHTML.split(" ").map(w => '<span style="white-space:nowrap">' + w + "</span>").join(" ");
+  let t = parseFloat(getComputedStyle(n).fontSize);
+  const ancho = n.parentElement.clientWidth - 12;
+  while (t > 11 && Math.max(...[...n.children].map(c => c.offsetWidth)) > ancho){ t -= 0.5; n.style.fontSize = t + "px"; }
+}
+
+// ?solo=<id> deja solo esa figura (lo usa exportar_figuras.py)
+const solo = new URLSearchParams(location.search).get("solo");
+if (solo){
+  document.body.classList.add("solo");
+  for (const s of document.querySelectorAll("section.fig")) if (s.id !== solo) s.remove();
+}
+</script>
+</body>
+</html>

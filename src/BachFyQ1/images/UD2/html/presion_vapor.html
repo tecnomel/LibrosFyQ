@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Descenso de la presión de vapor</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } .card .t { font-size: 14px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Disolvente puro</h2><svg id="a" width="300" height="290"></svg><div class="t">Toda la superficie es disolvente: muchas moléculas pasan al vapor. Presión de vapor p°.</div></div>
+        <div class="card"><h2>Disolución</h2><svg id="b" width="300" height="290"></svg><div class="t">Las partículas de soluto ocupan parte de la superficie: menos vapor. p &lt; p°.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const DIS = '#5DADE2', SOL = '#E74C3C';
+    function escena(id, conSoluto, nVap) {
+        const add = svgAdder(id);
+        const x0 = 30, x1 = 270, top = 20, yl = 170, yb = 270;
+        // líquido: red compacta de partículas
+        add('path', { d: `M${x0} ${top} L${x0} ${yb} L${x1} ${yb} L${x1} ${top} Z`, fill: '#FBFCFC', stroke: '#5D6D7E', 'stroke-width': 3 });
+        add('rect', { x: x0 + 2, y: yl - 8, width: x1 - x0 - 4, height: yb - yl + 6, fill: '#EBF5FB' });
+        const r = rng(conSoluto ? 4 : 2);
+        for (let i = 0; i < 6; i++) for (let j = 0; j < 12; j++) {
+            const x = x0 + 14 + j * 19.5 + (i % 2) * 6, y = yl + i * 17.5;
+            const soluto = conSoluto && r() < 0.3;
+            bead(add, x, y, 8.5, soluto ? SOL : DIS);
+        }
+        // vapor
+        const P = [];
+        for (let k = 0; k < 4000 && P.length < nVap; k++) {
+            const x = x0 + 16 + r() * (x1 - x0 - 32), y = top + 16 + r() * (yl - top - 50);
+            if (P.every(([a, b]) => Math.hypot(a - x, b - y) > 26)) P.push([x, y]);
+        }
+        P.forEach(([x, y], i) => {
+            const a = i * 2.3;
+            arrow(add, x, y, x + 20 * Math.cos(a), y + 20 * Math.sin(a), '#7F8C8D', 1.5, 7);
+            bead(add, x, y, 8.5, DIS);
+        });
+    }
+    escena('a', false, 13);
+    escena('b', true, 6);
+</script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+%! Unidad 4 — Interacción gravitatoria: ejercicios finales (adaptados de la fuente, con datos cambiados y resueltos)
+%! Datos generales: G = 6,67·10^-11 N m^2/kg^2; M_T = 5,98·10^24 kg; R_T = 6370 km; g_0 = 9,8 m/s^2
+
+\section{Ejercicios}\label{sec:grav-ejercicios}
+
+Salvo que se indique otra cosa, usa \(G = \qty{6.67e-11}{\newton\m\squared\per\kg\squared}\), \(M_T = \qty{5.98e24}{\kg}\),
+\(R_T = \qty{6370}{\km}\) y \(g_0 = \qty{9.8}{\m\per\second\squared}\).
+
+\subsection{Leyes de Kepler y momento angular}
+
+\begin{exercise}
+    Si el momento angular de una partícula respecto de un punto es constante, ¿significa que sobre ella no actúa ninguna
+    fuerza? Razónalo.
+    \begin{solu}
+        \textcolor{red}{No.} \textcolor{blue}{\(\vec L\) es constante si el momento de la fuerza es nulo, \(\vec r\times\vec F = 0\). Eso ocurre si
+        no hay fuerza, pero también si la fuerza es paralela a \(\vec r\): es el caso de las fuerzas centrales, como la que el Sol
+        ejerce sobre un planeta.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Si la velocidad de una partícula es constante, ¿puede variar su momento angular respecto de un punto? Razónalo.
+    \begin{solu}
+        \textcolor{red}{No.} \textcolor{blue}{Con \(\vec v\) constante el movimiento es rectilíneo y uniforme, y no hay fuerza neta, así que
+        \(d\vec L/dt = \vec r\times\vec F = 0\). Geométricamente, \(L = m v\,d\), donde \(d\) es la distancia del punto a la recta de
+        la trayectoria, que no cambia.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un cometa describe una órbita elíptica con el Sol en un foco. Compara entre el perihelio y el afelio: a) su momento
+    angular respecto del Sol; b) su velocidad; c) la fuerza que le hace el Sol; d) su energía potencial.
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \textcolor{red}{Es el mismo}: la fuerza es central.
+            \item \textcolor{red}{Mayor en el perihelio}, porque \(r_p v_p = r_a v_a\) y \(r_p < r_a\).
+            \item \textcolor{red}{Mayor en el perihelio}: \(F \propto 1/r^2\).
+            \item \textcolor{red}{Menor (más negativa) en el perihelio}: \(E_p = -GMm/r\). \textcolor{blue}{Lo que pierde de energía potencial lo gana en cinética.}
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Saturno tarda \qty{29.5}{años} en dar una vuelta alrededor del Sol. ¿A qué distancia media del Sol está, si la de la Tierra
+    es \qty{1.496e8}{\km}?
+    \begin{solu}
+        \(r_S = r_T\left(\dfrac{T_S}{T_T}\right)^{2/3} = 1{,}496\cdot 10^8\cdot 29{,}5^{2/3} = \textcolor{red}{\qty{1.43e9}{\km}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    El radio medio de la órbita de Júpiter es \num{5.2} veces el de la Tierra. ¿Cuánto dura un año en Júpiter?
+    \begin{solu}
+        \(T_J = T_T\left(\dfrac{r_J}{r_T}\right)^{3/2} = 1\cdot 5{,}2^{1{,}5} = \textcolor{red}{\qty{11.9}{años}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Gravitación universal y campo gravitatorio}
+
+\begin{exercise}
+    Si la Tierra redujese su radio a la tercera parte sin cambiar su masa, ¿cuánto valdría el campo gravitatorio en su superficie?
+    \begin{solu}
+        \(g' = G\,\dfrac{M_T}{(R_T/3)^2} = 9\,g_0 = \textcolor{red}{\qty{88.2}{\newton\per\kg}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    En la recta que une los centros de la Tierra y la Luna hay un punto donde se anulan las dos fuerzas gravitatorias. ¿A
+    qué distancia del centro de la Tierra está, si la distancia Tierra-Luna es \qty{3.84e5}{\km} y la masa de la Tierra es 81
+    veces la de la Luna?
+    \begin{solu}
+        \textcolor{blue}{Sea \(x\) la distancia a la Tierra: \(G\,\dfrac{81 M_L}{x^2} = G\,\dfrac{M_L}{(d - x)^2} \Rightarrow \dfrac{x}{d - x} = 9\).}
+        \(x = \dfrac{9d}{10} = \textcolor{red}{\qty{3.46e5}{\km}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿Cuánto pesa un objeto de \qty{50}{\kg} a \qty{300}{\km} de altura sobre la superficie terrestre?
+    \begin{solu}
+        \(P = G\,\dfrac{M_T m}{(R_T + h)^2} = 6{,}67\cdot 10^{-11}\,\dfrac{5{,}98\cdot 10^{24}\cdot 50}{(6{,}67\cdot 10^6)^2} = \textcolor{red}{\qty{448}{\newton}}\)
+        \textcolor{blue}{(en la superficie pesaría \qty{490}{\newton}).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La intensidad del campo gravitatorio en la superficie de Marte es \qty{3.71}{\newton\per\kg} y su radio, \qty{3.39e6}{\m}.
+    Calcula la masa de Marte.
+    \begin{solu}
+        \(M = \dfrac{g R^2}{G} = \dfrac{3{,}71\cdot(3{,}39\cdot 10^6)^2}{6{,}67\cdot 10^{-11}} = \textcolor{red}{\qty{6.39e23}{\kg}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿A qué altura pierde un cuerpo el \qty{30}{\percent} de su peso? ¿Y a qué altura su peso se reduce al \qty{30}{\percent}?
+    \begin{solu}
+        \textcolor{blue}{\(\dfrac{P}{P_0} = \dfrac{R_T^2}{(R_T + h)^2} \Rightarrow h = R_T\left(\sqrt{P_0/P} - 1\right)\).}
+
+        \(P = 0{,}7\,P_0\): \(h = 6370\left(\dfrac{1}{\sqrt{0{,}7}} - 1\right) = \textcolor{red}{\qty{1244}{\km}}\).
+        \(P = 0{,}3\,P_0\): \(h = \textcolor{red}{\qty{5260}{\km}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    El diámetro del Sol es 109 veces el de la Tierra y la gravedad en su superficie es 28 veces la terrestre. ¿Cuántas veces
+    mayor es la masa del Sol?
+    \begin{solu}
+        \(g = \dfrac{GM}{R^2} \Rightarrow \dfrac{M_S}{M_T} = \dfrac{g_S}{g_T}\left(\dfrac{R_S}{R_T}\right)^2 = 28\cdot 109^2 = \textcolor{red}{\num{3.33e5}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La masa de la Luna es \(1/81\) de la de la Tierra y su radio, \num{0.27} veces el terrestre. ¿Cuánto pesaría en la Luna una
+    persona que en la Tierra pesa \qty{735}{\newton}?
+    \begin{solu}
+        \(\dfrac{g_L}{g_T} = \dfrac{M_L}{M_T}\left(\dfrac{R_T}{R_L}\right)^2 = \dfrac{1}{81\cdot 0{,}27^2} = 0{,}169 \Rightarrow P_L = \textcolor{red}{\qty{124}{\newton}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La gravedad en la Luna es \qty{1.62}{\m\per\second\squared}. ¿Cuánto pesa allí una persona de \qty{75}{\kg}? ¿Cuál es su masa?
+    \begin{solu}
+        \(P = m g_L = 75\cdot 1{,}62 = \textcolor{red}{\qty{121.5}{\newton}}\); \textcolor{red}{su masa sigue siendo \qty{75}{\kg}}.
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La masa de Marte es \num{0.107} veces la de la Tierra y su radio, \num{0.532} veces. ¿Cuál sería en Marte el período de un
+    péndulo que en la Tierra bate \qty{2}{\second}?
+    \begin{solu}
+        \(\dfrac{g_M}{g_T} = \dfrac{0{,}107}{0{,}532^2} = 0{,}378\);
+        \(T_M = T_T\sqrt{\dfrac{g_T}{g_M}} = \dfrac{2}{\sqrt{0{,}378}} = \textcolor{red}{\qty{3.25}{\second}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Energía y potencial}
+
+\begin{exercise}
+    Se lanza verticalmente hacia arriba un cuerpo de \qty{1000}{\kg} con una velocidad de \qty{5000}{\m\per\second}. ¿Qué altura
+    alcanza (sin rozamiento)?
+    \begin{solu}
+        \(\dfrac{1}{2}m v^2 - \dfrac{G M_T m}{R_T} = -\dfrac{G M_T m}{r} \Rightarrow \dfrac{1}{r} = \dfrac{1}{R_T} - \dfrac{v^2}{2 G M_T}\)
+        \(\Rightarrow r = \qty{7.96e6}{\m}\); \(h = r - R_T = \textcolor{red}{\qty{1589}{\km}}\).
+        \textcolor{blue}{(Con \(h = v^2/2g\) saldrían \qty{1276}{\km}: la aproximación \(g\) constante no vale.)}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿Con qué velocidad hay que lanzar un cuerpo desde la superficie para que alcance una altura igual a la mitad del radio terrestre?
+    \begin{solu}
+        \(v = \sqrt{2 G M_T\left(\dfrac{1}{R_T} - \dfrac{1}{1{,}5R_T}\right)} = \sqrt{\dfrac{2 G M_T}{3 R_T}} = \textcolor{red}{\qty{6.46e3}{\m\per\second}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un meteorito de \qty{300}{\kg} está en reposo a una altura de cuatro radios terrestres sobre la superficie. Calcula su
+    energía mecánica y la velocidad con que llega al suelo (sin rozamiento).
+    \begin{solu}
+        \textcolor{blue}{\(r = 5R_T\).} \(E_m = E_p = -\dfrac{G M_T m}{5 R_T} = \textcolor{red}{\qty{-3.76e9}{\joule}}\).
+
+        \(v = \sqrt{2 G M_T\left(\dfrac{1}{R_T} - \dfrac{1}{5R_T}\right)} = \textcolor{red}{\qty{1.00e4}{\m\per\second}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Calcula el trabajo necesario para llevar un satélite de \qty{800}{\kg} desde una órbita circular de radio \(2R_T\) hasta otra
+    de radio \(3R_T\).
+    \begin{solu}
+        \(\Delta E = \dfrac{G M_T m}{2}\left(\dfrac{1}{2R_T} - \dfrac{1}{3R_T}\right) = \dfrac{G M_T m}{12 R_T} = \dfrac{g_0 R_T m}{12} = \textcolor{red}{\qty{4.16e9}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Satélites}
+
+\begin{exercise}
+    Suponiendo que la Tierra gira alrededor del Sol en una órbita circular de \qty{1.496e11}{\m} en \qty{365.25}{días}, calcula
+    la masa del Sol.
+    \begin{solu}
+        \(M_S = \dfrac{4\pi^2 r^3}{G T^2} = \dfrac{4\pi^2(1{,}496\cdot 10^{11})^3}{6{,}67\cdot 10^{-11}\,(3{,}156\cdot 10^7)^2} = \textcolor{red}{\qty{1.99e30}{\kg}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Calisto, una luna de Júpiter, tiene un período de \qty{16.69}{días} y gira a \qty{1.883e6}{\km} del centro del planeta.
+    Calcula la masa de Júpiter.
+    \begin{solu}
+        \(M_J = \dfrac{4\pi^2 r^3}{G T^2} = \dfrac{4\pi^2(1{,}883\cdot 10^9)^3}{6{,}67\cdot 10^{-11}(1{,}442\cdot 10^6)^2} = \textcolor{red}{\qty{1.90e27}{\kg}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un satélite gira a \qty{600}{\km} de altura con un período de \qty{1.61}{h}. Calcula la masa de la Tierra.
+    \begin{solu}
+        \(M_T = \dfrac{4\pi^2 (R_T + h)^3}{G T^2} = \dfrac{4\pi^2(6{,}97\cdot 10^6)^3}{6{,}67\cdot 10^{-11}\cdot 5796^2} = \textcolor{red}{\qty{5.97e24}{\kg}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Venus gira a \qty{1.082e8}{\km} del Sol y Marte a \qty{2.279e8}{\km}. Suponiendo órbitas circulares, calcula sus velocidades
+    orbitales (\(M_S = \qty{1.99e30}{\kg}\)).
+    \begin{solu}
+        \(v_V = \sqrt{\dfrac{G M_S}{r_V}} = \textcolor{red}{\qty{35.0}{\km\per\second}}\); \(v_M = \textcolor{red}{\qty{24.1}{\km\per\second}}\).
+        \textcolor{blue}{El planeta más lejano va más despacio.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un satélite da una vuelta a la Tierra cada \qty{2}{h}. ¿Cuál es el radio de su órbita y a qué altura está?
+    \begin{solu}
+        \(r = \sqrt[3]{\dfrac{G M_T T^2}{4\pi^2}} = \sqrt[3]{\dfrac{6{,}67\cdot 10^{-11}\cdot 5{,}98\cdot 10^{24}\cdot 7200^2}{4\pi^2}} = \textcolor{red}{\qty{8.06e6}{\m}}\);
+        \(h = \textcolor{red}{\qty{1691}{\km}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un satélite describe una órbita circular a \qty{7.5}{\km\per\second}. ¿A qué altura está y cuál es su período?
+    \begin{solu}
+        \(r = \dfrac{G M_T}{v^2} = \qty{7.09e6}{\m} \Rightarrow h = \textcolor{red}{\qty{721}{\km}}\);
+        \(T = \dfrac{2\pi r}{v} = \textcolor{red}{\qty{1.65}{h}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un satélite meteorológico pasa sobre el mismo punto cuatro veces al día (su período es de \qty{6}{h}). ¿Cuál es el radio de
+    su órbita?
+    \begin{solu}
+        \(r = \sqrt[3]{\dfrac{G M_T T^2}{4\pi^2}} = \textcolor{red}{\qty{1.68e7}{\m}}\) \textcolor{blue}{(unos \qty{10400}{\km} de altura).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Calcula el período de un satélite que gira a \qty{20000}{\km} de altura.
+    \begin{solu}
+        \(T = 2\pi\sqrt{\dfrac{(R_T + h)^3}{G M_T}} = 2\pi\sqrt{\dfrac{(2{,}637\cdot 10^7)^3}{3{,}99\cdot 10^{14}}} = \textcolor{red}{\qty{11.8}{h}}\)
+        \textcolor{blue}{(es la órbita de los satélites GPS).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Sobre los satélites geoestacionarios:
+    \begin{enumerate}[label=\letraminuscula]
+        \item ¿A qué altura orbitan?
+        \item ¿Cuál es el momento angular de uno de \qty{300}{\kg} respecto del centro de la Tierra?
+        \item ¿Qué energía hay que comunicarle en la superficie para ponerlo en órbita?
+    \end{enumerate}
+    \begin{solu}
+        \textcolor{blue}{\(T = \qty{86164}{\second}\).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(r = \sqrt[3]{\dfrac{G M_T T^2}{4\pi^2}} = \qty{4.22e7}{\m} \Rightarrow h = \textcolor{red}{\qty{35800}{\km}}\).
+            \item \(v = \dfrac{2\pi r}{T} = \qty{3075}{\m\per\second}\); \(L = m r v = \textcolor{red}{\qty{3.89e13}{\kg\m\squared\per\second}}\).
+            \item \(\Delta E = G M_T m\left(\dfrac{1}{R_T} - \dfrac{1}{2r}\right) = \textcolor{red}{\qty{1.74e10}{\joule}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un satélite de comunicaciones de \qty{600}{\kg} se libera en una órbita circular a \qty{400}{\km} de altura y un motor lo
+    lleva después a la órbita geoestacionaria. ¿Cuánta energía ha aportado el motor?
+    \begin{solu}
+        \(\Delta E = \dfrac{G M_T m}{2}\left(\dfrac{1}{r_1} - \dfrac{1}{r_2}\right) = \dfrac{2{,}39\cdot 10^{17}}{2}\left(\dfrac{1}{6{,}77\cdot 10^6} - \dfrac{1}{4{,}22\cdot 10^7}\right) = \textcolor{red}{\qty{1.48e10}{\joule}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Un satélite de \qty{200}{\kg} describe una órbita circular a \qty{7.3}{\km\per\second}. Calcula: a) su energía potencial;
+    b) su energía mecánica; c) la energía que hubo que comunicarle para ponerlo en órbita; d) la energía necesaria para pasarlo
+    a una órbita de radio doble.
+    \begin{solu}
+        \textcolor{blue}{\(r = G M_T/v^2 = \qty{7.48e6}{\m}\) (a \qty{1115}{\km} de altura).}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(E_p = -\dfrac{G M_T m}{r} = -m v^2 = \textcolor{red}{\qty{-1.07e10}{\joule}}\).
+            \item \(E_m = \dfrac{E_p}{2} = \textcolor{red}{\qty{-5.33e9}{\joule}}\).
+            \item \(\Delta E = E_m - \left(-\dfrac{G M_T m}{R_T}\right) = \textcolor{red}{\qty{7.19e9}{\joule}}\).
+            \item \textcolor{blue}{Con radio doble, \(E'_m = E_m/2\):} \(\Delta E = \textcolor{red}{\qty{2.66e9}{\joule}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Venus (\(M = \qty{4.87e24}{\kg}\)) gira alrededor del Sol (\(M_S = \qty{1.99e30}{\kg}\)) en una órbita circular de
+    \qty{1.082e8}{\km}. La gravedad en su superficie es \qty{8.87}{\m\per\second\squared}.
+    \begin{enumerate}[label=\letraminuscula]
+        \item Calcula el diámetro de Venus.
+        \item Calcula su velocidad orbital y la duración de su año en días.
+        \item ¿Qué velocidad necesitaría Venus para escapar de la atracción del Sol desde su órbita?
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(R = \sqrt{\dfrac{G M}{g}} = \qty{6.05e6}{\m} \Rightarrow D = \textcolor{red}{\qty{12100}{\km}}\).
+            \item \(v = \sqrt{\dfrac{G M_S}{r}} = \textcolor{red}{\qty{35.0}{\km\per\second}}\); \(T = \dfrac{2\pi r}{v} = \textcolor{red}{\qty{225}{días}}\).
+            \item \(v_e = \sqrt{\dfrac{2 G M_S}{r}} = \sqrt 2\,v = \textcolor{red}{\qty{49.5}{\km\per\second}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una misión quiere colocar un vehículo de \qty{600}{\kg} en una órbita circular de \qty{3800}{\km} de radio alrededor de Marte
+    (\(M = \qty{6.42e23}{\kg}\), \(R = \qty{3397}{\km}\)). Calcula: a) su energía cinética y su período; b) su energía potencial y
+    su energía mecánica; c) la energía para pasarlo a una órbita a \qty{500}{\km} de altura.
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(E_c = \dfrac{G M m}{2r} = \textcolor{red}{\qty{3.38e9}{\joule}}\); \(T = 2\pi\sqrt{\dfrac{r^3}{GM}} = \textcolor{red}{\qty{1.98}{h}}\).
+            \item \(E_p = -2E_c = \textcolor{red}{\qty{-6.76e9}{\joule}}\); \(E_m = -E_c = \textcolor{red}{\qty{-3.38e9}{\joule}}\).
+            \item \textcolor{blue}{\(r_2 = \qty{3.897e6}{\m}\):} \(\Delta E = \dfrac{G M m}{2}\left(\dfrac{1}{r_1} - \dfrac{1}{r_2}\right) = \textcolor{red}{\qty{8.4e7}{\joule}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}

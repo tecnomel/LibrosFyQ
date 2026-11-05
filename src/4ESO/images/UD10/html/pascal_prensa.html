@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Principio de Pascal y prensa hidráulica</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card .t { font-size: 14px; } .card h3 { font-size: 16px; color: var(--blue); margin-bottom: 4px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3>Jeringa de Pascal</h3><svg id="a" width="340" height="250"></svg>
+            <div class="t">Al empujar el émbolo, el agua sale con la misma fuerza por todos los orificios: la presión se transmite <b>por igual en todas las direcciones</b>.</div></div>
+        <div class="card"><h3>Prensa hidráulica</h3><svg id="b" width="400" height="250"></svg>
+            <div class="t"><i>p</i><sub>1</sub> = <i>p</i><sub>2</sub> &nbsp;⇒&nbsp; <i>F</i><sub>1</sub> / <i>S</i><sub>1</sub> = <i>F</i><sub>2</sub> / <i>S</i><sub>2</sub> &nbsp;⇒&nbsp; <b><i>F</i><sub>2</sub> = <i>F</i><sub>1</sub> · <i>S</i><sub>2</sub> / <i>S</i><sub>1</sub></b></div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    {
+        const add = svgAdder('a');
+        const cy = 130, bx = 254, br = 56;
+        // chorros radiales
+        for (let a = 0; a < 360; a += 30) {
+            if (Math.abs(a - 180) < 20) continue;
+            const [x1, y1] = pol(bx, cy, br, a), [x2, y2] = pol(bx, cy, br + 28, a);
+            add('line', { x1, y1, x2, y2, stroke: '#5DADE2', 'stroke-width': 3, 'stroke-dasharray': '6 4', 'stroke-linecap': 'round' });
+        }
+        // esfera con agua
+        add('circle', { cx: bx, cy, r: br, fill: '#AED6F1', stroke: '#2471A3', 'stroke-width': 2.5 });
+        for (let a = 0; a < 360; a += 30) { if (Math.abs(a - 180) < 20) continue; const [x, y] = pol(bx, cy, br, a); add('circle', { cx: x, cy: y, r: 3, fill: '#1B4F72' }); }
+        // cuerpo de la jeringa
+        add('rect', { x: 70, y: cy - 20, width: 110, height: 40, fill: '#AED6F1', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+        add('rect', { x: 180, y: cy - 8, width: 16, height: 16, fill: '#AED6F1', stroke: '#5D6D7E', 'stroke-width': 2 });
+        // émbolo
+        add('rect', { x: 92, y: cy - 18, width: 10, height: 36, fill: '#5D6D7E' });
+        add('rect', { x: 30, y: cy - 4, width: 62, height: 8, fill: '#909497' });
+        add('rect', { x: 22, y: cy - 22, width: 8, height: 44, fill: '#5D6D7E' });
+        arrow(add, 0, cy - 40, 50, cy - 40, '#C0392B', 3, 11);
+        label(add, 22, cy - 50, 'F', { fill: '#C0392B', 'font-style': 'italic' });
+    }
+    {
+        const add = svgAdder('b');
+        const base = 225, liquid = '#AED6F1', wall = '#5D6D7E';
+        const x1 = 50, w1 = 40, y1 = 110;   // cilindro pequeño (émbolo 1)
+        const x2 = 210, w2 = 150, y2 = 110; // cilindro grande (émbolo 2)
+        add('rect', { x: x1, y: y1, width: w1, height: base - y1, fill: liquid });
+        add('rect', { x: x1, y: base - 30, width: x2 + w2 - x1, height: 30, fill: liquid });
+        add('rect', { x: x2, y: y2, width: w2, height: base - y2, fill: liquid });
+        add('path', { d: `M${x1} 40 L${x1} ${base} L${x2 + w2} ${base} L${x2 + w2} 40 M${x1 + w1} 40 L${x1 + w1} ${base - 30} L${x2} ${base - 30} L${x2} 40`, fill: 'none', stroke: wall, 'stroke-width': 3, 'stroke-linejoin': 'round' });
+        // émbolos
+        add('rect', { x: x1 + 2, y: y1 - 12, width: w1 - 4, height: 12, fill: '#7F8C8D' });
+        add('rect', { x: x2 + 2, y: y2 - 14, width: w2 - 4, height: 14, fill: '#7F8C8D' });
+        // carga sobre el émbolo grande
+        add('rect', { x: x2 + 30, y: y2 - 64, width: 90, height: 50, rx: 6, fill: '#E59866', stroke: '#A04000', 'stroke-width': 2 });
+        // fuerzas
+        arrow(add, x1 + w1 / 2, 30, x1 + w1 / 2, y1 - 14, '#C0392B', 3, 11);
+        label(add, x1 - 6, 50, 'F₁', { fill: '#C0392B', 'font-style': 'italic', 'text-anchor': 'end' });
+        arrow(add, x2 + w2 / 2, y2 + 40, x2 + w2 / 2, y2 - 66, '#C0392B', 5, 15);
+        label(add, x2 + w2 / 2 + 20, y2 + 36, 'F₂', { fill: '#C0392B', 'font-style': 'italic', 'font-size': 18 });
+        label(add, x1 + w1 / 2, y1 + 40, 'S₁', { 'font-style': 'italic', fill: '#1B4F72' });
+        label(add, x2 + 40, y2 + 40, 'S₂', { 'font-style': 'italic', fill: '#1B4F72' });
+        label(add, 150, 170, 'p₁ = p₂', { 'font-size': 15, fill: '#000070' });
+    }
+</script>
+</body>
+</html>

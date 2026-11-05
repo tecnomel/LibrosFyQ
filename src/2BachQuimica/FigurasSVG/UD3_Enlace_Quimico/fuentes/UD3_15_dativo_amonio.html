@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_15 · Enlace covalente dativo: ion amonio</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+</head>
+<body>
+<script>
+// El N del amoniaco aporta los dos electrones del enlace con el H+ (enlace dativo, en rojo).
+const svg = crearFigura(620, 190);
+const ROJO = "#D32F2F";
+dibujarLewis(svg, 70, 95, { atomos: [
+    { s: "N", x: 0, y: 0, pares: [{ a: 0, color: ROJO }] }, { s: "H", id: "a", x: -1, y: 0 }, { s: "H", id: "b", x: 0, y: 1 }, { s: "H", id: "c", x: 0, y: -1 }],
+    enlaces: [{ a: "N", b: "a" }, { a: "N", b: "b" }, { a: "N", b: "c" }] }, { L: 55 });
+texto(svg, 165, 104, "+", { "text-anchor": "middle", "font-size": 24, fill: COLORES.texto });
+texto(svg, 205, 104, [{ t: "H" }, { t: "+", sup: true }], { "text-anchor": "middle", "font-size": 24, fill: COLORES.texto, "font-family": LEWIS.fuente });
+flecha(svg, 240, 95, 320, 95, { punta: 11 });
+dibujarLewis(svg, 460, 95, { atomos: [
+    { s: "N", x: 0, y: 0 }, { s: "H", id: "a", x: -1, y: 0 }, { s: "H", id: "b", x: 0, y: 1 }, { s: "H", id: "c", x: 0, y: -1 }, { s: "H", id: "d", x: 1, y: 0 }],
+    enlaces: [{ a: "N", b: "a" }, { a: "N", b: "b" }, { a: "N", b: "c" }, { a: "N", b: "d", color: ROJO, ancho: 2.4 }] }, { L: 55 });
+corchetes(svg, 380, 20, 540, 170, "+");
+</script>
+</body>
+</html>

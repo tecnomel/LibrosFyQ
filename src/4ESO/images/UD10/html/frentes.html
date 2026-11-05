@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Frentes frío y cálido</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card .t { font-size: 13.5px; } .card h3 { font-size: 16px; margin-bottom: 4px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3 style="color:#2471A3">Frente frío</h3><svg id="a" width="380" height="220"></svg>
+            <div class="t">El aire frío avanza y obliga al cálido a subir deprisa: nubes de desarrollo vertical y chubascos. En el mapa, línea con <b>triángulos</b> que apuntan hacia donde avanza.</div></div>
+        <div class="card"><h3 style="color:#C0392B">Frente cálido</h3><svg id="b" width="380" height="220"></svg>
+            <div class="t">El aire cálido avanza y sube lentamente sobre el frío: nubes extensas y lluvias débiles. En el mapa, línea con <b>semicírculos</b> que apuntan hacia donde avanza.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // Símbolo de frente: línea con triángulos o semicírculos hacia arriba (sentido de avance)
+    function frontSymbol(add, x1, x2, y, kind) {
+        const col = kind === 'frio' ? '#2471A3' : '#C0392B';
+        add('line', { x1, y1: y, x2, y2: y, stroke: col, 'stroke-width': 3 });
+        for (let x = x1 + 14; x < x2 - 14; x += 34) {
+            if (kind === 'frio') add('path', { d: `M${x - 9} ${y} L${x} ${y - 14} L${x + 9} ${y} Z`, fill: col });
+            else add('path', { d: `M${x - 9} ${y} A9 9 0 0 1 ${x + 9} ${y} Z`, fill: col });
+        }
+    }
+    function panel(id, kind) {
+        const add = svgAdder(id);
+        const g = 150;
+        add('rect', { x: 0, y: g, width: 380, height: 10, fill: '#A9DFBF' });
+        if (kind === 'frio') {
+            // cuña de aire frío (izquierda) que levanta el cálido (derecha)
+            add('path', { d: `M0 ${g} L0 40 Q 150 45 210 ${g} Z`, fill: '#D6EAF8' });
+            add('path', { d: `M0 40 Q 150 45 210 ${g}`, fill: 'none', stroke: '#2471A3', 'stroke-width': 3 });
+            add('rect', { x: 210, y: 20, width: 170, height: g - 20, fill: '#FADBD8', opacity: 0.6 });
+            label(add, 70, 120, 'aire frío', { fill: '#2471A3' });
+            label(add, 300, 120, 'aire cálido', { fill: '#C0392B' });
+            arrow(add, 90, 90, 160, 90, '#2471A3', 3, 11);
+            arrow(add, 225, 130, 200, 40, '#C0392B', 3, 11);
+            [[190, 22, 18], [212, 14, 22], [234, 24, 16]].forEach(([x, y, r]) => add('circle', { cx: x, cy: y + 8, r, fill: '#AEB6BF' }));
+        } else {
+            // aire cálido (izquierda) que sube suavemente sobre el frío (derecha)
+            add('path', { d: `M380 ${g} L380 50 Q 200 70 120 ${g} Z`, fill: '#D6EAF8' });
+            add('path', { d: `M380 50 Q 200 70 120 ${g}`, fill: 'none', stroke: '#C0392B', 'stroke-width': 3 });
+            add('rect', { x: 0, y: 20, width: 120, height: g - 20, fill: '#FADBD8', opacity: 0.6 });
+            label(add, 60, 120, 'aire cálido', { fill: '#C0392B' });
+            label(add, 300, 130, 'aire frío', { fill: '#2471A3' });
+            arrow(add, 40, 90, 120, 90, '#C0392B', 3, 11);
+            arrow(add, 150, 115, 290, 45, '#C0392B', 3, 11);
+            add('ellipse', { cx: 250, cy: 28, rx: 90, ry: 12, fill: '#AEB6BF' });
+        }
+        frontSymbol(add, 60, 320, 200, kind);
+        label(add, 345, 205, kind === 'frio' ? '→ avance' : '→ avance', { 'font-size': 12, fill: '#525252', 'font-weight': 400 });
+    }
+    panel('a', 'frio');
+    panel('b', 'calido');
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_38 · Azufre excitado: covalencias 4 y 6</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/cajas.js"></script>
+</head>
+<body>
+<script>
+// Promocionando electrones a los orbitales 3d vacíos, el S puede tener 4 o 6
+// electrones desapareados (covalencias 4 y 6).
+const svg = crearFigura(820, 150);
+const fila = (y, e3s, e3p, e3d, cov) => {
+    simboloZ(svg, 36, y + 18, 16, "S");
+    dibujarCajas(svg, 44, y, [{ etq: "1s", e: [2] }, { etq: "2s", e: [2] }, { etq: "2p", e: [2, 2, 2] }, { etq: "3s", e: [e3s] },
+        { etq: "3p", e: e3p }, { etq: "4s", e: [0] }, { etq: "3d", e: e3d, color: e3d.map(v => v ? CAJA_HIBRIDO : CAJA_COLOR) }], { caja: 24, hueco: 12 });
+    texto(svg, 660, y + 18, "covalencia " + cov, { "font-size": 16, "font-weight": "bold", fill: COLORES.ocre });
+};
+fila(35, 2, [1, 1, 1], [1, 0, 0, 0, 0], 4);
+fila(105, 1, [1, 1, 1], [1, 1, 0, 0, 0], 6);
+</script>
+</body>
+</html>

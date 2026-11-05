@@ -1,0 +1,332 @@
+%%The package identifies itself and the LaTeX version needed
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mycommands}[2021/12/11 mycommands]
+\RequirePackage{xstring}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Química
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\masa}[2][g]{
+    \IfEqCase {#1}{
+        {g}{\SI{#2}{\g}}
+        {mg}{\SI{#2}{\milli\g}}
+        {kg}{\SI{#2}{\milli\g}}
+    }
+}
+\newcommand{\densidad}[2][gl]{
+    \IfEqCase {#1}{
+        {gl}{\SI{#2}{\g\per\liter}}
+        {gml}{\SI{#2}{\g\per\milli\liter}}
+    }
+}
+
+\newcommand{\volumen}[2][l]{
+    \IfEqCase {#1}{
+        {l}{\SI{#2}{\liter}}
+        {ml}{\SI{#2}{\milli\liter}}
+        {metroscubicos}{\SI{#2}{\cubic\m}}
+        {decimetroscubicos}{\SI{#2}{\cubic\deci\m}}
+        {centiimetroscubicos}{\SI{#2}{\cubic\centi\m}}
+    }
+}
+
+
+\newcommand{\eo}[3]{$\overset{^{\color{#1}#2}}{\text{\ch{#3}}}$}
+\newcommand{\eob}[2]{$\overset{^{\color{blue}#1}}{\text{\ch{#2}}}$}
+\newcommand{\eor}[2]{$\overset{^{\color{red}#1}}{\text{\ch{#2}}}$}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CANTIDAD DE SUSTANCIA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newcommand{\masa}[1]{\SI{#1}{\kilo\g}}
+\newcommand{\masag}[1]{\SI{#1}{\g}}
+\newcommand{\uma}[1]{\SI{#1}{\uma}}
+\newcommand{\masamol}[1]{\SI{#1}{\g\per\mol}}
+\newcommand{\moles}[1]{\SI{#1}{\mol}}
+\newcommand{\masaelemento}[2]{\SI{#1}{\g}\ \text{de}\ \ch{#2}}
+%\newcommand{\R}{\SI{0.082}{\atmospher \liter \per \mol \kelvin}}
+\newcommand{\R}{\num{0.082}\cdot \cfrac{\unit{\atmospher\liter}}{\unit{\mol\kelvin}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Densidad
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newcommand{\densidad}[1]{\SI{#1}{\g\per\liter}}
+%\newcommand{\densidadgml}[1]{\SI{#1}{\g\per\milli\liter}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Volumen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\newcommand{\litros}[1]{\SI{#1}{\liter}}
+%\newcommand{\mililitros}[1]{\SI{#1}{\milli\liter}}
+%\newcommand{\metroscubicos}[1]{\SI{#1}{\cubic\m}}
+\newcommand{\decimetroscubicos}[1]{\SI{#1}{\cubic\deci\m}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TEMPERATURA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\celsius}[1]{\SI{#1}{\celsius}}
+\newcommand{\kelvin}[1]{\SI{#1}{\kelvin}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% presión
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\presionatm}[1]{\SI{#1}{\atmospher}}
+\newcommand{\presionmmhg}[1]{\SI{#1}{\mmhg}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Energy and Fources
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\fuerza}[1]{\SI{#1}{\newton}}
+\newcommand{\energia}[1]{\SI{#1}{\joule}}
+\newcommand{\trabajo}[1]{\SI{#1}{\joule}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Time
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\segundos}[1]{\SI{#1}{\s}}
+
+
+
+\newcommand{\gravedad}{\SI{9.8}{\m\per\square\s}}
+\newcommand{\distancia}[1]{\SI{#1}{\m}}
+\newcommand{\distanciakm}[1]{\SI{#1}{\kilo\m}}
+\newcommand{\distanciacm}[1]{\SI{#1}{\centi\m}}
+\newcommand{\velocidad}[1]{\SI{#1}{\m\per\s}}
+\newcommand{\velocidadkmh}[1]{\SI{#1}{\kilo\m\per\hour}}
+\newcommand{\aceleracion}[1]{\SI{#1}{\m\per\square\s}}
+
+
+\newcommand{\elasticacte}[1]{\SI{#1}{\newton\per\m}}
+\newcommand{\unmedio}{\dfrac{1}{2}}
+
+
+
+
+
+
+%\newcommand{\velocidad}{\si{\m\per\second}}
+\newcommand{\velo}{\m\per\second}
+\newcommand{\acel}{\m\per\square\second}
+%\newcommand{\aceleracion}{\si{\m\per\square\second}}
+
+
+
+\newenvironment{figuracentrada}{\begin{center}%
+                                \begin{figure}[H]%
+                                \centering}%
+                                {\end{figure}%
+                                \end{center}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% para hacer cancelto en rojo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\let\cancelorigcolor\CancelColor% Just for conveniency...
+
+\newcommand{\CancelTo}[3][]{%
+  \ifblank{#1}{}{%
+    \renewcommand{\CancelColor}{#1}%
+  }
+  \cancelto{#2}{#3}% 
+}
+
+
+\newcommand{\canceltored}[2]{\CancelTo[\color{red}]{#1}{#2}}
+
+\newcommand\cancelred[1]{\renewcommand\CancelColor{\color{red}}\cancel{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Comando para numeraciones
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\letramayuscula}{\Alph*)}
+\newcommand{\letraminuscula}{\textit{\textbf{\alph*})}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Comando para bolas azules en numeraciones
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\cnumero}[2]{\tikz[baseline=(myanchor.base)]
+\node[minimum size=0.2cm,circle,
+inner sep=1pt,draw, #2,thick,fill=#2] (myanchor)
+{\color{white}\bfseries\fontsize{8}{8}#1};}
+
+\newcommand*{\itembolasazules}[1]{\protect\cnumero{#1}{azulF}}
+\newcommand*{\itembolascolor}[2]{\protect\cnumero{#1}{#2}}
+\newcommand*{\numberballgreen}{\protect\cnumero{\arabic*}{mygreen}}
+\newcommand*{\numberballblue}{\protect\cnumero{\arabic*}{blue}}
+\newcommand*{\numberballred}{\protect\cnumero{\arabic*}{red}}
+
+\newcommand*{\numberballmDarkTeal}{\protect\cnumero{\arabic*}{mDarkTeal}}
+\newcommand*{\numberballmDarkBrown}{\protect\cnumero{\arabic*}{mDarkBrown}}
+\newcommand*{\numberballmLightBrown}{\protect\cnumero{\arabic*}{mLightBrown}}
+\newcommand*{\numberballmLightGreen}{\protect\cnumero{\arabic*}{mLightGreen}}
+
+
+
+
+\newcommand*{\itembolasazulesb}[1]{ % l
+\footnotesize\protect\tikz[baseline=-3pt] %
+\protect\node[scale=.55, circle, shade,
+ball color=blue]{\color{white}\Large\bf#1};}
+
+\newcommand*{\itembolascolorb}[2]{ % l
+\footnotesize\protect\tikz[baseline=-3pt] %
+\protect\node[scale=.55, circle, shade,
+ball color=#2]{\color{white}\Large\bf#1};}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+
+\newcommand{\ballnumber}[1]{\tikz[baseline=(myanchor.base)] \node[circle,fill=.,inner sep=1pt] (myanchor) {\color{-.}\bfseries\footnotesize #1};}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% remarcar palabras
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\blueremark}[1]{%
+    \textcolor{blue}{\texttt{\textbf{#1}}}
+    }
+
+    \newcommand{\remark}[1]{%
+    \textcolor{myGreen}{\texttt{\textbf{#1}}}
+    }
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PARA SUBRAYAR REquiere paquete ulem
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\makeatletter
+    \newcommand{\coloruline}[2]{%
+        \newcommand\temp@reduline{\bgroup\markoverwith
+            {\textcolor{#1}{\rule[-0.5ex]{2pt}{0.4pt}}}\ULon}%
+        \temp@reduline{#2}%
+    }
+
+    \newcommand{\coloruuline}[2]{%
+        \UL@protected\def\temp@uuline{\leavevmode \bgroup
+            \UL@setULdepth
+            \ifx\UL@on\UL@onin \advance\ULdepth2.8\p@\fi
+            \markoverwith{\textcolor{#1}{\lower\ULdepth\hbox
+                {\kern-.03em\vbox{\hrule width.2em\kern1\p@\hrule}\kern-.03em}}}%
+        \ULon}%
+        \temp@uuline{#2}%
+    }
+
+    \newcommand{\coloruwave}[2]{%
+        \UL@protected\def\temp@uwave{\leavevmode \bgroup
+        \ifdim \ULdepth=\maxdimen \ULdepth 3.5\p@
+        \else \advance\ULdepth2\p@
+        \fi \markoverwith{\textcolor{#1}{\lower\ULdepth\hbox{\sixly \char58}}}\ULon}
+        \font\sixly=lasy6 % does not re-load if already loaded, so no memory drain.
+        \temp@uwave{#2}%
+    }
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% colores rápidos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\rojo}[1]{\textcolor{red}{#1}}
+\newcommand{\azul}[1]{\textcolor{blue}{#1}}
+\newcommand{\verde}[1]{\textcolor{green!50!black}{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% comandos rápidos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\negrita}[1]{\textbf{#1}}
+\newcommand{\subin}[1]{\textsubscript{#1}} 
+\newcommand{\supin}[1]{\textsuperscript{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Otros comandos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+\newcommand{\cmd}[1]{\textcolor{myGreen}{\textbf{\texttt{#1}}}}
+
+%\newcommand{\Na}{\num{6.02e23}}
+
+\newcommand{\NA}[1][\text{átomos}]{\num{6.02e23}\ \text{#1}}
+
+
+\newcommand{\numero}[1]{\num{#1}}
+
+\newcommand{\ejercicio}[2]{\noindent\xmybox{\bfseries #1 Página #2}} %xmybox está en tcolorbox definida. Es para los ejercicos, indicando el ejercicio y la página.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Comandos Abreviaturas
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\epg}{mgh}
+\newcommand{\epgi}{mgh_i}
+\newcommand{\Epgi}{E_{pgi}}
+\newcommand{\epgf}{m\;g\;h_f}
+\newcommand{\epei}{\dfrac{1}{2}\;K\;x_i^2}
+\newcommand{\epef}{\dfrac{1}{2}\;K\;x_f^2}
+\newcommand{\Epgf}{E_{pgf}}
+\newcommand{\ec}{\dfrac{1}{2}m\;v^2}
+\newcommand{\eci}{\dfrac{1}{2}m\;v_i^2}
+\newcommand{\Eci}{E_{ci}}
+\newcommand{\ecf}{\dfrac{1}{2}m\;v_f^2}
+\newcommand{\Ecf}{E_{cf}}
+\newcommand{\Epei}{E_{pei}}
+\newcommand{\Epef}{E_{pef}}
+
+
+\newcommand{\peso}{m\ g}
+\newcommand{\work}{F\ x\ \cos\alpha}
+\newcommand{\workrozamiento}{F_R\ x\ \cos\alpha}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\providecommand{\abs}[1]{\lvert#1\rvert} % para el valor absoluto
+\providecommand{\norm}[1]{\lVert#1\rVert} % la norma de un vector
+
+\newcommand{\ui}{\;\vec{i}\;} % Vector unitario
+\newcommand{\uj}{\;\vec{j}\;} % Vector unitario
+\newcommand{\uk}{\;\vec{k}\;} % Vector unitario
+
+\newcommand{\espacio}{\vspace{3mm}}
+\newcommand{\esp}{\;}
+
+
+\newcommand{\ies}{IES Escultor José Luís Sánchez}
+
+\newcommand{\examplebeamer}[1]{{\color{mLightGreen}\textbf{#1}}}
+
+
+\newcommand{\molde}[2]{#1\text{ mol de }\ch{#2}}
+\newcommand{\gde}[2]{#1\ \unit{\g} \text{ de }\ch{#2}}
+\newcommand{\nline}[1][6pt]{\\[#1]}
+\newcommand{\gasesideal}{P\ V = n\ R\ T}
+
+\newcommand{\prima}{^\prime}
+
+\newcommand\myemptypage{
+    \null
+    \thispagestyle{empty}
+    \addtocounter{page}{-1}
+    \newpage
+}
+
+
+%\newcommand{\rojo}[1]{\textcolor{red}{#1}}
+
+\newcommand{\rojon}[1]{\textbf{\textcolor{red}{#1}}}
+
+%\newcommand{\azul}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\azuln}[1]{\textbf{\textcolor{blue}{#1}}}
+
+%\newcommand{\verde}[1]{\textcolor{green!50!black}{#1}}
+
+\newcommand{\verden}[1]{\textbf{\textcolor{green!50!black}{#1}}}

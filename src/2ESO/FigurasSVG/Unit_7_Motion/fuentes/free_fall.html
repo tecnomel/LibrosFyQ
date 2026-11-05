@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Free fall</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 30px; align-items: center; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .side { flex: 1; font-size: 19px; }
+    .box { border-radius: 14px; padding: 12px 16px; margin-bottom: 14px; border: 2px solid; }
+    .g { border-color: var(--blue); background: var(--blue-soft); }
+    .m { border-color: #7D3C98; background: #F5EEF8; }
+    .big { font-size: 28px; font-weight: 800; color: var(--blue); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Free fall: a UARM with a = g ≈ 10 m/s²</h1>
+    <div class="row">
+        <svg width="440" height="560" id="s"></svg>
+        <div class="side">
+            <div class="box g"><div class="big">v = g · t</div>Every second, the speed increases by about <b>10 m/s</b>. The distance fallen each second gets bigger and bigger.</div>
+            <div class="box m"><b>🌙 Hammer and feather</b><br>Without air, all objects fall at the same rate, whatever their mass. In 1971, astronaut David Scott dropped a hammer and a feather on the Moon: they hit the ground at the same time!</div>
+        </div>
+    </div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg', s = document.getElementById('s');
+    const add = (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; s.appendChild(e); };
+    const Y = d => 30 + d * 10.5;   // metres fallen -> px (45 m -> ~500)
+    add('line', { x1: 120, y1: 20, x2: 120, y2: 530, stroke: '#AAB7B8', 'stroke-width': 3, 'stroke-dasharray': '6 6' });
+    [0, 1, 2, 3].forEach(t => {
+        const d = 5 * t * t, y = Y(d);
+        add('circle', { cx: 120, cy: y, r: 16, fill: '#E74C3C', stroke: '#922B21', 'stroke-width': 2, opacity: t === 3 ? 1 : 0.55 + t * 0.12 });
+        add('line', { x1: 145, y1: y, x2: 175, y2: y, stroke: '#23373B', 'stroke-width': 2 });
+        add('text', { x: 185, y: y - 4, 'font-size': 18, 'font-weight': 800, fill: '#2471A3' }, `t = ${t} s`);
+        add('text', { x: 185, y: y + 18, 'font-size': 16, fill: '#23373B' }, `v = ${10 * t} m/s · fallen ${d} m`);
+    });
+    add('rect', { x: 20, y: 530, width: 400, height: 20, fill: '#A04000' });
+</script>
+</body>
+</html>

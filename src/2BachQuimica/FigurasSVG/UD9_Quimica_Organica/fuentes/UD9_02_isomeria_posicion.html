@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_02 · Isomería de posición</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Isómeros de posición: el grupo funcional está en distinta posición de la cadena.
+const svg = crearFigura(560, 140);
+molecula(svg, "CCCCCO", 110, 55, { etiqueta: "pentan-1-ol", yEtq: 125, colores: { O: ROJO } });
+flechaIso(svg, 240, 55, 320);
+molecula(svg, "CCC(O)CC", 440, 55, { etiqueta: "pentan-3-ol", yEtq: 125 });
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD1_13 · Orbitales p</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/orbitales.js"></script>
+</head>
+<body>
+<script>
+// Orbitales p (l = 1): dos lóbulos a lo largo de un eje, separados por un plano nodal.
+const svg = crearFigura(900, 310);
+const E = 78, Y = 140;
+const orb = [
+    { nombre: "px", sub: "x", plano: { e1: [0, 1.15, 0], e2: [0, 0, 1.15] }, nodal: "plano yz" },
+    { nombre: "py", sub: "y", plano: { e1: [1.15, 0, 0], e2: [0, 0, 1.15] }, nodal: "plano xz" },
+    { nombre: "pz", sub: "z", plano: { e1: [1.15, 0, 0], e2: [0, 1.15, 0] }, nodal: "plano xy" },
+];
+orb.forEach((o, k) => {
+    const cx = 150 + k * 300;
+    dibujarOrbital(svg, cx, Y, { nombre: o.nombre, escala: E, plano: o.plano, potencia: 2.4, tam: 1.2,
+        etiqueta: etiquetaOrbital("p", o.sub), dyEtiqueta: 128 });
+    texto(svg, cx, Y + 148, "nodo: " + o.nodal, { "text-anchor": "middle", "font-size": 13, fill: COLORES.gris });
+});
+leyendaFases(svg, 760, 24);
+</script>
+</body>
+</html>

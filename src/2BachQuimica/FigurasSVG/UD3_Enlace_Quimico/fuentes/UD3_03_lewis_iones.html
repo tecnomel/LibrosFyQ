@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_03 · Formación de iones: estructuras de Lewis</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/cajas.js"></script>
+</head>
+<body>
+<script>
+// Formación del NaF: el Na cede su electrón de valencia y el F lo capta.
+// Ambos iones quedan con configuración de gas noble (octeto).
+const svg = crearFigura(760, 250);
+const ROJO = "#D32F2F", VERDE = "#2E9D6A";
+const t = (x, y, p, a = {}) => texto(svg, x, y, p, { "font-size": 18, fill: COLORES.texto, ...a });
+// Sodio
+dibujarLewis(svg, 130, 40, { atomos: [{ s: "Na", x: 0, y: 0, e: [0], colorPares: ROJO }] });
+t(175, 46, [{ t: "− 1 e" }, { t: "−", sup: true }]);
+flecha(svg, 260, 40, 330, 40, { punta: 10 });
+dibujarLewis(svg, 400, 40, { atomos: [{ s: "Na", x: 0, y: 0, pares: [90, 0, 270, 180], colorPares: ROJO, carga: "+", angCarga: 40 }] });
+simboloZ(svg, 60, 96, 11, "Na");
+t(66, 96, configuracion("1s2 2s2 2p6 *3s1"));
+simboloZ(svg, 370, 96, 11, "Na");
+t(370, 88, "+", { "font-size": 13 });
+t(384, 96, configuracion("1s2 *2s2 *2p6"));
+// Flúor
+dibujarLewis(svg, 130, 150, { atomos: [{ s: "F", x: 0, y: 0, pares: [90, 180, 270], e: [0], colorPares: VERDE, forma: "aspa" }] });
+t(165, 156, [{ t: "+ 1 e" }, { t: "−", sup: true }]);
+flecha(svg, 260, 150, 330, 150, { punta: 10 });
+dibujarLewis(svg, 400, 150, { atomos: [{ s: "F", x: 0, y: 0, pares: [90, 180, 270, { a: 0, colores: [VERDE, ROJO] }], colorPares: VERDE, forma: "aspa", carga: "−", angCarga: 40 }] });
+simboloZ(svg, 60, 206, 9, "F");
+t(66, 206, configuracion("1s2 *2s2 *2p5"));
+simboloZ(svg, 370, 206, 9, "F");
+t(370, 198, "−", { "font-size": 13 });
+t(384, 206, configuracion("1s2 *2s2 *2p6"));
+// Llave y compuesto iónico
+llave(svg, 540, 20, 220, { ancho: 12 });
+dibujarLewis(svg, 610, 120, { atomos: [
+    { s: "Na", x: 0, y: 0, pares: [90, 0, 270, 180], colorPares: ROJO, carga: "+", angCarga: 40 },
+    { s: "F", id: "F", x: 1.45, y: 0, pares: [90, 0, 270, { a: 180, colores: [VERDE, ROJO] }], colorPares: VERDE, forma: "aspa", carga: "−", angCarga: 40 },
+] });
+t(653, 190, "NaF", { "text-anchor": "middle", "font-weight": "bold" });
+</script>
+</body>
+</html>

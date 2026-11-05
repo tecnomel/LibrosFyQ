@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Masas atómicas relativas comparando átomos en una balanza</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="910" height="290"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    // balanza de dos platos equilibrada; izq y der: listas de [elemento, n]
+    function balanza(cx, izq, der, tIzq, tDer, pie) {
+        add('path', { d: `M${cx - 60} 250 L${cx + 60} 250 L${cx + 20} 228 L${cx - 20} 228 Z`, fill: '#5B2C6F' });
+        add('rect', { x: cx - 7, y: 95, width: 14, height: 135, fill: '#6C3483' });
+        add('rect', { x: cx - 150, y: 90, width: 300, height: 10, rx: 5, fill: '#6C3483' });
+        add('circle', { cx, cy: 95, r: 16, fill: '#2E86C1', stroke: '#1B4F72', 'stroke-width': 3 });
+        add('line', { x1: cx, y1: 95, x2: cx, y2: 82, stroke: '#fff', 'stroke-width': 3 });
+        [[-1, izq, tIzq], [1, der, tDer]].forEach(([s, at, t]) => {
+            const px = cx + s * 135;
+            add('line', { x1: px, y1: 100, x2: px, y2: 150, stroke: '#6C3483', 'stroke-width': 3 });
+            add('path', { d: `M${px - 70} 150 L${px + 70} 150 L${px + 55} 162 L${px - 55} 162 Z`, fill: '#8E44AD' });
+            const [el, n] = at, r = el === 'H' ? 7 : 13;
+            const fila = el === 'H' ? 6 : n, sep = 2 * r * 0.95;
+            for (let i = 0; i < n; i++) {
+                const k = i % fila, j = Math.floor(i / fila);
+                molecule(add, px - (Math.min(n, fila) - 1) * sep / 2 + k * sep, 150 - r - j * sep * 0.95, [[el, 0, 0]], r);
+            }
+            label(add, px, 40, t, { 'font-size': 17, fill: '#000070' });
+        });
+        label(add, cx, 280, '', { 'font-size': 15, fill: '#525252', 'font-weight': 600 }).innerHTML = pie;
+    }
+    balanza(225, ['O', 3], ['C', 4], '3 átomos de O', '4 átomos de C', '3 O pesan lo mismo que 4 C  ⇒  A<tspan baseline-shift="sub" font-size="70%">r</tspan>(O) = 4 · 12 / 3 = 16');
+    balanza(685, ['H', 12], ['C', 1], '12 átomos de H', '1 átomo de C', '12 H pesan lo mismo que 1 C  ⇒  A<tspan baseline-shift="sub" font-size="70%">r</tspan>(H) = 12 / 12 = 1');
+</script>
+</body>
+</html>

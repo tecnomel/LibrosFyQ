@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Escala de niveles de intensidad sonora</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="780" height="560"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const y = dB => 520 - dB * 3.4, x = 340;
+    // barra de colores (verde -> rojo)
+    const d = add('defs', {});
+    d.innerHTML = '<linearGradient id="g" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#58D68D"/><stop offset=".5" stop-color="#F4D03F"/><stop offset=".75" stop-color="#EB984E"/><stop offset="1" stop-color="#C0392B"/></linearGradient>';
+    add('rect', { x: x - 18, y: y(140), width: 36, height: y(0) - y(140), rx: 6, fill: 'url(#g)', stroke: '#7F8C8D' });
+    label(add, x, 26, 'Nivel de intensidad sonora (dB)', { fill: '#000070', 'font-size': 17 });
+    const items = [
+        [0, 'umbral de audición'], [10, 'respiración tranquila, hojas'], [20, 'susurro'], [35, 'biblioteca; recomendado en un aula'],
+        [50, 'conversación tranquila'], [65, 'máximo recomendado en la calle (OMS)'], [70, 'tráfico intenso'], [85, 'riesgo para el oído si dura horas'],
+        [100, 'moto sin silenciador, discoteca'], [110, 'concierto de rock'], [120, 'umbral del dolor'], [140, 'avión a reacción despegando cerca'],
+    ];
+    items.forEach(([dB, t], k) => {
+        const yy = y(dB), side = k % 2 ? 1 : -1;
+        add('line', { x1: x - 18, y1: yy, x2: x + 18, y2: yy, stroke: '#23373B', 'stroke-width': 1.5 });
+        label(add, x + side * 50, yy + 5, dB + ' dB', { 'font-size': 14, 'text-anchor': side > 0 ? 'start' : 'end', fill: dB >= 85 ? '#C0392B' : '#23373B' });
+        label(add, x + side * 110, yy + 5, t, { 'font-size': 14, 'font-weight': 600, 'text-anchor': side > 0 ? 'start' : 'end', fill: '#525252' });
+        add('line', { x1: x + side * 20, y1: yy, x2: x + side * 45, y2: yy, stroke: '#BDC3C7', 'stroke-width': 1 });
+    });
+    label(add, x, 550, 'Cada aumento de 10 dB corresponde a una intensidad física 10 veces mayor.', { 'font-size': 14, fill: '#23373B' });
+</script>
+</body>
+</html>

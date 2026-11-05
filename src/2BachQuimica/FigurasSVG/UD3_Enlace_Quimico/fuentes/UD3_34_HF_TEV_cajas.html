@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_34 · Formación del HF según la TEV (cajas)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/cajas.js"></script>
+</head>
+<body>
+<script>
+// El orbital 2pz semiocupado del F se solapa con el 1s del H.
+const svg = crearFigura(740, 190);
+const O = { caja: 26 };
+simboloZ(svg, 50, 62, 9, "F");
+dibujarCajas(svg, 58, 44, [{ etq: "1s", e: [2] }, { salto: 16 }, { etq: "2s", e: [2] }, { salto: 6 },
+    { etq: "2px", e: [2] }, { etq: "2py", e: [2] }, { etq: "2pz", e: [1] }], O);
+simboloZ(svg, 50, 152, 1, "H");
+dibujarCajas(svg, 58, 134, [{ etq: "1s", e: [{ n: 1, colores: ["#B5651D"] }], color: CAJA_OTRO }], O);
+llave(svg, 340, 22, 170, { ancho: 12 });
+texto(svg, 380, 106, "HF", { "font-size": 20, fill: COLORES.texto });
+dibujarCajas(svg, 420, 88, [{ etq: "1s", e: [2] }, { salto: 16 }, { etq: "2s", e: [2] }, { salto: 6 },
+    { etq: "2px", e: [2] }, { etq: "2py", e: [2] },
+    { etq: "2pz", e: [{ n: 2, colores: ["#1A1A2A", "#B5651D"] }], solapada: true, abajo: "+1s (H)" }], O);
+</script>
+</body>
+</html>

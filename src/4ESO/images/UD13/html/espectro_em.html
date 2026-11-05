@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El espectro electromagnético</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 980px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="940" height="410"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const X0 = 90, X1 = 900, F0 = 4, F1 = 22;          // escala logarítmica de frecuencias (10^4 a 10^22 Hz)
+    const xf = lf => X0 + (lf - F0) / (F1 - F0) * (X1 - X0);
+    const sup = (x, y, base, exp, o = {}) => { const t = label(add, x, y, '', Object.assign({ 'font-size': 13 }, o)); t.innerHTML = base + '<tspan baseline-shift="super" font-size="70%">' + exp + '</tspan>'; return t; };
+    rainbowGradient(add, 'rb');
+    const zones = [
+        [4, 9, 'ondas de radio', '#D4E6F1'], [9, 11.5, 'microondas', '#D1F2EB'], [11.5, 14.6, 'infrarrojo', '#FADBD8'],
+        [14.6, 14.9, '', 'url(#rb)'], [14.9, 16.9, 'ultravioleta', '#E8DAEF'], [16.9, 19.5, 'rayos X', '#D7DBDD'], [19.5, 22, 'rayos gamma', '#F9E79F'],
+    ];
+    const y0 = 60, h = 70;
+    zones.forEach(([a, b, t, c]) => {
+        add('rect', { x: xf(a), y: y0, width: xf(b) - xf(a), height: h, fill: c, stroke: '#FFFFFF', 'stroke-width': 1 });
+        if (t) label(add, (xf(a) + xf(b)) / 2, y0 + h / 2 + 5, t, { 'font-size': 14, fill: '#23373B' });
+    });
+    // onda cuya longitud de onda disminuye
+    let d = '', ph = 0;
+    for (let x = X0; x <= X1; x += 0.7) {
+        const lam = 120 * Math.pow(0.86, (x - X0) / 40);
+        ph += 2 * Math.PI * 0.7 / lam;
+        d += (x === X0 ? 'M' : ' L') + x.toFixed(1) + ' ' + (y0 - 28 - 14 * Math.sin(ph)).toFixed(1);
+    }
+    add('path', { d, fill: 'none', stroke: '#2E86C1', 'stroke-width': 1.6 });
+    // escala de frecuencias
+    const yf = y0 + h + 10;
+    add('line', { x1: X0, y1: yf, x2: X1, y2: yf, stroke: '#23373B', 'stroke-width': 1.5 });
+    for (let lf = 4; lf <= 22; lf += 2) {
+        add('line', { x1: xf(lf), y1: yf, x2: xf(lf), y2: yf + 6, stroke: '#23373B', 'stroke-width': 1.5 });
+        sup(xf(lf), yf + 22, '10', lf);
+        sup(xf(lf), yf + 48, lf <= 8 ? '3·10' : '3·10', 8 - lf, { fill: '#7D3C98' });
+    }
+    label(add, X0 - 22, yf + 22, 'f (Hz)', { 'font-size': 13, 'text-anchor': 'end', 'font-style': 'italic' });
+    label(add, X0 - 22, yf + 48, 'λ (m)', { 'font-size': 13, 'text-anchor': 'end', 'font-style': 'italic', fill: '#7D3C98' });
+    arrow(add, X0 + 200, yf + 72, X1 - 200, yf + 72, '#C0392B', 2.5);
+    label(add, (X0 + X1) / 2, yf + 92, 'mayor frecuencia, menor longitud de onda y mayor energía', { 'font-size': 14, fill: '#C0392B' });
+    // ampliación del visible
+    const vx0 = 260, vx1 = 640, vy = 330;
+    add('path', { d: `M${xf(14.6)} ${y0 + h} L${vx0} ${vy} M${xf(14.9)} ${y0 + h} L${vx1} ${vy}`, stroke: '#7F8C8D', 'stroke-width': 1, 'stroke-dasharray': '4 4', fill: 'none' });
+    const g = add('defs', {});
+    let st = ''; for (let wl = 700; wl >= 400; wl -= 10) st += `<stop offset="${(700 - wl) / 300}" stop-color="${wl2rgb(wl)}"/>`;
+    g.innerHTML = `<linearGradient id="vis" x1="0" x2="1">${st}</linearGradient>`;
+    add('rect', { x: vx0, y: vy, width: vx1 - vx0, height: 40, fill: 'url(#vis)' });
+    [700, 600, 500, 400].forEach(wl => {
+        const x = vx0 + (700 - wl) / 300 * (vx1 - vx0);
+        add('line', { x1: x, y1: vy + 40, x2: x, y2: vy + 46, stroke: '#23373B' });
+        label(add, x, vy + 62, wl + ' nm', { 'font-size': 13 });
+    });
+    label(add, (vx0 + vx1) / 2, vy - 8, 'luz visible (el único tramo que detectan nuestros ojos)', { 'font-size': 14, fill: '#23373B' });
+    label(add, vx0 - 10, vy + 26, 'rojo', { 'font-size': 13, 'text-anchor': 'end', fill: '#C0392B' });
+    label(add, vx1 + 10, vy + 26, 'violeta', { 'font-size': 13, 'text-anchor': 'start', fill: '#7D3C98' });
+</script>
+</body>
+</html>

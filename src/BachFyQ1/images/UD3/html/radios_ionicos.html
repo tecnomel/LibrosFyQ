@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Radio de los átomos y de sus iones</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>El catión es menor que el átomo</h2><svg id="a" width="360" height="210"></svg><div class="t">Al perder su último nivel, los electrones que quedan están más atraídos por el núcleo.</div></div>
+        <div class="card"><h2>El anión es mayor que el átomo</h2><svg id="b" width="360" height="210"></svg><div class="t">El electrón ganado aumenta la repulsión entre electrones: la nube se expande.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // radios en pm (escala 0,45 px/pm)
+    const k = 0.45;
+    function par(id, s1, r1, s2, r2, col1, col2) {
+        const A = svgAdder(id), y = 100;
+        bead(A, 100, y, r1 * k, col1); bead(A, 270, y, r2 * k, col2);
+        arrow(A, 100 + r1 * k + 8, y, 270 - r2 * k - 8, y, '#23373B', 2.5, 11);
+        label(A, 100, 195, '', { 'font-size': 15 }).innerHTML = s1 + ` (${r1} pm)`;
+        label(A, 270, 195, '', { 'font-size': 15 }).innerHTML = s2 + ` (${r2} pm)`;
+    }
+    const sup = s => `<tspan baseline-shift="super" font-size="70%">${s}</tspan>`;
+    par('a', 'Na', 186, 'Na' + sup('+'), 102, '#AF7AC5', '#AF7AC5');
+    par('b', 'Cl', 99, 'Cl' + sup('−'), 181, '#58D68D', '#58D68D');
+</script>
+</body>
+</html>

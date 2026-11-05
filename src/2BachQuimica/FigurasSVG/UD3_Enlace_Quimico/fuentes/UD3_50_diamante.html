@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_50 · Estructura del diamante</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/moleculas.js"></script>
+</head>
+<body>
+<script>
+// Diamante: cada C (hibridación sp3) se une a otros 4 formando tetraedros: red covalente
+// tridimensional muy dura.
+const svg = crearFigura(420, 400);
+const e3 = new Escena3D({ cx: 210, cy: 205, escala: 105, camara: [1, -0.62, 0.38] });
+const base = [[0, 0, 0], [0, 0.5, 0.5], [0.5, 0, 0.5], [0.5, 0.5, 0]];
+const at = [];
+for (let i = 0; i < 2; i++) for (let j = 0; j < 2; j++) for (let k = 0; k < 2; k++)
+    for (const b of base) for (const o of [[0, 0, 0], [0.25, 0.25, 0.25]]) at.push([i + b[0] + o[0], j + b[1] + o[1], k + b[2] + o[2]]);
+const C = [], uniq = new Set();
+for (const p of at) {
+    const key = p.map(v => v.toFixed(3)).join(",");
+    if (uniq.has(key) || p.some(v => v > 1.76)) continue;
+    uniq.add(key); C.push(p.map(v => v - 0.85));
+}
+const dnn = Math.sqrt(3) / 4;
+for (let i = 0; i < C.length; i++) for (let j = i + 1; j < C.length; j++)
+    if (Math.abs(longitud(resta(C[i], C[j])) - dnn) < 1e-3) e3.segmento(C[i], C[j], { color: "#666", ancho: 2.4, trozos: 4 });
+C.forEach(p => e3.bola(p, 0.055, "#8A8A8A", svg));
+e3.dibujar(svg);
+</script>
+</body>
+</html>

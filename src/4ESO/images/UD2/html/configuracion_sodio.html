@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Configuración electrónica del sodio</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="a" width="840" height="250"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('a');
+    const colors = { s: '#F5B7B1', p: '#F9E79F' };
+    // subnivel, n.º de electrones, x
+    const subs = [['1s', 2, 60], ['2s', 2, 200], ['2p', 6, 340], ['3s', 1, 600]];
+    const w = 44;
+    subs.forEach(([s, e, x]) => {
+        const k = s[1] === 's' ? 1 : 3;
+        for (let j = 0; j < k; j++) {
+            const bx = x + j * w;
+            add('rect', { x: bx, y: 70, width: w, height: 54, fill: colors[s[1]], stroke: '#5D6D7E', 'stroke-width': 1.5 });
+            const inBox = Math.min(2, e - 2 * j);
+            if (inBox >= 1) add('text', { x: bx + 14, y: 108, 'text-anchor': 'middle', 'font-size': 30, 'font-weight': 800, fill: '#2471A3' }, '↑');
+            if (inBox >= 2) add('text', { x: bx + 30, y: 108, 'text-anchor': 'middle', 'font-size': 30, 'font-weight': 800, fill: '#2471A3' }, '↓');
+        }
+        add('text', { x: x + k * w / 2, y: 150, 'text-anchor': 'middle', 'font-size': 20, 'font-weight': 800, fill: '#23373B' }, s);
+        add('text', { x: x + k * w / 2, y: 172, 'text-anchor': 'middle', 'font-size': 14, fill: '#525252' }, `${e} e⁻`);
+    });
+    add('text', { x: 20, y: 36, 'font-size': 18, 'font-weight': 800, fill: '#000070' }, 'Sodio, Z = 11  →  11 electrones');
+    const t = add('text', { x: 20, y: 218, 'font-size': 22, 'font-weight': 800, fill: '#C0392B' }, '');
+    t.innerHTML = 'Na: 1s<tspan baseline-shift="super" font-size="14">2</tspan> 2s<tspan baseline-shift="super" font-size="14">2</tspan> 2p<tspan baseline-shift="super" font-size="14">6</tspan> 3s<tspan baseline-shift="super" font-size="14">1</tspan>';
+    add('rect', { x: 585, y: 55, width: 75, height: 128, rx: 8, fill: 'none', stroke: '#1E8449', 'stroke-width': 3, 'stroke-dasharray': '6 4' });
+    add('text', { x: 680, y: 92, 'font-size': 15, 'font-weight': 800, fill: '#1E8449' }, 'electrón de');
+    add('text', { x: 680, y: 112, 'font-size': 15, 'font-weight': 800, fill: '#1E8449' }, 'valencia');
+    add('text', { x: 400, y: 218, 'font-size': 15, fill: '#525252' }, 'Cada casilla (orbital) admite como máximo 2 electrones.');
+</script>
+</body>
+</html>

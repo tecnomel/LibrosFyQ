@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_30 · Halogenación del benceno</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+const svg = crearFigura(620, 110);
+molecula(svg, "C1=CC=CC=C1", 60, 60);
+mas(svg, 125, 60); fq(svg, 165, 66, ["Cl2"]);
+flechaR(svg, 200, 60, 290, "AlCl3");
+molecula(svg, "ClC1=CC=CC=C1", 370, 55, { colores: { Cl: AZUL } });
+mas(svg, 460, 60); fq(svg, 505, 66, ["HCl"]);
+</script>
+</body>
+</html>

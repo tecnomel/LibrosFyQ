@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ley de gravitación universal y caída de la Luna</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Dos masas se atraen</h2><svg id="a" width="400" height="290"></svg>
+            <div class="t">Cada cuerpo atrae al otro con una fuerza del mismo módulo y dirección y de sentido contrario,<br>aplicada en su centro de gravedad: F = G · m · m′ / r².</div></div>
+        <div class="card"><h2>El cañón de Newton</h2><svg id="b" width="400" height="290"></svg>
+            <div class="t">Cuanto más rápido sale el proyectil, más lejos cae. Con la velocidad suficiente cae sin llegar nunca al suelo: está en órbita. Así «cae» la Luna.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // a) dos masas
+    {
+        const add = svgAdder('a'), y = 120, x1 = 80, x2 = 320;
+        bead(add, x1, y, 40, '#2E86C1'); bead(add, x2, y, 26, '#CA6F1E');
+        label(add, x1, y + 6, 'm', { fill: '#fff', 'font-size': 20, 'font-style': 'italic' });
+        label(add, x2, y + 6, 'm′', { fill: '#fff', 'font-size': 18, 'font-style': 'italic' });
+        arrow(add, x1 + 40, y, x1 + 110, y, '#C0392B', 3.5, 13); vlabel(add, x1 + 86, y - 18, 'F', '#C0392B', '1');
+        arrow(add, x2 - 26, y, x2 - 96, y, '#C0392B', 3.5, 13); vlabel(add, x2 - 70, y - 18, 'F', '#C0392B', '2');
+        // distancia entre centros
+        const yd = 200;
+        add('line', { x1, y1: y + 44, x2: x1, y2: yd + 8, stroke: '#7F8C8D', 'stroke-dasharray': '4 3' });
+        add('line', { x1: x2, y1: y + 30, x2, y2: yd + 8, stroke: '#7F8C8D', 'stroke-dasharray': '4 3' });
+        arrow(add, (x1 + x2) / 2, yd, x1, yd, '#23373B', 1.8, 10); arrow(add, (x1 + x2) / 2, yd, x2, yd, '#23373B', 1.8, 10);
+        label(add, (x1 + x2) / 2, yd - 8, 'r (distancia entre centros)', { 'font-size': 14 });
+        label(add, 200, 250, 'F₁ = F₂ = G · m · m′ / r²', { 'font-size': 17, fill: '#000070' });
+        label(add, 200, 276, 'G = 6,67 · 10⁻¹¹ N · m² / kg²', { 'font-size': 14, fill: '#525252' });
+    }
+    // b) cañón de Newton
+    {
+        const add = svgAdder('b'), cx = 200, cy = 150, R = 72;
+        const d = add('defs', {});
+        d.innerHTML = '<radialGradient id="tierra" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#AED6F1"/><stop offset=".6" stop-color="#2E86C1"/><stop offset="1" stop-color="#1B4F72"/></radialGradient>';
+        add('circle', { cx, cy, r: R, fill: 'url(#tierra)' });
+        add('path', { d: `M${cx - 45} ${cy - 25} q 22 -18 40 -4 q 11 18 -7 29 q -22 7 -33 -25 Z M${cx + 12} ${cy + 15} q 25 -7 33 11 q -7 22 -29 18 Z`, fill: '#58D68D', opacity: 0.85 });
+        label(add, cx, cy + 6, 'Tierra', { fill: '#fff', 'font-size': 15 });
+        // montaña con cañón
+        const top = cy - R - 38;
+        add('path', { d: `M${cx - 28} ${cy - R + 6} L${cx} ${top} L${cx + 28} ${cy - R + 6} Z`, fill: '#A04000' });
+        add('rect', { x: cx - 4, y: top - 7, width: 20, height: 8, rx: 2, fill: '#23373B' });
+        // trayectorias: parábolas cada vez más largas y, al final, la órbita circular
+        const cols = ['#C0392B', '#E67E22', '#B7950B'];
+        [0.55, 0.72, 0.85].forEach((f, i) => {
+            // elipse con apoastro en el cañón; integra numéricamente con g ~ 1/r^2
+            const r0 = R + 41, GM = 1;
+            let x = 0, y = r0, vx = f * Math.sqrt(GM / r0), vy = 0, pts = [];
+            const dt = 0.5;
+            for (let k = 0; k < 20000; k++) {
+                const r3 = Math.pow(x * x + y * y, 1.5);
+                vx -= GM * x / r3 * dt; vy -= GM * y / r3 * dt;
+                x += vx * dt; y += vy * dt;
+                if (Math.hypot(x, y) < R) break;
+                pts.push([cx + x, cy - y]);
+            }
+            add('path', { d: `M${cx + 12} ${top - 3} L` + pts.filter((p, j) => j % 20 === 0).map(p => p.join(' ')).join(' L'), fill: 'none', stroke: cols[i], 'stroke-width': 2.5, 'stroke-dasharray': '6 4' });
+        });
+        add('circle', { cx, cy, r: R + 41, fill: 'none', stroke: '#1E8449', 'stroke-width': 2.5 });
+        arcArrow(add, cx, cy, R + 41, 200, 160, '#1E8449', 2.5, 10);
+        label(add, cx - 150, cy + 4, 'órbita', { 'font-size': 14, fill: '#1E8449' });
+    }
+</script>
+</body>
+</html>

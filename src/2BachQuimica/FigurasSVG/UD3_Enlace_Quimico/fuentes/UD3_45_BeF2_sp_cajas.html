@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_45 · Hibridación sp del berilio (cajas)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/cajas.js"></script>
+</head>
+<body>
+<script>
+// Berilio: 2s + un orbital 2p -> 2 híbridos sp; quedan dos orbitales 2p vacíos.
+const svg = crearFigura(800, 80);
+const O = { caja: 24, hueco: 10 };
+const xs = [10];
+let x = dibujarCajas(svg, 10, 40, [{ etq: "1s", e: [2] }, { etq: "2s", e: [2] }, { etq: "2p", e: [0, 0, 0] }], O);
+flecha(svg, x + 8, 52, x + 48, 52, { punta: 9 });
+xs.push(x + 58); x = dibujarCajas(svg, x + 58, 40, [{ etq: "1s", e: [2] }, { etq: "2s", e: [1] }, { etq: "2p", e: [1, 0, 0] }], O);
+flecha(svg, x + 8, 52, x + 48, 52, { punta: 9 });
+xs.push(x + 58); xs.push(dibujarCajas(svg, x + 58, 40, [{ etq: "1s", e: [2] }, { etq: "2sp", e: [1, 1], color: CAJA_HIBRIDO }, { etq: "2p", e: [0, 0] }], O));
+["fundamental", "excitado", "hibridado"].forEach((t, i) => texto(svg, i < 2 ? (xs[i] + (i ? xs[2] : xs[1]) - 58) / 2 : (xs[2] + xs[3]) / 2, 12, t,
+    { "text-anchor": "middle", "font-size": 12, fill: COLORES.gris }));
+</script>
+</body>
+</html>

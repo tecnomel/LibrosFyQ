@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Refracción de la luz</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="860" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const deg = Math.PI / 180;
+    // recipiente con agua: x0, ancho 240; superficie en ys
+    const vessel = x0 => {
+        add('rect', { x: x0 + 10, y: 140, width: 220, height: 130, fill: '#AED6F1' });
+        add('line', { x1: x0 + 10, y1: 140, x2: x0 + 230, y2: 140, stroke: '#2E86C1', 'stroke-width': 2 });
+        add('path', { d: `M${x0 + 10} 60 L${x0 + 10} 270 L${x0 + 230} 270 L${x0 + 230} 60`, fill: 'none', stroke: '#5D6D7E', 'stroke-width': 3 });
+        label(add, x0 + 222, 130, 'aire (n₁ = 1,00)', { 'font-size': 13, fill: '#23373B', 'text-anchor': 'end' });
+        label(add, x0 + 222, 262, 'agua (n₂ = 1,33)', { 'font-size': 13, fill: '#23373B', 'text-anchor': 'end' });
+    };
+    const laser = (x, y, ang) => add('rect', { x: x - 22, y: y - 8, width: 44, height: 16, rx: 3, fill: '#5D6D7E', transform: `rotate(${ang} ${x} ${y})` });
+    // ---------- a) del aire al agua ----------
+    label(add, 130, 22, 'Del aire al agua', { fill: '#000070', 'font-size': 16 });
+    vessel(10);
+    let cx = 120, cy = 140, i = 45, r = Math.asin(Math.sin(i * deg) / 1.33) / deg;
+    dashed(add, cx, 50, cx, 265);
+    const s0 = [cx - 120 * Math.sin(i * deg), cy - 120 * Math.cos(i * deg)];
+    laser(s0[0] - 14, s0[1] - 14, 45);
+    ray(add, s0[0], s0[1], cx, cy, '#E74C3C');
+    ray(add, cx, cy, cx + 125 * Math.sin(r * deg), cy + 125 * Math.cos(r * deg), '#E74C3C', 2.5, 0.6);
+    angleArc(add, cx, cy, 44, 90, 90 + i, 'i', '#23373B', { dr: 12 });
+    angleArc(add, cx, cy, 44, 270, 270 + r, 'r', '#23373B', { dr: 12 });
+    label(add, 130, 300, 'se acerca a la normal', { 'font-size': 14, fill: '#23373B' });
+
+    // ---------- b) del agua al aire ----------
+    label(add, 420, 22, 'Del agua al aire', { fill: '#000070', 'font-size': 16 });
+    vessel(300);
+    cx = 410; i = 30; r = Math.asin(1.33 * Math.sin(i * deg)) / deg;
+    dashed(add, cx, 50, cx, 265);
+    const s1 = [cx - 115 * Math.sin(i * deg), cy + 115 * Math.cos(i * deg)];
+    laser(s1[0] - 8, s1[1] + 14, -60);
+    ray(add, s1[0], s1[1], cx, cy, '#E74C3C');
+    ray(add, cx, cy, cx + 110 * Math.sin(r * deg), cy - 110 * Math.cos(r * deg), '#E74C3C', 2.5, 0.6);
+    angleArc(add, cx, cy, 44, 270 - i, 270, 'i', '#23373B', { dr: 12 });
+    angleArc(add, cx, cy, 44, 90 - r, 90, 'r', '#23373B', { dr: 12 });
+    label(add, 420, 300, 'se aleja de la normal', { 'font-size': 14, fill: '#23373B' });
+
+    // ---------- c) lápiz que parece quebrado ----------
+    label(add, 720, 22, 'El lápiz «roto»', { fill: '#000070', 'font-size': 16 });
+    vessel(600);
+    const tip = [650, 60], hit = [700, 140], real = [780, 250], seen = [770, 210];
+    add('line', { x1: hit[0], y1: hit[1], x2: real[0], y2: real[1], stroke: '#E67E22', 'stroke-width': 8, opacity: 0.3, 'stroke-dasharray': '6 4' });
+    add('line', { x1: tip[0], y1: tip[1], x2: hit[0], y2: hit[1], stroke: '#E67E22', 'stroke-width': 8 });
+    add('line', { x1: hit[0], y1: hit[1], x2: seen[0], y2: seen[1], stroke: '#E67E22', 'stroke-width': 8 });
+    label(add, 812, 246, 'real', { 'font-size': 12, fill: '#A04000' });
+    label(add, 797, 200, 'aparente', { 'font-size': 12, fill: '#A04000' });
+    label(add, 720, 300, 'parece doblarse en la superficie', { 'font-size': 14, fill: '#23373B' });
+</script>
+</body>
+</html>

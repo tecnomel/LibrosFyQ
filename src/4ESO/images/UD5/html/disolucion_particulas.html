@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Disolución a nivel de partículas</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="920" height="260"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    function fillBeaker(x, seedA, nA, colA, seedB, nB, colB, clump) {
+        const lvl = beaker(add, x, 30, 170, 180, { fill: 0.8, color: '#F4F6F7' });
+        const P = []; let r = rng(seedA);
+        for (let k = 0; k < 5000 && P.length < nA; k++) {
+            const px = x + 14 + r() * 142, py = lvl + 10 + r() * (200 - lvl - 22);
+            if (P.every(([a, b]) => Math.hypot(a - px, b - py) > 15)) { P.push([px, py]); bead(add, px, py, 6.5, colA); }
+        }
+        if (clump) { // cristal de soluto en el fondo
+            for (let i = 0; i < 3; i++) for (let j = 0; j < 4; j++) bead(add, x + 60 + j * 14, 196 - i * 14, 6.5, colB);
+            return;
+        }
+        r = rng(seedB); const Q = [];
+        for (let k = 0; k < 5000 && Q.length < nB; k++) {
+            const px = x + 14 + r() * 142, py = lvl + 10 + r() * (200 - lvl - 22);
+            if (P.concat(Q).every(([a, b]) => Math.hypot(a - px, b - py) > 15)) { Q.push([px, py]); bead(add, px, py, 6.5, colB); }
+        }
+    }
+    fillBeaker(40, 2, 32, '#5DADE2', 0, 0, '#E74C3C', true);
+    fillBeaker(370, 6, 32, '#5DADE2', 8, 12, '#E74C3C', false);
+    arrow(add, 240, 120, 340, 120, '#23373B', 4, 15);
+    label(add, 290, 105, 'con el tiempo', { 'font-size': 14, fill: '#525252' });
+    label(add, 125, 240, 'soluto (cristal) + disolvente', { 'font-size': 15 });
+    label(add, 455, 240, 'disolución: mezcla uniforme', { 'font-size': 15 });
+    // leyenda
+    bead(add, 640, 90, 8, '#5DADE2'); label(add, 656, 95, 'partículas de disolvente (agua)', { 'font-size': 15, 'text-anchor': 'start' });
+    bead(add, 640, 130, 8, '#E74C3C'); label(add, 656, 135, 'partículas de soluto', { 'font-size': 15, 'text-anchor': 'start' });
+    label(add, 640, 175, 'Las partículas del disolvente', { 'font-size': 14, 'text-anchor': 'start', fill: '#525252' });
+    label(add, 640, 195, 'separan las del soluto y estas', { 'font-size': 14, 'text-anchor': 'start', fill: '#525252' });
+    label(add, 640, 215, 'quedan repartidas sin orden.', { 'font-size': 14, 'text-anchor': 'start', fill: '#525252' });
+</script>
+</body>
+</html>

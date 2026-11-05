@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Isótopos del hidrógeno</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } .card .t { font-size: 14px; } .leg { font-size: 14px; margin-top: 8px; text-align: center; color: #525252; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Protio, ¹H</h2><svg id="a" width="220" height="200"></svg><div class="t">1 protón · 0 neutrones<br>99,98&nbsp;%</div></div>
+        <div class="card"><h2>Deuterio, ²H</h2><svg id="b" width="220" height="200"></svg><div class="t">1 protón · 1 neutrón<br>0,02&nbsp;%</div></div>
+        <div class="card"><h2>Tritio, ³H</h2><svg id="c" width="220" height="200"></svg><div class="t">1 protón · 2 neutrones<br>trazas (radiactivo)</div></div>
+    </div>
+    <div class="leg"><svg width="560" height="26" id="l"></svg></div>
+</div>
+<script src="fig.js"></script>
+<script>
+    [['a', 0], ['b', 1], ['c', 2]].forEach(([id, nn], k) => {
+        const A = svgAdder(id);
+        A('circle', { cx: 110, cy: 100, r: 78, fill: 'none', stroke: '#85C1E9', 'stroke-width': 2, 'stroke-dasharray': '5 4' });
+        nucleus(A, 110, 100, 1, nn, 13, 3 + k);
+        bead(A, 110 + 78 * Math.cos(-0.8), 100 + 78 * Math.sin(-0.8), 9, '#2E86C1');
+    });
+    const L = svgAdder('l');
+    bead(L, 40, 13, 9, '#E74C3C'); label(L, 60, 18, 'protón', { 'text-anchor': 'start', 'font-size': 14, 'font-weight': 400 });
+    bead(L, 230, 13, 9, '#AAB7B8'); label(L, 250, 18, 'neutrón', { 'text-anchor': 'start', 'font-size': 14, 'font-weight': 400 });
+    bead(L, 420, 13, 7, '#2E86C1'); label(L, 440, 18, 'electrón', { 'text-anchor': 'start', 'font-size': 14, 'font-weight': 400 });
+</script>
+</body>
+</html>

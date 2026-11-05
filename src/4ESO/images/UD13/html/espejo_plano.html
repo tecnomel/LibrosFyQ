@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Imagen en un espejo plano</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 640px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="600" height="360"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const mx = 300, P = [150, 110], Pi = [450, 110], base = 300;
+    // espejo
+    add('rect', { x: mx, y: 50, width: 12, height: 280, fill: '#D5D8DC' });
+    for (let y = 56; y < 330; y += 12) add('line', { x1: mx + 2, y1: y + 8, x2: mx + 12, y2: y - 2, stroke: '#7F8C8D', 'stroke-width': 1 });
+    add('line', { x1: mx, y1: 50, x2: mx, y2: 330, stroke: '#2E86C1', 'stroke-width': 3 });
+    label(add, mx + 6, 40, 'espejo', { 'font-size': 14, fill: '#2E86C1' });
+    // objeto (lápiz) e imagen
+    add('line', { x1: P[0], y1: base, x2: P[0], y2: P[1] + 14, stroke: '#E67E22', 'stroke-width': 10 });
+    add('path', { d: `M${P[0] - 5} ${P[1] + 14} L${P[0]} ${P[1]} L${P[0] + 5} ${P[1] + 14} Z`, fill: '#784212' });
+    add('line', { x1: Pi[0], y1: base, x2: Pi[0], y2: Pi[1] + 14, stroke: '#E67E22', 'stroke-width': 10, opacity: 0.35, 'stroke-dasharray': '5 4' });
+    add('path', { d: `M${Pi[0] - 5} ${Pi[1] + 14} L${Pi[0]} ${Pi[1]} L${Pi[0] + 5} ${Pi[1] + 14} Z`, fill: '#784212', opacity: 0.35 });
+    label(add, P[0] - 16, P[1] + 4, 'P', { 'font-style': 'italic' });
+    label(add, Pi[0] + 18, Pi[1] + 4, "P'", { 'font-style': 'italic' });
+    label(add, P[0], base + 22, 'objeto', { 'font-size': 14, fill: '#784212' });
+    label(add, Pi[0], base + 22, 'imagen virtual', { 'font-size': 14, fill: '#784212' });
+    // dos rayos que salen de P, se reflejan, y cuyas prolongaciones se cortan en P'
+    [180, 235].forEach(my => {
+        const M = [mx, my];
+        ray(add, P[0], P[1], M[0], M[1], '#C0392B', 2.2);
+        const dx = M[0] - Pi[0], dy = M[1] - Pi[1], L = Math.hypot(dx, dy), k = 150 / L;
+        ray(add, M[0], M[1], M[0] + dx * k, M[1] + dy * k, '#C0392B', 2.2, 0.6);
+        dashed(add, M[0], M[1], Pi[0], Pi[1], '#C0392B', 1.5);
+    });
+    // distancias iguales
+    arrow(add, 225, 70, P[0], 70, '#23373B', 1.3, 7); arrow(add, 225, 70, mx, 70, '#23373B', 1.3, 7);
+    arrow(add, 375, 70, mx + 12, 70, '#23373B', 1.3, 7); arrow(add, 375, 70, Pi[0], 70, '#23373B', 1.3, 7);
+    label(add, 225, 62, 'd', { 'font-style': 'italic', 'font-size': 15 });
+    label(add, 380, 62, 'd', { 'font-style': 'italic', 'font-size': 15 });
+</script>
+</body>
+</html>

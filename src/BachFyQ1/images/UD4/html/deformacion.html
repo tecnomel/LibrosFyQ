@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Golpe a un cristal iónico y a un metal</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Cristal iónico: se rompe</h2><svg id="a" width="400" height="200"></svg><div class="t">Al desplazarse una capa, quedan enfrentados iones del mismo signo: se repelen y el cristal se parte.</div></div>
+        <div class="card"><h2>Metal: se deforma</h2><svg id="b" width="400" height="200"></svg><div class="t">Los cationes siguen rodeados por la nube de electrones: la capa se desliza sin que el metal se rompa.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const POS = '#E74C3C', NEG = '#3498DB', MET = '#C39BD3';
+    const r = 11, d = 25;
+    // Red de 4 filas x 5 columnas con origen (x0, y0); shift = desplazamiento (en celdas) de las dos filas de arriba
+    function ionica(A, x0, y0, shift) {
+        for (let i = 0; i < 4; i++) for (let j = 0; j < 5; j++) {
+            const s = i < 2 ? shift : 0;
+            const pos = (i + j) % 2 === 0;
+            ion(A, x0 + (j + s) * d, y0 + i * d + (i < 2 && shift ? -4 : 0), r, pos ? POS : NEG, pos ? '+' : '−');
+        }
+    }
+    function metal(A, x0, y0, shift) {
+        const w = 5 * d + 10;
+        add2(A, x0 - r - 6 + shift * d, y0 - r - 6, w + 2, 2 * d + 4);
+        add2(A, x0 - r - 6, y0 + 2 * d - r + 2, w + 2, 2 * d + 2);
+        for (let i = 0; i < 4; i++) for (let j = 0; j < 5; j++) {
+            const s = i < 2 ? shift : 0;
+            ion(A, x0 + (j + s) * d, y0 + i * d, r - 1, MET, '+');
+        }
+        const R = rng(7);
+        for (let k = 0; k < 40; k++) {
+            const i = Math.floor(R() * 4), j = R() * 4.6;
+            const s = i < 2 ? shift : 0;
+            A('circle', { cx: x0 + (j + s) * d + 12, cy: y0 + i * d + (R() - 0.5) * 8 + 12, r: 2.3, fill: '#1F3A93' });
+        }
+    }
+    function add2(A, x, y, w, h) { A('rect', { x, y, width: w, height: h, rx: 10, fill: '#D6EAF8', opacity: 0.9 }); }
+    function martillo(A, x, y) {
+        A('rect', { x: x - 16, y: y - 22, width: 32, height: 16, rx: 3, fill: '#7F8C8D' });
+        A('rect', { x: x - 3, y: y - 52, width: 6, height: 32, fill: '#A04000' });
+        arrow(A, x, y - 4, x, y + 10, '#C0392B', 2.5, 9);
+    }
+    // --- iónico
+    const A = svgAdder('a');
+    ionica(A, 28, 70, 0);
+    martillo(A, 40, 52);
+    arrow(A, 165, 110, 205, 110, '#23373B', 3, 12);
+    ionica(A, 238, 70, 1);
+    // flechas de repulsión entre filas 2 y 3
+    for (let j = 1; j < 5; j++) {
+        const x = 238 + j * d;
+        A('line', { x1: x, y1: 70 + d - 4 + r, x2: x, y2: 70 + 2 * d - r, stroke: '#C0392B', 'stroke-width': 1.6 });
+    }
+    label(A, 300, 182, '¡repulsión!', { fill: '#C0392B', 'font-size': 15 });
+    // --- metálico
+    const B = svgAdder('b');
+    metal(B, 30, 70, 0);
+    martillo(B, 42, 52);
+    arrow(B, 168, 110, 205, 110, '#23373B', 3, 12);
+    metal(B, 238, 70, 1);
+    label(B, 300, 182, 'sigue unido', { fill: '#1E8449', 'font-size': 15 });
+</script>
+</body>
+</html>

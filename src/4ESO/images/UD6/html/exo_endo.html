@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Diagramas de energía de reacciones exotérmicas y endotérmicas</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2 style="color:#C0392B">Reacción exotérmica</h2><svg id="a" width="380" height="250"></svg><div class="t">Los productos tienen menos energía que los reactivos: se desprende energía.</div></div>
+        <div class="card"><h2 style="color:#2471A3">Reacción endotérmica</h2><svg id="b" width="380" height="250"></svg><div class="t">Los productos tienen más energía que los reactivos: se absorbe energía.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    energyProfile(svgAdder('a'), { x0: 40, y0: 215, w: 220, h: 180, r: 0.45, p: 0.1, peak: 0.85, de: 'energía desprendida' });
+    energyProfile(svgAdder('b'), { x0: 40, y0: 215, w: 220, h: 180, r: 0.1, p: 0.5, peak: 0.85, de: 'energía absorbida' });
+</script>
+</body>
+</html>

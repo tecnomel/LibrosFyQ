@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- Mapa conceptual de un tema. Se elige con ?tema=UD1 (datos en temas.js; dibujo en mapa.js).
+     Exportar con render.sh (PDF vectorial en images/mapas_conceptuales/mapa_UDn.pdf). -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Mapa conceptual</title>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { font-family: "Segoe UI", Arial, Helvetica, sans-serif; color: #23373B; }
+    .canvas { position: relative; display: inline-block; width: 760px; padding: 10px 8px 12px; }
+    .canvas > svg { position: absolute; left: 0; top: 0; }
+    .fila-raiz { display: flex; justify-content: center; position: relative; z-index: 1; }
+    .raiz { background: var(--c); color: #fff; font-weight: 700; font-size: 20px; padding: 9px 26px;
+            border-radius: 12px; text-align: center; max-width: 640px; }
+    .ramas { display: flex; gap: 10px; align-items: flex-start; }
+    .col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; }
+    .banda { height: 58px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 12px; }
+    .enlace, .sub span { position: relative; z-index: 1; background: #fff; font-style: italic; font-size: 13px;
+            color: #4A4F55; line-height: 1.15; text-align: center; padding: 1px 3px; }
+    .rama { position: relative; z-index: 1; background: var(--c-soft); border: 2px solid var(--c); border-radius: 10px;
+            font-weight: 700; font-size: 15px; line-height: 1.2; text-align: center; padding: 6px 6px; color: #1d2a2d; }
+    .sub { min-height: 10px; padding: 3px 0 3px 17px; }
+    .sub:empty { height: 10px; }
+    .hijo { position: relative; z-index: 1; margin: 0 0 6px 17px; background: #fff; border: 1.5px solid #B8BEC6;
+            border-radius: 8px; font-size: 13.5px; line-height: 1.2; padding: 4px 5px; text-align: left; hyphens: manual; }
+    .hijo i { font-family: Cambria, "Times New Roman", serif; font-size: 108%; }
+    .m { white-space: nowrap; }
+    .hijo b { color: var(--c); }
+</style>
+</head>
+<body>
+<script src="temas.js"></script>
+<script src="mapa.js"></script>
+</body>
+</html>

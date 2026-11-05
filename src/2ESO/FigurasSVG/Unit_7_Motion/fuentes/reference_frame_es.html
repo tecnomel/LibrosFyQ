@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El movimiento es relativo</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .row { display: flex; gap: 20px; margin-top: 10px; }
+    .c { flex: 1; border-radius: 14px; padding: 10px 14px; font-size: 17px; border: 2px solid; }
+    .a { border-color: var(--green); background: var(--green-soft); }
+    .b { border-color: var(--red); background: var(--red-soft); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>El movimiento es relativo: depende del sistema de referencia</h1>
+    <svg width="1090" height="300" viewBox="0 0 1090 300">
+        <defs><marker id="m" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#C0392B"/></marker></defs>
+        <!-- andén -->
+        <rect x="0" y="250" width="1090" height="50" fill="#D5D8DC"/>
+        <rect x="0" y="240" width="1090" height="10" fill="#7F8C8D"/>
+        <!-- tren -->
+        <rect x="240" y="80" width="560" height="150" rx="24" fill="#2471A3"/>
+        <rect x="770" y="100" width="60" height="100" rx="20" fill="#1B4F72"/>
+        <g fill="#D6EAF8"><rect x="280" y="105" width="100" height="70" rx="8"/><rect x="410" y="105" width="100" height="70" rx="8"/><rect x="540" y="105" width="100" height="70" rx="8"/><rect x="670" y="105" width="80" height="70" rx="8"/></g>
+        <g fill="#1B2631"><circle cx="320" cy="235" r="18"/><circle cx="420" cy="235" r="18"/><circle cx="620" cy="235" r="18"/><circle cx="720" cy="235" r="18"/></g>
+        <!-- pasajero -->
+        <text x="440" y="165" font-size="54">🧑</text>
+        <!-- persona en el andén -->
+        <text x="80" y="235" font-size="80">🧍</text>
+        <!-- flecha de movimiento -->
+        <line x1="600" y1="50" x2="820" y2="50" stroke="#C0392B" stroke-width="6" marker-end="url(#m)"/>
+        <text x="600" y="38" font-size="20" font-weight="800" fill="#C0392B">el tren se mueve</text>
+        <!-- rótulos -->
+        <text x="410" y="70" font-size="17" font-weight="700" fill="#1E8449">pasajero</text>
+        <text x="40" y="130" font-size="17" font-weight="700" fill="#7D3C98">persona en</text><text x="40" y="150" font-size="17" font-weight="700" fill="#7D3C98">el andén</text>
+    </svg>
+    <div class="row">
+        <div class="c a"><b>Para la persona del andén</b> (sistema de referencia: la estación), el pasajero <b>se mueve</b>: su posición cambia.</div>
+        <div class="c b"><b>Para otro pasajero</b> (sistema de referencia: el tren), el pasajero <b>está en reposo</b>: su posición no cambia.</div>
+    </div>
+</div>
+</body>
+</html>

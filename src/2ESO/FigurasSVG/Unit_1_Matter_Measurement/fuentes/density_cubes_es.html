@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Densidad</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 900px; }
+    .row { display: flex; gap: 34px; align-items: center; justify-content: center; }
+    .cube { text-align: center; }
+    .cube .box { width: 200px; height: 200px; border: 4px solid var(--teal); border-radius: 8px; position: relative; margin: 0 auto; }
+    .cube .box span { position: absolute; width: 14px; height: 14px; border-radius: 50%; }
+    .al .box { background: #EEF1F4; } .al .box span { background: #95A5A6; }
+    .fe .box { background: #E9E4E0; } .fe .box span { background: #5D4037; }
+    .cube .name { font-size: 22px; font-weight: 800; margin-top: 8px; }
+    .cube .data { font-size: 18px; }
+    .cube .d { font-size: 22px; font-weight: 800; color: var(--red); margin-top: 4px; }
+    .msg { margin-top: 18px; font-size: 19px; text-align: center; }
+    .msg b { color: var(--blue); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Densidad: cuánta masa hay en cada cm<sup>3</sup></h1>
+    <div class="row">
+        <div class="cube al"><div class="box" id="al"></div><div class="name">Aluminio</div><div class="data">m = 270 g · V = 100 cm<sup>3</sup></div><div class="d">d = 2,70 g/cm<sup>3</sup></div></div>
+        <div class="cube fe"><div class="box" id="fe"></div><div class="name">Hierro</div><div class="data">m = 789 g · V = 100 cm<sup>3</sup></div><div class="d">d = 7,89 g/cm<sup>3</sup></div></div>
+    </div>
+    <div class="msg">Mismo volumen, pero el hierro tiene <b>más masa en cada cm<sup>3</sup></b>: el hierro es <b>más denso</b> que el aluminio.</div>
+</div>
+<script>
+    // particles: iron is packed more tightly than aluminium
+    function fill(id, step) {
+        const box = document.getElementById(id);
+        const n = Math.floor(170 / step) + 1, off = (192 - (n - 1) * step - 14) / 2;
+        for (let i = 0; i < n; i++)
+            for (let j = 0; j < n; j++) {
+                const s = document.createElement('span');
+                s.style.left = (off + i * step) + 'px'; s.style.top = (off + j * step) + 'px';
+                box.appendChild(s);
+            }
+    }
+    fill('al', 34);
+    fill('fe', 19);
+</script>
+</body>
+</html>

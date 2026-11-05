@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Clasificación de las sustancias inorgánicas</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1120px; }
+    .top { text-align: center; margin-bottom: 8px; }
+    .top span { display: inline-block; padding: 8px 26px; border-radius: 12px; background: #00838F; color: #fff; font-size: 21px; font-weight: 700; }
+    .cols { display: flex; gap: 12px; align-items: stretch; }
+    .col { flex: 1; border: 2px solid var(--line); border-radius: 14px; background: #FBFCFC; padding: 10px 10px 12px; }
+    .col h2 { text-align: center; font-size: 19px; margin-bottom: 2px; }
+    .col .sub { text-align: center; font-size: 14px; color: var(--grey); margin-bottom: 8px; }
+    .item { border-radius: 9px; padding: 6px 8px; margin-top: 7px; font-size: 15px; }
+    .item b { display: block; font-size: 16px; }
+    .item .ej { color: #C0392B; font-weight: 600; }
+    .c1 { border-color: #7FB3D5; } .c1 h2 { color: #1F618D; } .c1 .item { background: #E3EEF9; }
+    .c2 { border-color: #F0B27A; } .c2 h2 { color: #B9580F; } .c2 .item { background: #FDEBD9; }
+    .c3 { border-color: #82C99A; } .c3 h2 { color: #1E8449; } .c3 .item { background: #E2F3E7; }
+    .c4 { border-color: #BB8FCE; } .c4 h2 { color: #6C3483; } .c4 .item { background: #F1E6F7; }
+    .c5 { border-color: #AAB7B8; } .c5 h2 { color: #424949; } .c5 .item { background: #EEF0F0; }
+    svg.links { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="top"><span>Sustancias inorgánicas</span></div>
+    <svg class="links" width="1076" height="26">
+        <path d="M538 0 V10 M108 10 H968 M108 10 V26 M323 10 V26 M538 10 V26 M753 10 V26 M968 10 V26" stroke="#00838F" stroke-width="2.5" fill="none"/>
+    </svg>
+    <div class="cols">
+        <div class="col c1"><h2>Simples</h2><div class="sub">un solo elemento</div>
+            <div class="item"><b>Metales y gases nobles</b>como átomos o redes <span class="ej">Fe, Cu, He</span></div>
+            <div class="item"><b>No metales</b>moléculas o redes <span class="ej">O₂, O₃, P₄, S₈, C</span></div>
+        </div>
+        <div class="col c2"><h2>Binarias</h2><div class="sub">dos elementos</div>
+            <div class="item"><b>Con hidrógeno</b>hidruros metálicos <span class="ej">NaH</span>; de no metales <span class="ej">HCl, H₂S, NH₃</span></div>
+            <div class="item"><b>Con oxígeno</b>óxidos <span class="ej">CO₂, Fe₂O₃</span>; peróxidos <span class="ej">H₂O₂, Na₂O₂</span></div>
+            <div class="item"><b>Otras</b>sales binarias <span class="ej">NaCl, FeS</span>; entre no metales <span class="ej">PCl₅, OF₂</span></div>
+        </div>
+        <div class="col c3"><h2>Ternarias</h2><div class="sub">tres elementos</div>
+            <div class="item"><b>Hidróxidos</b>metal + OH⁻ <span class="ej">NaOH, Fe(OH)₃</span></div>
+            <div class="item"><b>Oxoácidos</b>H + O + X <span class="ej">H₂SO₄, HNO₃</span></div>
+            <div class="item"><b>Oxosales</b>catión + oxoanión <span class="ej">CaCO₃, KMnO₄</span></div>
+        </div>
+        <div class="col c4"><h2>Cuaternarias</h2><div class="sub">cuatro elementos</div>
+            <div class="item"><b>Sales ácidas</b>con oxoaniones ácidos <span class="ej">NaHCO₃, KH₂PO₄</span></div>
+            <div class="item"><b>Sales hidratadas</b>con agua en su estructura <span class="ej">CuSO₄ · 5H₂O</span></div>
+            <div class="item"><b>Oxosales de amonio</b><span class="ej">(NH₄)₂SO₄, NH₄ClO₄</span></div>
+        </div>
+        <div class="col c5"><h2>Iones</h2><div class="sub">especies con carga</div>
+            <div class="item"><b>Cationes</b>monoatómicos <span class="ej">Fe³⁺</span>; poliatómicos <span class="ej">NH₄⁺, H₃O⁺</span></div>
+            <div class="item"><b>Aniones</b>monoatómicos <span class="ej">Cl⁻, S²⁻</span>; poliatómicos <span class="ej">OH⁻, O₂²⁻</span></div>
+            <div class="item"><b>Oxoaniones</b><span class="ej">SO₄²⁻, HCO₃⁻</span></div>
+        </div>
+    </div>
+</div>
+<script src="fig.js"></script>
+</body>
+</html>

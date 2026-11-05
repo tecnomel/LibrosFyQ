@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>De la velocidad media a la instantánea</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 840px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="800" height="320"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    axes(add, 40, 295, 440, 280);
+    // trayectoria: arco de parábola
+    const f = t => [80 + 360 * t, 230 - 330 * t + 210 * t * t];
+    curve(add, f, 0, 1, '#1E8449', 3);
+    label(add, 440, 92, 'trayectoria', { 'font-size': 14, fill: '#1E8449' });
+    const t0 = 0.12, P0 = f(t0);
+    const ts = [0.95, 0.7, 0.45];
+    const cols = ['#A9CCE3', '#5DADE2', '#2471A3'];
+    ts.forEach((t, i) => {
+        const P = f(t);
+        arrow(add, P0[0], P0[1], P[0], P[1], cols[i], 2.5, 11);
+        dot(add, P[0], P[1], cols[i]);
+        label(add, P[0] + 6, P[1] + 22, 'P' + '₁₂₃'[i], { 'font-size': 14, fill: cols[i] });
+    });
+    // tangente en P0
+    const d = [360, -330 + 420 * t0], L = Math.hypot(...d);
+    dashed(add, P0[0] - 60 * d[0] / L, P0[1] - 60 * d[1] / L, P0[0] + 230 * d[0] / L, P0[1] + 230 * d[1] / L, '#C0392B', 1.5);
+    arrow(add, P0[0], P0[1], P0[0] + 120 * d[0] / L, P0[1] + 120 * d[1] / L, '#C0392B', 4, 14);
+    vlab(add, P0[0] + 80 * d[0] / L - 18, P0[1] + 80 * d[1] / L - 8, 'v', '', '#C0392B');
+    dot(add, P0[0], P0[1], '#23373B', 5.5); label(add, P0[0] - 4, P0[1] + 24, 'P₀', { 'font-size': 14 });
+    arrow(add, 40, 295, P0[0], P0[1], '#7F8C8D', 2, 10); vlab(add, 58, 250, 'r', '0', '#7F8C8D', 15);
+    vlab(add, 360, 195, 'Δr', '', '#2471A3', 16);
+    const t = ['Al hacer Δt cada vez menor, el punto final', 'se acerca a P₀ (P₁, P₂, P₃…) y el vector', 'desplazamiento Δr se va inclinando hasta', 'quedar sobre la tangente a la trayectoria.', '', 'En el límite (Δt → 0), la velocidad media', 'se convierte en la velocidad instantánea,', 'tangente a la trayectoria en P₀.'];
+    t.forEach((s, i) => label(add, 500, 70 + i * 23, s, { 'font-size': 14, fill: i < 4 ? '#2471A3' : '#C0392B', 'text-anchor': 'start', 'font-weight': 600 }));
+</script>
+</body>
+</html>

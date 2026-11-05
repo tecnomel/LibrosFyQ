@@ -1,0 +1,310 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[english,spanish,es-tabla ]{babel}
+\usepackage[top=0.5cm, left=0.5cm, right=0.5cm, bottom=0.5cm]{geometry}
+\usepackage{mystyle_2}
+\usepackage{mycolours}
+\usepackage{mytcolorbox}
+\usepackage{mycommands}
+\usepackage{microtype}
+\usepackage[all]{chemmacros}
+
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{tabularray}
+\UseTblrLibrary{siunitx}
+\newcommand{\acu}{{(aq)}}
+
+\begin{document}
+
+\DefTblrTemplate{contfoot-text}{normal}{Continúa en la siguiente página}
+\SetTblrTemplate{contfoot-text}{normal}
+\DefTblrTemplate{conthead-text}{normal}{(Continuación)}
+\SetTblrTemplate{conthead-text}{normal}
+
+
+
+    % \begin{longtblr}[caption=Oxosales]{hlines,vlines, colspec={Q[c,m] Q[c,m, 2cm] Q[c,m,7cm] Q[c,m,7cm]}, rowsep=5pt, rowhead=1}
+    %     \SetRow{gray!50} nº  & Fórmula  & Tradicional  & Adición  \\
+    %     1 & \ch{NaClO}  &\rojo{}  &\rojo{} \\
+    %     2 & \ch{NaClO2}  & \rojo{}  &\rojo{} \\
+    %     3 & \ch{NaClO3}  & \rojo{}  &\rojo{} \\
+    %     4 & \ch{Cu3(PO4)2}  & \rojo{}  &\rojo{} \\
+    %     5 & \ch{Al2(SO4)3}  & \rojo{}  & \rojo{}\\
+    %     6 & \ch{(NH4)2SO4}  &  \rojo{} &\rojo{} \\
+    %     7 & \ch{KCN}  & \rojo{}  &\rojo{} \\
+    %     8 & \ch{Na2SO4}  & \rojo{}  &\rojo{} \\
+    %     9 & \ch{NaNO2}  & \rojo{}  &\rojo{} \\
+    %     10 & \ch{K2Cr2O7}  &\rojo{}   &\rojo{} \\
+    %     11 & \ch{Na2SO4}  & \rojo{}  &\rojo{} \\
+    %     12 & \ch{CaCO2}  & \rojo{}  &\rojo{} \\
+    %     13 & \ch{FeCrO4}  & \rojo{}  &\rojo{} \\
+    %     14 & \ch{HgSO3}  &  \rojo{} & \rojo{}\\
+    %     15 & \ch{Mn(ClO)2}  &  \rojo{} & \rojo{}\\
+    %     16 & \ch{Au2(SiO3)3}  &  \rojo{} &\rojo{} \\
+    %     17 & \ch{Zn(PO3)2}  & \rojo{}  &\rojo{} \\
+    %     18 & \ch{NaClO3}  & \rojo{}  &\rojo{} \\
+    %     19 & \ch{Fe(NO3)2}  & \rojo{}  &\rojo{} \\
+    %     20 & \ch{KClO}  & \rojo{}  &\rojo{} \\
+    %     21 & \ch{MgSO4}  & \rojo{}  &\rojo{} \\
+    %     22 & \ch{Sn(BrO2)2}  & \rojo{}  &\rojo{} \\
+    %     23 & \ch{CaCO3}  & \rojo{}  &\rojo{} \\
+    %     24 & \ch{K2TeO2}  & \rojo{}  & \rojo{}\\
+    %     25 & \ch{RbIO4}  & \rojo{}  & \rojo{}\\
+    %     26 & \ch{NiSO3}  & \rojo{}  &\rojo{} \\
+    %     27 & \ch{LiNO2}  &  \rojo{} & \rojo{}\\
+    %     28 & \ch{CoSeO4}  &  \rojo{} &\rojo{} \\
+    %     29 & \ch{(NH4)2SO4}  &  \rojo{} &\rojo{} \\
+    %     30 & \ch{Zn(BrO3)2}  & \rojo{}  & \rojo{}\\
+    %     31 & \ch{Fe(BrO2)3}  & \rojo{}  &\rojo{} \\
+    %     32 & \ch{CuNO3}  & \rojo{}  &\rojo{} \\
+    %     33 & \ch{Cs2CO3}  & \rojo{}  & \rojo{}\\
+    %     34 & \ch{KClO4}  &  \rojo{} &\rojo{} \\
+    %     35 & \ch{Cd(NO2)2}  &  \rojo{} &\rojo{} \\
+    %     36 & \ch{Cu(NO3)2}  &  \rojo{} & \rojo{}\\
+    %     37 & \ch{CuClO2}  &  \rojo{} &\rojo{} \\
+    %     38 & \ch{Hg2SO4}  &  \rojo{} &\rojo{} \\
+    %     39 & \ch{Pb(SO4)2}  &  \rojo{} &\rojo{} \\
+    %     40 & \ch{Fe(HSO4)2}  &  \rojo{} &\rojo{} \\
+    %     41 & \ch{Fe(HSO4)3}  & \rojo{}  &\rojo{} \\
+    %     42 & \ch{Ca(HCO3)2}  &  \rojo{} & \rojo{}\\
+    %     43 & \ch{Cu(H2PO4)2}  &  \rojo{} & \rojo{}\\
+    %     44 & \ch{Ca(HSO3)2}  & \rojo{}  &\rojo{} \\
+    %     45 & \ch{NaHSO4}  &  \rojo{} & \rojo{}\\
+    %     46 & \ch{K2HPO4}  &  \rojo{} & \rojo{}\\
+    %     47 & \ch{NaHCO3}  & \rojo{}  & \rojo{}\\
+    %     48 & \ch{Fe(HSO4)3}  & \rojo{} & \rojo{}\\
+    %     49 & \ch{Ca(HSO4)3}  & \rojo{}  & \rojo{}\\
+    %     50 & \ch{Ca(H2PO4)2}  &  \rojo{} &\rojo{} \\
+    %     51 & \ch{K2HPO4}  &  \rojo{} &\rojo{} \\
+    %     52 & \ch{Fe(HSO3)2}  &  \rojo{} &\rojo{} \\
+    %     53 & \ch{AgHSO4}  &  \rojo{} &\rojo{} \\
+    %     54 & \ch{Ba(HSeO3)2}  &  \rojo{} & \rojo{}\\ 
+    %     55 & \rojo{\ch{}}  &  cromato de cinc (II) &\rojo{} \\
+    %     56 & \rojo{\ch{}}  &  permanganato de hierro (III) &\rojo{} \\
+    %     57 & \rojo{\ch{}}  &  carbonato de calcio &\rojo{} \\
+    %     58 & \rojo{\ch{}}  & nitrato de cobalto (II)  &\rojo{} \\
+    %     59 & \rojo{\ch{}}  &  silicato de potasio &\rojo{} \\
+    %     60 & \rojo{\ch{}}  &  metaborato de rubidio &\rojo{} \\
+    %     61 & \rojo{\ch{}}  &  perbromato de litio &\rojo{} \\
+    %     62 & \rojo{\ch{}}  &  bromato de cobalto (III) &\rojo{} \\
+    %     63 & \rojo{\ch{}}  &  peryodato de niquel (II) &\rojo{} \\
+    %     64 & \rojo{\ch{}}  &  bromato de cobalto (III) &\rojo{} \\
+    %     65 & \rojo{\ch{}}  &  peryodato de niquel (II) &\rojo{} \\
+    %     66 & \rojo{\ch{}}  &  manganato de cesio &\rojo{} \\
+    %     67 & \rojo{\ch{}}  &  cromato de cinc (II) &\rojo{} \\
+    %     68 & \rojo{\ch{}}  &  permanganato de hierro (III) &\rojo{} \\
+    %     69 & \rojo{\ch{}}  &  carbonato de calcio &\rojo{} \\
+    %     70 & \rojo{\ch{}}  &  peryoato de mercurio (II) &\rojo{} \\
+    %     71 & \rojo{\ch{}}  &  carbonato de potasio &\rojo{} \\
+    %     72 & \rojo{\ch{}}  &  hipoclorito de cinc &\rojo{} \\
+    %     73 & \rojo{\ch{}}  &  yodato de oro (III) &\rojo{} \\
+    %     74 & \rojo{\ch{}}  &  perbromato de plata &\rojo{} \\
+    %     75 & \rojo{\ch{}}  &  hiposulfito de bario &\rojo{} \\
+    %     76 & \rojo{\ch{}}  &  carbonato de estroncio &\rojo{} \\
+    %     77 & \rojo{\ch{}}  &  clorato de cobalto (II) &\rojo{} \\
+    %     78 & \rojo{\ch{}}  &  nitrito de sodio &\rojo{} \\
+    %     79 & \rojo{\ch{}}  &  sulfato de aluminio &\rojo{} \\
+    %     80 & \rojo{\ch{}}  &  perclorato de cadmio &\rojo{} \\
+    %     81 & \rojo{\ch{}}  &  nitrato de amonio &\rojo{} \\
+    %     82 & \rojo{\ch{}}  &  seleniato de hierro (II) &\rojo{} \\
+    %     83 & \rojo{\ch{}}  &  bromato de ocbre (II) &\rojo{} \\
+    %     84 & \rojo{\ch{}}  &  hipoyodito de litio &\rojo{} \\
+    %     85 & \rojo{\ch{}}  &  sulfito de níquel (III) &\rojo{} \\
+    %     86 & \rojo{\ch{}}  &  bromito de cobre (II) &\rojo{} \\
+    %     87 & \rojo{\ch{}}  &  seleniato de calcio &\rojo{} \\
+    %     88 & \rojo{\ch{}}  &  hiponitrtito de estaño (II) &\rojo{} \\
+    %     89 & \rojo{\ch{}}  &  sulfato de plomo (IV) &\rojo{} \\
+    % \end{longtblr}
+    \begin{landscape}
+
+
+
+        \begin{longtblr}[caption=Oxoácidos]{hlines,vlines, colspec={Q[c,m] Q[c,m, 2cm] Q[c,m,7cm] Q[c,m,7cm]}, rowsep=5pt, rowhead=1}
+            \SetRow{gray!50} nº  & Fórmula  & Tradicional  & Adición  \\
+            1 & \ch{NaClO}  &  &\rojo{} \\
+            2 & \ch{NaClO2}  &   &\rojo{} \\
+            3 & \ch{NaClO3}  &   &\rojo{} \\
+            4 & \ch{Cu3(PO4)2}  &   &\rojo{} \\
+            5 & \ch{Al2(SO4)3}  &   & \rojo{}\\
+            6 & \ch{(NH4)2SO4}  &   &\rojo{} \\
+            7 & \ch{KCO3}  &   &\rojo{} \\
+            8 & \ch{Na2SO4}  &   &\rojo{} \\
+            9 & \ch{NaNO2}  &   &\rojo{} \\
+            10 & \ch{K2Cr2O7}  &   &\rojo{} \\
+            11 & \ch{Na2SO4}  &  &\rojo{} \\
+            12 & \ch{CaCO2}  &   &\rojo{} \\
+            13 & \ch{FeCrO4}  &  &\rojo{} \\
+            14 & \ch{HgSO3}  &  & \rojo{}\\
+            15 & \ch{Mn(ClO)2}  &   & \rojo{}\\
+            16 & \ch{Au2(SiO3)3}  &   &\rojo{} \\
+            17 & \ch{Zn(PO3)2}  &  &\rojo{} \\
+            18 & \ch{NaClO3}  &  &\rojo{} \\
+            35 & \ch{Fe(NO3)2}  &   &\rojo{} \\
+            36 & \ch{KClO}  &  &\rojo{} \\
+            37 & \ch{MgSO4}  &  &\rojo{} \\
+            38 & \ch{Sn(BrO2)2}  &   &\rojo{} \\
+            39 & \ch{CaCO3}  &  &\rojo{} \\
+            40 & \ch{K2TeO2}  &  & \rojo{}\\
+            41 & \ch{RbIO4}  & & \rojo{}\\
+            42 & \ch{NiSO3}  &   &\rojo{} \\
+            43 & \ch{LiNO2}  &   & \rojo{}\\
+            44 & \ch{CoSeO4}  &   &\rojo{} \\
+            45 & \ch{(NH4)2SO4}  &  &\rojo{} \\
+            46 & \ch{Zn(BrO3)2}  &  & \rojo{}\\
+            47 & \ch{Fe(BrO2)3}  &  &\rojo{} \\
+            48 & \ch{CuNO3}  &  &\rojo{} \\
+            49 & \ch{Cs2CO3}  &  & \rojo{}\\
+            50 & \ch{KClO4}  &  &\rojo{} \\
+            51 & \ch{Cd(NO2)2}  &   &\rojo{} \\
+            52 & \ch{Cu(NO3)2}  &   & \rojo{}\\
+            53 & \ch{CuClO2}  &   &\rojo{} \\
+            54 & \ch{Hg2SO4}  &  &\rojo{} \\
+            55 & \ch{Pb(SO4)2}  &   &\rojo{} \\
+            56 & \ch{Fe(HSO4)2}  &   &\rojo{} \\
+            57 & \ch{Fe(HSO4)3}  &   &\rojo{} \\
+            58 & \ch{Ca(HCO3)2}  &   & \rojo{}\\
+            59 & \ch{Cu(H2PO4)2}  &   & \rojo{}\\
+            60 & \ch{Ca(HSO3)2}  &   &\rojo{} \\
+            61 & \ch{NaHSO4}  &   & \rojo{}\\
+            62 & \ch{K2HPO4}  &   & \rojo{}\\
+            63 & \ch{NaHCO3}  & & \rojo{}\\
+            64 & \ch{Fe(HSO4)3}  &  & \rojo{}\\
+            65 & \ch{Ca(HSO4)3}  &   & \rojo{}\\
+            66 & \ch{Ca(H2PO4)2}  &   &\rojo{} \\
+            67 & \ch{K2HPO4}  &   &\rojo{} \\
+            68 & \ch{Fe(HSO3)2}  &   &\rojo{} \\
+            69 & \ch{AgHSO4}  &   &\rojo{} \\
+            70 & \ch{Ba(HSeO3)2}  &   & \rojo{}\\ 
+            71 &  &  cromato de cinc (II) &\rojo{} \\
+            72 &   &  permanganato de hierro (III) &\rojo{} \\
+            73 &  &  carbonato de calcio &\rojo{} \\
+            74 &   & nitrato de cobalto (II)  &\rojo{} \\
+            75 &  &  silicato de potasio &\rojo{} \\
+            76 &  &  metaborato de rubidio &\rojo{} \\
+            77 &   &  perbromato de litio &\rojo{} \\
+            78 &   &  bromato de cobalto (III) &\rojo{} \\
+            79 &  &  peryodato de niquel (II) &\rojo{} \\
+            80 &   &  bromato de cobalto (III) &\rojo{} \\
+            81 &   &  peryodato de niquel (II) &\rojo{} \\
+            82 &   &  manganato de cesio &\rojo{} \\
+            83 &   &  cromato de cinc (II) &\rojo{} \\
+            84 &   &  permanganato de hierro (III) &\rojo{} \\
+            85 &   &  carbonato de calcio &\rojo{} \\
+            86 &  &  peryoato de mercurio (II) &\rojo{} \\
+            87 &   &  carbonato de potasio &\rojo{} \\
+            88 &   &  hipoclorito de cinc &\rojo{} \\
+            89 &  &  yodato de oro (III) &\rojo{} \\
+            90 & \rojo{\ch{}}  &  perbromato de plata &\rojo{} \\
+            91 & \rojo{\ch{}}  &  hiposulfito de bario &\rojo{} \\
+            92 & \rojo{\ch{}}  &  carbonato de estroncio &\rojo{} \\
+            93 & \rojo{\ch{}}  &  clorato de cobalto (II) &\rojo{} \\
+            94 & \rojo{\ch{}}  &  nitrito de sodio &\rojo{} \\
+            95 & \rojo{\ch{}}  &  sulfato de aluminio(III) &\rojo{} \\
+            96 & \rojo{\ch{}}  &  perclorato de cadmio &\rojo{} \\
+            97 & \rojo{\ch{}}  &  nitrato de amonio &\rojo{} \\
+            98 & \rojo{\ch{}}  &  selenato de hierro (II) &\rojo{} \\
+            99 & \rojo{\ch{}}  &  bromato de cobre (II) &\rojo{} \\
+            100 & \rojo{\ch{}}  &  hipoyodito de litio &\rojo{} \\
+            101 & \rojo{\ch{}}  &  sulfito de níquel (III) &\rojo{} \\
+            102 & \rojo{\ch{}}  &  bromito de cobre (II) &\rojo{} \\
+            103 & \rojo{\ch{}}  &  selenato de calcio &\rojo{} \\
+            104 & \rojo{\ch{}}  &  hiponitrito de estaño (II) &\rojo{} \\
+            105 & \rojo{\ch{}}  &  sulfato de plomo (IV) &\rojo{} \\
+        \end{longtblr}    
+
+
+        % \begin{longtblr}[caption=Oxosales]{hlines,vlines, colspec={Q[c,m] Q[c,m, 2.5cm] Q[c,m,15cm]}, rowsep=5pt, rowhead=1}
+        %     \SetRow{gray!50} nº  & Fórmula  & Tradicional  \\
+        %     1 & \ch{NaClO}  &\rojo{}   \\
+        %     2 & \ch{NaClO2}  & \rojo{}  \\
+        %     3 & \ch{NaClO3}  & \rojo{}  \\
+        %     4 & \ch{Cu3(PO4)2}  & \rojo{} \\
+        %     5 & \ch{Al2(SO4)3}  & \rojo{}\\
+        %     6 & \ch{(NH4)2SO4}  &  \rojo{} \\
+        %     7 & \ch{KCN}  & \rojo{}   \\
+        %     8 & \ch{Na2SO4}  & \rojo{}   \\
+        %     9 & \ch{NaNO2}  & \rojo{}   \\
+        %     10 & \ch{K2Cr2O7}  &\rojo{}    \\
+        %     11 & \ch{Na2SO4}  & \rojo{}   \\
+        %     12 & \ch{CaCO2}  & \rojo{}   \\
+        %     13 & \ch{FeCrO4}  & \rojo{}   \\
+        %     14 & \ch{HgSO3}  &  \rojo{} \\
+        %     15 & \ch{Mn(ClO)2}  &  \rojo{} \\
+        %     16 & \ch{Au2(SiO3)3}  &  \rojo{}  \\
+        %     17 & \ch{Zn(PO3)2}  & \rojo{}   \\
+        %     18 & \ch{NaClO3}  & \rojo{}   \\
+        %     19 & \ch{Fe(NO3)2}  & \rojo{}  \\
+        %     20 & \ch{KClO}  & \rojo{}   \\
+        %     21 & \ch{MgSO4}  & \rojo{}  \\
+        %     22 & \ch{Sn(BrO2)2}  & \rojo{}  \\
+        %     23 & \ch{CaCO3}  & \rojo{}   \\
+        %     24 & \ch{K2TeO2}  & \rojo{}  \\
+        %     25 & \ch{RbIO4}  & \rojo{}  \\
+        %     26 & \ch{NiSO3}  & \rojo{}   \\
+        %     27 & \ch{LiNO2}  &  \rojo{} \\
+        %     28 & \ch{CoSeO4}  &  \rojo{} \\
+        %     29 & \ch{(NH4)2SO4}  &  \rojo{}  \\
+        %     30 & \ch{Zn(BrO3)2}  & \rojo{}  \\
+        %     31 & \ch{Fe(BrO2)3}  & \rojo{}   \\
+        %     32 & \ch{CuNO3}  & \rojo{}  \\
+        %     33 & \ch{Cs2CO3}  & \rojo{} \\
+        %     34 & \ch{KClO4}  &  \rojo{}  \\
+        %     35 & \ch{Cd(NO2)2}  &  \rojo{}  \\
+        %     36 & \ch{Cu(NO3)2}  &  \rojo{} \\
+        %     37 & \ch{CuClO2}  &  \rojo{} \\
+        %     38 & \ch{Hg2SO4}  &  \rojo{}  \\
+        %     39 & \ch{Pb(SO4)2}  &  \rojo{} \\
+        %     40 & \ch{Fe(HSO4)2}  &  \rojo{}  \\
+        %     41 & \ch{Fe(HSO4)3}  & \rojo{}   \\
+        %     42 & \ch{Ca(HCO3)2}  &  \rojo{} \\
+        %     43 & \ch{Cu(H2PO4)2}  &  \rojo{} \\
+        %     44 & \ch{Ca(HSO3)2}  & \rojo{}   \\
+        %     45 & \ch{NaHSO4}  &  \rojo{} \\
+        %     46 & \ch{K2HPO4}  &  \rojo{} \\
+        %     47 & \ch{NaHCO3}  & \rojo{}  \\
+        %     48 & \ch{Fe(HSO4)3}  & \rojo{} \\
+        %     49 & \ch{Ca(HSO4)3}  & \rojo{}  \\
+        %     50 & \ch{Ca(H2PO4)2}  &  \rojo{} \\
+        %     51 & \ch{K2HPO4}  &  \rojo{}  \\
+        %     52 & \ch{Fe(HSO3)2}  &  \rojo{}  \\
+        %     53 & \ch{AgHSO4}  &  \rojo{}  \\
+        %     54 & \ch{Ba(HSeO3)2}  &  \rojo{} \\ 
+        %     55 & \rojo{\ch{}}  &  cromato de cinc (II)  \\
+        %     56 & \rojo{\ch{}}  &  permanganato de hierro (III)  \\
+        %     57 & \rojo{\ch{}}  &  carbonato de calcio  \\
+        %     58 & \rojo{\ch{}}  & nitrato de cobalto (II)   \\
+        %     59 & \rojo{\ch{}}  &  silicato de potasio  \\
+        %     60 & \rojo{\ch{}}  &  metaborato de rubidio  \\
+        %     61 & \rojo{\ch{}}  &  perbromato de litio  \\
+        %     62 & \rojo{\ch{}}  &  bromato de cobalto (III) \\
+        %     63 & \rojo{\ch{}}  &  peryodato de niquel (II)  \\
+        %     64 & \rojo{\ch{}}  &  bromato de cobalto (III)  \\
+        %     65 & \rojo{\ch{}}  &  peryodato de niquel (II)  \\
+        %     66 & \rojo{\ch{}}  &  manganato de cesio  \\
+        %     67 & \rojo{\ch{}}  &  cromato de cinc (II)  \\
+        %     68 & \rojo{\ch{}}  &  permanganato de hierro (III)  \\
+        %     69 & \rojo{\ch{}}  &  carbonato de calcio  \\
+        %     70 & \rojo{\ch{}}  &  peryoato de mercurio (II)  \\
+        %     71 & \rojo{\ch{}}  &  carbonato de potasio  \\
+        %     72 & \rojo{\ch{}}  &  hipoclorito de cinc  \\
+        %     73 & \rojo{\ch{}}  &  yodato de oro (III)  \\
+        %     74 & \rojo{\ch{}}  &  perbromato de plata  \\
+        %     75 & \rojo{\ch{}}  &  hiposulfito de bario  \\
+        %     76 & \rojo{\ch{}}  &  carbonato de estroncio  \\
+        %     77 & \rojo{\ch{}}  &  clorato de cobalto (II)  \\
+        %     78 & \rojo{\ch{}}  &  nitrito de sodio  \\
+        %     79 & \rojo{\ch{}}  &  sulfato de aluminio  \\
+        %     80 & \rojo{\ch{}}  &  perclorato de cadmio  \\
+        %     81 & \rojo{\ch{}}  &  nitrato de amonio  \\
+        %     82 & \rojo{\ch{}}  &  selenato de hierro (II)  \\
+        %     83 & \rojo{\ch{}}  &  bromato de ocbre (II)  \\
+        %     84 & \rojo{\ch{}}  &  hipoyodito de litio  \\
+        %     85 & \rojo{\ch{}}  &  sulfito de níquel (III)  \\
+        %     86 & \rojo{\ch{}}  &  bromito de cobre (II)  \\
+        %     87 & \rojo{\ch{}}  &  seleniato de calcio  \\
+        %     88 & \rojo{\ch{}}  &  hiponitrito de estaño (II)  \\
+        %     89 & \rojo{\ch{}}  &  sulfato de plomo (IV)  \\
+        % \end{longtblr}
+
+\end{landscape}
+\end{document}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Clasificación de los sistemas materiales</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="920" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    function node(cx, y, w, t, sub, col, soft) {
+        add('rect', { x: cx - w / 2, y, width: w, height: sub ? 62 : 44, rx: 12, fill: soft, stroke: col, 'stroke-width': 2.5 });
+        label(add, cx, y + 28, t, { 'font-size': 17, fill: col });
+        if (sub) label(add, cx, y + 50, sub, { 'font-size': 13, fill: '#525252', 'font-weight': 600 });
+    }
+    function link(x1, y1, x2, y2) { add('path', { d: `M${x1} ${y1} C ${x1} ${(y1 + y2) / 2} ${x2} ${(y1 + y2) / 2} ${x2} ${y2}`, fill: 'none', stroke: '#7F8C8D', 'stroke-width': 2.2 }); }
+    node(460, 10, 230, 'Sistemas materiales', null, '#000070', '#E3E6F7');
+    node(220, 100, 280, 'Heterogéneos', 'aspecto no uniforme (agua y arena)', '#C0392B', '#F9E0DD');
+    node(700, 100, 280, 'Homogéneos', 'aspecto uniforme en todos sus puntos', '#1E8449', '#DFF3E6');
+    node(560, 220, 240, 'Disoluciones', 'agua con sal, aire, bronce', '#B9770E', '#FCF3CF');
+    node(830, 220, 170, 'Sustancias puras', 'agua, mercurio', '#2471A3', '#D6EAF8');
+    link(460, 54, 220, 100); link(460, 54, 700, 100); link(700, 162, 560, 220); link(700, 162, 830, 220);
+    label(add, 220, 200, 'se separan por: imantación,', { 'font-size': 14, fill: '#525252' });
+    label(add, 220, 220, 'filtración, decantación', { 'font-size': 14, fill: '#525252' });
+    label(add, 560, 305, 'se separan por: cristalización,', { 'font-size': 14, fill: '#525252' });
+    label(add, 560, 325, 'extracción, destilación', { 'font-size': 14, fill: '#525252' });
+    label(add, 830, 305, 'temperaturas de cambio', { 'font-size': 14, fill: '#525252' });
+    label(add, 830, 325, 'de estado constantes', { 'font-size': 14, fill: '#525252' });
+</script>
+</body>
+</html>

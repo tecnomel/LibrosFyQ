@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_10 · Ruptura homolítica</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/organica.js"></script>
+</head>
+<body>
+<script>
+// Ruptura homolítica: cada átomo se queda con uno de los electrones del enlace -> radicales.
+const svg = crearFigura(420, 140);
+function fila(y, a, b, ra, rb) {
+    fq(svg, 30, y + 6, [a], { ancla: "middle" }); el("line", { x1: 44, y1: y, x2: 80, y2: y, stroke: "#222", "stroke-width": 1.6 }, svg);
+    fq(svg, 95, y + 6, [b], { ancla: "middle" });
+    // flechas de semipunta (un electrón a cada lado)
+    for (const [x1, x2] of [[62, 32], [62, 94]]) el("path", { d: `M${x1},${y - 4} Q${(x1 + x2) / 2},${y - 30} ${x2},${y - 12}`, fill: "none", stroke: "#222", "stroke-width": 1.3,
+        "marker-end": puntaFlecha(svg, "ps", "#222", 7) }, svg);
+    flechaR(svg, 130, y, 200);
+    fq(svg, 240, y + 6, [ra + "·"]); mas(svg, 290, y); fq(svg, 340, y + 6, ["·" + rb]);
+}
+fila(55, "R", "H", "R", "H");
+fila(115, "R1", "R2", "R1", "R2");
+</script>
+</body>
+</html>

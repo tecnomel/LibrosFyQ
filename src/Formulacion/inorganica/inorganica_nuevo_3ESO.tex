@@ -1,0 +1,1001 @@
+%! Author = crist
+%! Date = 23/10/2026
+%
+% Nomenclatura de Química Inorgánica — revisión según:
+%   · RSEQ, "Recomendaciones para la enseñanza de la nomenclatura de Química
+%     Inorgánica en la Enseñanza Secundaria" (programación en espiral).
+%   · IUPAC 2005 (Libro Rojo) y la lista de nombres vulgares admitidos.
+% Las figuras y esquemas se generan desde images/html/figuras_inorganica.html
+%   (?solo=<id> muestra una sola figura) y se exportan en vectorial a
+%   images/pdf/<id>.pdf (los que usa LaTeX) e images/svg/<id>.svg.
+% VERSIÓN DE 3.º ESO: generada a partir de inorganica_nuevo.tex (mismas imágenes y estilos).
+
+% Preamble
+\documentclass[12pt]{article}
+% Packages
+\usepackage[english,spanish, es-tabla]{babel}
+\usepackage[top=0.5cm, left=1.5cm, right=1.5cm, bottom=1.5cm]{geometry}
+\usepackage{estilocrispropio}
+\usepackage{longtable} % tablas largas con formato booktabs
+% Tipos de columna de párrafo (los mismos que LegrandOrangeBookES) para las tablas booktabs
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+
+% CARGA DE NEWPX CON SUS OPCIONES PRINCIPALES
+\usepackage[
+    scale=.98,        % Escala de la fuente (por defecto 1) [2, 5]
+    osf,              % Cifras de estilo antiguo (Old-style figures) en texto [2, 6]
+    p,                % Cifras proporcionales en texto [2, 6]
+    theoremfont,      % Fuente especial para teoremas (itálicas con puntuación recta) [3, 7]
+    trueslanted,      % \textsl produce texto inclinado real en lugar de itálicas [3, 7]
+    largesc,          % Aumenta el tamaño de las versalitas un 5.33% [3, 8]
+    tighter,          % Ajusta el espaciado entre palabras para que sea más compacto [3, 9]
+    vvarbb,           % Usa el estilo STIX para la negrita de pizarra (\mathbb) [10-12]
+    varg,             % Usa una 'g' itálica matemática de un solo lazo [13, 14]
+    boldermath,       % Hace que las itálicas romanas en matemáticas sean más gruesas [15]
+    amsthm            % Carga soporte para amsthm automáticamente [10]
+]{newpx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ejercicios y soluciones (paquete answers, cargado en estilocrispropio)
+%   \begin{exercise} ... \begin{solu} ... \end{solu} \end{exercise}
+%   Las soluciones se escriben en ans1.tex y se imprimen al final.
+%   (Se quita xsim porque también define el entorno exercise.)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{mygreennumbox}
+\newtheorem{ejercicioT}{Ejercicio}[section]
+\newenvironment{exercise}{\begin{eBoxmygreen}\begin{ejercicioT}}{\hfill{\color{mygreen}\tiny\ensuremath{\blacksquare}}\end{ejercicioT}\end{eBoxmygreen}}
+\renewenvironment{Solution}[1]{%
+    \begin{eBoxmyBlue}%
+    \noindent{\small\sffamily\bfseries\color{myBlue}Ejercicio~#1}\par\smallskip%
+}{%
+    \end{eBoxmyBlue}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Numeraciones dentro de las cajas de color: las bolas numeradas toman el
+% color del borde de la caja (vale para \numberballgreen, \numberballblue,
+% \numberballred e \itembolascolor). Fuera de las cajas no cambia nada.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\numeracioncolor}[1]{%
+    \colorlet{colornumeracion}{#1}%
+    \renewcommand*{\numberballgreen}{\protect\cnumero{\arabic*}{colornumeracion}}%
+    \renewcommand*{\numberballblue}{\protect\cnumero{\arabic*}{colornumeracion}}%
+    \renewcommand*{\numberballred}{\protect\cnumero{\arabic*}{colornumeracion}}%
+    \renewcommand*{\itembolascolor}[2]{\protect\cnumero{##1}{colornumeracion}}%
+}
+\AtBeginEnvironment{consejos}{\numeracioncolor{yellow!75!black}}
+\AtBeginEnvironment{ejemplo}{\numeracioncolor{green!65!black}}
+\AtBeginEnvironment{ejercicios}{\numeracioncolor{green!65!black}}
+\AtBeginEnvironment{definicion}{\numeracioncolor{red!75!black}}
+\AtBeginEnvironment{solucion}{\numeracioncolor{blue!90}}
+\AtBeginEnvironment{marker}{\numeracioncolor{yellow!50!black}}
+\AtBeginEnvironment{exercise}{\numeracioncolor{mygreen}}
+\AtBeginEnvironment{Solution}{\numeracioncolor{myBlue}}
+
+\sisetup{%
+%alsoload = synchem,
+    detect-family,%
+    per-mode = fraction,
+    display-per-mode = fraction,
+%inline-per-mode = symbol,
+%per-mode = symbol-or-fraction,
+    output-decimal-marker = {,},
+    inter-unit-product = \cdot,
+    exponent-product = \cdot,
+    retain-explicit-plus % consigo que si pongo + en el número aparezca
+}
+
+% --- Comandos propios de este documento ---
+% Esquema de una regla de nomenclatura (figura vectorial generada desde HTML)
+\newcommand{\esquemafig}[2][0.85]{\begin{center}\includegraphics[width=#1\textwidth]{images/pdf/#2.pdf}\end{center}}
+% Cabecera de los apartados "¿Cómo se formulan / nombran?"
+\newcommand{\formulan}{\vspace*{2mm}\noindent\xmybox{\bfseries ¿Cómo se formulan?}\par\smallskip}
+\newcommand{\nombran}{\vspace*{2mm}\noindent\xmybox{\bfseries ¿Cómo se nombran?}\par\smallskip}
+\newcommand{\ejemplos}{\par\noindent\textbf{\uline{Ejemplos}}:\par}
+% Nombre incorrecto (tachado en rojo)
+\newcommand{\mal}[1]{\textcolor{red}{\sout{#1}}}
+% Marca de contenido de ampliación (icono + etiqueta); \ampliacionicono solo el icono
+\newcommand{\ampliacionicono}{\texorpdfstring{\textcolor{myOrange3}{\faRocket}}{}}
+\newcommand{\ampliacion}{\texorpdfstring{\tcbox[on line, colback=myOrange3!12, colframe=myOrange3, boxrule=0.6pt, arc=2pt, boxsep=0pt, left=3pt, right=3pt, top=1pt, bottom=1pt]{\footnotesize\sffamily\bfseries\textcolor{myOrange3}{\faRocket\ Ampliación}}}{(Ampliación)}}
+% Etiquetas que indican con qué se nombra (teoría, enunciados y soluciones)
+\definecolor{colornumox}{HTML}{7A2BB5}
+\newcommand{\etiquetanom}[2]{\tcbox[on line, colback=#1!10, colframe=#1, boxrule=0.5pt, arc=2pt, boxsep=0pt, left=2pt, right=2pt, top=0.5pt, bottom=0.5pt]{\scriptsize\sffamily\bfseries\textcolor{#1}{#2}}}
+\newcommand{\conpref}{\etiquetanom{myBlue}{prefijos}}
+\newcommand{\conox}{\etiquetanom{colornumox}{nº de oxidación}}
+\newcommand{\concarga}{\etiquetanom{myOrange3}{nº de carga}}
+% Figura generada desde HTML (PDF vectorial; la versión SVG está en images/svg)
+\newcommand{\figura}[2][0.95]{\begin{figure}[H]\centering\includegraphics[width=#1\textwidth]{images/pdf/#2.pdf}\end{figure}}
+
+% Document
+\begin{document}
+\begin{titlepage}
+    \vspace*{5cm}
+    \begin{center}
+        {\Huge{ \bfseries Nomenclatura Inorgánica}}
+    \end{center}
+    \vspace*{2cm}
+    \begin{center}
+        {\huge  3.º ESO}\par\bigskip
+        {\huge  IUPAC 2005}\par\medskip
+        {\Large Adaptada a las recomendaciones de la RSEQ para Secundaria y Bachillerato}
+    \end{center}
+    \vspace*{5cm}
+    \begin{center}
+        {\Large IES José Conde García (Almansa)}
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\setstretch{1.3}
+\newpage
+
+% Abrimos el fichero en el que se guardan las soluciones de los ejercicios
+\Opensolutionfile{ans}[ans3eso]
+
+%=====================================================================
+\section{Introducción}
+%=====================================================================
+
+La \negrita{nomenclatura química} es el conjunto de reglas que sirven para asignar \negrita{descriptores} (nombres y fórmulas) a las sustancias químicas, de forma que cualquier persona del mundo sepa de qué sustancia estamos hablando. Nombrar (de la fórmula al nombre) y formular (del nombre a la fórmula) son, por tanto, dos caras de la misma moneda: la nomenclatura.
+
+A continuación, se dan una serie de conceptos que es interesante conocer:
+\begin{enumerate}[label=\numberballred]
+    \item \negrita{Tabla periódica}: disposición de los elementos químicos ordenados por su número atómico creciente en columnas (\negrita{grupos}) y filas (\negrita{periodos}), de modo que los elementos de un mismo grupo tienen propiedades parecidas.
+    \item \negrita{Fórmula}: combinación de símbolos químicos y subíndices que expresa la composición de una sustancia, es decir, \negrita{qué} elementos la forman y en \negrita{qué proporción}. Por ejemplo, \ch{H2O} indica que hay dos átomos de hidrógeno por cada átomo de oxígeno.
+    \item \negrita{Número (o estado) de oxidación}: carga que tendría un átomo si todos sus enlaces fueran iónicos. Puede ser positivo, negativo o cero y se escribe con el signo \negrita{delante}: \(+1\), \(+2\), \(0\), \(-1\), \(-2\)\dots
+    \item \negrita{Número de carga}: carga real de un ion. Se escribe con el signo \negrita{detrás}: \ch{Fe^3+} tiene número de carga \(3+\).
+    \item \negrita{Valencia}: número de enlaces que forma un átomo. Es un concepto distinto del número de oxidación y \negrita{no} lo usaremos para nombrar.
+\end{enumerate}
+
+Antes de empezar, conviene tener una visión general de los tipos de compuestos que vamos a estudiar. La primera pregunta que debes hacerte siempre ante una fórmula es: \emph{¿cuántos elementos tiene y cuáles son?}
+
+\begin{marker}
+    Los apartados marcados con \ampliacion{} (o con el icono \ampliacionicono{} en el índice) son de \negrita{ampliación}: amplían lo básico y no es necesario estudiarlos la primera vez que se ve el tema.
+\end{marker}
+
+\figura{fig-mapa}
+
+%=====================================================================
+\section{Herramientas básicas}
+%=====================================================================
+
+\subsection{¿Qué elemento se escribe a la derecha? La secuencia de los elementos}\label{sec:secuencia}
+
+En un compuesto binario siempre hay un constituyente que se escribe a la izquierda y otro a la derecha. La IUPAC fija el orden mediante una \negrita{secuencia de los elementos} (Tabla VI del Libro Rojo). Esta tabla \negrita{no} es una ordenación por electronegatividades: por ejemplo, el oxígeno es más electronegativo que el cloro y, sin embargo, en la secuencia el cloro aparece antes que el oxígeno. Por eso es mejor hablar simplemente de \negrita{orden de colocación}.
+
+\figura{fig-secuencia}
+
+\begin{marker}
+    Consecuencia importante (IUPAC 2005): los halógenos (F, Cl, Br, I) están en la secuencia a la derecha del oxígeno. Por eso sus compuestos con oxígeno \negrita{no son óxidos}, sino halogenuros de oxígeno: \ch{OCl2} es dicloruro de oxígeno (y no \mal{\ch{Cl2O}}, \mal{óxido de dicloro}) y \ch{OF2} es difluoruro de oxígeno.
+\end{marker}
+
+\subsection{Números de oxidación que hay que conocer}\label{sec:eo}
+
+No es necesario memorizar largas tablas de números de oxidación. Basta con conocer unos pocos, apoyándonos en la tabla periódica; el resto se deduce con la regla de la suma cero (apartado~\ref{sec:sumacero}).
+
+\figura{fig-tabla-eo}
+
+\subsubsection{Reglas generales según el grupo}\label{sec:eo_grupos}
+
+En los elementos de los \negrita{grupos principales} (1, 2 y 13 al 17) no hace falta memorizar los números de oxidación: se deducen de su \negrita{posición en la tabla periódica}.
+
+\figura{fig-eo-grupos}
+
+\begin{enumerate}[label=\numberballblue]
+    \item \negrita{Elemento sin combinar}: su número de oxidación es \(0\) (\ch{Na}, \ch{Fe}, \ch{O2}, \ch{Cl2}\dots).
+    \item \negrita{Metales de los grupos 1, 2 y 13}: solo tienen un número, positivo e igual a la \negrita{última cifra del grupo}. Grupo 1 \(\to +1\); grupo 2 \(\to +2\); Al (grupo 13) \(\to +3\).
+    \item \negrita{Mayor número positivo}: es la \negrita{última cifra del grupo}. C (14) \(\to +4\); N (15) \(\to +5\); S (16) \(\to +6\); Cl (17) \(\to +7\). Los no metales lo usan, sobre todo, cuando van con el oxígeno (\ch{CO2}, \ch{SO3}).
+    \item \negrita{Número negativo de los no metales}: es \negrita{grupo \(-\) 18}. C \(\to -4\); N \(\to -3\); S \(\to -2\); Cl \(\to -1\). Lo usan cuando se escriben a la \negrita{derecha} de la fórmula, con metales o con hidrógeno: \ch{NaCl} (Cl \(-1\)), \ch{H2S} (S \(-2\)), \ch{NH3} (N \(-3\)), \ch{CH4} (C \(-4\)).
+    \item \negrita{Los demás números positivos}: se obtienen \negrita{restando de 2 en 2} desde el mayor. Así, los grupos \negrita{impares} tienen números \negrita{impares} y los \negrita{pares}, números \negrita{pares}:
+          \begin{center}
+              Cl: \(+7,\ +5,\ +3,\ +1\) \qquad S: \(+6,\ +4,\ +2\) \qquad N: \(+5,\ +3,\ +1\) \qquad C: \(+4,\ +2\)
+          \end{center}
+\end{enumerate}
+
+\begin{marker}
+    \negrita{Excepciones que hay que recordar}:
+    \begin{itemize}
+        \item \negrita{Hidrógeno}: \(+1\) con los no metales y \(-1\) con los metales (hidruros).
+        \item \negrita{Oxígeno}: casi siempre \(-2\); en los peróxidos \(-1\) y, con los halógenos, positivo (\ch{OF2}: O \(+2\)).
+        \item \negrita{Flúor}: solo \(-1\), porque es el elemento más electronegativo.
+        \item El \negrita{nitrógeno} también puede actuar con \(+2\) y \(+4\) (\ch{NO}, \ch{NO2}).
+    \end{itemize}
+\end{marker}
+
+\negrita{Metales de transición}. Para ellos no hay una regla sencilla. Los más habituales son:
+
+\begin{center}
+    \SetTblrInner{rowsep=3pt}
+    % --- tabla antigua ---
+    % \begin{tblr}{colspec={Q[l,m] Q[c,m] Q[l,m] Q[c,m]}, row{1}={bg=myOrange3!90!white, fg=white, font=\sffamily}, hline{1,2,Z}={1pt}, hline{3-Y}={dashed}}
+        % Elemento & Nº de oxidación & Elemento & Nº de oxidación \\
+        % Ag & \(+1\) & Zn, Cd & \(+2\) \\
+        % Cu, Hg & \(+1,\ +2\) & Au & \(+1,\ +3\) \\
+        % Fe, Co, Ni & \(+2,\ +3\) & Sn, Pb (grupo 14) & \(+2,\ +4\) \\
+        % Cr & \(+2,\ +3,\ +6\) & Mn & \(+2,\ +3,\ +4,\ +6,\ +7\) \\
+    % \end{tblr}
+    % --- tabla nueva ---
+    \begin{tabular}{@{}lclc@{}}
+        \toprule
+        \textbf{Elemento} & \textbf{Nº de oxidación} & \textbf{Elemento} & \textbf{Nº de oxidación} \\
+        \midrule
+        Ag & \(+1\) & Zn, Cd & \(+2\) \\[3pt]
+        Cu, Hg & \(+1,\ +2\) & Au & \(+1,\ +3\) \\[3pt]
+        Fe, Co, Ni & \(+2,\ +3\) & Sn, Pb (grupo 14) & \(+2,\ +4\) \\[3pt]
+        Cr & \(+2,\ +3,\ +6\) & Mn & \(+2,\ +3,\ +4,\ +6,\ +7\) \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+En los ejercicios no hace falta saberlos de memoria: el número de oxidación del metal se deduce de la fórmula con la regla de la suma cero (apartado~\ref{sec:sumacero}).
+
+\begin{exercise}
+    \textbf{1.} Usando las reglas del grupo, indica el mayor número de oxidación positivo y el negativo de: \textbf{a)} P; \textbf{b)} Se; \textbf{c)} Br; \textbf{d)} Si; \textbf{e)} Ba; \textbf{f)} Al.\\
+    \textbf{2.} ¿Qué números de oxidación positivos pueden tener el yodo y el azufre?
+    \begin{solu}
+        \textcolor{blue}{Mayor positivo = última cifra del grupo; negativo = grupo \(-\) 18 (solo los no metales).}\\
+        \textbf{1. a)} P (grupo 15): \textcolor{red}{\(+5\) y \(-3\)}; \textbf{b)} Se (16): \textcolor{red}{\(+6\) y \(-2\)}; \textbf{c)} Br (17): \textcolor{red}{\(+7\) y \(-1\)}; \textbf{d)} Si (14): \textcolor{red}{\(+4\) y \(-4\)}; \textbf{e)} Ba (2): \textcolor{red}{\(+2\)}, no tiene negativo (es un metal); \textbf{f)} Al (13): \textcolor{red}{\(+3\)}, no tiene negativo\\
+        \textbf{2.} \textcolor{blue}{Restamos de 2 en 2 desde el mayor.} Yodo (17): \textcolor{red}{\(+7,\ +5,\ +3,\ +1\)}; azufre (16): \textcolor{red}{\(+6,\ +4,\ +2\)}
+    \end{solu}
+\end{exercise}
+
+\subsection{Número de oxidación y número de carga: no son lo mismo}\label{sec:noxcarga}
+
+Son dos ideas distintas que a menudo se confunden. Las dos sirven para indicar la proporción de los elementos en un nombre, pero no se usan en los mismos compuestos ni se escriben igual.
+
+\begin{definicion}{número de oxidación \conox}
+    \begin{itemize}
+        \item \negrita{Qué es}: la carga que \emph{tendría} un átomo si todos sus enlaces fueran iónicos. Es un número que se asigna a cada \negrita{átomo}, no a los grupos de átomos.
+        \item \negrita{Dónde se usa}: en \negrita{todos} los compuestos, tanto iónicos (\ch{Fe2O3}) como covalentes (\ch{SO3}, \ch{PCl5}).
+        \item \negrita{En los cálculos y sobre la fórmula}: el signo va \negrita{delante} del número: \ox{+3,Fe}, \ox{-2,O}.
+        \item \negrita{En el nombre}: en \negrita{números romanos}, entre paréntesis, sin signo y sin espacio: óxido de hierro(III), óxido de azufre(VI).
+    \end{itemize}
+\end{definicion}
+
+\begin{definicion}{número de carga \concarga}
+    \begin{itemize}
+        \item \negrita{Qué es}: la carga \emph{real} de un \negrita{ion}, ya sea un átomo (\ch{Fe^3+}) o un grupo de átomos (\ch{SO4^2-}).
+        \item \negrita{Dónde se usa}: \negrita{solo} en los iones y en los compuestos iónicos (metal + no metal, hidróxidos, oxosales). \negrita{Nunca} en compuestos covalentes como \ch{SO3}, \ch{CO2} o \ch{PCl5}, porque no tienen iones.
+        \item \negrita{En la fórmula}: arriba a la derecha, el signo va \negrita{detrás} del número: \ch{Fe^3+}, \ch{SO4^2-}. El 1 no se escribe: \ch{Na+}, \ch{Cl-}.
+        \item \negrita{En el nombre}: en \negrita{números arábigos} seguidos del signo, entre paréntesis y sin espacio: óxido de hierro(3+), hierro(3+).
+        \item Los grupos de átomos con carga, como el hidróxido \ch{OH-}, tienen \negrita{número de carga} (\(1-\)), no número de oxidación.
+    \end{itemize}
+\end{definicion}
+
+\begin{center}
+    \SetTblrInner{rowsep=4pt}
+    % --- tabla antigua ---
+    % \begin{longtblr}[caption={Número de oxidación frente a número de carga}]
+        % {colspec={Q[l,m,3.2cm] X[l,m] X[l,m]}, row{1}={bg=myOrange3!90!white, fg=white, font=\sffamily}, rowhead=1}
+        % \hline
+        % & Número de oxidación \conox & Número de carga \concarga \\
+        % \hline
+        % ¿Qué indica? & Carga que tendría el átomo si los enlaces fueran iónicos & Carga real del ion \\
+        % ¿Dónde se usa? & En todos los compuestos & Solo en iones y compuestos iónicos \\
+        % En la fórmula & Signo delante: \(+3\) & Signo detrás: \ch{Fe^3+} \\
+        % En el nombre & Romanos: hierro(III) & Arábigos y signo: hierro(3+) \\
+        % \ch{Fe2O3} (iónico) & óxido de hierro(III) & óxido de hierro(3+) \\
+        % \ch{SO3} (covalente) & óxido de azufre(VI) & \mal{óxido de azufre(6+)}: no se puede \\
+        % \hline
+    % \end{longtblr}
+    % --- tabla nueva ---
+    \begin{longtable}{@{}L{3.2cm} L{0.38\linewidth} L{0.38\linewidth}@{}}
+        \caption{Número de oxidación frente a número de carga} \\
+        \toprule
+         & \textbf{Número de oxidación \conox} & \textbf{Número de carga \concarga} \\
+        \midrule
+        \endfirsthead
+        \toprule
+         & \textbf{Número de oxidación \conox} & \textbf{Número de carga \concarga} \\
+        \midrule
+        \endhead
+        \bottomrule
+        \endlastfoot
+        ¿Qué indica? & Carga que tendría el átomo si los enlaces fueran iónicos & Carga real del ion \\[3pt]
+        ¿Dónde se usa? & En todos los compuestos & Solo en iones y compuestos iónicos \\[3pt]
+        En la fórmula & Signo delante: \(+3\) & Signo detrás: \ch{Fe^3+} \\[3pt]
+        En el nombre & Romanos: hierro(III) & Arábigos y signo: hierro(3+) \\[3pt]
+        \ch{Fe2O3} (iónico) & óxido de hierro(III) & óxido de hierro(3+) \\[3pt]
+        \ch{SO3} (covalente) & óxido de azufre(VI) & \mal{óxido de azufre(6+)}: no se puede \\
+    \end{longtable}
+\end{center}
+
+\begin{marker}
+    \negrita{Fíjate en lo que pide el enunciado.} En los ejercicios se indica con una etiqueta cómo hay que nombrar: \conpref{} con prefijos multiplicadores, \conox{} con el número de oxidación (romanos) o \concarga{} con el número de carga (arábigos y signo, solo compuestos iónicos). Las soluciones usan las mismas etiquetas.
+\end{marker}
+
+\begin{exercise}
+    Para cada sustancia, indica el \conox{} del elemento destacado y, si es un compuesto iónico, el \concarga{} de su ion: \textbf{a)} Fe en \ch{FeCl3}; \textbf{b)} S en \ch{SO2}; \textbf{c)} Cu en \ch{CuO}; \textbf{d)} P en \ch{PCl3}; \textbf{e)} Ca en \ch{CaF2}; \textbf{f)} el grupo \ch{OH} en \ch{NaOH}.
+    \begin{solu}
+        \textcolor{blue}{El número de carga solo existe si el compuesto es iónico (metal + no metal).}\\
+        \textbf{a)} \conox{} \textcolor{red}{\(+3\)} \quad \concarga{} \textcolor{red}{\(3+\)} (ion \ch{Fe^3+})\\
+        \textbf{b)} \conox{} \textcolor{red}{\(+4\)} \quad \concarga{} \textcolor{red}{no tiene}: el \ch{SO2} es covalente\\
+        \textbf{c)} \conox{} \textcolor{red}{\(+2\)} \quad \concarga{} \textcolor{red}{\(2+\)} (ion \ch{Cu^2+})\\
+        \textbf{d)} \conox{} \textcolor{red}{\(+3\)} \quad \concarga{} \textcolor{red}{no tiene}: el \ch{PCl3} es covalente\\
+        \textbf{e)} \conox{} \textcolor{red}{\(+2\)} \quad \concarga{} \textcolor{red}{\(2+\)} (ion \ch{Ca^2+})\\
+        \textbf{f)} \conox{} \textcolor{red}{no se asigna a un grupo} (sí a cada átomo: O \(-2\), H \(+1\)) \quad \concarga{} \textcolor{red}{\(1-\)} (ion \ch{OH-})
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Corrige los errores: \textbf{a)} cloruro de hierro(+3); \textbf{b)} \ch{Ca^{+2}}; \textbf{c)} óxido de azufre(6+); \textbf{d)} cloruro de hierro (III); \textbf{e)} hierro(3).
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{cloruro de hierro(3+)} \concarga{} o \textcolor{red}{cloruro de hierro(III)} \conox\\
+        \textbf{b)} \textcolor{red}{\ch{Ca^2+}}: en la carga el signo va detrás del número\\
+        \textbf{c)} \textcolor{red}{óxido de azufre(VI)} \conox: el \ch{SO3} es covalente y no admite número de carga\\
+        \textbf{d)} \textcolor{red}{cloruro de hierro(III)}: sin espacio antes del paréntesis\\
+        \textbf{e)} \textcolor{red}{hierro(3+)} \concarga: el número de carga lleva siempre el signo
+    \end{solu}
+\end{exercise}
+
+\subsection{La regla de la suma cero}\label{sec:sumacero}
+
+\begin{impt}
+    \centering En un compuesto neutro, la suma de los números de oxidación de todos sus átomos es \textbf{cero}.\\ En un ion, la suma es igual a la carga del ion.
+\end{impt}
+
+Esta regla sirve para dos cosas: escribir la fórmula a partir del nombre y averiguar el número de oxidación de un elemento a partir de la fórmula. Es más segura que el método de «cruzar los números y simplificar», que conduce a errores en muchos casos (por ejemplo, el tetraóxido de dinitrógeno, \ch{N2O4}, no se simplifica).
+
+\figura{fig-suma-cero}
+
+\begin{exercise}
+    Calcula, con la regla de la suma cero, el \conox{} del elemento destacado: \textbf{a)} Cr en \ch{Cr2O3}; \textbf{b)} S en \ch{SO3}; \textbf{c)} N en \ch{N2O5}; \textbf{d)} Mn en \ch{MnO2}; \textbf{e)} Cl en \ch{HClO4}.
+    \begin{solu}
+        \textcolor{blue}{El O es \(-2\) y el H es \(+1\); la suma debe ser cero.}\\
+        \textbf{a)} \(2x + 3\cdot(-2) = 0 \Rightarrow\) \textcolor{red}{\(x = +3\)}\\
+        \textbf{b)} \(x + 3\cdot(-2) = 0 \Rightarrow\) \textcolor{red}{\(x = +6\)}\\
+        \textbf{c)} \(2x + 5\cdot(-2) = 0 \Rightarrow\) \textcolor{red}{\(x = +5\)}\\
+        \textbf{d)} \(x + 2\cdot(-2) = 0 \Rightarrow\) \textcolor{red}{\(x = +4\)}\\
+        \textbf{e)} \((+1) + x + 4\cdot(-2) = 0 \Rightarrow\) \textcolor{red}{\(x = +7\)}
+    \end{solu}
+\end{exercise}
+
+\subsection{Prefijos multiplicadores}\label{sec:prefijos}
+
+\figura[0.85]{fig-prefijos}
+
+\begin{marker}
+    El prefijo \blueremark{mono} solo se utiliza cuando hace falta distinguir entre varios compuestos de los mismos elementos: \ch{CO} \negrita{monóxido} de carbono (porque existe el \ch{CO2}), \ch{FeO} monóxido de hierro. En cambio, \ch{Na2O} es \negrita{óxido de disodio} (no \mal{monóxido de disodio}).
+\end{marker}
+
+\subsection{Tipos de nomenclatura}
+
+Según la IUPAC, los sistemas de nomenclatura de química inorgánica son:
+\begin{enumerate}[label=\numberballblue]
+    \item \negrita{Nomenclatura de composición} (o estequiométrica). Solo informa de qué elementos hay y en qué proporción. Es la que usaremos para los compuestos binarios y los hidróxidos. La proporción se puede indicar de tres formas:
+          \begin{enumerate}[label=\itembolascolor{\arabic*}{blue}]
+              \item Con \negrita{prefijos multiplicadores}: \ch{Fe2O3} trióxido de dihierro. \textcolor{red}{Es la forma preferida y la primera que se aprende.}
+              \item Con el \negrita{número de oxidación} en números romanos: \ch{Fe2O3} óxido de hierro(III).
+              \item Con el \negrita{número de carga} en números arábigos (solo compuestos iónicos): \ch{Fe2O3} óxido de hierro(3+).
+          \end{enumerate}
+    \item \negrita{Nomenclatura de sustitución}. Se basa en unos \negrita{hidruros progenitores} (\ch{CH4} metano, \ch{NH3} azano, \ch{PH3} fosfano\dots) a partir de los cuales se nombran otros compuestos sustituyendo hidrógenos. Es la base de la nomenclatura orgánica.
+    \item \negrita{Nomenclatura de adición}. Considera que el compuesto está formado por un átomo central al que se unen otros átomos o grupos (ligandos). Es útil para oxoácidos, oxoaniones y compuestos de coordinación: \ch{H2SO4} = \ch{[SO2(OH)2]} dihidroxidodioxidoazufre.
+    \item \negrita{Nombres vulgares admitidos}. Son nombres tradicionales que la IUPAC sigue aceptando: agua, amoniaco, metano, ácido sulfúrico, nitrato\dots \textbf{Solo} se admiten los que están en la lista oficial de la IUPAC; la antigua nomenclatura tradicional (\mal{anhídrido sulfúrico}, \mal{óxido férrico}\dots) ya \negrita{no} es válida.
+\end{enumerate}
+
+%=====================================================================
+\section{Compuestos binarios}\label{sec:binarios}
+%=====================================================================
+
+Los compuestos binarios están formados por \negrita{dos elementos}. Todos se nombran con la misma receta.
+
+\subsection{La receta general}
+
+\esquemafig{esq-binario}
+
+El elemento de la derecha se nombra con la \negrita{raíz de su nombre + uro} (si es el oxígeno, se dice \negrita{óxido}). En el apartado siguiente se explica cómo obtener la raíz.
+
+\figura{fig-receta}
+
+\subsection{Cómo se obtiene la raíz del nombre de un elemento}\label{sec:raiz}
+
+Para nombrar el elemento de la derecha se usa la \negrita{raíz} de su nombre seguida de \blueremark{-uro}. La raíz es lo que queda al \negrita{quitar la terminación} del nombre del elemento (\blueremark{-o}, \blueremark{-io}, \blueremark{-ico}, \blueremark{-ono}, \blueremark{-ógeno}, \blueremark{-oro}\dots).
+
+\figura{fig-raiz}
+
+\begin{center}
+    \SetTblrInner{rowsep=3pt}
+    % --- tabla antigua ---
+    % \begin{longtblr}[caption={Raíz del nombre de los no metales más usados}]
+        % {colspec={Q[l,m] Q[c,m] Q[c,m] Q[l,m]}, row{1}={bg=myOrange3!90!white, fg=white, font=\sffamily}, rowhead=1}
+        % \hline
+        % Elemento & Se quita & Raíz & Nombre con \blueremark{-uro} \\
+        % \hline
+        % flúor & (nada) & fluor & \negrita{fluor}uro \\
+        % cloro & -o & clor & \negrita{clor}uro \\
+        % bromo & -o & brom & \negrita{brom}uro \\
+        % yodo & -o & yod & \negrita{yod}uro \\
+        % boro & -o & bor & \negrita{bor}uro \\
+        % selenio & -o & seleni & \negrita{seleni}uro \\
+        % telurio & -io & telur & \negrita{telur}uro \\
+        % nitrógeno & -ógeno & nitr & \negrita{nitr}uro \\
+        % hidrógeno & -ógeno & hidr & \negrita{hidr}uro \\
+        % carbono & -ono & carb & \negrita{carb}uro \\
+        % fósforo & -oro & fosf & \negrita{fosf}uro \\
+        % arsénico & -ico & arsen & \negrita{arsen}uro \\
+        % \SetRow{myOrange3!15!white} azufre & raíz latina (\emph{sulphur}) & sulf & \negrita{sulf}uro \\
+        % \SetRow{myOrange3!15!white} oxígeno & excepción & --- & \negrita{óxido} \\
+        % \hline
+    % \end{longtblr}
+    % --- tabla nueva ---
+    \begin{longtable}{@{}lccl@{}}
+        \caption{Raíz del nombre de los no metales más usados} \\
+        \toprule
+        \textbf{Elemento} & \textbf{Se quita} & \textbf{Raíz} & \textbf{Nombre con \blueremark{-uro}} \\
+        \midrule
+        \endfirsthead
+        \toprule
+        \textbf{Elemento} & \textbf{Se quita} & \textbf{Raíz} & \textbf{Nombre con \blueremark{-uro}} \\
+        \midrule
+        \endhead
+        \bottomrule
+        \endlastfoot
+        flúor & (nada) & fluor & \negrita{fluor}uro \\[3pt]
+        cloro & -o & clor & \negrita{clor}uro \\[3pt]
+        bromo & -o & brom & \negrita{brom}uro \\[3pt]
+        yodo & -o & yod & \negrita{yod}uro \\[3pt]
+        boro & -o & bor & \negrita{bor}uro \\[3pt]
+        selenio & -o & seleni & \negrita{seleni}uro \\[3pt]
+        telurio & -io & telur & \negrita{telur}uro \\[3pt]
+        nitrógeno & -ógeno & nitr & \negrita{nitr}uro \\[3pt]
+        hidrógeno & -ógeno & hidr & \negrita{hidr}uro \\[3pt]
+        carbono & -ono & carb & \negrita{carb}uro \\[3pt]
+        fósforo & -oro & fosf & \negrita{fosf}uro \\[3pt]
+        arsénico & -ico & arsen & \negrita{arsen}uro \\[3pt]
+        azufre & raíz latina (\emph{sulphur}) & sulf & \negrita{sulf}uro \\[3pt]
+        oxígeno & excepción & --- & \negrita{óxido} \\
+    \end{longtable}
+\end{center}
+
+\begin{consejos}{la raíz del nombre}
+    \begin{enumerate}[label=\numberballgreen]
+        \item Escribe el nombre del elemento y \negrita{tacha la terminación}: clor\mal{o}, nitr\mal{ógeno}, carb\mal{ono}.
+        \item Añade \negrita{-uro} a lo que queda: clor + uro = \negrita{cloruro}.
+        \item La raíz pierde la tilde: fósforo \(\to\) \negrita{fosf}uro; arsénico \(\to\) \negrita{arsen}uro.
+        \item Dos casos especiales que hay que memorizar: el azufre usa su raíz latina (\negrita{sulf}uro) y el oxígeno no lleva -uro: se dice \negrita{óxido}.
+    \end{enumerate}
+\end{consejos}
+
+\begin{exercise}
+    Escribe la raíz y el nombre terminado en -uro (u óxido) de: \textbf{a)} cloro; \textbf{b)} yodo; \textbf{c)} nitrógeno; \textbf{d)} carbono; \textbf{e)} fósforo; \textbf{f)} azufre; \textbf{g)} hidrógeno; \textbf{h)} oxígeno.
+    \begin{solu}
+        \textbf{a)} clor \(\to\) \textcolor{red}{cloruro}; \textbf{b)} yod \(\to\) \textcolor{red}{yoduro}; \textbf{c)} nitr \(\to\) \textcolor{red}{nitruro}; \textbf{d)} carb \(\to\) \textcolor{red}{carburo}; \textbf{e)} fosf \(\to\) \textcolor{red}{fosfuro}; \textbf{f)} sulf \(\to\) \textcolor{red}{sulfuro}; \textbf{g)} hidr \(\to\) \textcolor{red}{hidruro}; \textbf{h)} \textcolor{red}{óxido} (excepción)
+    \end{solu}
+\end{exercise}
+
+\subsection{Consejos para nombrar y formular}
+
+\begin{consejos}{compuestos binarios}
+    \begin{enumerate}[label=\numberballgreen]
+        \item \negrita{De la fórmula al nombre}: lee la fórmula de \negrita{derecha a izquierda} y traduce cada subíndice a un prefijo.
+        \item \negrita{Del nombre a la fórmula}: el nombre ya te dice los subíndices. \negrita{di}fosfuro de \negrita{tri}calcio \(\to\) \ch{Ca3P2}. Escribe a la izquierda lo que va después de «de».
+        \item \negrita{Sin prefijos} (óxido de aluminio, cloruro de cinc\dots): usa los números de oxidación de la figura del apartado~\ref{sec:eo} y la regla de la suma cero.
+    \end{enumerate}
+\end{consejos}
+
+\subsection{Óxidos}\label{sec:oxidos}
+
+Son compuestos formados por \negrita{oxígeno} y otro elemento (metal o no metal). El oxígeno actúa con número de oxidación \azul{\(-2\)} y se escribe a la derecha. Los compuestos del oxígeno con los halógenos \negrita{no} son óxidos (apartado~\ref{sec:halogenuros_oxigeno}).
+
+\formulan
+\begin{enumerate}[label=\itembolascolor{\arabic*}{green!50!black}]
+    \item Escribimos el elemento a la izquierda y el oxígeno a la derecha.
+    \item Si el nombre lleva prefijos, los convertimos directamente en subíndices.
+    \item Si el nombre lleva número de oxidación o no lleva nada, buscamos el número mínimo de átomos que hace que la suma sea cero.
+\end{enumerate}
+
+\ejemplos
+\ballnumber{1} : Óxido de sodio: \ox{+1,Na} \ox{-2,O} \(\to\) \(2\cdot(+1) + (-2) = 0\) \(\to\) \ch{Na2O}
+
+\ballnumber{2} : Óxido de calcio: \ox{+2,Ca} \ox{-2,O} \(\to\) \((+2) + (-2) = 0\) \(\to\) \ch{CaO}
+
+\ballnumber{3} : Óxido de hierro(III): \ox{+3,Fe} \ox{-2,O} \(\to\) \(2\cdot(+3) + 3\cdot(-2) = 0\) \(\to\) \ch{Fe2O3}
+
+\ballnumber{4} : Pentaóxido de difósforo \(\to\) \ch{P2O5}
+
+\nombran
+\begin{enumerate}[label=\itembolascolor{\arabic*}{blue}]
+    \item \textbf{\uline{Con prefijos multiplicadores}} (forma preferida):
+          \esquemafig{esq-oxido-pref}
+          \begin{enumerate}[label=\textcolor{red}{\(\bullet\)}]
+              \item Prefijo\subin{1}: número de átomos de oxígeno.
+              \item Prefijo\subin{2}: número de átomos del otro elemento.
+          \end{enumerate}
+
+          \ejemplos
+          \begin{center}
+              \SetTblrInner{rowsep=3pt}
+              % --- tabla antigua ---
+              % \begin{tblr}{colspec={Q[c,m] Q[l,m]}, row{1}={bg=myOrange3!90!white, fg=white, font=\sffamily}, hline{1,2,Z}={1pt}, hline{3-Y}={dashed}}
+                  % Fórmula & Nombre \\
+                  % \ch{CO} & monóxido de carbono \\
+                  % \ch{CO2} & dióxido de carbono \\
+                  % \ch{Na2O} & óxido de disodio \\
+                  % \ch{Fe2O3} & trióxido de dihierro \\
+                  % \ch{Ni2O3} & trióxido de diníquel \\
+                  % \ch{SO3} & trióxido de azufre \\
+                  % \ch{N2O5} & pentaóxido de dinitrógeno \\
+                  % \ch{CaO} & óxido de calcio \\
+                  % \ch{P4O10} & decaóxido de tetrafósforo \\
+              % \end{tblr}
+              % --- tabla nueva ---
+              \begin{tabular}{@{}cl@{}}
+                  \toprule
+                  \textbf{Fórmula} & \textbf{Nombre} \\
+                  \midrule
+                  \ch{CO} & monóxido de carbono \\[3pt]
+                  \ch{CO2} & dióxido de carbono \\[3pt]
+                  \ch{Na2O} & óxido de disodio \\[3pt]
+                  \ch{Fe2O3} & trióxido de dihierro \\[3pt]
+                  \ch{Ni2O3} & trióxido de diníquel \\[3pt]
+                  \ch{SO3} & trióxido de azufre \\[3pt]
+                  \ch{N2O5} & pentaóxido de dinitrógeno \\[3pt]
+                  \ch{CaO} & óxido de calcio \\[3pt]
+                  \ch{P4O10} & decaóxido de tetrafósforo \\
+                  \bottomrule
+              \end{tabular}
+          \end{center}
+
+    \item \textbf{\uline{Con el número de oxidación}} \conox:
+          \esquemafig{esq-oxido-eo}
+          El número de oxidación va pegado al nombre, sin espacio: hierro(III). Si el elemento tiene un único número de oxidación (alcalinos, alcalinotérreos, Zn, Ag, Al) se omite.
+
+          \ejemplos
+          \ballnumber{1} : \ch{Ni2O3}: óxido de níquel(III)
+
+          \ballnumber{2} : \ch{SO3}: óxido de azufre(VI)
+
+          \ballnumber{3} : \ch{Na2O}: \mal{óxido de sodio(I)} \(\to\) \textcolor{blue}{óxido de sodio}, porque el sodio solo actúa con \(+1\).
+
+    \item \textbf{\uline{Con el número de carga}} \concarga{} \ampliacion: solo para los óxidos de metales, que son iónicos. \ch{Fe2O3}: óxido de hierro(3+); \ch{Cu2O}: óxido de cobre(1+). Los óxidos de no metales (\ch{SO3}, \ch{CO2}\dots) son covalentes y \negrita{no} se pueden nombrar así.
+\end{enumerate}
+
+\begin{marker}
+    \negrita{No} se debe usar la nomenclatura antigua: \mal{anhídrido sulfúrico}, \mal{óxido férrico}, \mal{óxido ferroso}. Para el \ch{SO3} se dice trióxido de azufre u óxido de azufre(VI).
+\end{marker}
+
+\begin{exercise}
+    \textbf{1.} Nombra cada óxido de dos formas, \conpref{} y \conox: \textbf{a)} \ch{CO}; \textbf{b)} \ch{SO2}; \textbf{c)} \ch{N2O3}; \textbf{d)} \ch{P2O5}; \textbf{e)} \ch{PbO2}; \textbf{f)} \ch{CaO}; \textbf{g)} \ch{Cu2O}.\\
+    \textbf{2.} \ampliacion{} Nombra con \concarga{} los óxidos del apartado anterior que lo admitan. ¿Por qué los demás no lo admiten?
+    \begin{solu}
+        \textbf{1. a)} \conpref{} \textcolor{red}{monóxido de carbono} \quad \conox{} \textcolor{red}{óxido de carbono(II)}\\
+        \textbf{b)} \conpref{} \textcolor{red}{dióxido de azufre} \quad \conox{} \textcolor{red}{óxido de azufre(IV)}\\
+        \textbf{c)} \conpref{} \textcolor{red}{trióxido de dinitrógeno} \quad \conox{} \textcolor{red}{óxido de nitrógeno(III)}\\
+        \textbf{d)} \conpref{} \textcolor{red}{pentaóxido de difósforo} \quad \conox{} \textcolor{red}{óxido de fósforo(V)}\\
+        \textbf{e)} \conpref{} \textcolor{red}{dióxido de plomo} \quad \conox{} \textcolor{red}{óxido de plomo(IV)}\\
+        \textbf{f)} \conpref{} \textcolor{red}{óxido de calcio} \quad \conox{} \textcolor{red}{óxido de calcio} (se omite porque el calcio solo actúa con \(+2\))\\
+        \textbf{g)} \conpref{} \textcolor{red}{óxido de dicobre} \quad \conox{} \textcolor{red}{óxido de cobre(I)}\\
+        \textbf{2.} \concarga{} \textbf{e)} \textcolor{red}{óxido de plomo(4+)}; \textbf{f)} \textcolor{red}{óxido de calcio}; \textbf{g)} \textcolor{red}{óxido de cobre(1+)}.\\
+        \textcolor{blue}{\ch{CO}, \ch{SO2}, \ch{N2O3} y \ch{P2O5} son óxidos de no metales: son covalentes, no tienen iones y por tanto no tienen número de carga.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Formula: \textbf{a)} dióxido de nitrógeno; \textbf{b)} óxido de aluminio; \textbf{c)} pentaóxido de difósforo; \textbf{d)} óxido de hierro(II); \textbf{e)} dióxido de silicio; \textbf{f)} trióxido de azufre; \textbf{g)} óxido de cobre(2+).
+    \begin{solu}
+        \textbf{a)} \textcolor{red}{\ch{NO2}}\\
+        \textbf{b)} \textcolor{blue}{Al \(+3\), O \(-2\): \(2\cdot(+3)+3\cdot(-2)=0\)} \(\to\) \textcolor{red}{\ch{Al2O3}}\\
+        \textbf{c)} \textcolor{red}{\ch{P2O5}}\\
+        \textbf{d)} \conox{} \textcolor{blue}{Fe \(+2\), O \(-2\)} \(\to\) \textcolor{red}{\ch{FeO}}\\
+        \textbf{e)} \textcolor{red}{\ch{SiO2}}\\
+        \textbf{f)} \textcolor{red}{\ch{SO3}}\\
+        \textbf{g)} \concarga{} \textcolor{blue}{iones \ch{Cu^2+} y \ch{O^2-}} \(\to\) \textcolor{red}{\ch{CuO}}
+    \end{solu}
+\end{exercise}
+
+\subsection{Oxígeno con halógenos: halogenuros de oxígeno}\label{sec:halogenuros_oxigeno}
+
+En la secuencia de los elementos los halógenos (F, Cl, Br, I) están a la \negrita{derecha} del oxígeno. Por eso, en sus compuestos con oxígeno, el oxígeno se escribe a la \negrita{izquierda} y el halógeno se nombra con \negrita{raíz + uro}: \negrita{no son óxidos}, sino \negrita{halogenuros de oxígeno}.
+
+\esquemafig{esq-halogenuro-oxigeno}
+
+\ejemplos
+\begin{center}
+    \SetTblrInner{rowsep=3pt}
+    % --- tabla antigua ---
+    % \begin{tblr}{colspec={Q[c,m] Q[l,m]}, row{1}={bg=myOrange3!90!white, fg=white, font=\sffamily}, hline{1,2,Z}={1pt}, hline{3-Y}={dashed}}
+        % Fórmula & Nombre \\
+        % \ch{OF2} & difluoruro de oxígeno \\
+        % \ch{OCl2} & dicloruro de oxígeno \\
+        % \ch{O3Cl2} & dicloruro de trioxígeno \\
+        % \ch{O5Br2} & dibromuro de pentaoxígeno \\
+        % \ch{O7I2} & diyoduro de heptaoxígeno \\
+    % \end{tblr}
+    % --- tabla nueva ---
+    \begin{tabular}{@{}cl@{}}
+        \toprule
+        \textbf{Fórmula} & \textbf{Nombre} \\
+        \midrule
+        \ch{OF2} & difluoruro de oxígeno \\[3pt]
+        \ch{OCl2} & dicloruro de oxígeno \\[3pt]
+        \ch{O3Cl2} & dicloruro de trioxígeno \\[3pt]
+        \ch{O5Br2} & dibromuro de pentaoxígeno \\[3pt]
+        \ch{O7I2} & diyoduro de heptaoxígeno \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\begin{marker}
+    Es un error frecuente escribir \mal{\ch{Cl2O}} y llamarlo \mal{óxido de dicloro}. Según la IUPAC (2005) es \ch{OCl2}, \negrita{dicloruro de oxígeno}.
+\end{marker}
+
+\begin{exercise}
+    \textbf{1.} Nombra con prefijos: \textbf{a)} \ch{OF2}; \textbf{b)} \ch{OBr2}; \textbf{c)} \ch{O3Cl2}; \textbf{d)} \ch{O7Cl2}.\\
+    \textbf{2.} Formula: \textbf{a)} dicloruro de oxígeno; \textbf{b)} dibromuro de trioxígeno; \textbf{c)} diyoduro de pentaoxígeno.
+    \begin{solu}
+        \textcolor{blue}{El halógeno se nombra primero (raíz + uro) y el oxígeno se escribe a la izquierda.}\\
+        \textbf{1. a)} \textcolor{red}{difluoruro de oxígeno}; \textbf{b)} \textcolor{red}{dibromuro de oxígeno}; \textbf{c)} \textcolor{red}{dicloruro de trioxígeno}; \textbf{d)} \textcolor{red}{dicloruro de heptaoxígeno}\\
+        \textbf{2. a)} \textcolor{red}{\ch{OCl2}}; \textbf{b)} \textcolor{red}{\ch{O3Br2}}; \textbf{c)} \textcolor{red}{\ch{O5I2}}
+    \end{solu}
+\end{exercise}
+
+\subsection[Peróxidos \ampliacionicono]{Peróxidos \ampliacion}\label{sec:peroxidos}
+
+Están formados por un catión (normalmente un metal alcalino o alcalinotérreo, o el hidrógeno) y el \negrita{ion peróxido} \ch{O2^2-}, en el que los dos oxígenos están unidos entre sí. En los peróxidos el oxígeno actúa con número de oxidación \(-1\).
+
+\begin{marker}
+    ¿Óxido o peróxido? Haz la suma cero: si el oxígeno sale con \(-2\) es un óxido; si sale con \(-1\), es un peróxido. El grupo \ch{O2} \negrita{no se simplifica nunca}: \ch{Na2O2} y no \mal{\ch{NaO}}.
+\end{marker}
+
+\formulan
+\begin{enumerate}[label=\itembolascolor{\arabic*}{green!40!black}]
+    \item Escribimos el metal a la izquierda y el grupo peróxido \ch{O2^2-} a la derecha.
+    \item Ponemos los átomos del metal necesarios para neutralizar la carga \(2-\) del grupo.
+\end{enumerate}
+
+\ejemplos
+\ballnumber{1} : Peróxido de sodio: \ch{Na+} y \ch{O2^2-} \(\to\) \(2\cdot(+1) + (-2) = 0\) \(\to\) \ch{Na2O2}
+
+\ballnumber{2} : Peróxido de bario: \ch{Ba^2+} y \ch{O2^2-} \(\to\) \ch{BaO2} (el 2 es del grupo peróxido, no se puede quitar).
+
+\nombran
+\begin{enumerate}[label=\itembolascolor{\arabic*}{blue}]
+    \item \textbf{\uline{Con prefijos multiplicadores}}: igual que los óxidos. \ch{Na2O2}: dióxido de disodio; \ch{Li2O2}: dióxido de dilitio.
+    \item \textbf{\uline{Nombre de peróxido}}:
+          \esquemafig{esq-peroxido}
+          \ch{Na2O2}: peróxido de sodio; \ch{CaO2}: peróxido de calcio; \ch{H2O2}: peróxido de hidrógeno (nombre vulgar admitido: \negrita{agua oxigenada}).
+\end{enumerate}
+
+\begin{exercise}
+    \textbf{1.} Indica si son óxidos o peróxidos, justificándolo con la suma cero: \textbf{a)} \ch{K2O2}; \textbf{b)} \ch{BaO}; \textbf{c)} \ch{BaO2}; \textbf{d)} \ch{Li2O}.\\
+    \textbf{2.} Formula: \textbf{a)} peróxido de litio; \textbf{b)} peróxido de calcio; \textbf{c)} peróxido de hidrógeno.
+    \begin{solu}
+        \textbf{1. a)} \(2\cdot(+1) + 2x = 0 \Rightarrow x = -1\): \textcolor{red}{peróxido} de potasio\\
+        \textbf{b)} \((+2) + x = 0 \Rightarrow x = -2\): \textcolor{red}{óxido} de bario\\
+        \textbf{c)} \((+2) + 2x = 0 \Rightarrow x = -1\): \textcolor{red}{peróxido} de bario\\
+        \textbf{d)} \(2\cdot(+1) + x = 0 \Rightarrow x = -2\): \textcolor{red}{óxido} de litio\\
+        \textbf{2. a)} \textcolor{red}{\ch{Li2O2}}; \textbf{b)} \textcolor{red}{\ch{CaO2}} (no se simplifica el grupo \ch{O2}); \textbf{c)} \textcolor{red}{\ch{H2O2}}
+    \end{solu}
+\end{exercise}
+
+\subsection{Hidruros metálicos (metal + hidrógeno)}\label{sec:hidruros}
+
+Son compuestos de un \negrita{metal} con hidrógeno. Con los metales, el hidrógeno actúa con número de oxidación \azul{\(-1\)} y se escribe a la derecha.
+
+\formulan
+\begin{enumerate}[label=\itembolascolor{\arabic*}{mygreen}]
+    \item Ponemos el metal a la izquierda y el hidrógeno a la derecha.
+    \item Como el hidrógeno es \(-1\), el número de hidrógenos coincide con el número de oxidación del metal.
+\end{enumerate}
+
+\ejemplos
+\ballnumber{1} : Hidruro de sodio: \ox{+1,Na} \ox{-1,H} \(\to\) \ch{NaH}
+
+\ballnumber{2} : Hidruro de calcio: \ox{+2,Ca} \ox{-1,H} \(\to\) \ch{CaH2}
+
+\nombran
+\begin{enumerate}[label=\itembolascolor{\arabic*}{blue}]
+    \item \textbf{\uline{Con prefijos multiplicadores}}:
+          \esquemafig{esq-hidruro-pref}
+          El prefijo indica el número de hidrógenos. Como en la fórmula hay siempre un solo átomo de metal, el metal no lleva prefijo.
+
+          \ejemplos
+          \ballnumber{1} : \ch{AlH3}: trihidruro de aluminio \quad \ballnumber{2} : \ch{FeH2}: dihidruro de hierro \quad \ballnumber{3} : \ch{CoH3}: trihidruro de cobalto
+
+    \item \textbf{\uline{Con el número de oxidación}} \conox:
+          \esquemafig{esq-hidruro-eo}
+
+          \ejemplos
+          \ballnumber{1} : \ch{NiH2}: hidruro de níquel(II) \quad \ballnumber{2} : \ch{PbH4}: hidruro de plomo(IV) \quad \ballnumber{3} : \ch{ZnH2}: hidruro de cinc
+
+    \item \textbf{\uline{Con el número de carga}} \concarga{} \ampliacion: \ch{NiH2}: hidruro de níquel(2+); \ch{FeH3}: hidruro de hierro(3+).
+\end{enumerate}
+
+\begin{exercise}
+    \textbf{1.} Nombra cada hidruro de dos formas, \conpref{} y \conox: \textbf{a)} \ch{LiH}; \textbf{b)} \ch{CaH2}; \textbf{c)} \ch{FeH3}; \textbf{d)} \ch{PbH4}; \textbf{e)} \ch{CuH}.\\
+    \textbf{2.} Formula: \textbf{a)} dihidruro de magnesio; \textbf{b)} hidruro de aluminio; \textbf{c)} hidruro de estaño(IV); \textbf{d)} trihidruro de cobalto; \textbf{e)} hidruro de níquel(3+).\\
+    \textbf{3.} \ampliacion{} Nombra con \concarga: \textbf{a)} \ch{FeH3}; \textbf{b)} \ch{CuH}.
+    \begin{solu}
+        \textbf{1. a)} \conpref{} \textcolor{red}{hidruro de litio} \quad \conox{} \textcolor{red}{hidruro de litio} (se omite: el litio solo actúa con \(+1\))\\
+        \textbf{b)} \conpref{} \textcolor{red}{dihidruro de calcio} \quad \conox{} \textcolor{red}{hidruro de calcio}\\
+        \textbf{c)} \conpref{} \textcolor{red}{trihidruro de hierro} \quad \conox{} \textcolor{red}{hidruro de hierro(III)}\\
+        \textbf{d)} \conpref{} \textcolor{red}{tetrahidruro de plomo} \quad \conox{} \textcolor{red}{hidruro de plomo(IV)}\\
+        \textbf{e)} \conpref{} \textcolor{red}{hidruro de cobre} \quad \conox{} \textcolor{red}{hidruro de cobre(I)}\\
+        \textbf{2.} \textcolor{blue}{Nº de H = nº de oxidación (o carga) del metal:} \textbf{a)} \textcolor{red}{\ch{MgH2}}; \textbf{b)} \textcolor{red}{\ch{AlH3}}; \textbf{c)} \textcolor{red}{\ch{SnH4}}; \textbf{d)} \textcolor{red}{\ch{CoH3}}; \textbf{e)} \textcolor{red}{\ch{NiH3}}\\
+        \textbf{3.} \concarga{} \textbf{a)} \textcolor{red}{hidruro de hierro(3+)}; \textbf{b)} \textcolor{red}{hidruro de cobre(1+)}
+    \end{solu}
+\end{exercise}
+
+\subsection{Hidrógeno con no metales}\label{sec:hidruros_nm}
+
+Con los no metales el hidrógeno actúa con número de oxidación \azul{\(+1\)}. Hay que distinguir dos casos según el grupo del no metal.
+
+\figura{fig-hidruros}
+
+\subsubsection{Con los grupos 16 y 17: halogenuros y calcogenuros de hidrógeno}\label{sec:hidruros_16_17}
+
+El hidrógeno se escribe a la \negrita{izquierda} (porque en la secuencia está antes que S, Se, Te, F, Cl, Br, I). El no metal actúa con su número de oxidación negativo: \(-2\) los del grupo 16 y \(-1\) los del grupo 17.
+
+\esquemafig{esq-hidrogeno-nm}
+
+\ejemplos
+\ballnumber{1} : \ch{HF}: fluoruro de hidrógeno \quad \ballnumber{2} : \ch{HCl}: cloruro de hidrógeno \quad \ballnumber{3} : \ch{H2S}: sulfuro de dihidrógeno \quad \ballnumber{4} : \ch{H2Se}: seleniuro de dihidrógeno
+
+Como no existe ambigüedad, también se admite omitir el prefijo del hidrógeno: \ch{H2S} sulfuro de hidrógeno.
+
+\begin{marker}
+    \negrita{¿Y el «ácido clorhídrico»?} Cuando estas sustancias se disuelven en agua, a la disolución se le ha llamado tradicionalmente así:
+    \esquemafig{esq-hidracido}
+    \ch{HCl_{(aq)}} «ácido clorhídrico», \ch{H2S_{(aq)}} «ácido sulfhídrico»\dots
+
+    ¡Atención! Estos nombres corresponden a \negrita{disoluciones} (mezclas de composición variable), no a compuestos químicos, y por eso \negrita{la IUPAC no los admite}. El compuesto \ch{HCl} se llama siempre \negrita{cloruro de hidrógeno}.
+\end{marker}
+
+\begin{exercise}
+    \textbf{1.} Nombra: \textbf{a)} \ch{HBr}; \textbf{b)} \ch{H2Se}; \textbf{c)} \ch{HI}; \textbf{d)} \ch{H2Te}; \textbf{e)} \ch{HF}.\\
+    \textbf{2.} Formula: \textbf{a)} yoduro de hidrógeno; \textbf{b)} bromuro de hidrógeno; \textbf{c)} sulfuro de dihidrógeno.\\
+    \textbf{3.} ¿Por qué no es correcto decir que el compuesto \ch{HCl} se llama ácido clorhídrico?
+    \begin{solu}
+        \textbf{1. a)} \textcolor{red}{bromuro de hidrógeno}; \textbf{b)} \textcolor{red}{seleniuro de dihidrógeno}; \textbf{c)} \textcolor{red}{yoduro de hidrógeno}; \textbf{d)} \textcolor{red}{telururo de dihidrógeno}; \textbf{e)} \textcolor{red}{fluoruro de hidrógeno}\\
+        \textbf{2. a)} \textcolor{red}{\ch{HI}}; \textbf{b)} \textcolor{red}{\ch{HBr}}; \textbf{c)} \textcolor{red}{\ch{H2S}}\\
+        \textbf{3.} \textcolor{blue}{Porque «ácido clorhídrico» es el nombre tradicional de la disolución de \ch{HCl} en agua, que es una mezcla de composición variable; la IUPAC no lo admite.} El compuesto \ch{HCl} se llama \textcolor{red}{cloruro de hidrógeno}.
+    \end{solu}
+\end{exercise}
+
+\subsubsection{Con los grupos 13, 14 y 15: hidruros progenitores}
+
+Con B, C, Si, N, P, As, Sb\dots el hidrógeno se escribe a la \negrita{derecha}. Estos compuestos se nombran preferentemente con su \negrita{nombre de hidruro progenitor} (nomenclatura de sustitución), que termina en \blueremark{-ano}; también pueden nombrarse con prefijos multiplicadores.
+
+% --- tabla antigua ---
+% \begin{longtblr}[caption={Hidruros de los no metales},
+        % note{a} = {Nomenclatura de composición con prefijos multiplicadores},
+        % note{b} = {Nombre del hidruro progenitor (nomenclatura de sustitución) o nombre vulgar admitido}
+    % ]
+    % {colspec={Q[c,m] Q[c,m] Q[c,m]},
+        % row{1} = {bg=myOrange3!90!white, fg = white, font=\sffamily}
+    % }
+    % \hline
+    % Compuesto & Prefijos multiplicadores \TblrNote{a} & Hidruro progenitor / vulgar \TblrNote{b} \\
+    % \hline
+    % \SetRow{myOrange3!20!white}\SetCell[c=3]{c} Los que hay que conocer\\
+    % \hline
+    % \ch{CH4} & tetrahidruro de carbono & \negrita{metano} \\
+    % \ch{SiH4} & tetrahidruro de silicio & silano \\
+    % \ch{NH3} & trihidruro de nitrógeno & \negrita{amoniaco}, azano \\
+    % \ch{PH3} & trihidruro de fósforo & fosfano (\mal{fosfina}) \\
+    % \ch{AsH3} & trihidruro de arsénico & arsano (\mal{arsina}) \\
+    % \ch{SbH3} & trihidruro de antimonio & estibano (\mal{estibina}) \\
+    % \ch{H2O} & --- & \negrita{agua}, oxidano \\
+    % \hline
+    % \SetRow{myOrange3!20!white} \SetCell[c=3]{c} \textcolor{myOrange3}{\faRocket} Ampliación\\
+    % \hline
+    % \ch{BH3} & trihidruro de boro & borano \\
+    % \ch{AlH3} & trihidruro de aluminio & alumano \\
+    % \ch{GaH3} & trihidruro de galio & galano \\
+    % \ch{InH3} & trihidruro de indio & indigano \\
+    % \ch{TlH3} & trihidruro de talio & talano \\
+    % \ch{GeH4} & tetrahidruro de germanio & germano \\
+    % \ch{SnH4} & tetrahidruro de estaño & estannano \\
+    % \ch{PbH4} & tetrahidruro de plomo & plumbano\\
+    % \ch{BiH3} & trihidruro de bismuto & bismutano\\
+    % \ch{H2S} & sulfuro de dihidrógeno & sulfano\\
+    % \ch{H2Se} & seleniuro de dihidrógeno & selano\\
+    % \ch{H2Te} & telururo de dihidrógeno & telano\\
+    % \ch{H2Po} & polonuro de dihidrógeno & polano\\
+    % \ch{HF} & fluoruro de hidrógeno & fluorano\\
+    % \ch{HCl} & cloruro de hidrógeno & clorano\\
+    % \ch{HBr} & bromuro de hidrógeno & bromano\\
+    % \ch{HI} & yoduro de hidrógeno & yodano\\
+    % \ch{HAt} & astaturo de hidrógeno & astatano\\
+    % \hline
+% \end{longtblr}
+% --- tabla nueva ---
+\begin{longtable}{@{}ccc@{}}
+    \caption{Hidruros de los no metales} \\
+    \toprule
+    \textbf{Compuesto} & \textbf{Prefijos multiplicadores \textsuperscript{a}} & \textbf{Hidruro progenitor / vulgar \textsuperscript{b}} \\
+    \midrule
+    \endfirsthead
+    \toprule
+    \textbf{Compuesto} & \textbf{Prefijos multiplicadores \textsuperscript{a}} & \textbf{Hidruro progenitor / vulgar \textsuperscript{b}} \\
+    \midrule
+    \endhead
+    \bottomrule
+    \endlastfoot
+    \multicolumn{3}{c}{Los que hay que conocer} \\[3pt]
+    \ch{CH4} & tetrahidruro de carbono & \negrita{metano} \\[3pt]
+    \ch{SiH4} & tetrahidruro de silicio & silano \\[3pt]
+    \ch{NH3} & trihidruro de nitrógeno & \negrita{amoniaco}, azano \\[3pt]
+    \ch{PH3} & trihidruro de fósforo & fosfano (\mal{fosfina}) \\[3pt]
+    \ch{AsH3} & trihidruro de arsénico & arsano (\mal{arsina}) \\[3pt]
+    \ch{SbH3} & trihidruro de antimonio & estibano (\mal{estibina}) \\[3pt]
+    \ch{H2O} & --- & \negrita{agua}, oxidano \\[3pt]
+    \multicolumn{3}{c}{\textcolor{myOrange3}{\faRocket} Ampliación} \\[3pt]
+    \ch{BH3} & trihidruro de boro & borano \\[3pt]
+    \ch{AlH3} & trihidruro de aluminio & alumano \\[3pt]
+    \ch{GaH3} & trihidruro de galio & galano \\[3pt]
+    \ch{InH3} & trihidruro de indio & indigano \\[3pt]
+    \ch{TlH3} & trihidruro de talio & talano \\[3pt]
+    \ch{GeH4} & tetrahidruro de germanio & germano \\[3pt]
+    \ch{SnH4} & tetrahidruro de estaño & estannano \\[3pt]
+    \ch{PbH4} & tetrahidruro de plomo & plumbano \\[3pt]
+    \ch{BiH3} & trihidruro de bismuto & bismutano \\[3pt]
+    \ch{H2S} & sulfuro de dihidrógeno & sulfano \\[3pt]
+    \ch{H2Se} & seleniuro de dihidrógeno & selano \\[3pt]
+    \ch{H2Te} & telururo de dihidrógeno & telano \\[3pt]
+    \ch{H2Po} & polonuro de dihidrógeno & polano \\[3pt]
+    \ch{HF} & fluoruro de hidrógeno & fluorano \\[3pt]
+    \ch{HCl} & cloruro de hidrógeno & clorano \\[3pt]
+    \ch{HBr} & bromuro de hidrógeno & bromano \\[3pt]
+    \ch{HI} & yoduro de hidrógeno & yodano \\[3pt]
+    \ch{HAt} & astaturo de hidrógeno & astatano \\
+\end{longtable}
+{\footnotesize
+    \textsuperscript{a}\,Nomenclatura de composición con prefijos multiplicadores\par
+    \textsuperscript{b}\,Nombre del hidruro progenitor (nomenclatura de sustitución) o nombre vulgar admitido\par
+}
+
+\begin{exercise}
+    \textbf{1.} Escribe el nombre preferido de: \textbf{a)} \ch{CH4}; \textbf{b)} \ch{NH3}; \textbf{c)} \ch{PH3}; \textbf{d)} \ch{SiH4}; \textbf{e)} \ch{AsH3}.\\
+    \textbf{2.} Formula: \textbf{a)} estibano; \textbf{b)} borano; \textbf{c)} azano.
+    \begin{solu}
+        \textbf{1. a)} \textcolor{red}{metano}; \textbf{b)} \textcolor{red}{amoniaco} o azano; \textbf{c)} \textcolor{red}{fosfano} (no fosfina); \textbf{d)} \textcolor{red}{silano}; \textbf{e)} \textcolor{red}{arsano} (no arsina)\\
+        \textbf{2. a)} \textcolor{red}{\ch{SbH3}}; \textbf{b)} \textcolor{red}{\ch{BH3}}; \textbf{c)} \textcolor{red}{\ch{NH3}}
+    \end{solu}
+\end{exercise}
+
+\subsection{Sales binarias: metal + no metal}\label{sec:sales_binarias}
+
+Son compuestos formados por un metal (a la izquierda) y un no metal distinto del oxígeno y del hidrógeno (a la derecha). El no metal actúa con su número de oxidación negativo (ver la figura del apartado~\ref{sec:eo}): F, Cl, Br, I \(\to -1\); S, Se, Te \(\to -2\); N, P \(\to -3\); C \(\to -4\).
+
+\formulan
+\begin{enumerate}[label=\itembolascolor{\arabic*}{green!40!black}]
+    \item Ponemos el metal a la izquierda y el no metal a la derecha.
+    \item Con prefijos: los prefijos son los subíndices.
+    Sin prefijos o con número de oxidación: aplicamos la suma cero.
+\end{enumerate}
+
+\ejemplos
+\ballnumber{1} : Cloruro de sodio: \ox{+1,Na} \ox{-1,Cl} \(\to\) \ch{NaCl}
+
+\ballnumber{2} : Sulfuro de estaño(II): \ox{+2,Sn} \ox{-2,S} \(\to\) \((+2)+(-2)=0\) \(\to\) \ch{SnS}
+
+\ballnumber{3} : Cloruro de cinc: \ox{+2,Zn} \ox{-1,Cl} \(\to\) \((+2)+2\cdot(-1)=0\) \(\to\) \ch{ZnCl2}
+
+\nombran
+\begin{enumerate}[label=\itembolascolor{\arabic*}{blue}]
+    \item \textbf{\uline{Con prefijos multiplicadores}}:
+          \esquemafig{esq-sal-pref}
+
+          \ejemplos
+          \ballnumber{1} : \ch{Al4C3}: tricarburo de tetraaluminio \quad \ballnumber{2} : \ch{SnTe2}: ditelururo de estaño
+
+          \ballnumber{3} : \ch{Ca3P2}: difosfuro de tricalcio \quad \ballnumber{4} : \ch{AgBr}: bromuro de plata
+
+    \item \textbf{\uline{Con el número de oxidación}} \conox:
+          \esquemafig{esq-sal-eo}
+
+          \ejemplos
+          \ballnumber{1} : \ch{Al4C3}: carburo de aluminio \quad \ballnumber{2} : \ch{SnTe2}: telururo de estaño(IV) \quad \ballnumber{3} : \ch{FeCl3}: cloruro de hierro(III)
+
+    \item \textbf{\uline{Con el número de carga}} \concarga{} \ampliacion{} (solo compuestos iónicos): \ch{FeCl2}: cloruro de hierro(2+); \ch{CuS}: sulfuro de cobre(2+).
+\end{enumerate}
+
+\begin{exercise}
+    \textbf{1.} Nombra cada sal de dos formas, \conpref{} y \conox: \textbf{a)} \ch{NaBr}; \textbf{b)} \ch{CaF2}; \textbf{c)} \ch{FeS}; \textbf{d)} \ch{Al2S3}; \textbf{e)} \ch{CuCl2}; \textbf{f)} \ch{Mg3N2}; \textbf{g)} \ch{AgI}.\\
+    \textbf{2.} Formula: \textbf{a)} cloruro de cinc; \textbf{b)} sulfuro de dipotasio; \textbf{c)} yoduro de plomo(II); \textbf{d)} nitruro de litio; \textbf{e)} tricloruro de hierro; \textbf{f)} bromuro de cobre(1+).\\
+    \textbf{3.} \ampliacion{} Nombra con \concarga: \textbf{a)} \ch{FeS}; \textbf{b)} \ch{CuCl2}.
+    \begin{solu}
+        \textbf{1. a)} \conpref{} \textcolor{red}{bromuro de sodio} \quad \conox{} \textcolor{red}{bromuro de sodio}\\
+        \textbf{b)} \conpref{} \textcolor{red}{difluoruro de calcio} \quad \conox{} \textcolor{red}{fluoruro de calcio}\\
+        \textbf{c)} \conpref{} \textcolor{red}{monosulfuro de hierro} \quad \conox{} \textcolor{red}{sulfuro de hierro(II)}\\
+        \textbf{d)} \conpref{} \textcolor{red}{trisulfuro de dialuminio} \quad \conox{} \textcolor{red}{sulfuro de aluminio}\\
+        \textbf{e)} \conpref{} \textcolor{red}{dicloruro de cobre} \quad \conox{} \textcolor{red}{cloruro de cobre(II)}\\
+        \textbf{f)} \conpref{} \textcolor{red}{dinitruro de trimagnesio} \quad \conox{} \textcolor{red}{nitruro de magnesio}\\
+        \textbf{g)} \conpref{} \textcolor{red}{yoduro de plata} \quad \conox{} \textcolor{red}{yoduro de plata}\\
+        \textcolor{blue}{Con \conox{} el número se omite cuando el metal solo tiene uno (Na, Ca, Al, Mg, Ag).}\\
+        \textbf{2. a)} \textcolor{blue}{Zn \(+2\), Cl \(-1\)} \(\to\) \textcolor{red}{\ch{ZnCl2}}; \textbf{b)} \textcolor{red}{\ch{K2S}}; \textbf{c)} \textcolor{red}{\ch{PbI2}}; \textbf{d)} \textcolor{blue}{Li \(+1\), N \(-3\)} \(\to\) \textcolor{red}{\ch{Li3N}}; \textbf{e)} \textcolor{red}{\ch{FeCl3}}; \textbf{f)} \textcolor{blue}{iones \ch{Cu+} y \ch{Br-}} \(\to\) \textcolor{red}{\ch{CuBr}}\\
+        \textbf{3.} \concarga{} \textbf{a)} \textcolor{red}{sulfuro de hierro(2+)}; \textbf{b)} \textcolor{red}{cloruro de cobre(2+)}
+    \end{solu}
+\end{exercise}
+
+\subsection{Sales binarias: no metal + no metal}\label{sec:nometal_nometal}
+
+Son compuestos covalentes entre dos no metales (distintos del oxígeno y del hidrógeno). El que está más a la derecha en la secuencia de los elementos se escribe a la derecha y se nombra con la raíz de su nombre + \blueremark{-uro}. Se nombran \negrita{siempre con prefijos} (también puede usarse el número de oxidación, pero nunca el de carga, porque no son iónicos).
+
+\ejemplos
+\ballnumber{1} : \ch{PCl3}: tricloruro de fósforo \quad \ballnumber{2} : \ch{PCl5}: pentacloruro de fósforo \quad \ballnumber{3} : \ch{SF6}: hexafluoruro de azufre
+
+\ballnumber{4} : \ch{SF4}: tetrafluoruro de azufre o fluoruro de azufre(IV) \quad \ballnumber{5} : \ch{CS2}: disulfuro de carbono \quad \ballnumber{6} : \ch{BrF3}: trifluoruro de bromo
+
+\begin{exercise}
+    \textbf{1.} Nombra \conpref: \textbf{a)} \ch{PBr3}; \textbf{b)} \ch{CCl4}; \textbf{c)} \ch{NCl3}; \textbf{d)} \ch{BF3}; \textbf{e)} \ch{IF7}.\\
+    \textbf{2.} Formula: \textbf{a)} pentafluoruro de fósforo; \textbf{b)} disulfuro de carbono; \textbf{c)} tetrafluoruro de silicio.\\
+    \textbf{3.} Nombra \conox{} el \ch{SF4} y el \ch{PCl3}. ¿Se podrían nombrar con \concarga?
+    \begin{solu}
+        \textbf{1. a)} \textcolor{red}{tribromuro de fósforo}; \textbf{b)} \textcolor{red}{tetracloruro de carbono}; \textbf{c)} \textcolor{red}{tricloruro de nitrógeno}; \textbf{d)} \textcolor{red}{trifluoruro de boro}; \textbf{e)} \textcolor{red}{heptafluoruro de yodo}\\
+        \textbf{2. a)} \textcolor{red}{\ch{PF5}}; \textbf{b)} \textcolor{red}{\ch{CS2}}; \textbf{c)} \textcolor{red}{\ch{SiF4}}\\
+        \textbf{3.} \conox{} \textcolor{red}{fluoruro de azufre(IV)}; \textcolor{red}{cloruro de fósforo(III)}. \textcolor{blue}{No se pueden nombrar con \concarga{} porque son compuestos covalentes: no tienen iones.}
+    \end{solu}
+\end{exercise}
+
+%=====================================================================
+\section{Hidróxidos}\label{sec:hidroxidos}
+%=====================================================================
+
+Los hidróxidos son compuestos ternarios (tres elementos), aunque se nombran como los binarios. Tienen carácter básico, por eso también se llaman bases (aunque no todas las bases son hidróxidos).
+
+Están formados por un catión metálico y el \negrita{ion hidróxido} \ch{OH-}, que es un grupo indivisible con \negrita{número de carga} \(1-\). Su fórmula general es \ch{M(OH)_n}, donde \(n\) es el número de oxidación del metal.
+
+\formulan
+\begin{enumerate}[label=\itembolascolor{\arabic*}{mygreen}]
+    \item Ponemos el metal a la izquierda y el grupo \ch{OH} a la derecha.
+    \item Ponemos tantos grupos \ch{OH} como indique el número de oxidación del metal (suma cero).
+    \item Si hay más de un grupo, \ch{OH} va entre paréntesis: \ch{Ca(OH)2}. Si solo hay uno, sin paréntesis: \ch{NaOH}.
+\end{enumerate}
+
+\ejemplos
+\ballnumber{1}: Hidróxido de sodio: \ch{Na+} y \ch{OH-} \(\to\) \ch{NaOH}
+
+\ballnumber{2}: Dihidróxido de calcio: \ch{Ca^2+} y \ch{OH-} \(\to\) \((+2)+2\cdot(-1)=0\) \(\to\) \ch{Ca(OH)2}
+
+\nombran
+\begin{enumerate}[label=\itembolascolor{\arabic*}{blue}]
+    \item \textbf{\uline{Con prefijos multiplicadores}}:
+          \esquemafig{esq-hidroxido-pref}
+          El prefijo indica el número de grupos \ch{OH}.
+
+          \ejemplos
+          \ballnumber{1} : \ch{LiOH}: hidróxido de litio \quad \ballnumber{2} : \ch{Mg(OH)2}: dihidróxido de magnesio \quad \ballnumber{3} : \ch{Al(OH)3}: trihidróxido de aluminio
+
+    \item \textbf{\uline{Con el número de oxidación}} \conox:
+          \esquemafig{esq-hidroxido-eo}
+
+          \ejemplos
+          \ballnumber{1} : \ch{Fe(OH)2}: hidróxido de hierro(II) \quad \ballnumber{2} : \ch{CuOH}: hidróxido de cobre(I)
+
+    \item \textbf{\uline{Con el número de carga}} \concarga{} \ampliacion: los hidróxidos son iónicos, así que también se puede indicar la carga del catión metálico.
+
+          \ejemplos
+          \ballnumber{1} : \ch{Fe(OH)2}: hidróxido de hierro(2+) \quad \ballnumber{2} : \ch{CuOH}: hidróxido de cobre(1+)
+\end{enumerate}
+
+\begin{exercise}
+    \textbf{1.} Nombra cada hidróxido de dos formas, \conpref{} y \conox: \textbf{a)} \ch{KOH}; \textbf{b)} \ch{Ba(OH)2}; \textbf{c)} \ch{Fe(OH)3}; \textbf{d)} \ch{Pb(OH)4}; \textbf{e)} \ch{CuOH}.\\
+    \textbf{2.} Formula: \textbf{a)} hidróxido de litio; \textbf{b)} dihidróxido de cinc; \textbf{c)} hidróxido de cobalto(II); \textbf{d)} hidróxido de níquel(3+).\\
+    \textbf{3.} \ampliacion{} Nombra con \concarga: \textbf{a)} \ch{Fe(OH)3}; \textbf{b)} \ch{Pb(OH)4}; \textbf{c)} \ch{CuOH}.
+    \begin{solu}
+        \textbf{1. a)} \conpref{} \textcolor{red}{hidróxido de potasio} \quad \conox{} \textcolor{red}{hidróxido de potasio}\\
+        \textbf{b)} \conpref{} \textcolor{red}{dihidróxido de bario} \quad \conox{} \textcolor{red}{hidróxido de bario}\\
+        \textbf{c)} \conpref{} \textcolor{red}{trihidróxido de hierro} \quad \conox{} \textcolor{red}{hidróxido de hierro(III)}\\
+        \textbf{d)} \conpref{} \textcolor{red}{tetrahidróxido de plomo} \quad \conox{} \textcolor{red}{hidróxido de plomo(IV)}\\
+        \textbf{e)} \conpref{} \textcolor{red}{hidróxido de cobre} \quad \conox{} \textcolor{red}{hidróxido de cobre(I)}\\
+        \textbf{2.} \textcolor{blue}{Tantos \ch{OH} como el número de oxidación (o la carga) del metal:} \textbf{a)} \textcolor{red}{\ch{LiOH}}; \textbf{b)} \textcolor{red}{\ch{Zn(OH)2}}; \textbf{c)} \conox{} \textcolor{red}{\ch{Co(OH)2}}; \textbf{d)} \concarga{} \textcolor{red}{\ch{Ni(OH)3}}\\
+        \textbf{3.} \concarga{} \textbf{a)} \textcolor{red}{hidróxido de hierro(3+)}; \textbf{b)} \textcolor{red}{hidróxido de plomo(4+)}; \textbf{c)} \textcolor{red}{hidróxido de cobre(1+)}
+    \end{solu}
+\end{exercise}
+
+% ---------------------------------------------------------------------
+% Soluciones de todos los ejercicios
+% ---------------------------------------------------------------------
+\Closesolutionfile{ans}
+\newpage
+\section*{Soluciones de los ejercicios}
+\addcontentsline{toc}{section}{Soluciones de los ejercicios}
+\input{ans3eso}
+
+\end{document}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Reflexión y refracción de las ondas</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="860" height="340"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const deg = Math.PI / 180;
+    // ---------- Reflexión ----------
+    label(add, 140, 22, 'Reflexión', { fill: '#000070', 'font-size': 18 });
+    const rx = 140, ry = 250, Lr = 175, i = 40;
+    add('rect', { x: 10, y: ry, width: 260, height: 26, fill: '#D5D8DC' });
+    for (let x = 14; x < 270; x += 12) add('line', { x1: x, y1: ry + 26, x2: x + 10, y2: ry + 2, stroke: '#7F8C8D', 'stroke-width': 1 });
+    add('line', { x1: 10, y1: ry, x2: 270, y2: ry, stroke: '#23373B', 'stroke-width': 2.5 });
+    dashed(add, rx, ry, rx, 50);
+    label(add, rx, 44, 'normal', { 'font-size': 14, fill: '#525252' });
+    ray(add, rx - Lr * Math.sin(i * deg), ry - Lr * Math.cos(i * deg), rx, ry, '#C0392B');
+    ray(add, rx, ry, rx + Lr * Math.sin(i * deg), ry - Lr * Math.cos(i * deg), '#C0392B', 2.5, 0.6);
+    angleArc(add, rx, ry, 60, 90, 90 + i, 'i', '#2E86C1', { dr: 12 });
+    angleArc(add, rx, ry, 60, 90 - i, 90, 'r', '#2E86C1', { dr: 12 });
+    label(add, 40, 110, 'rayo', { 'font-size': 14, fill: '#C0392B' });
+    label(add, 40, 128, 'incidente', { 'font-size': 14, fill: '#C0392B' });
+    label(add, 240, 110, 'rayo', { 'font-size': 14, fill: '#C0392B' });
+    label(add, 240, 128, 'reflejado', { 'font-size': 14, fill: '#C0392B' });
+    label(add, 140, 312, 'ángulo de incidencia = ángulo de reflexión', { 'font-size': 14, fill: '#23373B' });
+
+    // ---------- Refracción (dos casos) ----------
+    const refr = (x0, ttl, top, bot, colTop, colBot, i, r) => {
+        const cx = x0 + 130, cy = 175, L1 = 135, L2 = 135;
+        label(add, cx, 22, ttl, { fill: '#000070', 'font-size': 16 });
+        add('rect', { x: x0, y: 40, width: 260, height: cy - 40, fill: colTop });
+        add('rect', { x: x0, y: cy, width: 260, height: 130, fill: colBot });
+        add('line', { x1: x0, y1: cy, x2: x0 + 260, y2: cy, stroke: '#23373B', 'stroke-width': 2 });
+        dashed(add, cx, 48, cx, 298);
+        label(add, cx - 4, 62, 'normal', { 'font-size': 13, fill: '#525252', 'text-anchor': 'end' });
+        ray(add, cx - L1 * Math.sin(i * deg), cy - L1 * Math.cos(i * deg), cx, cy, '#C0392B');
+        ray(add, cx, cy, cx + L2 * Math.sin(r * deg), cy + L2 * Math.cos(r * deg), '#C0392B', 2.5, 0.6);
+        angleArc(add, cx, cy, 50, 90, 90 + i, 'i', '#2E86C1', { dr: 12 });
+        angleArc(add, cx, cy, 50, 270, 270 + r, 'r', '#2E86C1', { dr: 12 });
+        label(add, x0 + 250, cy - 10, top, { 'font-size': 13, fill: '#23373B', 'text-anchor': 'end' });
+        label(add, x0 + 250, 292, bot, { 'font-size': 13, fill: '#23373B', 'text-anchor': 'end' });
+    };
+    refr(300, 'Pasa a un medio más lento', 'medio 1 (v₁ mayor)', 'medio 2 (v₂ menor)', '#EBF5FB', '#AED6F1', 45, 28);
+    label(add, 430, 330, 'el rayo se acerca a la normal (r < i)', { 'font-size': 14, fill: '#23373B' });
+    refr(590, 'Pasa a un medio más rápido', 'medio 1 (v₁ menor)', 'medio 2 (v₂ mayor)', '#AED6F1', '#EBF5FB', 30, 50);
+    label(add, 720, 330, 'el rayo se aleja de la normal (r > i)', { 'font-size': 14, fill: '#23373B' });
+</script>
+</body>
+</html>

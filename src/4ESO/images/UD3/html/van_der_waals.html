@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Dipolos instantáneos e inducidos</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="940" height="205"></svg>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    const add = svgAdder('s');
+    add('defs', {}).innerHTML = '<radialGradient id="m" cx=".4" cy=".4" r=".7"><stop offset="0" stop-color="#FAD7A0"/><stop offset="1" stop-color="#E67E22"/></radialGradient>';
+    const mol = (x, y, dip) => {
+        if (!dip) add('circle', { cx: x, cy: y, r: 34, fill: 'url(#m)' });
+        else {
+            add('ellipse', { cx: x, cy: y, rx: 42, ry: 30, fill: 'url(#m)' });
+            label(add, x - 22, y + 7, 'δ⁺', { 'font-size': 18, fill: '#7B241C' });
+            label(add, x + 22, y + 7, 'δ⁻', { 'font-size': 18, fill: '#1B4F72' });
+        }
+    };
+    // paso 1
+    mol(70, 95, false); arrow(add, 115, 95, 160, 95, '#1E8449', 4, 14); mol(215, 95, true);
+    label(add, 145, 165, '1. Una molécula apolar forma', { 'font-size': 15, fill: '#000070' }); label(add, 145, 185, 'un dipolo instantáneo', { 'font-size': 15, fill: '#000070' });
+    add('line', { x1: 300, y1: 20, x2: 300, y2: 185, stroke: '#E5E8E8', 'stroke-width': 2 });
+    // paso 2
+    mol(380, 95, true); mol(500, 95, false); arrow(add, 545, 95, 585, 95, '#1E8449', 4, 14); mol(640, 95, true);
+    label(add, 510, 165, '2. Ese dipolo induce otro dipolo', { 'font-size': 15, fill: '#000070' }); label(add, 510, 185, 'en la molécula vecina', { 'font-size': 15, fill: '#000070' });
+    add('line', { x1: 710, y1: 20, x2: 710, y2: 185, stroke: '#E5E8E8', 'stroke-width': 2 });
+    // paso 3
+    mol(770, 95, true); mol(880, 95, true);
+    add('line', { x1: 800, y1: 95, x2: 850, y2: 95, stroke: '#C0392B', 'stroke-width': 3, 'stroke-dasharray': '4 4' });
+    label(add, 825, 165, '3. Se atraen: fuerza', { 'font-size': 15, fill: '#000070' }); label(add, 825, 185, 'de Van der Waals', { 'font-size': 15, fill: '#000070' });
+</script>
+</body>
+</html>

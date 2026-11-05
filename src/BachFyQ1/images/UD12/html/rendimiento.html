@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Balance de energía de una máquina</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="a" width="780" height="300"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const A = svgAdder('a');
+    const Cin = '#2471A3', Cu = '#1E8449', Cd = '#C0392B';
+    // banda de entrada (100 %)
+    A('path', { d: 'M20 70 L300 70 L300 190 L20 190 L50 130 Z', fill: '#D6EAF8', stroke: Cin, 'stroke-width': 2 });
+    rich(A, 160, 118, 'Energía suministrada', { 'font-size': 18, fill: Cin });
+    rich(A, 160, 144, '*E*_{suministrada} (100 %)', { 'font-size': 16, fill: Cin });
+    // máquina
+    A('rect', { x: 300, y: 50, width: 150, height: 160, rx: 14, fill: '#EAECEE', stroke: '#566573', 'stroke-width': 2.5 });
+    label(A, 375, 125, 'MÁQUINA', { 'font-size': 18, fill: '#23373B' });
+    label(A, 375, 150, '(motor, bomba, grúa…)', { 'font-size': 13, fill: '#525252', 'font-weight': 400 });
+    // salida útil (ancho 80)
+    A('path', { d: 'M450 70 L700 70 L740 110 L700 150 L450 150 Z', fill: '#D5F5E3', stroke: Cu, 'stroke-width': 2 });
+    rich(A, 590, 104, 'Trabajo útil', { 'font-size': 18, fill: Cu });
+    rich(A, 590, 128, '*W*_{útil}', { 'font-size': 16, fill: Cu });
+    // pérdidas (ancho 40) que bajan
+    A('path', { d: 'M450 150 L510 150 Q 540 150 540 185 L540 245 L560 245 L520 285 L480 245 L500 245 L500 200 Q 500 190 450 190 Z',
+        fill: '#FADBD8', stroke: Cd, 'stroke-width': 2 });
+    rich(A, 680, 232, 'Energía disipada', { 'font-size': 17, fill: Cd });
+    rich(A, 680, 256, '*E*_{disipada}: calor por rozamiento,', { 'font-size': 14, fill: Cd });
+    rich(A, 680, 276, 'efecto Joule, ruido, vibraciones…', { 'font-size': 14, fill: Cd });
+    // fórmulas
+    rich(A, 160, 245, '*E*_{suministrada} = *W*_{útil} + *E*_{disipada}', { 'font-size': 16, fill: '#23373B' });
+    rich(A, 160, 275, 'η = *W*_{útil} / *E*_{suministrada} · 100', { 'font-size': 16, fill: '#23373B' });
+</script>
+</body>
+</html>

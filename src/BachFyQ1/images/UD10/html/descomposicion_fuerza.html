@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Componentes cartesianas de una fuerza</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="720" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const O = [70, 280], F = 300, ph = 33 * Math.PI / 180;
+    const Fx = F * Math.cos(ph), Fy = F * Math.sin(ph);
+    axes(add, O[0], O[1], 330, 240, 'X', 'Y');
+    dashed(add, O[0] + Fx, O[1], O[0] + Fx, O[1] - Fy, '#7F8C8D', 1.4);
+    dashed(add, O[0], O[1] - Fy, O[0] + Fx, O[1] - Fy, '#7F8C8D', 1.4);
+    arrow(add, O[0], O[1], O[0] + Fx, O[1], '#1E8449', 4, 14);
+    arrow(add, O[0], O[1], O[0], O[1] - Fy, '#C0392B', 4, 14);
+    arrow(add, O[0], O[1], O[0] + Fx, O[1] - Fy, '#2471A3', 4.5, 15);
+    // vectores unitarios
+    arrow(add, O[0], O[1] + 0, O[0] + 40, O[1], '#23373B', 2.5, 9);
+    arrow(add, O[0] - 1, O[1], O[0] - 1, O[1] - 40, '#23373B', 2.5, 9);
+    vlab(add, O[0] + 30, O[1] + 24, 'i', '', '#23373B', 16);
+    vlab(add, O[0] - 18, O[1] - 26, 'j', '', '#23373B', 16);
+    add('path', { d: `M${O[0] + 60} ${O[1]} A60 60 0 0 0 ${O[0] + 60 * Math.cos(ph)} ${O[1] - 60 * Math.sin(ph)}`, fill: 'none', stroke: '#525252', 'stroke-width': 1.6 });
+    label(add, O[0] + 74, O[1] - 16, 'φ', { 'font-size': 17, fill: '#525252' });
+    vlab(add, O[0] + Fx / 2 - 6, O[1] - Fy / 2 - 16, 'F', '', '#2471A3', 19);
+    vlab(add, O[0] + Fx / 2, O[1] + 28, 'F', 'x', '#1E8449', 18);
+    vlab(add, O[0] - 30, O[1] - Fy / 2 + 6, 'F', 'y', '#C0392B', 18);
+    const L = [['#2471A3', '*F* = *F*_x · *i* + *F*_y · *j*'], ['#1E8449', '*F*_x = *F* · cos φ'], ['#C0392B', '*F*_y = *F* · sen φ'],
+               ['#525252', '*F* = √(*F*_x^2 + *F*_y^2)'], ['#525252', 'tg φ = *F*_y / *F*_x']];
+    L.forEach(([c, s], i) => rich(add, 440, 80 + i * 38, s, { 'font-size': 19, fill: c, 'text-anchor': 'start', 'font-weight': 600 }));
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD0_03 · Soluto + disolvente = disolución</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/particulas.js"></script>
+</head>
+<body>
+<script>
+// Las partículas del soluto (naranja) se dispersan entre las del disolvente (azul):
+// la mezcla resultante es homogénea y tiene el mismo estado físico que el disolvente.
+const svg = crearFigura(760, 300);
+const T = (x, y, t, a = {}) => texto(svg, x, y, t, { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto, ...a });
+const SOL = COLORES.ocre, DIS = "#5AB4DE";
+
+function vaso(cx, nivel) {
+    const w = 150, top = 60, bot = 240;
+    el("rect", { x: cx - w / 2 + 2, y: nivel, width: w - 4, height: bot - nivel - 2, fill: "#E3F4FB" }, svg);
+    el("path", { d: `M${cx - w / 2 - 6},${top} L${cx - w / 2},${top + 6} L${cx - w / 2},${bot} L${cx + w / 2},${bot} L${cx + w / 2},${top + 6} L${cx + w / 2 + 6},${top}`,
+        fill: "none", stroke: "#6E9FB3", "stroke-width": 3, "stroke-linejoin": "round" }, svg);
+    return { x: cx - w / 2 + 12, y: nivel + 12, w: w - 24, h: bot - nivel - 24 };
+}
+
+// 1) Soluto: cristal ordenado
+const xs = 110;
+for (let f = 0; f < 5; f++) for (let c = 0; c < 5; c++) bola(svg, xs - 40 + c * 20, 150 + f * 20, 9, SOL);
+T(xs, 270, "Soluto", { "font-weight": "bold", "font-size": 17, fill: SOL });
+T(xs, 290, "(menor cantidad)", { "font-size": 13, fill: COLORES.gris });
+T(215, 195, "+", { "font-size": 34, "font-weight": "bold" });
+
+// 2) Disolvente
+const z2 = vaso(350, 100);
+for (const [x, y] of repartir(38, z2.x, z2.y, z2.w, z2.h, 19, 7)) bola(svg, x, y, 7, DIS);
+T(350, 270, "Disolvente", { "font-weight": "bold", "font-size": 17, fill: "#2E8DBA" });
+T(350, 290, "(agua en las disoluciones acuosas)", { "font-size": 13, fill: COLORES.gris });
+flecha(svg, 450, 175, 515, 175, { ancho: 3, punta: 14 });
+
+// 3) Disolución: partículas de soluto repartidas al azar entre las del disolvente
+const z3 = vaso(625, 100);
+const pts = repartir(63, z3.x, z3.y, z3.w, z3.h, 15, 21);
+pts.forEach(([x, y], i) => i % 5 === 2 ? bola(svg, x, y, 7.5, SOL) : bola(svg, x, y, 6.5, DIS));
+T(625, 270, "Disolución", { "font-weight": "bold", "font-size": 17 });
+T(625, 290, "mezcla homogénea", { "font-size": 13, fill: COLORES.gris });
+T(625, 40, "misma composición en todos los puntos", { "font-size": 13, fill: COLORES.gris });
+</script>
+</body>
+</html>

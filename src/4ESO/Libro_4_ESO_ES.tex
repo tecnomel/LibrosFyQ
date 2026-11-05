@@ -1,0 +1,478 @@
+\documentclass[
+    11pt, % Default font size, select one of 10pt, 11pt or 12pt
+    fleqn, % Left align equations
+    a4paper, % Paper size, use either 'a4paper' for A4 size or 'letterpaper' for US letter size
+%oneside, % Uncomment for oneside mode, this doesn't start new chapters and parts on odd pages (adding an empty page if required), this mode is more suitable if the book is to be read on a screen instead of printed
+]{LegrandOrangeBookES}
+
+\usepackage{estilocrispropioLibro}
+
+% Color principal del libro: azul (4.º ESO). La clase y estilocrispropioLibro lo usan con el nombre «ocre»
+% (títulos, cajas, índice, enlaces…); el estilo lo define naranja y aquí se redefine para este libro.
+\definecolor{ocre}{RGB}{21, 101, 192}
+
+
+\renewcommand{\contentsname}{Índice}
+
+
+
+\renewcommand{\tablename}{Tabla}
+
+
+\renewcommand{\figurename}{Figura}
+
+\renewcommand{\chaptername}{Unidad}
+
+\renewcommand{\partname}{Parte}
+
+
+
+
+%% -------------------------------------------------
+%% SISTEMA DE SOLUCIONES
+%
+%% En el preámbulo de tu documento principal
+%\usepackage{answers}
+%\Newassociation{solu}{Solution}{ans}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Sin borde de box
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\renewcommand{\Solutionlabel}[1]{%
+%  {\small\sffamily\bfseries\color{ocre}Exercise~#1:}\space%
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Con borde de box
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% El estilo estilocrispropioLibro.sty ya define \Newassociation{solu}{SolutionEx}{ans}
+% con la caja solBox y la etiqueta «Ejercicio N». No hace falta redefinir nada aquí.
+%\renewenvironment{SolutionEx}[1]{%
+%    \begin{solBox}%
+%    \noindent{\small\sffamily\bfseries\color{ocre}Ejercicio~#1}%
+%    \par\vspace{3pt}%
+%}{%
+%    \end{solBox}%
+%}
+
+
+%\renewcommand{\Solucionbooklabel}[1]{%
+%  \par\noindent\textbf{Exercise}\par
+%}
+
+
+% Book information for PDF metadata, remove/comment this block if not required 
+\hypersetup{
+    pdftitle={Title}, % Title field
+    pdfauthor={Author}, % Author field
+    pdfsubject={Subject}, % Subject field
+    pdfkeywords={Keyword1, Keyword2, ...}, % Keywords
+    pdfcreator={LaTeX}, % Content creator field
+}
+
+
+% Bibliography removed - using footnotes instead
+
+%\chapterimage{orange1.jpg} % Chapter heading image % --- imagen antigua ---
+\chapterimage{images/portada_cabeceras/cabecera_general} % Cabecera nueva (las de cada unidad van antes de cada \chapter)
+\chapterspaceabove{6.5cm} % Default whitespace from the top of the page to the chapter title on chapter pages
+\chapterspacebelow{6.75cm} % Default amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+% Para formulación
+%----------------------------------------------------------------------------------------
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{tabularray}
+\UseTblrLibrary{siunitx}
+
+\newcommand{\acu}{{(aq)}}
+
+\newcounter{numeroformula}
+\setcounter{numeroformula}{0}
+
+% \newcommand{\myorder}[1]{\textbf{\addtocounter{numeroformula}{1}\arabic{numeroformula} #1}}
+\newcommand{\myorder}{\textbf{\addtocounter{numeroformula}{1}\arabic{numeroformula}}}
+%----------------------------------------------------------------------------------------
+%
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+    % Abrir el archivo de soluciones
+    \Opensolutionfile{ans}[soluciones]
+
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+    \titlepage % Output the title page
+    %{\includegraphics[width=\paperwidth]{portadaES}} % --- portada antigua ---
+    {\includegraphics[width=\paperwidth]{images/portada_cabeceras/portada_4ESO}} % Portada nueva (PDF vectorial, fuente en images/portada_cabeceras/html/portada.html)
+%    { % Title(s) and author(s)
+%        \centering\sffamily % Font styling
+%        {\Huge\bfseries Physics and Chemistry\par} % Book title
+%        \vspace{16pt} % Vertical whitespace
+%        {\LARGE 3º ESO\par} % Subtitle
+%        \vspace{24pt} % Vertical whitespace
+%        {\huge\bfseries IES José Conde García\par} % Author name
+%    }
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+    \thispagestyle{empty} % Suppress headers and footers on this page
+
+    ~\vfill % Push the text down to the bottom of the page
+
+    \noindent Copyright \copyright\ 2026 Cristóbal Melero\\ % Copyright notice
+
+    \noindent \textsc{Published by CM Editorial}\\ % Publisher
+
+    \noindent \textsc{\url{https://webfyq.com}}\\ % URL
+
+    \noindent Licenciado bajo la licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional (la ``Licencia''). No puede utilizar este archivo salvo en cumplimiento de la Licencia. Puede obtener una copia de la Licencia en \url{https://creativecommons.org/licenses/by-nc-sa/4.0}. Salvo que la legislación aplicable lo exija o se acuerde por escrito, el software distribuido bajo esta Licencia se proporciona \textsc{``tal cual'', sin garantías ni condiciones de ningún tipo}, ya sean expresas o implícitas. Consulte la Licencia para conocer el idioma específico que rige los permisos y las limitaciones establecidas en ella.\\ % Información sobre la licencia; sustituya este texto por el de su propia licencia (si corresponde)
+
+    \noindent \textit{Primera edición, marzo de 2026} % Fecha de impresión/edición
+
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+    \pagestyle{empty} % Disable headers and footers for the following pages
+
+    \tableofcontents % Output the table of contents
+
+%    \listoffigures % Output the list of figures, comment or remove this command if not required
+%
+%    \listoftables % Output the list of tables, comment or remove this command if not required
+%
+    \pagestyle{fancy} % Enable default headers and footers again
+
+    \cleardoublepage % Start the following content on a new page
+
+%----------------------------------------------------------------------------------------
+%	PART
+%----------------------------------------------------------------------------------------
+
+
+    \part{Química}
+
+%----------------------------------------------------------------------------------------
+%	SECTIONING EXAMPLES CHAPTER
+%----------------------------------------------------------------------------------------
+
+    %\chapterimage{orange2c.png} % Chapter heading image % --- imagen antigua ---
+    \chapterimage{images/portada_cabeceras/cabecera_general} % Cabecera nueva (las de cada unidad van antes de cada \chapter)
+    \chapterspaceabove{6.75cm} % Whitespace from the top of the page to the chapter title on chapter pages
+    \chapterspacebelow{7.25cm} % Amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+%------------------------------------------------
+
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD1}
+    \chapter{El trabajo científico}
+
+    \input{UD1_Trabajo_cientifico}
+
+
+
+%------------------------------------------------
+
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD2}
+    \chapter{El átomo y la Tabla Periódica}
+
+    \input{UD_2_el_atomo_tp}
+
+%------------------------------------------------
+
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD3}
+    \chapter{Enlace Químico}
+
+    \input{UD3_enlace_quimico}
+
+%------------------------------------------------
+
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD4}
+    \chapter{La química del carbono}
+
+    \input{UD4_organica}
+
+%------------------------------------------------
+
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD5}
+    \chapter{La materia y los sistemas materiales}
+
+    \input{UD5_Sistema_materiales}
+
+%------------------------------------------------
+
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD6}
+    \chapter{Las reacciones químicas}
+
+    \input{UD6_reacciones_quimicas}
+
+%------------------------------------------------
+
+
+    \part{Física}
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD7}
+    \chapter{Los movimientos rectilíneos}
+
+    \input{UD7_movimientos_rectilineos}
+
+%------------------------------------------------
+
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD8}
+    \chapter{Las fuerzas y los cambios de movimiento}
+
+    \input{UD8_fuerzas}
+
+%------------------------------------------------
+
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD9}
+    \chapter{El movimiento circular. La gravedad y otras fuerzas}
+
+    \input{UD9_movimiento_circular}
+
+%------------------------------------------------
+
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD10}
+    \chapter{Fuerzas en los fluidos}
+
+    \input{UD10_fluidos}
+
+%------------------------------------------------
+
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD11}
+    \chapter{Trabajo y energía mecánica}
+
+    \input{UD11_energia}
+
+%------------------------------------------------
+
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD12}
+    \chapter{El calor: una forma de transferir energía}
+
+    \input{UD12_calor}
+
+%------------------------------------------------
+
+
+    \chapterimage{images/portada_cabeceras/cabecera_UD13}
+    \chapter{Luz y sonido: ondas que transfieren energía}
+
+    \input{UD13_luz_sonido}
+
+%----------------------------------------------------------------------------------------
+%	ANEXOS: actividades de síntesis, prácticas y situaciones de aprendizaje de todas las unidades
+%----------------------------------------------------------------------------------------
+
+
+    \part{Anexos}
+
+    % Capítulos «Anexo A, B, C» en vez de «Unidad 14, 15, 16» (también en cabeceras y número de los ejercicios)
+    \appendix
+    \renewcommand{\chaptername}{Anexo}
+    \renewcommand{\appendixname}{Anexo}
+
+    \chapterimage{images/portada_cabeceras/cabecera_general}
+    \chapter{Actividades de síntesis}
+
+    \input{actividades_sintesis}
+
+%------------------------------------------------
+
+
+    \chapterimage{images/portada_cabeceras/cabecera_general}
+    \chapter{Prácticas de laboratorio}
+
+    \input{practicas_laboratorio}
+
+%------------------------------------------------
+
+
+    \chapterimage{images/portada_cabeceras/cabecera_general}
+    \chapter{Situaciones de aprendizaje}
+
+    \input{situaciones_aprendizaje}
+
+%------------------------------------------------
+
+
+%    \chapter{Energía}
+%
+%    \input{Unidad_4_Energia}
+
+%----------------------------------------------------------------------------------------
+%	SECTIONING EXAMPLES CHAPTER
+%----------------------------------------------------------------------------------------
+
+    %\chapterimage{orange3b} % Chapter heading image % --- imagen antigua ---
+    \chapterimage{images/portada_cabeceras/cabecera_general} % Cabecera nueva (las de cada unidad van antes de cada \chapter)
+    \chapterspaceabove{6.75cm} % Whitespace from the top of the page to the chapter title on chapter pages
+    \chapterspacebelow{7.25cm} % Amount of vertical whitespace from the top margin to the start of the text on chapter pages
+
+%----------------------------------------------------------------------------------------
+%	PART CHEMISTRY
+%----------------------------------------------------------------------------------------
+
+
+%    \part{Química: Parte A}
+
+    %------------------------------------------------
+
+
+%    \chapter{Sistemas Materiales}
+%
+%    \input{Unidad_5_Sistemas_materiales}
+
+    %------------------------------------------------
+
+
+%    \chapter{Átomo y la Tabla Periódica}
+%
+%    \input{Unidad_6_Tabla_periodica_atomo}
+
+    %------------------------------------------------
+
+
+    %------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	PART Nomenclatura
+%----------------------------------------------------------------------------------------
+
+
+%    \part{Nomenclature of inorganic compounds}
+%
+%
+%    \chapter{Formulación inorgánica}
+%
+%    \input{inorganica_apuntes_3_ESO_claude_Libro}
+
+    %----------------------------------------------------------------------------------------
+%	PART CHEMISTRY B
+%----------------------------------------------------------------------------------------
+
+
+%    \part{Química: Parte B}
+
+    %------------------------------------------------
+
+
+%    \chapter{Elementos y Compuestos}
+%
+%    \input{Unidad_7_Elementos_compuestos}
+
+    %------------------------------------------------
+
+
+%    \chapter{Reacciones Química}
+%
+%    \input{Unidad_8_Reacciones_quimicas}
+
+
+%----------------------------------------------------------------------------------------
+%	Tablas Periódicas
+%----------------------------------------------------------------------------------------
+
+%
+%
+%    \part{Tabla Periódica}
+%
+%    \newpage
+%    \pagestyle{empty}
+%    \begin{landscape}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{images/SP_atomo/2_3_ESO_TP_EN_html}
+%            \caption{Periodic Table of Elements}
+%            \label{fig:periodic_table}
+%        \end{figure}
+%    \end{landscape}
+%    \newpage
+%    \begin{landscape}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{images/SP_atomo/2_3_ESO_TP_EN_reducida_html}
+%            \caption{Periodic Table of Elements (2º ESO)}
+%            \label{fig:periodic_table_reducida}
+%        \end{figure}
+%    \end{landscape}
+%    \newpage
+%    \begin{landscape}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{images/SP_atomo/2_3_ESO_TP_ES_html}
+%            \caption{Tabla Periódica de los elementos}
+%            \label{fig:tabla_periodica}
+%        \end{figure}
+%    \end{landscape}
+%    \newpage
+%    \begin{landscape}
+%        \begin{figure}[H]
+%            \centering
+%            \includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{images/SP_atomo/2_3_ESO_TP_ES_reducida_html}
+%            \caption{Tabla Periódica de los elementos (2º ESO)}
+%            \label{fig:tabla_periodica_reducida}
+%        \end{figure}
+%    \end{landscape}
+%
+%    \newpage
+%
+%    \begin{landscape}
+%
+%    \begin{figure}[H]
+%        \centering
+%        \includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{images/TP_Valencias_EN_html}
+%        \caption{Periodic Table: oxidation states}
+%        \label{fig:tabla_valencias}
+%    \end{figure}
+%\end{landscape}
+%    \newpage
+%    \begin{landscape}
+%
+%    \begin{figure}[H]
+%        \centering
+%        \includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{images/TP_Valencias_EN_reducida_html}
+%        \caption{Periodic Table: oxidation states (2º ESO)}
+%        \label{fig:tabla_valencias_reducida}
+%    \end{figure}
+%\end{landscape}
+%    \pagestyle{fancy}
+
+
+%----------------------------------------------------------------------------------------
+%	SOLUTIONS
+%----------------------------------------------------------------------------------------
+
+
+    \Closesolutionfile{ans}
+
+    \part{Soluciones de los ejercicios}
+
+    \chapter*{Soluciones}
+    \addcontentsline{toc}{chapter}{Soluciones}
+
+    \IfFileExists{soluciones.tex}{\input{soluciones}}{}
+
+
+\end{document}

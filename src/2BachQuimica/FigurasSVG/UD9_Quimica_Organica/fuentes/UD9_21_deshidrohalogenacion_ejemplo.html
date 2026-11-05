@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_21 · Eliminación de HBr: 2-bromobutano</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// 2-bromobutano + KOH (etanol): se forma mayoritariamente el alqueno más sustituido (Saytzev).
+const svg = crearFigura(640, 250);
+molecula(svg, "CC(Br)CC", 80, 55, { colores: { Br: ROJO } });
+flechaR(svg, 150, 55, 240, "KOH", "(etanol)");
+molecula(svg, "C/C=C/C", 310, 55, { etiqueta: "but-2-eno (mayoritario)", yEtq: 100 });
+mas(svg, 400, 55); fq(svg, 450, 61, [["H", AZUL], ["Br", ROJO]]);
+flechaCurva(svg, 40, 85, 50, 175, { color: AZUL });
+molecula(svg, "CC(Br)CC", 80, 180, { colores: { Br: ROJO } });
+flechaR(svg, 150, 180, 240, "KOH", "(etanol)");
+molecula(svg, "C=CCC", 310, 180, { etiqueta: "but-1-eno (minoritario)", yEtq: 225 });
+mas(svg, 400, 180); fq(svg, 450, 186, [["H", AZUL], ["Br", ROJO]]);
+</script>
+</body>
+</html>

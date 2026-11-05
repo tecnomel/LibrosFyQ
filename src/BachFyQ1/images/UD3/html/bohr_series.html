@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Niveles de energía del hidrógeno</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="850" height="470"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const A = svgAdder('s');
+    const Y0 = 20, Y1 = 440, X0 = 120, X1 = 760;        // E = 0 arriba, E = -13,6 eV abajo
+    const ye = E => Y0 + Math.sqrt(-E / 13.6) * (Y1 - Y0);   // escala comprimida (no lineal) para separar los niveles altos
+    for (let n = 1; n <= 6; n++) {
+        const E = -13.6 / (n * n), y = ye(E);
+        A('line', { x1: X0, y1: y, x2: X1, y2: y, stroke: '#23373B', 'stroke-width': 2 });
+        label(A, X0 - 10, y + 5, 'n = ' + n, { 'text-anchor': 'end', 'font-size': 14 });
+        label(A, X1 + 8, y + 5, E.toFixed(2).replace('.', ',').replace('-', '−') + ' eV', { 'text-anchor': 'start', 'font-size': 13, 'font-weight': 400 });
+    }
+    A('line', { x1: X0, y1: Y0, x2: X1, y2: Y0, stroke: '#23373B', 'stroke-width': 1.5, 'stroke-dasharray': '6 4' });
+    label(A, X0 - 10, Y0 + 5, 'n = ∞', { 'text-anchor': 'end', 'font-size': 14 }); label(A, X1 + 8, Y0 + 5, '0 eV', { 'text-anchor': 'start', 'font-size': 13, 'font-weight': 400 });
+    // series
+    const S = [[1, 'Lyman (UV)', 150, '#6C3483', 6], [2, 'Balmer (visible)', 370, '#C0392B', 6], [3, 'Paschen (IR)', 560, '#B9770E', 6], [4, 'Brackett (IR)', 680, '#7F8C8D', 6]];
+    const BAL = { 3: wlColor(656), 4: wlColor(486), 5: wlColor(434), 6: wlColor(410) };
+    S.forEach(([nf, t, x, col, nmax]) => {
+        let k = 0;
+        for (let ni = nf + 1; ni <= nmax; ni++, k++) {
+            const xx = x + k * 20, c = nf === 2 ? BAL[ni] : col;
+            arrow(A, xx, ye(-13.6 / (ni * ni)), xx, ye(-13.6 / (nf * nf)), c, 3, 10);
+        }
+        label(A, x + 40, ye(-13.6 / (nf * nf)) + 20, t, { 'font-size': 14, fill: col });
+    });
+    // eje de energía
+    arrow(A, 50, Y1, 50, Y0, '#23373B', 2, 10);
+    const t = label(A, 30, (Y0 + Y1) / 2, 'Energía', { 'font-size': 15 }); t.setAttribute('transform', `rotate(-90 30 ${(Y0 + Y1) / 2})`);
+</script>
+</body>
+</html>

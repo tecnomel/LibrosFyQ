@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Despejar una magnitud</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .intro { display: flex; gap: 22px; align-items: center; margin-bottom: 18px; }
+    .intro svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .intro .txt { font-size: 19px; }
+    .intro .txt b { color: var(--red); }
+    .cols { display: flex; gap: 26px; }
+    .col { flex: 1; border-radius: 18px; padding: 12px 18px; }
+    .cm { background: var(--blue-soft); border: 3px solid var(--blue); }
+    .cv { background: var(--green-soft); border: 3px solid var(--green); }
+    .col h2 { font-size: 23px; margin-bottom: 8px; }
+    .cm h2 { color: var(--blue); } .cv h2 { color: var(--green); }
+    .step { display: flex; align-items: center; gap: 12px; background: #FFFFFF; border-radius: 12px; padding: 6px 12px; margin-bottom: 8px; min-height: 84px; }
+    .step .n { width: 34px; height: 34px; border-radius: 50%; background: var(--teal); color: #FFF; font-weight: 800; font-size: 19px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step .what { font-size: 16px; width: 190px; flex-shrink: 0; }
+    .eq { font-size: 30px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+    .op { color: var(--ocre); font-weight: 800; }
+    .goal { color: var(--red); font-weight: 800; }
+    .res { border: 3px solid var(--red); border-radius: 10px; padding: 0 10px; background: var(--red-soft); }
+    .tip { margin-top: 14px; font-size: 19px; text-align: center; background: var(--ocre-soft); border: 2px solid var(--ocre); border-radius: 12px; padding: 8px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Cómo despejar una magnitud en d = m / V</h1>
+    <div class="intro">
+        <svg width="250" height="120" viewBox="0 0 250 120">
+            <polygon points="125,100 110,118 140,118" fill="#23373B"/>
+            <line x1="125" y1="100" x2="125" y2="40" stroke="#23373B" stroke-width="5"/>
+            <line x1="20" y1="40" x2="230" y2="40" stroke="#23373B" stroke-width="5" stroke-linecap="round"/>
+            <path d="M15,40 L5,75 L75,75 L65,40" fill="#E3E6F7" stroke="#000070" stroke-width="3"/>
+            <path d="M185,40 L175,75 L245,75 L235,40" fill="#DFF3E6" stroke="#1E8449" stroke-width="3"/>
+            <text x="40" y="68" text-anchor="middle" font-size="20" font-weight="800" fill="#000070">izq.</text>
+            <text x="210" y="68" text-anchor="middle" font-size="20" font-weight="800" fill="#1E8449">der.</text>
+            <text x="125" y="25" text-anchor="middle" font-size="26" font-weight="800" fill="#F36619">=</text>
+        </svg>
+        <div class="txt">Una ecuación es como una <b>balanza en equilibrio</b>: los dos lados son iguales.<br>
+            Si hacemos la <b>misma operación en los dos lados</b> (multiplicar o dividir por lo mismo),<br>
+            la balanza sigue en equilibrio. Lo usamos para dejar <b>sola</b> la magnitud que queremos.</div>
+    </div>
+    <div class="cols">
+        <div class="col cm">
+            <h2>Quiero la masa, <span class="goal">m</span></h2>
+            <div class="step"><div class="n">1</div><div class="what">Escribe la fórmula.</div>
+                <div class="eq">d = <span class="frac"><span class="goal">m</span><span>V</span></span></div></div>
+            <div class="step"><div class="n">2</div><div class="what"><b>V</b> está dividiendo a <span class="goal">m</span>: multiplica <b>los dos lados</b> por V.</div>
+                <div class="eq">d <span class="op">· V</span> = <span class="frac"><span><span class="goal">m</span> <span class="op">· <span class="cancel">V</span></span></span><span class="cancel">V</span></span></div></div>
+            <div class="step"><div class="n">3</div><div class="what">V/V = 1, así que se simplifica. Dale la vuelta.</div>
+                <div class="eq"><span class="res"><span class="goal">m</span> = d · V</span></div></div>
+        </div>
+        <div class="col cv">
+            <h2>Quiero el volumen, <span class="goal">V</span></h2>
+            <div class="step"><div class="n">1</div><div class="what">Parte de m = d · V (pasos de la izquierda).</div>
+                <div class="eq">m = d · <span class="goal">V</span></div></div>
+            <div class="step"><div class="n">2</div><div class="what"><b>d</b> está multiplicando a <span class="goal">V</span>: divide <b>los dos lados</b> entre d.</div>
+                <div class="eq"><span class="frac"><span>m</span><span class="op">d</span></span> = <span class="frac"><span><span class="cancel">d</span> · <span class="goal">V</span></span><span class="op cancel">d</span></span></div></div>
+            <div class="step"><div class="n">3</div><div class="what">d/d = 1, así que se simplifica. Dale la vuelta.</div>
+                <div class="eq"><span class="res"><span class="goal">V</span> = <span class="frac"><span>m</span><span>d</span></span></span></div></div>
+        </div>
+    </div>
+    <div class="tip"><b>Truco:</b> lo que está <b>dividiendo</b> en un lado pasa al otro lado <b>multiplicando</b>, y lo que está <b>multiplicando</b> pasa al otro lado <b>dividiendo</b>.</div>
+</div>
+</body>
+</html>

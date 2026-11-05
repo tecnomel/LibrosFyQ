@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- Portada del libro de Física y Química de 1.º Bachillerato (A4). render.sh la imprime a PDF vectorial (portada_1BachFyQ.pdf). -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Portada Física y Química 1.º Bachillerato</title>
+<style>
+    @page { size: 210mm 297mm; margin: 0; }
+    html, body { margin: 0; padding: 0; width: 210mm; height: 297mm; overflow: hidden; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    svg { display: block; }
+</style>
+<script src="dibujos.js"></script>
+</head>
+<body>
+<svg id="s" xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 2100 2970"></svg>
+<script>
+    const svg = document.getElementById('s');
+    semilla(1808);
+    iniciar(svg, PALETAS.turquesa);
+    portada(svg, {
+        titulo: ['Física', 'y Química'],
+        curso: '1.º Bachillerato',
+        anchoCurso: 860,
+        lema: 'De las leyes de la química al movimiento',
+        centro: 'IES José Conde García',
+        pie: 'Almansa · Curso 2026/2027',
+        arte(p) {
+            // química (izquierda y centro) y física (derecha)
+            atomoBohr(p, 1150, 1900, 1.6, 19);
+            benceno(p, 330, 1650, 130, 1.15);
+            agua(p, 1860, 1560, 1.2, 15);
+            erlenmeyer(p, 330, 2480, 440, 340, P.acc3, .5);
+            planetaOrbita(p, 1740, 1150, 140, 270, 70, -15, 2.4, 24);
+            pendulo(p, 1720, 2050, 380, [-18, -9, 0, 9, 18], 30, P.acc3);
+            ondaSeno(p, 80, 2020, 2585, 28, 260, P.glow, 3);
+            texto(p, 560, 2140, 'p · V = n · R · T', { size: 64, italic: true, fill: P.line, op: .9 });
+            texto(p, 1600, 1900, 'F = m · a', { size: 58, italic: true, fill: P.line, op: .9 });
+        }
+    });
+</script>
+</body>
+</html>

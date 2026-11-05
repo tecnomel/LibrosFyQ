@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD10_05 · Principales polímeros de adición</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Monómero, unidad repetitiva del polímero y aplicaciones de los polímeros de adición más importantes.
+const FILAS = [
+    { mon: "etileno (eteno)", smi: "C=C", pol: "polietileno (PE)", s: {}, uso: "bolsas, envases, juguetes" },
+    { mon: "propileno (propeno)", smi: "C=CC", pol: "polipropileno (PP)", s: { b2: "CH3" }, uso: "tuberías, fibras, envases" },
+    { mon: "cloruro de vinilo", smi: "C=CCl", pol: "policloruro de vinilo (PVC)", s: { b2: ["Cl", "#2E7D32"] }, uso: "tuberías, ventanas, cables" },
+    { mon: "estireno", smi: "C=CC1=CC=CC=C1", pol: "poliestireno (PS)", s: { b2: "C6H5" }, uso: "aislantes, embalajes (corcho blanco)" },
+    { mon: "tetrafluoroeteno", smi: "FC(F)=C(F)F", pol: "politetrafluoroetileno (teflón)", s: { a1: "F", b1: "F", a2: "F", b2: "F" }, uso: "sartenes antiadherentes" },
+];
+const FH = 140, svg = crearFigura(860, 44 + FILAS.length * FH);
+const cab = { "font-size": 16, "font-weight": "bold", fill: COLORES.texto, "font-family": TNR, "text-anchor": "middle" };
+el("rect", { x: 0, y: 0, width: 860, height: 34, fill: "#FCE3D2" }, svg);
+texto(svg, 110, 23, "Monómero", cab); texto(svg, 390, 23, "Polímero", cab); texto(svg, 700, 23, "Aplicaciones", cab);
+FILAS.forEach((f, i) => {
+    const y = 44 + i * FH + FH / 2;
+    if (i % 2) el("rect", { x: 0, y: y - FH / 2, width: 860, height: FH, fill: "#FAFAFA" }, svg);
+    molecula(svg, f.smi, 110, y - 12, { escala: f.smi.length > 10 ? 0.8 : 1 });
+    texto(svg, 110, y + 50, f.mon, { "text-anchor": "middle", "font-size": 14, fill: COLORES.gris, "font-family": TNR });
+    flecha(svg, 215, y - 10, 270, y - 10, { ancho: 1.4, punta: 9 });
+    texto(svg, 242, y - 16, "n", { "text-anchor": "middle", "font-size": 13, "font-style": "italic", fill: COLORES.gris, "font-family": TNR });
+    unidadVinilica(svg, 375, y - 10, f.s, { L: 36, tam: 16 });
+    texto(svg, 405, y + 55, f.pol, { "text-anchor": "middle", "font-size": 14, fill: COLORES.texto, "font-family": TNR, "font-weight": "bold" });
+    texto(svg, 700, y + 5, f.uso, { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto, "font-family": TNR });
+});
+</script>
+</body>
+</html>

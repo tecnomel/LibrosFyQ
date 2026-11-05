@@ -1,0 +1,151 @@
+%%Identification
+%%The package identifies itself and the LaTeX version needed
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mystyle_beamer}[2021/12/11 mystyle_beamer]
+
+
+\RequirePackage{xstring}% ver para que se usa
+%\RequirePackage[usenames, dvipsnames]{xcolor} no funciona con la clase beamer
+\RequirePackage{amsfonts,amssymb,amsmath}
+\RequirePackage{mathtools}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[spanish]{babel}
+\RequirePackage{setspace}
+%\RequirePackage{mathpazo}
+%\RequirePackage[osf]{mathpazo}
+\RequirePackage{paracol}
+\RequirePackage{multicol}
+\RequirePackage{lipsum}
+\RequirePackage{hyperref}
+\hypersetup{%
+    colorlinks=true,
+    linkcolor = darkblue
+    %urlcolor=myOrange3
+}
+\RequirePackage{lastpage}
+\RequirePackage{fontawesome}
+\RequirePackage{soul}
+\RequirePackage{tikz}
+\usetikzlibrary{babel} % evitar el problema de las flechas.
+%\RequirePackage[breakable, theorems]{tcolorbox}
+\RequirePackage{lipsum}
+\RequirePackage[normalem]{ulem}
+\RequirePackage{cancel}
+\RequirePackage{enumitem}
+
+\RequirePackage{wrapfig}
+\RequirePackage{ragged2e} %paquete para justificar textos y alinearlos
+\RequirePackage{schemata}
+\RequirePackage{float} % si pongo por ejemplo en una figura [H], es mas estricto y pone la figura donde quiero
+\RequirePackage{placeins} % es para evitar que una figura pase a la siguiente sección, y para ello debemos añadir \usepage[section]{placeins} si quiero que nunca pase de la sección o bien puedo poner el comando \FloatBarrier en el lugar donde quiero que cree una barrera y que no pase.
+\RequirePackage{graphicx}
+\RequirePackage{booktabs} %necesario para las tablas que tengo
+\RequirePackage{caption}
+\RequirePackage{subcaption}
+\RequirePackage{array}
+\RequirePackage{xparse}
+\RequirePackage{esvect}
+\RequirePackage[textcolor=red, bordercolor=red, backgroundcolor=white, linecolor=red, colorinlistoftodos, shadow,spanish, textsize=tiny]{todonotes}
+\RequirePackage{afterpage}
+\RequirePackage{pagecolor}
+\RequirePackage{csquotes}
+\RequirePackage{tabularray}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Química
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%\RequierePackage[all]{chemmacros}
+\RequirePackage{elements}
+\RequirePackage[version=4]{mhchem}
+\RequirePackage{chemformula}
+\RequirePackage{siunitx}
+\RequirePackage{varwidth}
+\RequirePackage{upgreek}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%Package Configurations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+\setlength {\marginparwidth }{2cm}
+
+% \usepackage[disable]{todonotes} % notes not showed
+%\usepackage[draft]{todonotes}   % notes showed
+
+%\graphicspath{ {/../../media/tecnomel/Hitachi 320 Gb/Mega/Latex/Fisica 2 Bach/images/} } % Linux
+\graphicspath{{images/}} % windwos
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Package options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%This parts handles the options passed to the package.
+
+%\DeclareOption{spanish}{\selectlanguage{spanish}}
+%\DeclareOption{english}{\selectlanguage{english}}
+
+
+\DeclareOption{red}{\renewcommand{\wordcolour}{sharelatexcolour}}
+\DeclareOption{blue}{\renewcommand{\wordcolour}{mybluecolour}}
+\DeclareOption*{\PackageWarning{examplepackage}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%\DeclareMathOperator{\tg}{tg} %no hace falta declararlo, ya está ceclarado
+
+
+
+
+\newcommand{\wordcolour}{greycolour}
+
+
+
+
+
+%%Important words are added to the index and printed in different colour
+%\newcommand{\important}[1]
+%{\IfSubStr{#1}{!}
+ %   {\textcolor{\wordcolour}{\textbf{\StrBefore{#1}{!}~\StrBehind{#1}{!}}}\index{#1}}
+ %   {\textcolor{\wordcolour}{\textbf{#1}}\index{#1}\kern-1pt}
+%}
+
+%%Numbered environment
+%\newcounter{example}[section]
+%\newenvironment{example}[1][]{\refstepcounter{example}\par\medskip
+%\noindent \textbf{My~environment~\theexample. #1} \rmfamily}{\medskip}
+
+%%Body of the package, most of the declarations appear here.
+
+
+
+%\newcommand{\velocidad}{\si{\m\per\second}}
+\newcommand{\velo}{\m\per\second}
+\newcommand{\acel}{\m\per\square\second}
+%\newcommand{\aceleracion}{\si{\m\per\square\second}}
+
+
+
+

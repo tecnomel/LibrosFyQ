@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD1_02 · Modelo atómico de Thomson</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Thomson (1897): esfera de carga positiva con los electrones incrustados
+// ("pudin de pasas"). El conjunto es neutro.
+const svg = crearFigura(300, 290);
+const C = { x: 150, y: 128, r: 112 };
+el("ellipse", { cx: 155, cy: 262, rx: 85, ry: 11, fill: "#000000", opacity: 0.12 }, svg);
+el("circle", { cx: C.x, cy: C.y, r: C.r, fill: degradadoEsfera(svg, "positiva", "#E0463A") }, svg);
+
+// Signos + repartidos por la esfera (carga positiva uniforme)
+const mas = [[-60, -40], [-10, -70], [50, -45], [-75, 20], [0, 5], [65, 15], [-35, 60], [30, 70], [-20, -25], [35, 35]];
+for (const [dx, dy] of mas) {
+    texto(svg, C.x + dx, C.y + dy + 6, "+", { "text-anchor": "middle", "font-size": 18,
+        "font-weight": "bold", fill: "#7A1510", opacity: 0.75 });
+}
+// Electrones incrustados
+const e = [[-30, -55], [30, -80], [80, -20], [-85, -15], [15, -20], [-55, 40], [55, 55], [-5, 85], [95, 45], [-95, 55], [5, 40]];
+const ge = degradadoEsfera(svg, "electron", "#2E9BE0");
+for (const [dx, dy] of e) {
+    el("circle", { cx: C.x + dx, cy: C.y + dy, r: 13, fill: ge, stroke: "#1B5E8C", "stroke-width": 0.8 }, svg);
+    el("line", { x1: C.x + dx - 5.5, y1: C.y + dy, x2: C.x + dx + 5.5, y2: C.y + dy, stroke: "#0B2A40",
+        "stroke-width": 2.4, "stroke-linecap": "round" }, svg);
+}
+texto(svg, 150, 284, "Esfera positiva con electrones incrustados", { "text-anchor": "middle", "font-size": 13, fill: COLORES.texto });
+</script>
+</body>
+</html>

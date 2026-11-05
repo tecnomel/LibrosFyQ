@@ -1,0 +1,158 @@
+
+\begin{figure}[H]
+\centering
+
+\begin{tikzpicture}[
+>=Latex,
+font=\small,
+
+main/.style={
+rectangle,
+rounded corners=3pt,
+draw=DarkTeal,
+very thick,
+fill=DarkTeal!18,
+minimum width=3.8cm,
+minimum height=0.9cm,
+align=center,
+drop shadow
+},
+
+group/.style={
+rectangle,
+rounded corners=3pt,
+draw=blue!70!black,
+thick,
+fill=blue!10,
+minimum width=3.6cm,
+minimum height=0.8cm,
+align=center,
+drop shadow
+},
+
+item/.style={
+rectangle,
+rounded corners=2pt,
+draw=gray!70,
+fill=gray!8,
+minimum width=3.6cm,
+minimum height=0.7cm,
+align=left
+},
+
+line/.style={
+-{Latex[length=3mm]},
+thick
+}
+]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Nodo principal
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[main] (P) {POLÍMEROS};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Nivel 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[group,below left=2cm and 4.8cm of P] (O)
+{Según su\\origen};
+
+\node[group,below left=2cm and 1.5cm of P] (C)
+{Según su\\composición};
+
+\node[group,below right=2cm and 1.5cm of P] (E)
+{Según su\\estructura};
+
+\node[group,below right=2cm and 4.8cm of P] (T)
+{Según su\\comportamiento térmico};
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\draw[line](P)--(O);
+\draw[line](P)--(C);
+\draw[line](P)--(E);
+\draw[line](P)--(T);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ORIGEN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[item,below=8mm of O]
+(O1)
+{• Naturales\\
+Celulosa, proteínas, ADN, caucho};
+
+\node[item,below=2mm of O1]
+(O2)
+{• Sintéticos\\
+PE, PVC, PET, nailon};
+
+\draw[line](O)--(O1);
+\draw[line](O1)--(O2);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COMPOSICIÓN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[item,below=8mm of C]
+(C1)
+{• Homopolímeros\\
+Un único monómero};
+
+\node[item,below=2mm of C1]
+(C2)
+{• Copolímeros\\
+Dos o más monómeros};
+
+\draw[line](C)--(C1);
+\draw[line](C1)--(C2);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ESTRUCTURA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[item,below=8mm of E]
+(E1)
+{• Lineales};
+
+\node[item,below=2mm of E1]
+(E2)
+{• Ramificados};
+
+\node[item,below=2mm of E2]
+(E3)
+{• Reticulados};
+
+\draw[line](E)--(E1);
+\draw[line](E1)--(E2);
+\draw[line](E2)--(E3);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TÉRMICO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[item,below=8mm of T]
+(T1)
+{• Termoplásticos};
+
+\node[item,below=2mm of T1]
+(T2)
+{• Termoestables};
+
+\node[item,below=2mm of T2]
+(T3)
+{• Elastómeros};
+
+\draw[line](T)--(T1);
+\draw[line](T1)--(T2);
+\draw[line](T2)--(T3);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{tikzpicture}
+
+\caption{Principales criterios de clasificación de los polímeros.}
+
+\end{figure}

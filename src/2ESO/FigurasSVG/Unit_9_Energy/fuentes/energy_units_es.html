@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Unidades de energía</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .c { border-radius: 16px; padding: 12px; text-align: center; border: 3px solid; }
+    .c .ic { font-size: 48px; line-height: 1.2; }
+    .c h2 { font-size: 26px; margin: 4px 0; }
+    .c .n { font-size: 16px; font-weight: 700; }
+    .c .eq { font-size: 17px; margin: 6px 0; background: #fff; border-radius: 8px; padding: 4px; }
+    .c .t { font-size: 14px; color: var(--grey); }
+    .j { border-color: var(--blue); background: var(--blue-soft); } .j h2 { color: var(--blue); }
+    .cal { border-color: var(--ocre); background: var(--ocre-soft); } .cal h2 { color: #A3400B; }
+    .kwh { border-color: #B7950B; background: #FEF9E7; } .kwh h2 { color: #9A7D0A; }
+    .toe { border-color: #424949; background: #F4F6F7; } .toe h2 { color: #424949; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Unidades de energía</h1>
+    <div class="grid">
+        <div class="c j"><div class="ic">🧪</div><h2>J</h2><div class="n">julio (unidad del SI)</div><div class="eq">1 kJ = 1000 J</div><div class="t">se usa en ciencia</div></div>
+        <div class="c cal"><div class="ic">🍫</div><h2>cal · kcal</h2><div class="n">caloría</div><div class="eq">1 cal = 4,18 J<br>1 kcal = 1000 cal</div><div class="t">etiquetas de alimentos: calentar 1 g de agua 1 °C</div></div>
+        <div class="c kwh"><div class="ic">💡🧾</div><h2>kWh</h2><div class="n">kilovatio hora</div><div class="eq">1 kWh = 3,6 · 10⁶ J</div><div class="t">facturas de la luz: un aparato de 1 kW durante 1 hora</div></div>
+        <div class="c toe"><div class="ic">🛢️</div><h2>tep</h2><div class="n">tonelada equivalente de petróleo</div><div class="eq">1 tep ≈ 4,19 · 10¹⁰ J</div><div class="t">estadísticas de energía: quemar 1000 kg de petróleo</div></div>
+    </div>
+</div>
+</body>
+</html>

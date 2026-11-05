@@ -1,0 +1,207 @@
+% \documentclass{article}
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noquoting,es-tabla]{babel}
+% \usepackage[top=2.5cm, left=2.5cm, right=2.5cm, bottom=2.8cm]{geometry}
+\usepackage[top=1.4cm, left=2.0cm, right=1.8cm, bottom=2.2cm]{geometry}
+\input{paquetes.tex}
+\input{tcolorbox.tex}
+\input{comandos.tex}
+\input{comandos_quimica.tex}
+\input{siunix.tex}
+\usepackage{dashrule} %! para poner líneas punteadas fácilmente
+\usepackage{makecell} % celdas de varias líneas en las tablas booktabs
+\usepackage{upgreek} %! Importante, leer la documentación de chemmacros para esto.
+\usepackage{annotate-equations}
+\graphicspath{{images/}}
+%\usepackage{romanbar} % para poner números romanos \Romannum{} para mayúsculas y \romannum{} para minúsculas El problema es que tarda mucho en compilar.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Mis colores
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xcolor} % es necesario cargar el paquete este de color. 
+\input{miscolores.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chemsetup[redox]{format=\tiny,format=\color{red},explicit-sign = true, pos=top, roman=false}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Cambiar Encabezado
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{lastpage} %Se necesita para la última página.
+\usepackage{fancyhdr}
+    \setlength{\headheight}{43.00pt}
+    \pagestyle{fancy}
+    \fancyhf{}
+    \chead{\negrita{Formulación Q.Orgánica 4º ESO}\vspace*{0.3pt}}
+    \rhead{\includegraphics[scale=0.15]{logojoseconde_b.jpg}}
+    \lhead{Dpto. Física y Química\vspace*{0.3pt}}
+    %\cfoot{Página \azuln{\thepage}\ de \azuln{\pageref{LastPage}}}
+    \cfoot{\azuln{\thepage}\ de \azuln{\pageref{LastPage}}}
+    
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Para poner el título
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{\textbf{\Huge{Formulación Química Orgánica 4º ESO}}}
+\author{IES José Conde García}
+\date{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Cambiar los estilos de las secciones
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{caption}
+
+\DeclareCaptionFont{blue}{\color{blue}}
+\captionsetup{labelformat=parens, labelfont={bf,blue}}
+
+
+\usepackage{titlesec}
+
+\titleformat{\section}
+    {\normalfont\Large\sffamily\bfseries\color{darkblue}}
+    {\tcbox[colback=darkblue, colframe=darkblue, coltext=blue!1, on line, boxsep=0pt, left=4pt, right=4pt, top=4pt, bottom=4pt]{\thesection}}{0.5em}{}
+
+
+ 
+
+\titleformat{\subsection}
+    {\normalfont\large\sffamily\bfseries\color{darkblue!80}}
+    {\hspace{2mm}\tcbox[colback=darkblue!70, colframe=darkblue, coltext=blue!1, on line, boxsep=0pt, left=4pt, right=4pt, top=4pt, bottom=4pt]{\thesubsection}}{0.5em}{}
+
+\sisetup{%
+    %alsoload = synchem,
+    detect-family,%
+    per-mode = fraction,
+    %per-mode = symbol-or-fraction,
+    output-decimal-marker = {,},
+    inter-unit-product = \cdot,
+    exponent-product = \cdot    
+}
+
+
+%\includecomment{anaya}
+%\includecomment{soluciones}
+\excludecomment{soluciones}
+%\includecomment{enunciados}
+%\excludecomment{enunciados}
+
+\hyphenation{a-pro-xi-man}
+
+
+\begin{document}
+
+\maketitle
+
+\spacing{1.2}
+
+\tableofcontents
+
+\newpage{}
+
+\myemptypage{}
+
+\spacing{1.3}
+
+\newpage
+
+\section{Introducción}
+
+La química orgánica es la química del carbono y es la química presente en los seres vivos los cuales están formados principalmente por carbono e hidrógeno.
+
+En química orgánica, a los elementos distintos al hidrógeno y carbono se les denomina \blueremark{heteroelementos} y son principalmente O, N, S, P.
+
+\section{El átomo de carbono}
+
+El átomo de carbono tiene una configuración electrónica de \elconf{C} con 4 electrones en su capa de valencia quedándole tan solo 4 electrones para obtener la configuración electrónica de gas noble. Esta situación condiciona  que el átomo de carbono puede formar 4 enlaces (simples, dobles o triples) con otros elementos para adquirir así la configuración de gas noble. 
+
+A partir de ahora, debemos tener siempre en cuenta que un átomo de carbono tendrá 4 enlaces ya sean simples, dobles o triples pero no puede exceder de más de 4 enlaces.
+
+El átomo de carbono por tanto, para formar esos cuatro enlaces podrá tener enlaces simples, enlaces dobles o enlaces triples.
+
+\section{Consideraciones generales}
+
+\subsection{Serie homóloga}
+
+Es el conjunto de compuestos que tienen el mismo grupo funcional y por tanto diferirán en el número de átomos de carbono así como la posición del grupo funcional.
+
+Para indicar el número de átomos de carbono que forman la cadena carbonada de las diferentes series homólogas se utilizan los prefijos griegos como los de la siguiente tabla:
+\begin{table}[H]
+    \centering
+    \caption{Serie homóloga \vspace*{-5pt}}
+    \label{table:seriehomologa}
+    % --- tabla antigua ---
+    % \begin{tblr}{
+            % colspec = {Q[c,m] | Q[c,m] | Q[c,m] | Q[c,m]},
+            % hlines = {1pt, solid},
+            % row{odd} = {bg=myOrange3!10},
+            % row{1} = {bg=myOrange3!90,fg=white,font=\bfseries}
+        % }
+        % {Número \\de carbonos} & Prefijo & {Número \\de carbonos} & Prefijo\\
+        % 1 & Met-- & 11  & Undec-- \\
+        % 2 & Et-- & 12 & Dodec-- \\
+        % 3 & Prop-- &1 3 & Tridec--\\
+        % 4 & But-- & 14 & Tetradec--\\
+        % 5 & Pent-- & 15 & Pentadec--\\
+        % 6 & Hex-- & 20 & Eicos--\\
+        % 7 & Hept-- & 30 & Triacont-- \\
+        % 8 & Oct-- & 40 & Tetracont--\\
+        % 9 & Non-- & 50 & Pentacont--\\
+        % 10 & Dec-- & 100 & Hecta--
+    % \end{tblr}
+    % --- tabla nueva ---
+    \begin{tabular}{@{}cccc@{}}
+        \toprule
+        \textbf{\makecell{Número \\de carbonos}} & \textbf{Prefijo} & \textbf{\makecell{Número \\de carbonos}} & \textbf{Prefijo} \\
+        \midrule
+        1 & Met-- & 11 & Undec-- \\[3pt]
+        2 & Et-- & 12 & Dodec-- \\[3pt]
+        3 & Prop-- & 1 3 & Tridec-- \\[3pt]
+        4 & But-- & 14 & Tetradec-- \\[3pt]
+        5 & Pent-- & 15 & Pentadec-- \\[3pt]
+        6 & Hex-- & 20 & Eicos-- \\[3pt]
+        7 & Hept-- & 30 & Triacont-- \\[3pt]
+        8 & Oct-- & 40 & Tetracont-- \\[3pt]
+        9 & Non-- & 50 & Pentacont-- \\[3pt]
+        10 & Dec-- & 100 & Hecta-- \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Normas generales de formulación}
+
+\begin{enumerate}[label=\numberballmDarkTeal]
+    \item \azul{Determinar cadena principal}: Será la cadena que mayor número de átomos de carbono tenga.
+          \begin{enumerate}
+              \item Si existen más de dos cadenas con el mismo número de átomos de carbono, se toma como referencia aquella en la que el grupo funcional principal o los localizadores (sus posiciones) de los sustituyentes tengan los números más bajos (ver más adelante).
+                    \begin{figure}[H]
+                        \centering
+                        \includegraphics[scale=1]{cadenaprincipal.eps}
+                        \caption{Elección de la cadena principal}
+                        \label{fig:cadenaprincipal}
+                    \end{figure}
+              \item La cadena seleccionada en \textit{a)} será un \blueremark{heptano}
+          \end{enumerate}
+
+    \item Las cadenas o grupos unidos a la cadena principal se les denomina \blueremark{sustituyentes} o \blueremark{radicales}.
+    \item Los radicales se ordenan alfabéticamente asignándoles un número como localizador que nos indica su posición.
+    \item Los localizadores (números) se separan por comas.
+    \item Los localizadores y las letras se separan por (--).
+    \item De manera general, la nomenclatura de cualquier compuesto orgánico tendrá la siguiente forma:
+
+          Sustituyentes + serie homóloga (indica número de carbonos) + grupo funcional no principal + grupo funcional principal
+\end{enumerate}
+
+\section{Grupos funcionales}
+
+Los grupos funcionales son un conjunto de átomos que caracterizan una serie de compuestos orgánicos con propiedades y estructuras químicas similares. Durante este curso veremos los alcanos, alquenos, alquino, alcoholes, cetonas, aldehídos, ácidos carboxílicos, aminas y amidas.
+
+
+
+
+\end{document}

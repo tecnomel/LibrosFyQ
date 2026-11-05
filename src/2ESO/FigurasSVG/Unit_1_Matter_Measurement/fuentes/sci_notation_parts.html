@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Parts of a number in scientific notation</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 24px; align-items: center; }
+    .side { flex: 1; font-size: 18px; border-radius: 14px; padding: 12px 16px; }
+    .s1 { background: var(--blue-soft); border: 3px solid var(--blue); }
+    .s2 { background: var(--green-soft); border: 3px solid var(--green); }
+    .side h2 { font-size: 22px; margin-bottom: 6px; }
+    .s1 h2 { color: var(--blue); } .s2 h2 { color: var(--green); }
+    .big { font-size: 74px; font-weight: 800; white-space: nowrap; }
+    .big .a { color: var(--blue); border-bottom: 6px solid var(--blue); }
+    .big .p { color: var(--teal); }
+    .big .e { color: var(--green); }
+    .big sup { font-size: 0.55em; }
+    .ex { display: flex; gap: 18px; margin-top: 20px; }
+    .card { flex: 1; text-align: center; border-radius: 14px; padding: 10px; font-size: 17px; }
+    .ok { background: var(--ocre-soft); border: 2px solid var(--ocre); }
+    .bad { background: #F2F2F2; border: 2px dashed var(--grey); color: var(--grey); }
+    .card .ic { font-size: 40px; }
+    .card .v { font-size: 25px; font-weight: 800; margin: 2px 0; }
+    .ok .v { color: #A3400B; }
+    .card sup { font-size: 0.6em; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Scientific notation: a number multiplied by a power of 10</h1>
+    <div class="row">
+        <div class="side s1">
+            <h2>Coefficient</h2>
+            A number <b>from 1 to 9.99…</b><br>
+            Only <b>ONE digit</b> (not zero) before the comma.
+        </div>
+        <div class="big"><span class="a">4,5</span> <span class="p">·</span> 10<sup class="e">4</sup></div>
+        <div class="side s2">
+            <h2>Exponent</h2>
+            <b>Positive</b> (+) → big number (≥ 10)<br>
+            <b>Negative</b> (−) → small number (&lt; 1)
+        </div>
+    </div>
+    <div class="ex">
+        <div class="card ok"><div class="ic">☀️</div><div class="v">1,5 · 10<sup>8</sup> km</div>distance Earth–Sun</div>
+        <div class="card ok"><div class="ic">🦠</div><div class="v">2 · 10<sup>−6</sup> m</div>size of a bacterium</div>
+        <div class="card bad"><div class="ic">✘</div><div class="v">45 · 10<sup>3</sup></div>wrong: two digits before the comma</div>
+        <div class="card bad"><div class="ic">✘</div><div class="v">0,45 · 10<sup>5</sup></div>wrong: the first digit is a zero</div>
+    </div>
+</div>
+</body>
+</html>

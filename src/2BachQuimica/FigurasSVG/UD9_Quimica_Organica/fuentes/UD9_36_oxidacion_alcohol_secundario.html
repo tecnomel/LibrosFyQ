@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_36 · Oxidación de alcoholes secundarios</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Alcohol secundario → cetona.
+const svg = crearFigura(460, 140);
+const R = { Xe: { t: "R", color: "#222" }, Kr: { t: "R'", color: "#222" } };
+molecula(svg, "[Xe]C([Kr])O", 80, 55, { grupos: R, etiqueta: "alcohol secundario", yEtq: 125, colorEtq: AZUL });
+flechaEq(svg, 170, 55, 280, "oxidación", "reducción");
+molecula(svg, "[Xe]C([Kr])=O", 370, 55, { grupos: R, etiqueta: "cetona", yEtq: 125, colorEtq: AZUL });
+</script>
+</body>
+</html>

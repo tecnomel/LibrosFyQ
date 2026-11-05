@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD4_06 · Criterio de signos para calor y trabajo</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Criterio de signos (IUPAC): lo que ENTRA en el sistema es positivo (+Q, +W) y lo que
+// SALE es negativo (−Q, −W).
+const svg = crearFigura(560, 320);
+const vidrio = el("linearGradient", { id: "v", x1: 0, y1: 0, x2: 1, y2: 0 }, defs(svg));
+[["0%", "#D8EEF6"], ["30%", "#FFFFFF"], ["100%", "#BFE0EC"]].forEach(([o, c]) => el("stop", { offset: o, "stop-color": c }, vidrio));
+el("rect", { x: 170, y: 70, width: 220, height: 200, fill: "url(#v)", stroke: "#6AAFC8", "stroke-width": 1.5 }, svg);
+el("rect", { x: 171, y: 110, width: 218, height: 159, fill: "#A6DDF1", opacity: 0.8 }, svg);
+el("ellipse", { cx: 280, cy: 70, rx: 110, ry: 16, fill: "#E7F6FB", stroke: "#6AAFC8" }, svg);
+el("ellipse", { cx: 280, cy: 110, rx: 109, ry: 15, fill: "#C6EAF6", stroke: "#6AAFC8" }, svg);
+el("ellipse", { cx: 280, cy: 270, rx: 110, ry: 16, fill: "#8FD0EA", stroke: "#6AAFC8" }, svg);
+const T = (x, y, t, a = {}) => texto(svg, x, y, t, { "text-anchor": "middle", "font-size": 22, fill: COLORES.texto, ...a });
+T(280, 30, "entorno"); T(280, 312, "entorno");
+T(280, 245, "sistema", { "font-weight": "bold" });
+const V = "#2E7D32", R = "#C62828";
+flecha(svg, 245, 40, 245, 190, { color: V, ancho: 2.2, punta: 12 });
+T(222, 170, "+W", { fill: V, "font-style": "italic", "font-family": "Times New Roman, serif" });
+flecha(svg, 315, 190, 315, 40, { color: R, ancho: 2.2, punta: 12 });
+T(345, 170, "−W", { fill: R, "font-style": "italic", "font-family": "Times New Roman, serif" });
+flecha(svg, 40, 210, 225, 210, { color: V, ancho: 2.2, punta: 12 });
+T(255, 218, "+Q", { fill: V, "font-style": "italic", "font-family": "Times New Roman, serif" });
+flecha(svg, 335, 210, 520, 210, { color: R, ancho: 2.2, punta: 12 });
+T(310, 218, "−Q", { fill: R, "font-style": "italic", "font-family": "Times New Roman, serif" });
+texto(svg, 10, 20, "entra: +", { "font-size": 14, fill: V });
+texto(svg, 10, 38, "sale: −", { "font-size": 14, fill: R });
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_43 · AlCl3: aluminio excitado</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/cajas.js"></script>
+</head>
+<body>
+<script>
+// Promoción de un electrón 3s -> 3p en el Al: tres electrones desapareados.
+const svg = crearFigura(640, 90);
+const CL = "#F4C2C2";
+texto(svg, 30, 50, "Cl:", { "text-anchor": "end", "font-size": 18, fill: COLORES.texto });
+dibujarCajas(svg, 40, 32, [{ e: [2], color: CL, abajo: "3s²" }, { salto: 14 }, { e: [2, 2, 1], color: CL, abajo: "3p⁵" }], { caja: 26 });
+texto(svg, 370, 50, "Al*:", { "text-anchor": "end", "font-size": 18, fill: COLORES.texto });
+dibujarCajas(svg, 380, 32, [{ e: [1], color: CAJA_HIBRIDO, abajo: "3s¹" }, { salto: 14 }, { e: [1, 1, 0], color: [CAJA_HIBRIDO, CAJA_HIBRIDO, CAJA_COLOR], abajo: "3p²" }], { caja: 26 });
+</script>
+</body>
+</html>

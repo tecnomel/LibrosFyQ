@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Moving a power of 10 across the fraction line</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    sup { font-size: 0.6em; }
+    .row { display: flex; gap: 24px; align-items: stretch; }
+    .card { flex: 1; border-radius: 16px; border: 3px solid var(--line); padding: 12px; text-align: center; }
+    .card h2 { font-size: 20px; color: var(--blue); margin-bottom: 8px; }
+    .eq { display: flex; align-items: center; justify-content: center; gap: 18px; font-size: 40px; font-weight: 800; }
+    .eq .frac > span { padding: 4px 14px; }
+    .arr { font-size: 22px; color: var(--ocre); font-weight: 800; }
+    .hl { color: var(--red); }
+    .note { font-size: 17px; margin-top: 10px; color: var(--teal); }
+    .tip { margin-top: 16px; font-size: 19px; text-align: center; background: var(--ocre-soft); border: 2px solid var(--ocre); border-radius: 12px; padding: 8px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Moving a power of 10 up or down: the sign of the exponent changes</h1>
+    <div class="row">
+        <div class="card"><h2>From the bottom to the top</h2>
+            <div class="eq"><span class="frac"><span>6</span><span class="hl">10<sup>3</sup></span></span><span class="arr">⟶</span><span>6 · <span class="hl">10<sup>-3</sup></span></span></div>
+            <div class="note">10<sup>3</sup> goes <b>up</b>: its exponent changes from <b>+3</b> to <b>−3</b>.</div></div>
+        <div class="card"><h2>From the top to the bottom</h2>
+            <div class="eq"><span>4 · <span class="hl">10<sup>-2</sup></span></span><span class="arr">⟶</span><span class="frac"><span>4</span><span class="hl">10<sup>2</sup></span></span></div>
+            <div class="note">10<sup>-2</sup> goes <b>down</b>: its exponent changes from <b>−2</b> to <b>+2</b>.</div></div>
+        <div class="card"><h2>Useful to divide</h2>
+            <div class="eq" style="font-size:34px"><span class="frac"><span>10<sup>5</sup></span><span class="hl">10<sup>-2</sup></span></span><span class="arr">⟶</span><span>10<sup>5</sup> · <span class="hl">10<sup>2</sup></span> = 10<sup>7</sup></span></div>
+            <div class="note">Move it up, then <b>add</b> the exponents.</div></div>
+    </div>
+    <div class="tip">Only the <b>power of 10</b> moves and changes the sign of its exponent. The <b>number</b> in front stays where it is.</div>
+</div>
+</body>
+</html>

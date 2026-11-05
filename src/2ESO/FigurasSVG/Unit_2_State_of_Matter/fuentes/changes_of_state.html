@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Changes of state</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1100px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .legend { display: flex; justify-content: center; gap: 30px; font-size: 19px; margin-top: 4px; }
+    .legend span { padding: 6px 14px; border-radius: 10px; font-weight: 700; }
+    .hot { background: var(--red-soft); color: var(--red); border: 2px solid var(--red); }
+    .cold { background: #EAF2F8; color: #2471A3; border: 2px solid #2471A3; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Changes of state</h1>
+    <svg width="1040" height="560" viewBox="0 0 1040 560" id="c"></svg>
+    <div class="legend"><span class="hot">🔥 Progressive changes: we HEAT</span><span class="cold">❄️ Regressive changes: we COOL</span></div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg', svg = document.getElementById('c');
+    const add = (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; svg.appendChild(e); return e; };
+    const defs = add('defs', {});
+    [['r', '#C0392B'], ['b', '#2471A3']].forEach(([id, c]) => {
+        const m = document.createElementNS(NS, 'marker');
+        [['id', id], ['markerWidth', 22], ['markerHeight', 22], ['refX', 11], ['refY', 11], ['orient', 'auto'], ['markerUnits', 'userSpaceOnUse'], ['viewBox', '0 0 10 10']].forEach(([k, v]) => m.setAttribute(k, v));
+        const p = document.createElementNS(NS, 'path'); p.setAttribute('d', 'M0 0 L10 5 L0 10 Z'); m.setAttribute('refX', 5); m.setAttribute('refY', 5); p.setAttribute('fill', c);
+        m.appendChild(p); defs.appendChild(m);
+    });
+    // state nodes
+    const S = { s: [190, 450], l: [850, 450], g: [520, 110] };
+    function node([x, y], title, color, kind) {
+        add('circle', { cx: x, cy: y, r: 92, fill: '#fff', stroke: color, 'stroke-width': 6 });
+        add('text', { x, y: y + 75, 'text-anchor': 'middle', 'font-size': 24, 'font-weight': 800, fill: color }, title);
+        // particles
+        if (kind === 's') for (let i = 0; i < 5; i++) for (let j = 0; j < 4; j++) add('circle', { cx: x - 44 + i * 22, cy: y - 50 + j * 22, r: 9, fill: '#5DADE2', stroke: '#1B4F72' });
+        if (kind === 'l') [[-46,10],[-24,14],[-2,9],[20,13],[42,10],[-36,-12],[-13,-8],[10,-13],[33,-9],[-24,-32],[0,-30],[24,-34]].forEach(([dx,dy]) => add('circle', { cx: x + dx, cy: y + dy, r: 9, fill: '#58D68D', stroke: '#145A32' }));
+        if (kind === 'g') [[-50,-40],[20,-55],[45,-5],[-30,10],[0,-20],[50,30],[-55,30]].forEach(([dx,dy]) => add('circle', { cx: x + dx, cy: y + dy, r: 9, fill: '#F5B041', stroke: '#9C640C' }));
+    }
+    node(S.s, 'SOLID', '#2471A3', 's');
+    node(S.l, 'LIQUID', '#1E8449', 'l');
+    node(S.g, 'GAS', '#D35400', 'g');
+    function arrow(x1, y1, x2, y2, c, label, lx, ly, curve) {
+        const mx = (x1 + x2) / 2 + curve[0], my = (y1 + y2) / 2 + curve[1];
+        add('path', { d: `M${x1} ${y1} Q${mx} ${my} ${x2} ${y2}`, fill: 'none', stroke: c === 'r' ? '#C0392B' : '#2471A3', 'stroke-width': 5, 'marker-end': `url(#${c})` });
+        add('text', { x: lx, y: ly, 'text-anchor': 'middle', 'font-size': 22, 'font-weight': 800, fill: c === 'r' ? '#C0392B' : '#2471A3', stroke: '#fff', 'stroke-width': 6, 'paint-order': 'stroke' }, label);
+    }
+    // solid <-> liquid
+    arrow(290, 420, 750, 420, 'r', 'MELTING', 520, 385, [0, -40]);
+    arrow(750, 480, 290, 480, 'b', 'FREEZING', 520, 530, [0, 40]);
+    // liquid <-> gas
+    arrow(810, 360, 610, 140, 'r', 'EVAPORATION / BOILING', 820, 215, [60, -20]);
+    arrow(590, 200, 770, 400, 'b', 'CONDENSATION', 630, 320, [-50, 20]);
+    // solid <-> gas
+    arrow(220, 360, 430, 140, 'r', 'SUBLIMATION', 220, 215, [-60, -20]);
+    arrow(450, 200, 270, 400, 'b', 'DESUBLIMATION', 420, 320, [50, 20]);
+</script>
+</body>
+</html>

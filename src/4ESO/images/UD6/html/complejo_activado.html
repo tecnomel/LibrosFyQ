@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Complejo activado y energía de activación</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 980px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="940" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    energyProfile(add, { x0: 60, y0: 300, w: 470, h: 230, r: 0.35, p: 0.12, peak: 0.85, ca: false, rl: 'H_2 + I_2', pl: '2 HI' });
+    // dibujos de las moléculas sobre el diagrama
+    const H = '#D5D8DC', I = '#8E44AD';
+    dimer(add, 85, 150, Math.PI / 2, 12, I, 12, I, 22); dimer(add, 120, 150, Math.PI / 2, 7, H, 7, H, 13);
+    // complejo activado: los cuatro átomos con enlaces a medio formar
+    bead(add, 280, 20, 7, H); bead(add, 312, 20, 7, H); bead(add, 280, 48, 12, I); bead(add, 312, 48, 12, I);
+    label(add, 360, 40, 'complejo activado', { 'font-size': 12, fill: '#525252', 'text-anchor': 'start' });
+    add('rect', { x: 268, y: 8, width: 56, height: 55, fill: 'none', stroke: '#6C3483', 'stroke-dasharray': '4 3', rx: 6 });
+    dimer(add, 430, 225, 0, 12, I, 7, H, 20); dimer(add, 470, 225, 0, 12, I, 7, H, 20);
+    // explicación a la derecha
+    const t = [['#000070', 'Complejo activado'], ['#525252', 'Agrupación de átomos de alta energía en la'], ['#525252', 'que los enlaces de los reactivos se han'], ['#525252', 'debilitado y los de los productos empiezan'], ['#525252', 'a formarse. Es inestable: puede dar'], ['#525252', 'productos o volver a dar reactivos.'],
+        ['#6C3483', 'Energía de activación, Eₐ'], ['#525252', 'Energía mínima que deben tener las'], ['#525252', 'partículas que chocan para que se forme'], ['#525252', 'el complejo activado y la reacción ocurra.']];
+    t.forEach(([c, s], i) => label(add, 580, 40 + i * 24 + (i >= 6 ? 20 : 0), s, { 'font-size': i === 0 || i === 6 ? 17 : 14, fill: c, 'text-anchor': 'start', 'font-weight': i === 0 || i === 6 ? 800 : 600 }));
+</script>
+</body>
+</html>

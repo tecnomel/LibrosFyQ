@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Stopping distance</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .lane { display: flex; align-items: center; gap: 12px; margin: 18px 0; }
+    .sp { width: 120px; font-size: 22px; font-weight: 800; color: var(--blue); }
+    .seg { height: 46px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 16px; }
+    .re { background: #F39C12; border-radius: 10px 0 0 10px; }
+    .br { background: #C0392B; border-radius: 0 10px 10px 0; }
+    .tot { font-size: 18px; font-weight: 800; margin-left: 8px; white-space: nowrap; }
+    .leg { display: flex; gap: 24px; font-size: 17px; margin-top: 8px; }
+    .leg span { display: inline-flex; align-items: center; gap: 6px; }
+    .leg i { width: 22px; height: 16px; border-radius: 4px; display: inline-block; }
+    .tips { display: flex; gap: 14px; margin-top: 16px; }
+    .tips div { flex: 1; text-align: center; border-radius: 14px; padding: 10px; background: #F4F6F7; font-size: 15px; }
+    .tips .ic { font-size: 38px; display: block; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Stopping distance = reaction distance + braking distance</h1>
+    <div class="lane"><div class="sp">50 km/h</div><div class="seg re" style="width:140px">14 m</div><div class="seg br" style="width:140px">14 m</div><div class="tot">🚗 total: 28 m</div></div>
+    <div class="lane"><div class="sp">100 km/h</div><div class="seg re" style="width:280px">28 m</div><div class="seg br" style="width:560px">56 m</div><div class="tot">🚗 total: 84 m</div></div>
+    <div class="leg"><span><i style="background:#F39C12"></i>Reaction: the car keeps moving while the driver reacts (doubles if speed doubles)</span><span><i style="background:#C0392B"></i>Braking: four times bigger if speed doubles!</span></div>
+    <div class="tips">
+        <div><span class="ic">🔒</span><b>Seat belt</b> (1st law)<br>stops your body moving forward</div>
+        <div><span class="ic">🎈</span><b>Airbag</b> (2nd law)<br>stops you more slowly: less force</div>
+        <div><span class="ic">🛞</span><b>Good tyres</b> (friction)<br>more grip, shorter braking</div>
+        <div><span class="ic">📏</span><b>Safety distance</b><br>keep away from the car in front</div>
+    </div>
+</div>
+</body>
+</html>

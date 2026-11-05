@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Puntos de ebullición de los hidruros</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1000px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="960" height="480"></svg>
+</div>
+<script src="fig.js"></script>
+<script src="chem.js"></script>
+<script>
+    const add = svgAdder('s');
+    // datos (°C)
+    const series = [
+        ['grupo 16', '#C0392B', [['H_2O', 100], ['H_2S', -60], ['H_2Se', -41], ['H_2Te', -2]]],
+        ['grupo 17', '#1E8449', [['HF', 20], ['HCl', -85], ['HBr', -67], ['HI', -35]]],
+        ['grupo 15', '#2471A3', [['NH_3', -33], ['PH_3', -88], ['AsH_3', -62], ['SbH_3', -17]]],
+        ['grupo 14', '#7F8C8D', [['CH_4', -161], ['SiH_4', -112], ['GeH_4', -88], ['SnH_4', -52]]]];
+    const X = p => 160 + (p - 2) * 162, Y = t => 60 + (120 - t) * 1.2;
+    // ejes y rejilla
+    for (let t = -175; t <= 125; t += 25) {
+        add('line', { x1: 100, y1: Y(t), x2: 650, y2: Y(t), stroke: t === 0 ? '#5D6D7E' : '#EAECEE', 'stroke-width': t === 0 ? 1.5 : 1 });
+        if (t % 50 === 0) label(add, 92, Y(t) + 5, t, { 'font-size': 14, 'text-anchor': 'end', 'font-weight': 600 });
+    }
+    for (let p = 2; p <= 5; p++) label(add, X(p), Y(-175) + 24, p, { 'font-size': 15 });
+    label(add, 375, Y(-175) + 48, 'Período', { 'font-size': 16 });
+    label(add, 30, 230, 'Temperatura de ebullición (°C)', { 'font-size': 16, transform: 'rotate(-90 30 230)' });
+    series.forEach(([name, col, pts], s) => {
+        add('polyline', { points: pts.map(([, t], i) => `${X(i + 2)},${Y(t)}`).join(' '), fill: 'none', stroke: col, 'stroke-width': 3 });
+        pts.forEach(([f, t], i) => add('circle', { cx: X(i + 2), cy: Y(t), r: 6, fill: '#fff', stroke: col, 'stroke-width': 3 }));
+        chemText(add, X(2) - 14, Y(pts[0][1]) + 5, pts[0][0], { 'font-size': 15, fill: col, 'text-anchor': 'end' });
+        add('line', { x1: 680, y1: 120 + s * 32, x2: 710, y2: 120 + s * 32, stroke: col, 'stroke-width': 3 });
+        chemText(add, 718, 125 + s * 32, name + ': ' + pts.map(p => p[0]).join(', '), { 'font-size': 14, 'text-anchor': 'start', fill: col });
+    });
+    label(add, 375, 30, 'H₂O, HF y NH₃ hierven a temperaturas muy altas: tienen enlaces de hidrógeno', { 'font-size': 15, fill: '#000070' });
+</script>
+</body>
+</html>

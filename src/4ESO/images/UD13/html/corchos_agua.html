@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Corchos en el agua</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 640px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="600" height="300"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    add('rect', { x: 0, y: 40, width: 600, height: 200, rx: 16, fill: '#D6EAF8' });
+    const cx = 160, cy = 140;
+    // frentes de onda circulares vistos en perspectiva
+    for (let k = 1; k <= 8; k++) add('ellipse', { cx, cy, rx: 38 * k, ry: 11 * k, fill: 'none', stroke: '#2E86C1', 'stroke-width': 2.5, opacity: 1 - k * 0.08 });
+    add('circle', { cx, cy, r: 6, fill: '#1B4F72' });
+    callout(add, cx, cy, 120, 262, 'foco (donde cayó la piedra)', 'middle');
+    // corchos que solo suben y bajan
+    [[400, -10], [450, 6], [500, -3]].forEach(([x, dy]) => {
+        const y = 150 + dy;
+        add('rect', { x: x - 11, y: y - 16, width: 22, height: 18, rx: 4, fill: '#CA6F1E', stroke: '#784212', 'stroke-width': 1.5 });
+        arrow(add, x, y - 22, x, y - 50, '#C0392B', 2, 9);
+        arrow(add, x, y + 6, x, y + 34, '#C0392B', 2, 9);
+    });
+    label(add, 340, 26, 'los corchos solo suben y bajan: movimiento vibratorio', { 'font-size': 14, fill: '#C0392B' });
+    arrow(add, 330, 262, 580, 262, '#1E8449', 3.5);
+    label(add, 390, 290, 'la perturbación avanza: movimiento ondulatorio', { 'font-size': 14, fill: '#1E8449' });
+</script>
+</body>
+</html>

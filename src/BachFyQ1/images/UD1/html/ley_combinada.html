@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Deducción de la ley combinada de los gases</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="860" height="300"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    // Cilindro con émbolo: x = izquierda, h = altura del gas, n = partículas, hot = calentado
+    function cylinder(cx, h, seed, hot) {
+        const x = cx - 55, bottom = 240, top = bottom - h;
+        add('rect', { x, y: 50, width: 110, height: 190, fill: 'none', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+        add('rect', { x: x + 2, y: top, width: 106, height: h - 2, fill: hot ? '#FDEBD0' : '#EBF5FB' });
+        add('rect', { x: x + 2, y: top - 12, width: 106, height: 12, fill: '#BFC9CA', stroke: '#5D6D7E' });
+        add('rect', { x: cx - 5, y: top - 60, width: 10, height: 48, fill: '#BFC9CA', stroke: '#5D6D7E' });
+        const r = rng(seed); const P = [];
+        for (let k = 0; k < 4000 && P.length < 14; k++) {
+            const px = x + 12 + r() * 86, py = top + 10 + r() * (h - 22);
+            if (P.every(([a, b]) => Math.hypot(a - px, b - py) > Math.min(22, h / 4.2))) { P.push([px, py]); bead(add, px, py, 6, '#E74C3C'); }
+        }
+        if (hot) for (let k = 0; k < 3; k++) add('path', { d: `M${cx - 30 + k * 30} 262 q-6 -6 0 -12 q6 -6 0 -12`, stroke: '#E67E22', 'stroke-width': 3, fill: 'none' });
+    }
+    cylinder(110, 140, 3, false); cylinder(430, 70, 7, false); cylinder(750, 120, 9, true);
+    const st = { 'font-size': 18, fill: '#000070' };
+    chemText(add, 110, 25, 'p_1, V_1, T_1', st); chemText(add, 430, 25, 'p_2, V\', T_1', st); chemText(add, 750, 25, 'p_2, V_2, T_2', st);
+    arrow(add, 190, 150, 345, 150, '#2471A3', 3, 13); arrow(add, 510, 150, 665, 150, '#2471A3', 3, 13);
+    label(add, 268, 128, 'T constante', { 'font-size': 15, fill: '#2471A3' }); label(add, 268, 178, 'se varía p (Boyle)', { 'font-size': 14, fill: '#525252' });
+    label(add, 588, 128, 'p constante', { 'font-size': 15, fill: '#2471A3' }); label(add, 588, 178, 'se varía T (Charles)', { 'font-size': 14, fill: '#525252' });
+    label(add, 110, 290, 'estado inicial', { 'font-size': 14, fill: '#525252' }); label(add, 430, 290, 'estado intermedio', { 'font-size': 14, fill: '#525252' }); label(add, 750, 290, 'estado final', { 'font-size': 14, fill: '#525252' });
+</script>
+</body>
+</html>

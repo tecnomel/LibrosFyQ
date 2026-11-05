@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!-- Portada del libro de Física de 2.º Bachillerato (A4). render.sh la imprime a PDF vectorial (portada_2BachFisica.pdf). -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Portada Física 2.º Bachillerato</title>
+<style>
+    @page { size: 210mm 297mm; margin: 0; }
+    html, body { margin: 0; padding: 0; width: 210mm; height: 297mm; overflow: hidden; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    svg { display: block; }
+</style>
+<script src="dibujos.js"></script>
+</head>
+<body>
+<svg id="s" xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 2100 2970"></svg>
+<script>
+    const svg = document.getElementById('s');
+    semilla(1905);
+    iniciar(svg, PALETAS.morado);
+    portada(svg, {
+        titulo: ['Física'],
+        tamTitulo: 300,
+        curso: '2.º Bachillerato',
+        anchoCurso: 860,
+        lema: 'Campos, ondas y física moderna',
+        centro: 'IES José Conde García',
+        pie: 'Almansa · Curso 2026/2027',
+        arte(p) {
+            estrellas(p, 120, 0, 0, 2100, 2600);
+            // gravitación (arriba a la derecha)
+            planetaOrbita(p, 1640, 820, 150, 300, 80, -14, 2.4, 26);
+            // oscilaciones: muelle con masa y su traza sinusoidal
+            const x = 260, top = 1180, yc = 1560, A = 150;
+            brillo(p, `M${x - 90},${top} L${x + 90},${top}`, P.line, 6);
+            muelle(p, x, top, yc - 55, 32, 16, P.line, 4);
+            bloque(p, x, yc - 55, 120, 110, P.acc2);
+            let d = '';
+            for (let xx = 0; xx <= 900; xx += 5) d += (xx ? 'L' : 'M') + (x + 140 + xx) + ',' + (yc - A * Math.sin(xx / 900 * 4 * Math.PI)).toFixed(1);
+            brillo(p, `M${x + 140},${yc} L${x + 1060},${yc}`, P.line, 2, { 'stroke-opacity': .5 });
+            brillo(p, d, P.acc, 5);
+            // péndulo
+            pendulo(p, 1700, 1250, 520, [-20, -10, 0, 10, 20], 36, P.acc3);
+            // electromagnetismo: dipolo
+            dipolo(p, 760, 2130, 520, 1.6);
+            // óptica / física moderna
+            prisma(p, 1690, 2330, .95, 1300, 2420, 2100, [-30, 160]);
+            atomoBohr(p, 300, 2420, .42, 9);
+            texto(p, 1060, 1300, 'F = −k · y', { size: 72, italic: true, fill: P.line, op: .92 });
+            texto(p, 1180, 2560, 'E = h · ν', { size: 64, italic: true, fill: P.line, op: .9 });
+            ondaSeno(p, 80, 2020, 2610, 20, 260, P.glow, 3);
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD10_07 · Formación del nailon 6,6 (poliamida)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Nailon 6,6: ácido adípico (hexanodioico) + hexano-1,6-diamina → poliamida + agua.
+const svg = crearFigura(860, 290);
+molecula(svg, "OC(=O)CCCCC(=O)O", 140, 80, { etiqueta: "ácido adípico", yEtq: 130, colores: { O: ROJO } });
+mas(svg, 275, 80);
+molecula(svg, "NCCCCCCN", 400, 80, { etiqueta: "hexano-1,6-diamina", yEtq: 130, colores: { N: AZUL } });
+texto(svg, 28, 86, "n", { "font-size": 18, "font-style": "italic", fill: COLORES.texto, "font-family": TNR });
+texto(svg, 298, 86, "n", { "font-size": 18, "font-style": "italic", fill: COLORES.texto, "font-family": TNR });
+flechaR(svg, 520, 80, 610, "condensación");
+fq(svg, 690, 86, ["+ (2n−1) H2O"]);
+const b = molecula(svg, "[Xe]C(=O)CCCCC(=O)NCCCCCCN[Kr]", 430, 215, { grupos: { Xe: { t: "" }, Kr: { t: "" } }, colores: { O: ROJO, N: AZUL } });
+corchetesPolimero(svg, b.x + 18, b.x + b.w - 18, 215, 42);
+texto(svg, 430, 282, "nailon 6,6", { "text-anchor": "middle", "font-size": 15, "font-weight": "bold", fill: COLORES.texto, "font-family": TNR });
+</script>
+</body>
+</html>

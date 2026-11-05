@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The periodic table</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1200px; }
+    .pt { display: grid; grid-template-columns: 40px repeat(18, 1fr); gap: 4px; }
+    .cell { height: 54px; border-radius: 6px; text-align: center; position: relative; border: 1.5px solid rgba(0,0,0,.25); }
+    .cell .z { position: absolute; left: 4px; top: 2px; font-size: 10px; color: #23373B; }
+    .cell .s { font-size: 21px; font-weight: 800; line-height: 54px; color: #1B2631; }
+    .gl { text-align: center; font-size: 14px; font-weight: 800; color: var(--grey); align-self: end; }
+    .pl { font-size: 14px; font-weight: 800; color: var(--grey); align-self: center; text-align: center; }
+    .metal { background: #AED6F1; } .nonmetal { background: #ABEBC6; } .metalloid { background: #F9E79F; } .noble { background: #F5B7B1; } .ln { background: #D7BDE2; }
+    .names { display: grid; grid-template-columns: 40px repeat(18, 1fr); gap: 4px; margin-top: 4px; }
+    .tag { font-size: 13px; font-weight: 800; text-align: center; border-radius: 6px; padding: 3px 0; color: #fff; }
+    .legend { display: flex; gap: 18px; justify-content: center; margin-top: 14px; font-size: 16px; }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .legend i { width: 22px; height: 16px; border-radius: 4px; display: inline-block; border: 1px solid rgba(0,0,0,.3); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>The periodic table: 7 periods (rows) and 18 groups (columns)</h1>
+    <div class="pt" id="pt"></div>
+    <div class="names">
+        <div></div>
+        <div class="tag" style="background:#2471A3">alkali<br>metals</div>
+        <div class="tag" style="background:#1A5276">alkaline<br>earth</div>
+        <div style="grid-column: span 14"></div>
+        <div class="tag" style="background:#1E8449">halo-<br>gens</div>
+        <div class="tag" style="background:#C0392B">noble<br>gases</div>
+    </div>
+    <div class="legend">
+        <span><i class="metal"></i>Metals</span><span><i class="nonmetal"></i>Nonmetals</span><span><i class="metalloid"></i>Metalloids</span><span><i class="noble"></i>Noble gases</span><span><i class="ln"></i>Lanthanoids / actinoids (placed below the table)</span>
+    </div>
+</div>
+<script>
+    const rows = [
+        [[1,'H'],[18,'He']],
+        [[1,'Li'],[2,'Be'],[13,'B'],[14,'C'],[15,'N'],[16,'O'],[17,'F'],[18,'Ne']],
+        [[1,'Na'],[2,'Mg'],[13,'Al'],[14,'Si'],[15,'P'],[16,'S'],[17,'Cl'],[18,'Ar']],
+        'K Ca Sc Ti V Cr Mn Fe Co Ni Cu Zn Ga Ge As Se Br Kr'.split(' ').map((s, i) => [i + 1, s]),
+        'Rb Sr Y Zr Nb Mo Tc Ru Rh Pd Ag Cd In Sn Sb Te I Xe'.split(' ').map((s, i) => [i + 1, s]),
+        'Cs Ba La Hf Ta W Re Os Ir Pt Au Hg Tl Pb Bi Po At Rn'.split(' ').map((s, i) => [i + 1, s]),
+        'Fr Ra Ac Rf Db Sg Bh Hs Mt Ds Rg Cn Nh Fl Mc Lv Ts Og'.split(' ').map((s, i) => [i + 1, s])
+    ];
+    const nonmetal = ['H','C','N','O','P','S','Se','F','Cl','Br','I'];
+    const metalloid = ['B','Si','Ge','As','Sb','Te','At'];
+    const noble = ['He','Ne','Ar','Kr','Xe','Rn','Og'];
+    const pt = document.getElementById('pt');
+    // group numbers
+    pt.appendChild(document.createElement('div'));
+    for (let g = 1; g <= 18; g++) { const d = document.createElement('div'); d.className = 'gl'; d.textContent = g; pt.appendChild(d); }
+    let Z = 0;
+    rows.forEach((row, p) => {
+        const lab = document.createElement('div'); lab.className = 'pl'; lab.textContent = p + 1; pt.appendChild(lab);
+        const byCol = {}; row.forEach(([c, s]) => byCol[c] = s);
+        for (let c = 1; c <= 18; c++) {
+            const d = document.createElement('div');
+            if (byCol[c]) {
+                const s = byCol[c];
+                Z++;
+                if (s === 'Hf') Z = 72;
+                if (s === 'Rf') Z = 104;
+                d.className = 'cell ' + (noble.includes(s) ? 'noble' : nonmetal.includes(s) ? 'nonmetal' : metalloid.includes(s) ? 'metalloid' : (s === 'La' || s === 'Ac') ? 'ln' : 'metal');
+                d.innerHTML = `<span class="z">${Z}</span><span class="s">${s}</span>`;
+            }
+            pt.appendChild(d);
+        }
+    });
+</script>
+</body>
+</html>

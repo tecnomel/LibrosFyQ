@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- Portada del libro de 3.º ESO (A4). ?lang=en -> versión inglesa.
+     render.sh la imprime a PDF vectorial (portada_3ESO_ES.pdf y portada_3ESO_ENG.pdf). -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Portada 3.º ESO</title>
+<style>
+    @page { size: 210mm 297mm; margin: 0; }
+    html, body { margin: 0; padding: 0; width: 210mm; height: 297mm; overflow: hidden; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    svg { display: block; }
+</style>
+<script src="dibujos.js"></script>
+</head>
+<body>
+<svg id="s" xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 2100 2970"></svg>
+<script>
+    const en = new URLSearchParams(location.search).get('lang') === 'en';
+    const svg = document.getElementById('s');
+    semilla(303);
+    iniciar(svg, PALETAS.ocre);
+    portada(svg, {
+        titulo: en ? ['Physics', 'and Chemistry'] : ['Física', 'y Química'],
+        tamTitulo: en ? 215 : 250,
+        curso: en ? '3rd ESO' : '3.º ESO',
+        lema: en ? 'Matter, motion and energy' : 'Materia, movimiento y energía',
+        centro: 'IES José Conde García',
+        pie: en ? 'Almansa · School year 2026/2027' : 'Almansa · Curso 2026/2027',
+        arte(p) {
+            // química: tabla periódica, átomo, reacción
+            ptMini(p, 170, 1380, 40);
+            atomoBohr(p, 1460, 1880, 1.0, 13);
+            agua(p, 1840, 1330, 1.1, 15);
+            balon(p, 360, 2260, 165, P.liq, .55);
+            // física: gráfica x-t y velocímetro
+            grafica(p, 700, 2470, 380, 290, t => t * t * .95, { ex: 't', ey: 'x', color: P.acc3 });
+            velocimetro(p, 1640, 2330, 130, .62);
+            texto(p, 890, 1820, 'v = Δx / Δt', { size: 64, italic: true, fill: P.line, op: .92 });
+            ondaSeno(p, 80, 2020, 2600, 22, 260, P.glow, 3);
+        }
+    });
+</script>
+</body>
+</html>

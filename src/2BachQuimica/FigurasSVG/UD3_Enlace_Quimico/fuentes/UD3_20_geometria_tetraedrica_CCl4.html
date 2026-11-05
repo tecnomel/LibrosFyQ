@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_20 · Geometría tetraédrica del CCl4</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/moleculas.js"></script>
+</head>
+<body>
+<script>
+// AB4: tetraédrica, 109,5°.
+const svg = crearFigura(560, 380);
+const cam = [1, -0.3, 0.22];
+const d = rotarZ(GEOM.tetraedrica, 60);
+esquemaGeometria(svg, 10, 10, 170, 150, d.map(p => ({ p, t: "B" })), { camara: cam, escala: 55, angulo: "109,5°" });
+const m = molAB("C", "Cl", d, 1.3, { angEtq: [30, 30, 150, 330] });
+m.angulos = [{ a: 1, c: 0, b: 2, texto: "109,5°", radio: 0.55, dx: 26 }];
+dibujarMolecula(svg, m, { cx: 370, cy: 200, escala: 110, camara: cam });
+</script>
+</body>
+</html>

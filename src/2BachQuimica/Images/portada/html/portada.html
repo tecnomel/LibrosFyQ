@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!-- Portada del libro de Química de 2.º Bachillerato (A4). render.sh la imprime a PDF vectorial. -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Portada Química 2.º Bachillerato</title>
+<style>
+    @page { size: 210mm 297mm; margin: 0; }
+    html, body { margin: 0; padding: 0; width: 210mm; height: 297mm; overflow: hidden; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    svg { display: block; }
+</style>
+<script src="dibujos.js"></script>
+</head>
+<body>
+<svg id="s" xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 2100 2970"></svg>
+<script>
+    const svg = document.getElementById('s');
+    semilla(2026);
+    iniciar(svg, PALETAS.rojo);
+    portada(svg, {
+        titulo: ['Química'],
+        tamTitulo: 300,
+        curso: '2.º Bachillerato',
+        anchoCurso: 860,
+        lema: 'Estructura, energía y cambio químico',
+        centro: 'IES José Conde García',
+        pie: 'Almansa · Curso 2026/2027',
+        arte(p) {
+            rejillaHex(p, 0, 1100, 2100, 1550, 70, .35, (x, y) => Math.max(0, 1 - Math.hypot(x - 1050, y - 1900) / 900));
+            atomoBohr(p, 1620, 820, .62, 11);
+            redNaCl(p, 1060, 1780, 150);
+            balon(p, 380, 2230, 190, P.liq, .55);
+            benceno(p, 1700, 2230, 135, 1.15);
+            agua(p, 380, 1480, 1.1, -10);
+            texto(p, 1700, 1500, 'pH = −log [H_3O^+]', { size: 66, italic: true, fill: P.line, op: .92 });
+            texto(p, 1050, 2560, 'N_2 + 3 H_2 ⇌ 2 NH_3', { size: 72, fill: P.acc, weight: 700 });
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Gay-Lussac's law</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 22px; align-items: center; }
+    .state { text-align: center; }
+    .state .t { font-size: 20px; font-weight: 800; color: var(--ocre); }
+    .state .p { font-size: 20px; font-weight: 800; color: var(--red); }
+    .arrow { text-align: center; font-size: 17px; color: var(--grey); }
+    .arrow b { display: block; font-size: 34px; }
+    .side { flex: 1; }
+    .tag { display: inline-block; font-size: 17px; font-weight: 700; background: var(--red-soft); border: 2px solid var(--red); border-radius: 10px; padding: 4px 12px; margin-bottom: 12px; }
+    .law { display: inline-block; font-size: 26px; font-weight: 800; color: var(--red); background: #fff; border: 3px solid var(--red); border-radius: 12px; padding: 4px 16px; margin: 0 0 12px 14px; }
+    .eq { font-size: 22px; font-weight: 800; margin-bottom: 14px; }
+    .eq .frac > span:first-child { border-color: var(--teal); }
+    .ex { display: flex; gap: 10px; align-items: flex-start; font-size: 17px; background: #FBFCFC; border: 2px solid var(--line); border-radius: 12px; padding: 8px 12px; margin-bottom: 10px; }
+    .ex .i { font-size: 30px; line-height: 1; }
+    .ex b { color: var(--red); }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Gay-Lussac's law: the volume does not change</h1>
+    <div class="row">
+        <div class="state"><svg id="s1" width="250" height="280"></svg><div class="t">T = 300 K</div><div class="p">p = 1 atm</div></div>
+        <div class="arrow"><b>➜</b>we heat it<br>T × 2</div>
+        <div class="state"><svg id="s2" width="250" height="280"></svg><div class="t">T = 600 K</div><div class="p">p = 2 atm</div></div>
+        <div class="side">
+            <div class="tag">V constant 📦 (closed, rigid container)</div>
+            <div class="law"><span class="frac"><span>p<sub>1</sub></span><span>T<sub>1</sub></span></span> = <span class="frac"><span>p<sub>2</sub></span><span>T<sub>2</sub></span></span></div>
+            <div class="eq">Example: &nbsp;<span class="frac"><span>1 atm</span><span>300 K</span></span> = <span class="frac"><span>2 atm</span><span>600 K</span></span></div>
+            <div class="ex"><span class="i">🚗</span><span>After a long drive the air in the tyres is hotter, so its <b>pressure is higher</b>.</span></div>
+            <div class="ex"><span class="i">⚠️</span><span>Never heat a spray can: the pressure rises and it can <b>explode</b>.</span></div>
+        </div>
+    </div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg';
+    const add = (svg, tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t) e.textContent = t; svg.appendChild(e); return e; };
+    const PTS = [[65,65,200],[150,55,330],[185,110,10],[105,125,150],[165,160,60],[70,160,250],[130,85,100]];
+    // keep the arrow tips inside the container walls
+    const clamp = (v, a, b) => Math.min(Math.max(v, a), b);
+    function box(id, len, hot) {
+        const s = document.getElementById(id);
+        const m = add(add(s, 'defs', {}), 'marker', { id: id + 'm', markerWidth: 8, markerHeight: 8, refX: 4, refY: 4, orient: 'auto' });
+        add(m, 'path', { d: 'M0 0 L8 4 L0 8 Z', fill: '#C0392B' });
+        add(s, 'rect', { x: 20, y: 15, width: 210, height: 190, fill: hot ? '#FDEDEC' : '#FBFCFC', stroke: '#23373B', 'stroke-width': 7 });
+        PTS.forEach(([x, y, a]) => {
+            add(s, 'circle', { cx: x, cy: y, r: 10, fill: '#F5B041', stroke: '#9C640C', 'stroke-width': 1.5 });
+            const r = a * Math.PI / 180;
+            add(s, 'line', { x1: x + 12 * Math.cos(r), y1: y + 12 * Math.sin(r), x2: clamp(x + len * Math.cos(r), 34, 216), y2: clamp(y + len * Math.sin(r), 29, 191), stroke: '#C0392B', 'stroke-width': 2.5, 'marker-end': `url(#${id}m)` });
+        });
+        if (hot) add(s, 'text', { x: 125, y: 258, 'font-size': 40, 'text-anchor': 'middle' }, '🔥🔥🔥');
+    }
+    box('s1', 26, false);
+    box('s2', 44, true);
+</script>
+</body>
+</html>

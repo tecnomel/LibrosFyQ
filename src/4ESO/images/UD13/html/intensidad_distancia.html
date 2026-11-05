@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Intensidad y distancia al foco</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 700px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="660" height="400"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const fx = 50, fy = 175, k = 0.2;   // k = pendiente del cono de rayos
+    label(add, 330, 24, 'La misma energía se reparte en una superficie cada vez mayor', { 'font-size': 16, fill: '#000070' });
+    dashed(add, fx, fy, 640, fy - k * 590); dashed(add, fx, fy, 640, fy + k * 590);
+    add('circle', { cx: fx, cy: fy, r: 7, fill: '#C0392B' });
+    label(add, fx, fy + 30, 'foco', { 'font-size': 14, fill: '#C0392B' });
+    // superficies a r, 2r y 3r: cuadrículas de 1, 4 y 9 casillas iguales
+    [[1, 190], [2, 360], [3, 530]].forEach(([n, x]) => {
+        const h = 2 * k * (x - fx), s = h / n, d = 0.45 * s;   // d = desplazamiento de perspectiva
+        for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+            const y = fy - h / 2 + i * s, xx = x - h * 0.18 + j * d;
+            add('path', { d: `M${xx} ${y + j * d * 0.25} l${d} ${d * 0.25} l0 ${s} l${-d} ${-d * 0.25} Z`, fill: i === 0 && j === 0 ? '#F1948A' : '#AED6F1', stroke: '#2E86C1', 'stroke-width': 1.2 });
+        }
+        label(add, x, fy + h / 2 + 34, n === 1 ? 'distancia r' : 'distancia ' + n + 'r', { 'font-size': 14, 'font-style': 'italic' });
+        label(add, x, fy + h / 2 + 54, n === 1 ? 'superficie S' : 'superficie ' + n * n + 'S', { 'font-size': 14, fill: '#2E86C1' });
+        label(add, x, fy + h / 2 + 74, n === 1 ? 'intensidad I' : 'intensidad I/' + n * n, { 'font-size': 14, fill: '#C0392B' });
+    });
+</script>
+</body>
+</html>

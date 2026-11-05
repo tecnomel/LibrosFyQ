@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD1_09 · Espectro de absorción del hidrógeno</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Espectro de absorción del hidrógeno en el visible (serie de Balmer).
+// Absorción: espectro continuo con rayas negras. Emisión: rayas de color sobre fondo negro.
+// Las rayas están en las mismas posiciones en los dos espectros.
+const TIPO = "absorcion";
+const BALMER = [656.3, 486.1, 434.0, 410.2];            // nm
+const L0 = 380, L1 = 750, X0 = 20, W = 460, Y0 = 10, H = 62;
+const svg = crearFigura(X0 * 2 + W, 112);
+const x = nm => X0 + W * (nm - L0) / (L1 - L0);
+
+if (TIPO === "absorcion") {
+    const g = el("linearGradient", { id: "continuo", x1: 0, y1: 0, x2: 1, y2: 0 }, defs(svg));
+    for (let nm = L0; nm <= L1; nm += 5) {
+        el("stop", { offset: ((nm - L0) / (L1 - L0) * 100).toFixed(1) + "%", "stop-color": colorLongitudOnda(nm) }, g);
+    }
+    el("rect", { x: X0, y: Y0, width: W, height: H, fill: "url(#continuo)" }, svg);
+    BALMER.forEach(l => el("line", { x1: x(l), y1: Y0, x2: x(l), y2: Y0 + H, stroke: "#000", "stroke-width": 2.6 }, svg));
+} else {
+    el("rect", { x: X0, y: Y0, width: W, height: H, fill: "#050505" }, svg);
+    BALMER.forEach(l => el("line", { x1: x(l), y1: Y0, x2: x(l), y2: Y0 + H, stroke: colorLongitudOnda(l), "stroke-width": 3 }, svg));
+}
+// Escala en nm
+for (let nm = 400; nm <= 750; nm += 50) {
+    el("line", { x1: x(nm), y1: Y0 + H, x2: x(nm), y2: Y0 + H + 6, stroke: "#444" }, svg);
+    texto(svg, x(nm), Y0 + H + 20, String(nm), { "text-anchor": "middle", "font-size": 12, fill: COLORES.gris });
+}
+texto(svg, X0 + W, Y0 + H + 38, "λ (nm)", { "text-anchor": "end", "font-size": 12, fill: COLORES.gris });
+</script>
+</body>
+</html>

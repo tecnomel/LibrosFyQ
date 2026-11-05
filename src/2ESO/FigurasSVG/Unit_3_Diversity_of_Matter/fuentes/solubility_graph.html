@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Solubility and temperature</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 24px; }
+    .col { flex: 1; text-align: center; border-radius: 16px; padding: 10px; border: 2px solid var(--line); }
+    h2 { font-size: 22px; }
+    .t { font-size: 17px; margin-top: 4px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Solubility depends on temperature</h1>
+    <div class="row">
+        <div class="col"><h2 style="color:var(--red)">Solids in water 🍬</h2><svg id="a" width="500" height="325"></svg>
+            <div class="t">Hotter water dissolves <b>MORE</b> sugar.</div></div>
+        <div class="col"><h2 style="color:#2471A3">Gases in water 🫧</h2><svg id="b" width="500" height="325"></svg>
+            <div class="t">A warm fizzy drink loses its gas: <b>LESS</b> CO<sub>2</sub> dissolves.</div></div>
+    </div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg';
+    function graph(id, yl, color, fn, pts) {
+        const svg = document.getElementById(id);
+        const add = (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; svg.appendChild(e); return e; };
+        const X = t => 80 + t * 3.8, Y = v => 270 - v;
+        add('line', { x1: 80, y1: 270, x2: 470, y2: 270, stroke: '#23373B', 'stroke-width': 2.5 });
+        add('line', { x1: 80, y1: 270, x2: 80, y2: 20, stroke: '#23373B', 'stroke-width': 2.5 });
+        add('text', { x: 470, y: 312, 'text-anchor': 'end', 'font-size': 17, 'font-weight': 700, fill: '#23373B' }, 'temperature (°C) →');
+        add('text', { x: 20, y: 18, 'font-size': 17, 'font-weight': 700, fill: '#23373B' }, yl);
+        [0, 20, 40, 60, 80, 100].forEach(t => add('text', { x: X(t), y: 288, 'text-anchor': 'middle', 'font-size': 14, fill: '#525252' }, t));
+        let d = '';
+        for (let t = 0; t <= 100; t += 2) d += (t ? 'L' : 'M') + X(t) + ' ' + Y(fn(t));
+        add('path', { d, fill: 'none', stroke: color, 'stroke-width': 5 });
+        pts.forEach(([t, lab]) => { add('circle', { cx: X(t), cy: Y(fn(t)), r: 6, fill: color }); add('text', { x: X(t) + 12, y: Y(fn(t)) + 24, 'font-size': 15, 'font-weight': 700, fill: color }, lab); });
+    }
+    graph('a', 'solubility', '#C0392B', t => 60 + t * 1.8, [[20, 'cold tea'], [80, 'hot tea']]);
+    graph('b', 'solubility', '#2471A3', t => 230 * Math.exp(-t / 40) + 10, [[5, 'cold drink'], [40, 'warm drink']]);
+</script>
+</body>
+</html>

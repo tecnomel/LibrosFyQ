@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cuatro tipos de sustancias según su enlace</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 980px; } .card h2 { font-size: 17px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Sustancia molecular</h2><svg id="m" width="200" height="170"></svg><div class="t">Moléculas (I<sub>2</sub>) unidas por fuerzas intermoleculares débiles</div></div>
+        <div class="card"><h2>Cristal iónico</h2><svg id="i" width="200" height="170"></svg><div class="t">Cationes y aniones (NaCl) unidos por atracción eléctrica</div></div>
+        <div class="card"><h2>Cristal covalente</h2><svg id="c" width="200" height="170"></svg><div class="t">Átomos (diamante) unidos por enlaces covalentes en una red gigante</div></div>
+        <div class="card"><h2>Metal</h2><svg id="e" width="200" height="170"></svg><div class="t">Cationes (Cu) en una nube de electrones deslocalizados</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    // Sustancia molecular: moléculas diatómicas orientadas al azar
+    const M = svgAdder('m'), R = rng(3);
+    [[40, 40], [110, 35], [165, 55], [55, 105], [125, 95], [90, 145], [160, 135], [28, 145]].forEach(([x, y]) => {
+        const a = R() * Math.PI, dx = 11 * Math.cos(a), dy = 11 * Math.sin(a);
+        bead(M, x - dx, y - dy, 12, '#8E44AD'); bead(M, x + dx, y + dy, 12, '#8E44AD');
+    });
+    // Cristal iónico 2D
+    const I = svgAdder('i');
+    for (let a = 0; a < 6; a++) for (let b = 0; b < 6; b++) {
+        const pos = (a + b) % 2 === 0, x = 25 + a * 30, y = 12 + b * 29;
+        if (pos) bead(I, x, y, 9, '#AF7AC5'); else bead(I, x, y, 14, '#58D68D');
+    }
+    // Cristal covalente: red hexagonal con enlaces
+    const C = svgAdder('c'), L = 22, P = [];
+    for (let a = -1; a < 6; a++) for (let b = -1; b < 6; b++) {
+        const x = 15 + a * L * Math.sqrt(3) + (b % 2 ? L * Math.sqrt(3) / 2 : 0), y = 10 + b * 1.5 * L;
+        P.push([x, y]); P.push([x, y + L]);
+    }
+    const inside = ([x, y]) => x > 4 && x < 196 && y > 4 && y < 166;
+    for (let p = 0; p < P.length; p++) for (let q = p + 1; q < P.length; q++) {
+        const dd = Math.hypot(P[p][0] - P[q][0], P[p][1] - P[q][1]);
+        if (Math.abs(dd - L) < 0.5 && inside(P[p]) && inside(P[q])) C('line', { x1: P[p][0], y1: P[p][1], x2: P[q][0], y2: P[q][1], stroke: '#566573', 'stroke-width': 3 });
+    }
+    P.filter(inside).forEach(([x, y]) => bead(C, x, y, 6.5, '#566573'));
+    // Metal: cationes en la nube de electrones
+    const E = svgAdder('e');
+    E('rect', { x: 3, y: 3, width: 194, height: 164, rx: 12, fill: '#D6EAF8' });
+    for (let a = 0; a < 6; a++) for (let b = 0; b < 5; b++) ion(E, 22 + a * 31, 22 + b * 32, 11, '#E59866', '+');
+    const R2 = rng(11);
+    for (let k = 0; k < 45; k++) E('circle', { cx: 8 + R2() * 184, cy: 8 + R2() * 154, r: 2.4, fill: '#1F3A93' });
+</script>
+</body>
+</html>

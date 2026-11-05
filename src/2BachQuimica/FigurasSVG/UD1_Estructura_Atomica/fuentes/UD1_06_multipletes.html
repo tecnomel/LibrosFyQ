@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD1_06 · Desdoblamiento de las líneas espectrales</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Al mejorar la resolución de los espectroscopios, cada raya resulta ser un
+// multiplete (varias rayas muy juntas). Cada franja amplía la anterior.
+const svg = crearFigura(760, 470);
+const X0 = 250;
+const franjas = [
+    { y: 20, x1: X0, x2: 740, titulo: ["Espectro de Bohr", "(una raya por salto)"] },
+    { y: 130, x1: X0, x2: 740, titulo: ["Mayor resolución:", "multipletes (Sommerfeld)"] },
+    { y: 240, x1: X0 + 90, x2: X0 + 390, titulo: ["Campo magnético:", "efecto Zeeman"] },
+    { y: 350, x1: X0 + 90, x2: X0 + 390, titulo: ["Desdoblamiento", "por el espín"] },
+];
+const ALTO = 70;
+franjas.forEach(f => {
+    el("rect", { x: f.x1, y: f.y, width: f.x2 - f.x1, height: ALTO, fill: "#14141A" }, svg);
+    f.titulo.forEach((t, i) => texto(svg, 10, f.y + 30 + i * 19, t, { "font-size": 15,
+        fill: i ? COLORES.gris : COLORES.texto, "font-weight": i ? "normal" : "bold" }));
+});
+const raya = (f, x, color, w = 2.2) => el("line", { x1: x, y1: f.y + 3, x2: x, y2: f.y + ALTO - 3,
+    stroke: color, "stroke-width": w }, svg);
+
+const cols = { rojo: colorLongitudOnda(656), verde: colorLongitudOnda(486), azul: colorLongitudOnda(434), violeta: colorLongitudOnda(410) };
+// Franja 1: cuatro rayas simples
+const xs = { rojo: 340, violeta: 430, azul: 500, verde: 640 };
+Object.entries(xs).forEach(([c, x]) => raya(franjas[0], x, cols[c]));
+// Franja 2: cada raya se desdobla
+raya(franjas[1], xs.rojo, cols.rojo);
+[-3, 3].forEach(d => raya(franjas[1], xs.violeta + d, cols.violeta, 1.6));
+[-9, -3, 3, 9].forEach(d => raya(franjas[1], xs.azul + d, cols.azul, 1.4));
+[-8, 0, 8].forEach(d => raya(franjas[1], xs.verde + d, cols.verde, 1.6));
+// Franja 3: ampliación de la raya azul -> muchas componentes
+const cx3 = (franjas[2].x1 + franjas[2].x2) / 2;
+const comp3 = [-60, -44, -30, -16, -4, 8, 20, 34, 48, 62];
+comp3.forEach(d => raya(franjas[2], cx3 + d, cols.azul, 1.6));
+// Franja 4: ampliación de una componente -> doblete de espín
+const cx4 = (franjas[3].x1 + franjas[3].x2) / 2;
+[-6, 6].forEach(d => raya(franjas[3], cx4 + d, cols.azul, 2));
+
+// Líneas de "zoom" entre franjas
+const zoom = (fa, xa1, xa2, fb, xb1, xb2) => {
+    el("path", { d: `M${xa1},${fa.y + ALTO} L${xb1},${fb.y} M${xa2},${fa.y + ALTO} L${xb2},${fb.y}`,
+        stroke: "#8A8A8A", "stroke-width": 1, "stroke-dasharray": "4 3", fill: "none" }, svg);
+    el("rect", { x: xa1, y: fa.y + 1, width: xa2 - xa1, height: ALTO - 2, fill: "none", stroke: "#FFD84D",
+        "stroke-width": 1.2 }, svg);
+};
+zoom(franjas[0], xs.azul - 12, xs.azul + 12, franjas[1], xs.azul - 12, xs.azul + 12);
+zoom(franjas[1], xs.azul - 13, xs.azul + 13, franjas[2], franjas[2].x1, franjas[2].x2);
+zoom(franjas[2], cx3 + 1, cx3 + 15, franjas[3], franjas[3].x1, franjas[3].x2);
+texto(svg, 745, 465, "Cada franja es una ampliación de la zona marcada", { "text-anchor": "end", "font-size": 12, fill: COLORES.gris });
+</script>
+</body>
+</html>

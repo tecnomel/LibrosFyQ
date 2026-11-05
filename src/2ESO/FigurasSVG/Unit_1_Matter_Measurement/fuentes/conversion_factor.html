@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Anatomy of a conversion factor</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; height: 560px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; align-items: stretch; }
+    .callout { font-size: 18px; padding: 10px 12px; border-radius: 10px; }
+    .c1 { background: var(--blue-soft); border: 2px solid var(--blue); }
+    .c2 { background: var(--green-soft); border: 2px solid var(--green); }
+    .c3 { background: var(--red-soft); border: 2px solid var(--red); }
+    .c4 { background: var(--ocre-soft); border: 2px solid var(--ocre); }
+    .main { display: flex; align-items: center; justify-content: center; font-size: 42px; font-weight: 600; margin: 26px 0; gap: 6px; }
+    .main .frac { border: 3px dashed var(--ocre); border-radius: 14px; padding: 4px 6px; background: var(--ocre-soft); }
+    .res { color: var(--red); font-weight: 800; }
+    .q { color: var(--blue); }
+    .num { color: var(--green); }
+    .den { color: var(--red); }
+    .rules { font-size: 18px; text-align: center; color: var(--grey); align-self: center; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Anatomy of a conversion factor</h1>
+    <div class="grid">
+        <div class="callout c1"><b>① Starting quantity</b>: the number and the unit we want to change.</div>
+        <div class="callout c2"><b>② Numerator</b>: the <u>new unit</u> we want to obtain.</div>
+        <div class="callout c4"><b>③ The "1" always goes with the bigger unit</b>: 1 km = 10<sup>3</sup> m.</div>
+    </div>
+    <div class="main">
+        <span class="q">2.5 <span class="cancel">km</span></span><span>·</span>
+        <span class="frac"><span class="num">10<sup>3</sup> m</span><span class="den">1 <span class="cancel">km</span></span></span>
+        <span>=</span><span class="res">2.5 · 10<sup>3</sup> m = 2500 m</span>
+    </div>
+    <div class="grid">
+        <div class="callout c3"><b>④ Denominator</b>: the <u>old unit</u>, so that it cancels out with the starting unit.</div>
+        <div class="rules" style="grid-column: span 2">Top and bottom are the <b>same amount</b>, so the factor is worth exactly <b>1</b>:<br>the quantity does not change, only its unit.</div>
+    </div>
+</div>
+</body>
+</html>

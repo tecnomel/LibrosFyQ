@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Fuerzas sobre un cuerpo en un plano inclinado</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="860" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const al = 30 * Math.PI / 180, deg = 30;
+    // plano: vértice inferior derecho en (480, 300)
+    const x0 = 40, y0 = 300, L = 440, H = L * Math.tan(al);
+    add('path', { d: `M${x0} ${y0} L${x0 + L} ${y0} L${x0} ${y0 - H} Z`, fill: '#F5CBA7', stroke: '#A04000', 'stroke-width': 2 });
+    add('path', { d: `M${x0 + L - 50} ${y0} A50 50 0 0 1 ${x0 + L - 50 * Math.cos(al)} ${y0 - 50 * Math.sin(al)}`, fill: 'none', stroke: '#23373B' });
+    label(add, x0 + L - 70, y0 - 8, 'α', { 'font-size': 16 });
+    // bloque sobre el plano
+    const t = 0.42, bx = x0 + t * L, by = y0 - H + t * H;   // punto sobre la superficie
+    const ux = Math.cos(al), uy = Math.sin(al);              // dirección hacia abajo del plano (x+, y+)
+    const nx = -Math.sin(al), ny = -Math.cos(al);            // normal hacia fuera
+    const cx = bx + 26 * nx, cy = by + 26 * ny;
+    block(add, cx, cy, 80, 52, deg);
+    const S = 120;
+    // peso
+    arrow(add, cx, cy, cx, cy + S, '#2471A3', 3.5, 12); vlabel(add, cx - 22, cy + S - 10, 'P', '#2471A3');
+    // componentes
+    const P1 = S * Math.sin(al), P2 = S * Math.cos(al);
+    arrow(add, cx, cy, cx + P1 * ux, cy + P1 * uy, '#E67E22', 3, 11); label(add, cx + P1 * ux + 40, cy + P1 * uy + 6, 'P₁ = P sen α', { 'font-size': 14, fill: '#E67E22', 'text-anchor': 'start' });
+    arrow(add, cx, cy, cx - P2 * nx, cy - P2 * ny, '#7D3C98', 3, 11); label(add, cx - P2 * nx + 12, cy - P2 * ny + 18, 'P₂ = P cos α', { 'font-size': 14, fill: '#7D3C98', 'text-anchor': 'start' });
+    add('line', { x1: cx + P1 * ux, y1: cy + P1 * uy, x2: cx, y2: cy + S, stroke: '#AAB7B8', 'stroke-dasharray': '4 3' });
+    add('line', { x1: cx - P2 * nx, y1: cy - P2 * ny, x2: cx, y2: cy + S, stroke: '#AAB7B8', 'stroke-dasharray': '4 3' });
+    // normal
+    arrow(add, cx, cy, cx + P2 * nx, cy + P2 * ny, '#1E8449', 3.5, 12); vlabel(add, cx + P2 * nx + 18, cy + P2 * ny + 4, 'N', '#1E8449');
+    // rozamiento (hacia arriba del plano)
+    arrow(add, cx, cy, cx - 60 * ux, cy - 60 * uy, '#C0392B', 3, 11); vlabel(add, cx - 60 * ux - 6, cy - 60 * uy - 10, 'F', '#C0392B', 'roz');
+    // explicación
+    const tx = 560;
+    [['#000070', 'Sobre el cuerpo actúan:'], ['#2471A3', '• el peso, P = m · g'], ['#1E8449', '• la normal, N'], ['#C0392B', '• el rozamiento, si lo hay'], ['', ''],
+     ['#7D3C98', 'N equilibra a P₂:'], ['#7D3C98', 'N = m · g · cos α'], ['', ''], ['#E67E22', 'P₁ hace bajar el cuerpo:'], ['#E67E22', 'sin rozamiento, a = g · sen α']].forEach(([c, s], i) => label(add, tx, 40 + i * 24, s, { 'font-size': 15, fill: c || '#000', 'text-anchor': 'start' }));
+</script>
+</body>
+</html>

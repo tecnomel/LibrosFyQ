@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_13 · Entalpías y longitudes de enlace promedio</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+</head>
+<body>
+<script>
+// Entalpías de enlace promedio (kJ/mol) y longitudes de enlace (pm).
+const DATOS = [
+    ["C−H", 412, 109], ["C−C", 348, 154], ["C=C", 612, 134], ["C≡C", 837, 120],
+    ["C−O", 360, 143], ["C=O", 743, 122], ["O−H", 463, 96], ["N−H", 388, 101],
+];
+const W0 = 150, CW = 76, RH = 40;
+const svg = crearFigura(W0 + CW * DATOS.length + 20, 3 * RH + 20);
+const OC = "#C8A21A";
+const filas = [["Enlace"], [[{ t: "Δ" }, { t: "H", attrs: { "font-style": "italic" } }, { t: "°" }], "(kJ/mol)"], ["Longitud", [{ t: "(10" }, { t: "−12", sup: true }, { t: " m)" }]]];
+filas.forEach((f, i) => {
+    const y = 10 + i * RH;
+    el("rect", { x: 10, y, width: W0 - 10, height: RH, fill: OC, stroke: "#fff", "stroke-width": 2 }, svg);
+    f.forEach((l, k) => texto(svg, 10 + (W0 - 10) / 2, y + (f.length === 1 ? 26 : 17 + k * 16), l, {
+        "text-anchor": "middle", "font-size": f.length === 1 ? 15 : 13, "font-weight": "bold", fill: "#1A1A1A" }));
+    DATOS.forEach((d, j) => {
+        const x = W0 + j * CW;
+        el("rect", { x, y, width: CW, height: RH, fill: i === 0 ? "#FFF6D8" : "#fff", stroke: OC, "stroke-width": 1 }, svg);
+        texto(svg, x + CW / 2, y + 26, String(d[i]), { "text-anchor": "middle", "font-size": 16, fill: COLORES.texto,
+            "font-family": i === 0 ? "Arial, sans-serif" : null });
+    });
+});
+</script>
+</body>
+</html>

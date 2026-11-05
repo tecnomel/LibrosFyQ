@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Bloques s, p, d y f</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1060px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="ptrow">
+        <svg id="s" width="820" height="470"></svg>
+        <div class="legend" id="lg"></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script src="pt.js"></script>
+<script>
+    const add = svgAdder('s');
+    const C = { s: '#F5B7B1', p: '#F9E79F', d: '#FAD7A0', f: '#A9DFBF' };
+    // Subnivel que se está llenando en cada zona de la tabla (electrón diferenciador)
+    const sub = Z => {
+        const p = pos(Z), b = block(Z);
+        if (b === 's') return p.period + 's';
+        if (b === 'p') return p.period + 'p';
+        if (b === 'd') return (p.period - 1) + 'd';
+        return (p.period - 2) + 'f';
+    };
+    drawPT(add, { x0: 60, y0: 40, c: 40, fill: Z => C[block(Z)], text: sub });
+    legend('lg', [[C.s, 'Bloque s<br>(grupos 1 y 2, y He)'], [C.p, 'Bloque p<br>(grupos 13 a 18)'], [C.d, 'Bloque d<br>(grupos 3 a 12)'], [C.f, 'Bloque f<br>(lantanoides y actinoides)']]);
+</script>
+</body>
+</html>

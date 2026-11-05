@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Magnitudes angulares del MCU</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>Radio vector</h2><svg id="a" width="270" height="260"></svg>
+            <div class="t">La posición de P la da el radio vector <i>r</i>, que forma un ángulo θ con el eje X.</div></div>
+        <div class="card"><h2>Desplazamiento angular</h2><svg id="b" width="270" height="260"></svg>
+            <div class="t">Δθ = θ₂ − θ₁ &nbsp;y&nbsp; Δs = Δθ · R</div></div>
+        <div class="card"><h2>Grados y radianes</h2><svg id="c" width="270" height="260"></svg>
+            <div class="t">1 vuelta = 360° = 2π rad</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    function axes(add, cx, cy, R) {
+        arrow(add, cx - R - 20, cy, cx + R + 30, cy, '#7F8C8D', 1.5, 9);
+        arrow(add, cx, cy + R + 20, cx, cy - R - 28, '#7F8C8D', 1.5, 9);
+        label(add, cx + R + 26, cy + 20, 'X', { 'font-size': 14, fill: '#7F8C8D' });
+        label(add, cx - 14, cy - R - 18, 'Y', { 'font-size': 14, fill: '#7F8C8D' });
+    }
+    // a) radio vector
+    {
+        const add = svgAdder('a'), cx = 125, cy = 135, R = 95;
+        axes(add, cx, cy, R);
+        add('circle', { cx, cy, r: R, fill: 'none', stroke: '#C0392B', 'stroke-width': 3 });
+        const [px, py] = pol(cx, cy, R, 40);
+        add('path', { d: `M${cx} ${cy} ` + arcD(cx, cy, 34, 0, 40).replace('M', 'L') + ' Z', fill: '#FAD7A0' });
+        arrow(add, cx, cy, px, py, '#2471A3', 3, 12);
+        vlabel(add, (cx + px) / 2 - 8, (cy + py) / 2 - 8, 'r', '#2471A3');
+        add('circle', { cx: px, cy: py, r: 5, fill: '#23373B' });
+        label(add, px + 12, py - 8, 'P', { 'font-size': 16 });
+        label(add, cx + 46, cy - 10, 'θ', { 'font-size': 16, fill: '#B9770E' });
+        label(add, cx + 12, cy + 20, 'O', { 'font-size': 14 });
+        const [rx, ry] = pol(cx, cy, R, 235);
+        add('line', { x1: cx, y1: cy, x2: rx, y2: ry, stroke: '#23373B', 'stroke-width': 1.5, 'stroke-dasharray': '5 4' });
+        label(add, (cx + rx) / 2 - 12, (cy + ry) / 2 + 2, 'R', { 'font-size': 15 });
+    }
+    // b) desplazamiento angular
+    {
+        const add = svgAdder('b'), cx = 125, cy = 135, R = 95, t1 = 15, t2 = 80;
+        axes(add, cx, cy, R);
+        add('circle', { cx, cy, r: R, fill: 'none', stroke: '#AAB7B8', 'stroke-width': 2 });
+        add('path', { d: `M${cx} ${cy} ` + arcD(cx, cy, R, t1, t2).replace('M', 'L') + ' Z', fill: '#FADBD8' });
+        add('path', { d: arcD(cx, cy, R, t1, t2), fill: 'none', stroke: '#F36619', 'stroke-width': 5 });
+        const [x1, y1] = pol(cx, cy, R, t1), [x2, y2] = pol(cx, cy, R, t2);
+        arrow(add, cx, cy, x1, y1, '#2471A3', 2.5, 11); arrow(add, cx, cy, x2, y2, '#2471A3', 2.5, 11);
+        arcArrow(add, cx, cy, 40, t1, t2, '#C0392B', 2, 9);
+        label(add, cx + 40, cy - 34, 'Δθ', { 'font-size': 15, fill: '#C0392B' });
+        add('circle', { cx: x1, cy: y1, r: 4.5, fill: '#23373B' }); add('circle', { cx: x2, cy: y2, r: 4.5, fill: '#23373B' });
+        label(add, x1 + 18, y1 + 2, 'P₁', { 'font-size': 14 }); label(add, x2 - 2, y2 - 10, 'P₂', { 'font-size': 14 });
+        const [sx, sy] = pol(cx, cy, R + 20, (t1 + t2) / 2);
+        label(add, sx + 4, sy, 'Δs', { 'font-size': 16, fill: '#F36619' });
+        label(add, cx + 56, cy + 22, 't₁: θ₁', { 'font-size': 13, fill: '#2471A3' });
+        label(add, cx - 34, cy - 50, 't₂: θ₂', { 'font-size': 13, fill: '#2471A3' });
+        label(add, cx - 10, cy + 18, 'O', { 'font-size': 14 });
+    }
+    // c) unidades de ángulo
+    {
+        const add = svgAdder('c'), cx = 135, cy = 130, R = 82;
+        const q = [['#D5F5E3', 0], ['#D6EAF8', 90], ['#E8DAEF', 180], ['#FCF3CF', 270]];
+        q.forEach(([c, a]) => add('path', { d: `M${cx} ${cy} ` + arcD(cx, cy, R, a, a + 90).replace('M', 'L') + ' Z', fill: c, stroke: '#fff', 'stroke-width': 1 }));
+        add('circle', { cx, cy, r: R, fill: 'none', stroke: '#23373B', 'stroke-width': 2 });
+        add('line', { x1: cx - R, y1: cy, x2: cx + R, y2: cy, stroke: '#7F8C8D' }); add('line', { x1: cx, y1: cy - R, x2: cx, y2: cy + R, stroke: '#7F8C8D' });
+        arcArrow(add, cx, cy, 28, 0, 90, '#C0392B', 2, 8); arcArrow(add, cx, cy, 44, 0, 180, '#C0392B', 2, 8);
+        arcArrow(add, cx, cy, 60, 0, 270, '#C0392B', 2, 8); arcArrow(add, cx, cy, 74, 0, 355, '#C0392B', 2, 8);
+        const L = (x, y, a, b, anchor = 'middle') => { label(add, x, y, a, { 'font-size': 14, 'text-anchor': anchor }); label(add, x, y + 16, b, { 'font-size': 12, fill: '#525252', 'font-weight': 600, 'text-anchor': anchor }); };
+        L(cx, cy - R - 26, '90°', 'π/2 rad');
+        L(cx - R - 6, cy - 8, '180°', 'π rad', 'end');
+        L(cx, cy + R + 16, '270°', '3π/2 rad');
+        L(cx + R + 6, cy - 8, '360°', '2π rad', 'start');
+    }
+</script>
+</body>
+</html>

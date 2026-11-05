@@ -1,0 +1,197 @@
+%! Unidad 7 — Física cuántica: ejercicios finales (adaptados de la fuente, con datos cambiados y resueltos)
+
+\section{Ejercicios}\label{sec:cua-ejercicios}
+
+Salvo que se indique otra cosa, usa \(h = \qty{6.63e-34}{\joule\second}\), \(c = \qty{3e8}{\m\per\second}\),
+\(e = \qty{1.6e-19}{\coulomb}\), \(m_e = \qty{9.11e-31}{\kg}\), \(m_n = \qty{1.67e-27}{\kg}\), \(b = \qty{2.9e-3}{\m\kelvin}\) y
+\(\sigma = \qty{5.67e-8}{\watt\per\m\squared\per\kelvin\tothe{4}}\).
+
+\subsection{Cuestiones}
+
+\begin{exercise}
+    Un metal emite electrones al iluminarlo con luz verde, pero no con luz naranja. ¿Emitirá electrones con luz roja? ¿Y con luz azul?
+    \begin{solu}
+        \textcolor{blue}{La frecuencia umbral está entre la del naranja y la del verde.} \textcolor{red}{Con luz roja (menor frecuencia que la
+        naranja) no; con luz azul (mayor que la verde) sí}, \textcolor{blue}{sea cual sea la intensidad.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Iluminamos el mismo metal con dos focos de la misma luz monocromática, de \qty{100}{\watt} y \qty{400}{\watt}. ¿Cuál arranca más
+    electrones? ¿Con cuál salen más rápidos?
+    \begin{solu}
+        \textcolor{red}{El de \qty{400}{\watt} arranca más electrones} \textcolor{blue}{(emite más fotones por segundo)}, \textcolor{red}{pero salen con la misma
+        energía cinética máxima con los dos}: \textcolor{blue}{depende solo de la frecuencia.}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Si se duplica la frecuencia de la luz que incide sobre un metal, ¿se duplica la energía cinética de los electrones arrancados?
+    \begin{solu}
+        \textcolor{red}{No: aumenta más del doble.} \textcolor{blue}{Como \(E_c = h\nu - W_0\), con \(2\nu\) queda \(E'_c = 2h\nu - W_0 = 2E_c + W_0\).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿Por qué no se observa el carácter ondulatorio de una pelota de fútbol?
+    \begin{solu}
+        \textcolor{blue}{Su longitud de onda de De Broglie, \(\lambda = h/mv\), es del orden de \qty{e-34}{\m}, muchísimo menor que cualquier rendija
+        u obstáculo:} \textcolor{red}{no puede producir difracción ni interferencias observables.}
+    \end{solu}
+\end{exercise}
+
+\subsection{Cuerpo negro y fotones}
+
+\begin{exercise}
+    Calcula la temperatura superficial de una estrella cuyo pico de emisión está en \qty{520}{\nm}, usando para la constante de Wien el
+    valor \(b = \qty{0.2897}{\cm\kelvin}\). ¿Podría ser una gigante roja?
+    \begin{solu}
+        \(T = \dfrac{b}{\lambda_{\text{máx}}} = \dfrac{2{,}897\cdot 10^{-3}}{520\cdot 10^{-9}} = \textcolor{red}{\qty{5571}{\kelvin}}\)
+        \textcolor{blue}{(no: es una estrella amarilla como el Sol; una gigante roja, más fría, tendría el pico en el rojo o el infrarrojo).}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La superficie de una estrella emite con el máximo de intensidad en \qty{480}{\nm}. Calcula su temperatura y la potencia que emite cada
+    metro cuadrado de su superficie.
+    \begin{solu}
+        \(T = \dfrac{2{,}9\cdot 10^{-3}}{480\cdot 10^{-9}} = \textcolor{red}{\qty{6042}{\kelvin}}\); \(I = \sigma T^4 = \textcolor{red}{\qty{7.56e7}{\watt\per\m\squared}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una lámpara emite \qty{15}{\watt} de luz de \qty{600}{\nm}. ¿Cuántos fotones emite por segundo?
+    \begin{solu}
+        \(N = \dfrac{P}{hc/\lambda} = \dfrac{15\cdot 600\cdot 10^{-9}}{6{,}63\cdot 10^{-34}\cdot 3\cdot 10^8} = \textcolor{red}{\num{4.5e19}\ \text{fotones/s}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿Qué energía, en eV, tienen los fotones de una onda de radio de \qty{6e5}{\hertz}?
+    \begin{solu}
+        \(E = \dfrac{h\nu}{e} = \dfrac{6{,}63\cdot 10^{-34}\cdot 6\cdot 10^5}{1{,}6\cdot 10^{-19}} = \textcolor{red}{\qty{2.5e-9}{\electronvolt}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Efecto fotoeléctrico}
+
+\begin{exercise}
+    Los electrones arrancados de una superficie de potasio con luz de \qty{320}{\nm} tienen una energía cinética máxima de
+    \qty{1.8}{\electronvolt}. Calcula el trabajo de extracción y la longitud de onda umbral.
+    \begin{solu}
+        \(W_0 = \dfrac{hc}{\lambda} - E_c = 3{,}88 - 1{,}8 = \textcolor{red}{\qty{2.09}{\electronvolt}}\);
+        \(\lambda_0 = \dfrac{hc}{W_0} = \textcolor{red}{\qty{596}{\nm}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La frecuencia umbral del cobre es \qty{1.1e15}{\hertz}. ¿Cuál es la energía cinética máxima de los electrones si se ilumina con
+    radiación de \qty{1.5e15}{\hertz}?
+    \begin{solu}
+        \(E_c = h(\nu - \nu_0) = 6{,}63\cdot 10^{-34}\cdot 4\cdot 10^{14} = \textcolor{red}{\qty{2.65e-19}{\joule} = \qty{1.66}{\electronvolt}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Al iluminar una placa de wolframio con luz de \qty{2000}{\angstrom} hace falta un potencial de \qty{1.68}{\volt} para frenar los electrones;
+    con luz de \qty{1500}{\angstrom}, \qty{3.74}{\volt}. Calcula la constante de Planck a partir de estos datos (\(\qty{1}{\angstrom} = \qty{e-10}{\m}\)).
+    \begin{solu}
+        \textcolor{blue}{Restando \(eV_0 = h\nu - W_0\) para las dos luces: \(e(V_2 - V_1) = h(\nu_2 - \nu_1)\).}
+        \[ h = \dfrac{1{,}6\cdot 10^{-19}\cdot 2{,}06}{\dfrac{3\cdot 10^8}{1{,}5\cdot 10^{-7}} - \dfrac{3\cdot 10^8}{2\cdot 10^{-7}}} = \textcolor{red}{\qty{6.59e-34}{\joule\second}} \]
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La longitud de onda umbral de la plata es \qty{262}{\nm}. ¿Qué energía cinética máxima y qué potencial de frenado tienen los electrones
+    si se ilumina con radiación de \qty{190}{\nm}?
+    \begin{solu}
+        \(E_c = hc\left(\dfrac{1}{\lambda} - \dfrac{1}{\lambda_0}\right) = \textcolor{red}{\qty{1.80}{\electronvolt}}\); \(V_0 = \textcolor{red}{\qty{1.80}{\volt}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    El trabajo de extracción del molibdeno es \qty{4.3}{\electronvolt}. Calcula:
+    \begin{enumerate}[label=\letraminuscula]
+        \item La frecuencia umbral.
+        \item La longitud de onda umbral.
+        \item El potencial de frenado si se ilumina con luz de \qty{170}{\nm}.
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(\nu_0 = \dfrac{W_0}{h} = \textcolor{red}{\qty{1.04e15}{\hertz}}\).
+            \item \(\lambda_0 = \dfrac{c}{\nu_0} = \textcolor{red}{\qty{289}{\nm}}\).
+            \item \(V_0 = \dfrac{hc/\lambda - W_0}{e} = 7{,}31 - 4{,}3 = \textcolor{red}{\qty{3.01}{\volt}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Para arrancar un electrón del potasio hacen falta como mínimo \qty{2}{\electronvolt}. ¿Se arrancarán electrones si se ilumina con
+    radiación de \qty{1.2e15}{\hertz}? ¿Con qué energía saldrán?
+    \begin{solu}
+        \(E_f = h\nu = \qty{4.97}{\electronvolt} > \qty{2}{\electronvolt}\): \textcolor{red}{sí}; \(E_c = \textcolor{red}{\qty{2.97}{\electronvolt}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    El trabajo de extracción de un metal es \qty{4.5}{\electronvolt}. ¿Cuál es la energía cinética máxima de los electrones si incide
+    radiación de \qty{1800}{\angstrom}?
+    \begin{solu}
+        \(E_c = \dfrac{hc}{\lambda} - W_0 = 6{,}91 - 4{,}5 = \textcolor{red}{\qty{2.41}{\electronvolt}}\).
+    \end{solu}
+\end{exercise}
+
+\subsection{Compton, De Broglie y Heisenberg}
+
+\begin{exercise}
+    ¿Cuánto aumenta la longitud de onda de un fotón de rayos X que se dispersa \ang{60} al chocar con un electrón libre?
+    \begin{solu}
+        \(\Delta\lambda = \lambda_C(1 - \cos\ang{60}) = 2{,}43\cdot 10^{-12}\cdot 0{,}5 = \textcolor{red}{\qty{1.22e-12}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿A qué velocidad se mueve un electrón cuya longitud de onda asociada es de \qty{500}{\nm}?
+    \begin{solu}
+        \(v = \dfrac{h}{m\lambda} = \dfrac{6{,}63\cdot 10^{-34}}{9{,}11\cdot 10^{-31}\cdot 5\cdot 10^{-7}} = \textcolor{red}{\qty{1456}{\m\per\second}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Calcula la longitud de onda de De Broglie de:
+    \begin{enumerate}[label=\letraminuscula]
+        \item Un neutrón que se mueve a \qty{15}{\km\per\second}.
+        \item Un electrón acelerado desde el reposo con una diferencia de potencial de \qty{2e4}{\volt}.
+    \end{enumerate}
+    \begin{solu}
+        \begin{enumerate}[label=\letraminuscula]
+            \item \(\lambda = \dfrac{h}{mv} = \dfrac{6{,}63\cdot 10^{-34}}{1{,}67\cdot 10^{-27}\cdot 1{,}5\cdot 10^4} = \textcolor{red}{\qty{2.65e-11}{\m}}\).
+            \item \(\lambda = \dfrac{h}{\sqrt{2 m e V}} = \textcolor{red}{\qty{8.68e-12}{\m}}\).
+        \end{enumerate}
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    ¿Con qué diferencia de potencial hay que acelerar un electrón para que su longitud de onda asociada sea de \qty{5}{\nm}?
+    \begin{solu}
+        \(V = \dfrac{h^2}{2 m e\lambda^2} = \dfrac{(6{,}63\cdot 10^{-34})^2}{2\cdot 9{,}11\cdot 10^{-31}\cdot 1{,}6\cdot 10^{-19}\cdot(5\cdot 10^{-9})^2} = \textcolor{red}{\qty{0.060}{\volt}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    Una partícula de \qty{2e-3}{\mg} se mueve a \qty{5}{\cm\per\second} y su velocidad se conoce con una incertidumbre del \qty{0.002}{\percent}.
+    ¿Cuál es la incertidumbre mínima de su posición?
+    \begin{solu}
+        \textcolor{blue}{\(m = \qty{2e-9}{\kg}\); \(\Delta v = 0{,}05\cdot 2\cdot 10^{-5} = \qty{1e-6}{\m\per\second}\).}
+        \(\Delta x = \dfrac{h}{2\pi m\,\Delta v} = \textcolor{red}{\qty{5.3e-20}{\m}}\).
+    \end{solu}
+\end{exercise}
+
+\begin{exercise}
+    La posición de un grano de arena de \qty{2}{\mg} que se mueve a \qty{20}{\m\per\second} se conoce con una incertidumbre de \qty{e-7}{\m}.
+    ¿Cuál es la incertidumbre mínima de su velocidad?
+    \begin{solu}
+        \(\Delta v = \dfrac{h}{2\pi m\,\Delta x} = \dfrac{6{,}63\cdot 10^{-34}}{2\pi\cdot 2\cdot 10^{-6}\cdot 10^{-7}} = \textcolor{red}{\qty{5.3e-22}{\m\per\second}}\):
+        \textcolor{blue}{despreciable frente a su velocidad.}
+    \end{solu}
+\end{exercise}

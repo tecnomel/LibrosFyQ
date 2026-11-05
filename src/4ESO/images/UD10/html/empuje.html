@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Fuerza de empuje</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card .t { font-size: 13.5px; } .card h3 { font-size: 16px; color: var(--blue); margin-bottom: 4px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card" style="flex: 0.8"><h3>¿De dónde sale el empuje?</h3><svg id="a" width="300" height="330"></svg>
+            <div class="t">Las fuerzas laterales se anulan; las de abajo son mayores que las de arriba (más profundidad). La resultante es el <b>empuje, <i>E</i></b>, vertical y hacia arriba.</div></div>
+        <div class="card"><h3>El empuje es el peso del líquido desalojado</h3><svg id="b" width="440" height="330"></svg>
+            <div class="t"><i>E</i> = <i>P</i> − <i>P</i><sub>a</sub> = 20 N − 15 N = 5 N &nbsp;·&nbsp; Volumen desalojado: 810 cm³ − 300 cm³ = 510 cm³, que pesa 5 N.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    {
+        const add = svgAdder('a');
+        const ys = tank(add, 20, 40, 260, 270, 255);
+        const cx = 150, cy = 175, w = 90, h = 70;
+        add('rect', { x: cx - w / 2, y: cy - h / 2, width: w, height: h, rx: 6, fill: '#E59866', stroke: '#A04000', 'stroke-width': 2 });
+        // arriba (menos intensas)
+        [-25, 0, 25].forEach(dx => arrow(add, cx + dx, cy - h / 2 - 26, cx + dx, cy - h / 2 - 2, '#000070', 2.2, 8));
+        // abajo (más intensas)
+        [-25, 0, 25].forEach(dx => arrow(add, cx + dx, cy + h / 2 + 46, cx + dx, cy + h / 2 + 2, '#000070', 2.8, 10));
+        // laterales (se anulan)
+        [-15, 15].forEach(dy => { arrow(add, cx - w / 2 - 34, cy + dy, cx - w / 2 - 2, cy + dy, '#000070', 2.2, 8); arrow(add, cx + w / 2 + 34, cy + dy, cx + w / 2 + 2, cy + dy, '#000070', 2.2, 8); });
+        label(add, 240, cy - h / 2 - 14, 'menos', { 'font-size': 12, fill: '#525252', 'font-weight': 400 });
+        label(add, 240, cy - h / 2 + 0, 'intensas', { 'font-size': 12, fill: '#525252', 'font-weight': 400 });
+        label(add, 240, cy + h / 2 + 30, 'más', { 'font-size': 12, fill: '#525252', 'font-weight': 400 });
+        label(add, 240, cy + h / 2 + 44, 'intensas', { 'font-size': 12, fill: '#525252', 'font-weight': 400 });
+        // empuje resultante (en otro color, sobre el cuerpo)
+        arrow(add, cx, cy + 10, cx, cy - 30, '#C0392B', 4, 13);
+        add('circle', { cx, cy: cy + 10, r: 3.5, fill: '#23373B' });
+        label(add, cx + 10, cy - 14, 'E', { fill: '#C0392B', 'font-style': 'italic', 'text-anchor': 'start', 'font-size': 18 });
+        label(add, cx - 12, cy + 26, 'C', { 'font-size': 13 });
+    }
+    {
+        const add = svgAdder('b');
+        // dos soportes con dinamómetro: en el aire y sumergido en la probeta
+        function stand(x, inWater) {
+            add('rect', { x: x - 70, y: 252, width: 150, height: 10, rx: 3, fill: '#909497' });
+            add('rect', { x: x - 60, y: 20, width: 7, height: 232, fill: '#5D6D7E' });
+            add('rect', { x: x - 60, y: 20, width: 70, height: 6, fill: '#5D6D7E' });
+            const hy = dynamometer(add, x + 6, 26, 92, inWater ? 0.375 : 0.5);
+            const by = inWater ? hy + 70 : hy + 6;
+            add('line', { x1: x + 6, y1: hy - 6, x2: x + 6, y2: by, stroke: '#5D6D7E', 'stroke-width': 1.5 });
+            // probeta graduada
+            const px = x - 20, pw = 56, ptop = 120, pbot = 250;
+            const lvl = inWater ? 168 : 196;
+            add('rect', { x: px, y: lvl, width: pw, height: pbot - lvl, fill: '#AED6F1' });
+            add('path', { d: `M${px} ${ptop} L${px} ${pbot} L${px + pw} ${pbot} L${px + pw} ${ptop}`, fill: 'none', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+            for (let k = 1; k < 8; k++) add('line', { x1: px, y1: pbot - k * 16, x2: px + 10, y2: pbot - k * 16, stroke: '#5D6D7E', 'stroke-width': 1 });
+            add('rect', { x: x - 6, y: by, width: 24, height: 24, rx: 3, fill: '#A04000' });
+            label(add, x, 282, inWater ? 'Sumergido en el agua' : 'En el aire', { 'font-size': 13 });
+            const t = label(add, x, 302, '', { 'font-size': 14, fill: '#C0392B' });
+            t.innerHTML = inWater ? 'P<tspan baseline-shift="sub" font-size="70%">a</tspan> = 15 N' : 'P = 20 N';
+            label(add, x, 322, inWater ? 'nivel: 810 cm³' : 'nivel: 300 cm³', { 'font-size': 13, fill: '#1B4F72' });
+        }
+        stand(110, false);
+        stand(330, true);
+    }
+</script>
+</body>
+</html>

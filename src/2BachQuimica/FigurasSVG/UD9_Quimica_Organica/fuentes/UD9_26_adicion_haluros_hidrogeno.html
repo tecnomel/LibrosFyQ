@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_26 · Adición de haluros de hidrógeno</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Adición de HX: el H se une al carbono con más hidrógenos (regla de Markovnikov).
+const svg = crearFigura(620, 330);
+alquenoGen(svg, 40, 50);
+mas(svg, 125, 50); fq(svg, 175, 56, [["H", ROJO], "−", ["X", AZUL]]);
+flechaR(svg, 215, 50, 295);
+alcanoGen(svg, 350, 50, { i1: ["H", ROJO], d2: ["X", AZUL] });
+const G = { He: { t: "H", color: ROJO }, Xe: { t: "Cl", color: AZUL } };
+molecula(svg, "C=CC", 70, 170);
+mas(svg, 125, 170); fq(svg, 175, 176, [["H", ROJO], "−", ["Cl", AZUL]]);
+flechaR(svg, 215, 170, 295);
+molecula(svg, "[He]CC([Xe])C", 380, 165, { grupos: G, etiqueta: "2-cloropropano (mayoritario)", yEtq: 215 });
+flechaCurva(svg, 40, 195, 50, 275, { color: "#222" });
+molecula(svg, "C=CC", 70, 280);
+mas(svg, 125, 280); fq(svg, 175, 286, [["H", ROJO], "−", ["Cl", AZUL]]);
+flechaR(svg, 215, 280, 295);
+molecula(svg, "[Xe]CC([He])C", 380, 275, { grupos: G, etiqueta: "1-cloropropano (minoritario)", yEtq: 322 });
+</script>
+</body>
+</html>

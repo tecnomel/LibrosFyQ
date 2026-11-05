@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Ley de Hess: combustión del carbono</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 680px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="640" height="300"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const A = svgAdder('s');
+    // Eje de entalpía
+    arrow(A, 40, 300, 40, 15, '#23373B', 2.5, 12);
+    label(A, 30, 170, 'H', { 'font-size': 20, transform: 'rotate(-90 30 170)' });
+    // Niveles: escala 0,7 px por kJ
+    const y = v => 40 - v * 0.68;
+    const lvl = (x1, x2, v, t, col) => {
+        A('line', { x1, y1: y(v), x2, y2: y(v), stroke: col, 'stroke-width': 5 });
+        chemText(A, (x1 + x2) / 2, y(v) - 10, t, { 'font-size': 16, fill: col });
+    };
+    lvl(70, 300, 0, 'C(s) + O_2(g)', '#2E86C1');
+    lvl(250, 470, -110.5, 'CO(g) + ½ O_2(g)', '#8E44AD');
+    lvl(70, 600, -393.5, 'CO_2(g)', '#C0392B');
+    // Flechas
+    arrow(A, 110, y(0) + 4, 110, y(-393.5) - 4, '#C0392B', 3, 12);
+    label(A, 120, 175, 'ΔH = −393,5 kJ', { 'text-anchor': 'start', 'font-size': 15, fill: '#C0392B' });
+    label(A, 120, 195, '(en una etapa)', { 'text-anchor': 'start', 'font-size': 14, 'font-weight': 400, fill: '#525252' });
+    arrow(A, 280, y(0) + 4, 280, y(-110.5) - 4, '#2E86C1', 3, 12);
+    label(A, 290, 68, 'ΔH₁ = −110,5 kJ', { 'text-anchor': 'start', 'font-size': 15, fill: '#2E86C1' });
+    arrow(A, 440, y(-110.5) + 4, 440, y(-393.5) - 4, '#8E44AD', 3, 12);
+    label(A, 450, 200, 'ΔH₂ = −283,0 kJ', { 'text-anchor': 'start', 'font-size': 15, fill: '#8E44AD' });
+    label(A, 450, 220, '(en dos etapas)', { 'text-anchor': 'start', 'font-size': 14, 'font-weight': 400, fill: '#525252' });
+</script>
+</body>
+</html>

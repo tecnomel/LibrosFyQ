@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD0_08 · Reactivo limitante y reactivo en exceso</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/particulas.js"></script>
+</head>
+<body>
+<script>
+// 2 H2 + O2 -> 2 H2O partiendo de 4 H2 y 3 O2: el H2 se agota (limitante) cuando han
+// reaccionado 2 O2, y sobra 1 O2 (exceso). Se forman 4 H2O.
+const svg = crearFigura(760, 345);
+const T = (x, y, t, a = {}) => texto(svg, x, y, t, { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto, ...a });
+const W = 230, H = 190, Y = 50;
+
+T(380, 24, quim("2 H2 + O2 → 2 H2O"), { "font-size": 20, "font-weight": "bold" });
+
+function caja(x, titulo) {
+    el("rect", { x, y: Y, width: W, height: H, rx: 12, fill: "#F4F8FA", stroke: "#6E9FB3", "stroke-width": 3 }, svg);
+    T(x + W / 2, Y + H + 24, titulo, { "font-weight": "bold", "font-size": 16 });
+}
+function dibujar(x, lista, semilla) {
+    const pts = rejilla(lista.length, x + 12, Y + 12, W - 24, H - 24, 3, 3, semilla, 0.12);
+    lista.forEach((m, i) => moleculaPlana(svg, pts[i][0], pts[i][1], MOL[m], 1.05));
+}
+
+// Antes
+caja(40, "Antes de reaccionar");
+dibujar(40, ["H2", "H2", "H2", "H2", "O2", "O2", "O2"], 4);
+T(40 + W / 2, Y + H + 46, quim("4 H2  +  3 O2"), { "font-size": 15 });
+
+flecha(svg, 300, Y + H / 2, 450, Y + H / 2, { ancho: 3, punta: 14 });
+T(375, Y + H / 2 - 14, "reacción", { "font-size": 14, fill: COLORES.gris });
+
+// Después
+caja(490, "Después de reaccionar");
+dibujar(490, ["H2O", "H2O", "H2O", "H2O", "O2"], 9);
+T(490 + W / 2, Y + H + 46, quim("4 H2O  +  1 O2 (sobra)"), { "font-size": 15 });
+
+// Conclusión
+el("rect", { x: 140, y: 308, width: 220, height: 30, rx: 8, fill: "#FCEEEE", stroke: COLORES.myRed }, svg);
+T(250, 328, [...quim("H2"), { t: ": reactivo limitante" }], { "font-size": 14, fill: COLORES.myRed, "font-weight": "bold" });
+el("rect", { x: 400, y: 308, width: 220, height: 30, rx: 8, fill: "#EEF3FC", stroke: COLORES.myBlue }, svg);
+T(510, 328, [...quim("O2"), { t: ": reactivo en exceso" }], { "font-size": 14, fill: COLORES.myBlue, "font-weight": "bold" });
+</script>
+</body>
+</html>

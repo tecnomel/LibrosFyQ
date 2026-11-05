@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Equilibrio de un cuerpo colgado de una cuerda</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 900px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h2>La situación</h2><svg id="a" width="400" height="290"></svg>
+            <div class="t">Una lámpara cuelga de un cable sujeto a dos paredes.</div></div>
+        <div class="card"><h2>Diagrama de fuerzas</h2><svg id="b" width="400" height="290"></svg>
+            <div class="t">En equilibrio: Σ<i>F</i><sub>x</sub> = 0 y Σ<i>F</i><sub>y</sub> = 0.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    const a1 = 15 * Math.PI / 180, a2 = 8 * Math.PI / 180;
+    // a) situación
+    const A = svgAdder('a');
+    A('rect', { x: 0, y: 30, width: 18, height: 240, fill: '#AEB6BF' });
+    A('rect', { x: 382, y: 30, width: 18, height: 240, fill: '#AEB6BF' });
+    const P = [170, 0], L1 = [18, 50], L2 = [382, 0];
+    P[1] = L1[1] + (P[0] - L1[0]) * Math.tan(a1); L2[1] = P[1] - (L2[0] - P[0]) * Math.tan(a2);
+    A('line', { x1: L1[0], y1: L1[1], x2: P[0], y2: P[1], stroke: '#566573', 'stroke-width': 2.5 });
+    A('line', { x1: P[0], y1: P[1], x2: L2[0], y2: L2[1], stroke: '#566573', 'stroke-width': 2.5 });
+    dashed(A, L1[0], P[1], L2[0], P[1], '#AEB6BF', 1.2);
+    A('line', { x1: P[0], y1: P[1], x2: P[0], y2: P[1] + 70, stroke: '#566573', 'stroke-width': 2 });
+    A('path', { d: `M${P[0] - 34} ${P[1] + 110} L${P[0] - 14} ${P[1] + 70} L${P[0] + 14} ${P[1] + 70} L${P[0] + 34} ${P[1] + 110} Z`, fill: '#F5B041', stroke: '#B9770E', 'stroke-width': 2 });
+    A('circle', { cx: P[0], cy: P[1] + 118, r: 9, fill: '#FCF3CF', stroke: '#B9770E' });
+    A('path', { d: `M${P[0] - 50} ${P[1]} A50 50 0 0 1 ${P[0] - 50 * Math.cos(a1)} ${P[1] - 50 * Math.sin(a1)}`, fill: 'none', stroke: '#525252', 'stroke-width': 1.5 });
+    label(A, P[0] - 70, P[1] + 2, '15°', { 'font-size': 13, fill: '#525252' });
+    A('path', { d: `M${P[0] + 70} ${P[1]} A70 70 0 0 0 ${P[0] + 70 * Math.cos(a2)} ${P[1] - 70 * Math.sin(a2)}`, fill: 'none', stroke: '#525252', 'stroke-width': 1.5 });
+    label(A, P[0] + 88, P[1] + 2, '8°', { 'font-size': 13, fill: '#525252' });
+    // b) diagrama
+    const B = svgAdder('b');
+    const Q = [190, 130], k = 1.4;
+    const T1 = 110, T2 = 108, Pw = 56;
+    const t1 = [Q[0] - T1 * Math.cos(a1) * k, Q[1] - T1 * Math.sin(a1) * k], t2 = [Q[0] + T2 * Math.cos(a2) * k, Q[1] - T2 * Math.sin(a2) * k];
+    dashed(B, 20, Q[1], 380, Q[1], '#AEB6BF', 1.2);
+    dashed(B, t1[0], t1[1], t1[0], Q[1], '#E59866', 1.3); dashed(B, t2[0], t2[1], t2[0], Q[1], '#AF7AC5', 1.3);
+    arrow(B, Q[0], Q[1], t1[0], t1[1], '#D35400', 3.5, 13);
+    arrow(B, Q[0], Q[1], t2[0], t2[1], '#7D3C98', 3.5, 13);
+    arrow(B, Q[0], Q[1], Q[0], Q[1] + Pw * 2, '#2471A3', 3.5, 13);
+    dot(B, Q[0], Q[1], '#23373B', 5);
+    vlab(B, t1[0] + 20, t1[1] - 12, 'T', '1', '#D35400');
+    vlab(B, t2[0] - 20, t2[1] - 14, 'T', '2', '#7D3C98');
+    vlab(B, Q[0] + 22, Q[1] + 100, 'P', '', '#2471A3');
+    rich(B, Q[0] - 92, Q[1] + 24, '*T*_{1x} = *T*_1 cos 15°', { 'font-size': 13, fill: '#D35400' });
+    rich(B, Q[0] + 96, Q[1] + 24, '*T*_{2x} = *T*_2 cos 8°', { 'font-size': 13, fill: '#7D3C98' });
+    rich(B, t1[0] - 4, t1[1] + 26, '*T*_{1y}', { 'font-size': 13, fill: '#D35400', 'text-anchor': 'end' });
+    rich(B, t2[0] + 8, t2[1] + 30, '*T*_{2y}', { 'font-size': 13, fill: '#7D3C98', 'text-anchor': 'start' });
+    rich(B, Q[0] + 60, Q[1] + 90, '*P* = *m* · *g*', { 'font-size': 14, fill: '#2471A3', 'text-anchor': 'start' });
+</script>
+</body>
+</html>

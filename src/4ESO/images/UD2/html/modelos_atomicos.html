@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Evolución de los modelos atómicos</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1240px; }
+    .row { display: flex; gap: 12px; }
+    .m { flex: 1; text-align: center; }
+    .m h2 { margin: 6px 0 0; color: var(--teal); }
+    .m .k { font-size: 15px; font-weight: 700; color: var(--ocre); margin-bottom: 2px; }
+    .m .t { font-size: 14px; color: var(--grey); line-height: 1.3; }
+    .line { height: 6px; border-radius: 3px; background: linear-gradient(90deg, #AED6F1, var(--blue)); margin: 14px 14px 0; position: relative; }
+    .line::after { content: ""; position: absolute; right: -16px; top: -8px; border-left: 18px solid var(--blue); border-top: 11px solid transparent; border-bottom: 11px solid transparent; }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="m card"><span class="tag">1808</span><h2>Dalton</h2><div class="k">esfera maciza</div>
+            <svg width="200" height="160"><defs><radialGradient id="g1" cx=".35" cy=".35"><stop offset="0" stop-color="#FDFEFE"/><stop offset="1" stop-color="#5D6D7E"/></radialGradient></defs><circle cx="100" cy="80" r="62" fill="url(#g1)"/></svg>
+            <div class="t">Átomos indivisibles e iguales para un mismo elemento.</div></div>
+        <div class="m card"><span class="tag">1904</span><h2>Thomson</h2><div class="k">«pastel de pasas»</div>
+            <svg width="200" height="160" id="th"><circle cx="100" cy="80" r="62" fill="#FADBD8" stroke="#C0392B" stroke-width="3"/></svg>
+            <div class="t">Esfera de carga positiva con electrones incrustados.</div></div>
+        <div class="m card"><span class="tag">1911</span><h2>Rutherford</h2><div class="k">modelo planetario</div>
+            <svg width="200" height="160" id="ru"></svg>
+            <div class="t">Núcleo diminuto y positivo; los electrones giran a su alrededor. Casi todo es vacío.</div></div>
+        <div class="m card"><span class="tag">1913</span><h2>Bohr</h2><div class="k">niveles de energía</div>
+            <svg width="200" height="160" id="bo"></svg>
+            <div class="t">Los electrones solo ocupan órbitas estables con energía fija.</div></div>
+        <div class="m card"><span class="tag">1916</span><h2>Sommerfeld</h2><div class="k">subniveles s, p, d, f</div>
+            <svg width="200" height="160" id="so"></svg>
+            <div class="t">Cada nivel se desdobla en subniveles muy próximos.</div></div>
+    </div>
+    <div class="line"></div>
+</div>
+<script src="fig.js"></script>
+<script>
+    let add = svgAdder('th');
+    [[70,50],[125,45],[100,80],[60,100],[135,105],[95,123],[140,72]].forEach(([x, y]) => particle(add, x, y, 'e'));
+    [[150,48],[48,72],[80,72],[118,130]].forEach(([x,y]) => add('text', { x, y, 'font-size': 18, 'font-weight': 800, fill: '#C0392B' }, '+'));
+
+    add = svgAdder('ru');
+    [[0, 72, 24], [60, 72, 24], [120, 72, 24]].forEach(([rot, rx, ry]) => add('ellipse', { cx: 100, cy: 80, rx, ry, fill: 'none', stroke: '#AAB7B8', 'stroke-width': 2, transform: `rotate(${rot} 100 80)` }));
+    nucleus(add, 100, 80, 3, 3, 5);
+    particle(add, 172, 80, 'e'); particle(add, 64, 18, 'e'); particle(add, 64, 142, 'e');
+
+    add = svgAdder('bo');
+    [32, 52, 72].forEach((r, i) => {
+        add('circle', { cx: 100, cy: 80, r, fill: 'none', stroke: '#AAB7B8', 'stroke-width': 2 });
+        add('text', { x: 100 + r * 0.72 + 2, y: 80 - r * 0.72 - 2, 'font-size': 12, 'font-weight': 800, fill: '#000070' }, 'n=' + (i + 1));
+    });
+    nucleus(add, 100, 80, 4, 4, 5);
+    particle(add, 100, 48, 'e'); particle(add, 63, 117, 'e'); particle(add, 172, 80, 'e');
+
+    add = svgAdder('so');
+    // niveles con subniveles desdoblados
+    const lv = [[140, ['1s']], [100, ['2s', '2p']], [52, ['3s', '3p', '3d']]];
+    add('line', { x1: 22, y1: 150, x2: 22, y2: 14, stroke: '#1E8449', 'stroke-width': 4 });
+    add('path', { d: 'M14 22 L22 6 L30 22 Z', fill: '#1E8449' });
+    add('text', { x: 16, y: 100, 'font-size': 13, 'font-weight': 700, fill: '#1E8449', transform: 'rotate(-90 16 100)' }, 'energía');
+    lv.forEach(([y, subs], i) => {
+        add('line', { x1: 36, y1: y, x2: 72, y2: y, stroke: '#000070', 'stroke-width': 3 });
+        add('text', { x: 40, y: y - 6, 'font-size': 13, 'font-weight': 800, fill: '#000070' }, 'n=' + (i + 1));
+        subs.forEach((s, j) => {
+            const ys = y - j * 14;
+            add('line', { x1: 72, y1: y, x2: 100, y2: ys, stroke: '#AAB7B8', 'stroke-width': 1.5, 'stroke-dasharray': '3 3' });
+            add('line', { x1: 100, y1: ys, x2: 150, y2: ys, stroke: '#F36619', 'stroke-width': 3 });
+            add('text', { x: 156, y: ys + 5, 'font-size': 13, 'font-weight': 700, fill: '#23373B' }, s);
+        });
+    });
+</script>
+</body>
+</html>

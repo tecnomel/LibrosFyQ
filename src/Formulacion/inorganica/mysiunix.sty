@@ -1,0 +1,60 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mysiunix}[2021/12/11 mysiunix]
+
+\RequirePackage{siunitx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Unidades SIUNIX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DeclareSIUnit\cv{CV}
+\DeclareSIUnit\kilopondio{kp}
+\DeclareSIUnit\dina{din}
+\DeclareSIUnit\atmospher{atm}
+\DeclareSIUnit\calorie{cal}
+\DeclareSIUnit\erg{erg}
+\DeclareSIUnit\kwh{\kilo\watt\hour}
+\DeclareSIUnit\kilojoule{\kilo\joule}
+\DeclareSIUnit\uma{u}
+
+\sisetup{%
+    %alsoload = synchem,
+    detect-family,%
+    %per-mode = fraction,
+    per-mode = symbol-or-fraction,
+    output-decimal-marker = {,},
+    inter-unit-product = \cdot,
+    exponent-product = \cdot    
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abreviaturas unidades
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\masamol}[1]{\SI{#1}{\g\per\mol}}
+\newcommand{\masa}[1]{\SI{#1}{\kilo\g}}
+\newcommand{\masag}[1]{\SI{#1}{\g}}
+\newcommand{\gravedad}{\SI{9.8}{\m\per\square\s}}
+\newcommand{\distancia}[1]{\SI{#1}{\m}}
+\newcommand{\distanciakm}[1]{\SI{#1}{\kilo\m}}
+\newcommand{\distanciacm}[1]{\SI{#1}{\centi\m}}
+\newcommand{\velocidad}[1]{\SI{#1}{\m\per\s}}
+\newcommand{\velocidadkmh}[1]{\SI{#1}{\kilo\m\per\hour}}
+\newcommand{\aceleracion}[1]{\SI{#1}{\m\per\square\s}}
+\newcommand{\fuerza}[1]{\SI{#1}{\newton}}
+\newcommand{\energia}[1]{\SI{#1}{\joule}}
+\newcommand{\trabajo}[1]{\SI{#1}{\joule}}
+\newcommand{\elasticacte}[1]{\SI{#1}{\newton\per\m}}
+\newcommand{\unmedio}{\dfrac{1}{2}}
+\newcommand{\celsius}[1]{\SI{#1}{\celsius}}
+\newcommand{\kelvin}[1]{\SI{#1}{\kelvin}}
+\newcommand{\metroscubicos}[1]{\SI{#1}{\cubic\m}}
+\newcommand{\decimetroscubicos}[1]{\SI{#1}{\cubic\deci\m}}
+\newcommand{\litros}[1]{\SI{#1}{\liter}}
+\newcommand{\mililitros}[1]{\SI{#1}{\milli\liter}}
+\newcommand{\segundos}[1]{\SI{#1}{\s}}
+\newcommand{\uma}[1]{\SI{#1}{\uma}}
+\newcommand{\masaelemento}[2]{\SI{#1}{\g}\ \text{de}\ \ch{#2}}
+\newcommand{\densidad}[1]{\SI{#1}{\g\per\liter}}
+\newcommand{\densidadgml}[1]{\SI{#1}{\g\per\milli\liter}}
+\newcommand{\presionatm}[1]{\SI{#1}{\atmospher}}
+

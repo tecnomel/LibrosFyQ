@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Energía potencial gravitatoria</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 860px; } .card .t { font-size: 13.5px; } .card h3 { font-size: 15px; color: var(--blue); margin-bottom: 4px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><h3>Caída y subida de una roca</h3><svg id="a" width="380" height="250"></svg>
+            <div class="t">Al caer, el peso realiza un trabajo <i>W</i> = <i>m · g · h</i> y la energía potencial disminuye. Para subirla hay que hacer ese mismo trabajo.</div></div>
+        <div class="card"><h3>No depende del camino</h3><svg id="b" width="380" height="250"></svg>
+            <div class="t">Las dos pelotas, de igual masa, suben a la misma altura <i>h</i> por caminos distintos: ganan la misma energía potencial, <i>E</i><sub>p</sub> = <i>m · g · h</i>.</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    function rock(add, x, y) {
+        add('path', { d: `M${x - 16} ${y + 4} Q${x - 18} ${y - 10} ${x - 6} ${y - 14} Q${x + 8} ${y - 18} ${x + 15} ${y - 6} Q${x + 20} ${y + 6} ${x + 8} ${y + 12} Q${x - 10} ${y + 16} ${x - 16} ${y + 4} Z`, fill: '#909497', stroke: '#566573', 'stroke-width': 1.5 });
+    }
+    function ball(add, x, y) { bead(add, x, y, 13, '#F5B041'); }
+    {
+        const add = svgAdder('a');
+        const g = 225, top = 50;
+        add('path', { d: `M0 ${top} L120 ${top} Q 130 ${top + 40} 118 ${top + 80} Q 135 ${top + 130} 122 ${g} L0 ${g} Z`, fill: '#C39B77', stroke: '#8B6A4A', 'stroke-width': 1.5 });
+        add('rect', { x: 0, y: g, width: 380, height: 14, fill: '#A9DFBF' });
+        rock(add, 102, top - 14);
+        add('circle', { cx: 165, cy: top - 6, r: 9, fill: 'none', stroke: '#525252' }); label(add, 165, top - 1, '1', { 'font-size': 12 });
+        rock(add, 190, g - 14);
+        add('circle', { cx: 220, cy: g - 10, r: 9, fill: 'none', stroke: '#525252' }); label(add, 220, g - 5, '2', { 'font-size': 12 });
+        add('path', { d: `M110 ${top - 4} Q 170 ${top} 188 ${g - 30}`, fill: 'none', stroke: '#7F8C8D', 'stroke-dasharray': '5 4', 'stroke-width': 1.5 });
+        add('line', { x1: 110, y1: top, x2: 300, y2: top, stroke: '#AAB7B8', 'stroke-dasharray': '3 3' });
+        vdim(add, 290, top, g, 'h', '#C0392B');
+        const l1 = label(add, 305, top + 4, '', { 'font-size': 13, 'text-anchor': 'start' }); l1.innerHTML = 'E<tspan baseline-shift="sub" font-size="70%">p1</tspan> = m·g·h';
+        const l2 = label(add, 305, g - 4, '', { 'font-size': 13, 'text-anchor': 'start' }); l2.innerHTML = 'E<tspan baseline-shift="sub" font-size="70%">p2</tspan> = 0';
+        arrow(add, 240, top + 50, 240, top + 120, '#C0392B', 3, 11);
+        label(add, 252, top + 100, 'P', { 'font-style': 'italic', fill: '#C0392B', 'text-anchor': 'start' });
+    }
+    {
+        const add = svgAdder('b');
+        const g = 220, h = 140;
+        add('rect', { x: 0, y: g, width: 380, height: 12, fill: '#A9DFBF' });
+        // rampa
+        add('path', { d: `M170 ${g} L360 ${g - h} L360 ${g} Z`, fill: '#E5C9A8', stroke: '#A0785A', 'stroke-width': 1.5 });
+        // pelota A: subida vertical
+        ball(add, 70, g - 13); ball(add, 70, g - h - 13);
+        add('circle', { cx: 70, cy: g - 13, r: 13, fill: '#fff', opacity: 0.55 });
+        arrow(add, 95, g - 20, 95, g - h, '#C0392B', 2.5, 10);
+        label(add, 106, g - h / 2, '1', { 'font-size': 14, fill: '#C0392B', 'text-anchor': 'start' });
+        label(add, 70, g + 30, 'A', { 'font-size': 15 });
+        // pelota B: por la rampa
+        ball(add, 175, g - 13); ball(add, 345, g - h - 13);
+        add('circle', { cx: 175, cy: g - 13, r: 13, fill: '#fff', opacity: 0.55 });
+        arrow(add, 205, g - 40, 320, g - h - 4, '#C0392B', 2.5, 10);
+        label(add, 250, g - 100, '2', { 'font-size': 14, fill: '#C0392B' });
+        label(add, 175, g + 30, 'B', { 'font-size': 15 });
+        add('line', { x1: 20, y1: g - h, x2: 370, y2: g - h, stroke: '#AAB7B8', 'stroke-dasharray': '4 4' });
+        vdim(add, 30, g - h, g, 'h', '#C0392B');
+    }
+</script>
+</body>
+</html>

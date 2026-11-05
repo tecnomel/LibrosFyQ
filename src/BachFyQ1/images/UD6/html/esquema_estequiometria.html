@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Esquema para resolver un problema de estequiometría</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 940px; }
+    .grid { display: grid; grid-template-columns: 1fr 60px 1fr; grid-template-rows: auto 50px auto; align-items: center; }
+    .box { border-radius: 14px; padding: 12px 16px; font-size: 16px; line-height: 1.35; color: #fff; background: #00838F; min-height: 96px; }
+    .box b.n { display: inline-block; width: 30px; height: 30px; border-radius: 50%; background: #fff; color: #00838F; text-align: center; line-height: 30px; margin-right: 8px; font-size: 18px; }
+    .box .h { font-weight: 700; font-size: 17px; }
+    .box .s { font-size: 14px; opacity: .95; margin-top: 4px; }
+    .ar { text-align: center; font-size: 34px; color: #23373B; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="canvas">
+    <div class="grid">
+        <div class="box"><span class="h"><b class="n">1</b>Escribe la ecuación ajustada</span>
+            <div class="s">Los coeficientes dan la proporción en moles entre todas las sustancias.</div></div>
+        <div></div>
+        <div class="box"><span class="h"><b class="n">4</b>Expresa el resultado en lo que se pide</span>
+            <div class="s">De moles a masa (m = n·M), volumen de gas (V = nRT/p) o volumen de disolución (V = n/c).</div></div>
+
+        <div class="ar">↓</div><div></div><div class="ar">↑</div>
+
+        <div class="box"><span class="h"><b class="n">2</b>Pasa el dato a moles</span>
+            <div class="s">n = m/M (masa) · n = pV/RT (gas) · n = c·V (disolución)</div></div>
+        <div class="ar">→</div>
+        <div class="box"><span class="h"><b class="n">3</b>Moles de la incógnita con los coeficientes</span>
+            <div class="s">n<sub>B</sub> = n<sub>A</sub> · (coeficiente de B / coeficiente de A)</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_14 · Moléculas polares y apolares</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+</head>
+<body>
+<script>
+// Momento dipolar de enlace: vector del átomo menos electronegativo (δ+) al más
+// electronegativo (δ−). La molécula es polar si la suma de los vectores no es cero.
+const svg = crearFigura(900, 300);
+const AZ = "#1E6FC0", RO = "#C62828";
+const L = 58;
+function dipolo(x1, y1, x2, y2) {           // flecha paralela al enlace, desplazada
+    const dx = x2 - x1, dy = y2 - y1, d = Math.hypot(dx, dy), nx = -dy / d * 12, ny = dx / d * 12;
+    flecha(svg, x1 + dx * 0.2 + nx, y1 + dy * 0.2 + ny, x1 + dx * 0.8 + nx, y1 + dy * 0.8 + ny, { color: AZ, ancho: 2, punta: 9 });
+}
+function mol(x0, y0, atomos, enlaces, dip) {
+    dibujarLewis(svg, x0, y0, { atomos, enlaces }, { L });
+    const P = Object.fromEntries(atomos.map(a => [a.id ?? a.s, [x0 + a.x * L, y0 - a.y * L]]));
+    dip.forEach(([a, b]) => dipolo(...P[a], ...P[b]));
+    return P;
+}
+const pie = (x, t1, t2, color) => {
+    texto(svg, x, 250, t1, { "text-anchor": "middle", "font-size": 18, "font-weight": "bold", fill: color });
+    texto(svg, x, 272, t2, { "text-anchor": "middle", "font-size": 16, fill: color });
+};
+// CO2
+mol(90, 135, [{ s: "O", id: "a", x: 0, y: 1 }, { s: "C", x: 0, y: 0 }, { s: "O", id: "b", x: 0, y: -1 }],
+    [{ a: "a", b: "C", orden: 2 }, { a: "C", b: "b", orden: 2 }], [["C", "a"], ["C", "b"]]);
+texto(svg, 90, 22, [{ t: "CO" }, { t: "2", sub: true }], { "text-anchor": "middle", "font-size": 15, fill: COLORES.gris });
+pie(90, "apolar", "μ = 0", RO);
+// H2O (con resultante)
+const P = mol(300, 135, [{ s: "O", x: 0, y: 0 }, { s: "H", id: "a", x: -0.8, y: -0.6 }, { s: "H", id: "b", x: 0.8, y: -0.6 }],
+    [{ a: "O", b: "a" }, { a: "O", b: "b" }], [["a", "O"], ["b", "O"]]);
+flecha(svg, 300, 200, 300, 85, { color: RO, ancho: 3, punta: 13 });
+texto(svg, 312, 93, [{ t: "μ" }, { t: "total", sub: true }], { "font-size": 14, fill: RO });
+texto(svg, 300, 22, [{ t: "H" }, { t: "2", sub: true }, { t: "O" }], { "text-anchor": "middle", "font-size": 15, fill: COLORES.gris });
+pie(300, "polar", "μ ≠ 0", AZ);
+// BF3
+mol(520, 140, [{ s: "B", x: 0, y: 0 }, { s: "F", id: "a", x: 0, y: 1 }, { s: "F", id: "b", x: -0.87, y: -0.5 }, { s: "F", id: "c", x: 0.87, y: -0.5 }],
+    [{ a: "B", b: "a" }, { a: "B", b: "b" }, { a: "B", b: "c" }], [["B", "a"], ["B", "b"], ["B", "c"]]);
+texto(svg, 520, 22, [{ t: "BF" }, { t: "3", sub: true }], { "text-anchor": "middle", "font-size": 15, fill: COLORES.gris });
+pie(520, "apolar", "μ = 0", RO);
+// CF4 (perspectiva)
+mol(760, 140, [{ s: "C", x: 0, y: 0 }, { s: "F", id: "a", x: 0, y: 1 }, { s: "F", id: "b", x: -0.9, y: -0.4 }, { s: "F", id: "c", x: 0.9, y: -0.4 }, { s: "F", id: "d", x: 0.1, y: -0.95 }],
+    [{ a: "C", b: "a" }, { a: "C", b: "b" }, { a: "C", b: "c" }, { a: "C", b: "d" }], [["C", "a"], ["C", "b"], ["C", "c"], ["C", "d"]]);
+texto(svg, 760, 22, [{ t: "CF" }, { t: "4", sub: true }], { "text-anchor": "middle", "font-size": 15, fill: COLORES.gris });
+pie(760, "apolar", "μ = 0", RO);
+texto(svg, 450, 294, "→ momento dipolar de enlace (de δ+ a δ−)", { "text-anchor": "middle", "font-size": 13, fill: AZ });
+</script>
+</body>
+</html>

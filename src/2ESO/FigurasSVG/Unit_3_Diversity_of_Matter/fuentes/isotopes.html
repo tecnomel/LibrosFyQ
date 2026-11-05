@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Isotopes</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1100px; }
+    .row { display: flex; gap: 30px; justify-content: center; }
+    .c { text-align: center; border-radius: 16px; padding: 12px 20px; border: 2px solid var(--line); }
+    .c h2 { font-size: 24px; color: var(--teal); }
+    .c .d { font-size: 18px; margin-top: 6px; }
+    .same { color: var(--green); font-weight: 800; } .diff { color: var(--red); font-weight: 800; }
+    .bottom { margin-top: 16px; text-align: center; font-size: 19px; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Isotopes: same element, different number of neutrons</h1>
+    <div class="row">
+        <div class="c"><h2>Carbon-12 &nbsp; <sup>12</sup><sub>6</sub>C</h2><svg id="a" width="280" height="220"></svg>
+            <div class="d"><span class="same">6 protons</span> · <span class="diff">6 neutrons</span> · 6 electrons</div></div>
+        <div class="c"><h2>Carbon-14 &nbsp; <sup>14</sup><sub>6</sub>C</h2><svg id="b" width="280" height="220"></svg>
+            <div class="d"><span class="same">6 protons</span> · <span class="diff">8 neutrons</span> · 6 electrons</div></div>
+    </div>
+    <div class="bottom"><span class="same">Same Z = 6</span> → both are carbon &nbsp;·&nbsp; <span class="diff">Different A</span> → different mass<br>
+        <span class="note">Carbon-14 is radioactive: it is used to find out the age of fossils and ancient remains 🦴</span></div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg';
+    function nucleus(id, p, n) {
+        const s = document.getElementById(id);
+        const add = (tag, a) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); s.appendChild(e); };
+        add('circle', { cx: 140, cy: 110, r: 95, fill: 'none', stroke: '#AAB7B8', 'stroke-width': 2, 'stroke-dasharray': '6 5' });
+        let seed = 11; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+        const tot = p + n; const parts = [];
+        for (let i = 0; i < tot; i++) parts.push(i % 2 === 0 && parts.filter(x => x).length < p ? true : (parts.filter(x => !x).length < n ? false : true));
+        parts.forEach((isP, i) => { const a = rnd() * 6.283, r = Math.sqrt(rnd()) * 34; add('circle', { cx: 140 + r * Math.cos(a), cy: 110 + r * Math.sin(a), r: 14, fill: isP ? '#C0392B' : '#95A5A6', stroke: '#fff', 'stroke-width': 2 }); });
+        for (let i = 0; i < 6; i++) { const a = i * Math.PI / 3; add('circle', { cx: 140 + 95 * Math.cos(a), cy: 110 + 95 * Math.sin(a), r: 9, fill: '#2471A3' }); }
+    }
+    nucleus('a', 6, 6);
+    nucleus('b', 6, 8);
+</script>
+</body>
+</html>

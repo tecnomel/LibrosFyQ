@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_29 · Sustitución electrófila aromática (esquema general)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Un electrófilo (E+) sustituye a un H del anillo aromático.
+const svg = crearFigura(620, 120);
+molecula(svg, "[He]C1=CC=CC=C1", 70, 65, { grupos: { He: { t: "H", color: ROJO } } });
+mas(svg, 150, 60);
+fq(svg, 210, 66, [["E", AZUL], "−Y"]);
+texto(svg, 195, 40, "⊕", { "text-anchor": "middle", "font-size": 15, fill: "#222" });
+texto(svg, 225, 40, "⊖", { "text-anchor": "middle", "font-size": 15, fill: "#222" });
+flechaR(svg, 260, 60, 340);
+molecula(svg, "[Ne]C1=CC=CC=C1", 420, 65, { grupos: { Ne: { t: "E", color: AZUL } } });
+mas(svg, 500, 60); fq(svg, 555, 66, [["H", ROJO], "−Y"]);
+</script>
+</body>
+</html>

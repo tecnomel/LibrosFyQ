@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Montaña rusa con un looping</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="a" width="780" height="330"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const A = svgAdder('a');
+    const base = 290, Ct = '#2C3E50', Cr = '#C0392B', Cb = '#2471A3';
+    // suelo
+    A('rect', { x: 0, y: base, width: 780, height: 40, fill: '#D5F5E3' });
+    A('line', { x1: 0, y1: base, x2: 780, y2: base, stroke: '#1E8449', 'stroke-width': 2 });
+    // perfil: subida, cima A (x=200, y=40), bajada hasta B (x=520, base)
+    const yA = 40, xA = 200;
+    const pista = `M20 ${base} C 90 ${base - 120}, 150 ${yA}, ${xA} ${yA} C 260 ${yA}, 280 ${base - 30}, 360 ${base - 6} L 520 ${base - 2}`;
+    // estructura (pilares)
+    for (let x = 60; x <= 420; x += 30) {
+        A('line', { x1: x, y1: base, x2: x, y2: base - 4, stroke: '#ABB2B9', 'stroke-width': 2 });
+    }
+    A('path', { d: pista + ` L520 ${base} L20 ${base} Z`, fill: '#F2F3F4', stroke: 'none' });
+    for (let x = 40; x <= 360; x += 26) A('line', { x1: x, y1: base, x2: x + 13, y2: base - 200, stroke: '#E5E7E9', 'stroke-width': 1 });
+    A('path', { d: pista, fill: 'none', stroke: Ct, 'stroke-width': 5 });
+    // looping de radio R
+    const R = 55, xB = 560, yc = base - 2 - R;
+    A('circle', { cx: xB, cy: yc, r: R, fill: 'none', stroke: Ct, 'stroke-width': 5 });
+    A('path', { d: `M520 ${base - 2} L760 ${base - 2}`, fill: 'none', stroke: Ct, 'stroke-width': 5 });
+    // puntos
+    dot(A, xA, yA, Cr, 7); label(A, xA, yA - 14, 'A', { fill: Cr, 'font-size': 18 });
+    dot(A, xB, base - 2, Cr, 7); label(A, xB + 16, base + 22, 'B', { fill: Cr, 'font-size': 18 });
+    dot(A, xB, yc - R, Cr, 7); label(A, xB, yc - R - 14, 'C', { fill: Cr, 'font-size': 18 });
+    // vagoneta en A
+    A('rect', { x: xA - 22, y: yA - 22, width: 44, height: 16, rx: 5, fill: '#E67E22', stroke: '#A04000', 'stroke-width': 1.5 });
+    // cotas
+    A('line', { x1: xA, y1: yA + 10, x2: xA, y2: base, stroke: Cb, 'stroke-width': 1.5 });
+    arrow(A, xA, base - 30, xA, yA + 10, Cb, 1.5, 9); arrow(A, xA, yA + 30, xA, base, Cb, 1.5, 9);
+    rich(A, xA + 34, 175, '*h*_A', { 'font-size': 17, fill: Cb });
+    dashed(A, xA, base, xB, base, Cb, 1.2);
+    A('line', { x1: xB + R + 18, y1: yc - R, x2: xB + R + 18, y2: base - 2, stroke: Cb, 'stroke-width': 1.5 });
+    A('line', { x1: xB + R + 12, y1: yc - R, x2: xB + R + 24, y2: yc - R, stroke: Cb, 'stroke-width': 1.5 });
+    A('line', { x1: xB + R + 12, y1: base - 2, x2: xB + R + 24, y2: base - 2, stroke: Cb, 'stroke-width': 1.5 });
+    rich(A, xB + R + 52, yc + 6, '*h*_C = 2*R*', { 'font-size': 16, fill: Cb });
+    dashed(A, xB, yc, xB + R, yc, '#7F8C8D', 1.2); rich(A, xB + R / 2, yc - 6, '*R*', { 'font-size': 15, fill: '#525252' });
+</script>
+</body>
+</html>

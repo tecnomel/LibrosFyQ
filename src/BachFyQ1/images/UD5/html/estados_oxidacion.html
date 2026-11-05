@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Estados de oxidación más frecuentes</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1250px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="1200" height="500"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    // [símbolo, grupo, periodo, estados, tipo]  tipo: m metal, n no metal, g gas noble, h hidrógeno
+    const E = [
+        ['H', 1, 1, '±1', 'h'], ['He', 18, 1, '', 'g'],
+        ['Li', 1, 2, '+1', 'm'], ['Be', 2, 2, '+2', 'm'], ['B', 13, 2, '+3', 'n'], ['C', 14, 2, '+2, ±4', 'n'],
+        ['N', 15, 2, '−3, +1…+5', 'n'], ['O', 16, 2, '−2 (−1)', 'n'], ['F', 17, 2, '−1', 'n'], ['Ne', 18, 2, '', 'g'],
+        ['Na', 1, 3, '+1', 'm'], ['Mg', 2, 3, '+2', 'm'], ['Al', 13, 3, '+3', 'm'], ['Si', 14, 3, '±4', 'n'],
+        ['P', 15, 3, '±3, +5', 'n'], ['S', 16, 3, '−2, +2, +4, +6', 'n'], ['Cl', 17, 3, '−1, +1, +3, +5, +7', 'n'], ['Ar', 18, 3, '', 'g'],
+        ['K', 1, 4, '+1', 'm'], ['Ca', 2, 4, '+2', 'm'], ['Sc', 3, 4, '+3', 'm'], ['Ti', 4, 4, '+3, +4', 'm'],
+        ['V', 5, 4, '+2…+5', 'm'], ['Cr', 6, 4, '+2, +3, +6', 'm'], ['Mn', 7, 4, '+2, +3, +4, +6, +7', 'm'],
+        ['Fe', 8, 4, '+2, +3', 'm'], ['Co', 9, 4, '+2, +3', 'm'], ['Ni', 10, 4, '+2, +3', 'm'], ['Cu', 11, 4, '+1, +2', 'm'],
+        ['Zn', 12, 4, '+2', 'm'], ['Ga', 13, 4, '+3', 'm'], ['Ge', 14, 4, '+2, +4', 'm'], ['As', 15, 4, '±3, +5', 'n'],
+        ['Se', 16, 4, '−2, +4, +6', 'n'], ['Br', 17, 4, '−1, +1, +3, +5, +7', 'n'], ['Kr', 18, 4, '', 'g'],
+        ['Rb', 1, 5, '+1', 'm'], ['Sr', 2, 5, '+2', 'm'], ['Y', 3, 5, '+3', 'm'], ['Zr', 4, 5, '+4', 'm'],
+        ['Mo', 6, 5, '+6', 'm'], ['Pd', 10, 5, '+2, +4', 'm'], ['Ag', 11, 5, '+1', 'm'], ['Cd', 12, 5, '+2', 'm'],
+        ['In', 13, 5, '+3', 'm'], ['Sn', 14, 5, '+2, +4', 'm'], ['Sb', 15, 5, '±3, +5', 'n'], ['Te', 16, 5, '−2, +4, +6', 'n'],
+        ['I', 17, 5, '−1, +1, +3, +5, +7', 'n'], ['Xe', 18, 5, '', 'g'],
+        ['Cs', 1, 6, '+1', 'm'], ['Ba', 2, 6, '+2', 'm'], ['W', 6, 6, '+6', 'm'], ['Pt', 10, 6, '+2, +4', 'm'],
+        ['Au', 11, 6, '+1, +3', 'm'], ['Hg', 12, 6, '+1, +2', 'm'], ['Tl', 13, 6, '+1, +3', 'm'], ['Pb', 14, 6, '+2, +4', 'm'],
+        ['Bi', 15, 6, '+3, +5', 'm'], ['Rn', 18, 6, '', 'g'],
+    ];
+    const FILL = { m: '#E3EEF9', n: '#FBE3D6', g: '#ECECEC', h: '#E2F3E7' };
+    const S = svgAdder('s');
+    const W = 66, H = 64, X0 = 4, Y0 = 6;
+    E.forEach(([el, g, p, ox, t]) => {
+        const x = X0 + (g - 1) * W, y = Y0 + (p - 1) * H;
+        S('rect', { x: x + 1, y: y + 1, width: W - 2, height: H - 2, rx: 5, fill: FILL[t], stroke: '#8A94A6', 'stroke-width': 1 });
+        label(S, x + W / 2, y + 23, el, { 'font-size': 20, fill: '#1B2631' });
+        // estados de oxidación: en una o dos líneas
+        const parts = ox.split(', ');
+        let l1 = ox, l2 = '';
+        if (ox.length > 8) { const h = Math.floor(parts.length / 2); l1 = parts.slice(0, h).join(', ') + ','; l2 = parts.slice(h).join(', '); }
+        label(S, x + W / 2, y + 43, l1, { 'font-size': l1.length > 9 ? 12 : 13.5, 'font-weight': 600, fill: '#C0392B' });
+        if (l2) label(S, x + W / 2, y + 58, l2, { 'font-size': l2.length > 9 ? 11.5 : 13.5, 'font-weight': 600, fill: '#C0392B' });
+    });
+    // Leyenda
+    const ly = Y0 + 6 * H + 26;
+    [['m', 'Metales'], ['n', 'No metales'], ['h', 'Hidrógeno'], ['g', 'Gases nobles']].forEach(([t, txt], i) => {
+        const x = X0 + 10 + i * 170;
+        S('rect', { x, y: ly, width: 26, height: 18, rx: 4, fill: FILL[t], stroke: '#8A94A6' });
+        label(S, x + 34, ly + 14, txt, { 'text-anchor': 'start', 'font-size': 15, 'font-weight': 600 });
+    });
+    label(S, X0 + 10, ly + 50, 'El O tiene −1 en los peróxidos. El Cr (+6) y el Mn (+6, +7) usan sus estados más altos en oxoaniones como el cromato o el permanganato.',
+        { 'text-anchor': 'start', 'font-size': 15, 'font-weight': 400, fill: '#525252' });
+    label(S, X0 + 10, ly + 72, 'Los no metales tienen estado de oxidación negativo cuando se combinan con el hidrógeno o con metales (hidruros y sales binarias).',
+        { 'text-anchor': 'start', 'font-size': 15, 'font-weight': 400, fill: '#525252' });
+</script>
+</body>
+</html>

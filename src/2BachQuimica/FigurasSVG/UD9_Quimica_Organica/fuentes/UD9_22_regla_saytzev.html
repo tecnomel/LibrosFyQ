@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_22 · Regla de Saytzev</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+// Regla de Saytzev: en una eliminación se forma mayoritariamente el alqueno MÁS SUSTITUIDO
+// (el H se elimina del carbono vecino que tiene menos hidrógenos).
+const svg = crearFigura(720, 230);
+molecula(svg, "CCC(C)(Br)C", 90, 110, { colores: { Br: ROJO }, etiqueta: "2-bromo-2-metilbutano", yEtq: 170 });
+flechaR(svg, 170, 110, 260, "KOH", "(etanol)");
+molecula(svg, "CC=C(C)C", 360, 110, { etiqueta: "2-metilbut-2-eno", yEtq: 170 });
+texto(svg, 360, 190, "más sustituido: mayoritario", { "text-anchor": "middle", "font-size": 14, fill: AZUL, "font-family": TNR });
+mas(svg, 460, 110);
+molecula(svg, "C=C(C)CC", 580, 110, { etiqueta: "2-metilbut-1-eno", yEtq: 170 });
+texto(svg, 580, 190, "menos sustituido: minoritario", { "text-anchor": "middle", "font-size": 14, fill: ROJO, "font-family": TNR });
+texto(svg, 360, 30, "Saytzev", { "text-anchor": "middle", "font-size": 18, "font-weight": "bold", fill: COLORES.texto, "font-family": TNR });
+</script>
+</body>
+</html>

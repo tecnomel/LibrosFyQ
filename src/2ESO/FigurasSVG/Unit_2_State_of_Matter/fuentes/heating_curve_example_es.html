@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Curva de calentamiento de una sustancia desconocida (ejemplo resuelto)</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Curva de calentamiento de la sustancia desconocida</h1>
+    <svg width="1090" height="560" viewBox="0 0 1090 560" id="h"></svg>
+</div>
+<script>
+    // Datos del ejemplo resuelto (Unit 2, "Worked example: reading a heating curve")
+    const DATOS = [[0, -130], [1, -114], [2, -114], [3, -114], [4, -50], [5, 14], [6, 78], [7, 78], [8, 78], [9, 78], [10, 90], [11, 102]];
+    const NS = 'http://www.w3.org/2000/svg', svg = document.getElementById('h');
+    const add = (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; svg.appendChild(e); return e; };
+    // ejes: x 0..11 min -> 110..1045 ; y -140..120 °C -> 500..40
+    const X = t => 110 + t * 85, Y = c => 500 - (c + 140) * (460 / 260);
+    // bandas de las mesetas
+    add('rect', { x: X(1), y: 40, width: X(3) - X(1), height: 460, fill: '#EAF2F8' });
+    add('rect', { x: X(6), y: 40, width: X(9) - X(6), height: 460, fill: '#FDEDEC' });
+    // cuadrícula y marcas
+    for (let t = 0; t <= 11; t++) {
+        add('line', { x1: X(t), x2: X(t), y1: 500, y2: 506, stroke: '#23373B', 'stroke-width': 2 });
+        add('text', { x: X(t), y: 528, 'text-anchor': 'middle', 'font-size': 18, fill: '#23373B' }, t);
+    }
+    [-120, -80, -40, 0, 40, 80, 120].forEach(c => {
+        add('line', { x1: 110, x2: 1060, y1: Y(c), y2: Y(c), stroke: '#E5E8E8', 'stroke-width': 1 });
+        add('line', { x1: 104, x2: 116, y1: Y(c), y2: Y(c), stroke: '#23373B', 'stroke-width': 2 });
+        add('text', { x: 98, y: Y(c) + 7, 'text-anchor': 'end', 'font-size': 18, fill: '#23373B' }, String(c).replace('-', '−'));
+    });
+    [-114, 78].forEach(c => add('line', { x1: 110, x2: 1060, y1: Y(c), y2: Y(c), stroke: '#AAB7B8', 'stroke-dasharray': '6 6', 'stroke-width': 1.5 }));
+    add('line', { x1: 110, y1: 500, x2: 1065, y2: 500, stroke: '#23373B', 'stroke-width': 3 });
+    add('line', { x1: 110, y1: 500, x2: 110, y2: 30, stroke: '#23373B', 'stroke-width': 3 });
+    add('text', { x: 1060, y: 556, 'text-anchor': 'end', 'font-size': 20, 'font-weight': 700, fill: '#23373B' }, 'tiempo (min)');
+    add('text', { x: 20, y: 26, 'font-size': 20, 'font-weight': 700, fill: '#23373B' }, 'T (°C)');
+    // tramos coloreados
+    const COL = ['#2471A3', '#8E44AD', '#8E44AD', '#1E8449', '#1E8449', '#1E8449', '#C0392B', '#C0392B', '#C0392B', '#D35400', '#D35400'];
+    for (let i = 0; i < DATOS.length - 1; i++) {
+        const [t1, c1] = DATOS[i], [t2, c2] = DATOS[i + 1];
+        add('line', { x1: X(t1), y1: Y(c1), x2: X(t2), y2: Y(c2), stroke: COL[i], 'stroke-width': 6, 'stroke-linecap': 'round' });
+    }
+    DATOS.forEach(([t, c]) => add('circle', { cx: X(t), cy: Y(c), r: 6, fill: '#fff', stroke: '#23373B', 'stroke-width': 2.5 }));
+    // rótulos de cada tramo
+    const lab = (t, c, txt, col, size = 19) =>
+        add('text', { x: X(t), y: Y(c), 'text-anchor': 'middle', 'font-size': size, 'font-weight': 800, fill: col }, txt);
+    lab(0.75, -138, 'sólido', '#2471A3');
+    lab(2, -94, 'sólido + líquido', '#8E44AD');
+    lab(2, -74, 'FUSIÓN', '#8E44AD');
+    lab(2, -128, 'tramo horizontal a −114 °C', '#8E44AD', 16);
+    lab(4.1, 0, 'líquido', '#1E8449');
+    lab(7.5, 98, 'líquido + gas', '#C0392B');
+    lab(7.5, 112, 'EBULLICIÓN', '#C0392B');
+    lab(7.5, 62, 'tramo horizontal a 78 °C', '#C0392B', 16);
+    lab(10.3, 60, 'gas', '#D35400');
+</script>
+</body>
+</html>

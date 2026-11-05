@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_15 · Haluro de alquilo + NaOH: alcohol</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+    <script src="../../comun/organica.js"></script>
+    <script src="../../comun/lib/smiles-drawer.min.js"></script>
+</head>
+<body>
+<script>
+const svg = crearFigura(620, 110);
+molecula(svg, "CC(Br)CC", 70, 50, { colores: { Br: ROJO } });
+mas(svg, 150, 50); fq(svg, 200, 56, ["Na", ["OH", AZUL]]);
+flechaR(svg, 250, 50, 330);
+molecula(svg, "CC(O)CC", 410, 50, { colores: { O: AZUL } });
+mas(svg, 490, 50); fq(svg, 540, 56, ["Na", ["Br", ROJO]]);
+</script>
+</body>
+</html>

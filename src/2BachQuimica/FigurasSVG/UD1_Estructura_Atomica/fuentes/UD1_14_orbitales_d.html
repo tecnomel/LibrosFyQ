@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD1_14 · Orbitales d</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/3d.js"></script>
+    <script src="../../comun/orbitales.js"></script>
+</head>
+<body>
+<script>
+// Orbitales d (l = 2): cinco orientaciones posibles (m = -2 ... +2).
+const svg = crearFigura(1200, 320);
+const orb = [
+    ["dxy", "xy"], ["dxz", "xz"], ["dyz", "yz"], ["dx2-y2", "x²−y²"], ["dz2", "z²"],
+];
+orb.forEach(([nombre, sub], k) => {
+    dibujarOrbital(svg, 120 + k * 240, 140, { nombre, escala: 80,
+        etiqueta: etiquetaOrbital("d", sub), dyEtiqueta: 140 });
+});
+leyendaFases(svg, 1040, 312);
+</script>
+</body>
+</html>

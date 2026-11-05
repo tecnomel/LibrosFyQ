@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD9_07 · Carbono quiral (asimétrico)</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/organica.js"></script>
+</head>
+<body>
+<script>
+// Un carbono unido a cuatro sustituyentes distintos (A, B, C, D) es quiral.
+// Cuña: enlace hacia el lector. Rayado: enlace hacia el fondo.
+const svg = crearFigura(260, 180);
+const C = [120, 80], T = (x, y, t) => texto(svg, x, y, t, { "text-anchor": "middle", "font-size": 19, fill: COLORES.texto, "font-family": TNR });
+function cuña(p, q, rayada) {
+    const dx = q[0] - p[0], dy = q[1] - p[1], d = Math.hypot(dx, dy), nx = -dy / d, ny = dx / d;
+    if (!rayada) el("polygon", { points: `${p[0]},${p[1]} ${q[0] + nx * 5},${q[1] + ny * 5} ${q[0] - nx * 5},${q[1] - ny * 5}`, fill: "#222" }, svg);
+    else for (let k = 1; k <= 7; k++) { const t = k / 7, w = 5 * t;
+        const x = p[0] + dx * t, y = p[1] + dy * t;
+        el("line", { x1: x + nx * w, y1: y + ny * w, x2: x - nx * w, y2: y - ny * w, stroke: "#222", "stroke-width": 1.3 }, svg); }
+}
+el("line", { x1: C[0], y1: C[1] - 8, x2: C[0], y2: C[1] - 45, stroke: "#222", "stroke-width": 1.6 }, svg); T(C[0], C[1] - 52, "A");
+el("line", { x1: C[0] - 6, y1: C[1] + 2, x2: C[0] - 42, y2: C[1] + 18, stroke: "#222", "stroke-width": 1.6 }, svg); T(C[0] - 54, C[1] + 26, "B");
+cuña([C[0] + 4, C[1] + 6], [C[0] + 36, C[1] + 30]); T(C[0] + 46, C[1] + 44, "C");
+cuña([C[0] + 6, C[1] - 2], [C[0] + 40, C[1] - 14], true); T(C[0] + 54, C[1] - 10, "D");
+T(C[0], C[1] + 7, "C");
+flecha(svg, C[0] - 30, 150, C[0] - 4, C[1] + 12, { ancho: 1.3, punta: 9 });
+texto(svg, 60, 170, "Carbono quiral", { "text-anchor": "middle", "font-size": 17, fill: COLORES.texto, "font-family": TNR });
+</script>
+</body>
+</html>

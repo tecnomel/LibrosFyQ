@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Práctica: ley de Boyle-Mariotte con una jeringa y una nube</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 960px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="910" height="300"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    // jeringa horizontal: y = eje, xe = posición del émbolo, rn = tamaño de la nube
+    function jeringa(y, xe, rn, titulo, nota) {
+        const x0 = 120, x1 = 640, h = 70;
+        add('rect', { x: x0, y: y - h / 2, width: x1 - x0, height: h, rx: 6, fill: '#EBF5FB', stroke: '#5D6D7E', 'stroke-width': 3 });
+        for (let i = 1; i < 12; i++) add('line', { x1: x0 + i * 42, y1: y - h / 2, x2: x0 + i * 42, y2: y - h / 2 + (i % 2 ? 10 : 16), stroke: '#5D6D7E', 'stroke-width': 1.5 });
+        // boquilla tapada
+        add('rect', { x: x0 - 40, y: y - 9, width: 40, height: 18, fill: '#EBF5FB', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+        add('rect', { x: x0 - 58, y: y - 15, width: 20, height: 30, rx: 3, fill: '#7F8C8D' });
+        label(add, x0 - 48, y + 38, 'tapada', { 'font-size': 13, fill: '#525252', 'font-weight': 600 });
+        // aire dentro (zona entre boquilla y émbolo)
+        add('rect', { x: x0 + 2, y: y - h / 2 + 2, width: xe - x0 - 2, height: h - 4, fill: '#D6EAF8' });
+        // émbolo
+        add('rect', { x: xe, y: y - h / 2 + 2, width: 14, height: h - 4, fill: '#34495E' });
+        add('rect', { x: xe + 14, y: y - 6, width: 760 - xe, height: 12, fill: '#95A5A6' });
+        add('rect', { x: 770, y: y - 30, width: 12, height: 60, rx: 3, fill: '#34495E' });
+        // nube (cilindro rosado)
+        const cx = x0 + 60;
+        add('rect', { x: cx - rn, y: y - rn * 0.8, width: 2 * rn, height: 1.6 * rn, rx: rn * 0.45, fill: '#F5B7B1', stroke: '#CD6155', 'stroke-width': 2 });
+        label(add, 455, y - h / 2 - 14, titulo, { 'font-size': 17, fill: '#000070' });
+        label(add, 455, y + h / 2 + 26, nota, { 'font-size': 15, fill: '#525252', 'font-weight': 600 });
+    }
+    jeringa(70, 400, 20, 'Posición inicial: la nube tiene su tamaño normal', '');
+    jeringa(215, 600, 30, 'Tiramos del émbolo: el aire se expande y la nube se hincha', 'más volumen ⇒ menos presión fuera de la nube (p · V = cte.)');
+</script>
+</body>
+</html>

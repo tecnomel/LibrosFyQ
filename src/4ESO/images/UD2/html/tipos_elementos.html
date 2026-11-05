@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tipos de elementos químicos</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 1100px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="ptrow">
+        <svg id="s" width="820" height="470"></svg>
+        <div class="legend" id="lg"></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script src="pt.js"></script>
+<script>
+    const add = svgAdder('s');
+    const C = { rep: '#EC7063', tr: '#F8C471', ti: '#76D7C4' };
+    const type = Z => { const b = block(Z); return b === 's' || b === 'p' ? 'rep' : (b === 'd' ? 'tr' : 'ti'); };
+    drawPT(add, { x0: 60, y0: 40, c: 40, fill: Z => C[type(Z)] });
+    legend('lg', [[C.rep, 'Elementos<br>representativos<br>(bloques s y p)'], [C.tr, 'Elementos<br>de transición<br>(bloque d)'], [C.ti, 'Elementos de<br>transición interna<br>(bloque f)']]);
+</script>
+</body>
+</html>

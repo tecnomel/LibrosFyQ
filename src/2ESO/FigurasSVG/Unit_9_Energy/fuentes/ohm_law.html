@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ohm's law</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1150px; }
+    .row { display: flex; gap: 30px; align-items: center; }
+    svg text { font-family: "Segoe UI", Arial, sans-serif; }
+    .side { flex: 1; font-size: 18px; }
+    .side div { border-radius: 12px; padding: 8px 12px; margin-bottom: 8px; background: #F4F6F7; }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Ohm's law: I = ΔV / R</h1>
+    <div class="row">
+        <svg width="340" height="300" viewBox="0 0 340 300">
+            <polygon points="170,15 325,285 15,285" fill="#FDE3D3" stroke="#F36619" stroke-width="5" stroke-linejoin="round"/>
+            <line x1="92" y1="150" x2="248" y2="150" stroke="#F36619" stroke-width="4"/><line x1="170" y1="150" x2="170" y2="285" stroke="#F36619" stroke-width="4"/>
+            <text x="170" y="125" text-anchor="middle" font-size="50" font-weight="800" fill="#000070">ΔV</text>
+            <text x="115" y="240" text-anchor="middle" font-size="50" font-weight="800" fill="#C0392B">I</text>
+            <text x="225" y="240" text-anchor="middle" font-size="50" font-weight="800" fill="#1E8449">R</text>
+        </svg>
+        <div class="side">
+            <div>Cover the one you want to find:</div>
+            <div><b>I = ΔV / R</b> &nbsp; → current (A)</div>
+            <div><b>ΔV = I · R</b> &nbsp; → voltage (V)</div>
+            <div><b>R = ΔV / I</b> &nbsp; → resistance (Ω)</div>
+            <div style="background:var(--green-soft)">More voltage ⇒ more current. More resistance ⇒ less current.</div>
+        </div>
+        <svg id="g" width="330" height="300"></svg>
+    </div>
+</div>
+<script>
+    const NS = 'http://www.w3.org/2000/svg', s = document.getElementById('g');
+    const add = (tag, a, t) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); if (t !== undefined) e.textContent = t; s.appendChild(e); };
+    add('line', { x1: 40, y1: 260, x2: 320, y2: 260, stroke: '#23373B', 'stroke-width': 2.5 });
+    add('line', { x1: 40, y1: 260, x2: 40, y2: 20, stroke: '#23373B', 'stroke-width': 2.5 });
+    add('text', { x: 320, y: 285, 'text-anchor': 'end', 'font-size': 16, 'font-weight': 700 }, 'ΔV (V)');
+    add('text', { x: 10, y: 16, 'font-size': 16, 'font-weight': 700 }, 'I (A)');
+    add('line', { x1: 40, y1: 260, x2: 300, y2: 40, stroke: '#C0392B', 'stroke-width': 5 });
+    add('line', { x1: 40, y1: 260, x2: 300, y2: 170, stroke: '#2471A3', 'stroke-width': 5 });
+    add('text', { x: 150, y: 95, 'font-size': 15, 'font-weight': 700, fill: '#C0392B' }, 'small R');
+    add('text', { x: 230, y: 215, 'font-size': 15, 'font-weight': 700, fill: '#2471A3' }, 'large R');
+</script>
+</body>
+</html>

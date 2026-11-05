@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Valoración ácido-base</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="720" height="380"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    function setup(cx, pink, txt) {
+        // soporte
+        add('line', { x1: cx - 90, y1: 20, x2: cx - 90, y2: 350, stroke: '#7F8C8D', 'stroke-width': 5 });
+        add('rect', { x: cx - 130, y: 345, width: 230, height: 12, fill: '#7F8C8D' });
+        add('line', { x1: cx - 90, y1: 80, x2: cx - 8, y2: 80, stroke: '#7F8C8D', 'stroke-width': 4 });
+        // bureta
+        add('rect', { x: cx - 8, y: 20, width: 16, height: 200, fill: '#FDFEFE', stroke: '#5D6D7E', 'stroke-width': 2 });
+        add('rect', { x: cx - 6, y: 60, width: 12, height: 158, fill: '#D6EAF8' });
+        for (let k = 0; k < 9; k++) add('line', { x1: cx - 8, y1: 40 + k * 20, x2: cx - 2, y2: 40 + k * 20, stroke: '#5D6D7E' });
+        add('path', { d: `M${cx - 8} 220 L${cx - 2} 240 L${cx + 2} 240 L${cx + 8} 220`, fill: '#FDFEFE', stroke: '#5D6D7E', 'stroke-width': 2 });
+        add('rect', { x: cx - 14, y: 224, width: 28, height: 6, rx: 2, fill: '#1E8449' });
+        add('circle', { cx, cy: 250, r: 3, fill: '#5DADE2' });
+        // agitador
+        add('rect', { x: cx - 60, y: 325, width: 120, height: 20, rx: 4, fill: '#5D6D7E' });
+        // Erlenmeyer
+        add('path', { d: `M${cx - 9} 262 L${cx - 9} 280 L${cx - 45} 322 L${cx + 45} 322 L${cx + 9} 280 L${cx + 9} 262`, fill: '#FDFEFE', stroke: '#5D6D7E', 'stroke-width': 2.5 });
+        add('path', { d: `M${cx - 30} 305 L${cx + 30} 305 L${cx + 45} 322 L${cx - 45} 322 Z`, fill: pink ? '#F5B7B1' : '#F4F6F7' });
+        add('rect', { x: cx - 8, y: 316, width: 16, height: 4, rx: 2, fill: '#ECF0F1', stroke: '#7F8C8D' });
+        label(add, cx, 375, txt, { 'font-size': 14, fill: '#525252' });
+    }
+    setup(170, false, 'HCl + fenolftaleína: incoloro');
+    setup(520, true, 'punto de neutralización: rosa');
+    label(add, 215, 50, 'bureta con', { 'font-size': 13, 'text-anchor': 'start', fill: '#2471A3' });
+    label(add, 215, 66, 'NaOH 0,1 M', { 'font-size': 13, 'text-anchor': 'start', fill: '#2471A3' });
+    label(add, 235, 295, 'Erlenmeyer', { 'font-size': 13, 'text-anchor': 'start', fill: '#525252' });
+    label(add, 235, 340, 'agitador magnético', { 'font-size': 13, 'text-anchor': 'start', fill: '#525252' });
+    arrow(add, 300, 200, 400, 200, '#23373B', 3, 12);
+    label(add, 350, 185, 'gota a gota', { 'font-size': 13, fill: '#525252' });
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Units of time</title>
+<link rel="stylesheet" href="style.css">
+<style>
+    body { width: 1200px; height: 380px; }
+    .chain { display: flex; align-items: flex-start; justify-content: center; margin-top: 30px; }
+    .u {
+        width: 130px; height: 110px; border-radius: 16px; background: var(--blue); color: #fff;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        font-size: 30px; font-weight: 800;
+    }
+    .u small { font-size: 15px; font-weight: 400; }
+    .u.si { background: var(--ocre); }
+    .col { display: flex; flex-direction: column; align-items: center; width: 130px; }
+    .eq { margin-top: 10px; font-size: 16px; font-weight: 700; color: var(--blue); background: var(--blue-soft); border: 2px solid var(--blue); border-radius: 8px; padding: 4px 6px; text-align: center; line-height: 1.3; }
+    .col:first-child .eq { color: var(--ocre); background: var(--ocre-soft); border-color: var(--ocre); }
+    .link { margin-top: 28px; width: 72px; text-align: center; font-size: 18px; font-weight: 700; color: var(--green); }
+    .link .arr { font-size: 30px; line-height: 1; color: var(--grey); }
+</style>
+<script src="../../comun/pagina.js"></script>
+</head>
+<body>
+<div class="canvas">
+    <h1>Units of time: the jumps are NOT powers of 10</h1>
+    <div class="chain">
+        <div class="col"><div class="u si">s<small>second (SI)</small></div><div class="eq">base unit</div></div>
+        <div class="link">× 60<div class="arr">⟵</div></div>
+        <div class="col"><div class="u">min<small>minute</small></div><div class="eq">1 min = 60 s</div></div>
+        <div class="link">× 60<div class="arr">⟵</div></div>
+        <div class="col"><div class="u">h<small>hour</small></div><div class="eq">1 h = 60 min = 3600 s</div></div>
+        <div class="link">× 24<div class="arr">⟵</div></div>
+        <div class="col"><div class="u">d<small>day</small></div><div class="eq">1 d = 24 h</div></div>
+        <div class="link">× 7<div class="arr">⟵</div></div>
+        <div class="col"><div class="u">wk<small>week</small></div><div class="eq">1 wk = 7 d</div></div>
+        <div class="link" style="width:110px">× 365 d<div class="arr">⟵</div></div>
+        <div class="col"><div class="u">yr<small>year</small></div><div class="eq">1 yr = 365 d</div></div>
+    </div>
+</div>
+</body>
+</html>

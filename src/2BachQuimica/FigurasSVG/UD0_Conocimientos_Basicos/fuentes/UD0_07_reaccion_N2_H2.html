@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD0_07 · Interpretación de la ecuación N2 + 3 H2 → 2 NH3</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/particulas.js"></script>
+</head>
+<body>
+<script>
+// Los coeficientes indican moléculas y moles. Los átomos solo se reagrupan:
+// 2 N y 6 H a cada lado, y la masa se conserva (28 g + 6 g = 34 g).
+const svg = crearFigura(760, 330);
+const T = (x, y, t, a = {}) => texto(svg, x, y, t, { "text-anchor": "middle", "font-size": 15, fill: COLORES.texto, ...a });
+const cols = { N2: 190, H2: 380, NH3: 630 }, yM = 70;
+
+// Moléculas
+moleculaPlana(svg, cols.N2, yM, MOL.N2, 1.3);
+[-45, 0, 45].forEach(dx => moleculaPlana(svg, cols.H2 + dx, yM, MOL.H2, 1.3));
+[-45, 45].forEach(dx => moleculaPlana(svg, cols.NH3 + dx, yM - 10, MOL.NH3, 1.3));
+T(285, yM + 10, "+", { "font-size": 30, "font-weight": "bold" });
+flecha(svg, 470, yM, 545, yM, { ancho: 3, punta: 14 });
+
+// Ecuación
+const ecu = [[cols.N2, "N2"], [cols.H2, "3 H2"], [cols.NH3, "2 NH3"]];
+ecu.forEach(([x, f]) => T(x, 140, quim(f), { "font-size": 22, "font-weight": "bold" }));
+T(285, 140, "+", { "font-size": 22, "font-weight": "bold" });
+T(507, 140, "→", { "font-size": 22, "font-weight": "bold" });
+
+// Lecturas de la ecuación
+const filas = [
+    ["moléculas", "1 molécula", "3 moléculas", "2 moléculas", COLORES.texto],
+    ["moles", "1 mol", "3 mol", "2 mol", COLORES.myBlue],
+    ["masa", "28 g", "3 · 2 = 6 g", "2 · 17 = 34 g", COLORES.myRed],
+    ["átomos", "2 N", "6 H", "2 N + 6 H", COLORES.myGreen],
+];
+filas.forEach(([nom, a, b, c, col], i) => {
+    const y = 180 + i * 34;
+    el("rect", { x: 10, y: y - 22, width: 740, height: 30, rx: 6, fill: i % 2 ? "#FFFFFF" : "#F4F6FB" }, svg);
+    texto(svg, 22, y, nom, { "font-size": 14, fill: col, "font-weight": "bold" });
+    T(cols.N2, y, a, { fill: col }); T(cols.H2, y, b, { fill: col }); T(cols.NH3, y, c, { fill: col });
+});
+T(380, 322, "Los átomos se reagrupan: el número de átomos de cada elemento y la masa total se conservan (Lavoisier)",
+    { "font-size": 13, fill: COLORES.gris });
+
+// Leyenda de colores
+bola(svg, 640, 12 + 4, 7, COLOR_ATOMO.N); texto(svg, 652, 21, "N", { "font-size": 13 });
+bola(svg, 690, 12 + 4, 6, COLOR_ATOMO.H); texto(svg, 702, 21, "H", { "font-size": 13 });
+</script>
+</body>
+</html>

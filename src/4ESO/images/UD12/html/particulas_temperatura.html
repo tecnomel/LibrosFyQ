@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Temperatura y energía cinética de las partículas</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 760px; } .card .t { font-size: 13.5px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <div class="row">
+        <div class="card"><svg id="a" width="320" height="230"></svg>
+            <div class="t">Temperatura baja, <i>T</i><sub>1</sub>: las partículas se mueven despacio (poca energía cinética).</div></div>
+        <div class="card"><svg id="b" width="320" height="230"></svg>
+            <div class="t">Temperatura alta, <i>T</i><sub>2</sub> &gt; <i>T</i><sub>1</sub>: las partículas se mueven más deprisa (más energía cinética).</div></div>
+    </div>
+</div>
+<script src="fig.js"></script>
+<script>
+    function box(id, speed, col, title, therm) {
+        const add = svgAdder(id), r = rng(id === 'a' ? 7 : 11);
+        // recipiente cerrado
+        add('rect', { x: 30, y: 30, width: 220, height: 180, rx: 8, fill: '#FBFCFC', stroke: '#5D6D7E', 'stroke-width': 3 });
+        const pts = [];
+        while (pts.length < 22) {
+            const x = 50 + r() * 180, y = 50 + r() * 140;
+            if (pts.every(([u, v]) => Math.hypot(u - x, v - y) > 30)) pts.push([x, y]);
+        }
+        pts.forEach(([x, y]) => {
+            const a = r() * 2 * Math.PI, L = speed * (0.6 + 0.6 * r());
+            arrow(add, x, y, x + L * Math.cos(a), y + L * Math.sin(a), '#525252', 1.6, 7);
+            bead(add, x, y, 8, col);
+        });
+        thermometer(add, 280, 40, 130, therm);
+        sub(add, 280, 22, title, { 'font-size': 17 });
+    }
+    box('a', 16, '#5DADE2', 'T_1', 0.3);
+    box('b', 34, '#E74C3C', 'T_2', 0.8);
+</script>
+</body>
+</html>

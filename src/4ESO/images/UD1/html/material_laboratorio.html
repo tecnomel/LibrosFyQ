@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Material de laboratorio</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 880px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="830" height="440"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const G = '#D6EAF8', E = '#5D6D7E', LQ = '#AED6F1';
+    const glass = d => add('path', { d, fill: G, stroke: E, 'stroke-width': 2, 'stroke-linejoin': 'round' });
+    const liquid = d => add('path', { d, fill: LQ, opacity: 0.9 });
+    const ticks = (x, y1, y2, n, w = 6) => { for (let k = 0; k <= n; k++) add('line', { x1: x, y1: y1 + k * (y2 - y1) / n, x2: x + (k % 5 ? w : w * 1.8), y2: y1 + k * (y2 - y1) / n, stroke: E, 'stroke-width': 1 }); };
+    const name = (x, y, t) => label(add, x, y, t, { 'font-size': 13 });
+    const B = 175, B2 = 385;   // líneas base de las dos filas
+    // --- fila 1 ---
+    // tubo de ensayo
+    glass(`M38 ${B - 120} L38 ${B - 12} Q38 ${B} 48 ${B} Q58 ${B} 58 ${B - 12} L58 ${B - 120}`);
+    liquid(`M40 ${B - 45} L56 ${B - 45} L56 ${B - 12} Q56 ${B - 2} 48 ${B - 2} Q40 ${B - 2} 40 ${B - 12} Z`);
+    name(48, B + 22, 'tubo de ensayo');
+    // vaso de precipitados
+    beaker(add, 115, B - 95, 80, 95, { fill: 0.5 }); ticks(122, B - 70, B - 20, 5);
+    name(155, B + 22, 'vaso de');
+    name(155, B + 38, 'precipitados');
+    // Erlenmeyer
+    glass(`M262 ${B - 120} L262 ${B - 75} L228 ${B} L320 ${B} L286 ${B - 75} L286 ${B - 120}`);
+    liquid(`M246 ${B - 40} L302 ${B - 40} L318 ${B - 2} L230 ${B - 2} Z`);
+    name(274, B + 22, 'matraz Erlenmeyer');
+    // matraz aforado
+    glass(`M394 ${B - 135} L394 ${B - 62} Q350 ${B - 50} 350 ${B - 22} Q350 ${B} 380 ${B} L418 ${B} Q448 ${B} 448 ${B - 22} Q448 ${B - 50} 404 ${B - 62} L404 ${B - 135}`);
+    liquid(`M352 ${B - 30} L446 ${B - 30} Q446 ${B - 2} 418 ${B - 2} L380 ${B - 2} Q352 ${B - 2} 352 ${B - 30} Z`);
+    add('line', { x1: 392, y1: B - 105, x2: 406, y2: B - 105, stroke: '#C0392B', 'stroke-width': 2 });
+    name(399, B + 22, 'matraz aforado');
+    // probeta
+    glass(`M498 ${B - 140} L498 ${B - 8} L488 ${B - 8} L488 ${B} L536 ${B} L536 ${B - 8} L526 ${B - 8} L526 ${B - 140}`);
+    liquid(`M500 ${B - 70} L524 ${B - 70} L524 ${B - 9} L500 ${B - 9} Z`); ticks(500, B - 130, B - 20, 22, 5);
+    name(512, B + 22, 'probeta');
+    // bureta
+    glass(`M598 ${B - 160} L598 ${B - 30} L612 ${B - 30} L612 ${B - 160}`);
+    liquid(`M600 ${B - 120} L610 ${B - 120} L610 ${B - 31} L600 ${B - 31} Z`); ticks(600, B - 150, B - 40, 22, 4);
+    add('rect', { x: 594, y: B - 30, width: 22, height: 8, fill: '#566573' });
+    add('path', { d: `M603 ${B - 22} L603 ${B - 4} L605 ${B} L607 ${B - 4} L607 ${B - 22}`, fill: G, stroke: E, 'stroke-width': 1.5 });
+    name(605, B + 22, 'bureta');
+    // pipeta
+    glass(`M688 ${B - 160} L688 ${B - 100} Q680 ${B - 90} 680 ${B - 75} Q680 ${B - 60} 688 ${B - 50} L688 ${B - 10} L691 ${B} L694 ${B - 10} L694 ${B - 50} Q702 ${B - 60} 702 ${B - 75} Q702 ${B - 90} 694 ${B - 100} L694 ${B - 160}`);
+    add('line', { x1: 685, y1: B - 130, x2: 697, y2: B - 130, stroke: '#C0392B', 'stroke-width': 2 });
+    name(691, B + 22, 'pipeta');
+    // vidrio de reloj
+    add('path', { d: `M740 ${B - 20} Q 775 ${B} 810 ${B - 20}`, fill: G, stroke: E, 'stroke-width': 2 });
+    name(775, B + 22, 'vidrio de');
+    name(775, B + 38, 'reloj');
+    // --- fila 2 ---
+    // embudo
+    glass(`M20 ${B2 - 120} L90 ${B2 - 120} L60 ${B2 - 70} L60 ${B2 - 10} L50 ${B2 - 10} L50 ${B2 - 70} Z`);
+    name(55, B2 + 22, 'embudo');
+    // embudo de decantación
+    glass(`M155 ${B2 - 160} L165 ${B2 - 160} L165 ${B2 - 145} Q195 ${B2 - 120} 165 ${B2 - 70} L165 ${B2 - 55} L155 ${B2 - 55} L155 ${B2 - 70} Q125 ${B2 - 120} 155 ${B2 - 145} Z`);
+    liquid(`M150 ${B2 - 95} L170 ${B2 - 95} Q176 ${B2 - 85} 165 ${B2 - 72} L155 ${B2 - 72} Q144 ${B2 - 85} 150 ${B2 - 95} Z`);
+    add('rect', { x: 148, y: B2 - 55, width: 24, height: 7, fill: '#566573' });
+    add('path', { d: `M157 ${B2 - 48} L157 ${B2 - 10} L163 ${B2 - 10} L163 ${B2 - 48}`, fill: G, stroke: E, 'stroke-width': 1.5 });
+    name(160, B2 + 22, 'embudo de');
+    name(160, B2 + 38, 'decantación');
+    // mechero Bunsen
+    add('rect', { x: 240, y: B2 - 10, width: 60, height: 10, rx: 3, fill: '#566573' });
+    add('rect', { x: 263, y: B2 - 80, width: 14, height: 70, fill: '#AAB7B8', stroke: E, 'stroke-width': 1.5 });
+    add('rect', { x: 260, y: B2 - 40, width: 20, height: 10, fill: '#7F8C8D' });
+    add('path', { d: `M270 ${B2 - 130} C 284 ${B2 - 110}, 282 ${B2 - 92}, 270 ${B2 - 84} C 258 ${B2 - 92}, 256 ${B2 - 110}, 270 ${B2 - 130} Z`, fill: '#5DADE2', opacity: 0.8 });
+    add('path', { d: `M270 ${B2 - 112} C 276 ${B2 - 102}, 275 ${B2 - 92}, 270 ${B2 - 86} C 265 ${B2 - 92}, 264 ${B2 - 102}, 270 ${B2 - 112} Z`, fill: '#1F618D' });
+    name(270, B2 + 22, 'mechero Bunsen');
+    // balanza
+    add('rect', { x: 350, y: B2 - 40, width: 120, height: 40, rx: 6, fill: '#D5D8DC', stroke: E, 'stroke-width': 1.5 });
+    add('rect', { x: 365, y: B2 - 30, width: 54, height: 20, rx: 3, fill: '#1C2833' });
+    label(add, 392, B2 - 14, '19,6 g', { 'font-size': 12, fill: '#58D68D' });
+    add('ellipse', { cx: 410, cy: B2 - 46, rx: 40, ry: 6, fill: '#AAB7B8', stroke: E });
+    name(410, B2 + 22, 'balanza');
+    // soporte con pinza y aro
+    add('rect', { x: 510, y: B2 - 10, width: 90, height: 10, rx: 3, fill: '#566573' });
+    add('rect', { x: 525, y: B2 - 165, width: 7, height: 155, fill: '#7F8C8D' });
+    add('rect', { x: 520, y: B2 - 135, width: 16, height: 12, fill: '#2C3E50' });
+    add('line', { x1: 536, y1: B2 - 129, x2: 580, y2: B2 - 129, stroke: '#2C3E50', 'stroke-width': 4 });
+    add('rect', { x: 520, y: B2 - 75, width: 16, height: 12, fill: '#2C3E50' });
+    add('line', { x1: 536, y1: B2 - 69, x2: 555, y2: B2 - 69, stroke: '#2C3E50', 'stroke-width': 3 });
+    add('ellipse', { cx: 575, cy: B2 - 69, rx: 20, ry: 5, fill: 'none', stroke: '#2C3E50', 'stroke-width': 3 });
+    name(555, B2 + 22, 'soporte, nuez,');
+    name(555, B2 + 38, 'pinza y aro');
+    // gradilla con tubos
+    add('rect', { x: 630, y: B2 - 60, width: 90, height: 8, fill: '#A04000' });
+    add('rect', { x: 630, y: B2 - 10, width: 90, height: 10, fill: '#A04000' });
+    add('rect', { x: 632, y: B2 - 60, width: 6, height: 50, fill: '#A04000' }); add('rect', { x: 712, y: B2 - 60, width: 6, height: 50, fill: '#A04000' });
+    [650, 675, 700].forEach(x => glass(`M${x - 7} ${B2 - 90} L${x - 7} ${B2 - 22} Q${x - 7} ${B2 - 12} ${x} ${B2 - 12} Q${x + 7} ${B2 - 12} ${x + 7} ${B2 - 22} L${x + 7} ${B2 - 90}`));
+    name(675, B2 + 22, 'gradilla');
+    // cápsula de porcelana y mortero
+    add('path', { d: `M745 ${B2 - 40} Q 775 ${B2} 805 ${B2 - 40} Z`, fill: '#FDFEFE', stroke: E, 'stroke-width': 2 });
+    name(775, B2 + 22, 'cápsula de');
+    name(775, B2 + 38, 'porcelana');
+</script>
+</body>
+</html>

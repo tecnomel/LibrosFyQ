@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>UD3_28 · Estructura de Lewis del SF6</title>
+    <link rel="stylesheet" href="../../comun/figura.css">
+    <script src="../../comun/svg.js"></script>
+    <script src="../../comun/lewis.js"></script>
+</head>
+<body>
+<script>
+// SF6: 6 pares enlazantes alrededor del S (octeto ampliado).
+const svg = crearFigura(250, 230);
+const oct = [[0, 1], [0, -1], [1, 0.3], [-1, -0.3], [0.8, -0.6], [-0.8, 0.6]];
+dibujarLewis(svg, 125, 115, { atomos: [{ s: "S", id: "s", x: 0, y: 0 },
+    ...oct.map(([x, y], i) => ({ s: "F", id: "f" + i, x, y, libres: 3 }))],
+    enlaces: oct.map((_, i) => ({ a: "s", b: "f" + i })) }, { L: 76 });
+</script>
+</body>
+</html>

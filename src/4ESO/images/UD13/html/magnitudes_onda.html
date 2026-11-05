@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Magnitudes de una onda</title>
+<link rel="stylesheet" href="style.css">
+<style> body { width: 820px; } </style>
+</head>
+<body>
+<div class="canvas">
+    <svg id="s" width="780" height="300"></svg>
+</div>
+<script src="fig.js"></script>
+<script>
+    const add = svgAdder('s');
+    const A = 70, L = 200, y0 = 150;
+    const panel = (x0, ttl, xl) => {
+        label(add, x0 + 175, 22, ttl, { fill: '#000070', 'font-size': 16 });
+        arrow(add, x0, y0, x0 + 350, y0, '#23373B', 1.8, 10);
+        arrow(add, x0 + 10, 250, x0 + 10, 50, '#23373B', 1.8, 10);
+        label(add, x0 + 350, y0 + 20, xl, { 'font-size': 14, 'text-anchor': 'end', 'font-style': 'italic', 'font-weight': 600 });
+        label(add, x0 + 16, 58, 'posición', { 'font-size': 14, 'text-anchor': 'start', 'font-style': 'italic', 'font-weight': 600 });
+    };
+    const span = (xa, xb, y, t, col) => {
+        dashed(add, xa, y0 - A, xa, y - 6); dashed(add, xb, y0 - A, xb, y - 6);
+        arrow(add, (xa + xb) / 2, y, xa, y, col, 2, 9); arrow(add, (xa + xb) / 2, y, xb, y, col, 2, 9);
+        label(add, (xa + xb) / 2, y - 8, t, { 'font-size': 14, fill: col });
+    };
+    // ---- izquierda: la onda en un instante (posición frente a distancia) ----
+    panel(20, 'La onda en un instante', 'distancia');
+    wave(add, 30, y0, 300, A, L, { col: '#2E86C1' });
+    const c2 = 30 + 5 * L / 4;
+    arrow(add, c2, y0, c2, y0 - A, '#C0392B', 2, 9); arrow(add, c2, y0 - A, c2, y0, '#C0392B', 2, 9);
+    label(add, c2 + 8, y0 - 28, 'A (amplitud)', { 'font-size': 14, fill: '#C0392B', 'text-anchor': 'start' });
+    span(30 + L / 4, 30 + 5 * L / 4, 62, 'λ (longitud de onda)', '#1E8449');
+    label(add, 30 + L / 4, y0 - A - 8 + 40, '', {});
+    label(add, 30 + 3 * L / 4, y0 + A + 22, 'valle', { 'font-size': 13, fill: '#525252' });
+    label(add, 30 + L / 4, y0 - A + 30, 'cresta', { 'font-size': 13, fill: '#525252' });
+
+    // ---- derecha: un punto del medio a lo largo del tiempo ----
+    panel(410, 'Un punto del medio a lo largo del tiempo', 'tiempo');
+    wave(add, 420, y0, 300, A, L, { col: '#C0392B' });
+    span(420 + L / 4, 420 + 5 * L / 4, 62, 'T (período)', '#1E8449');
+    label(add, 195, 290, 'Frecuencia: f = 1/T (en Hz = s⁻¹)', { 'font-size': 15, fill: '#23373B' });
+    label(add, 585, 290, 'Velocidad: v = λ/T = λ · f', { 'font-size': 15, fill: '#23373B' });
+</script>
+</body>
+</html>
